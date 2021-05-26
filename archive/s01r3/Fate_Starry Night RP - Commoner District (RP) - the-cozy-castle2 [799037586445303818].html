@@ -1,0 +1,1760 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-cozy-castle</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Commoner District (RP) / the-cozy-castle</div>
+
+            <div class="preamble__entry preamble__entry--small">A decent enough place residing near the heart of the commoner district. It used to be a hotel when travelers from far and wide came around, but now it&#39;s been modified into an apartment complex with a restaurant on the ground floor.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">14-Jan-21 06:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="799037631908413502" id="message-799037631908413502">
+            
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7a04262b4bb1fec0b1930f458943a23-29E1B.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7a04262b4bb1fec0b1930f458943a23-29E1B.jpg" alt="Image attachment" title="Image: uSaE79Z-7A47E.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div> 
+            
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-98EF1.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="799740255140839424" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 03:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="816392037472403506" id="message-816392037472403506">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio would have expected a pretty lengthy trek. They were headed for the home of a mafioso, after all! Surprisingly, the meeting spot was no further than a few blocks down the church, being located inside of the commoner district. The boy found that odd for a bit, but it made sense: The mafia district was in disrepair ever since the gang wars started, with the aristocracy actively sabotaging the artificial weather system within those areas. Not to mention, it was like living with a target on your head: The aristocracy <em>loathed</em> the mafia and would most likely arrest you on sight if they saw you emerge from a mafia controlled district.
+
+It only made sense to lie low in the commoner area, though the building in front of them wouldn&#39;t have looked out of place in a mafia controlled district. It looked fairly old, being a former hotel that was now a shadow of its former self. Apparently, it was now an apartment complex with a ground floor restaurant. Thankfully, they weren&#39;t there to dine.
+
+The trip there was anything but subtle. Caster&#39;s female form caught all sorts of glances and stares, but the Servant didn&#39;t even notice. Tapio would be washed by a wave of second hand embarrassment as several men glared at him, envying his position and wishing that they could replace him instead. Despite that, Tapio wasn&#39;t enjoying this at all: Aratron was dragging him around <em><strong>by the hand!</strong></em> He was treated like a toddler who didn&#39;t know how to walk, yet he couldn&#39;t escape his Servant&#39;s iron grip. Caster must have been really worried about enemy Masters to resort to such methods...
+
+&quot;Wait here, student.&quot; At least, until she abruptly released her hold and told Tapio to wait. She then entered a nearby bathroom, almost going to the men&#39;s toilet before doublechecking and going the opposite way. What was she--</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816393120232767528" id="message-816393120232767528">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Let us make haste, student.&quot; A familiar voice rang in Tapio&#39;s ear, as an even more familiar face emerged from the bathroom. Aratron had returned, now wearing his original skin as the boy expressed disappointment at the man&#39;s lack of...assets.
+
+&quot;...You seem perturbed. I simply changed my attire due to Assassin only recognizing me by my male form. It will make our talks much smoother. I&#39;ll change back once this dilemma is solved.&quot; He explained, but the boy&#39;s hopes and dreams had already been crushed.
+
+&quot;Anyway, the meeting spot should be around here. We were asked to wait around the ground floor, and this <em>is</em> the ground floor. Time to hope that our host is timely.&quot; Aratron said, waiting for Assassin and their Master to show themselves... <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7506aa80e0d358488d486d876f473d0-F1315.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="799740255140839424" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 04:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="816400000422641714" id="message-816400000422641714">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coal peeked through the window, looking around. Not for anyone or anything in particular, but at all the damn <em>rain</em>. He knew that those at the top messed around with it whenever they felt like it, but could someone put in a good word for something other than fucking rain?! Forecast said maybe some snow too. Fucking wonderful.
+
+He forcefully shut the covers, shivering as he went to the dresser and threw on an extra shirt. That didn’t help much with his problem at hand. He threw on his large coat, zipping it all the way up so it dug under his chin into his jaw. 
+
+It barely helped. He threw on his pair of gloves before double checking the thermometer hung up one last time: six degrees?! Jesus, maybe it was time to invest in a heater instead of relying on the buildings own heating process to keep warm…
+
+… but that implied he had money, and that money would go towards more important things. Coal instead threw up his hood and turned on his Magic Sweater, a faint orange surrounding his body. That helped a little, but not enough to make him happy. He would’ve preferred some coffee and some lounging around today, but he had other things scheduled. 
+
+It was about time to go down into the lobby and wait for the Caster-Master pair.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816400148560084992" id="message-816400148560084992">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Come on, let’s get going,” Coal said, motioning to the door. “Those two should be here any minute now.”
+
+He threw the door open, letting Claudius exit before letting it close behind them. “Now, I want you on your best behavior. No insults, no taunts, nothing to make them pissed off and attack us. If I’m the reason this place falls in on itself I’ll never be able to live with myself.”
+
+Down the hall, down the stairs, into the lobby. Like clockwork. Now, where were those two…
+
+Ah, right there! It was impossible to miss either of them, one standing tall and proud and the other looking… disappointed? Coal didn’t bother thinking about why, just how much he still wanted to send someone that looked just like him down a nice, long flight of stairs with a firm foot to the chest.
+
+Coal approached the pair, making sure no one fishy was hiding around. “You two really stand out, you know that? Couldn’t miss you in a line up in a million years.”
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/18a44b061f5e7302b027056f34cee882-4505A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="799740255140839424" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Mar-21 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="816711972048470036" id="message-816711972048470036">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I&#39;m not upset. I&#39;m not a kid.&#39; Was what Tapio said, but he was clearly disappointed. Sure, the walk to the apartment complex hadn&#39;t exactly been a smooth one, but at least he rather enjoyed being at the center of attention, even if said attention mostly came in the form of murderous stares. But now he was back to being with Caster&#39;s stuffy old form. 
+
+What was worse, they even dropped all the cute quirks! But perhaps that was a blessing in disguise. Tapio wasn&#39;t sure how he&#39;d react if the current Aratron suddenly started pouting and smiling and manifesting oversized reading glasses on their stern face.
+
+&#39;Hmph, at least you are taller than before. You&#39;re like a landmark, pretty hard to miss.&#39; The boy sighed, then stood on tiptoes himself and looked around the lobby. Assassin&#39;s Master hadn&#39;t really made an impression on him other than that they delivered packages and were a bit loony in the head, so he tried to lock eyes with every single person that walked their way.
+
+After a dozen or so misses, he finally came across two people who didn&#39;t immediately shy away from his staring challenge. One of them was bundled up in layers of clothes, while the other one looked shabby and malnourished...yep, perfectly fitting for an Assassin if you ask him.
+
+&#39;And you look like a human burrito.&#39; Tapio laughed as he greeted Coal back. &#39;First time seeing snow? You&#39;re not going to last a hot minute in my hometown, then!&#39; 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/84a24c63d753caa7d36d3c0884cdffef-63322.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Claudius Smith#0000" data-user-id="799740255140839424" style="">Claudius Smith</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Mar-21 04:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="816773541399625788" id="message-816773541399625788">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Claudius sat in a chair rocking back and forth eating a hotdog. Where did he get it from? Who knew. “Wow Master I must say, from the hamburger to this hotdog, sandwiches have come a long way since I was around” Claudius finished the hotdog wondering if it could even be called a sandwich. A sandwich had two pieces of bread but a hot dog was one. 
+
+He stood out of the chair with a stretch as it was now time to go meet up with Caster and his Master. “Ya have little faith in me master, my tongue will stay still, no smart remarks from me don&#39;t worry alright?” Claudius gave Coal his word, however, he wasn&#39;t so sure himself that he could keep his words at bay.
+
+As they approached the area of meeting Claudius made the choice to stay out in the open with his master, surely the other two would be less trusting if an assassin was hiding from plain sight. Standing in front of the pair Claudius scratched his chin, he hadn&#39;t got to see Tapio up close last time, he seemed like quite the pip.
+
+“Oh Master he&#39;s really railing into you” Claudius said with a chuckle, “You were worried about me saying something but you’re the one getting called a burrito.”
+
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7506aa80e0d358488d486d876f473d0-F1315.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="799740255140839424" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Mar-21 05:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="816791357414047744" id="message-816791357414047744">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coal’s face grew ever so red as he burrowed into the coat. “Hey, shut up!” He bonked his Servant’s head lightly in retaliation. 
+
+“Kid, it’s like, six degrees. You’re the one not wearing enough, how do you expect to stay warm out there in <em>that</em>,” he motioned with a gloved hand to the lack of proper winter wear Tapio had. “And I don’t want to ever visit where you live if it’s worse than here. Already doing bad enough.” It was harder to hear the man, as he failed to take into account that his words got muffled behind the thick fabric. 
+
+Whatever, they had more important matters to get into. After all, they didn’t stop by to throw around light insults like a couple of friends who hadn’t seen each other in a year. They were here to discuss more important things.
+
+“I’d like to continue our talk somewhere a little more private, if you catch my drift. My room’s just upstairs, if that works out well for you. Otherwise we’d have to go sit in that far corner, and I’m not sure how much more of this cold I can take.” he said to Caster. He assumed they were the one in charge in that relationship. That and he didn’t trust a twelve-year-old to make any sort of decision.
+
+Coal was slightly shivering as he spoke, very unhappy with the weather outside. Geez, could they decide a little faster, he was freezing over here!
+
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-AD43F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="799740255140839424" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Mar-21 07:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="816811319793025055" id="message-816811319793025055">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...You aren&#39;t cold?&quot; Aratron asked, as if legitimately curious about Tapio&#39;s condition. The boy had acted so casually throughout their trek that he was unaware that the temperature had changed. It was hard for a makeshift body to feel anything, after all.
+
+&quot;I suppose that makes sense. Good. Making adequate winter gear would require precious materials.&quot; He pointed out, before getting straight to business with Coal.
+
+&quot;Understood. I would prefer less eyes as well. Escort us to your room, then. Assassin&#39;s Master.&quot; Aratron addressed Coal rather professionally, a sign that he didn&#39;t trust the man yet.
+
+&quot;Do not worry, student. Judging by Assassin&#39;s performance in our last scuffle, coupled with his current focus on engorging consumables, I can make quick work of him in case they ever try to betray us.&quot; Aratron was blunt, while also poking fun at Claudius&#39; appetite. He wasn&#39;t messing around when he meant that Tapio&#39;s safety was his main priority. <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7506aa80e0d358488d486d876f473d0-F1315.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="799740255140839424" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Mar-21 02:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="816925749663236116" id="message-816925749663236116">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Well ain’t you cool,” Coal said, unimpressed by Caster’s judgement of the situation. “Your biggest concern should be something a little more worthy, like, oh I don’t know, maybe the five other servants in this War?”
+
+Coal lead everyone back up the stairs and down the hall a little ways. It looked about as you would expect of a Hotel-turned-apartment-complex: all the decor of a hotel but none of the weird vibes you get from being in one at any point of the day. The best of both worlds, some would argue.
+
+Coal stopped in front of one door randomly (to the people not living there). “Here it is, home sweet home. Make yourselves comfortable, don’t touch anything important. If you open the covers and-slash-or window I <em>will</em> beat the shit outta you.”
+
+Inside was about the smallest apartment they might have ever seen. On the immediate left was an incredibly small bathroom, followed by an equally and relatively small grey kitchen, which led into the grey main room. It sure used to be a hotel, with only two beds side by side on the left with a simple yet sturdy wooden desk in the right corner. Various knick knacks hung on the walls and sat in corners, the most noteworthy consisting of a baseball bat and a glove resting next to one bed and an old radio sitting on the desk.
+
+Perhaps the most noteworthy of all was a weird smell hanging in the room. A faint yet indescribably unpleasant stench seemed to seep into the very environment. It was a little stronger in the kitchen, pointing to maybe some rotten food or something. It felt oddly right in the dingy long room.
+
+“Take a seat anywhere but the desk, as I live here and get dibs on the spinny chair. You guys want any water, coffee? It’s awful shit but it’s hot. I got some sugar to spare too, if you <em>really</em> want it.”
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/18a44b061f5e7302b027056f34cee882-4505A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="799740255140839424" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 02:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="817108468703297559" id="message-817108468703297559">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;It&#39;s gonna take a lot less than six degrees to make me feel cold. Just eat a lot and exercise a lot, easy!&#39; As if to prove his point, Tapio mounted the stairs two at a time and skipped ahead to wait for the gang. As always, he made light of the situation in spite of Aratron&#39;s probing. But since Assassin&#39;s Master was involved this time, maybe the boy did take Aratron&#39;s advice and kept a few cards close to his chest. 
+
+Or maybe he just liked to mess with Coal. Kids these days...
+
+Tapio waltzed into Coal&#39;s apartment like he was sightseeing. The tiny room was a far cry from the dorms at the academy, but compared to his camping tent and Caster&#39;s boundless desert space and the run down church he had been inhabiting, it was starting to look quite cozy. Of course, the moment he thought to make himself comfortable was the moment an acrid smell invaded his senses. Tapio scrunched up his nose.
+
+&#39;Do you smell that?&#39; He instinctively took another whiff and immediately regretted it. The smell wasn&#39;t so intrusive at first, but now that he&#39;d noticed it, it was impossible to ignore. What was that Coal had warned him about? 
+
+Tapio strode past the swivel chair and went for the windows. &#39;Don&#39;t you ever air out your room? You&#39;re gonna have mushrooms growing on the wall at this rate.&#39;
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7506aa80e0d358488d486d876f473d0-F1315.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="799740255140839424" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 03:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="817117554724175903" id="message-817117554724175903">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coal bolted for the windows right as Tapio was about to open them, managing to get them shut before too much cold air managed to get in.  The urge to pummel the kid was rising, so he employed a common tactic to stem off his steaming anger
+
+<em>One, two, three...</em>
+
+“What did I just say?! Keep these closed or it’ll never get warm. And for the smell, that’s some very old pigs blood that spilled and I haven’t been able to get the smell out yet. Unless you got the money to buy me a new fridge, you’re just gonna have to suck it up. You get used to it, trust me
+
+Coal sat down in his comfortable spinny chair, making sure it worked by going around once or twice. That helped calm is now provoked nerves enough to prevent another outburst. Also made him a little dizzy.
+
+“Now do you want anything else before we get this thing going? I’ll get you something to drink if you want but once we start discussing things I ain’t getting outta this chair. It’s too comfortable.”
+
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/84a24c63d753caa7d36d3c0884cdffef-63322.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Claudius Smith#0000" data-user-id="799740255140839424" style="">Claudius Smith</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 05:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="817146350080753674" id="message-817146350080753674">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Claudius followed the group upstairs and assumed a position leaning against the wall.  “And here I was thinkin’ that was yer body odor Master” Claudius said with a chuckle. He found Tapios ability to so quickly get on Coals nerves rather amusing.
+
+“Now then young lad, you best settle down, you’re not here to be Master’s playmate… although he could use a friend.” Claudius tried bringing attention to the matter at hand, he would only be able to tolerate a hyperactive person like Tapio for so long.
+
+Claudius had yet to pay any attention to Caster, it seemed he was still a tad bit annoyed by his presence. Claudius didn&#39;t care much for magic and Arartron was one of the worst offenders. The assassin shook his head just thinking about
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-AD43F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="799740255140839424" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 09:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="817205123754491914" id="message-817205123754491914">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Please. Saber is a child and Lancer is as conceited as heroes come. I am rather confident in my own chances, but my student is another story entirely. Had it not been for them, Lancer would probably be long gone by now.&quot; Aratron remarked to Coal&#39;s statement. Such audacious claims! Well, judging by Caster&#39;s Noble Phantasm from a few days back, he definitely had the firepower to back those claims. But he was also right: Tapio was the Servant&#39;s biggest weakness, and enemy Masters would be sure to capitalize on that. No doubt Aratron had schedule this meeting to cover that weakness.
+
+As they entered the room that stank of pig&#39;s blood and leftover concoctions, Aratron paid them no mind. If he couldn&#39;t feel cold, he most likely didn&#39;t have a proper sense of smell either. Regardless, he intervened as he tugged at Tapio&#39;s coat. 
+
+&quot;Sit down, student. Had you mastered bounded fields, you wouldn&#39;t be in this situation right now. An average magus would most likely be able to create a field that eliminates the odor of pig&#39;s blood. Perhaps focus on that, while I deal with negotiations.&quot; Caster warned, telling Tapio to stay put before heading over to Coal.
+
+&quot;Now, as we discussed before this meeting,&quot; He began the conversation. &quot;I assume you&#39;ve done some research into the <strong>aristocrat in a metallic suit?</strong> The one extorting money out of merchants, vendors and restaurants with his Servant in tow. A large figure clad in golden garbs and accessories. I am unsure of what class they are, but I am leaning towards Rider or Berserker.&quot; 
+
+Tapio and Claudius would overhear the conversation quite clearly. <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">05-Mar-21 09:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="817205249768685598" id="message-817205249768685598">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">hang on what the FUCK</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817205268848443454" id="message-817205268848443454">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">BRING FEM ARATRON BACK PUSSY</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">05-Mar-21 09:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="817205842847727676" id="message-817205842847727676">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">bring back maid sinny and we&#39;ll talk <img class="emoji " alt="worryPoint" title="worryPoint" src="https://cdn.discordapp.com/emojis/796020722279383050.jpg"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7506aa80e0d358488d486d876f473d0-F1315.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="799740255140839424" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 10:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="817215251485294642" id="message-817215251485294642">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yea, yea, as much as I could at least,” Coal spun and pulled open a drawer on the bottom half of the desk. He rummaged through some folders before pulling out a specific piece of paper. The handwriting was horrid but Coal was able to read whatever the hell was written on in. 
+
+“This guy isn’t exactly, oh what’s the word, subtle? That sounds right, I think. Guys name, if my guy is right, is Szrac something, he couldn’t get a last name. Like you said, goes around and takes shit from a bunch of people in the Commoner District. One thing he stressed was that stuff the servant touched changed into something else, whatever that means. Might be an all-chem-ist,” Coal absolutely butchered that word. Anyone with basic knowledge of vocab would be in great pain.
+
+“Oh, and apparently they were part of a huge brawl not too long ago, destroyed a restaurant in the process and the servant went on a rampage or something. At least that’s what the few witnesses willing to talk said. Servant they fought created this big weird car thing out of nowhere, so that points to your guy being a Berserker. Would also explain the, you know, rampage.”
+
+Coal put the sheet aside on the desk, “Not much else to say-- oh, one final thing, let’s see here… everything they take winds up at the Power Plant on Persepolis. Aristocrat territory. Which means: we ain’t approaching them in their terf. Ever.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817215320598380615" id="message-817215320598380615">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coal returned the paper into the folder it came from, “What you wanna do with this information is beyond me. If I was you I’d hope someone else takes them out before you gotta deal with it. Odds are they’d go for the kid over there and end your shit really fast.”
+
+And he pulled out a notebook. He twisted over to grab a ball-point pen and pulled off the cap with his teeth, “Now, what do you got on the rest of the servants? If we’re both in the know we can figure out our next step.”
+
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/18a44b061f5e7302b027056f34cee882-4505A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="799740255140839424" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 01:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="817264746801135616" id="message-817264746801135616">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Of course not, Assassin, I&#39;m too old to play house!&#39; Tapio beamed at Claudius as Coal came over to slam the windows shut. He hopped out of the way, just far enough to be out of reach. Coal was obviously trying hard not to blow a fuse, but the annoyance was still written all over his face. Along with a hyper kid, a slimy hooligan and a stuck-up statue, 
+Coal was having the party of a lifetime in his humble abode.
+
+Thankfully, Aratron was quick to put an end to Tapio&#39;s nonsense. Tapio let out a small &#39;<em>Hmph</em>&#39; as the topic once again went back to his abysmal bounded fields. &#39;Imagine using magecraft when you can just open a window and be done with the smell,&#39; He mumbled.
+
+Nevertheless, the boy calmed down. Turning around, he inspected his seating options. While the chair was obviously the premium choice, Coal had already claimed it while he was busy dealing with Aratron&#39;s lecture. Which leaves the beds. Tapio picked the one closer to the center of the room and plopped down, bouncing once or twice after for good measure.
+
+Coal seemed to have done his homework. Guy&#39;s even got a cheatsheet prepared as he listed off everything he knew about the tin can man. What kind of name is Zee Rock? Tapio cast a casual glance at the other piece of rock in the room; Caster suddenly felt a chill down his spine despite his lack of senses. Takes a rock to know another, huh? 
+
+&#39;Wait, stop, hold on a sec.&#39; Tapio cut in when he heard himself being badmouthed. &#39;I&#39;m right here, hello? You&#39;re kind of  rude, you know?&#39; He chided, crossing his arms. &#39;I&#39;d rather take it from someone who won&#39;t get spooked by a bit of snow.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-AD43F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="799740255140839424" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Mar-21 12:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="817427398994821121" id="message-817427398994821121">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron carefully listened to Coal&#39;s report, forming a mental image of every detail that he was being given. Someone with a metallic suit and a Servant (that was most likely Berserker) was extorting valuables from commoners and gathering it all at the <span class="mention">#power-plant</span>. Intriguing. A power source, perhaps? Using riches as fuel seemed wasteful, but perhaps there was a certain reasoning for that. Perhaps only gold could be used to fuel whatever was resting at that plant.
+
+Actually, when he thought about it a bit more, Aratron remembered that the old Saber from last time would most likely not approve of such tactics. In addition to that, this &#39;Szrac&#39; fellow didn&#39;t seem to care for expensive valuables at the time.
+
+Speaking of...
+
+&quot;Alchemist. We are most likely dealing with an alchemist, who requires rich valuables in order to power themselves. A mad sorcerer with an obsession with riches? Can&#39;t say that rings a bell.&quot; Aratron replied, correcting Coal before noticing Tapio&#39;s stare. He sighed.
+
+&quot;It won&#39;t be a problem. If they wish to fight, so be it. However, they won&#39;t ever get a chance to attack my student.&quot; Aratron proclaimed, stepping in front of Tapio and hiding him from view. It was a sign that he would protect him. At all costs.
+
+&quot;That is the main reason I came here, after all. Say, Assassin&#39;s Master. What if, theoretically speaking, my student were already a target to Szrac&#39;s eyes? Would it even be safe for them to walk out in the streets like a carefree capybara?&quot; Aratron pondered. So, that was why he had organized the meeting: To see if Coal had a solution to Tapio&#39;s inability to leave the church. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/18a44b061f5e7302b027056f34cee882-4505A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="799740255140839424" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Mar-21 03:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="817477486035468288" id="message-817477486035468288">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Not you too, Caster!&#39; Tapio groaned. &#39;<strong>Stop treating me like an anim-a kid!</strong>&#39; He felt like crying. Once upon a time he had thought himself to be the resilient type, but as it turned out, resilience meant absolutely zilch when you weren&#39;t being taken seriously in the first place. 
+
+So, the boy did the first thing he could think of to reclaim his status as Caster&#39;s respectable, indisputable, distinguished Master. He climbed onto the bed and stood on top of the mattress, finally breaching Aratron&#39;s human(oid) shield and overlooking their head at the rest of the group.
+
+&#39;My coming of age! Is next year! While you are but two weeks old, legally speaking!&#39; He practically shouted into Aratron&#39;s ear as he prodded their back. &#39;I can take care of myself just fine. Mr. Tin Can or not, they won&#39;t be doing anything to me so long I have <em>this</em>!&#39;
+
+Tapio grabbed the hem of his coat and flipped it over, revealing the runes Aratron had patched up for him. Caster had warned him of the dangers of talking too much in front of a rascal like Assassin&#39;s Master, but this was a matter of dignity! To further illustrate his point, the boy hopped off the bed and once again, over to the window. He yanked it open before Coal could even get up from his comfy chair and leapt through without hesitation.
+
+&#39;I&#39;ll meet you downstairs,&#39; said Tapio pointedly, looking every bit as miffed before gravity plunged him towards the street below. 
+
+Coal&#39;s wish...granted?
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7506aa80e0d358488d486d876f473d0-F1315.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="799740255140839424" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Mar-21 05:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="817514609875484762" id="message-817514609875484762">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“...what the FUCK is a capybara—“ was all Coal could get out before Tapio started throwing his fit. Much like a kid would, despite his constant saying otherwise. He wasn’t even sure who he was supposed to pity in that relationship, instead deciding they were both equally insufferable. 
+
+And then Tapio flashed the edges of his coat, a bunch of etched in sigils put in the jacket itself. Coal knew that they were those Rune things everyone was always going on about, but he had not the slightest clue what they were for or what they even said. Of all the people for him to reveal that too, Coal was honestly one of the better people. Couldn’t even do anything with this information if he tried.
+
+And when he opened the window in frustration, Coal didn’t immediately go to stop him. He figured it would be best to let him get everything out and then tell him to can it.
+
+“Listen, kid,” Coal started, getting out of chair. As he stood up, though, Tapio was already on the edge of the window and then simply <em>out</em> the window. His first instinct was to run over and see how the kid fell. Specifically, if he fell down onto not his feet. It was the first story, but that’s still a drop.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817514863089287228" id="message-817514863089287228">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He let out the air he wasn’t aware he was holding in as the kid looked not dead or dying. The adrenaline had already started pumping through his system but it wasn’t gonna be needed. Now they just had to deal with a snotty brat who had just gotten the attention of everyone on the street.
+
+“I’ll tell you one thing, if he does shit like this then I’d start looking for a new master,” Coal put it bluntly. Jesus christ, he knew the kid was young and wanted to act grown up but this wasn’t the way to do it. Why can’t the youth like normal things like books and baseball and whatever else their minds can come up with?
+
+“If you wanna help me get him back here before he does something even stupider, I guess I’ll be downstairs,” he said. It was all the warning he gave before he too jumped out the window. 
+
+He went out smoothly, launching his feet first and using the momentum to follow through. He just didn’t take into account one thing.
+
+He didn’t jump out of one story windows all that often.
+
+“Holy shiiiIIIIIITTT—“ He flailed his arms wildly. Truly a sight.
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-AD43F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="799740255140839424" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Mar-21 11:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="817781642579673118" id="message-817781642579673118">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Capybara. Also known as <em>Hydrochoerus hydrochaeris.</em> A gigantic rodent that was once native to South America. Does that narrow things down?&quot; Aratron explained, albeit that would only confuse Coal further. Tapio was the icing on the cake, having a temper tantrum over the two grownups in the room treating him like a liability more than a magus.
+
+So, he jumped out of the window, either to get attention or just to appear cool for once. It had the opposite reaction, with Coal viewing the boy as an idiot as he too followed suit and jumped off. Aratron stared at the two hasty individuals, bewildered by their contagious idiocy. He sighed before giving a glance to Claudius.
+
+&quot;Assassin, do you have anything to add? If not, then I suppose we shall meet downstairs.&quot; Aratron muttered, exiting the room and taking the stairs like a dignified person. He was confident that Tapio&#39;s life wasn&#39;t in any danger, after reading the runes on the boy&#39;s coat.
+
+Tapio and Coal would land on the ground, next to the entrance of the Cozy Castle. Aratron appeared a few minutes later, leaving the building and casting a glance at the two from afar.
+
+&quot;Student, if you intend to reach adulthood, then you shall stand down and do as I say.&quot; Caster declared with an authoritative gaze. &quot;We came here to solve your problems, <em>not</em> let you add to them. Isn&#39;t that right, Assassin&#39;s Master?&quot;
+
+He looked back to Coal as he decided to resume negotiations. 
+
+&quot;My student is being capricious because of the recent events. Due to Szrac&#39;s presence, he has been unable to leave his workshop and be present in public. Surely, you understand what I&#39;m getting at?&quot; He explained. <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/84a24c63d753caa7d36d3c0884cdffef-63322.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Claudius Smith#0000" data-user-id="799740255140839424" style="">Claudius Smith</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Mar-21 03:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="817836444466151436" id="message-817836444466151436">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Claudius listened to Coals&#39; information with wide eyes. He was rather surprised, his Master was a bit more competent than he initially thought. To be fair Coal was a bit of a closed book and Assassin had a bit of trouble trying to get a read on him. 
+
+Claudius did nothing but listen intently, he forced himself to stay quiet in fear that he would say something to the hyper kid in the corner. Surely if he railed on Tapio the negotiation might take a sour turn… but then Tapio jumped out of the window… peace at last
+
+“Huh? Oh I have nothing to add Caster except come friendly advice. Try and loosen up yeah? You’re type doesn&#39;t really sit well with me.” As Claudius spoke he walked backwards to the window grabbing the last apple from Coals fruit bowl… poor Coal, Claudius had eaten all of the fruit.
+
+Leaning backward over the window Claudius fell down landing on the floor with a bit of grace, he wanted to get in on the window action too. 
+
+As Aratron arrived at the bottom he couldn&#39;t help but chuckle at his scolding towards Tapio. “Say young man, aren&#39;t you supposed to be the Master and him the Servant? To take orders from a lesser is surely disgraceful.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817836550553075743" id="message-817836550553075743">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/18a44b061f5e7302b027056f34cee882-4505A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="799740255140839424" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Mar-21 03:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="817847860506132481" id="message-817847860506132481">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The rain had been a blessing in disguise. The street below was nearly empty even in the middle of the day, with only the occasional pedestrian hurrying past. The sound of crashing in front of the hotel-turned-apartment complex turned but a few heads, and when Coal jumped out the window screaming like a hysteric, they scrammed like moths, flitting away into buildings and alleys.
+
+Tapio sat cross legged under a dry patch of ground shielded by the Cozy Castle. He scooted over and made enough room for Coal to land however he wished. The dive out the window had been an exhilarating distraction, but he was still miffed! And now on top of being miffed, he was starting to miss going to amusement parks. If only Persepolis were rich enough to build one. Maybe he should try a taller building? 
+
+Unfortunately, Caster made his swift decent down the building like a normal human bean and quickly caught up to the idiot duo.
+
+&#39;I heard you the last time,&#39; Tapio met Aratron&#39;s gaze with a glare of his own, with a scowl thrown in for added effect. &#39;But what kind of adult would I even be if I have to take orders from you? Only kids do that. And I&#39;m <em>waaaaaay</em>-&#39; He gestured with his arms wide open, &#39;-stronger than a kid.&#39; 
+
+Of course, the moment he started doing cool demonstrations was the moment Aratron decided that their conversation was over, and proceeded to initiate another one with Coal. Tapio was starting to get the feeling that his Caster wasn&#39;t exactly taking his inputs seriously - or worse, taking <em>him</em> seriously, at all. Safety this, safety that, did Aratron genuinely care about him, or were they only interested in the act of keeping someone safe? Did it have to be Tapio?
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817847900268396584" id="message-817847900268396584">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Would things have been any different had they been summoned by an actually competent mage?
+
+&#39;Don&#39;t force your idea of safety on me.&#39; Tapio huffed. &#39;You&#39;re just babying me, and I don&#39;t need it. I don&#39;t need to be babied. If I&#39;m really in trouble, I&#39;ll ask for help. Do you even know why I joined the grail war?&#39; He got up and walked up to his Servant, hands balled into fists. Up above, Assassin egged him, further fueling the anger building in the pit of his stomach.
+
+&#39;Because it&#39;s exciting! You, as my Servant, aren&#39;t you supposed to respect my wish? <strong>But now you&#39;re just making it the most boring thing on the planet!!!</strong>&#39;
+
+That&#39;s it! If Caster would rather cage him in, then he&#39;ll just make a run for it and find his own fun!
+
+Tapio started sprinting up the street. He hopped onto the first leyline he could sense and let it take him deeper into the city.
+
+<em>Stupid Caster!</em>
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-AD43F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="799740255140839424" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Mar-21 08:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="817912538133692446" id="message-817912538133692446">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron stood still and firm, like an imposing mountain. Tapio&#39;s criticisms, words of reason and hateful remarks all bounced off of him. He was a canyon that would never erode, not even in the face of wind, rain or earthquakes. However, a single word managed to penetrate his rocky shell, due to how condescending it felt. It was something so stupid that even the great Aratron felt compelled to reply.
+
+&quot;...Are you saying humans don&#39;t need to be babied?&quot; Aratron asked quite inquisitively. &quot;Have you even looked at the world around you? The individuals you&#39;ve encountered so far?&quot; He asked with disdain. 
+
+&quot;All of them are willing. For their own wishes. <strong>To fight to the death.</strong> That&#39;s what humans feel compelled to do, after all. Exert power over others. Prioritize their own selfish needs. You are no different than them: You&#39;re willing to risk your own life just for a fleeting feeling of &#39;excitement&#39;. That line of thought is <strong>dangerous.</strong> It is the same thought process that led to millions of deaths.&quot; 
+
+As he chastised his own Master, he decided to take it a step further. &quot;My purpose is to <strong>preserve</strong> you. Tapio Veli Illmari, no, <strong>humanity will survive</strong>. No matter what I must do in order to keep humanity alive, I will do it. No human will die under my watch.&quot;
+
+A sinister aura began to surround him. It became especially potent once he saw Tapio run off and slide on a nearby leyline.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817912748712263710" id="message-817912748712263710">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Assassin&#39;s Master, please follow after me. I wish to continue the negotiations, but I also need to discipline my own student. Fortunately, I am quite good at multitasking...&quot; Aratron said that last bit with much scorn, as if Tapio had much to answer to. Caster didn&#39;t even need to walk as the ground underneath his feet started to terraform. He was sliding on moving rocks, their pace much faster than Tapio&#39;s pitiful leyline.
+
+&quot;Student.&quot; Tapio heard a whisper. He turned to his left, and saw the man himself.
+
+Aratron&#39;s eyes were furious. This wasn&#39;t rage of the moment, this was experienced anger. He felt pain that he had already felt for thousands of years now.
+
+&quot;...<strong>Which leg would you rather lose?</strong>&quot; Aratron asked while ominously raising his hand. &quot;You have seven seconds. If you stop before then, you will keep both.&quot;
+
+A threat. One more frigid than the icebergs of the artic. Tapio would wonder if his mouth was a blessing or a curse. <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/e7506aa80e0d358488d486d876f473d0-F1315.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="799740255140839424" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Mar-21 09:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="817938344204959774" id="message-817938344204959774">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coal fell ungracefully to the ground, much unlike the other two. This was <strong>not</strong> how it was supposed to go. Those guys in the movies and comic books always managed to do it and make it look so impressive and cool. Instead he looked… sad. A sad man doing a cool thing and not being cool. Just like wearing socks and sandals!
+
+He landed on his feet and did a cool roll thing forward, using all the momentum from the air into energy forward and upwards. This did not take into account the fact that it <em>hurt</em>. Jesus, he was going to be sore for days! Maybe this wasn’t such a great idea after all.
+
+After coming up to his feet, he got a little woozy from all the action and decided that sitting down would be best. He took a seat where he stood, getting rained on and getting cold. And upset. And angry. A lot of emotions in such a little time.
+
+He was only vaguely paying attention to the small scuffle behind him. Something about the kid wanting to not be treated like a child and Caster scolding him for being a child? It wasn’t too important after all. The kid ran off shortly, and his servant wasn’t too far behind.
+
+And when asked to give chase as well, he followed suit. Unwillingly, of course, but he did so. “Aughhhh!” he groaned, getting up and starting to run after the others. 
+
+He stopped for a brief moment when he saw Caster fuckin glide on the ground instead of running like a normal person. The process turned off his head more than it had ever been so before. 
+
+“That shit’s so cool, what the FUCK?! Why didn’t anyone tell me people can do that shit, I would’ve payed more attention to magic shit if I knew I could do that!” 
+
+And then he continued running. After this entire thing came and gone, he was gonna make Caster show him how to do that. At all costs.
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/84a24c63d753caa7d36d3c0884cdffef-63322.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Claudius Smith#0000" data-user-id="799740255140839424" style="">Claudius Smith</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Mar-21 05:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="818230104576360468" id="message-818230104576360468">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Claudius grinned as Tapio took off in a childish tantrum. It was pretty amusing to say the least, however, Coal and Caudius did need Tapios and his Servants assistance, so maybe it wasn&#39;t really a laughing matter.
+
+Claudius took off keeping himself next to Coal. Aratrons display of speed was rather impressive. Why couldn&#39;t he just use his legs like a normal person? Claudius thought it&#39;d be more impressive that way, if he just showed how physically stronger he was.
+
+“Come on Master it’s not that impressive, why waste your time on stupid magecreaft when you can just use your body, its much more reliable that way.”
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20the-cozy-castle%20%5B799037586445303818%5D.html_Files/18a44b061f5e7302b027056f34cee882-4505A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="799740255140839424" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Mar-21 03:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="818385195706351646" id="message-818385195706351646">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A chill ran through Tapio&#39;s body at the sound of Aratron&#39;s voice. It was barely audible, but that only made it worse. Aratron didn&#39;t sound like he was joking. Or rather, had he ever joked about anything before? Tapio was sure that this shapeshifter really meant it when they said they&#39;d lop off his leg. And that wasn&#39;t dangerous how? 
+
+&#39;Make sure you don&#39;t cut corners with your countdown then, because I&#39;m not stopping.&#39; Instead of slowing down, Tapio poured even more mana into his boots and accelerated. He took a sharp turn at the leyline&#39;s next branch off point. The temperature took a drastic drop; rain started turning into slush then into snow, while the road ahead opened up to a vast wasteland of nothingness...<span class="mention">#mass-grave</span> 
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+
+
+</body>
+
+</html>

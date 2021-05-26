@@ -1,0 +1,1705 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - mass-grave</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Old Test Site (RP) / mass-grave</div>
+
+            <div class="preamble__entry preamble__entry--small">A gigantic hole littered with the bodies of defective S.E.R.V.A.N.T. Mystic Codes or destroyed Mystic Codes. Has also been recently used as a burying site for victims from the ongoing gang wars.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">08-Nov-20 07:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="774771779172433921" id="message-774771779172433921">
+            
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/IpoJR5w-B827E.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/IpoJR5w-B827E.jpg" alt="Image attachment" title="Image: uSaE79Z-7A47E.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div> 
+                   
+            </div>
+    </div>
+</div>
+
+
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-C9386.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="818228320566247435" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Mar-21 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="821117502623973377" id="message-821117502623973377">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kari&#39;s coat started sagging as she was weighed down by an invisible force. Then its pocket burst at the seams as a large cannon barrel tore through the fabric and rammed its head squarely into Assassin&#39;s stomach. The barrel was burning hot with an intense mana signature; Kari&#39;s cooling system had to go into overdrive just to keep its owner from melting.
+
+&#39;I would appreciate a more convenient entrance next time, Miss Kari.&#39; 
+
+Archer sounded staticky as he conversed through Kari&#39;s phone. He was still stuck inside, as there wasn&#39;t nearly enough room between Kari and Assassin for him to manifest. It was already a challenge to get the head of the Chicago Typewriter through.
+
+But that was more than enough.
+
+<em><strong>BOOM!</strong></em>
+
+The cannon unleashed a full blast of pure mana that it had been building for god knows how long. It was nothing fancy, but nothing to scoff at either. Even a Servant would think twice about tanking it without any countermeasures. Assassin was quick on his feet, but was he quick enough?
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/18a44b061f5e7302b027056f34cee882-6E674.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="818228320566247435" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Mar-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="821117811245842482" id="message-821117811245842482">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio felt the briefest moment of victory before he felt the wind getting knocked out of him. Coal had tackled him into the ground, and they were now rolling like logs down the trash heap!
+
+&#39;What was that for!&#39; He kicked and thrashed, bonking Coal with the broken S.E.R.V.A.N.T. arm. &#39;Don&#39;t tackle me, tackle <em>her</em>!&#39;
+
+He pointed his makeshift weapon at the woman, but Assassin was already on her, knife in hand and poised to strike. 
+
+Kill steal!!!
+
+Tapio had no basis to accuse Claudius, but he did it anyway. In his head. Vehemently. He hadn&#39;t realized the threat Kari had posed to the trio, how she outclassed the two Masters in every single department, how he was <em>this</em> close to being turned into sashimi and how pertinent it was for Assassin to end the fight in a single strike as opposed to his dilly-dallying.
+
+Naturally, he didn&#39;t appreciate Coal&#39;s gestures at all.
+
+&#39;I was only getting started,&#39; He pushed himself into a sitting position so he had some height advantage against Coal, who was still on the ground. &#39;I thought we had a deal. To help one another, not get in the w-&#39;
+
+The rest of his words were drowned out by the roar of a cannon. The trash mound Kari had been on was showered in a blinding white light. Tapio winced and squeezed his eyes shut.
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/84a24c63d753caa7d36d3c0884cdffef-2E954.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Claudius Smith#0000" data-user-id="818228320566247435" style="">Claudius Smith</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Mar-21 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="821184245577941056" id="message-821184245577941056">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Claudius grinned as the knife slid through Kari’s ribs feeling it pierce her organs had only guaranteed in his mind that he had gotten the kill. But something was wrong. The initial thrust was clean but now it felt as if he had stabbed gelatin or something of the sort. Had she done something to avoid the knife entering her heart? There was no time to think Claudius had to finish the kill.
+
+In the time it took Claudius to gather his thoughts it was already too late his arm was a useless hunk of ice and the cold inches closer to his core every second. If anything he needed to remove the arm. Claudius had reached in his coat with the free arm pulling out a blade and slicing his icy appendage off from the shoulder. Now with that out of the way he could take another strike at Kari… but there was one miscalculation 
+
+Claudius ignored Karis calls for Ada to his knowledge Caster was dealing with her at this very moment, Kari was defenseless… well at least he thought. Claudius’s eyes widened as a barrel pressed against him singing the skin on his gut. This blow, even with his Noble Phantasm, he couldn&#39;t survive it, he was much to close. He could try and step away but at such a close range he doubted someone of the Archer class would ever miss, his only option was to land an improvised blow to Kari. If Kari died Claudius could save himself.
+
+Unfortunately for Claudius the time it takes to pull a trigger is much faster than an improvised decapitation… Before Claudius could land his strike the cannon was fired deafening him as the condensed mass of mana ripped through his torso leaving threats of flesh holding him together. 
+
+Slumping over blood poured from Claudius’s mouth painting Kari’s coat a new kind of red. Buckling at the knees he fell backwards landing with his head towards the sky. Claudius tilted his head catching a glimpse of his Master who had been shielding Tapio from danger.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821184911335489536" id="message-821184911335489536">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“My <em>cough</em>....life for the kids eh?” Claudius spoke in a low tone as his body began to phase from this world, his words hard to hear as he gargled blood “Ya see Master… you sacrificed me to do something ya cared about, my death was an opportunity. Y-ya used yer head to do something you important…. Sorry I couldn&#39;t be a better Servant…. But today Master…. You took the necessary steps to live your life to the fullest” Claudius grinned in Coals direction flashing his grotesque teeth one final time. After all this time of telling Coal to use his head and sacrifice for the things he cared about, he thought maybe he had actually gotten through to Coal. Claudius was by no means smiling from happiness at this fact, rather his grin was at the thought that he might have impacted this world even if it was just the life of one person. After all that&#39;s what he always wanted, even as he swung from the gallows he swore that he would be a stain on the world
+
+<strong>Assassin Class Servant —Claudius Smith— was no more</strong>
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/6921bc713d9651adbac2cdeafff47493-0FFA4.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nebby#3980" data-user-id="193031489900904459" style="color: rgb(236,81,81)">Nubby</span>
+
+
+        <span class="chatlog__timestamp">16-Mar-21 08:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="821185060010983454" id="message-821185060010983454">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(slight typo I call Ada a her)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-1EF06.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="818228320566247435" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="821572487849836545" id="message-821572487849836545">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The stab, her fluidity activating and Ada&#39;s blast all happened in the matter of a few seconds but to Kari, it seemed to happen so slow it was like moving through jelly. She could feel the knife stir her innards as Claudius struggled to get away from the surging charge of the Chicago Typewriter and ultimately cut off his own arm like a trapped coyote. The heat from the blast put even more strain on Kari&#39;s cooling system than it already had to deal with as it dealt with Kari temporarily converting her innards to a fluid state. 
+
+With the heat, she could almost feel like she was melting herself, let alone recover from her eardrums being assaulted by the sound. She stumbled backwards from the recoil, her phone flying out of her pocket and letting Archer materialize fully. The frozen arm slipped out of her side as well, leaving a blossoming bruise in its place that leaked some odd purple liquid. 
+
+In this moment, Kari should have felt hyped on adrenaline and dopamine as she bested yet again another mafia member and finally drove out the last of the true Mafia from winning their own Holy Grail War and Ada was still there beside her. She had fulfilled her promise of vengeance in at least one way. 
+
+However, she only felt numb inside and out. Using her ability to such a degree to prevent her death had utterly drained her body to the point she couldn&#39;t feel her arms or legs. It was a miracle to her that she was still standing at all.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821572658604933140" id="message-821572658604933140">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Though perhaps why she felt nothing was the fact it wasn&#39;t truly a fight to avenge her father or win a competition like she had time and time before. This was a battle for survival and the only reason her head was still intact was her servant&#39;s uncanny abilities. She would love to just lay down and rest yet both enemy masters were both there at the foot of the heap and Caster was probably fast approaching. She could have no rest yet and would have to push on ahead despite her body&#39;s limits and her spent circuits. 
+
+Kari leaned against Ada as she prepared to talk to the masters.
+
+&quot;Go ... home, Coal. The game&#39;s over for you. Tell your bosses ...  the heiress of the Tovesky Family put them in their place again. They ain&#39;t ... aint getting the grail this time,&quot; Kari tried to flourish her blade to emphasize her command only for the rapier to slip out of her fingers and sink point first into the heap before her. Her voice was more breathy than before and she seemed to concentrate on just standing.
+
+ &quot;But leave the kid here, saves us all a headache when Caster comes rolling back. Now go before Archer decides to take another attempt on your life...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821572772983078971" id="message-821572772983078971">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio now sat alone with his bishop gone and rook still on the other side of the board, completely at the mercy of the Red Queen and her knight. Would she put him in check or let him forfeit the match ahead time. To his likely surprise, she instead asked a question as she struggled to properly pour some blue liquid into a flask she produced from her blood,mud and coolant stained coat. 
+
+&quot;So kid, you still want to fight after all you saw here or are you going to follow after that lowlife? Entirely your choice, I imagine you have some time all to yourself right now, no one or thing to boss you around,&quot; She took a deep swig of whatever was inside, tilting her head back as she did so. She looked at Tapio through her hands as she observed her fine motor control return to some degree. &quot;By the way, what was your name? Never caught it.&quot;
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/18a44b061f5e7302b027056f34cee882-6E674.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="818228320566247435" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="821792237221838858" id="message-821792237221838858">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The explosion subsided, taking half of Assassin with it. Tapio opened his eyes to the sight of Claudius, barely held together with what remained of his torso and drowning in his own blood. The trash heap had been marred in red and purple, with bits of flesh and icicles strewn about. 
+
+Tapio felt his stomach churn. It was one thing to witness slaughter at the local butcher shop, but another entirely when the form writhing on the ground looked every bit as human. Deep down, he knew that Claudius was just a Heroic Spirit stuffed into an artificially constructed mystic code, and he should treat him as just that, a means to an end. But knowing and doing are two different things, and he found himself looking away.
+
+&#39;Wake up, Assassin&#39;s Master.&#39; He found solace in the fact that Coal was still there, making for a great distraction from the macabre sight on the trash heap. He shook his shoulder. &#39;I think your Servant needs to patch up a bit. Do you have mana batteries? You can borrow some from me.&#39; He said, reaching into his coat for those vitamin-like pills Caster had so graciously <s>extorted</s> bought. 
+
+Servants fed on mana, right? Then with enough mana batteries, Claudius would be as good as new again. Besides, it didn&#39;t seem like Kari was faring much better. She wasn&#39;t even going in for the kill, instead looking like she&#39;d just tangled with death herself. Another oddly dressed man knelt next to her, and behind them parked a horse with a cannon for head.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821792293509529690" id="message-821792293509529690">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That must be Archer, Tapio thought. However, they didn&#39;t seem interested in pursuing either him or Claudius after Kari rescinded the kill order. 
+
+That made things easier.
+
+&#39;The name is Tapio Veli Ilmari.&#39; He declared proudly, trying to focus on the background behind Kari instead of all the blood and gore around her. &#39;Third year at the mage&#39;s academy in Narssarssuk and heir to the Ilmari&#39;s glass forge! I&#39;m only saying it once, so you&#39;d better remember it.&#39;
+
+Neither his name nor his background rang a bell. The kid wasn&#39;t even from around here?
+
+&#39;As a fellow mage, I can&#39;t possibly turn down a challenge! Especially when you look <em>this</em>-&#39; He pinched his fingers. &#39;-close to losing. Since your Archer is back already, my Caster should be here any moment too.&#39; He said confidently.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/e7506aa80e0d358488d486d876f473d0-CD83A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="818228320566247435" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="821821250150203472" id="message-821821250150203472">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Blinding white light seared Coal’s vision. Even after the blast had been done, he still was seeing the bright glow from the shot. How could he not, being in prime position to witness his Servant’s second demise?
+
+To say Assassin was done for would be an understatement. The entirety of his chest and torso was gone, leaving but a few bits and pieces to keep him held together. There wasn’t even a rain of blood from the blast, mana burning even that up. He didn’t even know servants could <em>bleed</em>, let alone be torn to bits. How could anyone capable of being summoned be so… flimsy?
+
+He watched as Claudius slumped over, body clearly destroyed beyond saving. Gravity brought him down back to his Master, still wide eyed from the whole endeavor. It was a sickening sight, watching as his living corpse leaned back and slid down the small pile of broken frames. It would soon be Claudius’ turn to join them, which the man was still struggling to process.
+
+As he gargled blood, he <em>congratulated</em> him on ‘doing something important to him’ and ‘trying to live his life to the fullest’. It was hard to hear between the sheer amount of crimson flowing from between his nasty lips and the ringing still in his ears, yet his mind latched onto those words even as the shimmering golden glow became stronger and stronger until disappearing altogether. 
+
+He had… lost?
+
+He twisted his neck around, confirming the thought. Gone was his Servant, his own handiwork of summoning and magecraft. Instead were the remains of a S.E.R.V.A.N.T frame, broken and destroyed like the ones literally heaped around him. Where the centerpiece should’ve been were instead two seared ends of each half, showing the clear damage that had removed the spirit from the machine. Gone was the blood and gore, not even that small liveliness sticking around. 
+
+Proof of his defeat. That not even those in need can be granted their wish.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821821313214709779" id="message-821821313214709779">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He didn’t even know he was standing up until he put pressure on his feet, sore nerves startling him from his brainless actions. There was Tapio, talking with the Magus. Still challenging her to a fight. How the kid was able to bounce back from watching a hole being blown into another person and still act somewhat cheer-y was beyond him, but maybe that was a good thing. Lord knows he could use something to bring him up to spirits.
+
+As things started to whirl and click in his mind, Coal considered his options. His emotions were still phazed, which made things easier for now. Going back home wasn’t a choice. His family would more than likely disown him, maybe even turn him into the Mafia he had just disgraced with a swift and utter defeat. Hell, maybe they would get to him first.
+
+The Cozy Castle? They might be concerned with his mopey attitude for a second before becoming disappointed in him after learning of his defeat. After all, he had expressly promised them he’d win this thing no matter what. Ivan had been nervous upon hearing such a thing, but had grown to full-heartedly accept this as a fact. How could he spill the news now?
+
+And when things started flaring up, it was an awful mix. Countless thoughts wrestled for their undivided control. <em>You’re just not good enough, huh?</em> , <em><strong>put that aristofuck in her place until she joins Claudius, that sounds nice</strong></em> , <em>Why do you even bother trying? Just know your place and keep your head down like you’ve always done</em>.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821821391946645515" id="message-821821391946645515">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Before he could stop himself, he was moving forward. One foot in front of the other. Coal was getting closer to those two on the incline. It was hard enough to get all these thoughts figured out, but his physical actions were an entirely separate being. Eyes locked onto that red coat, a few flicks of a deeper red staining the fabric. Claudius’ blood.
+
+“Why do you always.” He said, the mumblings of a potential mad man. “Gotta. Take?”
+
+His fists clenched, gloves stretched thin over the surface of his skin. “Why do you lot always gotta ruin everything?” 
+
+And now he was acting of his own accord. He took his last few paces up the incline a lot faster than the rest, fist at the ready to hit Kari as hard as he could. His eyes were fully concentrated on hers now, a raging heat behind his. To hell with the consequences, it’s not like it mattered anymore.
+
+He had gambled everything, and lost.
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-ACE43.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="818228320566247435" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 07:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="821884411002748969" id="message-821884411002748969">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron was many things. A mage. A sage. A powerful familiar.
+
+But fast he was not.
+
+Mountains and stones rarely moved, letting the environment shape them instead. Caster could not oppose his element and merely morphed it instead. But morphing took time. Much more time than the average Servant with impressive displays of speed.
+
+Especially when compared to someone like Archer. The thought of Ada&#39;s bullet piercing through Tapio&#39;s skull was like a living nightmare to Aratron. He had been so focused on Ada&#39;s words that he had neglected to focus on his Master&#39;s protection.
+
+He truly was a failure of an Olympian. He could already see his creator laughing from beyond the grave.
+
+&quot;My legs...&quot; Aratron couldn&#39;t afford to wait anymore. Instead of terraforming the ground, he started running. Sprinting. Dashing. He didn&#39;t feel pain or fatigue anyhow. He might as well push this humanoid form to its limits.
+
+&quot;<strong>Useless!</strong>&quot;
+
+His legs bent and broke, contorting themselves from the impossible movements Aratron was making. It was fine: He wasn&#39;t sustaining any actual damage, he was simply moving in a far more efficient manner. A method that would harm most humans.
+
+&quot;My arms...<strong>Worthless!</strong>&quot; He proceeded to place his body flat on the ground. He was now crawling on all fours, snarling like a beast as he resembled an overgrown lizard more than a man. His clothes reminded of scales and the end of his coat was starting to shape into a tail. Was Aratron reconnecting to his &#39;true&#39; form?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821884475490304001" id="message-821884475490304001">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<em>&quot;My student, <strong>priceless.</strong>&quot;</em> Aratron thought. A single-minded and selfish goal that befitted such a selfish Servant. With his current maneuvers, his speed had tripled in terms of efficiency. Unfortunately, even that was far too slow...
+
+By the time he had arrived, Claudius was already long gone. Instead, the entire group managed to witness Aratron&#39;s lack of dignity as he now appeared more beast than man.
+
+He scanned the area with eyes befitting a snake, lacking round pupils as he finally pinpointed Tapio.
+
+&quot;Student...you&#39;re alive!&quot; Aratron exclaimed with a contorted mouth, making it sound like he was simultaneously coughing and gasping. &quot;Return to me at once! Archer&#39;s Master is right next to you!&quot; He said in a panic, presuming the worst and thinking that Ada was planning on finishing Tapio off. He had already killed Assassin after all... <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-1EF06.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="818228320566247435" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 10:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="822120339940180059" id="message-822120339940180059">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Everyone seemed at least slightly obsessed with the corpse of Assassin but Kari would never turn around to acknowledge the servant Ada had put down. How could she when both masters would probably stab her in the back if she turned around?  
+
+&quot;Never heard of it before,&quot; Kari shook her head, Tapio&#39;s tone reminded her of all the people she met at Mage&#39;s Academy in Lemuria and all the boasting they would do about their backgrounds. &quot;Must be from out of town then huh? Well I guess i got to tell you who I am then.  Kari Tovesky, Salutatorian of Lemurian Mage Academy class 2104 and owner of Rossum Place Alchemical Services. Titles aren&#39;t anything special, Tapio. You&#39;re not going to impress me with  them.  But a fight? That might do it.&quot; She could barely manage a cheeky grin though she doubted it looked that good with how drawn out she felt so far.
+
+She slowly made her way over to pick up her sword again and take up Tapio&#39;s challenge, careful not to walk on any unsteady ground in her current condition, only for Coal to come at her, ranting and raving about how unfair the whole war was or something. Kari was much too tired to care for his full argument and stuck out her leg for him to trip over and fall near Archer.  He may have hit her hard but she could still barely feel her legs and any feeling of pain was dulled immensely. What she did feel was annoyance at his tantrum.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822120632253677568" id="message-822120632253677568">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Coal, you dumbass, this is a Grail War. How many times am I going to have to tell you that you lost! This is separate from the whole stupid and worthless petty Mafia vs Aristocrat feud. Not my fault if you decided to gamble your whole life on this, that&#39;s what an idiot does! Ada, restrain him before he hurts someone...&quot; Kari really wanted to kick some sense back into him but it would ultimately be a waste of the precious little energy she had left at the moment. As she spoke, Aratron crawled back just in time to hear Kari begin to rant. &quot;And you&#39;re being herded into  keeping a status quo that turned this city into the corpse it is today! Stagnancy kills, Coal.&quot;
+
+&quot;I don&#39;t know what you want the grail for, Tapio, but I&#39;m going to need it to keep this city from killing itself and put it back on the tracks of Progress. Somebody has to fix this mess and so far no one but me has stepped up to do the job. Why are you here -- and what is that monster besides you? God, it&#39;s ugly. If you really want to continue this fight, keep it chained up or something. I don&#39;t need another damn interference here. We&#39;ve had too much already!&quot;
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-C9386.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="818228320566247435" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 01:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="822160389390336000" id="message-822160389390336000">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kari felt an arm around her waist, pulling her back. Meanwhile, the Chicago Typewriter moved in and intercepted her, using its equine mass to cut her off before she could take another step towards Caster&#39;s Master.
+
+&#39;Stop.&#39; Ada ordered her, an edge in his voice. &#39;This monster is that kid&#39;s Servant. A direct confrontation right now does not bode well for any of us. &#39;
+
+He showed Kari his firing arm, which was still in the process of thawing from being turned into stone. Being a modern Servant made him extremely susceptible to magecraft from the likes of Caster. It explained away the reason he chose to manifest the Chicago Typewriter&#39;s high maintenance mode and sent Assassin off with an automated, anti-fortress grade Noble Phantasm that did not require aiming. 
+
+It was a necessary overkill. 
+
+However, Assassin&#39;s death was far from signaling the end.
+
+&#39;You.&#39; He went and peeled Coal off from the ground. &#39;Why do you work with them? Did you think a Servant with a screw loose is capable of helping your cause? That Caster is not right in the head, and you should have run at the first sign of trouble instead of being forced to take care of their idiot Master.&#39; 
+
+<em>CLICKCLICKCLICKCLICK-</em>
+
+Ada jerked his head in Tapio&#39;s general direction. The Chicago Typewriter followed suit, turning its cannon for a head until it was staring straight at the dumbfounded kid. 
+
+Archer was not taking chances.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/18a44b061f5e7302b027056f34cee882-6E674.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="818228320566247435" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 02:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="822171598382432337" id="message-822171598382432337">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To watch Assassin&#39;s form simply melt back down into the lifeless, featureless mannequin was an experience. It wasn&#39;t till now that Tapio had finally managed to make the connection between a Servant and the mountain of S.E.R.V.A.N.T. frames that littered the graveyard. Without mana and without an intact Spirit Core, Claudius looked just like the rest of them. Tapio looked away for one second and when he looked back, he already couldn&#39;t make out which of the broken frames belonged to Claudius. 
+
+Maybe it was for the best.
+
+Coal just shot off like a rocket. Tapio couldn&#39;t blame him. He too would be mad had Caster been the one who got shut down. Speaking of whom...
+
+Where were they?
+
+Tapio got up and glanced around for Caster. He wasn&#39;t aware that Archer had taken a shortcut back, all he knew was that Caster zoomed away on a jetpack, and that became the golden standard for speed in his eyes. 
+
+So where were they?
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822171646906728508" id="message-822171646906728508">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A monstrosity appeared at the edge of the graveyard and closed the gap between them in an instant, its grotesque form making his skin crawl. Tapio instinctively stepped back, but then his eyes started picking out familiar details, fabrics that hadn&#39;t yet turned into scales, piercing amber eyes that for some reason reminded him of <img class="emoji " alt="🍈" title="🍈" src="https://twemoji.maxcdn.com/2/72x72/1f348.png">.
+
+And then the creature was upon him, wrapping its coattail (or perhaps, simply, tail?) around him in a protective manner whiling hissing words of warning that was barely intelligible. Though Tapio understood from the intonation alone; after all, he had already heard the same kind of warning countless times.
+
+&#39;C-Caster! I&#39;m safe! Archer&#39;s Master is the one who&#39;s all worn out!&#39; He responded by taking another step away from Aratron&#39;s grasp. While his brain had recognized the lizard as his dear Servant, his body instead cowered in its presence. He couldn&#39;t help it. As lax as he was, survival instinct did not lie, and Aratron&#39;s presence was so demanding that he failed to notice the Chicago Typewriter rearing its head at him.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/e7506aa80e0d358488d486d876f473d0-CD83A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="818228320566247435" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 02:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="822175544032362587" id="message-822175544032362587">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">When Coal hit the ground, it jolted him out of his dangerous mindset of ‘fuck it, we ball’. She was still going on about thinking him stupid? Incapable? That was funny, that’s pretty much all of his interactions with the kid over there. Maybe he should knock that off before the kid really did something stupid without a Servant to bail him out, all to prove himself not entirely dependent on others.
+
+That’s pretty much all he was able to think of before being violently grabbed from his spot on the ground, face to face with Archer. The one who killed Claudius. The one who had essentially killed Coal. So many words bubbled up to spit out at him, all the curses in the world and some new creative ones begging to be shared. 
+
+But instead, all he could do is chuckle. One that only came from people who knew they were too far gone to go back. “Oh, that’s a good one. I ain’t taking any advice from a fuckin computer, that’s for damn sure. I did what I had to, and I don’t regret it one single bit. I’d tackle that kid off this here pile a <em>million</em> times over.”
+
+“And you wanna know why? It’s cause I have a fuckin <em>conscience</em>. I wake up in the morning and think about all the awful shit I’ve done, and I regret it all. Something I’m only now realizing is that maybe you’re right, rich bitch. This shithole of a life I’ve been living ain’t been worth a damn. Keepin’ my head down until whatever god’s hellbent on kicking me down stops paying attention to me ain’t gonna work. It’s hurting good folk who you’ve surely wronged too.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822175610121748482" id="message-822175610121748482">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coal struggled to break free of Archer, pulling away against a strength that had no reason to relent or let go. “So I’m gonna stop. This moment forth, I ain’t part of that fuckin shitshow that they call the ‘Mafia’. They ain’t no better than your ‘precious’ faction. And I’m gonna use the rest of my goddamn life to taking down people like <em>you</em>.”
+
+While this was certainly the ravings of a broken man, his speech became clear, focused. “People that act like they know it all, act like this city is on the brink of tearing itself apart because of <strong>everyone else</strong>. People that come here pretending they know what it’s like to struggle on this hunk of metal and broken dreams while living a comfortable life without going hungry, without heat, without power because some guy exploiting hundreds of people decided to mess around with the power supply for shits and giggles.”
+
+“You HEAR me, Aristofuck?! I’m calling your bitch ass out! You ain’t done nothing to help this city, and you ain’t EVER gonna help it! The best you can do to help Persepolis out is by taking that expensive piece of technology you used to get here and shoving it UP YOUR ASS!”
+
+Coal’s breathes were heavy with condensation, a smoke of white billowing out from him. He couldn’t lie, it felt good to get that out. As if a heavy weight had been taken off his stomach. None of that mattered, though. Archer was probably on the cusp of simply braining him because of his radicalization. Couldn’t blame him, people that don’t shut up are annoying. 
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-ACE43.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="818228320566247435" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 03:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="822184600616697884" id="message-822184600616697884">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron couldn&#39;t care in the slightest about the feud between the aristocracy and the mafia. He was summoned with a single objective: To protect his student. Without harming other humans. He would make sure that condition was satisfied first.
+
+However, the ugly sight of Kari and Coal&#39;s tantrums upset him greatly. It felt familiar to him, as Tapio noticed that the glint in his Servant&#39;s eyes had turned from worry to rage.
+
+&quot;A little magus whose lifespan doesn&#39;t even reach a thousand years thinks that they are competent enough to dictate the pace of an entire city? Laughable. Simply laughable. You humans were always so conceited, especially those born lucky at birth. The elite will never understand the heart of commoners.&quot; Aratron said through animalistic growls that expressed disdain at Kari&#39;s holier-than-thou attitude. Archer didn&#39;t take kindly to that, since he now aimed his weapon towards Tapio.
+
+&quot;<strong>Don&#39;t think I&#39;ve ignored you, Archer!</strong>&quot; Aratron roared, quickly wrapping Tapio around his scaly coat as he turned his own body into a shield for his Master. Vicious snake heads coiled around Aratron&#39;s body as they split off his coat and started squirming towards Ada.
+
+&quot;Progress? Discuss progress with your Servant, Archer&#39;s Master. The fact that you are willing to murder a child speaks volumes of your sense of &#39;progress&#39;. Your ideals are a sham.&quot;
+
+If Archer&#39;s Master was truly spent, then it was in their best intent to retreat and avoid another fight. Caster&#39;s main focus seemed to be his Master&#39;s protection. If they harmed them, he would have been out for blood. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-1EF06.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="818228320566247435" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 01:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="822889537968668744" id="message-822889537968668744">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hey, how am I supposed to squeeze information out of the kid now? I’m worn but I could still take him,” Kari protested and tried to phase Ada’s arm into a more liquid form but only succeeding in causing some of the petrification to soften. It drew her eye to his condition and gave her pause. Not only was the enemy caster able to easily nullify or twist her magecraft against her but it could reduce her servant to stone. This was troubling.
+
+The pause in Kari’s verbal offensive gave Coal and Aratron the opportunity they needed to put the rich girl in her place. Who was she to boss them around like she owned the city?
+
+What Coal said in particular struck a delicate nerve in Kari. <em>use the rest of my life to taking down people like you,</em> she had heard things like that before, just before her father died, trying to stop him from carrying out the project he had been working on since the testing site closed down. It had to be something radical, something that was really going to change the city and they killed him for it. 
+
+Now Coal wanted to do the same to her just because he lost in the Grail War and freed himself from the mafia? That warmed up her tired body with all of the repressed rage she had for her father’s murder and sent the blood pounding in her ears. She had to get it out now or she was going to melt.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822889729480851486" id="message-822889729480851486">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“You killed my father, didn’t you? You bastard!”
+
+She turned around, marched right up to Coal and punched him as hard in the chest as she could. She did not care if she broke his bones or her own, he had to pay no matter what and she would do it until she could feel pain in her hands again.
+
+She panted as she stood over Coal, gathering her breath before she spoke again, now a bit more calmly with her rage and pain diluted. 
+
+“That’s all lies. The only reason this place still exists is because of my father. He had a plan to save this place, I’m sure of it, but you just had to come along and end it all!” Kari gave one more kick to Coal’s stomach as she vented more of her frustration. 
+
+“People had no place to go but he took them in, gave them jobs and kept that fucking dome above your heads working. But he’s not here anymore... so... so I have to keep going in his place to keep going forward. I can’t let his work go to waste.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822889944959811644" id="message-822889944959811644">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“And I don’t care what some monster has to say about it. My father brought about a difference in the lives of many and I will do the same. Whatever you are, we’ve done plenty well without your guidance for hundreds of years. Slither back and die in your irrelevance,” she spat back at Aratron, the fury in her eyes burning a bright blue. “Humanity has no need for gods. What we screw up, we will fix ourselves.”
+
+
+“Let’s go Archer. Not going to waste anymore time with the inhuman and the insane,” Kari waved to Ada. “They’ve already given up on the future...”
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-3903F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(236,81,81)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">21-Mar-21 06:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="822964949491253278" id="message-822964949491253278">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Eag&#39;s Notes: &quot;The only reason this place still exists after Republic pulled out is because of my father.&quot; and &quot;Slither back to your hole and die in your irrelevance.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/e7506aa80e0d358488d486d876f473d0-CD83A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Coal Thompson#0000" data-user-id="818228320566247435" style="">Coal Thompson</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 01:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="823065248813547541" id="message-823065248813547541">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coal knew this bitch was crazy the second she accused him of killing her precious daddy. He barely even knew her name, let alone her fucking father. That guy could’ve been rich shmuck number 
+
+Regardless of that, he was gonna be assaulted for it anyway. He put his arms in a defensive stance, taking in her gut punch with gusto. Didn’t make it hurt any less. Some air was knocked out from his lungs, leaving him gasping as it came at him. Combined with his numerous layers protecting his insides at least a tiny bit, he was not gonna die from this pittance.
+
+As he laid on the ground, kicked one final time for good measure, he listened to her go on her own rant once again. Still not seeing the reality of the situation, blaming it all on his own prior faction. How the hell could anyone look at the way things happened in this damn city and think this wasn’t a problem with both sides instead of the single one?
+
+Shaky breaths followed his own quiet rebuttal, “You don’t get to say ‘we’. You ain’t been here long enough, the way you praise your daddy. This ain’t some playground for you to play hero or god or whatever fuckin fantasy’s living in your twisted head.”
+
+He held himself up with one hand, another firmly nursing his bruised chest. That shit was gonna look ugly come tomorrow. If he made it that far, there’s plenty of people who’ve gone missing after saying one too many personal opinions in front of a miffed rich guy.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="823065333820686348" id="message-823065333820686348">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And he would’ve done so even more had she not indicated that they were retreating. No point in talking at all with someone when their head was so far up their own ass. There wasn’t even a point to his whole moment not too long ago. Looked like the future ahead of him was going to be a messy one, with that Aristofuck still around and about. 
+
+ He went back to staring at the cold hard ground. Vision shook with each painful inhale and exhale, freezing air invading his lungs and activating every possible nerve in his torso. That bitch looked on the brink of death not too long ago, yet his body said she was doing just fine. If they ever met again he was gonna demand how she could do it.
+
+<em>Wonder if if that pharmacy guy will still sell meds to me…</em>
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-C9386.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="818228320566247435" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 03:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="823096983161798676" id="message-823096983161798676">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Archer took Coal&#39;s ramblings in stride.
+
+&#39;Feels good to vent, doesn&#39;t it? Go on, get it out of your system. Had Mr. Babbage been half as bombastic and a quarter as committed as you, he may not have died in vain.&#39; He held Coal at arm&#39;s length as the man kicked and punched, trying to break free. That was about the best he could do against a Servant. Didn&#39;t stop him from trying though, which made his struggles admirable. Almost.
+
+Ada didn&#39;t dislike people like Coal. What he lacked in intelligence and foresight, he more than made up for with guts, even if said guts only manifested when being held at gunpoint. In a way, it was progress, so he deserved to have his moment.
+
+Didn&#39;t mean he&#39;d get a free pass though.
+
+Kari socked Coal in the chest like a premium sandbag. She was poised to strike again, so Ada released Coal, letting his Master do the honors while he massaged the stiffness out of his petrified arm. It was slowly turning back to normal, but with Caster on the scene, who knew how long that would last.
+
+&#39;Don&#39;t think you have the moral high ground, Caster. Your wish to protect mankind is nothing but a thinly veiled excuse to wipe human agency from the face of the earth. Your mind is corrupt and your words are poison. No wonder a mere child summoned you. They are always the easiest to manipulate, aren&#39;t they?&#39;
+
+Ada spoke with cold precision. Caster was the brain of the mafia&#39;s ragtag team. They had free reign to do as they pleased, what with Assassin out of the picture and only two bumbling fools at their side. Leaving them to their own devices would be nothing short of disastrous. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="823097051729494017" id="message-823097051729494017">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Fortunately, Caster&#39;s shell was nothing impressive. What was troublesome was his ability to petrify. But that took time. Could he break their shell if he kept up the pressure with a barrage?
+
+Archer quietly calculated...until Kari made it abundantly clear that she was ready to move on. With a sigh he relented, moving to help his Master onto the Chicago Typewriter. Hopefully she still had the strength to endure a horse ride home.
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/3ba27c5c9e77c3ea41856e2b48034a6a-ACE43.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="818228320566247435" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 07:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="823162574299201556" id="message-823162574299201556">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron watched as Coal was mercilessly beaten down by the arrogant aristocrat. He didn&#39;t even get the chance to defend himself thanks to Archer&#39;s temporary intervention. It was very...<em>human indeed.</em> A petty squabble that he had already witnessed so many times in his lifetime.
+
+It didn&#39;t make it any less uglier to look at, however. But as long as it didn&#39;t harm his student, Aratron saw no reason to get himself involved: Assassin had been eliminated, and with that, Caster&#39;s reason to help Coal was long gone. Especially since it seemed like Kari had no intention of killing the man. Yet.
+
+&quot;Spare me your ideologies, Archer. A scientist like you could never understand my ambitions.&quot; Aratron snarled in his inhuman form. Every line from Ada&#39;s mouth piece stung more than a shard of glass in the heart. He wished that Servant could just disappear...
+
+...And his wish would be granted, as Ada prepared himself to leave with his Master in tow. If there was one thing Aratron could praise Ada for, it was the fact that he was more obedient than most. That was admirable, especially since his Master looked to be a huge can of worms.
+
+&quot;...I shall spare you for now, Archer. Know that my wrath will be swift if we ever cross paths again.&quot; Aratron threatened, but it was clear that he would have preferred Archer to leave as well. Fighting with Tapio in tow would have greatly reduced Aratron&#39;s combat abilities. <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-1EF06.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="818228320566247435" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 11:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="823214496419282964" id="message-823214496419282964">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kari was too busy in her rage to notice Ada’s begrudging compliments to Coal, instead tenderizing the master’s chest like her servant was massaging his arm. In that moment Kari could feel pain set her hand on fire as it collided forcefully with Coal. She wasn’t just about to let some lowlife like him demean her or imply she was as soulless, sadistic or destructive as the people he worked for or the few bad apples of the Aristocrats. No she had her father’s legacy to live up to and no sore loser was going to get in the way of that.
+
+Though when she was done with that assault, the familiar ache of her overactive cooling system trying to compensate her overstressed circuits returned. She leaned against Chicago Typewriter and brought out her flask again to drink from it. Coal might be able to detect the pungent aroma of mana laced into what he could only assume to be alcohol, perhaps not the best mix though it did make her stand a bit more steady.
+
+She let Ada help her move up onto its saddle and sat there, glaring at Coal as he continued to try and cast doubt on Kari’s motives or make her question her own alliegence. A hard task indeed when facing down someone as stubborn as Kari.
+
+“Ada, let’s leave before Coal says something even more stupid and causes me to strangle him... plus... plus I’m really... starting to fade. I can’t have them see me ... so weak,” She whispered to Ada as he mounted the horse as well.
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Old%20Test%20Site%20%28RP%29%20-%20mass-grave%20%5B771105538125332510%5D.html_Files/18a44b061f5e7302b027056f34cee882-6E674.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="818228320566247435" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 02:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="823266130842878023" id="message-823266130842878023">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While Caster, Coal, Archer and his master indulged themselves in philosophies and ideologies, Tapio counted Aratron&#39;s scales, after finally getting used to seeing their monster form. Had he known that Aratron originated from some kind of lizard, well, let&#39;s just say that he vowed to never show them his magazines again. 
+
+Words flew over his head, too convoluted for a small-timer like him. Blood feud? Revenge? Humanity? He only came to Persepolis in search of thrills, not master debaters. As the conversation grew more heated, Tapio&#39;s eyelids grew increasingly heavy...
+
+<em>Bonk</em>
+
+Aratron felt the weight of a child snug against his back. Tapio&#39;s head drooped, forehead pressing into the cool scales to use them like some kind of exotic cushion. 
+
+&#39;You talk too much,&#39; The boy complained while stifling a yawn. &#39;Why not turn into a big hulking dragon and blast them all away...&#39; Now that the rush of the battle had ended, fatigue started settling in again.  He had just woken from a four day long fever and already ran the course of a marathon and dug tunnels like a raccoon. There had to be a limit to how long he could keep going.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+
+</body>
+
+</html>
