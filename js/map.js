@@ -37,8 +37,36 @@ $('.sidebar-nav-item').on('click', function(e) {
 });
 
 
+
+// change the location pic according to which location card is active atm
+$('.map-point').on('click', function(e) {
+  // get location pic url
+  var imgurl = $(this).data('img');
+  // change src url of image
+  $('.imagetab-img').attr('src', imgurl);
+});
+
+
+
 // load footer navigation
 $(document).ready(function (){
   //$("#header").load("header.html"); 
   $("#footer").load("../components/map_footer.html"); 
 });
+
+// same as above but for battlegrounds
+$('.map-point-battle').on('click', function(e) {
+  // get location pic url
+  var imgurl = $(this).data('img');
+  // change src url of image
+  $('.imagetab-img').attr('src', imgurl);
+});
+
+
+
+// load footer navigation
+$(document).ready(function (){
+  //$("#header").load("header.html"); 
+  $("#footer").load("../components/map_footer.html"); 
+});
+
