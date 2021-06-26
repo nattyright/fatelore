@@ -41,12 +41,12 @@ function getServantParamTableHTML(value, scoreDiff) {
     var message = '<tr><td>' + 
                               s['title'].split("(")[0] + '</td><td>' +
                               s['sideClass'] + '</td><td>' +
-                              s['param']['sideStr'][0] + '</td><td>' + 
-                              s['param']['sideEnd'][0] + '</td><td>' + 
-                              s['param']['sideAgi'][0] + '</td><td>' + 
-                              s['param']['sideMan'][0] + '</td><td>' + 
-                              s['param']['sideLuc'][0] + '</td><td>' + 
-                              s['param']['sideNP'][0] + '</td></tr>';
+                              s['param']['sideStr'].split("+")[0].split("-")[0] + '</td><td>' + 
+                              s['param']['sideEnd'].split("+")[0].split("-")[0] + '</td><td>' + 
+                              s['param']['sideAgi'].split("+")[0].split("-")[0] + '</td><td>' + 
+                              s['param']['sideMan'].split("+")[0].split("-")[0] + '</td><td>' + 
+                              s['param']['sideLuc'].split("+")[0].split("-")[0] + '</td><td>' + 
+                              s['param']['sideNP'].split("+")[0].split("-")[0] + '</td></tr>';
     return message
   }
   return "";
