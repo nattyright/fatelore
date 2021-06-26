@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Servent Sheet Generator</title>
+    <meta charset="utf-8" />
+
+    <!-- Requirements -->
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+    <link rel="stylesheet" href="css/index.css">
+
+  </head>
+  <body>
+
+    <p>
+      Servant Sheet Generator
+    </p>
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button" style="display: none;">Authorize</button>
+    <button id="signout_button" style="display: none;">Sign Out</button>
+    <pre id="content"></pre>
+
+
+
+    <form class='sheet'>
+
+
+      <div class='title'>
+        <label>Servant Name</label>
+        <input type="text" id='title'>
+      </div>
+
+      <div class='sideName'>
+        <div id='sideName'></div>
+      </div>
+      <div class='sideClassIcon'>
+        <div id='sideClassIcon'></div>
+      </div>
+      <div class='sidePic'>
+        <div id='sidePic'></div> <!--should let people upload-->
+      </div>
+      <div class='sideClass'>
+        <label>Class</label>
+        <select id='sideClass'>
+          <option>Saber</option>
+          <option>Archer</option>
+          <option>Lancer</option>
+          <option>Caster</option>
+          <option>Rider</option>
+          <option>Assassin</option>
+          <option>Berserker</option>
+        </select>
+      </div>
+      <div class='sideAlias'>
+        <label>Alias</label>
+        <input type='text' id='sideAlias'>
+      </div>
+      <div class='sideGender'>
+        <label>Gender</label>
+        <input type='text' id='sideGender'>
+      </div>
+      <div class='sideBorn'>
+        <label>Born</label>
+        <input type='text' id='sideBorn'>
+      </div>
+      <div class='sideDied'>
+        <label>Died</label>
+        <input type='text' id='sideDied'>
+      </div>
+      <div class='sideHeight'>
+        <label>Height</label>
+        <input type='text' id='sideHeight'>
+      </div>
+      <div class='sideWeight'>
+        <label>Weight</label>
+        <input type='text' id='sideWeight'>
+      </div>
+      <div class='sideNationality'>
+        <label>Nationality</label>
+        <input type='text' id='sideNationality' onkeyup='helperRegion()' onfocus='helperRegion()'>
+      </div>
+      <div class='sideAlignment'>
+        <label>Alignment</label>
+        <input type='text' id='sideAlignment' onkeyup='helperAlignment()' onfocus='helperAlignment()'>
+      </div>
+      <div class='sideWeapon'>
+        <label>Weapon</label>
+        <input type='text' id='sideWeapon'>
+      </div>
+      <div class='sideLikes'>
+        <label>Likes</label>
+        <input type='text' id='sideLikes'>
+      </div>
+      <div class='sideDislikes'>
+        <label>Dislikes</label>
+        <input type='text' id='sideDislikes'>
+      </div>
+
+
+      <div class='sideParam'>
+        Parameters
+        <div class='sideStr'>
+          <label>Strength</label>
+          <input type='text' id='sideStr' onkeyup='helperParam()' onfocus='helperParam()'>
+        </div>
+        <div class='sideEnd'>
+          <label>Endurance</label>
+          <input type='text' id='sideEnd' onkeyup='helperParam()' onfocus='helperParam()'>
+        </div>
+        <div class='sideAgi'>
+          <label>Agility</label>
+          <input type='text' id='sideAgi' onkeyup='helperParam()' onfocus='helperParam()'>
+        </div>
+        <div class='sideMan'>
+          <label>Mana</label>
+          <input type='text' id='sideMan' onkeyup='helperParam()' onfocus='helperParam()'>
+        </div>
+        <div class='sideLuc'>
+          <label>Luck</label>
+          <input type='text' id='sideLuc' onkeyup='helperParam()' onfocus='helperParam()'>
+        </div>
+        <div class='sideNP'>
+          <label>NP</label>
+          <input type='text' id='sideNP' onkeyup='helperParam()' onfocus='helperParam()'>
+        </div>
+      </div>
+
+
+      <div class='personality'>
+        <label>Personality</label>
+        <textarea id='personality' rows='5' cols='30'></textarea>
+      </div>
+      <div class='backstory'>
+        <label>Backstory</label>
+        <textarea id='backstory' rows='5' cols='30'></textarea>
+      </div>
+      <div class='otherInfo'>
+        <label>Other Info</label>
+        <textarea id='otherInfo' rows='5' cols='30'></textarea>
+      </div>
+      <div class='description'>
+        <label>Description</label>
+        <textarea id='description' rows='5' cols='30'></textarea>
+      </div>
+      <div class='weapon'>
+        <label>Weapon</label>
+        <textarea id='weapon' rows='5' cols='30'></textarea>
+      </div>
+
+
+      <div class='np'>
+        Noble Phantasm
+        <div class='np1'>
+          <div class='np1Name'>
+            <label>Name</label>
+            <input type='text' id='np1Name'>
+          </div>
+          <div class='np1Chant'>
+            <label>Chant</label>
+            <input type='text' id='np1Chant'>
+          </div>
+          <div class='np1Classifier'>
+            <label>Classification</label>
+            <input type='text' id='np1Classifier'>
+          </div>
+          <div class='np1Rank'>
+            <label>Rank</label>
+            <select id='np1Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='np1Range'>
+            <label>Range</label>
+            <input type='text' id='np1Range'>
+          </div>
+          <div class='np1Targets'>
+            <label>Targets</label>
+            <input type='text' id='np1Targets'>
+          </div>
+          <div class='np1Description'>
+            <label>Description</label>
+            <textarea id='np1Description' rows='5' cols='30'></textarea>
+          </div>
+          <div class='np1Effect'>
+            <label>Effect</label>
+            <textarea id='np1Effect' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+
+        <div class='np2'>
+          <div class='np2Name'>
+            <label>Name</label>
+            <input type='text' id='np2Name'>
+          </div>
+          <div class='np2Chant'>
+            <label>Chant</label>
+            <input type='text' id='np2Chant'>
+          </div>
+          <div class='np2Classifier'>
+            <label>Classification</label>
+            <input type='text' id='np2Classifier'>
+          </div>
+          <div class='np2Rank'>
+            <label>Rank</label>
+            <select id='np2Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='np2Range'>
+            <label>Range</label>
+            <input type='text' id='np2Range'>
+          </div>
+          <div class='np2Targets'>
+            <label>Targets</label>
+            <input type='text' id='np2Targets'>
+          </div>
+          <div class='np2Description'>
+            <label>Description</label>
+            <textarea id='np2Description' rows='5' cols='30'></textarea>
+          </div>
+          <div class='np2Effect'>
+            <label>Effect</label>
+            <textarea id='np2Effect' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='cSkill'>
+        <div class='cSkill1'>
+          Class Skill 1
+          <div class='cSkill1Name'>
+            <label>Name</label>
+            <input type='text' id='cSkill1Name'>
+          </div>
+          <div class='cSkill1Rank'>
+            <label>Rank</label>
+            <select id='cSkill1Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='cSkill1Description'>
+            <label>Description</label>
+            <textarea id='cSkill1Description' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+        <div class='cSkill2'>
+          Class Skill 2
+          <div class='cSkill2Name'>
+            <label>Name</label>
+            <input type='text' id='cSkill2Name'>
+          </div>
+          <div class='cSkill2Rank'>
+            <label>Rank</label>
+            <select id='cSkill2Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='cSkill2Description'>
+            <label>Description</label>
+            <textarea id='cSkill2Description' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+        <div class='cSkill3'>
+          Class Skill 3
+          <div class='cSkill3Name'>
+            <label>Name</label>
+            <input type='text' id='cSkill3Name'>
+          </div>
+          <div class='cSkill3Rank'>
+            <label>Rank</label>
+            <select id='cSkill3Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='cSkill3Description'>
+            <label>Description</label>
+            <textarea id='cSkill3Description' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='pSkill'>
+        <div class='pSkill1'>
+          Personal Skill 1
+          <div class='pSkill1Name'>
+            <label>Name</label>
+            <input type='text' id='pSkill1Name'>
+          </div>
+          <div class='pSkill1Rank'>
+            <label>Rank</label>
+            <select id='pSkill1Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='pSkill1Description'>
+            <label>Description</label>
+            <textarea id='pSkill1Description' rows='5' cols='30'></textarea>
+          </div>
+          <div class='pSkill1Example'>
+            <label>Examples of Power</label>
+            <textarea id='pSkill1Example' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+
+        <div class='pSkill2'>
+          Personal Skill 2
+          <div class='pSkill2Name'>
+            <label>Name</label>
+            <input type='text' id='pSkill2Name'>
+          </div>
+          <div class='pSkill2Rank'>
+            <label>Rank</label>
+            <select id='pSkill2Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='pSkill2Description'>
+            <label>Description</label>
+            <textarea id='pSkill2Description' rows='5' cols='30'></textarea>
+          </div>
+          <div class='pSkill2Example'>
+            <label>Examples of Power</label>
+            <textarea id='pSkill2Example' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+
+        <div class='pSkill3'>
+          Personal Skill 3
+          <div class='pSkill3Name'>
+            <label>Name</label>
+            <input type='text' id='pSkill3Name'>
+          </div>
+          <div class='pSkill3Rank'>
+            <label>Rank</label>
+            <select id='pSkill3Rank'>
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+              <option>D</option>
+              <option>E</option>
+              <option>EX</option>
+              <option>Other</option>
+            </select>
+            <input type='text'>
+          </div>
+          <div class='pSkill3Description'>
+            <label>Description</label>
+            <textarea id='pSkill3Description' rows='5' cols='30'></textarea>
+          </div>
+          <div class='pSkill3Example'>
+            <label>Examples of Power</label>
+            <textarea id='pSkill3Example' rows='5' cols='30'></textarea>
+          </div>
+        </div>
+      </div>
+
+
+      <div class='gallery'></div>
+
+
+      <!-- commented out for uploading to netlify
+      <div class='createDoc' id='createDocWrapper'>
+        <button type='button' id='createDoc' onclick='copyDoc()'>Generate Google Doc</button>
+      </div>
+    -->
+    </form>
+
+
+    <div class='infoHub' id='infoHub'>INFOHUB</div>
+
+    
+
+
+
+    <!-- google doc related functions -->
+    <!-- commented out for uploading to netlify
+    <script src='js/createdoc.js'></script>
+    <script async="" defer="" onload="this.onload=function(){};handleClientLoad()" onreadystatechange="if (this.readyState === 'complete') this.onload()" src="https://apis.google.com/js/api.js"></script>
+    -->
+    <!-- json related functions -->
+    <script src='json/canon_servants.js'></script>
+    <script src='js/helperparam.js'></script>
+    <script src='js/helperregion.js'></script>
+    <script src='js/helperalignment.js'></script>
+
+
+  </body>
+</html>
