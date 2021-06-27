@@ -29,9 +29,19 @@ $( document ).ready(function() {
          e.preventDefault();
          showFGOMaterial(elem.id);
 
+         document.getElementById('infoHubServantPage').classList.add("active");
 
+ 
       });
    }
+
+   let elem = document.getElementById('infoHubServantDeactivate');
+    elem.addEventListener('click', function(e) {
+
+        document.getElementById('infoHubServantPage').classList.remove("active");
+
+
+    });
 
 });
 
@@ -47,7 +57,6 @@ function getServantURL(servantName) {
 
 
 function showFGOMaterial(servantURL) {
-
 
    var matURL = 'js/servant/' + servantURL + '.js';
    $.ajaxSetup({'cache':true});
@@ -66,4 +75,5 @@ function showFGOMaterial(servantURL) {
     document.getElementById('infoHubServantPage').innerHTML = fgomathtml;
 
    });
+
 }
