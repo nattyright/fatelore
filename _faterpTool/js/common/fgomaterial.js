@@ -49,7 +49,7 @@ function getServantURL(servantName) {
 function showFGOMaterial(servantURL) {
 
 
-   var matURL = '../servant/' + servantURL + '.js';
+   var matURL = '../_faterpTool/js/servant/' + servantURL + '.js';
    $.ajaxSetup({'cache':true});
    $.getScript(matURL, function() {
 
