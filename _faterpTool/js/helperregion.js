@@ -17,11 +17,11 @@ function helperRegion() {
     }
 
     html += "</table>"
-    document.getElementById('infoHub').innerHTML = html;
+    document.getElementById('infoHubServantDataCompare').innerHTML = html;
 
   } else {
 
-    document.getElementById('infoHub').innerHTML = "";
+    //document.getElementById('infoHubServantDataCompare').innerHTML = "";
 
   }
 

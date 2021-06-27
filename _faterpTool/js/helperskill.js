@@ -2,7 +2,56 @@
  * display skill description from fandom wiki
  */
 
+//TO-DO: show a list of applicable class skills, then open detailed
+//       skill description in a new <div>
+
 function helperClassSkill(divId) {
+    var servantData = canonServants;
+    var className = document.getElementById('sideClass');
+    var skillList = {};
+
+    for(servant of servantData) {
+        if (servant['sideClass'].toUpperCase() == className.value.toUpperCase()) {
+            for(skillId in servant['cSkill']) {
+                var skill = servant['cSkill'][skillId];
+                if(skill['name'] in skillList) {
+                    skillList[skill['name']] += 1;
+                } else {
+                    skillList[skill['name']] = 1;
+                }
+            }
+        }
+    }
+    console.log(skillList);
+
+    
+}
+
+function helperPersonalSkill(divId) {
+    var servantData = canonServants;
+    var className = document.getElementById('sideClass');
+    var skillList = {};
+
+    for(servant of servantData) {
+        if (servant['sideClass'].toUpperCase() == className.value.toUpperCase()) {
+            for(skillId in servant['pSkill']) {
+                var skill = servant['pSkill'][skillId];
+                if(skill['name'] in skillList) {
+                    skillList[skill['name']] += 1;
+                } else {
+                    skillList[skill['name']] = 1;
+                }
+            }
+        }
+    }
+    console.log(skillList);
+
+    
+}
+
+
+
+function getSkillInfoFromWiki(divId) {
 
   var skillName = document.getElementById(divId).value;
     
@@ -41,15 +90,12 @@ function helperClassSkill(divId) {
     }
 });
     
-    
 }
 
 
 
-async function fetchAsync (url) {
-  let response = await fetch(url);
-  let data = await response.json();
-  //console.log(data);
-  return data;
-}
+
+
+
+
 

@@ -20,24 +20,24 @@ function helperParam() {
     html += "<center>(difference score < 3)</center><br>"; 
     html += "<table><tr><th>NAME</th><th>CLASS</th><th>STR</th><th>END</th><th>AGI</th><th>MAN</th><th>LUC</th><th>NP</th></tr>";
     for (servant of servantData) {
-      html += getServantParamTableHTML(servant, 3);
+      html += getServantParamTableHTML(servant, 3, 5);
     }
 
     html += "</table>"
-    document.getElementById('infoHub').innerHTML = html;
+    document.getElementById('infoHubServantDataCompare').innerHTML = html;
 
   } else {
 
-    document.getElementById('infoHub').innerHTML = "";
+    //document.getElementById('infoHubServantDataCompare').innerHTML = "";
     
   }
 
 }
 
 
-function getServantParamTableHTML(value, scoreDiff) {
+function getServantParamTableHTML(value, scoreDiff, sumSquaredError) {
   var s = value;
-  if (s["paramScoreDiff"] <= scoreDiff) {
+  if (s["paramScoreDiff"] <= scoreDiff && s["paramSumSquaredError"] <= sumSquaredError) {
     var message = '<tr><td>' + 
                               s['title'].split("(")[0] + '</td><td>' +
                               s['sideClass'] + '</td><td>' +
@@ -78,14 +78,20 @@ function getParamScoresFromForm() {
   return score;
 }
 
+/*
+ * Calculate param score difference between an existing servant and the WIP servant
+ */
 function addParamData(value, index, array, formScores) {
   var servant = value;
   var servantScores = getParamScores(servant["param"]);
   var scoreDiff = 0;
+  var sumSquaredError = 0;
   // calculate abs dif between form and servant params
   for (i = 0; i < 6; i++) {
     scoreDiff += Math.abs(formScores[i] - servantScores[i]);
+    sumSquaredError += (formScores[i] - servantScores[i]) ** 2;
   }
+  servant["paramSumSquaredError"] = sumSquaredError;
   servant["paramScoreDiff"] = scoreDiff;
 }
 
