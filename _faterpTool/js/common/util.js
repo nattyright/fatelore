@@ -34,7 +34,7 @@ async function fetchAsync (url) {
 
 
 $(document).ready(function(){
-    $.getScript("js/servant/abigail-williams.js", function() {
+    $.getScript("../servant/abigail-williams.js", function() {
        alert("Script loaded but not necessarily executed.");
        console.log(a);
        console.log("haha")
