@@ -51,7 +51,19 @@ function showFGOMaterial(servantURL) {
 
    var matURL = 'js/servant/' + servantURL + '.js';
    $.ajaxSetup({'cache':true});
-   $.getScript(matURL, function(data) {
-     console.log(a.content[6].i18n.en.name.id);
+   $.getScript(matURL, function() {
+    //console.log(a.content[6].i18n.en.name.id);
+    var fgomathtml = "";
+    for (var i = 0; i < a.content.length; i++) {
+      fgomathtml += '<div>';
+      fgomathtml += a.content[i].i18n.en.name.name;
+      fgomathtml += a.content[i].i18n.en.html;
+      fgomathtml += '</div>';
+      //console.log(a.content[i].i18n.en.name.name);
+      //console.log(a.content[i].i18n.en.html);
+    }
+     
+    document.getElementById('infoHubServantPage').innerHTML = fgomathtml;
+
    });
 }
