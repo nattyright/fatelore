@@ -11,7 +11,7 @@ $(document).ready(function(){
 */
 
 import { a } from '../servant/abigail-williams.js';
-console.log(a);
+console.log(a.content[6].i18n.en.name.id);
 
 
 //document.getElementById('infoHubServantPage')
