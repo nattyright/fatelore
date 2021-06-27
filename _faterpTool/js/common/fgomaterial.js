@@ -20,7 +20,7 @@ $( document ).ready(function() {
 
 
    for(servant of servantData) {
-      let elem = document.getElementById(servant.URL)
+      let elem = document.getElementById(servant.URL);
       elem.addEventListener('click', function(e) {
 
          e.preventDefault();
