@@ -31,17 +31,3 @@ async function fetchAsync (url) {
 }
 
 
-
-
-$(document).ready(function(){
-    $.getScript("../servant/abigail-williams.js", function() {
-       alert("Script loaded but not necessarily executed.");
-       console.log(a);
-       console.log("haha")
-    });
-});
-
-
-
-
-//document.getElementById('infoHubServantPage')
