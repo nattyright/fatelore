@@ -5,7 +5,7 @@ servantData.sort((a, b) =>
 
 
 let html = "<ul>";
-for(servant2 of servantData) {
+for(servant2 in servantData) {
    html += "<li><a href='#' class='fgoMaterialServantName' id='";
    html += servant2.URL;
    html += "'>";
