@@ -27,8 +27,8 @@ function getWikipediaPage(servantName) {
             .then(function(response){return response.json();})
             .then(function(response) {
                 if (response.query.searchinfo.totalhits > 0){
-                    console.log("Your search page exists on English Wikipedia" );
-                    console.log(response.query.search[0].title);
+                    //console.log("Your search page exists on English Wikipedia" );
+                    //console.log(response.query.search[0].title);
                     displayWikipediaPageContent(response.query.search[0].title);
                     
                 }
@@ -59,7 +59,7 @@ function displayWikipediaPageContent(pageName) {
         url = url + "?origin=*";
         Object.keys(params).forEach(function(key){url += "&" + key + "=" + params[key];});
 
-
+        console.log(url);
         fetch(url)
             .then(function(response){return response.json();})
             .then(function(response) {
@@ -111,30 +111,3 @@ function displayWikipediaPageContent(pageName) {
 
 
 }
-
-
-
-/*
- * Fire functions after finishing typing in a field with Id (1 seconds)
- */
-
-//setup before functions
-let typingTimer;                //timer identifier
-let doneTypingInterval = 1000;  //time in ms (1 seconds)
-let myInput = document.getElementById('title');
-
-//on keyup, start the countdown
-myInput.addEventListener('keyup', () => {
-    clearTimeout(typingTimer);
-    if (myInput.value) {
-        typingTimer = setTimeout(getWikipediaPage, doneTypingInterval, myInput.value);
-    }
-});
-
-//on focus, start the countdown
-myInput.addEventListener('focus', () => {
-    clearTimeout(typingTimer);
-    if (myInput.value) {
-        typingTimer = setTimeout(getWikipediaPage, doneTypingInterval, myInput.value);
-    }
-});

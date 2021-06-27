@@ -1,4 +1,11 @@
 /*
+ * Global Vars
+ */
+var typingTimer;                //timer identifier
+var doneTypingInterval = 1000;  //time in ms (1 seconds)
+
+
+/*
  * Check if an input field with Id has a valid value
  */
 function getValueFromInput(divId) {
@@ -11,13 +18,6 @@ function getValueFromInput(divId) {
     return false;
 }
 
-
-/*
- * Populate div innerhtml
- */
-function replaceDivHtml(divId, html) {
-    document.getElementById(divId).innerHTML = html;
-}
 
 
 /*
