@@ -91,10 +91,10 @@ function displayWikipediaPageContent(pageName) {
                 let content = response.parse.text['*'];
                 infoBox.innerHTML = content;
 
-                if(infoBox.getElementsByClassName('vcard').item(0) == null) {
+                if(infoBox.getElementsByClassName('infobox').item(0) == null) {
                     var infoBoxHtml = "<center>No Extra Wiki Info Found.</center>"
                 } else {
-                    var infoBoxHtml = infoBox.getElementsByClassName('vcard').item(0).outerHTML;
+                    var infoBoxHtml = infoBox.getElementsByClassName('infobox').item(0).outerHTML;
                     infoBoxHtml = infoBoxHtml.replace(/<img[^>]*>/g,"")
                                              .replace(/<a[^>]*>/g,"")
                                              .replace(/<sup[^>]*>/g,"");
