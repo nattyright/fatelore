@@ -20,7 +20,9 @@ $( document ).ready(function() {
    document.getElementById('infoHubServantIndex').innerHTML = html;
 
 
-   for(servant of servantData) {
+   for(var i = 0; i < servantData.length; i++) {
+      var servant = servantData[i];
+      
       let elem = document.getElementById(servant.URL);
       elem.addEventListener('click', function(e) {
 
