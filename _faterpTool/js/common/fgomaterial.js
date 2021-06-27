@@ -50,7 +50,7 @@ function showFGOMaterial(servantURL) {
 
 
    var matURL = '../servant/' + servantURL + '.js';
-
+   $.ajaxSetup({'cache':true});
    $.getScript(matURL, function() {
 
        console.log(a.content[6].i18n.en.name.id);
