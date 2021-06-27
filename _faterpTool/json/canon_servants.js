@@ -1,6 +1,6 @@
 canonServants = [
   {
-    "URL": "Artoria Pendragon (Saber)",
+    "URL": "altria-pendragon",
     "title": "Altria Pendragon",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -54,10 +54,11 @@ canonServants = [
         "rank": "A++",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Artoria Pendragon Alter (Saber)",
+    "URL": "altria-pendragon-alter",
     "title": "Altria Pendragon (Alter)",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -99,10 +100,11 @@ canonServants = [
         "rank": "A++",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Artoria Pendragon Lily",
+    "URL": "altria-pendragon-lily",
     "title": "Artoria Pendragon Lily",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -148,10 +150,11 @@ canonServants = [
         "rank": "B (A+)",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Nero Claudius",
+    "URL": "nero-claudius",
     "title": "Nero Claudius",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -202,10 +205,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Team"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "nero-claudius-bride",
     "title": "Nero Claudius (Bride)",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -251,10 +255,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "gawain",
     "title": "Gawain",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -304,10 +309,11 @@ canonServants = [
         "rank": "Anti-Army",
         "target": "A+"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Siegfried",
+    "URL": "siegfried",
     "title": "Siegfried",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -358,10 +364,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mordred",
+    "URL": "mordred",
     "title": "Mordred",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -416,10 +423,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "elisabeth-bathory-brave",
     "title": "Elisabeth Báthory (Brave)",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -469,10 +477,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Bedivere (Fate/Grand Order)",
+    "URL": "bedivere",
     "title": "Bedivere",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -527,10 +536,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Unit/Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Gaius Julius Caesar",
+    "URL": "gaius-julius-caesar",
     "title": "Gaius Julius Caesar",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -580,10 +590,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Fergus mac Róich",
+    "URL": "fergus-mac-roich",
     "title": "Fergus mac Róich",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -629,10 +640,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Miyamoto Musashi (Female)",
+    "URL": "miyamoto-musashi",
     "title": "Miyamoto Musashi",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -692,10 +704,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Altera (Fate/Grand Order)",
+    "URL": "altera",
     "title": "Altera",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -758,10 +771,11 @@ canonServants = [
         "rank": "A++",
         "target": "Anti-Army/Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Rama",
+    "URL": "rama",
     "title": "Rama",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -816,10 +830,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Lancelot (Saber)",
+    "URL": "lancelot-saber",
     "title": "Lancelot",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -874,11 +889,12 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Gilles de Rais (Saber)",
-    "title": "Gilles de Rais",
+    "URL": "gilles-de-rais-saber",
+    "title": "Gilles de Rais (Saber)",
     "sideClass": "saber",
     "sideGender": "Male",
     "sideHeight": "186cm",
@@ -932,10 +948,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Chevalier d'Eon",
+    "URL": "chevalier-deon",
     "title": "Chevalier d'Eon",
     "sideClass": "saber",
     "sideGender": "?",
@@ -986,10 +1003,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Okita Souji",
+    "URL": "okita-souji",
     "title": "Okita Souji",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -1045,10 +1063,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Shiki Ryougi (Saber)",
+    "URL": "ryougi-shiki-saber",
     "title": "Ryougi Shiki (Saber)",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -1098,10 +1117,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Tawara Touta",
+    "URL": "tawara-touta",
     "title": "Tawara Touta",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -1152,10 +1172,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Banquet"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Arthur Pendragon",
+    "URL": "arthur-pendragon-prototype",
     "title": "Arthur Pendragon (Prototype)",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -1218,10 +1239,11 @@ canonServants = [
         "rank": "???",
         "target": "???"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Suzuka Gozen",
+    "URL": "suzuka-gozen",
     "title": "Suzuka Gozen",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -1280,10 +1302,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "frankenstein-saber",
     "title": "Frankenstein (Saber)",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -1338,10 +1361,11 @@ canonServants = [
         "rank": "Anti-Unit",
         "target": "C"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Yagyuu Munenori",
+    "URL": "yagyu-tajima-no-kami-munenori",
     "title": "Yagyu Tajima-no-kami Munenori",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -1387,10 +1411,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit Secret Technique"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sigurd",
+    "URL": "sigurd",
     "title": "Sigurd",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -1445,10 +1470,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "medb-saber",
     "title": "Medb (Saber)",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -1463,11 +1489,12 @@ canonServants = [
       "sideMan": "D",
       "sideLuc": "EX",
       "sideNP": "A+"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
-    "title": "Diarmuid Ua Duibhne",
+    "URL": "diarmuid-ua-duibhne-saber",
+    "title": "Diarmuid Ua Duibhne (Saber)",
     "sideClass": "saber",
     "sideGender": "Male",
     "sideHeight": "184cm",
@@ -1521,10 +1548,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Prince of Lanling",
+    "URL": "prince-of-lanling",
     "title": "Prince of Lan Ling",
     "sideClass": "saber",
     "sideGender": "Male",
@@ -1574,10 +1602,11 @@ canonServants = [
         "rank": "C+",
         "target": "Anti-Army (Encampment)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Beni-enma",
+    "URL": "beni-enma",
     "title": "Beni-Enma",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -1640,10 +1669,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Lakshmibai",
+    "URL": "lakshmibai",
     "title": "Lakshmi Bai",
     "sideClass": "saber",
     "sideGender": "Female",
@@ -1693,11 +1723,12 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "EMIYA (Archer)",
-    "title": "Emiya",
+    "URL": "emiya",
+    "title": "Emiya (Archer)",
     "sideClass": "archer",
     "sideGender": "Male",
     "sideHeight": "187cm",
@@ -1754,10 +1785,11 @@ canonServants = [
         "rank": "E~A++",
         "target": "???"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "gilgamesh",
     "title": "Gilgamesh",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -1812,10 +1844,11 @@ canonServants = [
         "rank": "Anti-Unit",
         "target": "E~A++"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Robin Hood",
+    "URL": "robin-hood",
     "title": "Robin Hood",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -1861,10 +1894,11 @@ canonServants = [
         "rank": "D",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Atalanta",
+    "URL": "atalante",
     "title": "Atalante",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -1915,10 +1949,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "David",
+    "URL": "david",
     "title": "David",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -1978,10 +2013,11 @@ canonServants = [
         "rank": "EX",
         "target": "Covenant"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Tristan",
+    "URL": "tristan",
     "title": "Tristan",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2035,10 +2071,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Orion",
+    "URL": "orion",
     "title": "Orion",
     "sideClass": "archer",
     "sideGender": "Male, Female",
@@ -2094,10 +2131,11 @@ canonServants = [
         "rank": "???",
         "target": "???"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Billy the Kid",
+    "URL": "billy-the-kid",
     "title": "Billy the Kid",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2147,10 +2185,11 @@ canonServants = [
         "rank": "C++",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Nikola Tesla",
+    "URL": "nikola-tesla",
     "title": "Nikola Tesla",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2200,10 +2239,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Euryale",
+    "URL": "euryale",
     "title": "Euryale",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2253,10 +2293,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Arash",
+    "URL": "arash",
     "title": "Arash",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2302,10 +2343,11 @@ canonServants = [
         "rank": "B++",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Arjuna",
+    "URL": "arjuna",
     "title": "Arjuna",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2364,10 +2406,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "emiya-alter",
     "title": "Emiya (Alter)",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2413,10 +2456,11 @@ canonServants = [
         "rank": "E~A++",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Child-Gil",
+    "URL": "gilgamesh-child",
     "title": "Gilgamesh (Child)",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2484,10 +2528,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Ishtar",
+    "URL": "ishtar",
     "title": "Ishtar",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2542,10 +2587,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Tomoe Gozen",
+    "URL": "tomoe-gozen",
     "title": "Tomoe Gozen",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2600,10 +2646,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit, Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "attila-the-san-ta",
     "title": "Attila the San(ta)",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2618,10 +2665,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "A",
       "sideNP": "EX"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "James Moriarty",
+    "URL": "james-moriarty",
     "title": "James Moriarty",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2667,11 +2715,12 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Oda Nobunaga (Archer)",
-    "title": "Oda Nobunaga",
+    "URL": "oda-nobunaga",
+    "title": "Oda Nobunaga (Archer)",
     "sideClass": "archer",
     "sideGender": "Female",
     "sideHeight": "152cm",
@@ -2725,10 +2774,11 @@ canonServants = [
         "rank": "E~EX",
         "target": "Anti-Divine"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "anne-bonny-mary-read-archer",
     "title": "Anne Bonny & Mary Read (Archer)",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2743,10 +2793,11 @@ canonServants = [
       "sideMan": "D",
       "sideLuc": "A",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "altria-pendragon-archer",
     "title": "Altria Pendragon (Archer)",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2761,10 +2812,11 @@ canonServants = [
       "sideMan": "A+",
       "sideLuc": "A+",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Chloe von Einzbern",
+    "URL": "chloe-von-einzbern",
     "title": "Chloe von Einzbern",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2810,10 +2862,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "helena-blavatsky-archer",
     "title": "Helena Blavatsky (Archer)",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2828,10 +2881,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "A",
       "sideNP": "B+"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "asagami-fujino",
     "title": "Asagami Fujino",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -2881,10 +2935,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-World"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Chiron",
+    "URL": "chiron",
     "title": "Chiron",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2934,10 +2989,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Napoleon Bonaparte",
+    "URL": "napoleon",
     "title": "Napoleon",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -2995,10 +3051,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "jeanne-darc-archer",
     "title": "Jeanne d'Arc (Archer)",
     "sideClass": "archer",
     "sideGender": "Female",
@@ -3013,10 +3070,11 @@ canonServants = [
       "sideMan": "C",
       "sideLuc": "A",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "ashwatthama",
     "title": "Aśvatthāman",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -3080,10 +3138,11 @@ canonServants = [
         "rank": "???",
         "target": "???"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "William Tell",
+    "URL": "william-tell",
     "title": "William Tell",
     "sideClass": "archer",
     "sideGender": "Male",
@@ -3134,11 +3193,12 @@ canonServants = [
         "rank": "C+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Cú Chulainn (Lancer)",
-    "title": "Cú Chulainn",
+    "URL": "cu-chulainn",
+    "title": "Cú Chulainn (Lancer)",
     "sideClass": "lancer",
     "sideGender": "Male",
     "sideHeight": "185cm",
@@ -3187,10 +3247,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "diarmuid-ua-duibhne",
     "title": "Diarmuid Ua Duibhne",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3237,10 +3298,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Vlad III (EXTRA)",
+    "URL": "vlad-iii-extra",
     "title": "Vlad III (EXTRA)",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3286,10 +3348,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Karna",
+    "URL": "karna",
     "title": "Karna",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3349,10 +3412,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Army,"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Elizabeth Báthory",
+    "URL": "elisabeth-bathory",
     "title": "Elisabeth Báthory",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -3402,10 +3466,11 @@ canonServants = [
         "rank": "E-",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Musashibou Benkei",
+    "URL": "musashibou-benkei",
     "title": "Musashibou Benkei",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3451,10 +3516,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Cú Chulainn (Prototype)",
+    "URL": "cu-chulainn-prototype",
     "title": "Cú Chulainn (Prototype)",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3500,10 +3566,11 @@ canonServants = [
         "rank": "B/B+",
         "target": "Anti-Unit/Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "enkidu",
     "title": "Enkidu",
     "sideClass": "lancer",
     "sideGender": "-",
@@ -3550,10 +3617,11 @@ canonServants = [
         "rank": "???",
         "target": "???"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Leonidas I",
+    "URL": "leonidas-i",
     "title": "Leonidas I",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3595,10 +3663,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Romulus",
+    "URL": "romulus",
     "title": "Romulus",
     "sideClass": "lancer",
     "sideGender": "Male (Rome)",
@@ -3649,10 +3718,11 @@ canonServants = [
         "rank": "B",
         "target": "Barrier"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Fionn mac Cumhaill",
+    "URL": "fionn-mac-cumhaill",
     "title": "Fionn mac Cumhaill",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3716,10 +3786,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Wisdom"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Brynhildr",
+    "URL": "brynhild",
     "title": "Brynhild",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -3769,10 +3840,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Scáthach",
+    "URL": "scathach",
     "title": "Scáthach",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -3819,10 +3891,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Houzouin Inshun",
+    "URL": "houzouin-inshun",
     "title": "Houzouin Inshun",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3864,10 +3937,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hector",
+    "URL": "hektor",
     "title": "Hektor",
     "sideClass": "lancer",
     "sideGender": "Male",
@@ -3922,11 +3996,12 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Li Shuwen (Young Lancer)",
-    "title": "Li Shuwen",
+    "URL": "li-shuwen",
+    "title": "Li Shuwen (Young Lancer)",
     "sideClass": "lancer",
     "sideGender": "Male",
     "sideHeight": "166cm",
@@ -3967,10 +4042,11 @@ canonServants = [
         "rank": "—",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Artoria Pendragon Alter (Lancer)",
+    "URL": "altria-pendragon-lancer-alter",
     "title": "Altria Pendragon (Alter)",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4025,10 +4101,11 @@ canonServants = [
         "rank": "A++",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Artoria Pendragon (Lancer)",
+    "URL": "altria-pendragon-lancer",
     "title": "Altria Pendragon (Lancer)",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4083,10 +4160,11 @@ canonServants = [
         "rank": "A++",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "tamamo-no-mae-lancer",
     "title": "Tamamo-no-Mae (Lancer)",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4101,10 +4179,11 @@ canonServants = [
       "sideMan": "E",
       "sideLuc": "A",
       "sideNP": "C"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "kiyohime-lancer",
     "title": "Kiyohime (Lancer)",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4119,10 +4198,11 @@ canonServants = [
       "sideMan": "E",
       "sideLuc": "A+",
       "sideNP": "C"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Jeanne d'Arc Alter Santa Lily",
+    "URL": "jeanne-darc-alter-santa-lily",
     "title": "Jeanne d'Arc Alter Santa Lily",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4164,11 +4244,12 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Medusa (Child)",
-    "title": "Medusa",
+    "URL": "medusa-lancer",
+    "title": "Medusa (Lancer)",
     "sideClass": "lancer",
     "sideGender": "Female",
     "sideHeight": "134cm",
@@ -4222,10 +4303,11 @@ canonServants = [
         "rank": "???",
         "target": "???"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Jaguar Man",
+    "URL": "jaguar-warrior",
     "title": "Jaguar Warrior",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4280,10 +4362,11 @@ canonServants = [
         "rank": "B",
         "target": "Barrier"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "minamoto-no-raikou-lancer",
     "title": "Minamoto-no-Raikou (Lancer)",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4298,10 +4381,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "C",
       "sideNP": "A+"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Parvati",
+    "URL": "parvati",
     "title": "Pārvatī",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4347,10 +4431,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Nezha",
+    "URL": "nezha",
     "title": "Nezha",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4397,10 +4482,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Ereshkigal",
+    "URL": "ereshkigal",
     "title": "Ereshkigal",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4450,10 +4536,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Mountain"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Valkyrie",
+    "URL": "valkyrie",
     "title": "Valkyrie",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4514,10 +4601,11 @@ canonServants = [
         "rank": "",
         "target": ""
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "ibaraki-douji-lancer",
     "title": "Ibaraki-Douji (Lancer)",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4532,10 +4620,11 @@ canonServants = [
       "sideMan": "D",
       "sideLuc": "B",
       "sideNP": "B"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Qin Liangyu",
+    "URL": "qin-liangyu",
     "title": "Qin Liangyu",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4586,10 +4675,11 @@ canonServants = [
         "rank": "D",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Bradamante",
+    "URL": "bradamante",
     "title": "Bradamante",
     "sideClass": "lancer",
     "sideGender": "Female",
@@ -4636,7 +4726,8 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit/Reality Marble"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
     "URL": "Nagao Kagetora",
@@ -4689,11 +4780,12 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit/Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 0
   },
   {
-    "URL": "Medusa (Rider)",
-    "title": "Medusa",
+    "URL": "medusa",
+    "title": "Medusa (Rider)",
     "sideClass": "rider",
     "sideGender": "Female",
     "sideHeight": "172cm",
@@ -4747,10 +4839,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Iskandar",
+    "URL": "iskandar",
     "title": "Iskandar",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -4809,10 +4902,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Francis Drake",
+    "URL": "francis-drake",
     "title": "Francis Drake",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -4858,10 +4952,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Astolfo",
+    "URL": "astolfo",
     "title": "Astolfo",
     "sideClass": "rider",
     "sideGender": "???",
@@ -4921,10 +5016,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Georgios",
+    "URL": "georgios",
     "title": "Georgios",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -4993,10 +5089,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Edward Teach",
+    "URL": "edward-teach",
     "title": "Edward Teach",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5042,10 +5139,11 @@ canonServants = [
         "rank": "C++",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Anne Bonny and Mary Read",
+    "URL": "anne-bonny-mary-read",
     "title": "Anne Bonny & Mary Read",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5091,10 +5189,11 @@ canonServants = [
         "rank": "C++",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Boudica",
+    "URL": "boudica",
     "title": "Boudica",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5153,10 +5252,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Ozymandias",
+    "URL": "ozymandias",
     "title": "Ozymandias",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5220,10 +5320,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Medb",
+    "URL": "queen-medb",
     "title": "Queen Medb",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5296,10 +5397,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Ushiwakamaru",
+    "URL": "ushiwakamaru",
     "title": "Ushiwakamaru",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5349,10 +5451,11 @@ canonServants = [
         "rank": "A++",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Alexander",
+    "URL": "alexander",
     "title": "Alexander",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5411,10 +5514,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Marie Antoinette",
+    "URL": "marie-antoinette",
     "title": "Marie Antoinette",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5469,10 +5573,11 @@ canonServants = [
         "rank": "B+",
         "target": "Barrier"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Quetzalcoatl",
+    "URL": "quetzalcoatl",
     "title": "Quetzalcoatl",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5536,10 +5641,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Army~Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Martha",
+    "URL": "martha",
     "title": "Martha",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5598,10 +5704,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "altria-pendragon-santa-alter",
     "title": "Altria Pendragon (Santa Alter)",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5616,10 +5723,11 @@ canonServants = [
       "sideMan": "B",
       "sideLuc": "A",
       "sideNP": "A++"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sakata Kintoki (Rider)",
+    "URL": "sakata-kintoki-rider",
     "title": "Sakata Kintoki (Rider)",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5665,10 +5773,11 @@ canonServants = [
         "rank": "B",
         "target": "Drive"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "mordred-rider",
     "title": "Mordred (Rider)",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5683,10 +5792,11 @@ canonServants = [
       "sideMan": "B",
       "sideLuc": "A",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Christopher Columbus",
+    "URL": "christopher-columbus",
     "title": "Christopher Columbus",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5732,10 +5842,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "ishtar-rider",
     "title": "Ishtar (Rider)",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5750,10 +5861,11 @@ canonServants = [
       "sideMan": "B",
       "sideLuc": "B",
       "sideNP": "EX"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "altria-pendragon-rider-alter",
     "title": "Altria Pendragon Alter (Rider)",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -5768,10 +5880,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "B",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Ivan the Terrible (Lostbelt)",
+    "URL": "ivan-the-thunder-emperor",
     "title": "Ivan the Terrible",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5822,10 +5935,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Achilles",
+    "URL": "achilles",
     "title": "Achilles",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5892,10 +6006,11 @@ canonServants = [
         "rank": "A+",
         "target": "Barrier"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sakamoto Ryouma",
+    "URL": "sakamoto-ryouma",
     "title": "Sakamoto Ryouma",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -5945,10 +6060,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Red Hare",
+    "URL": "red-hare",
     "title": "Red Hare",
     "sideClass": "rider",
     "sideGender": "Male",
@@ -6007,10 +6123,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "sima-yi-reines",
     "title": "Sima Yi (Reines)",
     "sideClass": "rider",
     "sideGender": "Female",
@@ -6060,10 +6177,11 @@ canonServants = [
         "rank": "B++",
         "target": "Anti-Formation"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Medea",
+    "URL": "medea",
     "title": "Medea",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -6109,11 +6227,12 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Magecraft"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Gilles de Rais (Caster)",
-    "title": "Gilles de Rais",
+    "URL": "gilles-de-rais",
+    "title": "Gilles de Rais (Caster)",
     "sideClass": "caster",
     "sideGender": "Male",
     "sideHeight": "196cm",
@@ -6162,10 +6281,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Tamamo-no-Mae",
+    "URL": "tamamo-no-mae",
     "title": "Tamamo-no-Mae",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -6215,10 +6335,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Nursery Rhyme",
+    "URL": "nursery-rhyme",
     "title": "Nursery Rhyme",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -6260,10 +6381,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hans Christian Andersen",
+    "URL": "hans-christian-andersen",
     "title": "Hans Christian Andersen",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -6313,10 +6435,11 @@ canonServants = [
         "rank": "C+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "William Shakespeare",
+    "URL": "william-shakespeare",
     "title": "William Shakespeare",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -6362,10 +6485,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Merlin",
+    "URL": "merlin",
     "title": "Merlin",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -6427,10 +6551,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Leonardo da Vinci",
+    "URL": "leonardo-da-vinci",
     "title": "Leonardo da Vinci",
     "sideClass": "caster",
     "sideGender": "Female (Body)",
@@ -6480,10 +6605,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit/Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Paracelsus von Hohenheim",
+    "URL": "paracelsus-von-hohenheim",
     "title": "Paracelsus von Hohenheim",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -6529,10 +6655,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Charles Babbage",
+    "URL": "charles-babbage",
     "title": "Charles Babbage",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -6578,10 +6705,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Nitocris",
+    "URL": "nitocris",
     "title": "Nitocris",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -6635,10 +6763,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mephistopheles",
+    "URL": "mephistopheles",
     "title": "Mephistopheles",
     "sideClass": "caster",
     "sideGender": "Male (?)",
@@ -6684,10 +6813,11 @@ canonServants = [
         "rank": "A→A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Wolfgang Amadeus Mozart",
+    "URL": "wolfgang-amadeus-mozart",
     "title": "Wolfgang Amadeus Mozart",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -6729,10 +6859,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Geronimo",
+    "URL": "geronimo",
     "title": "Geronimo",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -6778,10 +6909,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Medea Lily",
+    "URL": "medea-lily",
     "title": "Medea (Lily)",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -6796,11 +6928,12 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "A",
       "sideNP": "C"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Gilgamesh (Caster)",
-    "title": "Gilgamesh",
+    "URL": "gilgamesh-caster",
+    "title": "Gilgamesh (Caster)",
     "sideClass": "caster",
     "sideGender": "Male",
     "sideHeight": "182cm",
@@ -6863,11 +6996,12 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Zhuge Liang",
-    "title": "Zhuge Liang (Lord El-Melloi II)",
+    "URL": "zhuge-liang-lord-el-melloi-ii",
+    "title": "Zhuge Liang",
     "sideClass": "caster",
     "sideGender": "Male",
     "sideHeight": "186cm",
@@ -6917,10 +7051,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Army (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Irisviel (Dress of Heaven)",
+    "URL": "irisviel-dress-of-heaven",
     "title": "Irisviel (Holy Grail)",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -6970,10 +7105,11 @@ canonServants = [
         "rank": "B",
         "target": "Magecraft"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Cú Chulainn (Caster)",
+    "URL": "cu-chulainn-caster",
     "title": "Cú Chulainn",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -7028,10 +7164,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Xuanzang Sanzang",
+    "URL": "xuanzang-sanzang",
     "title": "Xuanzang Sanzang",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7086,10 +7223,11 @@ canonServants = [
         "rank": "EX",
         "target": "Prophecy of Future Enlightenment Noble Phantasm"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Helena Blavatsky",
+    "URL": "helena-blavatsky",
     "title": "Helena Blavatsky",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7135,10 +7273,11 @@ canonServants = [
         "rank": "A→A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Thomas Edison",
+    "URL": "thomas-edison",
     "title": "Thomas Edison",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -7192,10 +7331,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Populace"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "elisabeth-bathory-halloween",
     "title": "Elisabeth Báthory (Halloween)",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7241,10 +7381,11 @@ canonServants = [
         "rank": "E-",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "marie-antoinette-caster",
     "title": "Marie Antoinette (Caster)",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7259,10 +7400,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "B+",
       "sideNP": "A+"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Illyasviel von Einzbern (Fate/kaleid)",
+    "URL": "illyasviel-von-einzbern",
     "title": "Illyasviel von Einzbern",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7308,10 +7450,11 @@ canonServants = [
         "rank": "A+→EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Scheherazade",
+    "URL": "scheherazade",
     "title": "Scheherazade",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7357,10 +7500,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-King"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "nero-claudius-caster",
     "title": "Nero Claudius (Caster)",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7375,10 +7519,11 @@ canonServants = [
       "sideMan": "B",
       "sideLuc": "A",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Circe",
+    "URL": "circe",
     "title": "Circe",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7424,10 +7569,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Queen of Sheba",
+    "URL": "queen-of-sheba",
     "title": "Queen of Sheba",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7473,10 +7619,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "anastasia-nikolaevna-romanova",
     "title": "Anastasia",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7527,10 +7674,11 @@ canonServants = [
         "rank": "A+",
         "target": "Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Avicebron",
+    "URL": "avicebron",
     "title": "Avicebron",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -7576,10 +7724,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sieg",
+    "URL": "sieg",
     "title": "Sieg",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -7625,10 +7774,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Scáthach-Skadi",
+    "URL": "scathach-skadi",
     "title": "Scáthach-Skadi",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7678,10 +7828,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army, War Declaration"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "shuten-douji-caster",
     "title": "Shuten-Douji (Caster)",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7696,10 +7847,11 @@ canonServants = [
       "sideMan": "A+",
       "sideLuc": "B",
       "sideNP": "C"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Miyu Edelfelt",
+    "URL": "miyu-edelfelt",
     "title": "Miyu Edelfelt",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7749,10 +7901,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Murasaki Shikibu",
+    "URL": "murasaki-shikibu",
     "title": "Murasaki Shikibu",
     "sideClass": "caster",
     "sideGender": "Female",
@@ -7803,10 +7956,11 @@ canonServants = [
         "rank": "C",
         "target": "Poetry"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Asclepius",
+    "URL": "asclepius",
     "title": "Asclepius",
     "sideClass": "caster",
     "sideGender": "Male",
@@ -7856,10 +8010,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sasaki Kojirou",
+    "URL": "sasaki-kojirou",
     "title": "Sasaki Kojirou",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -7901,10 +8056,11 @@ canonServants = [
         "rank": "—",
         "target": "Anti-Unit Mystic Sword"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hassan of the Cursed Arm",
+    "URL": "hassan-of-the-cursed-arm",
     "title": "Hassan of the Cursed Arm",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -7950,10 +8106,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hassan of the Hundred Faces",
+    "URL": "hassan-of-the-hundred-faces",
     "title": "Hassan of the Hundred Personas",
     "sideClass": "assassin",
     "sideGender": "Depends on individual",
@@ -7995,11 +8152,12 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Jack the Ripper (Assassin)",
-    "title": "Jack the Ripper",
+    "URL": "jack-the-ripper",
+    "title": "Jack the Ripper (Assassin)",
     "sideClass": "assassin",
     "sideGender": "Female",
     "sideHeight": "134cm",
@@ -8045,11 +8203,12 @@ canonServants = [
         "rank": "C",
         "target": "Barrier"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Henry Jekyll and Hyde (Assassin)",
-    "title": "Henry Jekyll & Hyde",
+    "URL": "henry-jekyll-hyde",
+    "title": "Henry Jekyll & Hyde (Assassin)",
     "sideClass": "assassin",
     "sideGender": null,
     "sideHeight": "175cm",
@@ -8094,10 +8253,11 @@ canonServants = [
         "rank": "C→C+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Cleopatra",
+    "URL": "cleopatra",
     "title": "Cleopatra",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8143,10 +8303,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hassan of Serenity",
+    "URL": "hassan-of-the-serenity",
     "title": "Hassan of the Serenity",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8204,10 +8365,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Stheno",
+    "URL": "stheno",
     "title": "Stheno",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8257,10 +8419,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Jing Ke",
+    "URL": "jing-ke",
     "title": "Jing Ke",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8306,10 +8469,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Charles-Henri Sanson",
+    "URL": "charles-henri-sanson",
     "title": "Charles-Henri Sanson",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -8351,10 +8515,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Phantom of the Opera",
+    "URL": "phantom-of-the-opera",
     "title": "Phantom of the Opera",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -8400,10 +8565,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mata Hari",
+    "URL": "mata-hari",
     "title": "Mata Hari",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8445,10 +8611,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "EMIYA (Assassin)",
+    "URL": "emiya-assassin",
     "title": "Emiya (Assassin)",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -8499,10 +8666,11 @@ canonServants = [
         "rank": "C+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Carmilla",
+    "URL": "carmilla",
     "title": "Carmilla",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8544,10 +8712,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mysterious Heroine X",
+    "URL": "mysterious-heroine-x",
     "title": "Mysterious Heroine X",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8609,10 +8778,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Fuuma Kotarou",
+    "URL": "fuuma-kotarou",
     "title": "Fuuma \"Evil-wind\" Kotarou",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -8659,10 +8829,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit(Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Shuten-douji",
+    "URL": "shuten-douji",
     "title": "Shuten-Douji",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8717,10 +8888,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Shiki Ryougi (Assassin)",
+    "URL": "ryougi-shiki-assassin",
     "title": "Ryougi Shiki (Assassin)",
     "sideClass": "assassin",
     "sideGender": "Female ",
@@ -8766,10 +8938,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "scathach-assassin",
     "title": "Scáthach (Assassin)",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8784,10 +8957,11 @@ canonServants = [
       "sideMan": "C",
       "sideLuc": "D",
       "sideNP": "A+"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "First Hassan",
+    "URL": "first-hassan",
     "title": "\"First Hassan\"",
     "sideClass": "assassin",
     "sideGender": "???",
@@ -8853,10 +9027,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Yan Qing",
+    "URL": "yan-qing",
     "title": "Yan Qing",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -8906,10 +9081,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Wu Zetian",
+    "URL": "wu-zetian",
     "title": "Wu Zetian",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8955,10 +9131,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "nitocris-assassin",
     "title": "Nitocris (Assassin)",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -8973,10 +9150,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "A",
       "sideNP": "B"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mochizuki Chiyome",
+    "URL": "mochizuki-chiyome",
     "title": "Mochizuki Chiyome",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -9026,10 +9204,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Katou Danzou",
+    "URL": "katou-black-kite-danzou",
     "title": "Katou \"Black Kite\" Danzo",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -9080,10 +9259,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Osakabehime",
+    "URL": "osakabehime",
     "title": "Osakabehime",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -9141,10 +9321,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Semiramis",
+    "URL": "semiramis",
     "title": "Semiramis",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -9203,10 +9384,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Okada Izou",
+    "URL": "okada-izo",
     "title": "Okada Izo",
     "sideClass": "assassin",
     "sideGender": "Male",
@@ -9248,10 +9430,11 @@ canonServants = [
         "rank": "—",
         "target": "Anti-Unit Mystic Sword"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "ushiwakamaru-assassin",
     "title": "Ushiwakamaru (Assassin)",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -9266,10 +9449,11 @@ canonServants = [
       "sideMan": "B",
       "sideLuc": "A",
       "sideNP": "B"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hinako Akuta",
+    "URL": "yu-mei-ren",
     "title": "Yu Mei-ren",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -9311,11 +9495,12 @@ canonServants = [
         "rank": "C+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
-    "title": "Li Shuwen",
+    "URL": "li-shuwen-assassin",
+    "title": "Li Shuwen (Old Assassin)",
     "sideClass": "assassin",
     "sideGender": "Male",
     "sideHeight": "166cm",
@@ -9356,10 +9541,11 @@ canonServants = [
         "rank": "None",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Kama",
+    "URL": "kama",
     "title": "Kama",
     "sideClass": "assassin",
     "sideGender": "Female",
@@ -9413,11 +9599,12 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Gray (Assassin)",
-    "title": "Gray",
+    "URL": "gray",
+    "title": "Gray (Assassin)",
     "sideClass": "assassin",
     "sideGender": "Female",
     "sideHeight": "154cm",
@@ -9466,11 +9653,12 @@ canonServants = [
         "rank": "A+(A++)",
         "target": "Anti-Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Heracles (Berserker)",
-    "title": "Heracles",
+    "URL": "heracles",
+    "title": "Heracles (Berserker)",
     "sideClass": "berserker",
     "sideGender": "Male",
     "sideHeight": "253cm",
@@ -9520,11 +9708,12 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Lancelot (Berserker)",
-    "title": "Lancelot",
+    "URL": "lancelot",
+    "title": "Lancelot (Berserker)",
     "sideClass": "berserker",
     "sideGender": "Male",
     "sideHeight": "191cm",
@@ -9569,10 +9758,11 @@ canonServants = [
         "rank": "A++",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Lu Bu",
+    "URL": "lu-bu-fengxian",
     "title": "Lu Bu Fengxian",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -9614,10 +9804,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Frankenstein",
+    "URL": "frankenstein",
     "title": "Frankenstein",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -9664,10 +9855,11 @@ canonServants = [
         "rank": "D~B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Spartacus",
+    "URL": "spartacus",
     "title": "Spartacus",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -9709,10 +9901,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sakata Kintoki",
+    "URL": "sakata-kintoki",
     "title": "Sakata Kintoki",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -9763,11 +9956,12 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Army/Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Vlad III (Berserker)",
-    "title": "Vlad III",
+    "URL": "vlad-iii",
+    "title": "Vlad III (Berserker)",
     "sideClass": "berserker",
     "sideGender": "Male",
     "sideHeight": "191cm",
@@ -9821,10 +10015,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Beowulf",
+    "URL": "beowulf",
     "title": "Beowulf",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -9884,10 +10079,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Asterios",
+    "URL": "asterios",
     "title": "Asterios",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -9929,10 +10125,11 @@ canonServants = [
         "rank": "EX",
         "target": "Labyrinth"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Caligula",
+    "URL": "caligula",
     "title": "Caligula",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -9974,10 +10171,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Darius III",
+    "URL": "darius-iii",
     "title": "Darius III",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -10023,10 +10221,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Kiyohime",
+    "URL": "kiyohime",
     "title": "Kiyohime",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10072,10 +10271,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Florence Nightingale",
+    "URL": "nightingale",
     "title": "Florence Nightingale",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10117,10 +10317,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Eric Bloodaxe",
+    "URL": "eric-bloodaxe",
     "title": "Eric Bloodaxe",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -10167,10 +10368,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Tamamo Cat",
+    "URL": "tamamo-cat",
     "title": "Tamamo Cat",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10220,10 +10422,11 @@ canonServants = [
         "rank": "D→D+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Cú Chulainn Alter",
+    "URL": "cu-chulainn-alter",
     "title": "Cú Chulainn (Alter)",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -10278,10 +10481,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Ibaraki-douji",
+    "URL": "ibaraki-douji",
     "title": "Ibaraki-Douji",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10332,10 +10536,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Minamoto-no-Raikou",
+    "URL": "minamoto-no-raikou",
     "title": "Minamoto-no-Raikou",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10393,10 +10598,11 @@ canonServants = [
         "rank": "B++",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mysterious Heroine X Alter",
+    "URL": "mysterious-heroine-x-alter",
     "title": "Mysterious Heroine X (Alter)",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10446,10 +10652,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hijikata Toshizou",
+    "URL": "hijikata-toshizo",
     "title": "Hijikata Toshizo",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -10499,10 +10706,11 @@ canonServants = [
         "rank": "C+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Chacha",
+    "URL": "chacha",
     "title": "Chacha",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10544,10 +10752,11 @@ canonServants = [
         "rank": "C",
         "target": "Fortress"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Penthesilea",
+    "URL": "penthesilea",
     "title": "Penthesilea",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10598,10 +10807,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Paul Bunyan",
+    "URL": "paul-bunyan",
     "title": "Paul Bunyan",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10647,10 +10857,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "oda-nobunaga-berserker",
     "title": "Oda Nobunaga (Berserker)",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10665,10 +10876,11 @@ canonServants = [
       "sideMan": "C",
       "sideLuc": "B",
       "sideNP": "?"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Atalanta Alter",
+    "URL": "atalante-alter",
     "title": "Atalante (Alter)",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10715,10 +10927,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-Unit (Self)"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "jeanne-darc-alter-berserker",
     "title": "Jeanne d'Arc Alter (Berserker)",
     "sideClass": "berserker",
     "sideGender": "Female",
@@ -10733,10 +10946,11 @@ canonServants = [
       "sideMan": "B",
       "sideLuc": "D",
       "sideNP": "EX"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Xiang Yu",
+    "URL": "xiang-yu",
     "title": "Xiang Yu",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -10778,10 +10992,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "arjuna-alter",
     "title": "Arjuna (Alter)",
     "sideClass": "berserker",
     "sideGender": "Male",
@@ -10827,7 +11042,8 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-World"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
     "URL": "Mori Nagayoshi",
@@ -10872,10 +11088,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 0
   },
   {
-    "URL": "Mash Kyrielight",
+    "URL": "mash-kyrielight",
     "title": "Mash Kyrielight",
     "sideClass": "shielder",
     "sideGender": "Female",
@@ -10934,11 +11151,12 @@ canonServants = [
         "rank": "B+++",
         "target": "Anti-Evil"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Jeanne d'Arc (Ruler)",
-    "title": "Jeanne d'Arc",
+    "URL": "jeanne-darc",
+    "title": "Jeanne d'Arc (Ruler)",
     "sideClass": "ruler",
     "sideGender": "Female",
     "sideHeight": "159cm",
@@ -10996,10 +11214,11 @@ canonServants = [
         "rank": "C EX",
         "target": "Suicide Attack"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Amakusa Shirou Tokisada",
+    "URL": "amakusa-shirou",
     "title": "Amakusa Shirou",
     "sideClass": "ruler",
     "sideGender": "Male",
@@ -11071,10 +11290,11 @@ canonServants = [
         "rank": "D",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "martha-ruler",
     "title": "Martha (Ruler)",
     "sideClass": "ruler",
     "sideGender": "Female",
@@ -11089,10 +11309,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "A+",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sherlock Holmes",
+    "URL": "sherlock-holmes",
     "title": "Sherlock Holmes",
     "sideClass": "ruler",
     "sideGender": "Male",
@@ -11139,10 +11360,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Qin Shi Huang (Lostbelt)",
+    "URL": "qin-shi-huang",
     "title": "Qin Shi Huang",
     "sideClass": "ruler",
     "sideGender": "Qin",
@@ -11184,10 +11406,11 @@ canonServants = [
         "rank": "B+",
         "target": "Anti-World"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "quetzalcoatl-santa-samba",
     "title": "Quetzalcoatl (Samba/Santa)",
     "sideClass": "ruler",
     "sideGender": "Female",
@@ -11202,10 +11425,11 @@ canonServants = [
       "sideMan": "A",
       "sideLuc": "EX",
       "sideNP": "A"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "astraea",
     "title": "Astraea",
     "sideClass": "ruler",
     "sideGender": "Female",
@@ -11260,10 +11484,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Punishment"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Passionlip",
+    "URL": "passionlip",
     "title": "Passionlip",
     "sideClass": "alterEgo",
     "sideGender": "Female",
@@ -11321,10 +11546,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Meltryllis",
+    "URL": "meltryllis",
     "title": "Meltryllis",
     "sideClass": "alterEgo",
     "sideGender": "Female",
@@ -11386,10 +11612,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Kiara Sessyoin (Alter Ego)",
+    "URL": "sessyoin-kiara",
     "title": "Sessyoin Kiara",
     "sideClass": "alterEgo",
     "sideGender": "Female",
@@ -11467,10 +11694,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mecha Eli-chan",
+    "URL": "mecha-eli-chan",
     "title": "Mecha Eli-chan",
     "sideClass": "alterEgo",
     "sideGender": "Feminine programming",
@@ -11520,10 +11748,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Army Individual"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "mecha-eli-chan-mk-ii",
     "title": "Mecha Eli-chan Mk.II",
     "sideClass": "alterEgo",
     "sideGender": "Feminine programming",
@@ -11538,10 +11767,11 @@ canonServants = [
       "sideMan": "E",
       "sideLuc": "E",
       "sideNP": "B"
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": 0,
+    "URL": "okita-souji-alter",
     "title": "Okita Souji (Alter)",
     "sideClass": "alterEgo",
     "sideGender": "Female",
@@ -11587,10 +11817,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-World"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Sitonai",
+    "URL": "sitonai",
     "title": "Sitonai",
     "sideClass": "alterEgo",
     "sideGender": "Female",
@@ -11671,10 +11902,11 @@ canonServants = [
         "rank": "",
         "target": ""
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Kingprotea",
+    "URL": "kingprotea",
     "title": "Kingprotea",
     "sideClass": "alterEgo",
     "sideGender": "Female",
@@ -11736,10 +11968,11 @@ canonServants = [
         "rank": "E",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Angra Mainyu (Avenger)",
+    "URL": "angra-mainyu",
     "title": "Aŋra Mainiiu",
     "sideClass": "avenger",
     "sideGender": "Male",
@@ -11793,10 +12026,11 @@ canonServants = [
         "rank": "D",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Edmond Dantès",
+    "URL": "edmond-dantes",
     "title": "Edmond Dantès",
     "sideClass": "avenger",
     "sideGender": "Male",
@@ -11856,10 +12090,11 @@ canonServants = [
         "rank": "B",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Jeanne d'Arc Alter",
+    "URL": "jeanne-darc-alter",
     "title": "Jeanne d'Arc (Alter)",
     "sideClass": "avenger",
     "sideGender": "Female",
@@ -11909,10 +12144,11 @@ canonServants = [
         "rank": "A+",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Gorgon",
+    "URL": "gorgon",
     "title": "Gorgon",
     "sideClass": "avenger",
     "sideGender": "Female",
@@ -11975,10 +12211,11 @@ canonServants = [
         "rank": "C+",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Hessian Lobo",
+    "URL": "hessian-lobo",
     "title": "Hessian Lobo",
     "sideClass": "avenger",
     "sideGender": "Male (all)",
@@ -12036,10 +12273,11 @@ canonServants = [
         "rank": "C",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Antonio Salieri",
+    "URL": "antonio-salieri",
     "title": "Antonio Salieri",
     "sideClass": "avenger",
     "sideGender": "Male",
@@ -12112,11 +12350,12 @@ canonServants = [
         "rank": "",
         "target": ""
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Oda Nobunaga (Avenger)",
-    "title": "Demon King Nobunaga",
+    "URL": "demon-king-nobunaga-oda-nobunaga",
+    "title": "Demon King Nobunaga (Avenger)",
     "sideClass": "avenger",
     "sideGender": "?",
     "sideHeight": "154cm",
@@ -12165,10 +12404,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Divine"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "BB",
+    "URL": "bb",
     "title": "BB",
     "sideClass": "moonCancer",
     "sideGender": "Female",
@@ -12222,11 +12462,12 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "BB",
-    "title": "BB",
+    "URL": "bb-summer",
+    "title": "BB (Summer)",
     "sideClass": "moonCancer",
     "sideGender": "Female",
     "sideHeight": "156cm～??",
@@ -12279,11 +12520,12 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Ganesha",
-    "title": "Jinako Carigiri",
+    "URL": "great-statue-god",
+    "title": "Ganesha",
     "sideClass": "moonCancer",
     "sideGender": "Female",
     "sideHeight": "153cm",
@@ -12337,10 +12579,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Intrusion"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Abigail Williams",
+    "URL": "abigail-williams",
     "title": "Abigail Williams",
     "sideClass": "foreigner",
     "sideGender": "Female",
@@ -12394,10 +12637,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Unit"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Katsushika Hokusai",
+    "URL": "katsushika-hokusai",
     "title": "Katsushika Hokusai",
     "sideClass": "foreigner",
     "sideGender": "Female",
@@ -12451,10 +12695,11 @@ canonServants = [
         "rank": "A",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Mysterious Heroine XX",
+    "URL": "mysterious-heroine-xx",
     "title": "Mysterious Heroine XX",
     "sideClass": "foreigner",
     "sideGender": "Female",
@@ -12513,10 +12758,11 @@ canonServants = [
         "rank": "EX",
         "target": "Anti-Army"
       }
-    }
+    },
+    "FGOmaterial": 1
   },
   {
-    "URL": "Tiamat",
+    "URL": "tiamat",
     "title": "Tiamat",
     "sideClass": "beastII",
     "sideGender": "Female",
@@ -12563,6 +12809,7 @@ canonServants = [
         "name": "Monstrous Strength",
         "rank": "A++"
       }
-    }
+    },
+    "FGOmaterial": 1
   }
 ]
