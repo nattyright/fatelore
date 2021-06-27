@@ -44,13 +44,14 @@ function getServantURL(servantName) {
 
 
 function showFGOMaterial(servantURL) {
-   import { a } from '../servant/' + servantURL + '.js';
-   console.log(a.content[6].i18n.en.name.id);
+
+
+   var matURL = '../servant/' + servantURL + '.js';
+
+   $.getScript(matURL, function() {
+
+       console.log(a.content[6].i18n.en.name.id);
+
+   });
+
 }
-
-//import { a } from '../servant/abigail-williams.js';
-//console.log(a.content[6].i18n.en.name.id);
-
-
-//document.getElementById('infoHubServantPage')
-
