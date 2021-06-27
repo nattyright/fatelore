@@ -31,10 +31,16 @@ async function fetchAsync (url) {
 }
 
 
-$.getScript("js/servant/abigail-williams.js", function() {
-   alert("Script loaded but not necessarily executed.");
-   console.log(a);
+
+
+$(document).ready(function(){
+    $.getScript("js/servant/abigail-williams.js", function() {
+       alert("Script loaded but not necessarily executed.");
+       console.log(a);
+    });
 });
+
+
 
 
 //document.getElementById('infoHubServantPage')
