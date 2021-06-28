@@ -141,3 +141,24 @@ $('form input, form textarea, form select, form button, form option').on('input 
         saveFormData(toSaveId);
     }, 1000);
 });
+
+
+/*
+ * Clear all data on form
+ */
+ function clearForm() {
+    for (var i = 0; i < idsToSave.length; i++) {
+        if (document.getElementById(idsToSave[i]) != null) {
+            document.getElementById(idsToSave[i]).value = "";
+        }
+    }
+ }
+
+let myButtonClearForm = document.getElementById('clearFormData');
+
+//on keyup, start the countdown
+myButtonClearForm.addEventListener('click', () => {
+    clearForm();
+});
+
+ 
