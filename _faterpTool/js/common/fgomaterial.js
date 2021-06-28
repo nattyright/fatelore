@@ -17,31 +17,18 @@ html += "</ul>"
 
 
 $( document ).ready(function() {
-   document.getElementById('infoHubServantIndex').innerHTML = html;
-
+   document.getElementById('infoHubFGOMatDex').innerHTML = html;
 
    for(var i = 0; i < servantData.length; i++) {
       var servant = servantData[i];
       
       let elem = document.getElementById(servant.URL);
       elem.addEventListener('click', function(e) {
-
          e.preventDefault();
          showFGOMaterial(elem.id);
-
-         document.getElementById('infoHubServantPage').classList.add("active");
-
- 
       });
    }
 
-   let elem = document.getElementById('infoHubServantDeactivate');
-    elem.addEventListener('click', function(e) {
-
-        document.getElementById('infoHubServantPage').classList.remove("active");
-
-
-    });
 
 });
 
@@ -72,7 +59,7 @@ function showFGOMaterial(servantURL) {
       //console.log(a.content[i].i18n.en.html);
     }
      
-    document.getElementById('infoHubServantPage').innerHTML = fgomathtml;
+    document.getElementById('infoHubFGOMatPage').innerHTML = fgomathtml;
 
    });
 

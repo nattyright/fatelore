@@ -16,15 +16,14 @@ function helperParam() {
     });
     
     // show the servants with scoreDiff <= 3
-    var html = "<center>Servants with Similar Parameters</center>";
-    html += "<center>(difference score < 3)</center><br>"; 
-    html += "<table><tr><th>NAME</th><th>CLASS</th><th>STR</th><th>END</th><th>AGI</th><th>MAN</th><th>LUC</th><th>NP</th></tr>";
+    var html = "";
+    html += "<table><tr><th>NAME</th><th>CLASS</th><th>STR</th><th>END</th><th>AGI</th><th>MAN</th><th>LUC</th><th>NP</th><th>SCORE</th></tr>";
     for (servant of servantData) {
       html += getServantParamTableHTML(servant, 3, 5);
     }
 
     html += "</table>"
-    document.getElementById('infoHubServantDataCompare').innerHTML = html;
+    document.getElementById('infoHubParam').innerHTML = html;
 
   } else {
 
@@ -38,6 +37,7 @@ function helperParam() {
 function getServantParamTableHTML(value, scoreDiff, sumSquaredError) {
   var s = value;
   if (s["paramScoreDiff"] <= scoreDiff && s["paramSumSquaredError"] <= sumSquaredError) {
+    var score = 6 - parseInt(s['paramSumSquaredError'], 10);
     var message = '<tr><td>' + 
                               s['title'].split("(")[0] + '</td><td>' +
                               s['sideClass'] + '</td><td>' +
@@ -46,7 +46,8 @@ function getServantParamTableHTML(value, scoreDiff, sumSquaredError) {
                               s['param']['sideAgi'].split("+")[0].split("-")[0] + '</td><td>' + 
                               s['param']['sideMan'].split("+")[0].split("-")[0] + '</td><td>' + 
                               s['param']['sideLuc'].split("+")[0].split("-")[0] + '</td><td>' + 
-                              s['param']['sideNP'].split("+")[0].split("-")[0] + '</td></tr>';
+                              s['param']['sideNP'].split("+")[0].split("-")[0] + '</td><td>' + 
+                              score.toString() + '</td></tr>';
     return message
   }
   return "";
@@ -137,3 +138,57 @@ function convertParamToInt(param) {
   }
   return i;
 }
+
+
+
+
+
+/*
+ * Fire functions after finishing typing in a field with Id (1 seconds)
+ */
+
+//setup before functions
+let myInputStr = document.getElementById('sideStr');
+let myInputEnd = document.getElementById('sideEnd');
+let myInputAgi = document.getElementById('sideAgi');
+let myInputMan = document.getElementById('sideMan');
+let myInputLuc = document.getElementById('sideLuc');
+let myInputNP = document.getElementById('sideNP');
+
+//on keyup, start the countdown
+myInputStr.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputStr.value) {
+        typingTimer = setTimeout(helperParam, doneTypingInterval);
+    }
+});
+myInputEnd.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputEnd.value) {
+        typingTimer = setTimeout(helperParam, doneTypingInterval);
+    }
+});
+myInputAgi.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputAgi.value) {
+        typingTimer = setTimeout(helperParam, doneTypingInterval);
+    }
+});
+myInputMan.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputMan.value) {
+        typingTimer = setTimeout(helperParam, doneTypingInterval);
+    }
+});
+myInputLuc.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputLuc.value) {
+        typingTimer = setTimeout(helperParam, doneTypingInterval);
+    }
+});
+myInputNP.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputNP.value) {
+        typingTimer = setTimeout(helperParam, doneTypingInterval);
+    }
+});

@@ -9,15 +9,15 @@ function helperRegion() {
   var region = document.getElementById('sideNationality');
   if (region != null && region.value != "") {
 
-    // show the servants with scoreDiff <= 3
-    var html = "<center>Servants from the Same Region</center><br>"; 
+    // show the servants with same region
+    var html = ""; 
     html += "<table><tr><th>NAME</th><th>CLASS</th><th>REGION</th></tr>";
     for (servant of servantData) {
       html += getServantRegionTableHTML(servant, region.value);
     }
 
     html += "</table>"
-    document.getElementById('infoHubServantDataCompare').innerHTML = html;
+    document.getElementById('infoHubRegion').innerHTML = html;
 
   } else {
 
@@ -42,3 +42,21 @@ function getServantRegionTableHTML(servant, nationality) {
   }
   return "";
 }
+
+
+
+
+/*
+ * Fire functions after finishing typing in a field with Id (1 seconds)
+ */
+
+//setup before functions
+let myInputRegion = document.getElementById('sideNationality');
+
+//on keyup, start the countdown
+myInputRegion.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputRegion.value) {
+        typingTimer = setTimeout(helperRegion, doneTypingInterval);
+    }
+});

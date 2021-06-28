@@ -66,7 +66,7 @@ function displayWikipediaPageContent(pageName) {
                 var firstKey = Object.keys(response.query.pages)[0];
                 //console.log(response.query.pages[firstKey.toString()].extract);
                 let content = response.query.pages[firstKey.toString()].extract;
-                document.getElementById('infoHub').innerHTML = content;
+                document.getElementById('infoHubWikiPage').innerHTML = content;
             })
             .catch(function(error){console.log(error);});
 
@@ -100,7 +100,7 @@ function displayWikipediaPageContent(pageName) {
                                              .replace(/<sup[^>]*>/g,"");
                 }
 
-                document.getElementById('infoHubWikiInfoBox').innerHTML = infoBoxHtml;
+                document.getElementById('infoHubWikiBox').innerHTML = infoBoxHtml;
             })
             .catch(function(error){console.log(error);});
 

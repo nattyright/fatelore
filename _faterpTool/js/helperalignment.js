@@ -10,14 +10,14 @@ function helperAlignment() {
   if (alignment != null && alignment.value != "") {
 
     // show the servants with scoreDiff <= 3
-    var html = "<center>Servants with the same alignment</center><br>"; 
+    var html = ""; 
     html += "<table><tr><th>NAME</th><th>CLASS</th><th>ALIGNMENT</th></tr>";
     for (servant of servantData) {
       html += getServantAlignmentTableHTML(servant, alignment.value);
     }
 
     html += "</table>"
-    document.getElementById('infoHubServantDataCompare').innerHTML = html;
+    document.getElementById('infoHubAlign').innerHTML = html;
 
   } else {
 
@@ -91,3 +91,20 @@ function getServantAlignmentTableHTML(servant, alignment) {
 
   return message
 }
+
+
+
+/*
+ * Fire functions after finishing typing in a field with Id (1 seconds)
+ */
+
+//setup before functions
+let myInputAlign = document.getElementById('sideAlignment');
+
+//on keyup, start the countdown
+myInputAlign.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (myInputAlign.value) {
+        typingTimer = setTimeout(helperAlignment, doneTypingInterval);
+    }
+});
