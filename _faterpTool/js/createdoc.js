@@ -8,7 +8,7 @@ var DISCOVERY_DOCS = ['https://docs.googleapis.com/$discovery/rest?version=v1', 
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/documents https://www.googleapis.com/auth/drive.file";
+var SCOPES = "https://www.googleapis.com/auth/drive.file";
 
 var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
@@ -124,7 +124,7 @@ function copyDoc() {
   }
   gapi.client.drive.files.copy(body)
   .then(function(res) { // Modified
-    console.log(res);
+    //console.log(res);
 
     // get new file id
     var newFileId = res.result.id;
@@ -289,7 +289,7 @@ function updateDoc(fileId) {
   
   gapi.client.docs.documents.batchUpdate(updateObject)
   .then(function(res) { // Modified
-    console.log(res);
+    //console.log(res);
   },function(err) {
     console.error(err);
   });
