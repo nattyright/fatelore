@@ -134,6 +134,9 @@ function copyDoc() {
     updateDoc(newFileId)
 
   },function(err) {
+    var pre = document.getElementById('docMessage');
+    var textContent = "Please sign into your Google account first.";
+    pre.innerHTML = textContent;
     console.error(err);
   });
 }
@@ -291,13 +294,11 @@ function updateDoc(fileId) {
     console.error(err);
   });
 
-
-  var pre = document.getElementById('createDocWrapper');
+  var pre = document.getElementById('docMessage');
+  var textContent = "Please sign into your Google account first.";
   var URL = "https://docs.google.com/document/d/" + fileId;
-  var textContent = document.createElement('span');
-  textContent.innerHTML = "Google Doc URL: <a target='_blank' href='" + URL + "'>" + URL + "</a>";
-  
-  pre.appendChild(textContent);
+  var textContent = "Google Doc URL: <a target='_blank' href='" + URL + "'>" + URL + "</a>";
+  pre.innerHTML = textContent;
 }
 
 
