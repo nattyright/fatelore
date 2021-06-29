@@ -224,7 +224,7 @@ function updateDoc(fileId) {
     },
   };
   
-  var count = 0, specialIds = ['sideName', 'sideClassIcon', 'sidePic'];
+  var count = 0, specialIds = ['sideName', 'sideClassIcon', 'sidePic', 'sideWeight', 'sideHeight', 'sideHeight2'];
   var updateIdFromTextEditor = ['personality', 'backstory', 'otherInfo', 'description', 'weapon', 'np1Description', 'np1Effect', 'np2Description', 'np2Effect', 'cSkill1Description', 'cSkill2Description', 'cSkill3Description', 'pSkill1Description', 'pSkill1Example', 'pSkill2Description', 'pSkill2Example', 'pSkill3Description', 'pSkill3Example'];
   var multiPara = false;
 
@@ -240,7 +240,7 @@ function updateDoc(fileId) {
     var element = document.getElementById(value), content;
 
     // omit the 3 special values without input areas at the beginning
-    if (count < 3 && specialIds.includes(value)) {
+    if (count < 6 && specialIds.includes(value)) {
       count++;
 
       if (value.localeCompare('sideName') == 0) {
@@ -256,11 +256,19 @@ function updateDoc(fileId) {
         content = 'N/A';
       } else if (value.localeCompare('sidePic') == 0) {
         content = 'N/A';
+      } else if (value.localeCompare('sideWeight') == 0) {
+        content = element.value + document.getElementById('sideWeightUnit').value;
+      } else if (value.localeCompare('sideHeight') == 0) {
+        content = element.value + document.getElementById('sideHeightUnit').value;
+        // check if using imperial
+        if (document.getElementById('sideHeight2') != null && document.getElementById('sideHeight2').value != "") {
+          content = content + document.getElementById('sideHeight2').value + document.getElementById('sideHeightUnit2').value;
+        }
       }
 
-    } else if (element != null && !updateIdFromTextEditor.includes(element.id) && element.value != "") { //textarea don't go by 'value'
+    } else if (element != null && !updateIdFromTextEditor.includes(element.id) && element.value != "") { //input fields go by 'value'
       content = element.value;
-    } else if (element != null && updateIdFromTextEditor.includes(element.id) && $('#' + element.id).trumbowyg('html') != "") {
+    } else if (element != null && updateIdFromTextEditor.includes(element.id) && $('#' + element.id).trumbowyg('html') != "") { //text editors are divs with html
       content = $('#' + element.id).trumbowyg('html');
       // strip formatting from html
       content = content.replace(/<\/p[^>]*>/g,"[n]")
