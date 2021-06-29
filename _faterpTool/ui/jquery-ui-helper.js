@@ -32,6 +32,18 @@ $( "#infoHubCSSearch, #infoHubPSSearch" ).autocomplete({
 
 
 /*
+ * Tooltip
+ */
+
+$("input:text").tooltip({
+  position: {
+    my: "left bottom+20",
+    at: "right top",
+  }
+}).off("mouseover mouseout");
+
+
+/*
  * Similar servants tab accordion style
  */
  // fill vertial space
@@ -108,8 +120,6 @@ $( "#progressbar" ).progressbar({
 $( "#spinner" ).spinner();
 
 $( "#menu" ).menu();
-
-$( "#tooltip" ).tooltip();
 
 $( "#selectmenu" ).selectmenu();
 
