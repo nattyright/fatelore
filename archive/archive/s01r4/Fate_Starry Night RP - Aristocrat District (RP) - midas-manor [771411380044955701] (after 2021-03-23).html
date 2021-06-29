@@ -1,0 +1,1135 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - midas-manor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Aristocrat District (RP) / midas-manor</div>
+
+            <div class="preamble__entry preamble__entry--small">A manor formerly belonging to the Jamie family. Several rooms have been destroyed during the battle between Lancer and Berserker. It has been repurposed for both Midas and Szrac alike.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 23-Mar-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/80e65f2408d1d92fa857fc009a966c73-CC2C7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="778312034735489025" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Mar-21 01:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="824335852191875092" id="message-824335852191875092">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas sat atop his golden throne, idly staring down a freshly turned apple. It’s gleam in the light was a thing of beauty, a glow sent many ways throughout the similarly shining room. Anyone within would occasionally find themselves blinded as he turned and turned the fruit endlessly. It had been thirty minutes since he had done the act, yet he was still enamored. 
+
+It had been some time since his battle, and the mansion he now resided in had the finishing touches applied just the day prior. Now the main building was a pure gold, much more fitting to his liking than the previous flimsy material. None of the previous tenants remained, moved to wherever their master desired. Finally a residence fitting one of his status.
+
+And it showed. Scattered across the floor, each pile held random odds and ends, furniture, jewelry, and all other sorts of valuable objects. If it did not have an original value before, it did once turned to that illustrious metal. If it weren’t for the man atop the only chair in the room one could argue this was a certified Dragon’s Den, a dangerous creature hoarding all its wealth just for the sake of it.
+
+Much like the ones he had started demanding a fee from. He was no different than the rest that resided in this part of Persepolis, just more blatant and brazen with the fact. That fight with Lancer had really opened doors for the King to finally start what he so desired: taxing the rich. They now feared him, and rightly so. The forever frozen faces of the cowards and otherwise foolish were wonderful arguments for ‘donating’ to the cause. Speaking of…
+
+“Say,” Midas finally spoke, “how have our efforts come along with those in the immediate and surrounding area? The deadline for their payments and due fees is coming up, and I have more important things than to collect from those who dare think themselves strong enough to oppose us.”
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-6535B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778312034735489025" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Mar-21 05:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="824388519630995558" id="message-824388519630995558">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Jamie was foolish. He and his kin did not bend to our lawful demands. He was punished accordingly.&quot;</strong> Szrac spoke into his communicator, glaring down at it with contempt. Dealing with his aristocratic masters was such a bothersome process. They were fickle, almost unbearably so. 
+
+<em>&quot;You think I give a damn? You just eliminated one of your allies, and THAT is your excuse?&quot;</em>
+
+<strong>&quot;Yes. Rescind this bounty immediately.&quot;</strong>
+
+<em>&quot;You&#39;re a real piece of work, and we won&#39;t deal with you any longer. We&#39;ll be working with Miss Tovesky for the remainder of this war. Goodbye, Vaughn.&quot;</em>
+
+<em><strong>Beep.</strong></em>
+
+Szrac shook his head, before turning around and entering back into the golden manor. It was mostly empty, save a few of the scientists, guards, and mercenaries who found themselves loyal to his cause. Or perhaps they were simply loyal to Midas&#39; fortunes? It mattered not.
+
+The moment he entered through the door, he was immediately called to by Berserker. Clearing his phlegm-filled throat, he strode past the piles of gold and crude statues, coming face to face with the king and his apple once more.
+
+<strong>&quot;All is according to plan. While the aristocracy as a whole has turned against us, those within the Mansion Lane are afraid to rebel. Their currency, and their technology, is ours.&quot;</strong>
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/80e65f2408d1d92fa857fc009a966c73-CC2C7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="778312034735489025" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Mar-21 05:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="824392840338866236" id="message-824392840338866236">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Good, Szrac. Good…” Midas said, trailing off. Things were going as planned. Once they secured this street, they would go onto the next. And then the next one. There were only so many streets until all of Persepolis was his. It would be faster to solidify himself as the last Servant standing than to bother with these menial tasks. Once that godly Grail was in his grasp, this city would bow down to his every whim.
+
+“And to think they placed a bounty on our heads. Anyone who has any semblance of intelligence would do best to steer clear of those rich snobs and their allures of riches. While we would never be able to be defeated in combat, on the off chance it were to happen they would find themselves robbed of the profits by those with the outstretched hand, snatching away all to be taken from this residence.”
+
+Berserker tossed the apple aside casually, ignoring the <em>THUD</em> and slight dent put into the ground as it continued its journey to one of the various piles. No longer having the support of those rich bastards was a problem though. It surely alerted the rest of the participants in this War of his location, status, all the important details. 
+
+The King rose ceremoniously from his throne, taking each step slowly towards his Master. Almost an equal at this point. “It is safe to assume that not only are we, as they say, on our own, but in danger of being attacked. Robbed.” He spit out the last word, letting the dangerous air linger.
+
+“You are a smart enough fellow, and know a thing or two about strategies. What advice do you have to offer about our current position and how we move our pieces forward in the coming days?”
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-6535B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778312034735489025" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Mar-21 03:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="824719506420269076" id="message-824719506420269076">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Every good king needed a better advisor.
+
+In that sense, who better to serve that than a ruthless strategist, a tactician with no foolish ideas about mercy and kindness? Szrac had long since discarded any notions, tossing aside the chaff and ideals that weighed him down. All that remained was brutal efficiency. 
+
+<strong>&quot;It is true that others will seek to destroy us.&quot;</strong> The cyborg began to explain, looking as Midas as he stood up. <strong>&quot;The obvious answer is to improve the protections to the manor. However, that is a lengthy and expensive process, and one that holds great risk. Therefore, I propose an alternative. The Grail War is reaching its conclusion. If we succeed in exterminating the remaining three players in this game, we will gain the grail, and those who despise us will lose their fighting spirit.&quot;</strong>
+
+It was an aggressive strategy, one that left little room for any kind of error. However, if there were a master in this war who did not err, it would be Szrac, one born of mechanical hatred and devoid of human weakness.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/80e65f2408d1d92fa857fc009a966c73-CC2C7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="778312034735489025" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Mar-21 04:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="824745901662273616" id="message-824745901662273616">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A full out assault? Midas considered the idea. It was true that with the rest of the Servants and their masters destroyed and conquered, it would be them standing victorious and with the Holy Grail. He didn’t like the idea of losing his riches, though. While the forces went to war, it invited in many a bandit and scoundrel to take whatever they so desired and make off with it.
+
+“Your proposal is surely a great one, I will give you that much,” he said, arms crossed. “With no one left, it will let us take control of this city and run it how it should. But the idea of letting anyone and everyone inside our base of operations whilst we toil away in the field doesn’t sit right with me. Along with that, we no longer have those damned mercenaries to keep watch while we are gone.”
+
+Midas walked over to one of the larger piles, a mismatch of expensive furniture and upholstery given by someone not eager to part with their actual valuables. “Normally, this wouldn’t be a huge concern. I assume it easy to construct a device capable of watching my trove of treasures for identification and punishment. But my Golden Rule might be tarnished if enough were taken, and this city is nothing but enamored with its wealth.”
+
+The irony of his reasoning went over his head as other thoughts occupied him further. Those few people still left with them could maybe launch an offensive countermeasure if any thieves were few in number. However, any force of a decent size would easily be able to plunder to their heart&#39;s content. How to best approach this…
+
+A simple idea sprung to mind quickly after. “Say, you know those firearms the guards that used to reside here used when we first entered the premises? Any potential way you could connect one of those to a sensor? To gun down anyone that dares enter while we are gone?”
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-6535B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778312034735489025" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Mar-21 11:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="825397390923268146" id="message-825397390923268146">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Such a process is possible, if not a tedious endeavor in trial and error. Nonetheless, I will have the few engineers loyal to us begin work on such an idea.&quot;</strong> Szrac bluntly stated. Diverting resources to keep Midas happy was simply an unfortunate side effect of having such a powerful servant. However, it was not an untenable one. After all, the human resources would do little in the face of their next foe...
+
+<strong>&quot;I have taken the liberty of interrogating the previous staff within this household. With it, I have managed to glean information. Lancer and his master were previously engaged in a struggle with Caster and Assassin. Judging from what I could surmise, this Caster is the same entity I encountered previously, and therefore, a threat.&quot;</strong>
+
+Szrac looked at Berserker, meeting his eyes as he spoke.
+
+<strong>&quot;He possesses the power of petrification. Turning things to stone. Should he be left unchecked, he could plummet the worth of all you wish to obtain, reduce it to rock. On a magecraft level, removing him from the war would leave us uncontested in the field of magical dominance. I see no better option that to execute them first.&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/80e65f2408d1d92fa857fc009a966c73-CC2C7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="778312034735489025" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 04:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="825464827676983336" id="message-825464827676983336">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Change things to rock? Midas looked at all he possessed, picturing it not as what it currently existed as but something different: rocks. Ugly, awful things. Wonderful for sieging a castle, terrible for monetary purposes. Truly an awful state of affairs, if that were to happen.
+
+“I wish this was brought to my attention sooner,” he said, glaring back at those equally malevolent eyes, “but I will forgive you. What matters now is finding out who they are, where they are, and the best course of assault.”
+
+Midas began to leave the Throne room, pulling open the gleaming door and motioning for Szrac to follow. “Inform the engineers of their task, and we shall hunt down this anomaly. Tell me all that you know of this mage. Leave <strong>nothing</strong> out.”
+
+Opening the door for his master was certainly new. Maybe it helped that it was already golden-ized, but it was certainly odd. Maybe he considered them equals after all?
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-6535B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778312034735489025" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 06:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="825495335983775774" id="message-825495335983775774">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The cyborg looked over to a small group of scientists and engineers, huddled into the corner of the Throne Room, setting up a series of terminals and computers. <strong>&quot;Secure this manor with whatever technology you can muster. Leave no corner unprotected.&quot;</strong>
+
+The staff nodded, and Szrac turned away to follow after Berserker, stepping through the golden door.
+
+<strong>&quot;My encounter with Caster was brief.&quot;</strong> Szrac elaborated, recalling their brief &quot;bout&quot; at the <span class="mention">#stalls</span>. <strong>&quot;He appeared to possess reptilian familiars, and his master was little more than a child. Most pertinently, seems as though his petrification abilities could be blocked by Magic Resistance, proving them arcane in nature. Should the pair prove as incompetent as Lorenzo and Lancer, then this will be little more than a necessary distraction. However, should they prove more, this will become a necessary act towards attaining victory.&quot;</strong>
+
+Szrac paused, flexing his fingers and hearing the gentle whir of the servos underneath. <strong>&quot;Though we are currently unaware of the location of his territory, that can be changed. The gears of information can be greased with the right amount of blood.&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/80e65f2408d1d92fa857fc009a966c73-CC2C7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="778312034735489025" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 12:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="825583431881981952" id="message-825583431881981952">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas considered all that his Master had laid bare. It would be absolutely wonderful to consider this supposed ‘child’ master as awful as the previous one, but previous experience said otherwise. Lorenzo had been capable of a large bounded field stopping time, as well as stopping <em>his</em> Golden Touch. Even if they possessed half that skill, it could end up troublesome. 
+
+“A shame. I assume, then, that they did not give out their name freely? The last opponent’s persona had no bearing on the tide of combat, brief as it was. I surmise that this time it will be of utmost importance to discover their true identity,” he said. 
+
+Down the halls they went, footsteps echoing throughout the corridor. Barren enough to make Berserker briefly consider how they should decorate the halls with trophies of victories past. The idea of hanging a painting on the wall commemorating his win against Lancer sounded nice in his head. 
+
+That would have to wait after Caster, shaking such distracting thoughts from his head. If he lost now, it would tarnish his name to gloat over one measly opponent only to die to the second. “Where do you propose we head first, then? Since there only exists one other Aristocrat in this War, then the rest must be of that other faction… the ‘Mafia’, as you call them. Perhaps wherever they scurry and hide?”
+
+The Grail and Throne unfortunately did not think themselves wise enough to grace him the knowledge of where exactly those hiding places would be. If only such things were of the malleable sort. Then he could teach them a lesson in grace...
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-6535B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778312034735489025" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 07:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="825878089615015966" id="message-825878089615015966">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;They did not. However, I doubt they are anyone significant.&quot;</strong> Szrac explained, recalling what little he bothered to remember of Caster. <strong>&quot;He certainly did not have the seem of a Merlin, nor that of an Abe-no-Seimei. He is more akin to a footnote in history than a figure of true intrigue.&quot;</strong>
+
+And yet, this fractured Grail still saw fit to summon him from the Throne of Heroes. That, combined with the fact that he had outlasted Saber, Lancer, and Assassin, meant that perhaps there was more to him than met the eye.
+
+But once his master was torn to pieces and his spirit core obliterated, that would no longer matter.
+
+The cyborg walked with Midas down the barren halls, eyeing the empty space. A prime position to place turrets. They&#39;d have ample range to fire, and enemy servants would have to clear a great distance before they could break them. 
+
+<strong>&quot;Their exact location does not matter.&quot;</strong> Szrac explained, using his metallurgy to open the front doors of the manor. <strong>&quot;When enough blood is shed, people grow desperate. They cry for the strong to liberate them. Either they arrive to face us, or we force those who know of them to inform us of where vermin scurry.&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20midas-manor%20%5B771411380044955701%5D%20%28after%202021-03-23%29.html_Files/80e65f2408d1d92fa857fc009a966c73-CC2C7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="778312034735489025" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 09:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="825900908444516383" id="message-825900908444516383">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I feel that the odds they challenge us at our base of operations are most high. We sit in a spot of relative comfort, holding much sway in the community close by while also pressuring those far away. Add in a bounty on our heads…”
+
+Midas walked out of the front doors, gazing up at the sky. That infernal box, the Radio, had spoken of rain and overall gloomy weather. Seeing as the weather was manipulated in these areas, it was spot on. Darker grey clouds accompanied a slight chilling breeze. Even those of the outside variety would balk at such a terrible state of the outside.  A terrible day for the battle deciding the potential fate of the city, and even worse for himself. If that idiot got a hold of this body, their entire conquest could be for naught.
+
+“When we defeat Caster, our next step of conquest is that damned Weather Dome controller,” he said, crossing his arms in the vain attempt to warm himself. “ I daresay they rigged the skies above to counteract me and my abilities. Fill me in on where that particular rodent lies, while we consider the dozen other rats and their burrows.”
+
+Berserker was still not yet accustomed to the fluctuating weather of Persepolis, still wearing his custom attire which was more suited for summer weather. Even more perplexing was his sudden shift of conversation. Perhaps his disdain for the current weather was born from a childhood fear, or a later in life event.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

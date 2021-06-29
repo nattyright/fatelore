@@ -1,0 +1,1932 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - city-docks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Commoner District (RP) / city-docks</div>
+
+            <div class="preamble__entry preamble__entry--small">The Persepolis docks. Once prosperous, they are now a shadow of their former self. Ships come and go, yet always return empty handed. There are simply not enough resources out there in the empty sea. Most small ships that leave here never come back.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-6CDC4.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(236,81,81)">Nat</span>
+
+
+        <span class="chatlog__timestamp">09-Nov-20 02:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="775060135986069535" id="message-775060135986069535">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/image0-A90EE.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/image0-A90EE.jpg" alt="Image attachment" title="Image: image0.jpg (2.92 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 12:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="802212692176666664" id="message-802212692176666664">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The docks shimmered in a light drizzle. Tapio hopped off the leyline he&#39;d been riding as he approached some tarped crates, hair slightly damp from the misty air while he zipped around the city with his Servant in tow.
+
+&#39;Break time!&#39; He groaned as he pulled his arms up and gave his back a good stretch. Leyline surfing wasn&#39;t anything new, his homwtown had it too. But doing so while being on high alert, craning his neck this way and that in search for Servants <em>and</em> making sure that he didn&#39;t lose his balance and break his neck? Now that was a whole other challenge.
+
+&#39;Well, that about covers the whole district. I don&#39;t think I&#39;ve spotted anyone carrying a sword around, what about you? Did your familiars find anything?&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 12:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="802215966142234664" id="message-802215966142234664">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron sighed, as if wondering why the humans of Persepolis resorted to such crude methods of transport. Using leylines as railways was a fun novelty, but it seemed far more cumbersome than letting a familiar carry you. Of course, Tapio objected to being carried by one, so Aratron simply followed suit as he slid on the leylines and hopped off behind his student.
+
+&quot;No. You didn&#39;t tell me to observe Servants with them.&quot; Aratron replied. &quot;My familiars are designed to monitor you specifically. To prevent any injuries or harm. If I were to send them to monitor Servants, I would have to remake them from the ground up: Most Servants will most likely be capable of sensing their strong mana signatures. I am no Assassin, after all.&quot; 
+
+As he explained all that, he realized that the two had arrived at what appeared to be a shipping port. Quite the odd place for a detour.
+
+&quot;...Are you waiting for a ship? What is the purpose of our visit here? I&#39;d rather stay away from the open sea, if possible.&quot; Aratron muttered. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 12:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="802217674816880670" id="message-802217674816880670">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Tch, this is weak. Why is there nothing flammable around here? All this shitty metal doesn&#39;t burn right...</strong>
+
+With her master in tow, Sinmara had set about exploring the city, searching for more chaos to wreak and havoc to cause. Yet her search had been very, very disappointing. What the hell was up with this big stupid metal island? Where were all the log cabins and straw huts?
+
+Eventually, after an hour or so of aimless wandering, she ended up on the docks. She hadn&#39;t intended to arrive there, but following enough paths and roads eventually led her to the edges of the city. So she began circling the city, keeping a tight grip on Sandro so he didn&#39;t miss out on any of the fun.
+
+<strong>&quot;C&#39;mon, there&#39;s gotta be something! Has the world really devolved so much that they&#39;ve deprived the common man of anything cool or badass? You idiots really live in a society, huh?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">23-Jan-21 12:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="802217698812887122" id="message-802217698812887122">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 07:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="802319040618037318" id="message-802319040618037318">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro was now hanging limp from SInmara’s grasp. He had completely given up on struggling and figured life would be easier if he just let her drag him around. At least she was powerful, so if she did draw attention maybe they would be able to handle it.
+
+“I hate to break it to you but for the last couple of centuries everything is made out of metal and concrete.  No more wooden huts or whatever it is people used to live in” Sandro let out a deep sigh. He was becoming less frustrated by Sinmara and more annoyed at this point. She was loud… too loud. Was it too much to ask for a Servant who would sit down and smoke a cigarette or two with him.
+
+Sandro reached into his pocket instinctually disappointed when his hands couldn&#39;t grab at a pack of cigarettes. Sandro was by all means an addict, but he didn&#39;t care much to stop. “Listen if you put me down, I&#39;ll help you find something to burn alright? That&#39;s better than being hauled around for an  hour.” Sandro hoped that if he could find something for Saber to burn he would be able to go home catch a break
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 09:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="802343762369576960" id="message-802343762369576960">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron had gotten used to Tapio&#39;s impish behaviour, but this detour went a step beyond. What was his student thinking, deciding to park over at the docks? Water was a menace for most familiars, being capable of degrading most objects over time. Even towering mountains could be whittled down by droplets of rain overtime. He simply could not vibe with this terrain.
+
+So, when a pair of hooligans started fooling around the docks, he took it as an excuse to nudge his Master the opposite way. He could sense strong magical energy coming from the hot-headed lady, proof that they were a Servant. Unfortunately, they most likely weren&#39;t the Servant he was after. Noisy, brutish, revealing and with magical energy so strong that it felt ready to burst? They were most likely a Berserker, one accompanied by a dimwit Master that had no idea on how to rein the beast within. Foolishness.
+
+&quot;Student, it seems that the citizens here do not care for your break time. I recommend heading elsewhere if you need to rest.&quot; Aratron quickly whispered while giving a light stink eye at Sinmara from afar. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 04:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="802461888691961887" id="message-802461888691961887">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Purpose? Just felt like making a stop here, that&#39;s all.&#39; Tapio took a deep breath, filling his nostrils with salty sea air. At the peripherals of the city where the artificial weather dome and its air filtration system didn&#39;t quite reach, the docks was one of the few places where he got to witness nature at work. Of course a stuffy Servant like Aratron wouldn&#39;t understand.
+
+&#39;Feels good to get some fresh air, doesn&#39;t it? I know there&#39;s not a whole lot to look at right now, but on a clear day, you can sometimes spot other cities if you know where to look...&#39; Tapio completely misinterpreted Aratron&#39;s concern for the open sea, though his ears quickly picked up the disturbance that had sparkled Aratron&#39;s warning. He squinted at the figures in the distance. One of them was howling something fierce, a lovers&#39; quarrel?
+
+&#39;It&#39;s okay. I&#39;m not <em>that</em> worn out. I wonder what they&#39;re fighting over?&#39; Once again, Tapio failed to take the hint as he decided to be uncooperative...and nosy. There was such a thing as being on different wavelengths, but sometimes Aratron had to wonder whether the boy was trying to make his life difficult on purpose...
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 11:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="802558918621659177" id="message-802558918621659177">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Nice try, lamer! I know you&#39;re trying to screw me over because you&#39;re too stupid to understand anarchy!&quot;</strong> Sinmara hissed at Sandro, jostling him around to punish him for his idiocy. <strong>&quot;Geez, you think I&#39;m dumb or something?&quot;</strong>
+
+Sighing, the giantess looked around, continuing her search to find something worth destroying, yet it seemed the boy&#39;s words held some measure of truth. Everything within Persepolis had been made to the highest standards of durability in an attempt to weather the stormy seas, which left no room for anything flammable or flimsy.
+
+But those were the most fun things to destroy! No, surely there had to be something! If she couldn&#39;t find it herself, she&#39;d just ask someone else. Co-operation was VERY punk rock, after all. There was no such thing as a one-man mosh pit!
+
+After peering around for a moment, she eventually laid eyes on her target - a small boy, who looked very, very stupid. Jackpot.
+
+<strong>&quot;HEY! YOU! WHERE&#39;S ALL THE DESTROYABLE STUFF HERE!?&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 11:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="802561494767108146" id="message-802561494767108146">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Fresh air. Sea breeze. Such banalities never crossed Aratron&#39;s mind. All he saw was just more elements that could cause erosion. Tapio&#39;s knowledge of chemistry was severely lacking, but before he could lecture the boy on those fine details, they were approached by the noisy ones.
+
+Sinmara&#39;s rude, almost threatening shrills pierced Tapio&#39;s eardrums. Aratron was unaffected, but he didn&#39;t take that attitude kindly. Bullying was prohibited, after all.
+
+&quot;I would appreciate it if you kept to yourself, Servant. A familiar like you should learn to not yank one&#39;s chain.&quot; Aratron said rather bluntly, as he stepped forward and put half of his body in front of Tapio, blocking eye contact with the rude Servant. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-21 11:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="802567591755382784" id="message-802567591755382784">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio&#39;s unruly hair popped out from behind Aratron, much to the latter&#39;s dismay. It was rather boring to stare at his Servant&#39;s backside when there was a hottie standing before them both. Of course, said hottie was incredibly rude and loud, but the mention of &#39;Servant&#39; inadvertently piqued his interest.
+
+&#39;<em>You</em> are a Servant? You don&#39;t dress like one either.&#39; Tapio commented despite Sinmara&#39;s obviously abnormal size unfitting of a normal human. &#39;What era are you from? You kinda need a permit to destroy stuff nowadays.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jan-21 12:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="802570603193303110" id="message-802570603193303110">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Eh!?&quot;</strong>
+
+No! NO! This couldn&#39;t be! She would need a <em>permit?!</em> Had the evils of bureaucracy tainted even her most beloved hobby? Her mind filled with endless forms to be filled out and lines to be waited in, all while the government controlled the people&#39;s rights to destroy things!
+
+The future truly was a cruel place. How could these cute boys and stuffy morons live in such a land, knowing full well that they could be destroying things of their own volition?
+
+<strong>&quot;That&#39;s stupid! Why haven&#39;t you risen up and overthrown the government yet?&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jan-21 12:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="802575434428055673" id="message-802575434428055673">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron was tempted to step on Tapio&#39;s toes, a signal to stop interacting with the volatile Servant. Unfortunately, the boy had already spoken, and his words had somehow caused the hothead to throw a temper tantrum. They ranted about overthrowing the government and seemed to be absolutely appalled. Caster had no choice but to step in.
+
+&quot;Quiet down. If you really have a problem with the authorities, then go bother them and not us.&quot; He said with an assertive tone, as he now blocked Tapio&#39;s view completely. As the boy seethed at the lack of eye candy, Aratron continued his speech.
+
+&quot;Destruction of public property will get you and your Master into trouble more than anything else. I suggest avoiding that.&quot; He reminisced about his encounter with the metal man and their Saber Class Servant. His blood boiled as he remembered that encounter. Where were they?
+
+This reminded him of their original goal.
+
+&quot;Student, let us not waste any further time here. We still have to track down Saber, after all.&quot; He muttered carelessly, unaware of Sinmara&#39;s true origin. A mistake that could cost him dearly. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jan-21 01:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="802588877050085396" id="message-802588877050085396">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Once again, Aratron moved in perfect sync with Tapio, conveniently blocking his view. He was totally doing it on purpose, that much Tapio was certain. Unfortunately, such a passive maneuver would do nothing to dampen the boy&#39;s spirit. If he couldn&#39;t take a peek from the side, then he&#39;ll just to improvise.
+
+Tapio took a few steps back, then broke into a run and hopped onto Aratron&#39;s back. He grinned as if he&#39;d won the olympics, finally being granted unobstructed view of the mystery Servant and their Master.
+
+&#39;Overthrowing the government sounds like a hassle. Why not head to the abandoned labs? I bet no one will bat an eye if you wreck even more stuff there.&#39; He turned down Sinmara, finally agreeing with his Servant for once. The giant hottie had nothing to do with him anyway. Her own Master would be the one to clean up her mess.
+
+He signed as Aratron reminded him of their night stroll&#39;s original purpose.
+
+&#39;Want to call it a night? You say Saber, but I know who you&#39;re looking for. What if that old guy turned out to be an early sleeper?&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jan-21 01:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="802595282508316713" id="message-802595282508316713">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Tch. Lame!&quot;</strong> Sinmara hissed, shaking her head. Not only had the government made the world completely lame, but all of their good little sheep had simply rolled over and accepted it. The rebel spirit had died, been buried, and forgotten.
+
+Well, she wouldn&#39;t stand for that. She&#39;d simply have to reignite their desire for CHAOS! And if that meant blowing up a bunch of broken and ruined buildings, then that was simply what she&#39;d have to do!
+
+Granted, HOW a bunch of glorified demolition would drive people to rise up and rebel was questionable, but that was a bridge to cross later.
+
+<strong>&quot;Thanks for the information, you slaves to the system. Be sure to thank me when I give you to desire to free yourselves from the chains that bind you~!&quot;</strong> Sinmara grinned, resting a hand on the hilt of Laevateinn and continuing to hold Sandro with the other. <strong>&quot;See? Told you I could find things!&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jan-21 02:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="802601634076819526" id="message-802601634076819526">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron shook his head. &quot;Servants don&#39;t sleep, just like familiars. The only thing that keeps us going is our mana reserves. If that Saber is anything like me, then they are probably guarding their Master in this exact moment.&quot; He replied back, which actually gave him an idea.
+
+&quot;In which case, finding the Master would probably be quicker. Do you remember if we have encountered any other men in metal suits?&quot; He asked Tapio, before hearing SInmara&#39;s grating voice from afar. It bothered him, to see a glorified familiar act in such a rash manner. Empty vases truly made a lot of noise.
+
+&quot;I&#39;m afraid we&#39;re done here, Servant. Keep pursuing your folly if you wish. We have no interest in it.&quot; Aratron replied, staring the woman down as he tugged at Tapio&#39;s coat. To see Sinmara&#39;s proud declarations get shot down like that was irritating, to say the least.
+
+&quot;We&#39;re leaving, student. Night time might be ideal to track down Saber&#39;s Master. Less commoners around. Unless, of course, you need to recover your strength. Have you eaten at all today?&quot; He asked, starting to walk away while playing the doting teacher card. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jan-21 07:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="802686381616922625" id="message-802686381616922625">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;You should really have more faith in me, y&#39;know.&quot;</strong> Sinmara continued to lecture Sandro as she carried him along, smugly self-assured of herself. <strong>&quot;I&#39;m a big girl, and that means I have a big brain. I knew I&#39;d find something worth destroying eventu- Oops!&quot;</strong>
+
+The giantess was so busy bragging that she failed to see the stray pipe on the ground, likely a leftover part from a ship repair. Unfortunately, it also caused Laevateinn to fall loose from its sheath. The cursed blade clattered against the ground and proceeded to launch forth a jet of flame, which struck the nearest boat directly in the gas tank.
+
+<em><strong>BANG</strong></em>
+
+<strong>&quot;...What the- WHY DIDN&#39;T YOU TELL ME THAT THE BIG BOATS EXPLODED GOOD, YOU DORK?!&quot;</strong> Sinmara screamed. Clearly, things were not going well for Sandro, and they certainly weren&#39;t much better for whoever owned that boat. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jan-21 01:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="802947020075171841" id="message-802947020075171841">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio stared at Aratron blankly.
+
+&#39;What do you mean?&#39; He asked back, wondering whether this was some sort of impromptu mini quiz. &#39;Weren&#39;t you right there when I burn down the k-&#39;
+
+Metal clattered against the ground. Tapio&#39;s back suddenly felt very warm. He turned around just in time to see a streak of flame shooting into a boat and blowing it up in a fantastic display of foul-smelling fireworks.
+
+Tapio&#39;s ears rang from the explosion, but that was the least of his concerns. His eyes were glued to the sword on the ground, tip pointed right at the boat - or what remained of it.
+
+<em>Could it be?</em>
+
+&#39;Did you do that? Is that yours? It&#39;s a sword, isn&#39;t it? Are you also a Saber?&#39; Tapio peppered Sinmara with questions as he pulled on Aratron&#39;s coat to stop him from leaving. &#39;Well? What are the chances of a non-Saber class Servant carrying a sword around?&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jan-21 01:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="802957205313552426" id="message-802957205313552426">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sinmara paused from throttling Sandro long enough to look over to the small boy once more. She was right about one thing - the small boy certainly was very, very stupid.
+
+<strong>&quot;Uh, DUH, it&#39;s mine. You think any old slag runs around with the sword of the apocalypse? Get real.&quot;</strong> The giantess scoffed. Picking up Laevateinn, she returned it to it&#39;s holster before continuing to trot off, returning to her tirade against Sandro.
+
+Truly, a devilish escape.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jan-21 01:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="802960364291096576" id="message-802960364291096576">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron ignored Tapio&#39;s concerns, before witnessing the huge explosion right next to him. A boat had been blown to bits, as if a volcano had erupted underneath it. It caused a loud commotion, with fishermen and commoners running for their lives as they presumably disappeared to report Sinmara&#39;s actions to the authorities. Not that the giant cared, of course.
+
+But Aratron did, because commotion meant encountering more people like the man in the metal suit. Those enforcers of the law with Servants in tow. It could lead to him finding that old, bald Saber once more. However, it also brought a risk to his Master. Perhaps he should retreat...
+
+At least, he thought about that, before the demon-like lady revealed her class container. A Saber in the flesh, despite her horrendous demeanor that was not befitting of a Knight. His initial assumption had proven incorrect.
+
+This Saber was a rather volatile familiar, to the point they had casually given a hint at their weapon&#39;s true name. The sword of the apocalypse? It sounded familiar in Aratron&#39;s head, but not a mythology he was well-versed in.
+
+However, he didn&#39;t care for that. What he wanted to know, instead, was the location of his target.
+
+&quot;So, you&#39;re a Saber Class Servant, I assume?&quot; Aratron asked, interrupting Sinmara from her intermittent bullying of poor Sandro. &quot;I thought Knight classes were reserved to the aristocracy. That&#39;s what this society&#39;s structure has implied to me thus far.&quot; He deduced.
+
+&quot;If that is the case, <strong>then where are the rest of your masters located at?</strong> I seek an audience with one of them.&quot; He asked bluntly, surprising Tapio. Aratron&#39;s need to prove himself above others was getting him into trouble... <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jan-21 10:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="803447922519179284" id="message-803447922519179284">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandros hands drifted through the air as Sinmara shamelessly carried him through the docks looking for a suitable object to destroy.
+
+Sandro had all but given up until Saber rudely requested the audience of two strangers. Sandro didn&#39;t know what to do in the slightest. He looked round frantically deciding it would be best if he just tried to play dead. He could only hope that these two were smart and ran away from the monster Sandro brought back to this world
+
+Sandro let out a sigh of relief as Tapio and Aratron went to make their leave. Now that they were in the distance Sandro perked back up. “What? That logic doesn&#39;t follow at all! If you’re big you’ve probably got a smaller brain. Like dinosaurs they were big and dumb, You’re like a dinosaur if anything, cool but dumb okay?” Sandro was just being straight mean now, his patience for Saber’s psycho lectures was on a steady decline.
+
+“Listen can we just please go home? I&#39;ll find you something to bu-” Sandro’s pleading was cut off as his Servant accidentally caught them a giant lawsuit.. “Because if I told you, you would’ve done it earlier!”
+
+Sandro’s face quickly grew pale as the Master and Servant from before turned back around. This day just couldn&#39;t get any worse could it? “Wha- No no, you’re mistaken, I mean anyone can have a sword right? She just uh likes to use a sword that’s all” Sandro was panicked to say the least, why would these two care to inquire so calmly after what they just saw?
+
+He took a deep breath trying to calm down. “Listen if you wanna talk, talk to me not her alright, i&#39;m the one in charge.” Sandro tried to be serious but being carried around by a woman almost double his size probably made it hard to see him that way
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-21 01:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="804046149030903859" id="message-804046149030903859">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio stared past Simara&#39;s red mane and at Sandro with a blank face.
+
+&#39;Sorry, can you speak up a little? It&#39;s kinda hard to hear you over your Servant&#39;s screams.&#39; He blurted out bluntly. It <em>was</em> true! Sinmara was basically carrying a whole concert and band with her voice alone. Granted, it was entertaining, but if the (relatively) little man on the big woman really was the one in charge, well...
+
+He briefly considered his own relationship with his Servant. At least Aratron didn&#39;t yell 24/7, just slightly - super - stuck-up, and old-fashioned. 
+
+&#39;Do you really want to fight Mr. tin can? Didn&#39;t know you were that picky with your targets. Or-&#39; An idea occurred to him and he dragged Aratron down within earshot and whispered. &#39;- is this some sort of tactical retreat?&#39;
+
+Did he just imply that Aratron was taking the easy way out?
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-21 02:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="804051289830195260" id="message-804051289830195260">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron awaited a reply, wondering about the tin can man&#39;s whereabouts. He waited for Sinmara to reply, causing Sandro to interject and attempt to make their presence known inside of the conversation.
+
+The Caster Servant proceeded to simply ignore him, focusing instead all of his attention on Sandro&#39;s familiar. &quot;Answer.&quot; Aratron said once more, staring at Sinmara while Sandro felt dwarfed by his own Servant. It would frustrate him, no doubt.
+
+But what would irritate him the most would be the words of the ditsy looking kid that was standing next to the Caster. Something about a tactical retreat? What could he--
+
+&quot;...Retreat? On the contrary, I am trying to find Saber&#39;s base in an effort to measure our chances. If we can incapacitate that Servant, then the Grail War is as good as ours. Or are you assuming that this grotesque familiar is a far more threatening target?&quot; Aratron inquired, while casually pointing towards Sinmara. It was as if he had no sense of tact whatsoever.
+
+Sandro would panic, knowing that Sinmara wouldn&#39;t take an insult lightly. And he knew what she did when she was angry... <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-21 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="804223493033820160" id="message-804223493033820160">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Such blatant insults, such complete and utter disregard for her very existence! There was simply no way that the giantess could take such disrespect lying down! And so, Saber spoke out...
+
+<strong>&quot;Eh? Sorry, I&#39;m not really paying attention. I&#39;ve been thinking, if the boats explode well, then maybe OTHER THINGS explode good too! Like buildings! Or trees! Maybe the age of destruction isn&#39;t over yet! There&#39;s still hope for the common man!&quot;</strong>
+
+Oh. She had been too busy daydreaming to actually listen to anything that was being said. Huh.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">28-Jan-21 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="804223537266556979" id="message-804223537266556979">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/533be664d81231e822e25379dde7cd7e-F6806.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="802212689593368637" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-21 01:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="804228874715791360" id="message-804228874715791360">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While Sinmara and Aratron threw insults at each other, a spike of magical energy would appear above them. Was that... a toaster? With little round things attached? A speaker blared to life, coming from the sad little toaster vehicle.
+
+&quot;Ahem! This thing on? Good! Servants, my Master has asked me to <s>get back here this instant</s> test my mettle against other Servants, in order to gauge my power for the Holy Grail War! As such, feel free to not survive this strike. However, if you do! Feel free to meet me in combat! I&#39;d love to see who could survive my Opportunity!&quot;
+
+The voice and speaker were both muffled by static, meaning that the voice was almost impossible to comprehend. The speaker turned quiet, except for the beeping of consoles and the clicking of some keys. What little threatening presence the rover had was quickly fading away.
+
+The voice boomed yet again. &quot;Switching back to 9.8 meters per second squared... Ah, here we go! Prepare to die, other Servants!&quot;
+
+Despite the lame death cry, the rover began accelerating towards the docks, glowing brightly as several lasers, rockets, and other weaponry began firing out of the machine towards the ground. As quickly as it had appeared, the rover hit the ground with a massive crash.
+
+<em><strong>BOOM!!!</strong></em>
+
+A massive surge of magical energy, mixed with the natural shockwave and explosion of a large object hitting the ground with maximum force blasted Sinmara, Aratron, and both of their Masters backwards. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/87add995fffc3132afbc64ac8dfb569f-A93FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Magnetic#0083" data-user-id="291225855823446016" style="color: rgb(236,81,81)">Magneto</span>
+
+
+        <span class="chatlog__timestamp">28-Jan-21 01:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="804229189422415914" id="message-804229189422415914">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://tenor.com/view/rocket-launch-rock-astronaut-yolo-rodeo-gif-7359344">https://tenor.com/view/rocket-launch-rock-astronaut-yolo-rodeo-gif-7359344</a></span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/tenor-531CE.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/tenor-531CE.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">28-Jan-21 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="804229320477507635" id="message-804229320477507635">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://tenor.com/view/see-it-like-final-hamster-scared-gif-14498643">https://tenor.com/view/see-it-like-final-hamster-scared-gif-14498643</a></span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/tenor-1BC78.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/tenor-1BC78.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jan-21 03:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="804428257906262106" id="message-804428257906262106">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A signal flare lit up in the sky, then the ground went BOOM. 
+
+Fireworks more extravagant than Sinmara&#39;s flame jet bloomed on the field, engulfing the docks in smoke, fire and turbulent mana currents that targeted everyone indiscriminately. Tapio was no exception. By the time he had registered the talking meteorite as a threat, it was already too late to get out of its blast range. With his F-tier knowledge on bounded fields, there was no way he could repel Rider&#39;s attack in time.
+
+And so, unsurprisingly, underwhelmingly, the boy ate the full brunt of the concussive and was sent flying like a soccer ball. He drew a beautiful arc in the air, then crashed in a pile of crates.
+
+&#39;...&#39;
+
+&#39;<em>Hmph</em>, playing dirty are we!&#39; 
+
+A pair of legs revealed themselves above the crates and started kicking the air in protest. It should be obvious to anyone with eyes that this Master was miffed!
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-8DE8F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="802212689593368637" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jan-21 03:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="804433024120782888" id="message-804433024120782888">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Caster could not help but sigh at the Saber&#39;s complete airheadedness. Not only was the Master a pushover, but their Servant was too foolish to even comprehend his questions. What an utter waste of time.
+
+But he had no other leads, and after being spurred on by Tapio, he had no choice but to proceed.
+
+&quot;I shall ask once more. Hear carefully, you incompetent famili--&quot; Before he could finish and release another torrent of abuse, a shooting star, or a meteor, to be more precise, descended on the two. It was accompanied by the loud, static-like voice of someone that was apparently riding the object above of them. It had wheels and a metallic chassis. A vehicle?
+
+<em><strong>BOOM!</strong></em>
+
+Aratron didn&#39;t have time to decipher the odd contraption, as the gigantic vehicle landed on top of the two Servants. The shockwave was enough to send their Masters flying, albeit Aratron was quick to erect a makeshift barrier made out of the dock&#39;s terrain to shield Tapio. This allowed his student to survive the blast, being simply tossed towards a pile of crates instead. Aratron followed suit, being unceremoniously launched backwards by the blow and crashing into the crates. He was heavier than Tapio, causing the crates to break and their cargo to spill out: Canned goods, construction tools, raw materials and...lingerie? The boy would squint at that last bit, but Aratron gave him no time to process his findings.
+
+&quot;...This amount of energy was no doubt caused by a Servant. A Noble Phantasm-type attack, even. Student, I shall take you on your previous offer of retreating. We are outnumbered, two to one.&quot; Aratron said while staring at Sinmara from afar, wondering if she had survived the attack.
+
+&quot;Head for your nearest leyline. I&#39;ll follow behind, but not too close, just in case they plan an attack from behind.&quot; He immediately took charge and ordered his Master to leave.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="804433060389060608" id="message-804433060389060608">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/533be664d81231e822e25379dde7cd7e-F6806.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="802212689593368637" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jan-21 03:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="804438733612122132" id="message-804438733612122132">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Opportunity had survived without much of a scratch, as expected from the Noble Phantasm of a Rider class Servant. Despite the odd appearance, it was likely that neither Aratron or Sinmara would be able to scratch it without whaling on it for a few minutes. Not much of a surprise, since the rover had endured its own crash.
+
+Within the rover, Rider coughed as several dials began to beep with urgency, causing Rider to notice something rather alarming.
+
+&quot;Drat. Houston hasn&#39;t recharged my batteries for a while, has he? That strike took out a lot. Hmmm...?&quot; The smoke cleared, revealing Aratron, flown back by the shockwave, but barely harmed, outside a few odd scratches.
+
+Excellent, a worthy opponent! Their battle would be legend—Aratron and his Master began running away. The rover&#39;s speaker blared to life. 
+
+&quot;Hey, get back here! We aren&#39;t done!&quot; Rider protested as the beeping grew louder. It looked like he would have to retreat as well, unfortunately. Running out of energy here wasn&#39;t much of an option. The smoke hadn&#39;t cleared around the other Servant, yet. As such, this was the perfect time to retreat!
+
+Tires whirred violently against the docks as Opportunity made its retreat, Rider in tow. Eventually, they rounded a corner, quickly making their way back to <span class="mention">#restaurant-district</span> and Pascal. 
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-D4EA7.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="802212689593368637" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jan-21 07:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="804493997577338941" id="message-804493997577338941">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em><strong>BOOM</strong></em>
+
+<strong>&quot;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA-&quot;</strong>
+
+The sheer concussive force of the meteor sent Sinmara flying away, her grip on Sandro dragging the boy along with her for the trip. The two soared through the air, like a graceful swan if that swan was also on fire and screaming, before landing into the ocean with a <em>splish</em>.
+
+They&#39;d be fine. Probably.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">29-Jan-21 07:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="804494024039596032" id="message-804494024039596032">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jan-21 07:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="804495378329239644" id="message-804495378329239644">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro watched in terror as potential death approached him and his Servant. He let out a yelp frantically squirming in his Servants grip. “Saber, put me down!” He yelled before a giant blast sent them flying back.
+
+Before Sandro knew it he was submerged in the water squirming even more. Bubbles came from his mouth as he tried  to break from his servant so he could swim back to the surface</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="804495490028404746" id="message-804495490028404746">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D.html_Files/18a44b061f5e7302b027056f34cee882-D7528.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="802212689593368637" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jan-21 04:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="804804575252054026" id="message-804804575252054026">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio didn&#39;t need to be told twice. It was all fun and games until that unknown entity had intruded guns blazing, and he wasn&#39;t so sure that Aratron would be strong enough to take on two Servants at once. As much as he was willing to worship Aratron&#39;s god-like skills in magecraft, he still had a limit in the name of mana batteries. Without mana, a Servant is as good as gone.
+
+&#39;Let&#39;s go then, quickly.&#39; For once, the boy didn&#39;t derail the conversation. He kicked away the crates to make leg room, then rolled back onto his feet. His clothes were sopping wet no thanks to the rain, with dark splotches and dirt running on every visible surface. The boy sighed. Looks like laundry day was going to happen earlier than he had planned.
+
+&#39;Let&#39;s take a slight detour then. I think I&#39;m running low on laundry detergent...&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+
+</div>
+
+
+</body>
+
+</html>

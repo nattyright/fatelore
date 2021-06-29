@@ -1,0 +1,1639 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - abandoned-church</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Commoner District (RP) / abandoned-church</div>
+
+            <div class="preamble__entry preamble__entry--small">A dusty and dissolving church that has been abandoned for years since the gang wars started.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">08-Nov-20 07:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="774774172563669002" id="message-774774172563669002">
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/oLy6w9L-913D9.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/oLy6w9L-913D9.jpg" alt="Image attachment" title="Image: uSaE79Z-7A47E.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div> 
+                    
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 04:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="813864052518289440" id="message-813864052518289440">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio awoke and regretted it.
+
+His mind was full of nails and thorns, and his mouth was so dry it hurt. He cracked open an eye, and even though the room he was in was fairly dark, even the slightest hint of light hurt his mind.
+
+<em>Mana leakage,</em> he thought, groaning. He had almost forgotten what that had felt like.
+
+He started to sit up, grimacing with each motion. This wasn&#39;t the first time he&#39;d experienced this disaster, but the first time he had to contend with something on such a grand scale. A reality warping Noble Phantasm. He was lucky to be alive!
+
+Tapio threw his blankets off and moved his feet off the bed. The floor was cold and slick, a slab of stone that brought goosebumps to his back. Candles lit up all around him. He looked away, head throbbing. He took a step back and promptly tripped over a lump of something supple and warm, slick and reeking of a metallic scent.
+
+His bed was gone.
+
+<em>What the hell,</em> he thought, then looked down.
+
+Candleflames flickered, casting a yellow hue onto the geometric patterns adorning the floor. Some sort of summoning array, Tapio realized, and at the very center was him and - he turned and found himself face to face with an inert mass of mangled flesh.
+
+<em>I need to get out of here. Now.</em>
+
+The boy scrambled to his feet and ran in the first direction he found himself in. Shadowy figures appeared along the path, some reaching out to him, while others groveled at his feet and prayed something intelligible. Blood seeped through the floor and flooded his path. He slipped and fell.
+
+Then awoke with a start, choking for air and reaching out. He stared around himself, fully alert.
+
+He didn&#39;t seem to have moved at all. He was still in the very center of a summoning array drawn in chalk.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="813864131366092810" id="message-813864131366092810">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Then he saw he was not alone.
+
+There was a man in the room with her. A man with braided hair and clad in white. 
+
+Tapio stared at him. The man stood near the edge of the summoning array, tall and motionless. Tapio had no idea where he&#39;d come from, since he&#39;d looked around when he&#39;d awoken and seen - he was sure of it - no one. Yet there he was.
+
+The man stepped forward and looked down at him. Then he started to speak.
+
+<em>Thump.</em>
+
+He suddenly became aware of the slow yet rhythmic beating of the object lodged in the left side of his chest. An alien emotion filled him to the brim. He looked at the man, confused.
+
+&#39;But what is love?&#39; He whispered.
+
+Then he opened his eyes, and saw white tarp. 
+
+He was back in his tent.
+
+<em><strong> </strong></em> ***
+
+&#39;Nnngh.&#39; Tapio worked his mouth and only managed a croak. His lips were parched and his throat on fire. He wormed out of his blankets and tumbled onto the floor. He tasted sand.
+
+Blasted Caster and his desert!
+
+Tapio half crawled his way to a spring in Caster&#39;s masterfully <s>tastelessly</s> created sandy workshop and dunked his head in. 
+
+Finally, fresh cool water!
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-6CAD1.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 10:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="814140066980429834" id="message-814140066980429834">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio was too busy finding fresh water to concern himself with the several alarm signals and triggers that he set off when he left his blankets. Some sort of sonic alarm had been sounded, causing a toll reminiscent of an old bell.
+
+Aratron was alerted, leaving his workshop immediately as he headed over to Tapio&#39;s resting place, only to calm down once he saw the boy hadn&#39;t gone far.
+
+&quot;Student, you&#39;re finally awake. Good, I have news to--&quot; They said, before realizing that Tapio&#39;s head was buried under a sizable water puddle. Aratron failed to connect the dots and assumed that Tapio was drowning, instead of quenching his thirst.
+
+&quot;...Student? Are you awake? Respond!&quot; They panicked, quickly huddling over to Tapio and grabbing them by the neck, like an abandoned kitty. The latter most likely felt infuriated: They were in a scorching desert and dying of thirst! Could Aratron not put two and two toget--
+
+Caster then laid Tapio on his lap and started squeezing his chest, as if worried that water had gotten into the boy&#39;s lungs. Tapio wouldn&#39;t normally mind this, until he realized that Aratron&#39;s thighs seemed a lot...meatier than the stick-like figure he had seen during his fight with Lancer. Also, their voice sounded different. A bit more pleasant to the ears. Not just that, was Caster&#39;s hair always that long?
+
+A realization hit him once he stared back at his &#39;savior&#39;. Two soft-looking pillows were staring right back at him, as Aratron got closer and closer to inspect Tapio&#39;s face. They were now smushed on his own chest as Caster&#39;s fingers fiddled with the boy&#39;s face, checking for any signs of injuries or trauma.
+
+Caster had somehow morphed into a much more feminine figure.
+
+Tapio&#39;s thirst suddenly felt quenched...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="814140125352034334" id="message-814140125352034334">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Student, are you conscious? Your breathing seems steady and no water entered your lungs, but you&#39;ve remained silent for more than 3 minutes. Why is that?&quot; Yep, that was still Aratron, down to the machine-like speech and mannerisms. Not even the honeyed tongue of his feminine voice was enough to change that. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 02:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="814569366569484298" id="message-814569366569484298">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;C-C-C-C-C-C-C-Caster?!&#39;
+
+Speech failed him. Tapio blushed hugely, turning bright crimson when he realized that the person he&#39;d been staring at for the past few minutes was none other than his Servant. It <em>had</em> to be. No one he knew talked the way they did. 
+
+But there was one glaring problem...
+
+<em>TOO CLOSE TOO CLOSE TOO CLOSE TOO CLOSE-</em>
+
+&#39;I-I-I-I&#39;m fine-&#39;
+
+Tapio felt something wet and warm trickle down over his lip. He wanted to smear it away, but Caster had already pinned him in place. He didn&#39;t know where to look and he didn&#39;t know where to put his hands. The substance clung to his lips, salty and sticky. A nosebleed? That was it - a nosebleed. 
+
+When was the last time he had bled?!
+
+Tapio felt his brain short circuit. If Caster didn&#39;t move away soon he was quite literally going to perish.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-6CAD1.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 03:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="814586553783156746" id="message-814586553783156746">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron raised an eyebrow at Tapio&#39;s odd speech pattern, scratching his, no, her head in confusion before adjusting her hair and letting it flow down elegantly. It looked really <em>pretty</em> and se--
+
+<em>No.</em> He couldn&#39;t give in like this! This was an opponent far more formidable than Lancer or Saber...Tapio was in a life-or-death situation as he was forced to hide his true thoughts from his own Servant.
+
+&quot;Aaah!&quot; Aratron exclaimed out loud, placing a hand over her mouth as she noticed Tapio&#39;s nosebleed. The boy&#39;s own body was betraying him, while simultaneously making things worse: Caster was now doubly worried, to the point she got <em>closer</em> to Tapio.
+
+&quot;Student, are you sure you&#39;re alright? Such strong bleeding is unnatural. I am unaware of what sort of symptoms would elicit such a strong reaction. Convey your thoughts to me in this instant. Do you feel sick? Tired? Gasping for air? Your face is red...&quot; Aratron kept asking questions, but Tapio was in no condition to reply. He was too focused on his Servant&#39;s mannerisms and tone. The usual, monotone voice felt different with Caster&#39;s more feminine disposition. Dorky, overly scientific questions now started looking <strong>adorable</strong>. The way she inched even closer started feeling <strong>alluring</strong>...
+
+No, he had to react quickly and do something to defuse this situation, or Tapio wouldn&#39;t escape out of the tent alive...if he even wanted to. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Feb-21 02:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="814932080642228314" id="message-814932080642228314">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>OH GOD OH NO SHE&#39;S GETTING EVEN CLOSER-</em>
+
+Tapio didn&#39;t know whether his face was capable of becoming even more flushed than he currently was. All the blood seemed to have rushed to his head, and it certainly wasn&#39;t helping with his nosebleed. As Caster inched closer, he felt his own soul leaving his body. He was ascending into the high heavens, and he was supposed to be an atheist!
+
+Caster, of course, continued analyzing his conditions like they always did. But something felt off. Even though Tapio would normally try to dodge their questions or literally dodge them by making up excuses to sneak out of the workshop, he had always been responsive. Freezing up like this was a first, and from Caster&#39;s own reactions, it didn&#39;t seem like they encountered this type of situations frequently either...
+
+When Caster&#39;s face got within five inches of Tapio&#39;s own, the boy finally snapped.
+
+&#39;<strong>SSSSTOP!!!!!</strong>&#39; He mustered up enough strength and shoved his hands up to push Caster away. &#39;I GOT IT I GOT IT I WON&#39;T SLACK OFF ANYMORE! I PROMISE I&#39;LL FINISH UP THIS WEEK&#39;S ASSIGNMENT BY TOMORROW!&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/2e3e3f3bc925f11dc44b491592b09e28-6CAD1.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Feb-21 04:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="814962840426512384" id="message-814962840426512384">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Push came to shove, and Tapio did indeed <em>shove.</em> He mustered his courage as he raised both of his hands and shoved Caster away. His palms collided with Aratron&#39;s bouncy balls of fun, of course, but he did his best to ignore them while doing so. 
+
+He snapped, begging for forgiveness as he wiped blood off his nose. He thought this was punishment. A threat. A way to force him to treat his work seriously. Therefore, he did as he was asked: He promised to finish his homework, something that Aratron had been asking him to do for weeks now. Surely, this would sate the despicable Servant in front of him?
+
+&quot;...Eh? The homework I gave you? The one that&#39;s due for tomorrow?&quot; Aratron looked puzzled, as if confused by Tapio&#39;s odd behaviour. The boy patiently awaited a response, as if worried he would be ensnared into another vicious trap.
+
+What came next would be terrifying.
+
+&quot;<strong>That makes me glad. I&#39;m proud of you, student!</strong>❤️&quot;
+
+She praised him while giving a heartfelt smile, <em>and then proceeded to lightly pat his head.</em>
+
+&quot;...But that doesn&#39;t explain your current condition. Do you have any idea what might be the cause of this? I&#39;ve been analyzing the runes embedded on your coat...&quot;
+
+Tapio felt like he was about to burst into flames. What sort of sick strategy was this?! He needed answers and he needed them <em>now!</em>
+
+<em>But maybe being stuck with this type of Servant wasn&#39;t all bad...</em>
+
+...He needed to erase those type of thoughts immediately. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Mar-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="815949331789381652" id="message-815949331789381652">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio found himself in dire need of a refresher on the 36 stratagems of Sun Tzu. Namely, the best one of them of them all. Before Caster could get they hands on him again, he finally managed to extract himself from their lap. The boy covered his face with a hand, but blood still oozed from the cracks between his fingers and dripped onto the ground freely. 
+
+It was hopeless. He had been put into checkmate by Caster&#39;s feminine form on multiple accounts, it was truly an experience at the threshold of both heaven and hell.
+
+&#39;Never-never mind that, what&#39;s up with <em>you</em>?&#39; Tapio stammered, glaring at Caster from a few feet away. Definitely out of reach of those slender arms...wait no, he shook his head, but instead of clearing his thoughts, the act only made him dizzy. He was losing quite a lot of blood, and they weren&#39;t even in a fight!
+
+&#39;What did you do to the original Caster? Why do you look like-&#39; <em>the mags in his secret stash,</em> he finished the sentence in his head. 
+
+That&#39;s right. He must still be in a dream! A damn good one, but he didn&#39;t want to die from a nosebleed, even if it were a dream! That would be the epitome of lame!
+
+Tapio brought his hand down and pinched himself below the ribcage. Quite hard.
+
+&#39;<strong>%$^#&amp;*@!!!!!!</strong>&#39; (censored)
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-7FEFF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 12:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="815978674339315773" id="message-815978674339315773">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron was dumbfounded at Tapio&#39;s behaviour. The nosebleed was odd, but so were the boy&#39;s attempts to distance themselves from her. Most mages would appreciate their Servant&#39;s assistance when it came to minor injuries, but Tapio insisted on asking unrelated questions and keeping his distance. He was also...pinching himself?
+
+&quot;Original Caster? Student, are you unable to recognize my grandiosity? Of course the only one capable of holding this pocket space open would be I, Aratron, Governor of Saturn.&quot; The feminine figure boasted as she pointed at the starry sky above the vast desert around them.
+
+&quot;....Oh. Do you perhaps mean,&quot; She touched her own heart. &quot;my newfound figure? I thought it would suit your <em>tastes</em>. After all, I had to occupy myself for <em>several days</em>. That&#39;s how long you were unconscious for.&quot;
+
+Several days? Tapio&#39;s memory was already a blur, but he had no idea that he had been knocked out that long. Seemed like he had a lot of catchup to do, but for now he would be focused on a specific detail...
+
+...Caster changed himself to suit <em>his</em> tastes?
+
+&quot;...Is that not your preference?&quot; Aratron asked inquisitively, taking out several magazines from the sand below her feet. Those were Tapio&#39;s mags.
+
+Caster had snooped into his secret stash while he was asleep. An invasion of privacy!
+
+Pinup models, famous XXX stars and bountiful melons were all embedded on those pages of unbridled raunchiness. Either Caster was too dense to perceive the contents, or she fully understood them and used them as an &#39;additional motivator&#39;. It seemed to have worked, considering Tapio had just promised to finish his homework.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="815978772976762920" id="message-815978772976762920">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;I also started indulging in some part time reading to alleviate my boredom. By the time you have woken up, I have already finished around 217 books. Some of them were on teaching theory and studies.&quot; Aratron explained, more books appearing beneath the sand as a pair of reading glasses formed around her face. She took a book from the ground.
+
+&quot;This one, in particular, was enlightening: A study dating a hundred years back showcased that male students viewed male teachers as authoritarian figures and respected their guidance. However,&quot; She gave Tapio a judgmental side glare.
+
+&quot;it&#39;s pretty apparent that my student does not know the meaning of <em>respect</em>. Therefore, I opted to change form: Female teachers were shown to be nurturing and caring in this study, which elicited less respect from male students, but also higher levels of trust and confidentiality. My interest was piqued, therefore, I attempted to copy this technique in order to test its effectiveness.&quot;
+
+Aratron smiled as the books (including Tapio&#39;s mags) returned to the sand.
+
+&quot;And I am most certainly pleased. To think that my student would promise to finish their homework on time...&quot; She shivered a bit, a testament to just how long Tapio had been slacking off on his studies.
+
+&quot;Oh, and do not worry about my mana batteries, student. This form also functions as a convenient disguise. For some strange reason, most vendors are immediately willing to comply with my demands in my female form. Quite odd, considering that they wouldn&#39;t bat an eye in my previous body.&quot; She added.
+
+What a dense Servant. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="815987177287581707" id="message-815987177287581707">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What a load of CRAP!!!
+
+To think that he&#39;d fall for such an underhanded trick, to think that all it&#39;d take was for Caster to peek under his bed for Tapio to play right into their hands...this was Servant fraud on an unprecedented level!
+
+Curse you, Caster! Tapio thought ruefully. Curse you, and your stupid good looks! God damn, even her judgmental stare was hot!
+
+The battle hadn&#39;t even started and he had already lost.
+
+&#39;W-well, good for you! I&#39;ll have you to know that I only collect the best of the best, of course you&#39;d have no trouble getting around the city looking like...like that!&#39; Tapio flailed his other arm about and put up a brave front. Unfortunately it was bogged down by his horrible bedhead and nosebleed. It was already difficult enough to look them in the eye as they were, let alone chew them out on splurging on mana batteries with his pocket money-
+
+&#39;Wait wait wait. You ran out of mana?&#39; He asked. &#39;I mean, you did unleash your noble phantasm, but I had a fresh pack with me. Those weren&#39;t enough? Or did you mean you ran out again?&#39;
+
+A unsettling thought crossed his mind.
+
+&#39;Caster. How long was I out for? When you said several days, how many did you mean, exactly? Where is Lancer?&#39; Tapio&#39;s stomach gave a timely growl right as he finished his question. He suddenly started feeling weak in the knees. The adrenaline from earlier slowly subsided and he was hit with the first waves of hunger and fatigue.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="815987202492071957" id="message-815987202492071957">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-7FEFF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 01:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="815992688205103244" id="message-815992688205103244">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;The best? Mmm, I understand. So, those truly are your preferences.&quot; Aratron gave a coy looking smile, as if satisfied with her current form. &quot;I&#39;m glad you approve, student. I expect your grades to improve as a result.&quot; She said before witnessing Tapio&#39;s confusion.
+
+&quot;Yes? It is unfeasible for me to maintain my current form without a reliable mana source, especially for more than a few days. I had to shop as a result, but it was a rather enlightening experience. I also acquired important information that will assist us in the Grail W--&quot; Before she could continue, Tapio&#39;s befuddlement had become apparent. His perception of time had been diluted by his long sleep.
+
+Slightly adjusting her reading glasses, Aratron sighed as she got closer. Thankfully, not close enough to make Tapio feel embarrassed.
+
+&quot;Student, Lancer and Assassin are both long gone. It has been <strong>4 days</strong> since our fight with them. You have been unconscious ever since.&quot; She explained, before noticing the jittery sensation in Tapio&#39;s knees, not to mention his nosebleed had messed up his clothes and face.
+
+&quot;This means that you haven&#39;t eaten either. I have been monitoring your condition and supplying you with nutrients and vitamins in your sleep, but that is no substitute for actual food. The body can tell.&quot; Aratron sighed, as if annoyed by the human body&#39;s limitations.
+
+She then sat on the sand, her knees touching the ground as it felt like she was attending a ceremony.
+
+&quot;Therefore, I recommend resting on my legs while I feed you for the next few days. Your muscles are weak and need to gradually stabilize.&quot; She proposed, while tapping her lap. Ha, as if Tapio would fall for that again.
+
+Though, he could certainly use a bit of catching up from Caster, especially when it came to the Grail War. It seemed like Aratron had discovered something new during Tapio&#39;s absence. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 01:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="815999926382231612" id="message-815999926382231612">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tapio&#39;s resolve wavered at Caster&#39;s second offer of the lap pillow even though he knew it was coming. God, was he <em>that</em> easy? No, he would absolutely <em>not</em> fall prey to such...effective...tactics! <em>Remember, Tapio! Remember Caster&#39;s old face and how he used to send familiars after him and peck his bum for failing the daily quizzes!</em> 
+
+With immense disappointment, Tapio turned away from Aratron&#39;s generous offer and found himself some good ol&#39; tissue paper to help with the bleeding. 
+
+&#39;4 days. That&#39;s a new record.&#39; He repeated, trying to focus on the actually important matter at hand. &#39;That must&#39;ve been one heck of a noble phantasm, too bad I couldn&#39;t watch the whole thing,&#39; He reminisced. There was a clear gap in his memory between then and now, though perhaps Caster should rejoice in the fact that he didn&#39;t seem to suffer from any actual brain damage-
+
+&#39;Though I expected you to have better taste than that, if you were able to appreciate my personal collection.&#39; The boy folded his arms and regarded Caster with a pensive face. &#39;Though I can&#39;t blame you. You are pretty out of touch when it comes to anything besides magecraft.&#39;
+
+Did Aratron hear that right? Was Tapio...lecturing him on aesthetics???
+
+&#39;Well, no matter! Since we&#39;re both alive and kicking, that must&#39;ve mean you won the fight. So what happened then? Anything I should know-&#39; His stomach started complaining yet again. &#39;Why don&#39;t we find somewhere to eat and you can fill me in on the way? Do you have my coat?&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-7FEFF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 01:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="816003676983525396" id="message-816003676983525396">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Forgetting your Servant&#39;s own Noble Phantasm? I am not sure whether I should take offense to that or not.&quot; Aratron replied with a sigh, still patiently awaiting for Tapio to fall for her bait. Unfortunately, the boy was shrewder, or perhaps more confusing, than she had thought.
+
+&quot;Appreciate? I&#39;m afraid aesthetics are beyond my expertise. Human fashion trends come and go, after all. Or are you perhaps implying, you would rather see me wearing <em>something else?</em>&quot; She asked with a hint of curiosity. &quot;Surprising. I was one-hundred percent confident that this attire would appeal to you the most. I suppose I have more books to read, then...&quot;
+
+Of course she wouldn&#39;t have any idea on aesthetics. She learned all that from books! With some raunchy mags on the side...
+
+Tapio would have to give her a proper lecture on the subject in due time.
+
+Unfortunately, that wouldn&#39;t be now, since Aratron&#39;s eyes narrowed once Tapio proposed leaving the desert.
+
+&quot;Denied. You may not step outside of this pocket world. I have already purchased all sorts of meats, groceries and produce and stored them in the tent. Believe me, I&#39;m doing this for your own good.&quot; She said, with a much more serious tone.
+
+&quot;Your coat is resting at the workshop. It was in terrible condition, so I have knitted portions of it from scratch. I utilized the same runes, so it should still be able to contain your...condition.&quot; Aratron said before casting Tapio a glare. He was almost starting to enjoy this...
+
+&quot;Student, why have you never told me about your peculiar Origin? It <em>is</em> an Origin, correct? I&#39;ve rarely seen Magecraft capable of undoing my Noble Phantasm&#39;s effects, let alone Magecraft from a human that can barely be called a magus.&quot; Aratron pointed out, before sighing as she stood up.
+
+&quot;...Never mind. Your health comes first. Rest, and then I shall ask questions. Just know that you cannot leave: <strong>We are being hunted down.</strong>&quot; She said cryptically before turning around.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816003696789160006" id="message-816003696789160006">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Follow me.&quot; She started walking towards the workshop. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 02:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="816018170774290522" id="message-816018170774290522">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;That was the first time I got to see it, cut me some slack, please?&#39; Tapio brought his palms together and pleaded. His face still flushed whenever his eyes met Aratron&#39;s, but the boy was adapting amazingly. He even learned to say please!
+
+However, that didn&#39;t seem to work very well. Despite their coy attitude, the real Aratron was still dense as a rock. They outright denied the boy any chance of leaving their workshop by stocking up on everything Tapio could possibly need within the tent. To many others, perhaps this gesture would even be considered thoughtful.
+
+But Tapio clearly thought otherwise. His displeasure was written all over his face. He didn&#39;t want to be grounded!
+
+&#39;...I&#39;m not saying a thing unless we&#39;re outside.&#39; Tapio stood his ground and bargained. It almost reminded Aratron of that night on the rooftops, when the boy tried to push him to join him in the Holy Grail War in the same manner. Aka using his privilege of being both a Master and a spoiled brat.
+
+&#39;You can&#39;t fool me. I haven&#39;t done anything for anyone to hate me. You&#39;re just saying that to scare me. Well, tough luck. Nothing scares me as much as homework!&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-7FEFF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 08:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="816099559293714462" id="message-816099559293714462">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nonsense. Memorization is one of a student&#39;s greatest tools.&quot; Aratron replied while slightly puffing out her cheeks. It seemed like she took a tiny bit of offense at Tapio forgetting her Noble Phantasm. Maybe that&#39;s why it looked so flashy in the first place.
+
+Of course, she returned to her usual, serious attitude once Tapio started whining like a baby.
+
+&quot;I have your best interests at heart. I feel like I&#39;ve said that several times now.&quot; She groaned. &quot;But if you insist on leaving, then shall I go ahead and self-destruct? I&#39;d rather do that now instead of witnessing my own student be murdered by the vicious aristocracy.&quot;
+
+A chill ran down Tapio&#39;s spine. Normally, he would laugh off this overly dramatic description that Caster had presented him with, but the glare on her face made it rather apparent that she was <em>confident</em> Tapio would die if he stepped out in the city streets.
+
+But <em>why?</em>
+
+&quot;<strong>The metal mage is a Grail War participant.</strong> They have currently been extorting valuables and belongings from nearby restaurants and markets. Those areas are dangerously close to our base, as I&#39;m sure you&#39;ve figured out by now.&quot; She lectured the boy. &quot;It seems like they have changed Servants too. The old Saber is no longer with them. You know what this means, don&#39;t you?&quot;
+
+The answer was at the tip of Tapio&#39;s tongue. He was already envisioning what Caster was getting at. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 09:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="816120145205264394" id="message-816120145205264394">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The knightly Saber was gone?
+
+That was news to Tapio. In fact, it was a bigger piece of news than everything Caster had told him until now. Saber was the reason Aratron had permitted him to join the Holy Grail War in the first place. It was also the reason Aratron hadn’t already self deactivated from Tapio’s subpar grades in...well, in everything that he had taught. Now that the Saber they had placed their bets on was no longer here could only mean...
+
+‘My bounded field exam is postponed indefinitely?’
+
+Tapio’s eyes sparkled with such fervor that it was Aratron’s turn to feel chilled to the bone. That was most definitely <em>not</em> what they had meant when they brought up the Tin Can Man!
+
+‘If that Saber is really gone like you said, then there’s no point in continuing our bet,’ Tapio said happily, ‘You can’t just deactivate without a good reason. I bet that goes against your code of conduct as a heroic spirit...or something!
+
+‘Besides, if you deactivated right now, then I really will be in danger. Mr. Tin Can doesn’t look like someone who cares whether I have a Servant or not. Do you really want me to go out there bi myself when he’s in the area?’ 
+
+Such insolence! Such idiocy! Why was this boy always so difficult when it came to things that actually mattered?
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-7FEFF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 05:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="816243955397689347" id="message-816243955397689347">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron felt like facepalming.
+
+&quot;....Do you hate my exams that much?&quot; The tone of a frustrated woman was certainly uncommon for Tapio to hear, let alone one so conventionally attractive. However, it felt like music to his ears: He just needed to envision Aratron as the male form from the beginning of this whole dilemma, with his slouched back and bone-chilling glares. Tapio could not help but feel satisfied as a result. Take that, you rock-for-brains Caster!
+
+&quot;And why should I care if the enemy magus intercepts you when our contract has ended? I&#39;m a teacher, not your mother.&quot; Tapio blushed a bit at that thought. 
+
+&quot;It is our duty to nurture our students, but once they have graduated, we can no longer assist them.&quot; Aratron explained. 
+
+&quot;But you have not graduated, therefore,&quot; She walked back to Tapio, inching and approaching before she was standing right in front of him. Her chest now blocked his view entirely.
+
+&quot;if you want to leave, <strong>then you will have to walk through me first.</strong>&quot;
+
+Damn this Caster!
+
+&quot;...But I know that trapping you inside isn&#39;t ideal either. I actually formulated a plan to solve this issue while you were asleep. Do you care for hearing it?&quot; <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 12:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="816347816460812288" id="message-816347816460812288">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron had assumed numerous roles during their current manifestation: a Servant, a teacher, a babysitter...whether it was out of their inherent sense of duty or other agendas, it seemed that they still had much to learn in the way of nurturing a reluctant student. Who would break first? The eons old Olympian spirit, or an amateur mage years away from reaching adulthood?
+
+&#39;I don&#39;t hate exams. But I don&#39;t like them either. Do you need to pass an exam to breathe?&#39; Tapio stood his ground and prepared himself for an onslaught of scolding. Naturally, Aratron met his expectations, and Tapio was almost tempted to take his threat literally; a small part of him didn&#39;t object to the idea of diving into Caster&#39;s bosom... 
+
+However, Caster&#39;s tone quickly shifted. Tapio couldn&#39;t believe his ears when they admitted to considering alternatives. Had Caster finally acknowledged Tapio&#39;s obstinance?
+
+Tapio didn&#39;t mean to make life difficult for his Servant, but that only applied if said Servant didn&#39;t make life difficult for him. Now that Aratron had relented, they boy felt no need to throw a tantrum anymore.
+
+&#39;If this plan lets me go out, then I&#39;m all ears. You have my word.&#39; He readily complied, wondering what this plan entailed. Wait a minute... &#39;You&#39;re not going to stuff me into some portable pocket space and carry me around, are you? That hardly counts as going out, just so we&#39;re clear.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-7FEFF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 12:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="816353027702521896" id="message-816353027702521896">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It <em>might.</em> Your safety is still my first priority. What I do know, however, is that you will make things incredibly difficult if I keep you inside here. It is best to gain my student&#39;s cooperation instead.&quot; Aratron replied with a sigh, wishing Tapio would just listen to her like an obedient mage.
+
+&quot;...A portable pocket space would require too much mana. Perhaps if I weren&#39;t summoned in a mechanical frame. If only my student were a competent magus...&quot; She cast a side glance at Tapio, implying that his own mana reserves were too pitiful to allow Caster to flaunt her full power. 
+
+&quot;But no, I will be escorting you outside. You have my word, too. Of course, keep in mind that we won&#39;t be sightseeing: I have scheduled a meeting for both of us.&quot; Aratron revealed. &quot;It involves two familiar faces. Tell me, do you still remember Assassin and their Master?&quot;
+
+Tapio started to connect the dots.
+
+&quot;Since we are on the run from the aristocracy, a lowlife from the mafia probably knows the most efficient way to keep a low profile while still maneuvering in public places. We can also prod them for info regarding the mechanical magus. Any objections?&quot; <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/18a44b061f5e7302b027056f34cee882-BDBA9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Tapio Veli Ilmari#0000" data-user-id="778332835940925497" style="">Tapio Veli Ilmari</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 02:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="816375329882636339" id="message-816375329882636339">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Hey, I heard that.&#39; Tapio grimaced. &#39;Providing mana is easy! You don&#39;t even need magecraft to do it. Maybe I can&#39;t compare to you, but anything&#39;s better than having no battery...&#39; He said ruefully, his ego hurt by Caster&#39;s dismissive face. Weren&#39;t Casters supposed to be low maintenance anyway? Surely they were bluffing...
+
+&#39;You know what they say, don&#39;t knock it till you try it. So why don&#39;t you try me?&#39; He puffed out his chest and gave it a few pats. &#39;I know we aren&#39;t through with our summoning yet. I&#39;ve read the books. We still need to establish a bond for me to give you mana. So here,&#39; He extended his hand. &#39;Let&#39;s do it before we leave for Assassin and his Master.&#39;
+
+Bonding...through a handshake?
+
+Something told Aratron that the boy may have misinterpreted the book yet again...
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20abandoned-church%20%5B771105068484657213%5D.html_Files/c282a4740a710c7190cb2513b19f4e75-7FEFF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aratron#0000" data-user-id="778332835940925497" style="">Aratron</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 03:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="816389709893861395" id="message-816389709893861395">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aratron stared at Tapio, completely dumbfounded.
+
+&quot;Rejected. Not until I have more details on your condition, at the very least.&quot; She scoffed at him, shaking her head as she started marching towards the desert exit.
+
+&quot;We also don&#39;t have the luxury of time. Bonding is a lengthy process that results in the gradual acclimation of both Master and Servant. I would require time to adapt, and so would you. Assassin would see that as a sign of weakness and refuse to assist us. We need to appear strong in order to gain their trust.&quot; She lectured him, making Tapio look like an overconfident idiot.
+
+&quot;Now, let us leave. Do not worry, as long as I am in this form, I severely doubt that we will encounter any trouble.&quot; God, at this point Caster was just flexing! Was she waiting for Tapio to hit her up or something?!
+
+The two left, heading for the mysterious meeting spot... <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+            </div>
+            
+    </div>
+</div>
+
+</div>
+
+
+</body>
+
+</html>

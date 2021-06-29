@@ -1,0 +1,1404 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - ruined-city-docks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Commoner District (RP) / ruined-city-docks</div>
+
+            <div class="preamble__entry preamble__entry--small">The Persepolis docks. Once prosperous, they are now a shadow of their former self. Ships come and go, yet always return empty handed. There are simply not enough resources out there in the empty sea. Most small ships that leave here never come back. However, since the emergence of the strange Noble Phantasm unleashed prior, the docks have been further reduced into nothingness. Little of value remains here.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 10-Apr-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Apr-21 10:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="831354432700153856" id="message-831354432700153856">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro sat looking out into the ocean, his back slumped and his legs hanging over a ledge where a wooden dock once stood. His eyes were covered by dark circles, beside him was a pile of ash and cigarette buts, it seemed to be about a packs worth, but it wasn&#39;t enough to stop Sandro from lighting another one between his lips
+
+Sandro had come here today to try and clear his thoughts, the sour feelings of defeat, and the guilt for what had happened at this very spot not so long ago. It may be true that he&#39;s not the one who ordered Sinmara to go on a rampage but he was still the one who brought her back into the world. In Sandros mind he was the one to blame for the destruction that occurred. 
+
+On top of his guilt Sandro also faced the problem of his father. Sandro was a total failure, he was unable to command a servant and despite having what was possibly one of the strongest servants in the war he still lost. He wasn&#39;t even good enough to clean up his own mistake. In the end he had to rely on his opponents ultimately defeating himself. Sandro was so deep in melancholy that he hadn&#39;t even returned him since his loss. Facing the wrath of his father would be a whole new ordeal.
+
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/68149d74d475ba19dc6015b22c8c9e1e-D299D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="802212689593368637" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Apr-21 03:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="832154108143599647" id="message-832154108143599647">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After all that happened that day, Kari felt hollow, a spent husk idly wandering around an increasingly decrepit city. She could no longer participate in the Holy Grail War that she had pinned her plans for revenge and later revival on, she likely no longer had the backing of her fellow aristocrats though it always was a thin wire connecting her to them, and most of all she was down the one person she had grown to trust above all others. 
+
+Even as she worked on Pascal’s broken body, Kari had already felt like she was missing half of herself. She barely said anything to her former enemy as she went about the same rites and procedures her family had performed for centuries on the wounded and ill. Miracle workers, they were called much to the Holy Church’s chagrin. 
+
+But with that done, she felt aimless. A pair of homunculi had already spirited away what was left of her servant so going back home didn’t feel appropriate. She’d just follow the other people in migrating to the commoner district. They were just as restless as her and she simply melted into the crowd, a leaf content to be tossed around by the stream of people.
+
+She walked around, drifting from crowded street to holes in walls that could generously be called bars, drank cheap beer and mainly kept to herself, focused on nothing as she took in the daily lives of the commoners that many accused her of not understanding.
+
+These were the people that supposedly hated her just because of her associations and sheltered, comfortable life yet in her current state and attire, barely anyone gave her a second look, too busy with their own problems, no servants or homunculi to do it for them.
+
+Yet she found it hard to set in any one spot for long, something in her forced her to keep moving, drawing her towards the edge of the city. Just like the River she compared her earlier journey too, Kari eventually found herself to the sea, roughly where the dock where she returned to this rotting city once was.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="832154169204015154" id="message-832154169204015154">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There she spied a familiar face.
+
+“Hey, got room for one more, Moretti?” She called out, walking up from behind him. If Sandro turned around, he would notice a woman clothed in a tank top bearing a symbol that reminded him of Rider, a dark bomber jacket, the sleeves of which gradually shifted to a strong red at the ends, worn black jeans and boots just as weathered. Whoever she was, she knew his name but sure didn’t dress like any aristocrat he knew.
+
+“Guessing you lost your servant in this mess?” She fished for a bottle of beer from the carton she had set down between them. She popped one open before looking over at Sandro. “You want one? Tastier way to poison yourself.”
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 12:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="832468951627595836" id="message-832468951627595836">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Deep in thought, Sandro was almost startled when a voice entered his ears. The mourning boy’s gaze left the ocean only for a moment to see who had plopped down beside him. He squinted his eyes taking a couple of seconds to register the face of his fellow aristocrat. “Karoli-...no…. Kari, I almost didn&#39;t recognize you”
+
+Seeing Kari beside him was nothing short of a surprise. Never in a million years would either of them approach each other should they find themselves crossing paths. However, the war changed something in Sandro, and maybe the same was true with Kari. Right now, he didn&#39;t mind her company at all
+
+Sandro reached out grabbing a beer from the basket between them happily accepting Kari’s offer. “Yeah… She went out in a literal blaze of glory, so here I am feeling sorry for the problem I caused” Sandro cradled the beer between his hands, deep in thought. 
+
+“What about yourself? You lose your servant as well?” As Sandro spoke his hand slowly reached up offering a cigarette to Kari. “I don&#39;t take you for a smoker but it&#39;s rather calming”
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/68149d74d475ba19dc6015b22c8c9e1e-D299D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="802212689593368637" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 01:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="832482339073687552" id="message-832482339073687552">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kari let her lips curve up as Sandro greeted her. She was about to comment on how Sandro had stayed the same but that little thing was enough for now. It was true that neither of them would typically greet each other but this holy grail war had a way of changing people, even ones as stubborn as Sandro and Kari.
+
+&quot;Wouldn&#39;t expect anything less from that crazy broad. It was one helluva show she put on. Think she even gave me a gift during that finale, did she have a thing for boats by any chance?&quot; She said between swigs of the cheap beer she held, trying to get a bit of a rise out of the moping man beside her. Though she didn&#39;t admit it, Sandro was one of the few people from her childhood she knew wasn&#39;t entirely high off their own airs and thus enjoyable to be around. 
+
+&quot;I - I don&#39;t really want to get into his sacrifice right now, still a bit too fresh for me. We were this close to winning...&quot; Kari drew her gaze away and into the bottle she held before downing the rest of its contents and tossing it into the sea. 
+
+&quot;Screw it, I&#39;ll give it a try. Booze isn&#39;t quite working its magic on me today,&quot; she took the cigarette from Sandro and let it rest between her teeth, idly rolling it around like a toothpick. &quot;You light these the fancy way or with a lighter?&quot;
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Apr-21 02:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="832501254760562688" id="message-832501254760562688">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro let out a small grunt as Kari expressed that Ada was too sore of a subject for conversation. He didn&#39;t care to press the issue and happily respected her privacy. He never experienced the same kind of bond that Kari had with Ada, but he could certainly understand feeling sour after a defeat 
+
+&quot;Yeah, now that you mention it she really did like destroying boats. I even watched one get thrown into the stratosphere.&quot; Sandro confirmed Karis&#39;s suspicion that the boat from the sky was in fact a parting gift from Sinmara. Thinking back to how scared he was as Sinmara terrorized the docks, Sandro couldn&#39;t help but chuckle a bit. It wasn&#39;t funny in the slightest but laughing just felt right. Somewhere deep down Sandro was laughing at how helpless he was at that moment. It was an almost therapeutic laughter. 
+
+Sandros attention turned back to Kari as she asked for her cigarette to be lit. He smirked, placing his beer to his side. It had been a while since Sandro pushed any buttons and he wanted to see if he could garner a reaction in Kari despite her cool exterior. It would certainly help lighten the mood &quot;Stay still&quot; he said, slowly leaning his face towards Kari&#39;s only to place the end of his cigarette against hers lighting it in the process.
+@Eagan#8440</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/bd84551efc3696e075f483afd99c6d3f-796A9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nebby#3980" data-user-id="193031489900904459" style="color: rgb(17,128,106)">Nubby</span>
+
+
+        <span class="chatlog__timestamp">16-Apr-21 02:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="832501349160976455" id="message-832501349160976455">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/68149d74d475ba19dc6015b22c8c9e1e-D299D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="802212689593368637" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Apr-21 11:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="832827154675793920" id="message-832827154675793920">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”Ah that’s the one. Yup, it was a real help to Ada and I. Would have thanked her for the blast but I doubt she would have accepted it. Probably would have said something like ‘I don’t need your corporate sellout endorsement!’” Kari chuckled as well, though it was one free from the guilt Sandro felt. Then again, she wasn’t even remotely responsible for the damages. If anything, they were a massive boon for her, a perfect excuse to wedge her company and herself into the spotlight and reshape the place.
+
+“So fancy it is. Ok, I’ll play your game,” she leaned forward, letting the cigarette balance precariously on her lip and tempting Sandro. She was making it too easy for him to go through with his plan. And for someone as trigger happy as Kari, he should be in for quite the show.
+
+Yet when he leaned in towards Kari, she didn’t recoil, yell at him or even jam an icicle in his stomach. She let him close in and light her cigarette, even resting her hands on his sleeves. And then he would see her face change from fake surprised to impossibly smug.
+
+And that’s when he noticed his shirt sleeves were burning, which was weird since his arms felt incredibly cold. As he moved to counter the flames that greedily sucked up his warmth, he would come to realize that these weren’t flames but rather creations of wind, water and ice that somehow could act just like fire.
+
+“You know for a second, i thought you really changed. But you really couldn’t resist, could you?” She cackled long and hard as she repaid Sandro for the time he pulled the same stunt on her. 
+
+“God, Sandro. Here we are, letting our supposed faction down with our losses and you pull a prank like it’s still high school. You sure you didn’t let Saber or Rider scramble your head a bit?”
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Apr-21 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="833227880384430110" id="message-833227880384430110">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro was a bit surprised as Kari let him lean in. He didn&#39;t expect her to be so calm; her solid demeanor almost made him blush. The plan had backfired. He leaned back after lighting her cigarette. Confused as to how well that interaction went. Sandro, however, wouldn&#39;t be mistaken for long. Suddenly his sleeves burst into flames. He quickly tried to pat it out, but it seemed this isn&#39;t normal fire.
+
+&quot;Gah&quot; Sandro grunted, panicking as he took his coat off, smothering it against the ground to pat out the cold flame. As the fire dissipated, he let out a deep breath rubbing his now cold arms with a slight shiver. &quot;Well, I suppose that was a fair reaction… But seriously, now I&#39;m cold&quot; Sandro pouted as he expressed how chilly he was blowing smoke towards the water.
+
+Sandro laughed as Kari made her remark, &quot;Please, the only thing Saber did was piss me off… Granted, I could have been a better master.&quot; Sandro took a deep breath, trying not to think too hard on his failure. &quot;Besides, the only person I let down was my father. All he cares about is upholding the family name, I&#39;ve gotta be a good aristocrat and make him look good. Well, you know what I say, Kari? Fuck him and fuck factions and all of it&quot; Sandro getting into the heat of the moment, grabbed a piece of rubble from behind him, tossing it into the ocean, watching it splash.
+
+&quot;I&#39;ve already decided that next time I leave this place, it&#39;s gonna be for good, i&#39;m not sure if you understand that or not… but that&#39;s the way it&#39;s gotta be.&quot; As Sandro finished his sentence, he let out a laugh. &quot;Sorry to get all sentimental on you&quot; He added with a chuckle. If anything was clear to Kari, it was the newfound passion that Sandro had found for himself.
+
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-3903F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(17,128,106)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">21-Apr-21 10:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="834255892714356737" id="message-834255892714356737">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">$ &quot;Cold? I don&#39;t see how you could ever be cold when you can light a fire whenever you want. Plenty of trash to burn around here, &quot; Kari gestured around her to the many pieces of rubble and refuse strewn around the remains of the docks, unimpressed and unconvinced of Sandro&#39;s display. Truth be told, she couldn&#39;t really tell if it was cold out herself, the cooling system in her had long desensitized her to all but the most extreme temperatures.  
+
+She reached for another beer as Sandro started on his own heartfelt rant of rebellion. She initially stared off at the horizon, idly drinking from the bottle; however, when he started talking about defying his father, she couldn&#39;t help but pay a bit more attention to her former classmate. The whole thing about sticking it to the man definitely had its own echoes of Saber in it. Perhaps she had done more to Sandro than he realized. 
+
+ &quot;No, no I understand what you&#39;re saying. If this was any other kind of fight, I&#39;d be screwed into some deep debt to some high up aristocrats, but with this whole mess?&quot; She emphasized her point by tossing an empty bottle into the shattered remains below. 
+
+&quot;There isn&#39;t a guy around that can afford to do so! The aristocrats are broke and the Mafia can&#39;t get help, we&#39;re all just commoners now. It&#39;s kinda stupid if you think about it. Two factions wanted something that would give them the upper hand in their fight over this dying man of a city and in the end they just made themselves equal in their weakness and end up killing the place in the process.&quot;
+
+$</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Apr-21 10:35 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="834256169316646922" id="message-834256169316646922">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">$ 
+
+&quot;Then again, I almost went down that same route. I came back to track down the man who murdered my father and this thing seemed like the thing that would reveal his slimy face.  Instead I got a bunch of people telling me that <em>I</em> was the problem with this cesspool.&quot; 
+
+&quot;My family didn&#39;t press them down into poverty, no that was the Mr. Niemeyers and Szracs who did. They and the heartless mafia were the ones to blame, but I was right there in the commoners face. So they blamed me, a lot easier I suppose than hitting up at the bosses they could never touch,&quot; she had stood up and not noticed her own animated behavior. &quot;And then the bosses try to use me in their plans, so desperate to win after their prized soldier renegaded. They gave me everything and I still lost to a cook and a man in a space suit, losing my companion in the process. They lost in that moment I suppose and now? I don&#39;t quite know, don&#39;t have that same rage and hate for the &quot;mafia&quot; that I did before. Everyone on this place was nothing more than a puppet dancing to the bosses strings and I guess I&#39;m free of that.&quot; 
+
+&quot;Oh shit, didn&#39;t mean to ramble on like that, Sandy but maybe now the booze is really kicking in. Just so much to handle just today...&quot; She flopped back down again. 
+
+$</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="834256204594675722" id="message-834256204594675722">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Apr-21 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="834287935159402506" id="message-834287935159402506">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro watched an animated Kari take her turn to rant about the recent events. He drank his beer alternating between sipping from the bottle and puffing on his cigarette. He couldn’t help but crack a smile at Kari’s apology for speaking her mind. 
+
+“Don’t sweat it” Sandro said shaking his head as he finished off his beer. “I think if there’s one thing we can both agree on, it’s that things are kind of shitty sometimes” What Sandro said may have been an oversimplification but it pretty much summed up how he felt. “Also Sandy is what my friends call me… so don’t wear it out alright?” Sandro cringed at his own cliche line but he didn’t have a better way to call Kari a friend, or at the very least someone he could see himself being friends with.
+
+Putting the empty beer bottle at his side Sandro let out a deep breath, Kari was right, there was a lot on her plate today. Sandro himself was down in the gutter as well. “Well, Kari it’s not good to be sad and tipsy at the same time, especially considering that you seem to be a lightweight” Sandro grinned as he let out a tiny insult towards the admittedly tipsy girl.
+
+“So what do you say we stop pouring our hearts out and have just a little bit of fun. Like I don’t know, maybe we can go break some things... maybe start a few fires?” Sandro tried to make a few suggestions in order to lighten the mood only half-joking. Sandro was seriously down to break some stuff or do anything to get his sour feelings out.
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/68149d74d475ba19dc6015b22c8c9e1e-D299D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="802212689593368637" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Apr-21 01:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="835021876136640512" id="message-835021876136640512">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Sure thing, San-dy,&quot; Kari chimed as she scooted right up beside Sandro, almost rubbing his nickname in his face. He could see her cheeks flushed with a soft red color as the alcohol began to take its course and her inhibitions started to melt away.  Though to Sandro, it was hard to tell if she was pulling another prank on him.
+
+&quot;Sad and tipsy? Heheehee, this ain&#39;t nothing! This is like a happy buzz for me! I&#39;m not stewin&#39;, just a bit empty I think,&quot; She nudged the man beside her playfully though she put a surprising amount of force into her shoulder. &quot;At least what I&#39;m feeling now anyway, just going back up from my earlier bender, think it was a couple hours at a couple bars &#39;fore I came to see you, Sandy.&quot;
+
+Kari smiled right back at Sandro, his tiny insult rolling off her like a drop of water and seeming to make her a bit happier more than anything else. What would he have to do to make her crack? 
+
+&quot;I dunno about that, enough stuff is broken now. Your servant and Zerker&#39;s master went ahead and spoiled all of that for us. It&#39;s a fresh slate and I&#39;ll beat you if you start lighting it on fire,&quot; She poked Sandro right in the chest before drawing back her hand in a fist, the same smile still on her face. 
+
+&quot;No, what should be fun is building a new Persepolis. Just imagine the fancy new docks, the part for the floating planes, and then behind us, all new towering buildings for shops and apartments. We could make everyone as well off as us if we really tried!&quot; She got to her feet a bit more unsteady this time and started gesturing around at only a future she could see at the moment but one she wanted everyone else to see. &quot;But I- I will need help to make it real. Wanna join me? I&#39;ll pay you well, make you look all strong and independent to your dad, Sandy&quot;
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Apr-21 04:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="835251248730341417" id="message-835251248730341417">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro shook his head as he heard his childhood nickname. Sure he gave her permission to use it but Kari seemed all too friendly in a moment&#39;s notice. To compliment her playful attitude she had scooted right up against him. Sandro looked away, his face turning flush. “H-hey I said not to wear it out”
+
+Sandro let out a slight “ow” as he was nudged by the tipsy girl. It seemed Kari’s buddy buddy attitude wasn&#39;t going anywhere. He didn&#39;t particularly mind it. The change was just sudden, he attributed the change to Karis drunken state so he tried not to look too far into her friendliness. If anything was confirmed however, it was that this girl drank the same way Sandro smoked.
+
+“Beat me? I&#39;d like to see you tr-... h-hey s-stop being all touchy” Sandro changed course mid sentence as Kari’s finger pressed against his chest, his face turning a lighter red color. He hid his face as it welled with embarrassment. Sandro wasn&#39;t used to being teased by other people. Sure Sinmara made a good bit of fun out of Sandro but he wasn&#39;t expecting such playful banter from Kari
+
+As Kari changed tones, Sandro turned his face back towards her. It seemed she was speaking from passion and this caught Sandros attention. Following Kari as she stood up, Sandro placed a hand on her shoulder to keep her from tripping as she wobbled. 
+
+“Well you have my interest peaked” Sandro replied scratching at his chin while he thought about the proposal. “But I don&#39;t need your help proving my father wrong alright!.... But I do need a place to go from here…” Sandro let out a deep sigh shaking his head at the girls ramblings. “Listen if you’re really serious about doing something and it&#39;s not just the beer talking, then i&#39;ll consider it... But I wanna know more”
+
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/68149d74d475ba19dc6015b22c8c9e1e-D299D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="802212689593368637" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Apr-21 02:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="836485336853905408" id="message-836485336853905408">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Every time Sandro mildly protested, Kari seemed to follow up with something a little more aggressive than the last. To her ears, Sandro’s objections and blush were nothing but tacit submission, little shots of alcohol that kept her coming back for more and more. Sure the guy couldn’t banter as well as Ada or hide his expressions like Archer could, but perhaps there was something sweet in the struggling aristocrat’s openness.
+
+The light pink glow in her cheeks only deepened in shade as Sandro put a hand on her shoulder. Misinterpreting his courtesy, Kari laid one cool hand of her own on Sandro’s opposite shoulder. Her drunken grin picked up a more predatory nature as her former opponent admitted he needed her help.
+
+“So what you’re saying is that you need me to help you as well? I suppose I could pick out a room or two for you, especially if it’s to help you break away from that dad of yours,” she giggled for a moment at the thought, imaging herself as the backbone he needed to stand up at all to his family.
+
+“But if you insist, I <em>suppose</em> I could tell you a bit about what I have in store for you. Instead of scrapping this whole wreck of a city and the bad memories it has, I believe we need to <em>hic</em> move forward and reshape it, mold it into something brand new, something that doesn’t kill fathers and leave families destitute. This war has left us with the perfect opportunity to start over again, we can’t let that slip away!”  
+
+She moved to say more but she paused and looked away from Sandro for a moment. Though given their position, it was a bit awkward. She felt like pushing him away but if she was to move on from what happpened today, she would have to say it.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="836486020300013569" id="message-836486020300013569">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“It’s just that now I realize I can’t do it by myself. Well I could have but the man who could have helped me is no longer here and my homunculi can only do so much. I need... I need someone like you Sandro. To help me reshape this place so no one has to go through this shitty war, holy grail or otherwise, that we’ve been caught up in for too long.”
+
+“I need someone beside me again before I slip back down the hole, before this city does,” She said, trying to reign in her own confession and bring it back to topic. “I can’t let all that has happened over these last few weeks go to waste.”
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Apr-21 09:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="837134645107359764" id="message-837134645107359764">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro looked down, surprised as Kari placed a hand on the back of his shoulder. She really was quite the touchy one. That would take Sandro some getting used to; he’s not particularly fond of his personal space being violated. However, it seemed he would be spending the foreseeable future in Karis company, so he needed to suck it up and quick.
+
+“I already said I don’t need your help  with that!” Sandro protested, looking away as Kari shot him a grin. “You’re the one who asked me to help you stop turning it around.”
+
+Scraping away his annoyance, Sandro listened to what Kari had to say. She had some big and admirable goals. Sandr only wished she was sober to give a more solid explanation. However, he got the gist.
+
+As Kari turned her face, Sandro only watched her more intently. What was the sudden change of tone coming about? “Someone like me…” Sandro repeated, looking down at the floor. Kari’s statement had hit a soft spot in Sandro. He had never been validated by someone before, and first the first time in his life, he was recognized by someone.
+
+“Yeah, I get what you mean… I suppose we’ve all been through a lot this month, and we put a lot of innocent people through a lot more as part of our game.” Sandro picked his head back up and flashed a smile at Kari; it was the first time he had smiled in front of her, showing a softer spot in his cold exterior. “You and Me then. Together, Kari, we’ll help each other, and the city… its a promise” As Sandro finished his heartfelt words, he held his pinky out to Kari, looking to seal a pact with their pinkies.
+
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/68149d74d475ba19dc6015b22c8c9e1e-D299D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="802212689593368637" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Apr-21 02:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="837576804117905458" id="message-837576804117905458">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”Ok, whatever you say, Sandy. Just know I’ll always be around if you need the assist!” Kari bit back again at Sandro’s paternal struggles, displacing her own underlying problem onto a much more easy target.  So reliable too, always the same buttons to press and the same flustered reaction was guaranteed. It was nice having him around, why didn’t she do more with him before? She wondered in her drunken mind, thoughts more loose and malleable than usual.
+
+Of course she had to keep on going and confessed that she could not do things alone. That was a truth she should have kept hidden but with the current events and her state, it felt good to reveal her inner weaknesses. It helped to have someone as entertaining as Sandro to tell it all to as well.
+
+“Excellent, it’s a deal then!” Kari excitedly smiled, her mood as easily changeable as the waves behind them. She hooked her pinky around his and pulled tight, yanking him closer in the process. Now they were very close together, and Sandro could feel warmth for once in Kari’s presence. Perhaps the Ice Queen had finally melted.  The arm that had rested on Sandro’s shoulder now was wrapping around his back in an embrace.
+
+“I always thought you were a good guy at heart, Sandy. Thanks for helping me out, even if I was never the most friendly to you before or a condescending jerk. Don’t let me down now that I’ve said all this, it’s not the booze speaking this time. It’s just me...” Kari whispered into his ear, content to soak in the moment and the trust of another human for a few seconds.
+
+Unfortunately it would not last long as an explosion suddenly rocked the  floating city to its very core, throwing the pair to the ground, one on top of other. A sharp wind came rushing over them as soon as the horrible noises died down and that’s when they could feel the ground beneath them begin to rock.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="837576868248813588" id="message-837576868248813588">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh no, oh no, nononono...” Kari mumbled into Sandro’s chest as the realization hit her as to what had just happened. She squirmed around on top of Sandro, trying to get to her feet quickly. Her eyes darted wildly around, trying to assess where the blast had come from and what damage had occurred. She began pushing on his chest, trying to motivate him. “Come on, Sandro, we gotta get moving now, towards the center of the town. We may not be safe here...” 
+
+He could feel the jabs and shoves get more intense as Kari spied a glance over at the remnants of the docks and the waves that were beginning to climb up them at a deceptively fast pace.
+
+“We really need to get going, and hey, don’t you dare say something funny about how we ended up. I need you alive and moving,” Kari was up on her feet now and unsuccessfully trying to pull Sandro up by their crossed pinkies.
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/b66a6e71184225a59a6f0c3874f3af53-64220.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sandro Moretti#0000" data-user-id="802212689593368637" style="">Sandro Moretti</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-May-21 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="837876075878547467" id="message-837876075878547467">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sandro gave off a soft smile as Kari wrapped her finger around his. When Sandro came to the docks, he would have never expected to be making a life decision involving the Tovesky girl. It seemed to Sandro, at this moment at least, that life had some pleasant surprises.
+
+However, It seemed Kari wasn’t done with the heartfelt moment. Much to Sandro’s surprise, he was now in a long embrace with Kari. His face turned a deep red as he wrapped his arm around the girl’s back, returning the hug. 
+
+Chills ran down Sandro’s spine as Kari whispered her final thoughts into his ear. “Kari, I-” before Sandro could return Kari’s words, the very foundation beneath their feet rocked as the echoes of an explosion filled the pair’s ears. Shaken about and stunned, it took a moment for Sandro to realize he had fallen over with a frantic Kari landing against his chest. What the hell was going on? 
+
+Feeling Karis shoves against his chest, Sandro snapped back to reality, realizing that something was very wrong with the city. “I’ll save the jokes for later,” Sandro quickly replied, gripping at Kari’s finger, standing back up to his feet. 
+
+Now on his feet, Sandro let go of Kari’s pinky, now wrapping his whole hand around hers. “Stay close, and we can get out of here fast enough” Sandro watched the waterline engulf the remnants of the docs; certainly, the water meant impending doom. “If you can freeze the floor in front of us, I’ll use wind to propel us across it like a slide, and we’ll outrun whatever is going on.”
+
+Sandro hoped that by combining their capabilities, the two could reach their destination with haste. Kari would be making the ice path, which left it up to her to lead the way.
+
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Commoner%20District%20%28RP%29%20-%20ruined-city-docks%20%5B771104959357648896%5D%20%28after%202021-04-10%29.html_Files/68149d74d475ba19dc6015b22c8c9e1e-D299D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="802212689593368637" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-May-21 02:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="837940900185112598" id="message-837940900185112598">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”Good, glad I didn’t soften you up too much then, even in my sorta, kinda tipsy state,” Kari said, trying to downplay her own current condition and the terrible timing it had with the chaos unfolding around them.
+
+Kari blushed heavily as Sandro took the initiative for once and put her hand in his. Handholding was not a thing to be taken lightly, nor was Kari going to let Sandro top her and not come back with her own thing. She didn’t quite know what that would be but she would come up with something once she and Sandro got out alive.
+
+“To be honest, I’m more worried about you making it than me, fireboy,” she smirked at her new partner as her other hand started to condense frost and rime around itself. “I’ll lead and you follow, just hold on tight because it’s going to be a real mess and we may end up sliding through a few things...”
+
+Scooping water with her free hand, Kari flung it out in front of them and rapidly converted it into an incredibly slick sheet of ice that continually refroze its surface. Yanking Sandro by the hand, Kari ran onto the ice and began sliding along its surface like a mock leyline. With Sandro providing thrust and Kari clearing the way head, the two would speed off towards freedom from the city that had sought to bind them to the past and had failed to do so. For such a dynamic pair of young magi, the future ahead was theirs to shape though it would not be Persepolis where they would achieve such works. No, it was only the testing ground for the wonders ahead.
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+
+</html>

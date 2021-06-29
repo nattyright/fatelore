@@ -1,0 +1,1777 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - power-plant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Aristocrat District (RP) / power-plant</div>
+
+            <div class="preamble__entry preamble__entry--small">The plant powering the city&#39;s load along with its entire infrastructure. It is controlled by the aristocracy and the main reason why the mafia haven&#39;t made their move yet. Approaching the elite carelessly could easily result in them shutting down the power and taking them down with them.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">08-Nov-20 07:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="774781999369682954" id="message-774781999369682954">
+                    
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e3Imwgt-DE5D7.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e3Imwgt-DE5D7.jpg" alt="Image attachment" title="Image: e3Imwgt-DE5D7.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>  
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Nov-20 07:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="778399580156198942" id="message-778399580156198942">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>SYSTEM DIAGNOSIS:</em>
+<em>POWER LEVEL - 87% PRIMARY, 100% RESERVE</em>
+<em>HULL COVERAGE - 100%</em>
+<em>BODY TEMPERATURE - 35&#176;C</em>
+<em>HEART RATE - 70BPM</em>
+
+The list of arbitrary stats scrolled in front of his eyes, becoming less and less useful with each line of text that passed. Szrac glanced through them, impatiently tapping his finger as the column of pure information slowly crawled upward to reveal the next unnecessary piece of knowledge.
+
+How moronic. Was the inventor of this damnable metal prison mentally challenged, or did they simply enjoy watching others suffer? The day was long, but watching seconds slip away as words floated up at a snails pace certainly wasn&#39;t making it any longer.
+
+<strong>&quot;Show Summary.&quot;</strong>
+
+<em>ARE YOU SURE YOU WOULD LIKE TO SK-</em>
+
+<strong>&quot;Show Summary.&quot;</strong>
+
+The interface obliged, flickering for a moment before displaying the only information that Szrac cared to see. 
+
+<em>CURRENTLY RUNNING AT 96% TOTAL POWER. WITHIN ACCEPTABLE OPERATING PARAMETERS.</em>
+
+<strong>&quot;Expected.&quot;</strong> Szrac muttered, standing up from his desk. He had transformed the office he had commandeered into something akin to a workshop, requisitioning many of the necessary tools that he would require from the employees of the Power Plant. Many had complaints about what they had called &quot;theft&quot;, but it was unfortunate for them that they had no say in the matter. 
+
+After all, he had been hired as a direct agent of the aristocracy to quell this pathetic uprising. A quick stomp to the neck of the rebellion to stop a civil war that would destroy Persepolis. Perfect work for someone of his particular talents. Yet there was a complication to this would-be civil war: The presence of S.E.R.V.A.N.T Mystic Codes. He was told that the members of the mafioso had already gotten their hands on several of the devices, with many more activating them.
+
+Unfortunate, but not unbeatable. After all, his employers had been kind enough to offer a S.E.R.V.A.N.T exoskeleton of their own.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Nov-20 07:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="778402938984333335" id="message-778402938984333335">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Stepping out of his workshop, he strode through the halls of the power plant, his footfalls echoing throughout the wide halls. At his presence, passers-by ducked into side rooms and loitering employees suddenly made themselves busy, seeking to avoid the attention of the mechanical titan. After all, if he could take over a section of one of the most important buildings in the city, surely he could have them fired without a second thought?
+
+A completely untrue thought. Szrac couldn&#39;t care less about these miserly drones, so long as they provided him with ample power to function. However, the belief that he held some kind of smouldering hatred for them seemed to increase productivity. Thus, it lingered.
+
+Szrac paused, turning to the right and entering into an unmarked room. He took a moment to analyse the room: A giant exoskeleton sat in the middle of a circle of computers and machinery, cables and wires connecting to the mannequin at a dozen different points. A few scientists were gathered around a single primary terminal, each staring at it with a different emotion: trepidation, fear, joy, sorrow, and everything inbetween.
+
+<strong>&quot;Is it ready?&quot;</strong>
+
+A pause. No answer. Szrac scowled, an emotion communicated by a low metallic growl. Was their sentimentality really such a burden to communication? Or had they simply failed to finish the request project in time? No matter. He would have the answer soon enough. Moving forth, the few scientists parted like water, making way for the cyborg. 
+
+His eyes looked over to the screen of the terminal as his gauntlet moved to the keyboard, seeking one last confirmation of intent.
+
+<em>SUMMONING.EXE</em>
+
+Click. Szrac pressed down on the enter key, and in an instant, the room filled with dozens of incantations, chanted through speakers as power was funnelled directly into the S.E.R.V.A.N.T suit.
+
+<strong>&quot;Let us see if you will prove suitable to my needs, weapon.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">18-Nov-20 07:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="778402954310189088" id="message-778402954310189088">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f28ed9b9f4c5c978a95d469113a1cfe8-0F831.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frederick II#0000" data-user-id="778399579111555092" style="">Frederick II</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Nov-20 11:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="778456347569946705" id="message-778456347569946705">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Existence upon the throne, was it death? No, he had been dead, existence upon the throne was… a memory… a perceived life.
+It was not death, nor was it undeath, yet he not dead, nor alive. It was a single moment that went by instantly yet was eternal. Born upon the first, the originals, death.  A sea of nothing, but encompassed everything the original had been, or at least was remembered for. 
+Then there was waking, information of the world poured forth through the grail as he was stripped from that quiet moment, from the throne and pulled back into ‘life’
+And oh the world, a tragedy, a shattering, a flood. But it was unchanged he was sure of it, greed and generosity, selfless ness and selfishness, faith and fear.  The core of people was unchanged, thus the world was as it always had been.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="778456488821260330" id="message-778456488821260330">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The exoskeleton took on a soft white glow as the summoning began, however it grew brighter as a great wind burst forth from within, one that seemed to cycle back in upon itself, blowing away the connecting wires and throwing light objects and papers tumbling through the room. The clear white light grew to a dazzling gold that filled the room, bending and twisting as if it were alive, and trying to feel, it turned around and among Viktor’s limbs.  
+
+Within this light a shape began to materialize, as though being born from a burning light, the form coming into shape as bits formed from fire. In a great final burst of light the air seemed to collapse back in upon the frame and the light retreated with it. Leaving a shower of sparkling light particles in the air a
+
+Standing there was a great figure, the physical form of an old man, donned in great armor, a sword held at his side. His posture was firm, his breast, even through the armor was obviously swelled with pride.
+
+“I heard no call yet I am here, not the summoning I expected even still.” His eyes scanned the room, noting the men in coats, scientists, but his eyes naturally roamed upon Szarc, and there was a recognition there.
+
+“I like the armor, O’ Master in Metal-“ he drew his sword and planted it in the ground in front of him as he bellowed his next words. “My friends, my foes, fear not the shadow of the future, in this moment I take the field the future is illuminated with only possibility.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e86b5e307f62376e436b14ae0ae9becf-21314.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="WafflesofWar#7330" data-user-id="151183957105442817" style="">WafflesofWar</span>
+
+
+        <span class="chatlog__timestamp">18-Nov-20 11:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="778456532555792386" id="message-778456532555792386">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Nov-20 06:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="778573424746168351" id="message-778573424746168351">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The force produced by the summoning ritual was great, sending loose papers flying and knocking back the unfortunate scientists. Yet the cyborg stood undeterred, shawling billowing from the unnatural winds. His visor began to slowly darken as the room grew brighter and brighter, before it all culminated in a giant flash of bright white light.
+
+For a moment, there was nothing but white, before the effects of the flash began to fade once more. In the middle of the summoning circle was a servant, surrounded by sigils drained of magical energy and cables that had been forcibly detached. In place of the exoskeleton was a man, proud in stature and clad in brilliant armour. The scientists at the back of the room stared, feeling a mixture of awe and fear.
+
+They had done it. The S.E.R.V.A.N.T summoning ritual had been a success.
+
+Szrac stared at his new S.E.R.V.A.N.T for a moment, his emotions impossible to decipher underneath his iron visage. After a moment of evaluation, he turned his attention back to the terminal, which now held new information.
+
+<em>SUMMONING COMPLETE</em>
+<em>TEXT LOGS:</em>
+<em>SHUT. FILL. SHUT. FILL. SHUT. FILL. SHUT. FILL. SH-</em>
+
+Unimportant. He didn&#39;t need to know how to ritual was performed. That was why he had invested in this set-up: Batteries to supply the perfect amount of mana, voice synthesizers to perform flawless chants. Of all the summoning rituals, his had only a 0.7% failure rate, far superior to anything those mafioso could ever hope to produce. Skipping through the text logs, he saw the only information he had any desire to know:
+
+<em>S.E.R.V.A.N.T CLASSIFICATION: SABER</em>
+
+<strong>&quot;Sabre. A type of sword, most often curved, and used as an off-hand weapon. Fitting.</strong> Szrac noted, walking past the terminal as he approached Frederick. <strong>&quot;I was told by my contractor that those of the Sabre class possessed the highest combat aptitude. Tell me; was that assessment correct?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">18-Nov-20 06:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="778573442534473728" id="message-778573442534473728">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f28ed9b9f4c5c978a95d469113a1cfe8-0F831.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frederick II#0000" data-user-id="778399579111555092" style="">Frederick II</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Nov-20 06:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="778743360596606996" id="message-778743360596606996">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Frederick continued to watch Szrac as he approached, the man he would now call ‘Master’ for the foreseeable future had not recognized his words, and seemed to have barely recognized the Servants appearance. 
+<em>Not to unlike Father.</em>
+As that thought passed through his head he chuckled audibly, in the same moment Szrac had spoken, something about ‘were sabers the strongest class’ or some malarkey.  Best to speak before the chuckle was misconstrued.
+“No, not at all, such broad statements are the foolhardy words of mages that do not understand the battlefield. However, as I said before, now that I am present only one outcome of any conflict is possible. Victory. I suffered only one meaningful loss upon the battlefield, whether it was one of blades or words.  It was also the loss upon which I vowed to never taste such bitter defeat again, my first battle, my first and last loss.”
+He closed his eyes and nodded his head a few times, before shaking it once or twice as if deciding upon his next words.
+“It stings of pride and goes against my more humble nature to utter these words, but know they are the words of others, from the Isles of the Britain’s to the Halls of the Holy Roman Emperor, when I drew breath I was thought of as something undefeatable, being owed fear and respect in equal measures when found to be your foe. So I urge you to have the upmost confidence in my abilities, but trust not such blanket assumptions and superstitions to decide our coming battles.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e86b5e307f62376e436b14ae0ae9becf-21314.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="WafflesofWar#7330" data-user-id="151183957105442817" style="">WafflesofWar</span>
+
+
+        <span class="chatlog__timestamp">19-Nov-20 06:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="778743412307263516" id="message-778743412307263516">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Nov-20 02:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="779043686071533598" id="message-779043686071533598">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">So, the information given to him by his superiors had proven to be incorrect. He had assumed as such - after all, any blade could be deadly, but not all blades had been created equal. When steel clashed, it was an inevitable truth that the weaker material would shatter under the strain, and this was no different. All that mattered was that his Servant was stronger than all others, so that he might shatter them with ease.
+
+The cyborg watched and waited as Frederick continued his speech, his neutrality shifting to a feeling of annoyance. He had already given his answer, yet he continued to waste both words and time. And for what? Some attempt at romanticism? To prove how noble his intentions were? 
+
+That didn&#39;t matter to Szrac, though his rhetoric certainly did affect the scientists at the back of the room. Their doubts melted away, their dread replaced with excitement.
+
+&quot;We... we did it! It worked!&quot;
+&quot;He&#39;s a man out of time... we&#39;ve made huge strides here.&quot;
+&quot;Do you think-&quot;
+
+<strong>&quot;You are dismissed. Your performance here was satisfactory. Take a thirty minute break to recuperate energy levels and maintain morale, then reconvene and collect any further diagnostic data.&quot;</strong> Szrac ordered. The scientists hesitated for a moment, but ultimately shuffled out of the door in an orderly fashion.
+
+With that concern out of the way, the magus turned his attention to the next issue: surveillance. Marching over to the corner of the room, he grabbed the security camera, pulling free the power cord and causing it to deactivate.
+
+<strong>&quot;If you are as grand a strategist as you claim, you will surely understand the need to understand the forces you work with. I require your True Name to ensure our co-operation works at maximum capacity.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">20-Nov-20 02:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="779043713799946270" id="message-779043713799946270">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f28ed9b9f4c5c978a95d469113a1cfe8-0F831.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frederick II#0000" data-user-id="778399579111555092" style="">Frederick II</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Nov-20 11:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="779184354865053726" id="message-779184354865053726">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Frederick watched as this Master clad in steel seemed unimpressed by his presence, that was good, he didn’t need a master that would fawn over the smallest display, was more concerning though, was that his heart seemed as cold as the metal that shrouded his form.
+
+His words to the scientists in the room had been proof enough of that, so when Szarc unplugged something and subsequently addressed him concerning his identity he simply strode past and began peering at the console’s in the room without giving an answer, true the characters upon it were alien to the Old King but that he comprehended them was not important.
+
+Wordlessly he looked around the room for another minute stalling his answer to Szarc, he of course already knew the words he would use, but he felt like making the magus wait would pay off, not now. But later.
+
+“My True Name is something for my Masters to know, yes to ensure cooperation and utilization of my skills and Noble Phantasm to their fullest.  But to keep it secret it is best to speak it as little as possible. So I say we wait for the others to return before I introduce myself after all.” He smirked, the old man smirked at Szarc.
+
+“It appears they had the same hand in summoning me here as you, after all, no voice called forth to me. Who is to say a single Master is mine, and not all those involved. Until evidence otherwise, you and they.” He jerked his head towards the exit. “Are but equals in my own eyes.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e86b5e307f62376e436b14ae0ae9becf-21314.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="WafflesofWar#7330" data-user-id="151183957105442817" style="">WafflesofWar</span>
+
+
+        <span class="chatlog__timestamp">20-Nov-20 11:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="779184371012730912" id="message-779184371012730912">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Nov-20 08:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="779319275437031474" id="message-779319275437031474">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Underneath the iron helm that covered his face, Szrac&#39;s eyes narrowed.
+
+It appeared that the Sabre that he had summoned was intent on trying to, for lack of a better word, screw him over. A most unfortunate state of affairs. He had hoped to summon a more practically-minded servant, such as the wise Trajan or fierce Dietrich. Someone who understood their role within this conflict, and followed it without issue.
+
+Yet it appeared his servant was less agreeable than he had hoped. His servant had acknowledged the benefits that revealing their True Name would provide, but refused to do so, instead providing shallow excuses that held no true weight.
+
+Still, that revelation only created further problems. He had only been provided with a single S.E.R.V.A.N.T frame, and requisitioning another one would surely end poorly. Therefore, activating the kill switch and simply summoning a fresh servant wasn&#39;t an option. He&#39;d simply have to coax them into giving up their identity another way, be it through persuasion, bribery, or force...
+
+<strong>&quot;It appears you have taken issue of my way of doing things. Rest assured that feeling is now mutual.&quot;</strong> Szrac noted, the servos of the sarcophagus whirring as he moved towards the door. <strong>&quot;You are unwilling to provide your true name, so I shall default to the second stage of the post-summoning process. Field tests to better measure you abilities will begin as soon as you are able.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">20-Nov-20 08:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="779319284681670656" id="message-779319284681670656">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f28ed9b9f4c5c978a95d469113a1cfe8-0F831.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frederick II#0000" data-user-id="778399579111555092" style="">Frederick II</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Nov-20 07:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="780213129078112277" id="message-780213129078112277">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Again Frederick only chuckled and now sheathed his blade, looking about he strode to the corner of the room and reached out, picking up an officer chair that had been knocked over by the force of his summoning, setting it back down he took a seat. It was not the most comfortable chair no, but surprisingly supportive, if his throne had supported him like this he might have been less restless upon it!
+
+Breaking from his musings on how far chairs had come, he’d have to look more into that, he addressed the Master in Metal before him.
+
+“Actually, you seem to misunderstand, one several key points.  First off I am not refusing to say my true name, but what proof do you have of being my Master? Why should I reveal it to you when several men were in the room when I was summoned?”
+
+Frederick of course knew the identity of how who was his Master, but that was not the point of these words, nor this course of action.
+
+“From the information I was gifted of this world upon my incarnation moments ago I can already tell several factors.  The Holy Grail is in a poor state, and I question just how much my summoning had to do with a proper Holy Grail War. And despite that I should feel our contract resonating within your command seals, I feel no such presence, further credence that the knowledge I have is fractured, but that the normal processes that should be involved are also fractured in a way.  So I’m guessing you cannot force my hand with a command spell.  I’m guessing this from what is previously stated, and that you didn’t bother trying to threaten or brow beat me with one to get my name, whether you would actually do it doesn’t matter.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="780213302869098518" id="message-780213302869098518">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He shrugged.
+
+“You seem like the one to try to bluff or mislead in order to gain an upper hand.  A valuable trait in any conflict. One to be respected, and kept aware of.  However, if there are no command seals to force my hand than the relationship between, for lack of better terms, Master and Servant, become muddled and shifted. This is something that should be worked out here, by what caliber do you claim to be my Master over any of the others that had a hand in the ritual and process of my summoning.”
+
+He drew in a breath and cleared his throat.
+
+
+“Furthermore, on the latter of your statements. My caliber is measured by my Summoning, or at least my ability and capability to fight can be approximated by the fact I could be summoned. That I have knowledge of the battlefield, singular duels and other forms of combat is apparent and obvious. No rather with the relationship between Master and Servant muddled, what warrant is there for me to submit myself to, or even stand alongside you in whatever conflict is to come. As I doubt someone would go through the effort of a summoning without purpose.  So by what merit are you my Master, oh Man in metal who has scarce the respect to share a name without prompt, and expect to be respected in turn.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="780213361987682354" id="message-780213361987682354">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Falling silent now he only watched Szrac now, waiting patiently for a response. With no Grail present what motivation had he to fight? His wish was one that required the Grail, nothing else would do thus if this Master was lacking, if the wish he sought, if his goals were lacking… even if it meant to lose this incarnation and wait for another endless moment he may just consider that.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e86b5e307f62376e436b14ae0ae9becf-21314.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="WafflesofWar#7330" data-user-id="151183957105442817" style="">WafflesofWar</span>
+
+
+        <span class="chatlog__timestamp">23-Nov-20 07:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="780213375983943711" id="message-780213375983943711">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Nov-20 09:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="780247574812033106" id="message-780247574812033106">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The cyborg watched as his servant took a seat, listening to his unnecessarily over-the-top speech with a mixture of perturbation and boredom. Every word that Frederick said only further reinforced the fact that he was being difficult on purpose. He had proclaimed himself a Holy Roman Emperor, yet he seemed intent on acting the fool.
+
+<strong>&quot;You appear more unaware of your current circumstances than you think, Sabre.&quot;</strong> Szrac replied to his servant, pacing over to the terminal once more and looking over at the screen. <strong>&quot;The Grail has only resumed operation after a century of dormancy. Technology has greatly advanced, at the cost of immense environmental damage. The operating capacity of the relic remains greatly reduced, forcing the usage of external peripherals, and leading to features deemed unnecessary being temporarily culled. That includes command seals.&quot;</strong>
+
+The mechanical man paused, typing a few commands into the computer in front of him, before reaching down, picking up one of many cables leading out of it. After examining it for a moment, he plugged it into his suit through an unseen receptacle, before continuing to speak.
+
+<strong>&quot;In their place, is a kill command. A single command that will exterminate your spiritual core and return you to the Throne of Heroes. A nuclear option, so to speak, but a necessary safeguard in such a conflict.&quot;</strong>
+
+<em>Ding!</em> The computer flashed a new screen, a confirmation of a successful software transfer. Szrac unplugged the cable, turning to face his servant once more.
+
+<strong>&quot;Your wish is unimportant to me, as is your desire for proof of mastership. If you would rather work under the supervision of an untrained scientist in place of a professional, then so be it. I have no attachments in this rebellion, no feelings towards the aristocrats, nor the mafioso. My sole desire is to acquire the influence that success will provide to me.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">23-Nov-20 09:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="780247582906908693" id="message-780247582906908693">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f28ed9b9f4c5c978a95d469113a1cfe8-0F831.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frederick II#0000" data-user-id="778399579111555092" style="">Frederick II</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Nov-20 11:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="780276653413761034" id="message-780276653413761034">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Frederick considered the words spoken by the Metal Man and closed his eyes as he descended into thought for a moment.  The existence of this kill switch was interesting, humanity had come far, but still, it did not sway his feelings.  Only a coward would be cowed by such a fact as being thrown back upon the Grail since the Grail may still of been unable to grant his wish, on top of that his wish was not worth destroying his good name, nor staining his soul black.
+
+He thought for a few moments more before speaking again.
+
+“You are a simple man, you shouldn’t try to shroud yourself so much. It would add years to your life you know.  While I never imagined I’d be summoned by, and I am assuming here, a mercenary it is more interesting than to be chained to a mage who watches and does not act.  However, at least for now I shall choose to work with you, so long as you can fulfill the barest of obligations, and the first is to provide my with all the information I request, whether you think or deem it unimportant, inefficient or redundant in nature.  You have the air of someone that is to logical for their own good, plenty of my foes were buried for that very reason as once someone has worked out the root of your nature your actions will always be readable, and straight forward no matter how you attempt to shroud yourself.  Thusly expect me take action upon the battlefields and in the way I see most fit, only where your experience outstretches my own will I defer fully to you.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="780276734066556980" id="message-780276734066556980">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He rose from the chair, rocking his weight forward as he did, maintaining the posture of his upper body as he did so.
+
+“Upon the battlefield information is war and if you cannot provide proper intel then I will seek another to be my companion in this conflict since you yourself are likely beholden to others, I doubt your permission or wishes matter much in that regard.  Whether you respect them or not, I doubt your finger is as firmly on that kill switch as you’d like it be. Yes you can hit it, but not without consequence I assume? With this in the open I feel our stance as Master and Servant can be known, can be understood and a pact properly struck.  All you need to do is present understanding of your bare obligations so again I ask you, for <strong>information</strong> you likely deem unimportant. Master in Metal, what is your name?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e86b5e307f62376e436b14ae0ae9becf-21314.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="WafflesofWar#7330" data-user-id="151183957105442817" style="">WafflesofWar</span>
+
+
+        <span class="chatlog__timestamp">23-Nov-20 11:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="780276765733945375" id="message-780276765733945375">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Nov-20 12:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="780288845353713674" id="message-780288845353713674">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Szrac was many things, and stubborn was one of them. However, he was also shrewd, shrewd enough to know that humouring his servant would do much to break their deadlock. A slight offering of insignificant information, enough to convince the Sabre he had won some ground, and to sway him back to a more neutral position. 
+
+So be it.
+
+<strong>&quot;My designation is Szrac, last name Vaughn. For all intents and purposes, you may refer to me as Szrac. My affiliation with the Vaughn family is in name alone.&quot;</strong> The cyborg finally answered his servant, stepping away from the terminal as he glared at his servant. <strong>&quot;If that displeases you, you may use any other sufficient terminology, so long as it does not confuse matters upon the battlefield.&quot;</strong>
+
+The magus paused, his words interrupted by a cough that had caught itself in his throat. He hacked and wheezed, for but a second, before regaining some of his previous composure. A few background functions of the Sarcophagus whirred to life, yet the inhabitant of the iron shell ignored them, instead returning to his conversation with Frederick.
+
+<strong>&quot;Will that suffice?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">23-Nov-20 12:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="780288862127652875" id="message-780288862127652875">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f28ed9b9f4c5c978a95d469113a1cfe8-0F831.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frederick II#0000" data-user-id="778399579111555092" style="">Frederick II</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Nov-20 01:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="780297580759744512" id="message-780297580759744512">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Szrac Vaughn, he could not be sure but the name sounded German, at least they shared that, a common ancestry, history and pride. The coughing fit was telling, it started as unassuming, but as it fell to harshness that Szrac suffered from some form of affliction was obvious, its nature was still unknown of course but he would mark this for later, no need to push for the source now.
+
+Frederick stood up as he returned Szrac’s words.
+
+“Indeed, they more than suffice. In return I shall introduce myself. My name by birth is Frederick II and the name I earned in deed is Frederick the Great, Last King in Prussia, First King of Prussia, Uniter of the German Peoples. I manifest here as the Saber Class, I possess a fool’s wish and thus will fight for what is right.  Now my knowledge of this time is limited so I implore you for further information, you spoke of a rebellion?”
+
+His eyes narrowed.
+
+“Into what Civil War have I been thrown into, is this simply the rebellion of its time, or a true revolution. Who stand as our foes and where do we stand in the current conflict.  I would prefer more detailed information of forces, armament, and strategic hard points held now, but that can come later.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e86b5e307f62376e436b14ae0ae9becf-21314.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="WafflesofWar#7330" data-user-id="151183957105442817" style="">WafflesofWar</span>
+
+
+        <span class="chatlog__timestamp">23-Nov-20 01:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="780297600985071686" id="message-780297600985071686">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Nov-20 08:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="780584168157478964" id="message-780584168157478964">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">So, he had summoned a Prussian King? Not among the apex of the Sabre class, but certainly sufficient for his needs, provided his attitude did not cause further problems...
+
+ <strong>&quot;The criminal group known as the mafia has made extensive efforts to disrupt the proper functioning of the city. In doing so, they hope to scrounge up some degree of leverage with which to usurp control.&quot;</strong> Szrac elaborated. 
+
+That, of course, wasn&#39;t the whole truth. The struggles and strife between the upper and lower classes had been turbulent, with many stones cast by both sides. If one paid close attention to the news, they would likely be able to formulate their own educated opinion. Szrac cared not to provide this same in-depth coverage to his servant.
+
+<strong>&quot;It will be a battle of servants. Take this time to familiarise yourself with the power plant, and ensure that you are at operating strength. Our first endeavours shall begin tomorrow. You are dismissed.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">24-Nov-20 08:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="780584179024527390" id="message-780584179024527390">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/f28ed9b9f4c5c978a95d469113a1cfe8-0F831.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Frederick II#0000" data-user-id="778399579111555092" style="">Frederick II</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Nov-20 03:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="780700617068511293" id="message-780700617068511293">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Frederick closed his eyes and bowed his head in thought, a hand coming up to stroke through his beard.
+
+&quot;Unsurprising that the world has not changed that the dregs of society still stand against the powers that maintain their security and livelihood.  Whether it is of greed, or upon the ruling class&#39;s inability to understand the needs of its people this is a regrettable situation. I will have to study more on this.&quot;
+
+He looked about the room and then looked out of the doorway of the small room, the words &#39;power plant&#39; had triggered a small amount of knowledge gifted by the Grail.  He understood the purpose of this place, its use.
+
+&quot;This place will undoubtedly be the target of our foes in a civil conflict, control of it will be key, a strong point of strategic value. You chose well in where to make our head quarters it seems.  But it would be best to avoid large scale conflict within its walls, disabling the facility in its defense, would be a pyrrhic victory at best... but knowing our foes may come here knowing we are present or not lends itself to my <strong>Territorial Conquest</strong> well.  It will have time to build and establish itself... What resources and level of man power can I assume we have at our disposal?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/e86b5e307f62376e436b14ae0ae9becf-21314.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="WafflesofWar#7330" data-user-id="151183957105442817" style="">WafflesofWar</span>
+
+
+        <span class="chatlog__timestamp">24-Nov-20 03:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="780700642683256902" id="message-780700642683256902">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-1FAB2.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="778399579111555092" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Nov-20 08:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="781134173988585492" id="message-781134173988585492">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The cyborg listened to his servant reach the same conclusions he had already come to, emotionlessly gazing at Frederick all the while. At least when he tried, he could be quick on the uptake. Still, if the previous stunt was anything to go by, his servant had the potential to act up. That could prove problematic. Contingencies would have to be developed to prevent such occurrences in the future.
+
+At the mention of Territorial Conquest, Szrac&#39;s head cocked itself to the side by the slightest amount. Was that one of his Personal Skills? He recalled such a thing being mentioned in the mission brief, some sort of special concept ingrained into the being of the servant. Distinct from &quot;Class Skills&quot; through their uniqueness, but far weaker than &quot;Noble Phantasms&quot;. 
+
+Despite the strangeness of the name, it seemed as through his Sabre&#39;s Territorial Conquest would somehow prove relevant, should the fighting come towards the power plant. Yet it also seemed like it required time to establish. A setback, but not a significant one, considering that few within the rebellion would be foolish enough to launch attacks on the Power Plant this early on.
+
+<strong>&quot;The aristocracy currently refuses to commit much to the conflict, seeing as they have the upper hand. I am told we will have the collaboration of the police force and any private security firms, but no more.&quot;</strong> Szrac told Frederick, turning to face the door. <strong>&quot;Power plant staff will also assist with our endeavours, so long as they do not disrupt the running of Persepolis. I am also told that other masters have been recruited to fight for the conflict, though I doubt we can count upon their cooperation.&quot;</strong>
+
+Opening the door, Szrac stepped out into the hallways once more. <strong>&quot;If you wish for a more thorough evaluation of the forces available, you may evaluate them yourself. I must attend to some maintenance of my armour. Do as you will.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20power-plant%20%5B771104673499185203%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">25-Nov-20 08:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="781134201444761600" id="message-781134201444761600">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="WafflesofWar#7330">@WafflesofWar</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+</body>
+
+</html>

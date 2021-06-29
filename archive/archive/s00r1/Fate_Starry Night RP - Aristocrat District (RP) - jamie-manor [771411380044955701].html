@@ -1,0 +1,1490 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - jamie-manor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Aristocrat District (RP) / jamie-manor</div>
+
+            <div class="preamble__entry preamble__entry--small">A &quot;modern&quot; styled mansion located on Mansion Lane. Despite being smaller than any other mansion in the area from above, there are rumors that several rooms extend underground...</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-6CDC4.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(236,81,81)">Nat</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-20 12:34 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="771411659193057290" id="message-771411659193057290">
+            
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/90-6AFEF.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/90-6AFEF.jpg" alt="Image attachment" title="Image: 90-6AFEF.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>    
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Nov-20 01:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="778312036156833842" id="message-778312036156833842">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Fat snowflakes began to float down from the sky. Snow in the middle of the ocean was almost laughable, and extremely rare on top of that. There were several Aristocrat magi who were capable of turning rain into snow, though it often felt like a waste of energy. It was the only reason that <span class="mention">#mansion-lane</span> got any snow at all, for the simple reason that snow was a lot more appealing than a torrent of rainfall. Easy to melt, too.
+
+One of the many mansions in this district of Persepolis  was about to experience a bit of excitement...
+
+&quot;Mr. Rodrick, a moment, please.&quot; A young, blond man caught the shoulder of an older, sterner, and much more professional man. Both had the dressing of butlers. &quot;Yes, what is it, Mikael?&quot; Rodrick said quickly as he turned around. He had an important message for Auster, head of the Jamie family. Mikael looked down the hall, nervously. <strong>&quot;The young master Lorenzo has gone missing!&quot;</strong> He hissed. Rodrick groaned. &quot;Of course he has. It&#39;s a nonissue, he&#39;s probably in the mansion. All dangerous rooms are guarded, he won&#39;t get hurt.&quot; Rodrick waved his hand dismissively. 
+
+Mikael shook his head fervently. Rodrick was a good superior. As Head Butler, he was wise and knew the family inside and out, but he had a tendency to underestimate the Jamie&#39;s youngest member. Its sole heir. He had ought to take this seriously.
+
+A guard walked past the two, and both parties nodded to each other as one passed. &quot;That&#39;s what I&#39;m trying to say! <strong>He&#39;s not in the mansion!</strong>&quot; Rodrick&#39;s blood froze as he realized the implications. In this weather, with the young master&#39;s frailty... It was likely that the boy could freeze.  Rodrick nodded twice. &quot;Call the guards outside, tell them to check everywhere on the grounds, and to go beyond if needed. Tell them to call for substitutes in case that happens. I have urgent information for master Auster, so I&#39;ll leave this to you.&quot; Mikael nodded breathlessly. &quot;Yes sir.&quot;
+
+
+—</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="778312091106279465" id="message-778312091106279465">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As butlers and guards scrambled to comb the grounds for Lorenzo, a young boy was hiding behind some excellently trimmed rosebushes, looking towards the sky in awe. His eyes were massive and bright as he peered at all the falling snowflakes. &quot;Wow...&quot; He breathed as it fell. His lungs ached from the cold, but they ached in the heat too. In the end, an ache was an ache, nothing to get too upset over.
+
+Eventually, Lorenzo&#39;s eyes narrowed on an especially pretty snowflake. &quot;That&#39;s it! That&#39;s the one.&quot; He whispered as it fell closer and closer to the ground. Lorenzo&#39;s magic crests whirred to life as the specific snowflake suddenly stopped as it fell into his hand. Despite the fact that his body heat should&#39;ve melted it, the snowflake was intact. Lorenzo laughed. &quot;Finally, I caught one. I knew the magecraft was sound! I can&#39;t wait to tell father!&quot;
+
+The rosebushes rustled, but Lorenzo didn&#39;t turn around. He continued to stare at this insignificant snowflake, before a hand tapped him on the shoulder. He turned.
+
+&quot;Hello there, Mikael.&quot; Lorenzo said happily as the butler stared at him. If he was caught, that meant a reprimand was coming. Lorenzo still stared up at him, smiling. Mikael&#39;s face was red from the cold as he uttered...&quot;
+
+&quot;I gave you ten minutes before I told staff, and this is how far you got? I&#39;m ashamed, Lorenzo.&quot; He sighed before reaching out to grab Lorenzo&#39;s hand. It was freezing. Lorenzo sighed.
+
+&quot;I know... It&#39;s hard sneaking out, though. Especially after the last attempt. I thought Bode and Yenn would never leave.&quot; Bode and Yenn were two of the three butlers assigned specifically to Lorenzo. Mikael was the third. Mikael inclined his head in acknowledgement. &quot;That&#39;s fair. Did you get the snowflake you wanted?&quot; Lorenzo nodded.
+
+&quot;Alright. Let&#39;s go back in. You know the ritual. Try to make it look like I scolded you.&quot;
+
+&quot;Understood!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Nov-20 03:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="778344389646876722" id="message-778344389646876722">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Meanwhile, Rodrick had knocked twice on a grand set of doors, before entering. A butler must be unseen, yet competent. However, Rodrick had several other duties alongside managing Jamie estate and resources. He opened the set of doors, and slipped into Auster&#39;s office.
+
+Auster looked remarkably different from his son Jamie, yet they were both alike. While Lorenzo&#39;s were wild and free and inquisitive, Auster&#39;s had become as cold as the winter taking place outside the windows behind him. They warmed for his son and for his staff, but when it came to serious business, this was the fa&#231;ade he adopted—a cold family head, bred only for business and magecraft.
+
+The mouth of Rodrick twitched slightly into a smile. He had been Auster&#39;s personal servant when he was a lad. Despite this, he bowed to hide the emotion that had shot across his face. &quot;Sir. I&#39;ve come with news on that Mafia incident, down by the harbor. The information came in just a few minutes ago.&quot;
+
+A heavy sigh emanated from Auster. &quot;Yes, yes. The gangbangers and thieves, what of them? That warehouse belonged to them, I surmise? Those backwater rats never were too good at hiding their assets.&quot; The Jamie head was, like most aristocrats, completely devoid of empathy for the mafia that plagued Persepolis.
+
+&quot;Yes. A few other families captured a few goons. They&#39;ll be interrogated and most likely killed. They probably know nothing, but it&#39;s worth a shot.&quot; Rodrick shrugged, indifferent to the killings of what he presumed as thugs and ruffians. Such was the aristocrat way.
+
+Rodrick continued on. &quot;Most importantly, we commandeered a S.E.R.V.A.N.T frame. Our men got to it, so it&#39;s ours to keep.&quot; Auster&#39;s eyes widened as he stood up. &quot;That&#39;s excellent news!&quot; He laughed, walking around the desk to clap Rodrick on the shoulder. &quot;When does it arrive?&quot; He asked eagerly.
+
+Rodrick checked his watch. &quot;Three hours. It&#39;s been difficult for the men to bring it back. We can poke at it for a while. It&#39;ll be a great asset.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Nov-20 01:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="778672848079814666" id="message-778672848079814666">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>I</strong> will look into it.&quot; Auster interrupted, causing Rodrick to fall silent. You will oversee the estate, and make sure none of this leaks. I shall get in touch with the families in question—leave a note with the names of the families involved in the operation on my desk.&quot; He ordered as Rodrick bowed. Lorenzo&#39;s father looked out the window, stroking his chin. A S.E.R.V.A.N.T suit would be excellent. Servants were flexible, and prone to following commands under the threat of deactivation.
+
+Rodrick cleared his throat. &quot;Yes, sir. I shall take my leave.&quot; With that, he left the office. Auster sat down at his desk, and swept aside the stack of paperwork. Forget being an aristocrat, he was a glorified office worker. A paper revealing Lorenzo&#39;s most recent medical report was found at the bottom of the pile. Auster nodded. It was satisfactory. His son was capable of leaving the house tomorrow for his weekly trip.
+
+All was well with the world.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="778672953952567296" id="message-778672953952567296">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">—
+Lorenzo sat in his room, reading.
+
+As soon as he had entered the house, Bode had immediately told him to take a bath, which he had done without complaint. Baths were good. Warm water was great. Bubbles were amazing. Reading a book in the bath was heaven.
+
+Bode stood behind Lorenzo, watching Lorenzo. Older than Mikael, younger than Rodrick, he was about Auster&#39;s age, and he certainly had the enthusiasm, having been pulled out of poverty by the Jamie family.
+
+&quot;See? I told you, Bode.&quot; Lorenzo said triumphantly as he held out the snowflake. &quot;The Mystic Code works just fine. The theory was sound, so the device worked. Father will be pleased. I can&#39;t wait to tell him tomorrow.&quot; Lorenzo said as he admired the snowflake. Magecraft preserved within magecraft... I wonder...
+
+&quot;As you say, young master Lorenzo.&quot; Bode said simply as Lorenzo continued talking, standing to attention. &quot;Since you&#39;ve had your fill of adventure, perhaps it&#39;s time for you to rest?&quot;
+Lorenzo yawned in agreement. &quot;You&#39;re right. It&#39;s late. Plus, I&#39;m allowed to go out into town tomorrow. You&#39;re excused, Bode. Thanks for helping with the Mystic Code!&quot;
+
+Bode said nothing as Lorenzo thanked him. In reality, he had done little to help the young master outside simply being there for Lorenzo to launch one-sided conversations off of. Lorenzo brought energy to a room once he started talking.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="778673049896878140" id="message-778673049896878140">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Understood. I&#39;ll leave you alone to get ready. Good night, young master.&quot; Bode said as a &quot;good night!&quot; came from inside the room. The door shut, and Bode sighed. It was unlikely that Lorenzo would sneak off again tonight, but just in case, he&#39;d stick around for five minutes. Afterwards, it would be Yenn&#39;s problem.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="778673169719754762" id="message-778673169719754762">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">—
+Three hours later, as Rodrick predicted, a large truck arrived at the Jamie Manor&#39;s gates. It certainly looked like aristocracy, not even bothering to hide what it was, and instead elected to look as intimidating and elegant as possible, with black on black trim. The mafia were more content to hide their goods in restaurant supply trucks. Hiding in plain sight had its perks.
+Four guards came out to inspect the vehicle. They weren&#39;t paid to gossip, but the idea that the Jamie family finally had their own S.E.R.V.A.N.T frame was exciting. Three opened the back of the truck and stepped into the container, flashlights whizzing about.
+
+&quot;Identification?&quot; The fourth guard said as the driver passed over a paper in the glovebox. All Jamie vehicles had something to identify them, enchanted by Auster himself to prove it was real. The guard nodded. &quot;Clear!&quot; He shouted. &quot;Wait for the boys to stop poking around in the back, and you&#39;re good to go. You know where this is getting stored?&quot; The driver nodded.
+
+The three guards had found the S.E.R.V.A.N.T frame hidden under a tarp, behind several crates and boxes. They whistled. 
+
+&quot;That&#39;s it?&quot; One whispered.
+
+&quot;Yep. All our salaries combined and it&#39;d be hard to get one of these.&quot; Another said in awe.
+
+&quot;Exactly. So stop gawking at it like a bunch of schoolgirls. If you break it, you&#39;re a dead man.&quot; The third said as the group exited the truck. They closed it up, and banged the side of it. &quot;Good to go!&quot; The driver put away a book he had been reading and accelerated, heading onto the grounds.
+The guards had been so focused on the main prize that the rest of the truck avoided heavy scrutiny. Inside a crate tucked away in the corner, someone breathed a sigh of relief.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Nov-20 03:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="778885482041704498" id="message-778885482041704498">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">—
+ Several hours after getting to sleep, Lorenzo woke up in pain. The blanket felt like lead, and the pillows like iron. His body was hot and cold simultaneously as he gasped and fought for every breath. The air in his lungs felt like glass dust, as the young boy struggled to breathe. Wordlessly, he looked around. Nobody was there to help. No Bode or Yenn or Mikael. 
+
+It was unlikely that Lorenzo would&#39;ve called for them. This was his issue, and as such, it wasn&#39;t worth their time. In a way, these attacks were Lorenzo&#39;s one true freedom. The Jamie heir grasped at his beside table, before grabbing what looked suspiciously like an inhaler. He placed it in his mouth, and puffed thrice. 
+
+&quot;Hah... hah... hah...&quot; Lorenzo was drenched in sweat as he struggled to lie up in bed. Calling him &quot;sick&quot; was an understatement. He shouldn&#39;t even be alive. Any doctor who looked at his internals would be thunderstruck. In any case, it was a miracle that Lorenzo could even breathe.
+
+He stared up at the ceiling, unable to get back to sleep. Sleeping the pain away would be nice, but if he was unable to fall unconscious, the next best thing to do would to be productive. Lorenzo was childish, but he was still a mage. As such, work was second nature. He stood up, gasping slightly. He poked his head out the window, just in time to see a truck leave the Jamie manor, and drive off into the night. Lorenzo gazed at the truck as it drove off, before flicking his lights on, and opening up a few magecraft books written by his great-grandfather.
+
+The Jamie family&#39;s specialty was temporal magecraft. It was unique when compared to other families, and was fairly unique in the world of magecraft in general. Many had chosen to ignore its applications and move on to more practical and simple fields, but Lorenzo and Auster&#39;s forefathers were far more dedicated and nuts, and elected to dream of time.
+
+Time was all Lorenzo had, and unironically, he had run out of time years ago.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Nov-20 03:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="778888812331139073" id="message-778888812331139073">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lorenzo stared at the books, reading the same passage several times without noticing. This continued for a few minutes, before eventually he moaned. &quot;Aaaaah, I&#39;m just not in the mood!&quot; Closing the books and placing them on a shelf, he paced as quickly as he could. He was a good reader, so what was eating away at him? It took a moment for Lorenzo to realize what was distracting him.
+
+&quot;That truck! Father wasn&#39;t supposed to receive any shipments for a few days, and why would it deliver something so late at night...?&quot; He murmured. He had been lucky that he had even gotten to see the truck at all—there must have been a lot of stuff to unload. Despite that, it piqued Lorenzo&#39;s interest.
+
+In reality, there was no real reason for Lorenzo to pursue the idea that the truck had dropped something secret off. Yet he still felt attracted to the idea. Call it a gut reaction, or instincts. Call it fate.
+
+Lorenzo poked his head out of his room. No guards, no butlers, nobody. There would be a skeleton crew poking around, potentially, but it was unlikely to be anyone major. Lorenzo could slip by with ease. 
+
+After sneaking out of his room, Lorenzo found himself in the main entrance&#39;s second floor, overlooking the base floor. He slipped around, down a staircase, and down another hall, before getting to an elevator. He stepped inside.
+
+The Jamie manor had several underground storages. While typical objects were stored on the ground floor&#39;s warehouse, specific objects worthy of Auster&#39;s attention were stored underground. Lorenzo had elected to check the warehouses outside, first, but running out in the freezing cold didn&#39;t sound appealing. Plus, his footprints would be easy to track in the snow.
+
+Two floors of warehouses, and the first held nothing of note, besides Auster&#39;s research equipment and materials purchased using Jamie wealth. The second floor, however, held something that Lorenzo had never seen before.
+
+A S.E.R.V.A.N.T frame. The same one pillaged from the Mafia.
+—</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Nov-20 04:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="778895574292365332" id="message-778895574292365332">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Inside a crate, one floor up, a man stared forward, yet didn&#39;t see. 
+
+He didn&#39;t blink. He hardly breathed. He didn&#39;t move an inch. There was nothing but the paralyzing fear of discovery and the primal rage of revenge burning in his heart. How many of his friends had been killed by the aristocrats? It had to be dozens. He had lost count long ago. More had been killed today.
+
+As such, a last act of vengeance was needed. A true show stopper, through and through. He would kill everyone. All of them. He knew this was the home of an aristocrat family—the conversations between the guards, the airtight security—proved it. He&#39;d kill all of the aristocrats here. If he died, he&#39;d be a martyr. 
+
+He just needed to do it in style.
+
+Nothing was more stylish than a Servant, and there was a frame tucked just a floor below. The guards had spoken about where it was placed. Could he, a mere hitman for the Mafia even dream of activating it? It was unlikely, the odds were minute. It wasn&#39;t a rational idea. <em>Rational?</em> The man almost laughed aloud. Rational thought had left a while ago. Even without the frame, he&#39;d be able to do something, <em>anything</em>, that would bring the aristocrats down a peg.
+
+Retribution. 
+—</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Nov-20 04:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="778900440708153345" id="message-778900440708153345">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lorenzo gawked at the S.E.R.V.A.N.T frame, speechless. Father had finally gotten something he had sought for a long, long time. Auster had dreamed of poking around a device such as these for a very long time. Despite being an aristocrat family, the Jamie clan had never been fortunate enough to own one of these devices. The eldest surviving members deemed it a waste of time, and unneeded in improving the family&#39;s standing.
+
+Those were the same people that had abandoned Lorenzo when he had grown ill. Their opinions meant little to Lorenzo, and he knew that his father felt the same way. They were wise, though. As such, they were needed.
+
+Lorenzo looked around the storage room. There was an office where a log of all items taken out were kept, but it remained unused since Auster had become family head. If he wanted something, he&#39;d come and take it out himself. 
+
+&quot;I—if father wanted something like this, then he must&#39;ve wanted to summon a Servant... If that&#39;s the case, then the materials needed to summon should be in here...&quot; Lorenzo poked his head into a barrel. His nose wrinkled. 
+
+&quot;Ugh. That&#39;s blood all right. Gross.&quot; Preserved in enchanted barrels. Lorenzo&#39;s prediction was correct. It looked like Auster was preparing a summoning. &quot;If that&#39;s the case, I&#39;ll help him! It&#39;ll take a little while to prep this, so I&#39;ll get the hard stuff out of the way in no time!&quot; 
+
+Lorenzo got to work. There was a book next to the frame, commandeered from the mafia storehouse. Perhaps they had been preparing to summon a Servant using this frame, but lacked someone with the proper experience. Lorenzo didn&#39;t know about the mafia incident, so he never considered it.
+
+The Jamie family put a high standard on magecraft. If the work was shoddy, or unappealing to look at, then it wasn&#39;t worth investing time into. Lorenzo agreed with this perspective wholeheartedly. If you&#39;re going to work, then do good work. Otherwise, don&#39;t bother.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Nov-20 05:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="778910273993703425" id="message-778910273993703425">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It took half an hour for Lorenzo to complete the circle. When it was done, it was certainly up to Jamie standards. He had made no mistakes, as expected by someone of his status. Auster would&#39;ve nodded in approval, and even the Elders would have found the work to be satisfactory, albeit barely. Old coots, they were.
+
+&quot;Done! I can&#39;t wait to see the look on his face. He&#39;ll be so pleased!&quot; Lorenzo clapped his hands in excitement, as the elevator dinged behind him, going up <strong>one floor</strong>. &quot;Oh!&quot; Lorenzo started, before heading over to the corner, hiding behind the barrels of blood, lids still ajar.
+
+Several moments later, the elevator dinged again, and descended a floor down.
+
+The member of the mafia—desperate and crazed. 
+
+The son of aristocracy, confused and ill.
+
+Both focused on one thing. The S.E.R.V.A.N.T frame which could change their futures, though one didn&#39;t know it yet. It was a clash of set pieces, ways of life, and so much more.
+
+The elevator door opened, revealing a ragged man with stubble. One arm hung uselessly to the side, while the other supported it. He looked around, wildly, before focusing on the deactivated frame. 
+
+&quot;Lucky me. They&#39;ve already gone and done the hard work. They&#39;ll pay. Aristocrats. All of you, them, you... pay...&quot; The man breathed as Lorenzo shrank behind the barrels. 
+
+Lorenzo wasn&#39;t a fool. It was obvious that this man was deranged, and shouldn&#39;t be allowed on the property, and his fixation on the suit meant that this man was a thief with a bone to pick with the Jamie family.
+
+If this man got a Servant, than father would—
+
+Lorenzo peeked his head back over the barrels. The man was focusing on the Servant suit. He seemed to be reading the manual. Lorenzo gulped, then dipped his hand into the barrel of blood, pulling out a handful. Lorenzo thrust his other hand into his pocket, where his Mystic Code lay dormant. He never went anywhere without it. He never knew when something worth preserving would show up.
+
+This was such a moment.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="778910319376072715" id="message-778910319376072715">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The clock began to turn, before halting. Lorenzo had a handful of frozen in time blood. Whippee. 
+
+In order for his plan to work, he&#39;d need to time this perfectly.
+
+<strong>&quot;Fill...&quot;</strong> Lorenzo began to speak softly as tears began to pool in his eyes, hoping that the man couldn&#39;t hear him.
+
+<strong>&quot;...of tin and iron and the archduke of pacts...&quot;</strong>
+
+Lorenzo continued chanting as he looked downward. Words continued to spill out of him. He had only gotten to read the chant a few times.
+
+<strong>&quot;Follow the three-forked road to the kingdom...&quot;</strong>
+
+The boy looked up, and saw the man staring at him. Lorenzo would&#39;ve swore if he knew any words of the sort. He had been so focused on the chant that he had forgotten to keep an eye out for the man standing literal feet away.
+
+&quot;Boy, this really isn&#39;t your lucky day.&quot; The man grinned, before kicking Lorenzo in the chest. The man hadn&#39;t intended to do more than make the boy fall to his side, but Lorenzo was light, and weak. He flew a foot backwards, before collapsing against the wall.
+
+Bones of glass shattered, and skin of paper tore. Tears fell as the boy gasped in agony. A line of blood fell from Lorenzo&#39;s mouth as he coughed weakly. He was frail. This injury would&#39;ve been nothing to a normal person, but it had incapacitated Lorenzo all on his own. It was a burden of weakness.
+
+Yet still, Lorenzo kept muttering.
+
+The man looked at him, then at the S.E.R.V.A.N.T frame, before breaking out in a fit of laughter. He wiped his bloodshot eyes. Was this brat trying to summon a Servant? Really? It was almost worth admiring the kid&#39;s guts, if he didn&#39;t bleed out to a simple kick.
+
+&quot;Sorry, kid. Don&#39;t go play in warehouses at night. Nothing personal.&quot; The man paused for a second, before shrugging. &quot;Actually, it is personal.&quot; He reached out towards the boy.
+
+Lorenzo stared up at him pitifully. Despite the weakness, there was still a bit of steel in his gaze. **&quot;Release from the ring of restraint, O&#39; Balancer of Scales!&quot;
+
+That&#39;s when it all began.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="778910379191042049" id="message-778910379191042049">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/3ea8889a2c2c5675b09c0e1f157e8065-BFC50.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ajax the Great#0000" data-user-id="778312034735489025" style="">Ajax the Great</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Nov-20 02:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="780681405604167700" id="message-780681405604167700">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And began it did, a terrible boom shook the entire warehouse as the circle turned a deep, violent shade of purple that pulsed chaotically with energy. Already in a weakened state, Lorenzo could only lie in repose as his mana reserves were hungrily devoured by the turbulent ring of storms that was enacting its own wrath as it fed upon the desperation of the child and the vengeance of the crook. Hate begat hate and the circle would only emphasize this mutual anger between the two witnesses. 
+
+Between the charged emotions, the deep pool of mana from Lorenzo and the smeared blood, the circle drank hungrily and deeply, giving sustenance to the swelling mass of the S.E.R.V.A.N.T. suit. It did not take long for this maelstrom to shape the metallic clay before it into a veritable behemoth bound in mountains of muscle and its skin dyed in hideous shades of ochre and violet. Yet what would stick out the most to Lorenzo was the glowing red eyes that burned with an insatiable wrath and wildly darted around for its first kill in the new world, even as the rest of its head was still unfinished and hidden behind a thick, suffocating haze. 
+
+Indeed, the summoning circle was nigh-flawless and such craftsmanship only invited the truly powerful to wander into the material world. The boy could only hope that whatever monster he had just summoned would heed his words and not claim him as yet another stain on its claws . . .
+
+Yet it was a curious night from beginning to end and what would follow would be no less stranger. Those baleful eyes finally locked onto the frail, broken body of Lorenzo and a second of terror would pass before something in the air seemingly shattered and those red orbs dissipated into nothingness, just like any source of light within the warehouse. Blackness would reign for but a few brief moments. The sickening pull of the summoning circle completely ceased in that instant as well and an indescribable sense of ease would begin to fall on Lorenzo.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="780681480317435905" id="message-780681480317435905">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In those blind moments, Lorenzo would hear heavy footfalls followed by a glint of light reflecting off of something metallic. A second later, the sound of a loud crack echoes around the empty chamber followed by an anguished cry of pain that would get louder and louder as more cracks and slams could be heard before everything went silent again with a sickening crunch. 
+
+
+The lights would come back on and the gangster was nowhere to be seen. Kneeling down in front of Lorenzo instead would be a hulking figure of a man bound in some combination of a metallic harness and a tanktop that seemed both futuristic and ancient. He seemed to have some type of ancient helmet resting on top of his long, messy hair but what would draw his attention most was the silver shield larger than any common door held in his left hand and the narrow bloody gash in the center of his chest where his heart would have been, yet it was not bleeding in the slightest. 
+
+“My, what a poor, poor boy…” the mysterious man spoke in a deep baritone rich with worry and concern for Lorenzo. Unlike the monster of before, he could detect no malice in the words or tone of the figure before him. “A shame this new world of theirs is subject to just as much petty violence as mine was. The same old stories seem to keep repeating themselves over and over and this child caught in the crossfire…”
+
+Recognizing that the boy was still conscious, the man brought a large finger to his lips wreathed by dark blue bristles. “Shhh, rest easy now, boy. The threat from earlier is long gone and there is not a single thing you need worry about now. Any questions you have can wait until later, just know you are in very good hands,” he said before reaching out to carry Lorenzo in his arms up towards the mansion proper and his bedroom. “You lucked out, kid, you really did…”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-3903F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(236,81,81)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">24-Nov-20 02:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="780681508884185108" id="message-780681508884185108">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Nov-20 01:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="780843086858158122" id="message-780843086858158122">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Several times, Lorenzo tried to accurately summarize the flood of emotions that his failed summon would bring, but he couldn&#39;t. He had resigned himself to be slaughtered by the thug or to the monster of his own creation. 
+
+The seventh Servant.
+
+As the Servant looked down at its Master, Lorenzo felt the need to crawl into a barrel and hide, and pray that his father would come. There was no way that he didn&#39;t notice the ritual happening on his own territory.
+
+As the Servant scooped up Lorenzo and headed for the elevator still on their floor, courtesy of the now missing thug, Lorenzo looked back into the warehouse. Was that a splash of blood, or just remains of the summoning circle? He didn&#39;t know, and he was too tired. Lorenzo whispered something inaudibly as the elevator doors closed behind them. 
+
+The elevator rose to the ground floor, and the doors opened cleanly, in contrast to the wall of guard blocking the hallway, keeping Ajax from walking forward, annoyingly.
+
+Auster Jamie stood in finely cut silk pajamas. He radiated authority despite the cozy and ridiculous attire, when in contrast with the hired guns. Without any hesitation, he yelled &quot;FI-&quot; Wait. Wait. Wait. Wait. Wait.
+
+That being was carrying his son. A hostage? No. That was unfeasible. Auster could feel the raw power coming from the being holding his son. If that surge of power had come from the second warehouse, as Auster had sensed...
+
+&quot;Wait!&quot; The guards paused. Auster looked deflated. &quot;You&#39;re obviously a Servant, so why are you...?&quot; Auster gasped as he deflated, like a balloon half-filled with air. He looked at his son, gently carried in the monster&#39;s arms.
+
+&quot;No... It wasn&#39;t <strong>him</strong>, was it? He didn&#39;t... Your summon...?&quot; Auster said, already knowing the answer as he stared at the Servant.
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/3ea8889a2c2c5675b09c0e1f157e8065-BFC50.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ajax the Great#0000" data-user-id="778312034735489025" style="">Ajax the Great</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Nov-20 11:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="781000969974579210" id="message-781000969974579210">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The seventh servant, the last to be summoned yet first in raw strength, even without  the curse of a divine madness and hindered by a botched ritual, Ajax still stood heads above the competition and his fellow man. Yet he arrived to the broken world of modernity not with an insatiable bloodlust but with a name and soul to redeem for his final acts on the shores of Troy.
+
+It was his chance to at center stage finally, not relegated to the wings by the almighty speed and invincibility of his friend or the brilliance and verstatility of his rival. Finally a meadow of gold could blossom in the long valley carved by a gifted sword, and already he was holding himself up to that promise. A new master, a new chance at kinship? Perhaps but first there was a situation to deal with.
+
+Bringing his rugged yet princely face up to bear with the new arrivals, Ajax met the eyes of each would-be assailant with a stoic stare tinted by a hint of disapproval at the choice of mercenaries, unfazed by the various arms aimed his way. 
+
+Drawn to the odd figure caught in a fine night robe, Ajax could instantly recognize the concern in his face and softened his stance, exposing the boy cradled in the trunks of his arms. 
+
+&quot;Aye, that I am. Summoned during an instant of mortal peril, I could not let such a young boy be snuffed out by a petty thief. No father could bear the thought of such a meaningless death,&quot; the man would say with a tender voice that resonated in the hall around them, now giving a similarly solemn yet understanding gaze toward Auster.
+
+&quot;You sound like you already know the answer, sir. He was one mighty magus in that instant, accomplishing something few could ever do...&quot; 
+<span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Nov-20 11:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="781005685474459719" id="message-781005685474459719">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The pride that Auster felt to his son was second to none, though the fear that came with an injured son rushed forward like a torrent, Auster sighed and raised a hand. All guards lowered their weapons. &quot;My son will need proper healing. He&#39;ll be out for the rest of the night, maybe even longer, but we can fix most injuries. Naturally...&quot; Auster smiled, &quot;you will be allowed to watch over him, as his Servant and savior.&quot;
+
+Despite this, Auster still couldn&#39;t help but feel the stab of lost that a blank S.E.R.V.A.N.T frame had been activated. Lorenzo would need to be scolded, but what punishment could Auster dish out that would keep Ajax from striking back? A Servant would protect its Master, and this was untreaded ground.
+
+What punishment would hurt more than watching a man die?
+
+— <strong> One Day Later - Lorenzo&#39;s room</strong> —
+
+Lorenzo was lying in bed, awake. His body still ached, but his eyes were alert and active. He looked over at Ajax, before closing his eyes and smiling. This boy had been worth protecting in the eyes of Ajax the Great, who had suffered much loss and tragedy. What about him was worth saving? Perhaps the act of saving was itself the reward.
+
+Auster was sitting across the bed from Ajax. He cleared his throat and blinked his eyes nervously, unsure of how to address the Servant. &quot;What are the conditions of your summon, Servant? Lorenzo and I have spoken, and it seems clear to me that you&#39;re a Knight Class. What&#39;s your true name, as well? My son&#39;s security is paramount, and he has requested that you stay by his side. As such, we will need to cooperate as closely as possible.&quot;
+
+If this was a Holy Grail War, Lorenzo would be in constant danger. His protection would need to be ironclad in order to offset the overwhelming flaw of Ajax; his Master. Ajax was the strongest, Lorenzo was the weakest. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/3ea8889a2c2c5675b09c0e1f157e8065-BFC50.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ajax the Great#0000" data-user-id="778312034735489025" style="">Ajax the Great</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Nov-20 12:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="781018324196130816" id="message-781018324196130816">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Leaning against the wall opposite as Auster, Ajax instinctively turned his bushy head towards Lorenzo  and gave him a reassuring gaze along with a slow nod. The boy may have been the frailest he had seen, doubtlessly doomed to a near instant death at the hands of a discerning family during his time, but perhaps he was meant to be that way. 
+
+Over the day of vigil that Ajax had held, he noticed in many ways the Jamie child was like a snowflake, a pure soul dancing in the delights of Boreas&#39;s playful breeze, never meant to touch the dull and hostile world below. Perhaps that ever-present risk of melting was what drew the mighty Aegean bastion to that warehouse. The perfect symbol to save at any cost
+
+&quot;Of the seven classes, my spirit origin is tied closest to that of Lancer, destined always to be the hero&#39;s aide and shield...&quot; Ajax said, his indigo eyes gazing off into the distance as he recalled that particular friend of his, long since killed by his own arrogance. &quot;True name? No, I do not think I am worthy yet to reclaim that name of mine. But if it is a name you seek, then Aetos will suffice for the time being,&quot; the servant said with a melancholic finality to the timbre of his voice.
+
+&quot;Words may be important in your domain, businessman, but actions weigh far more and you will see many feats in the future, I am sure. Already I can sense the beck and call of six other champions eager to test their blades across this metal isle, but they will find it impossible to breach the wall I hold for your son, that is a promise I will not break. Father&#39;s honor,&quot;
+<span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20jamie-manor%20%5B771411380044955701%5D.html_Files/600afd435e9c51754df289f110cc4b9a-4A02B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lorenzo Jamie#0000" data-user-id="778312034735489025" style="">Lorenzo Jamie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Nov-20 03:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="781058632631582740" id="message-781058632631582740">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lancer&#39;s name hung in the air for a few seconds. Auster scratched his chin thoughtfully. &quot;Aetos...? Sounds Roman. I&#39;ll respect your wishes and not dig into your possible identity. You&#39;ll reveal it when you reveal it. I&#39;d rather not get on your bad side, seeing as what you did to that thug. &quot; The older man shuddered.
+
+&quot;Nonetheless, you&#39;re right. Actions speak louder than words. If there are six other Servants on Persepolis... We shall have to prepare!&quot; Auster stood up, and slapped his hands in excitement. &quot;I have calls to make, and a security team to screen. Last night&#39;s breach in security shall never happen again, on my honor as Jamie head!&quot; With this, Auster stood up, ruffled his son&#39;s hair, and nodded respectfully to Ajax, he walked to the door, putting his fingers to his chin.
+
+&quot;Lorenzo, once you recover, we have Bounded Fields to construct. Rest well, son. Also, Aetos, you shall be referred to as Lancer in public, naturally. Whether or not Aetos is a pseudonym, a nickname, or a random name fished out of your memory, any information can be used against us. Make good on your promise.&quot;
+
+With this, Auster left the room.
+
+Lorenzo looked up at his Lancer, and smiled weakly. Ajax was right, this was the frame of a boy more suited to a sickbed than one meant to fight in a Holy Grail War. Compared to the mountainous presence of Ajax, Lorenzo was nothing more than a speck dust in the wind. 
+
+&quot;Lan—Aetos.&quot; Lorenzo coughed, before closing the book he had been reading. Aetos had been a sentinel, and Lorenzo already had an unexpected connection to the hulking guardian. Such a Servant stood above all others, he had to.
+
+&quot;I-I&#39;m not strong. I&#39;m not particularly impressive in most practical branches of magecraft, and I can&#39;t fight, But that doesn&#39;t mean anything...&quot; Lorenzo swallowed, &quot;because you can! You&#39;re a hero! No, a superhero! That&#39;s why... That&#39;s why we&#39;re going to win! You&#39;ll block every strike until you reach the top. I know it!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="781058689763246100" id="message-781058689763246100">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With those words, the final Servant was summoned.  Not an accidental summoning, nor a summoning with months of preparation behind it.
+
+A boy simply didn&#39;t want to die, and a man wanted to protect. That&#39;s all there was. The final Master had been chosen, and Lancer had been summoned. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+
+</body>
+
+</html>
