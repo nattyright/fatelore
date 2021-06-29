@@ -43,6 +43,14 @@ $("input:text").tooltip({
 }).off("mouseover mouseout");
 
 
+$("div").tooltip({
+  position: {
+    my: "left bottom+20",
+    at: "right top",
+  }
+});
+
+
 /*
  * Similar servants tab accordion style
  */

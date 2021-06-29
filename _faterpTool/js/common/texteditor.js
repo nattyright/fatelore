@@ -5,7 +5,7 @@ $('#personality').trumbowyg({
   btns: [
     ['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
-    ['strong', 'em'],
+    ['strong', 'em']
   ],
   semantic: false
 });
@@ -146,6 +146,7 @@ $('#pSkill3Example').trumbowyg({
   ],
   semantic: false
 });
+
  //#otherInfo #description #weapon #np1Description #np1Effect #np2Description #np2Effect #cSkill1Description #cSkill2Description #cSkill3Description #pSkill1Description #pSkill1Example #pSkill2Description #pSkill2Example #pSkill3Description #pSkill3Example
 
 
