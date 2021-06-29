@@ -3,7 +3,7 @@
  */
 $('#personality').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em']
   ],
@@ -11,7 +11,7 @@ $('#personality').trumbowyg({
 });
 $('#backstory').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -19,7 +19,7 @@ $('#backstory').trumbowyg({
 });
 $('#otherInfo').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -27,7 +27,7 @@ $('#otherInfo').trumbowyg({
 });
 $('#description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -35,7 +35,7 @@ $('#description').trumbowyg({
 });
 $('#weapon').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -43,7 +43,7 @@ $('#weapon').trumbowyg({
 });
 $('#np1Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -51,7 +51,7 @@ $('#np1Description').trumbowyg({
 });
 $('#np1Effect').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -59,7 +59,7 @@ $('#np1Effect').trumbowyg({
 });
 $('#np2Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -67,7 +67,7 @@ $('#np2Description').trumbowyg({
 });
 $('#np2Effect').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -75,7 +75,7 @@ $('#np2Effect').trumbowyg({
 });
 $('#cSkill1Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -83,7 +83,7 @@ $('#cSkill1Description').trumbowyg({
 });
 $('#cSkill2Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -91,7 +91,7 @@ $('#cSkill2Description').trumbowyg({
 });
 $('#cSkill3Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -100,7 +100,7 @@ $('#cSkill3Description').trumbowyg({
 
 $('#pSkill1Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -108,7 +108,7 @@ $('#pSkill1Description').trumbowyg({
 });
 $('#pSkill1Example').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -116,7 +116,7 @@ $('#pSkill1Example').trumbowyg({
 });
 $('#pSkill2Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -124,7 +124,7 @@ $('#pSkill2Description').trumbowyg({
 });
 $('#pSkill2Example').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -132,7 +132,7 @@ $('#pSkill2Example').trumbowyg({
 });
 $('#pSkill3Description').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
@@ -140,7 +140,7 @@ $('#pSkill3Description').trumbowyg({
 });
 $('#pSkill3Example').trumbowyg({
   btns: [
-    ['viewHTML'],
+    //['viewHTML'],
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
