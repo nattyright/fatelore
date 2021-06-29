@@ -3,10 +3,17 @@
  * Vertical/Horizontal tabs
  */
 $( function() {
-  //$( "#sheetForm #tabsForm" ).tabs().addClass( "ui-tabs-vertical ui-helper-clearfix" );
+
+  // horizontal
   $( "#sheetForm #tabsForm" ).tabs().addClass( "ui-tabs ui-helper-clearfix" );
-  //$( "#sheetForm #tabsForm li" ).removeClass( "ui-corner-top" ).addClass( "ui-corner-left" );
   $( "#sheetRef #tabsRef" ).tabs().addClass( "ui-tabs ui-helper-clearfix" );
+
+  $( "#tabsDetailedInfo" ).tabs().addClass( "ui-tabs ui-helper-clearfix" );
+  $( "#tabsExtraInfo" ).tabs().addClass( "ui-tabs ui-helper-clearfix" );
+  $( "#tabsNP" ).tabs().addClass( "ui-tabs ui-helper-clearfix" );
+  $( "#tabsCSkill" ).tabs().addClass( "ui-tabs ui-helper-clearfix" );
+  $( "#tabsPSkill" ).tabs().addClass( "ui-tabs ui-helper-clearfix" );
+
 } );
 
 
@@ -28,9 +35,6 @@ $( "#infoHubCSSearch, #infoHubPSSearch" ).autocomplete({
  * Similar servants tab accordion style
  */
  // fill vertial space
-
-
-
 $(function() {
     $( "#accordion" ).accordion({
       heightStyle: "fill"
