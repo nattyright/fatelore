@@ -33,7 +33,7 @@ function getServantRegionTableHTML(servant, nationality) {
   var s = servant;
 
   if (s["sideNationality"] != null && 
-    s["sideNationality"].toUpperCase() == nationality.toUpperCase()) {
+    s["sideNationality"].toUpperCase() == nationality.toUpperCase().trim()) {
     var message = '<tr><td>' + 
                               s['title'].split("(")[0] + '</td><td>' + 
                               s['sideClass'] + '</td><td>' + 

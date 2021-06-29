@@ -39,7 +39,7 @@ function getServantAlignmentTableHTML(servant, alignment) {
 
 
   var sAlign = s["sideAlignment"].toUpperCase();
-  var align = alignment.toUpperCase();
+  var align = alignment.toUpperCase().trim();
 
   var hits = ['CHAOTIC NEUTRAL', 'TRUE NEUTRAL', 'LAWFUL NEUTRAL'];
 

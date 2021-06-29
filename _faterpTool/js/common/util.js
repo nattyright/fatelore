@@ -20,6 +20,8 @@ function getValueFromInput(divId) {
 
 
 
+
+
 /*
  * Fetch info from given url
  */
@@ -63,13 +65,40 @@ var saveToLocalTimeoutId;
 $('form input, form textarea, form select, form button, form option').on('input propertychange change', function() {
     //console.log(this.value);
     var toSaveId = $(this).attr('id');
-
     clearTimeout(saveToLocalTimeoutId);
     timeoutId = setTimeout(function() {
         // Runs 1 second (1000 ms) after the last change    
         saveFormData(toSaveId);
     }, 1000);
 });
+
+
+
+/*
+ * Populate eligible reference tabs from local storage data upon page startup
+ */
+function populateReferenceTabs() {
+    let paramsToPopulate = ['sideStr', 'sideEnd', 'sideAgi', 'sideMan', 'sideLuc', 'sideNP'];
+    if (document.getElementById('title') != null) {
+        getWikipediaPage(document.getElementById('title').value);
+    }
+    if (document.getElementById('sideNationality') != null) {
+        helperRegion();
+    }
+    if (document.getElementById('sideAlignment') != null) {
+        helperAlignment();
+    }
+    for (var i = 0; i < paramsToPopulate.length; i++) {
+        if (document.getElementById(paramsToPopulate[i]) == null) {
+            break;
+        } else if (i == (paramsToPopulate.length - 1)) {
+
+            helperParam();
+        }
+    }
+
+}
+
 
 
 /*
@@ -84,6 +113,7 @@ $( document ).ready(function() {
     // retrieve cache data, if any
     for (var i = 0; i < idsToSave.length; i++) {
         loadFormData(idsToSave[i]);
+        populateReferenceTabs();
     }
 });
 

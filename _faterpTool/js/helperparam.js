@@ -65,9 +65,10 @@ function getParamScoresFromForm() {
       return 0;
     } 
 
-    // change input to uppercase
+    // change input to uppercase - and save this value
     var upper = elem.value.toUpperCase();
     elem.value = upper;
+    saveFormData(elem.id);
 
     var p = convertParamToInt(upper);
     // input field starts with an illegible letter
@@ -163,7 +164,6 @@ myInputStr.addEventListener('input', () => {
     }
 });
 myInputEnd.addEventListener('input', () => {
-  console.log("haha");
     clearTimeout(typingTimer);
     if (myInputEnd.value) {
         typingTimer = setTimeout(helperParam, doneTypingInterval);
