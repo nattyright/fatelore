@@ -215,6 +215,8 @@ function updateDoc(fileId) {
     2623: "gallery"
   };
 
+  
+
   var updateObject = {
     documentId: fileId,
     resource: {
@@ -223,6 +225,8 @@ function updateDoc(fileId) {
   };
   
   var count = 0, specialIds = ['sideName', 'sideClassIcon', 'sidePic'];
+  var updateIdFromTextEditor = ['personality', 'backstory', 'otherInfo', 'description', 'weapon', 'np1Description', 'np1Effect', 'np2Description', 'np2Effect', 'cSkill1Description', 'cSkill2Description', 'cSkill3Description', 'pSkill1Description', 'pSkill1Example', 'pSkill2Description', 'pSkill2Example', 'pSkill3Description', 'pSkill3Example'];
+  var multiPara = false;
 
 
   var keys = Object.keys(updateLoc);
@@ -235,7 +239,7 @@ function updateDoc(fileId) {
     
     var element = document.getElementById(value), content;
 
-    // 3 special values without input areas at the beginning
+    // omit the 3 special values without input areas at the beginning
     if (count < 3 && specialIds.includes(value)) {
       count++;
 
@@ -254,34 +258,91 @@ function updateDoc(fileId) {
         content = 'N/A';
       }
 
-    } else if (element != null && element.value != "") {
+    } else if (element != null && !updateIdFromTextEditor.includes(element.id) && element.value != "") { //textarea don't go by 'value'
       content = element.value;
+    } else if (element != null && updateIdFromTextEditor.includes(element.id) && $('#' + element.id).trumbowyg('html') != "") {
+      content = $('#' + element.id).trumbowyg('html');
+      // strip formatting from html
+      content = content.replace(/<\/p[^>]*>/g,"[n]")
+                       .replace(/&nbsp;/g,"")     
+                       .replace(/<[^>]*>/g,"");
+      content = content.split("[n]");
+      //console.log(content);
+      multiPara = true;
     } else {
       content = 'haha';
     }
 
-    // delete the default 'zz' message in every text area on the doc
-    var newObjectDeletePrev = {
-      deleteContentRange: {
-        range: {
-          startIndex: parseInt(key),
-          endIndex: parseInt(key) + 2,
-        }
-      }
-    };
 
-    var newObject = {
-      insertText: {
-        text: content,
-        location: {
-          index: parseInt(key),
-        },
-      },
-    };
+    if (multiPara == false) {
+                    
+          // delete the default 'zz' message in every text area on the doc
+          var newObjectDeletePrev = {
+            deleteContentRange: {
+              range: {
+                startIndex: parseInt(key),
+                endIndex: parseInt(key) + 2,
+              }
+            }
+          };
 
-    // insert object to updateObject
-    updateObject.resource.requests.push(newObjectDeletePrev);
-    updateObject.resource.requests.push(newObject);
+          var newObject = {
+            insertText: {
+              text: content,
+              location: {
+                index: parseInt(key),
+              },
+            },
+          };
+
+          // insert object to updateObject
+          updateObject.resource.requests.push(newObjectDeletePrev);
+          updateObject.resource.requests.push(newObject);
+    } else {
+          multiPara = false;
+          var paraStartIndex = parseInt(key);
+          
+          // delete the default 'zz' message in every text area on the doc
+          var newObjectDeletePrev = {
+            deleteContentRange: {
+              range: {
+                startIndex: paraStartIndex,
+                endIndex: paraStartIndex + 2,
+              }
+            }
+          };
+          updateObject.resource.requests.push(newObjectDeletePrev);
+
+          // insert each para in a loop
+          for (var j = (content.length - 1); j >= 0; j--) {
+            var contentFinal = content[j].trim();
+
+            // only add newline for paras other than the last para
+            if (j < (content.length - 2)) {
+              contentFinal = contentFinal + "\n";
+            }
+
+            // only write to google docs if line isn't empty
+            if (contentFinal != "") {
+              var newObject = {
+                insertText: {
+                  text: contentFinal,
+                  location: {
+                    index: paraStartIndex,
+                  },
+                },
+              };
+
+              // insert object to updateObject
+              updateObject.resource.requests.push(newObject);
+            }
+
+                
+          }
+
+    }
+
+
     
   }
   //console.log(updateObject);
