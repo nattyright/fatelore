@@ -3,7 +3,7 @@ $('.loc').on('click', function(e) {
   // get city name
   var loc = $(this).data('loc');
   // change image src
-  $(".map").attr('src','../images/maps/' + loc + '_districts.png');
+  $(".map").attr('src','images/maps/' + loc + '_districts.png');
 });
 
 
@@ -12,7 +12,7 @@ $('.info').on('click', function(e) {
   // get city name
   var loc = $(this).data('loc');
   // change image src
-  $(".map").attr('src','../images/maps/' + loc + '_base.png');
+  $(".map").attr('src','images/maps/' + loc + '_base.png');
 });
 
 
@@ -51,7 +51,7 @@ $('.map-point').on('click', function(e) {
 // load footer navigation
 $(document).ready(function (){
   //$("#header").load("header.html"); 
-  $("#footer").load("../components/map_footer.html"); 
+  $("#footer").load("components/map_footer.html"); 
 });
 
 // same as above but for battlegrounds
@@ -67,6 +67,6 @@ $('.map-point-battle').on('click', function(e) {
 // load footer navigation
 $(document).ready(function (){
   //$("#header").load("header.html"); 
-  $("#footer").load("../components/map_footer.html"); 
+  $("#footer").load("components/map_footer.html"); 
 });
 
