@@ -48,13 +48,13 @@ function initClient() {
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorizeButton.style.display = 'none';
-    signoutButton.style.display = 'block';
+    signoutButton.style.display = 'inline-block';
     printDocTitle();
     //printDocBody();
     //copyDoc();
     //updateDoc();
   } else {
-    authorizeButton.style.display = 'block';
+    authorizeButton.style.display = 'inline-block';
     signoutButton.style.display = 'none';
   }
 }
@@ -80,9 +80,9 @@ function handleSignoutClick(event) {
  * @param {string} message Text to be placed in pre element.
  */
 function appendPre(message) {
-  var pre = document.getElementById('content');
-  var textContent = document.createTextNode(message + '\n');
-  pre.appendChild(textContent);
+  var pre = document.getElementById('docMessage');
+  var textContent = message;
+  pre.innerText = textContent;
 }
 
 /**
