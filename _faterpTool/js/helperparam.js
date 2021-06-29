@@ -156,37 +156,38 @@ let myInputLuc = document.getElementById('sideLuc');
 let myInputNP = document.getElementById('sideNP');
 
 //on keyup, start the countdown
-myInputStr.addEventListener('keyup', () => {
+myInputStr.addEventListener('input', () => {
     clearTimeout(typingTimer);
     if (myInputStr.value) {
         typingTimer = setTimeout(helperParam, doneTypingInterval);
     }
 });
-myInputEnd.addEventListener('keyup', () => {
+myInputEnd.addEventListener('input', () => {
+  console.log("haha");
     clearTimeout(typingTimer);
     if (myInputEnd.value) {
         typingTimer = setTimeout(helperParam, doneTypingInterval);
     }
 });
-myInputAgi.addEventListener('keyup', () => {
+myInputAgi.addEventListener('input', () => {
     clearTimeout(typingTimer);
     if (myInputAgi.value) {
         typingTimer = setTimeout(helperParam, doneTypingInterval);
     }
 });
-myInputMan.addEventListener('keyup', () => {
+myInputMan.addEventListener('input', () => {
     clearTimeout(typingTimer);
     if (myInputMan.value) {
         typingTimer = setTimeout(helperParam, doneTypingInterval);
     }
 });
-myInputLuc.addEventListener('keyup', () => {
+myInputLuc.addEventListener('input', () => {
     clearTimeout(typingTimer);
     if (myInputLuc.value) {
         typingTimer = setTimeout(helperParam, doneTypingInterval);
     }
 });
-myInputNP.addEventListener('keyup', () => {
+myInputNP.addEventListener('input', () => {
     clearTimeout(typingTimer);
     if (myInputNP.value) {
         typingTimer = setTimeout(helperParam, doneTypingInterval);
