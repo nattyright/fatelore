@@ -345,6 +345,7 @@ function updateDoc(fileId) {
       // &nbsp; for white space at the end of para = remove ""
       // <> strip all other tags = no formatting
       content = content.replace(/<p><br><\/p>/g,"")
+                       .replace(/<p[^>]*>[\s]*<\/p[^>]*>/g,"")
                        .replace(/<\/p[^>]*>/g,"[n]")
                        .replace(/&nbsp;/g,"")     
                        .replace(/<[^>]*>/g,"");
