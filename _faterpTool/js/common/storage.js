@@ -130,6 +130,21 @@ function populateReferenceTabs() {
 function loadFormData(divId) {
     if (localStorage.getItem(divId) != null && document.getElementById(divId) != null) {
         document.getElementById(divId).value = localStorage.getItem(divId);
+        if (document.getElementById(divId).type == 'select-one') {
+            var availableRanks = ['A', 'B', 'C', 'D', 'E', 'EX'];
+            var unavailableIds = ['sideClass', 'sideHeightUnit', 'sideHeightUnit2', 'sideWeightUnit'];
+            if (!availableRanks.includes(localStorage.getItem(divId)) && !unavailableIds.includes(divId)) {
+                document.getElementById(divId).selectedIndex = 6;
+                changeRankFields(divId, divId + 'Other');
+                var elem = document.getElementById(divId);
+                elem.options[6].value = localStorage.getItem(divId);
+                elem.options[6].text = localStorage.getItem(divId);
+                document.getElementById(divId + 'Other').value = localStorage.getItem(divId);
+                //console.log(elem.options[6].value);
+                
+
+            }
+        }
     }
 }
 $( document ).ready(function() {
