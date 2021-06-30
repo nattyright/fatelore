@@ -19,9 +19,6 @@ function getValueFromInput(divId) {
 }
 
 
-
-
-
 /*
  * Fetch info from given url
  */
@@ -32,4 +29,19 @@ async function fetchAsync (url) {
 }
 
 
+/*
+ * Hide buttons from main page
+ */
 
+function hideButtons() {
+    document.getElementById('settingsTabWrapper').classList.add('hideMenu');
+    document.getElementById('showMenu').classList.remove('hideMenu');
+    document.getElementById('hideMenu').classList.add('hideMenu');
+}
+
+
+function showButtons() {
+    document.getElementById('settingsTabWrapper').classList.remove('hideMenu');
+    document.getElementById('hideMenu').classList.remove('hideMenu');
+    document.getElementById('showMenu').classList.add('hideMenu');
+}
