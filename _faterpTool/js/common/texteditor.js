@@ -7,7 +7,8 @@ $('#personality').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em']
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#backstory').trumbowyg({
   btns: [
@@ -15,7 +16,8 @@ $('#backstory').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#otherInfo').trumbowyg({
   btns: [
@@ -23,7 +25,8 @@ $('#otherInfo').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#description').trumbowyg({
   btns: [
@@ -31,7 +34,8 @@ $('#description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#weapon').trumbowyg({
   btns: [
@@ -39,7 +43,8 @@ $('#weapon').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#np1Description').trumbowyg({
   btns: [
@@ -47,7 +52,8 @@ $('#np1Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#np1Effect').trumbowyg({
   btns: [
@@ -55,7 +61,8 @@ $('#np1Effect').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#np2Description').trumbowyg({
   btns: [
@@ -63,7 +70,8 @@ $('#np2Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#np2Effect').trumbowyg({
   btns: [
@@ -71,7 +79,8 @@ $('#np2Effect').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#cSkill1Description').trumbowyg({
   btns: [
@@ -79,7 +88,8 @@ $('#cSkill1Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#cSkill2Description').trumbowyg({
   btns: [
@@ -87,7 +97,8 @@ $('#cSkill2Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#cSkill3Description').trumbowyg({
   btns: [
@@ -95,7 +106,8 @@ $('#cSkill3Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 
 $('#pSkill1Description').trumbowyg({
@@ -104,7 +116,8 @@ $('#pSkill1Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#pSkill1Example').trumbowyg({
   btns: [
@@ -112,7 +125,8 @@ $('#pSkill1Example').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#pSkill2Description').trumbowyg({
   btns: [
@@ -120,7 +134,8 @@ $('#pSkill2Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#pSkill2Example').trumbowyg({
   btns: [
@@ -128,7 +143,8 @@ $('#pSkill2Example').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#pSkill3Description').trumbowyg({
   btns: [
@@ -136,7 +152,8 @@ $('#pSkill3Description').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 $('#pSkill3Example').trumbowyg({
   btns: [
@@ -144,7 +161,8 @@ $('#pSkill3Example').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['strong', 'em'],
   ],
-  semantic: false
+  semantic: false,
+  removeformatPasted: true
 });
 
  //#otherInfo #description #weapon #np1Description #np1Effect #np2Description #np2Effect #cSkill1Description #cSkill2Description #cSkill3Description #pSkill1Description #pSkill1Example #pSkill2Description #pSkill2Example #pSkill3Description #pSkill3Example

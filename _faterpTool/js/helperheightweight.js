@@ -5,8 +5,11 @@
 function changeMeasurementSystemHeight(unit) {
 
     if(unit == 'cm') {
-        document.getElementById("sideHeight2").remove();
-        document.getElementById("sideHeightUnit2").remove();
+        if (document.getElementById("sideHeight2") != null) {
+            document.getElementById("sideHeight2").remove();
+            document.getElementById("sideHeightUnit2").remove();           
+        }
+
 
     } else {
 

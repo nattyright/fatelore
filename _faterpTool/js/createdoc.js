@@ -237,7 +237,7 @@ function updateDoc(fileId) {
   for (var i = 0; i < keys.length; i++) {
     var key = keys[i], value = updateLoc[key];
     
-    var element = document.getElementById(value), content;
+    var element = document.getElementById(value), content = '';
 
     // omit the 3 special values without input areas at the beginning
     if (count < 6 && specialIds.includes(value)) {
@@ -249,17 +249,86 @@ function updateDoc(fileId) {
         if (titleEle != null && titleEle.value != "") {
           content = titleEle.value;
         } else {
-          content = 'haha';
+          content = ''; // no data = no content to sent to google docs
         }
 
       } else if (value.localeCompare('sideClassIcon') == 0) {
-        content = 'N/A';
+        var servantClasseURL = {'Saber':'https://cdn.discordapp.com/attachments/694493129671442453/859534555596455966/image2.png',
+                                'Archer':'https://cdn.discordapp.com/attachments/694493129671442453/859534571947294780/image5.png',
+                                'Lancer':'https://cdn.discordapp.com/attachments/694493129671442453/859534587805302874/image7.png',
+                                'Caster':'https://cdn.discordapp.com/attachments/694493129671442453/859534630931005450/image3.png',
+                                'Rider':'https://cdn.discordapp.com/attachments/694493129671442453/859534644919795763/image1.png',
+                                'Assassin':'https://cdn.discordapp.com/attachments/694493129671442453/859534655825117264/image9.png',
+                                'Berserker':'https://cdn.discordapp.com/attachments/694493129671442453/859534664598945822/image6.png'};
+        var getServantURL = servantClasseURL[document.getElementById('sideClass').value];
+
+        // delete the default 'zz' message in every text area on the doc
+        var newObjectDeletePrev = {
+          deleteContentRange: {
+            range: {
+              startIndex: parseInt(key),
+              endIndex: parseInt(key) + 2,
+            }
+          }
+        };
+        var newObject = {
+          insertInlineImage: {
+            uri: getServantURL,
+            location: {
+              index: parseInt(key)
+            },
+
+            
+          }
+        };
+        updateObject.resource.requests.push(newObjectDeletePrev);
+        updateObject.resource.requests.push(newObject);
+
+        content = ''; // create inline image object here individually - no need to pass content
       } else if (value.localeCompare('sidePic') == 0) {
-        content = 'N/A';
+
+        // only get PFP if the URL isn't empty
+        if (document.getElementById('sidePic') != null && document.getElementById('sidePic').value != '') {
+          var getServantURL = document.getElementById('sidePic').value;
+
+          // delete the default 'zz' message in every text area on the doc
+          var newObjectDeletePrev = {
+            deleteContentRange: {
+              range: {
+                startIndex: parseInt(key),
+                endIndex: parseInt(key) + 2,
+              }
+            }
+          };
+          var newObject = {
+            insertInlineImage: {
+              uri: getServantURL,
+              location: {
+                index: parseInt(key)
+              },
+
+              objectSize: {         //2.47 in, 72PT to an in
+                width: {
+                    magnitude: 175,
+                    unit: 'PT'
+                }
+              }
+
+            }
+          };
+          updateObject.resource.requests.push(newObjectDeletePrev);
+          updateObject.resource.requests.push(newObject);
+        }
+
+        content = '';
       } else if (value.localeCompare('sideWeight') == 0) {
-        content = element.value + document.getElementById('sideWeightUnit').value;
+        if (element.value) {
+          content = element.value + document.getElementById('sideWeightUnit').value;
+        }
       } else if (value.localeCompare('sideHeight') == 0) {
-        content = element.value + document.getElementById('sideHeightUnit').value;
+        if (element.value) {
+          content = element.value + document.getElementById('sideHeightUnit').value;
+        }
         // check if using imperial
         if (document.getElementById('sideHeight2') != null && document.getElementById('sideHeight2').value != "") {
           content = content + document.getElementById('sideHeight2').value + document.getElementById('sideHeightUnit2').value;
@@ -278,11 +347,13 @@ function updateDoc(fileId) {
       //console.log(content);
       multiPara = true;
     } else {
-      content = 'haha';
+      content = ''; // no data = no content to sent to google docs
     }
 
 
-    if (multiPara == false) {
+    if (multiPara == false && content != "") {
+      console.log(value);
+      console.log(content);
                     
           // delete the default 'zz' message in every text area on the doc
           var newObjectDeletePrev = {
@@ -306,7 +377,7 @@ function updateDoc(fileId) {
           // insert object to updateObject
           updateObject.resource.requests.push(newObjectDeletePrev);
           updateObject.resource.requests.push(newObject);
-    } else {
+    } else if (multiPara == true) {
           multiPara = false;
           var paraStartIndex = parseInt(key);
           
@@ -361,6 +432,7 @@ function updateDoc(fileId) {
     //console.log(res);
   },function(err) {
     console.error(err);
+    console.log(updateLoc[parseInt(key)]);
   });
 
   var pre = document.getElementById('docMessage');
