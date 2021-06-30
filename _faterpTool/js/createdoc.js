@@ -340,7 +340,12 @@ function updateDoc(fileId) {
     } else if (element != null && updateIdFromTextEditor.includes(element.id) && $('#' + element.id).trumbowyg('html') != "") { //text editors are divs with html
       content = $('#' + element.id).trumbowyg('html');
       // strip formatting from html
-      content = content.replace(/<\/p[^>]*>/g,"[n]")
+      // <p><br></p> = empty lines = remove                 ""
+      // </p> = new paragraph = [n] for double              \n
+      // &nbsp; for white space at the end of para = remove ""
+      // <> strip all other tags = no formatting
+      content = content.replace(/<p><br><\/p>/g,"")
+                       .replace(/<\/p[^>]*>/g,"[n]")
                        .replace(/&nbsp;/g,"")     
                        .replace(/<[^>]*>/g,"");
       content = content.split("[n]");
@@ -352,8 +357,8 @@ function updateDoc(fileId) {
 
 
     if (multiPara == false && content != "") {
-      console.log(value);
-      console.log(content);
+      //console.log(value);
+      //console.log(content);
                     
           // delete the default 'zz' message in every text area on the doc
           var newObjectDeletePrev = {
@@ -398,7 +403,7 @@ function updateDoc(fileId) {
 
             // only add newline for paras other than the last para
             if (j < (content.length - 2)) {
-              contentFinal = contentFinal + "\n";
+              contentFinal = contentFinal + "\n\n";
             }
 
             // only write to google docs if line isn't empty
