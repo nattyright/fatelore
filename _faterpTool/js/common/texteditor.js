@@ -164,25 +164,3 @@ $('#pSkill3Example').trumbowyg({
   semantic: false,
   removeformatPasted: true
 });
-
- //#otherInfo #description #weapon #np1Description #np1Effect #np2Description #np2Effect #cSkill1Description #cSkill2Description #cSkill3Description #pSkill1Description #pSkill1Example #pSkill2Description #pSkill2Example #pSkill3Description #pSkill3Example
-
-
-
-/*
- * Fire functions after finishing typing in a field with Id (1 seconds)
- */
-
-//setup before functions
-//let myInputPersonality = document.getElementById('personality');
-
-
-//on keyup, start the countdown
-/*
-myInputPersonality.addEventListener('keyup', () => {
-    clearTimeout(typingTimer);
-    var text = $('#personality').trumbowyg('html');
-    console.log(text);
-
-});
-*/

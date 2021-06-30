@@ -19,6 +19,7 @@ function changeMeasurementSystemHeight(unit) {
                  + "</select>"
                  //console.log(html);
         document.getElementById('sideHeightUnit').insertAdjacentHTML("afterend", html);
+        
         //set up event listener for the new unit for auto save
         $('#sideHeight2').on('input propertychange change', function() {
             var toSaveId = $(this).attr('id');
@@ -28,6 +29,11 @@ function changeMeasurementSystemHeight(unit) {
                 saveFormData(toSaveId);
             }, 1000);
         });
+
+        //check if we're in darkmode
+        if ($("#sideHeightUnit").hasClass( "darkMode" )) {
+            turnOnDarkMode();
+        }
     }
 }
 
