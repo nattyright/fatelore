@@ -200,3 +200,71 @@ myButtonClearForm.addEventListener('click', () => {
 });
 
  
+
+
+/*
+ * Generate RAW text
+ */
+function generateRawData() {
+    //'{"name":"John", "age":30, "city":"New York"}'
+    // generate raw data in JSON format
+    var rawData = {};
+    for (var i = 0; i < idsToSave.length; i++) {
+        if (document.getElementById(idsToSave[i]) != null) {
+            rawData[idsToSave[i]] = document.getElementById(idsToSave[i]).value;
+        }
+    }
+    for (var i = 0; i < idsToSaveTextEditor.length; i++) {
+        if (document.getElementById(idsToSaveTextEditor[i]) != null) {
+            rawData[idsToSaveTextEditor[i]] = $('#' + (idsToSaveTextEditor[i])).trumbowyg('html');
+        }
+    }
+    rawData = JSON.stringify(rawData);
+
+    var win = window.open('', '_blank', 'width="100%",height="100%"');
+    win.document.write('<html><head></head><body><textarea readonly style="resize: none;width:100%;height:100%;padding:10px 10px;">' + rawData + '</textarea></body></html>');
+    appendPre("Data generated in new window. If there is no new window, check your pop-up blocker.");
+}
+
+
+/*
+ * Load RAW text
+ */
+function loadRawData() {
+    var rawData = document.getElementById('importBox').value;
+    try {
+        rawData = JSON.parse(rawData);
+        //console.log(rawData);
+
+        for (var i = 0; i < idsToSave.length; i++) {
+            if (document.getElementById(idsToSave[i]) != null) {
+                document.getElementById(idsToSave[i]).value = rawData[idsToSave[i]];
+            }
+        }
+        for (var i = 0; i < idsToSaveTextEditor.length; i++) {
+            if (document.getElementById(idsToSaveTextEditor[i]) != null) {
+                $('#' + (idsToSaveTextEditor[i])).trumbowyg('html', rawData[idsToSaveTextEditor[i]]);
+            }
+        }
+        saveFormDataAll();
+        saveFormDataAllTextEditor();
+        appendPre("Successfully imported data.");
+    } catch (e) {
+        appendPre("Invalid data.");
+    }
+
+    document.getElementById('importDataWrapper').innerHTML = '';
+}
+function importData() {
+    var importBox = document.createElement('textarea');
+    importBox.id = 'importBox'
+    importBox.style.width = "100%";
+    var submitButton = document.createElement('button');
+    submitButton.innerHTML = 'Submit Data';
+    submitButton.onclick = function() { loadRawData() };
+
+    var insertLoc = document.getElementById('importDataWrapper');
+    insertLoc.innerHTML = "";
+    insertLoc.appendChild(importBox);
+    insertLoc.appendChild(submitButton);
+}
