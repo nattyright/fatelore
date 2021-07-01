@@ -22,7 +22,7 @@ myInputClass.addEventListener('change', () => {
 
 
 /*
- * Add/Remove input fields depending on metric/imperial system
+ * Add/Remove input fields depending on rank change
  */
 
 function copyOtherRankToSelectMenu(divId, divIdToCopy) {
@@ -51,6 +51,7 @@ function changeRankFields(divId, divIdToAdd) {
         myInputRankOther.addEventListener('keyup', () => {
             copyOtherRankToSelectMenu(divId, divIdToAdd)
             saveFormData(divId);
+            generatePreview();
         });
 
     } else {

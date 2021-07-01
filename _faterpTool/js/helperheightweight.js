@@ -27,6 +27,7 @@ function changeMeasurementSystemHeight(unit) {
             timeoutId = setTimeout(function() {
                 // Runs 1 second (1000 ms) after the last change    
                 saveFormData(toSaveId);
+                generatePreview();
             }, 1000);
         });
 

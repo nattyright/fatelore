@@ -83,6 +83,7 @@ $('form input, form textarea, form select, form button, form option').on('input 
     timeoutId = setTimeout(function() {
         // Runs 1 second (1000 ms) after the last change    
         saveFormData(toSaveId);
+        generatePreview();
     }, 1000);
 });
 // text editors
@@ -92,8 +93,12 @@ $('.trumbowyg-editor').on('keyup', function() {
     timeoutId = setTimeout(function() {
         // Runs 1 second (1000 ms) after the last change    
         saveFormDataTextEditor(toSaveId);
+        generatePreview();
     }, 1000);
 });
+
+
+
 
 
 /*
@@ -179,6 +184,7 @@ $( document ).ready(function() {
     for (var i = 0; i < idsToSaveTextEditor.length; i++) {
         loadFormDataTextEditor(idsToSaveTextEditor[i]);
     }
+    generatePreview();
 });
 
 
@@ -212,6 +218,7 @@ myButtonClearForm.addEventListener('click', () => {
     clearFormTextEditor();
     saveFormDataAll();
     saveFormDataAllTextEditor();
+    generatePreview();
 });
 
  
@@ -263,6 +270,7 @@ function loadRawData() {
         }
         saveFormDataAll();
         saveFormDataAllTextEditor();
+        generatePreview();
         appendPre("Successfully imported data.");
     } catch (e) {
         appendPre("Invalid data.");
