@@ -212,13 +212,34 @@ function clearFormTextEditor() {
         }
     }
  }
-let myButtonClearForm = document.getElementById('clearFormData');
-myButtonClearForm.addEventListener('click', () => {
+
+// 'are you sure' dialog before resetting the sheet
+
+function resetSheetConfirmation() {
+    $( function() {
+        $( "#reset-sheet-message" ).dialog({
+          modal: true,
+          buttons: {
+            Ok: function() {
+              $( this ).dialog( "close" );
+              clearAllData();
+            }
+          }
+        });
+      } );
+}
+
+function clearAllData() {
     clearForm();
     clearFormTextEditor();
     saveFormDataAll();
     saveFormDataAllTextEditor();
     generatePreview();
+}
+
+let myButtonClearForm = document.getElementById('clearFormData');
+myButtonClearForm.addEventListener('click', () => {
+    resetSheetConfirmation();
 });
 
  
