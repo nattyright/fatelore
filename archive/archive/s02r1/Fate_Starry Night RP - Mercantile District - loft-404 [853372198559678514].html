@@ -1,0 +1,1884 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - loft-404</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.325em;
+    height: 1.325em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+    pointer-events: none;
+}
+
+.chatlog__reference-content > a:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > .emoji {
+    width: 1.325em;
+    height: 1.325em;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    vertical-align: middle;
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__embed-youtube-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-youtube {
+    border: 0;
+    border-radius: 3px;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #5865F2;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #00aff4;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* Preamble */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: #202225;
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: #dcddde;
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: #dcddde;
+}
+
+.chatlog__embed-footer {
+    color: #dcddde;
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Mercantile District / loft-404</div>
+
+            <div class="preamble__entry preamble__entry--small">Gustave Renoir&#39;s own personal art studio/apartment tucked away on top of a repurposed warehouse , offering a generous view of the sprawling marketplaces and performances below. The perfect place for one to get in touch with their creative side with no distractions.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/f536e140548023904625d7200ce4368e-799BB.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">13-Jun-21 04:36 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="853372321796194334" id="message-853372321796194334" title="Message sent: 13-Jun-21 04:36 AM">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/1064-EE988.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/1064-EE988.jpg" alt="Image attachment" title="Image: 1064.jpg (942.33 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jun-21 12:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="855672197045944341" id="message-855672197045944341" title="Message sent: 19-Jun-21 12:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A reprieve from that dark tower, a gaudy congregation danced down below, their mix of color and motion hypnotising to any man. Sparks of flame punctuating the rhythm with fiery crescendos before climaxing in an otherworldly, supreme glow. A perfect subject, he had to admit, and a blank canvas stood in front of him. One stroke was all that was needed, but which dye to choose? That was a hard question, and thoughtfulness turned to indecision and indecision to paralysis. A break was needed. 
+
+Yet when the artist opened his door, there were men in sharp suits and holsters that carried items sharper still. Yet his eyes were drawn to neither, rather the single letter held towards him, bearing the seal of the city. An escape from painting had turned him towards another set of implements, one he hadn&#39;t used in a long, long time…
+
+“Hey Dad, are you alright? You look a bit pale,” a well-dressed woman said, putting a manicured hand onto Gustave’s own.
+
+“Hmm? Oh yes, I’m just lost in thought again, Cecilia. Please don’t worry about your old man,” he responded with a fatherly chuckle and scratched the back of his head, trying to find some way to resolve that internal pressure that had been building up ever since that damned letter showed up. He blinked and the lavish yet intimate dining room came into focus once more, his family turning their attention from their food to him. 
+
+Could he obscure his role in this inter city holy grail war? Perhaps but inevitably his family, his kids, grandkids would see it and those questions would only bring on more as they would wonder why he hid it from them. It, then, would be for the best to bring it up now and avoid one long interrogation. Judging by his daughter’s narrowed eyes, seemed there’s no better time than the present.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="855672317760765952" id="message-855672317760765952" title="Message sent: 19-Jun-21 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Well actually, I suppose there is one little thing I do have to share today other than art. Delphi has formally asked if I would be interested in being one of seven representatives for that Holy Grail War they’ve been chatting so much about.”
+
+“And what did you say, Gigi?” One of his grandchildren practically stood up in their little booster seat, wobbling on their podgy legs and eyes beaming like stars. “Did you say yes to the bossman?”
+
+“Hahaha, I suppose I did, Anton. How could I say no to such an offer?” Turning to face Cecilia and her brothers, Claude and Miles, Gustave had a harder sell as they all knew what really was entailed.  “Ah and don’t worry about me please. This is not that mess they threw like idiots over at Persepolis. Its all a formalized tourney. Might actually mean I have a chance and prove our family’s  worth again…”
+
+“Family’s worth? Dad, do you hear yourself? Look at all we have, look at what you’ve done! I think we’ve moved past all that nonsense Gramps talked about,” “Like seriously, you don’t have anything to prove to us and you’ve proved yourself to the world. I’m sorry but I fail to see how your lab techniques would hold up against some young hotshots with mana to burn, and that’s not mentioning servants…”
+
+“Careful what you say Miles, you’re starting to forget how experience can overcome raw talent. Remember that next time you dash into harm&#39;s way and ask for someone to help you out of the mess you made yourself.”
+
+“Miles, let’s not antagonize our father right now. This is a moment to celebrate. At least for us, I imagine you have to summon a servant soon, yes? Claude, can you pack up something for Dad? I’m sure the strain will leave him hungry, even after what you made tonight.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-EEA31.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="855672195615686687" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jun-21 12:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="855672372396032001" id="message-855672372396032001" title="Message sent: 19-Jun-21 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave nodded to his daughter, thankful for the way out. She was the oldest of the three and it seemed he had made a wise decision in entrusting the family’s future to her through the family crest. He polished himself up, bid a warm goodbye to his family, took the nicely wrapped food from his son and went out into the night. 
+
+
+Head back to Loft, make brief mention of the mercantile district’s life also how he likes how both math and art are complicated yet simple at same time. “All matter of intuition at the end of it. Paint is paint and numbers are numbers, nothing but tools to be manipulated to uncover a greater truth.”
+
+
+As he crested the stairs, Gustave almost fell back down them as he noticed the door to his studio loft was open. Fishing something out from his pocket, Gustave placed it between his hands and exhaled. The pencil he held now was as large as a cane, and he held it at the ready as he pushed upon the door and saw a lone figure in the center of the loft.
+
+Gustave moved quickly to turn the light on, and the figure remained motionless. Any fear he had dissipated as he saw it was a S.E.R.V.A.N.T.  suit resting on a stool but it was replaced by apprehension as he saw it held in its lap another letter, this time with a single silver oil lamp embossed. He swore to himself as he set aside the makeshift javelin and opened the letter, already knowing its contents and the stipulations laid within for such a gift.
+
+It was going to be a long night for him again, he sighed and then popped a pill in his mouth. He had much work to do and he might as well loosen up all the tension he just worked himself into with a little chemical assistance and liquid persuasion.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-19057.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-21 12:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="855672465043882045" id="message-855672465043882045" title="Message sent: 19-Jun-21 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">---</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jun-21 12:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="855672617797156864" id="message-855672617797156864" title="Message sent: 19-Jun-21 12:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A few hours later, an elegant summoning circle surrounded the string-less marionette. A masterpiece of mathematical precision and patrician styling, it seemed to dance around the stool with geometric mirth and tethered to its recipient by a may pole of gently curving arcs in goat blood. The old teacher admired his work, thumbing an antediluvian coin in his palm and glancing back up at the frame with concern. 
+
+Yes he could make flawless shapes, he’d spent a whole career perfecting theory but it was the whole implementing said thing into practice that still made him worried. Battlefields were chaotic, not governed primarily by the rules of the world but rather the beastly instincts of man that would gladly kill one another for the chance at a grand meal. In that second, Miles’s words echoed in his head. In the next, Gustave abandoned hesitation and threw himself in the clutches of fate, the coin falling from his downturned hand and impregnated with his peculiar brand of magic. Down it fell into its allotted position and completed the circle.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="855672702550671360" id="message-855672702550671360" title="Message sent: 19-Jun-21 12:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Let gold and silver be the base, let mountain stone and the Archduke of Contracts be the foundation,” he chanted as the circle slowly began to shift and creak with magical power like an old machine.
+
+“For the toll, let the ancestral blood of Auberon pay my fare. Fill five times over and fall at the end of each cycle,” the coin, consecrated with the blood of the Renoir family, turned red and took on an eldritch form as it melded with the circle that now took on more and more speed, emitting a steady whir.
+
+“Let rise a wall against the wind that shall fall. Let the four cardinal gates close. Let the three-forked road from the crown reaching unto the Kingdom rotate,” the whir now was the roar of a great wind  and the ground underneath the circle began to darken, lightly at first but by the beginning of the final words, a deep midnight black in which one could see stars that had once existed and yet to exist begin to condense and form a deep funnel from which a blue gleam could be seen. 
+
+“I vow to honor the call of the paragon and trample under foot the way of the infamous. Now seven heavens, clad in the three words of power, bring forth from the circle of deterrence, the Guardian of the Scales!”
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jun-21 07:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="855777748773765141" id="message-855777748773765141" title="Message sent: 19-Jun-21 07:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">For days the Sniper has wandered a frozen tundra. Not tiring of his expedition in the slightest, but at some point soon he required respite. Some protection, perhaps an abandoned cabin, a cave, hell even a fox&#39;s hole might do. 
+
+The land was strange and alien, but also comforting and familiar. Perhaps this was some part of his homeland, or maybe he found his way into Russia.  Another observation he had made quite some time ago is that the Sun is in a perpetual state of rising for dawn. Peculiar most definitely, but perhaps he had traveled far enough north for this to always be the case. 
+
+In a practiced mannered Simo moved his hand towards one of the pockets on his coat, searching for one of his rations. Yet, there were none left... Not even a single slice of bread or a packet of sugar. His face quickly became distressed. 
+
+Being under open fire, was one thing, but being within the tundra with no rations was a completely other beast. And as if on cue, a blizzard began to whip up. The Finn had to find somewhere to take cover quickly.... 
+
+So he continued forwards in a determined march. Shelter must be found. 
+
+Hours proceeded to pass and Simo seemed to have made little headway in the tundra. The snow having made it almost impossible to determine where he had been and where he was going. 
+
+Then words began to come from a warm light ahead... <em>&quot;I vow to honor the call of the paragon and trample under foot the way of the infamous.&quot;</em> Simo&#39;s pace changed into a sprint as he ran for the warm light, what was now being shown as a small cabin with its door barely open. The Assassin then breeched the door. 
+
+In a flash of light and snow the S.E.R.V.A.N.T frame came to life right before Gustave&#39;s very eyes. Animating itself upon completion of the summoning, transforming into a legend. 
+
+The assassin however did not seem to notice his master at first and instead moved from the summoning circle, setting his rifle down and doffing his coat. Moving to search for rations.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-21 07:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="855777767118864384" id="message-855777767118864384" title="Message sent: 19-Jun-21 07:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jun-21 09:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="856530319443361812" id="message-856530319443361812" title="Message sent: 21-Jun-21 09:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Upon entering the “cabin” and bringing along a faint cape of snow, Simo would find himself in a spacious room that felt surprisingly cozy as every nook and cranny had some resident or another, be it a canvas splattered in a storm of twisting color, wooden furniture faded with years of use, and bookshelves filled with books both as new as Simo’s form and as old as the lands buried by kilometers of water. 
+
+A large window took up most of the south wall and offered a beautiful vantage point of the market below and beyond should the soldier venture through its curtain and peek through its blinds. 
+
+Of course, art and beauty were very much secondary to Simo and the smell of a home-cooked meal, though dimmed somewhat by time, would lure him towards what looked like a kitchen table. The meal still packed in its foil gave off a gentle warmth and a thermos beside it promised the potential of comforting tea or refreshing coffee within. 
+
+All the while, Gustave held back and watched as his wish for a capable soldier materialized before his eyes. He was a teacher foremost and doubted his own ability to compete against the youngbloods out for the grail. There were students of his own he would have likely placed in his stead had he had the chance and one he knew that had bloodied herself in the grail war that had precipitated into the predicament he found himself in now. 
+
+The man wandering around his loft appeared well equipped, plenty of armaments and modern ones at that. Range wouldn&#39;t be a problem for them and that suited him just fine, he preferred the flexibility and time to prepare his craft that it provided. What he was concerned about however was the servant’s pure white attire that would make him stick out like a sore thumb in this urban setting. Perhaps if he could paint the man’s coat… but that was a project for another time, introductions were first on the syllabus.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856530391062020136" id="message-856530391062020136" title="Message sent: 21-Jun-21 09:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“If you’re looking for food, you’re more than welcome to help yourself to that. I’ve already had supper myself,” Gustave said, following the white-clad assassin around to the kitchen island and grabbing a pair of mugs from a cabinet. “While you get seated, I have to ask, are you a coffee or tea person?  The former’s in the thermos and tea I can brew.”
+
+Why was he acting like a server, Gustave couldn’t quite say but something in the soldier’s eyes seemed to be looking for refuge rather than formalities. All the ritual trappings of the master-servant relationship would come in time, to rush them was to invite mistakes and to invite mistakes was to invite a second brush with death, one thing Gustave was loathe to repeat.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-19057.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-21 09:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="856530407482982411" id="message-856530407482982411" title="Message sent: 21-Jun-21 09:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-21 11:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="856552241272324116" id="message-856552241272324116" title="Message sent: 21-Jun-21 11:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jun-21 11:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="856552242781749298" id="message-856552242781749298" title="Message sent: 21-Jun-21 11:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">When his senses finally came too him, this room could have not been attached to the cabin he had wandered into. It was Cozy, yes, but also the view from the great window on the south wall did not at all match up to what the sniper saw before entering. 
+
+The art was rather enjoyable to look at and make note of, but he didn’t seem to on focus the creator just yet and saw the warm meal on the table.  “Ah… a warm meal would surely be…” Simo spoke to himself before Gustave opened his mouth and grabbed the Finn’s fullest attention. 
+
+He was a kind looking man, very grandfatherly in appearance. And his actions spoke to his kindness. “Well… I suppose you must be my master. I would rather enjoy a warm cup of tea if you are offering.” The assassin took a seat at the kitchen island, allowing himself to relax slightly and regain his composure. No longer carrying himself as a man trying to save himself from the elements. 
+
+“This room is rather well decorated… did you happen to paint those yourself?” Simo then gently opened up the aluminum foil, not waiting for a cue from Gustave to dig in. He had taken off his face covering revealing what could only be described as the mouth of a demon digging into the food with fervor. 
+
+Mid-chew he began to speak again. (TL from chewing speak to make things easier) “I only really need sugar for my tea by the way, and I do appreciate this very very much, this meal… is amazing!” His eyes were bright and alive now, he was finally at ease and knew he was safe from the elements.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Jun-21 12:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="856568399798861834" id="message-856568399798861834" title="Message sent: 22-Jun-21 12:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yes and you are the servant I have the honor of making a contract with. Tea eh? I think I might have a blend you might like then,” Gustave made a shallow bow, letting the corners of his mouth turn up in a manner to further emphasize that grandfatherly appeal. He then moved to fill up a copper kettle with water and placed it on the stove. 
+
+“Ah thank you! Yes, it’s a great passion of mine and something I’ve put more and more time in over the years. Both my failures and successes reside here in my studio, that one over there is a favorite of mine,” He said, nodding towards a painting on the opposite wall notable for its hundreds of color splashes, slashes and dashes that all seemed to mirror and twist around a point of light seemingly far, far away. The whole thing seemed an impossibly shaped tunnel that repeated its patterns within itself until they became too minute to see. “Can’t say I was in the best of mind when I made it but they say that’s when you make your best work. A beautiful memento for a twisted time…”
+
+Gustave turned quiet after that, distracted by the piece, arms crossed and eyes gazing off into its focal point with a wistful gleam. He did not see Simo’s frightful visage at the moment even as he was between the artist and his vision. And he did not see it when the kettle began to whine at high pitch and turned to attend to the tea.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Jun-21 12:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="856575504323969045" id="message-856575504323969045" title="Message sent: 22-Jun-21 12:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Only sugar? Noted, should be ready in a moment,” he said, with his back turned for the moment. A risky move with a new servant, yes, but the man was distracted with his food so a minimal hazard at that. “But please, I’m not the one to thank for the food. Its my son, Miles, that made it. He’s far better at the culinary arts than I ever could be!” 
+
+
+Simo could hear the satisfying gurgle of water being poured into a mug and it would soon be followed by a fragrant aura that seemed to remind him of an alpine forest and all the fruit they bore. “Now don’t forget to let this steep for a couple moments and … oh dear did I  botch the summoning ritual?” He said, just narrowly avoiding to spill the tea as he glimpsed Simo’s terrible maw and reflexively pulled a hand towards his own jaw. His eyes then bled their warmth for a brief moment and narrowed as his hand then began to scratch him chin. &quot;Though that&#39;s impossible, I accounted for all relevant variables and allowed for variation... I am terribly sorry but I will have to know what you are before you continue. I can not let an unknown continue to evade definition.&quot; His voice was just as calm as before but lacking that grandfatherly warmth and gentleness.
+@Hawaii</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-19057.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">22-Jun-21 12:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="856578181524095016" id="message-856578181524095016" title="Message sent: 22-Jun-21 12:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Jun-21 01:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="856586488695488542" id="message-856586488695488542" title="Message sent: 22-Jun-21 01:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sniper didn’t suspect anything from his Master’s outwardly kind demeanor. Sometimes men and women were always their first impressions and nothing deeper. What did surprise Simo however was the willingness of Gustave to cater to some of his wants and needs in this moment, and turning his back was a rather big sign of trust also. 
+
+While the old man spoke of his art Simo listened while still eating, offering a few “ooo’s and ahhs” when he felt they were appropriate. “A family full of Artisans… most wonderful indeed. You must be proud of being the patriarch of them. But yes, only sugar… no need of milk or honey or any other fancy thing.” He spoke now with the food before him finished, and the facial covering still off of his mouth, and the demonic maw curling into a smile. 
+
+The scent of the tea was most relaxing to whiff. A comforting smell most definitely, something that reminded him of his younger years before the war. 
+
+But the comfort was soon cut through by tension, brought upon by a sudden change in his master. ‘Perhaps I was too quick to judge this man…’ Simo thought as Gustave’s face bled it’s kindness and showed a more sinister underlying persona. He questioned if he had botched a summoning at all,The Finn had little clue as to what he was referring too… but then it hit him he caught his reflection in the tea kettle and immediately covered his mouth back with the facial covering.
+
+“I do understand… this is business between a master and servant. Simo Hayha, Class Assassin.” The sniper remained relaxed as he stared down his master. “If this is about the mouth, I had little clue that happened. Damn Russians made me a demon, I suppose.” Simo’s tone remained as calm as his posture. He analyzed Gustave, finally coming to a more complete understanding of who was standing in front of him. “A man of plans and ruthlessness, I suppose that’s what you truly are. Does my master, the artiste, have a name?” He leaned forwards placing his elbows onto the island.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">22-Jun-21 01:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="856586503346061313" id="message-856586503346061313" title="Message sent: 22-Jun-21 01:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jun-21 01:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="858939559734804520" id="message-858939559734804520" title="Message sent: 28-Jun-21 01:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yes, secrets are nothing but a malus on both of us though this does seem to be one you were unaware of. My apologies for that,” Gustave said, the warmth still absent from his voice though any hint of wariness from his initial statement was gone. He brought his own mug and thermos over to sit opposite of Simo, never breaking eye contact all the while. 
+
+“And I suppose for this trade of information since you were so forthright, I do need to uphold my end, hehe. The artist before you is Gustave Renoir, former scientist and current painter. Yes, there was a tragedy behind that, much like that my family had suffered in the past and a physical toll I had to pay, much like yourself, “Though Gustave did not point to any discernible part of his body, the way he moved his head made the light bounce off them in an odd fashion someone like Simo knew was not indicative of just pure flesh. 
+
+“As for your analysis of me? I give it hmmm a good first showing but missing the larger picture here. Perhaps I shouldn’t be surprised given your past occupation, but I will put it simply. A man can have many different tools, each for a different job yes? A painter has his brushes and a soldier has his guns, and sometimes there is a particular tool they can use on instinct, right? That is what you could ultimately call this whole state of mind, one facet of a greater whole, just regrettably one I had to become all too familiar with… do you understand what I’m saying?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jun-21 03:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="858969994234822657" id="message-858969994234822657" title="Message sent: 28-Jun-21 03:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Similarly the Finn maintained eye contact with his master. He noted the continued lack of warmth, which only added to the tension of the situation. Perhaps it was as cold in here now as it was in that tundra he found himself wandering in before the summoning. &quot;Secrets are the natural predator for trust. Even those we are unaware of holding.&quot; The sniper chipped in while keeping his relaxed posture. 
+
+&quot;It is well met then, Gustave Renoir.&quot; Simo leaned forwards more showing he is interested in the words being spoke. Seeing the light&#39;s odd reflection made the assassin aware of something more than flesh being present in his masters body. 
+
+<em>&quot;I give it hmmm a good first showing but missing the larger picture here.&quot;</em> 
+
+Something about those words hit Simo especially hard, maybe a failing in his main methods of analysis. Perhaps something to work on in this second chance at life. &quot;Suppose its a sniper&#39;s nature to focus on specific portions than the whole picture, I should work more on that then.&quot; 
+
+Then Gustave&#39;s extrapolation upon aspects of his personality being tools, made Simo lean backwards from his Master. Not out of mistrust but rather introspection or thought. 
+
+A moment of silence passed as he continued to mull over what was being said. Then another. This continued to what felt like eternity due to the tension. 
+
+In reality only a minute of silence passed, before it was finally broke. &quot;I suppose I was never given enough leisure, or enough education, or frankly money to think about something so... philosophical. But, your metaphor makes sense.&quot; 
+
+Another moment of silence passes again. &quot;So that is my purpose.&quot; Simo stood up from the kitchen island. &quot;To be your tool, or in your case brush, and help to win a petty war.&quot; He crosses the loft once more to where his coat and rifle lay, and stops staring down towards them both. &quot;Use me as you like, then, and potentially we shall come out on top.&quot; Simo turns back towards Gustave, his posturing stiffening up.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-21 03:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="858970015880445952" id="message-858970015880445952" title="Message sent: 28-Jun-21 03:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jun-21 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="859062377169420298" id="message-859062377169420298" title="Message sent: 28-Jun-21 09:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“That frame of mind is understandable, as I imagine that was what you did best however I do not want you wasting too many resources on trying to reshape yourself. An all too costly procedure, instead think of it like expanding, oh what do you military men call it… ah yes, situational awareness. Perhaps in that paradigm, some change may come easier and at less cost.” Gustave, first nodding to Simo’s shared belief, speaking with some new passion in his eye that began to wear away at his coldness. It seemed like another tool of his was showing its uses.
+
+During the brief lulls in the conversation, Gustave would take long sips from his cup of coffee, feeling its bitter warmth rejeuavate his aging frame and give his mind a well-needed boost of energy. The summoning of even a more modern servant was not to be underestimated in the toll it could take on the body of a magus. 
+
+“Excellent, I am glad to see my old methods still can reach the minds of those eager to learn. Calm, attentive and curious, those are traits I like to see. You will do well, quite well if you keep to those characteristics,” the tension that had risen so suddenly before was now slowly being released as Gustave relaxed into a different state and the faint suggestion of a smile began to etch itself on his face as Simo came back from retrieving his gear.
+
+“Petty war it may be, but a war nonetheless. I expect you to use me as your tool just as much as I will need your skills in combat. We are two parts of one whole solution to one very long, complex problem,” Gustave likewise rose from his seat, hand palm down ahead of him on the table. “Now how would you like to see a little demonstration of what your old master can do?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-19057.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-21 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="859062399100911626" id="message-859062399100911626" title="Message sent: 28-Jun-21 09:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jun-21 12:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="859114836181123092" id="message-859114836181123092" title="Message sent: 29-Jun-21 12:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The room began to warm back up again, no longer could tension be felt between the master and servant as they came to their understanding. A hint of Passion came to His master’s eyes it would seem. “Situational awareness is a good thing to call it, yes…” Simo nodded as his hands gripped the rifle once more. 
+
+He nodded at Gustave’s eagerness to see the sniper’s willingness to learn. The tension had all but disappeared now, a bridge of trust and understanding had been built. 
+
+“An artist and a sniper. Quite the pairing.” Simo spoke softly, no doubt ahead of him was a competent Magus. “You’ll be another rifle for me, and I’ll be another brush for you. A give and Take.” To summon a servant was no easy feat even with the use of a S.E.R.V.A.N.T frame. 
+
+Gustave then offered a demonstration of what he was capable of, which piqued Simo’s curiosity. “If you wouldn’t mind, and if it won’t be too draining on you. Go ahead.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">29-Jun-21 12:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="859114844493709313" id="message-859114844493709313" title="Message sent: 29-Jun-21 12:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jun-21 10:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="859258582319366184" id="message-859258582319366184" title="Message sent: 29-Jun-21 10:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Very well, let’s begin with a story, one that starts long before either of our families even existed, back when the world was ruled by gods. The atmospheric mana concentration was much like now though perhaps even denser. Back then, the world was overflowing with this force we labelled as mystery and it was wielded by the gods and their select human followers as magic, true magic that far, far outstrips the feats of any modern mage and many servants. These were works that could truly be called miracles,” Gustave began to weave his story while he funneled magical energy into his palm and press it into the table. A slight hum was that could be noted at the moment. 
+
+ “But it was not to be forever, nothing really is except the governing laws of energy and matter, the gods eventually took their leave from the world and faded into myth while humanity marched ahead, eager to make the world theirs but in their curiosity, they began to wear away at the intrinsic mystery of the world, essentially killing true magic in the process.”
+
+“Leaving us with its artificial substitute in magecraft. A process made more artificial as the Second Great Flood killed off what little was left. Now to use it at all, implants are needed. For what I am doing here, I shall use mine to channel the flow of mana into the proper form and… look below,” Gustave nodded down as he withdrew his hand from the table. Nothing seemed out of the ordinary with where he rested it but as he tapped it with a finger, a single black dot splattered into existence, its edges infinitely detailed and vibrantly colored. Then a second and a third and a fourth dot subsequently dripped into existence, spiraling towards a center point and accelerating in the frequency of formation. Soon they merged together and had overwritten the whole area into a bizarre, perfectly symmetrical shape that repeated itself over and over on the margins to an impossibly small iteration.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="859258664933261372" id="message-859258664933261372" title="Message sent: 29-Jun-21 10:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Beautiful, isn’t it? Through modern magecraft, we can briefly overwrite the laws of the world and bend reality to our whims. To retexture something, to give it a new physical definition is essentially art, especially when it can be seen as beautiful. But I hear the question in your mind formulating, what use is this practically? Well that brings us to the next part. Look back at my painting from earlier and gaze at its focal point, how the abyss beckons you ever closer and yet always seems so far away? Just watch…”
+
+Simo would likely not notice Gustave place his hand back on the retextured surface and then lock his eyes with the center of the painting, a brief flash of light reflecting off thin strand of metal within his irises, supercharged with arcane energy. Then at the center of the abyss, a single black dot appeared, twisting and rippling with potential. One by one, the flecks of paint around it were blotted out by similar black dots and rainbow edges until a similar pattern to the table emerged. But then, he could see the ceiling through that pattern, though terribly curved as if one was gazing through a spherical mirror. 
+
+ “And this, dear Simo, is the summation of a life’s work to use magecraft to push the boundaries of the world as far as they will go for a man. The very fabric of the world folded and a hole punched through to connect two separate points. This is a both a bridge to everywhere and nowhere.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-19057.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">29-Jun-21 10:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="859258677605040138" id="message-859258677605040138" title="Message sent: 29-Jun-21 10:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jun-21 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="859684420319182848" id="message-859684420319182848" title="Message sent: 30-Jun-21 02:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sniper leaned against the wall as his master began the lecture. This man truly was one who definitely has worked as a teacher before. While the subject matter was one that was interesting… these esoteric matters of magecraft and magic were of little interest to Simo. 
+
+Assassin gave a few nods of understanding and ‘ooo’s and ‘aaa’s while the story or lesson continued. Talks of the gods and the true distinction between magecraft and magic was brought up. But then Gustave nodded towards the table…
+
+Something truly bizarre happened as the elderly hand left the table, then tapped it again. A pattern was created that… well retextured the surface of the table making it a pattern which paralleled Gustave’s artistic stylings.
+
+Gustave then told Simo to look towards the paintings, and the pattern appeared there as well. The room itself was warped, changed to be an infinitely repeating space. It was beautiful… 
+
+Simo stood there wordlessly, moving to touch the pattern. “I… this is amazing…. Magecraft could achieve something as powerful as this? Bending the world… You will certainly be a deadly force in this war.” He commented as his hand touched the edge of the spherical mirror, awaiting to see what would happen next. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jul-21 05:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="859901910160769026" id="message-859901910160769026" title="Message sent: 01-Jul-21 05:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Ah ah ah, I’d strongly advise you NOT to touch it, Simo,” Gustave said, marching over to his side and waving a finger as if to scold the assassin. He then indicated for the curious Finn to back up. “I admire your curiosity but these little wormholes are not rated to transfer all of a servant’s power at once. I shudder to think what instabilities could occur.”
+
+“However, I imagine you firing a projectile or stabbing somone on the opposite side would not incur too big a risk. And if you’d like, there’s no harm at all when it comes to tossing something through it. Here, let me show you…” Gustave fished around his pocket until he found a spare mana battery, nodded and moved towards the table before proceeding to toss the object into the wormhole. 
+
+“Quick Simo, catch!” Simo could see a heavily distorted Gustave in that spherical mirror and something shiny seemed to come closer and closer until it flew out of the hole and the painting, directly at Simo’s chest.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-19057.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-21 05:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="859901927437369405" id="message-859901927437369405" title="Message sent: 01-Jul-21 05:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jul-21 05:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="859904646557466654" id="message-859904646557466654" title="Message sent: 01-Jul-21 05:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Almost immediately Gustave went to scold him for almost touching the mirror like surface. Followed again by an explanation which he’d have to keep in mind for the future. “Extremely unstable, got it. No me, but my projectiles or my bayonet could do.” 
+
+This trick itself could more than determine a fight, this could cause one to end before it ever began. The options with this sort of magecraft seemed almost limitless to the sniper. 
+
+Then Gustave told him to catch, as a silver implement flew from the mirror right at his chest. Instinctually he reached  for the object while changing his stance to a more balanced one to prevent him from falling over. “You certainly have quite the tricks to pull.” He commented while still staring down the mirror and now holding the object tossed towards him. “Maybe keep up the grandfatherly appearance more, and we could easily kill a target with a false sense of security.” Simo spoke frankly as he set down the object onto the closest countertop and walked from the edge of the mirror to a more centered portion of the room.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-21 05:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="859904655944843335" id="message-859904655944843335" title="Message sent: 01-Jul-21 05:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jul-21 05:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="859907395399843870" id="message-859907395399843870" title="Message sent: 01-Jul-21 05:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A deadly force? War? That&#39;s hardly me, I have to say. I&#39;m just an old scientist-turned-artist as you can see. It is you who I will be relying on for the fights. All I can do is simply increase the probabilities of success,&quot; Gustave countered and came over by Simo, mug in hand. 
+
+&quot;Grandfatherly appearance?  Heh, I suppose that&#39;s one way to press our luck. But it is something to conceal one&#39;s skill and invite overconfidence in an enemy. Tell me Simo, do you have any experience in being underestimated?&quot; The look Gustave gave Simo was contradictory, there was a fatherly warmth in his voice encouraging him to speak up yet his eyes were gleaming with a cold precision, watching for Simo&#39;s reaction.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jul-21 05:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="859912459494228011" id="message-859912459494228011" title="Message sent: 01-Jul-21 05:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave made another good point of how he will simply be there for assistance and increasing chances for success. Simo could only nod in response. There would be competitions of force and strategy displayed by servants, which even in their weakened frames were considerably stronger than an average human. 
+
+The old gentleman then posed another question to the sniper, one of being underestimated. &quot;I can say that I have little experience in that field. I don&#39;t think the Russians ever underestimated someone they referred to as the white death. But perhaps in this war things will be markably different. I could be up against kings and other more noteworthy legends.&quot; Which is when simo began to see where Gustave was potentially coming from. &quot;Then lets invite as much overconfidence as possible, master?&quot; He asked in a confident tone while looking at his cold and precise eyes.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-21 05:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="859912483614490634" id="message-859912483614490634" title="Message sent: 01-Jul-21 05:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-CAB5E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jul-21 07:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="859932087561486336" id="message-859932087561486336" title="Message sent: 01-Jul-21 07:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave couldn’t help but smile as Simo came to the plan he had in mind. He was a quick learner, that was good, very good for the future. If they were to hold a chance at victory, to learn and to adapt to challenging material was necessary. In some ways, the Finn represented some of his past students.
+
+“Naturally, Assassin. Their confidence will be their undoing and our rise to victory. Now how about another round of food, I imagine just being summoned out of a winter wasteland leaves a soldier a bit peckish?”
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-8F543.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jul-21 10:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="859988713928523777" id="message-859988713928523777" title="Message sent: 01-Jul-21 10:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With their mutual understanding Simo’s eyes lit up slightly. It had been a while since his rifle had to be used. And being not alone makes things interesting, especially with the utility Gustave provided. 
+
+“Ah yes… some food would be rather good. Perhaps a stop at the local newspaper too. Need to let them know I’m not dead.” His tone was serious as he spoke and was ready to go.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D.html_Files/7d45f3f01dbfff365d4d9e9f9989f32f-7E9F9.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-21 10:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="859988734186487830" id="message-859988734186487830" title="Message sent: 01-Jul-21 10:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+
+</html>

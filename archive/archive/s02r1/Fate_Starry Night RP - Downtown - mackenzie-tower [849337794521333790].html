@@ -1,0 +1,1498 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - mackenzie-tower</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.325em;
+    height: 1.325em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+    pointer-events: none;
+}
+
+.chatlog__reference-content > a:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > .emoji {
+    width: 1.325em;
+    height: 1.325em;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    vertical-align: middle;
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__embed-youtube-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-youtube {
+    border: 0;
+    border-radius: 3px;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #5865F2;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #00aff4;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* Preamble */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: #202225;
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: #dcddde;
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: #dcddde;
+}
+
+.chatlog__embed-footer {
+    color: #dcddde;
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Downtown / mackenzie-tower</div>
+
+            <div class="preamble__entry preamble__entry--small">A massive skyscraper from which MacKenzie Industries bases its operations. The top floors are reserved for the residence of the current president of the company, and is complete with a penthouse. The air is delightfully refreshing when compared to the smog of Olympia.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-C7063.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">02-Jun-21 01:12 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="849515817993502770" id="message-849515817993502770" title="Message sent: 02-Jun-21 01:12 PM">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/1508993370866-3D16B.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/1508993370866-3D16B.jpg" alt="Image attachment" title="Image: 1508993370866.jpg (1004.37 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jun-21 04:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="855001106399363072" id="message-855001106399363072" title="Message sent: 17-Jun-21 04:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Smog covered the sky.
+
+If there was one constant in Olympia, above even the constant churn of industry and underhanded deals that all business owners took part in, it was the unending, ceaseless black blanket that covered the sky like a second coming of night. On some days, one could just make out the blue sky from beneath a thin veil of smog, but on others, it was like night had come early. 
+
+Despite the hard work of Olympia&#39;s weather manipulators and climate domes, there was little to be done when it spread far and beyond the reach of the city itself. As the Cynosura floated through the ocean, it left a black stain in its wake.
+
+It was, to put it lightly, disgusting.
+
+However, within an Olympian skyscraper that the disgusting air could not penetrate, was a large auction hall where guests chatted excitedly. This was not a normal auction. Any Republic or Olympia registrar would not find such an auction on any records. It was as if the auction had never existed—an underground auction, not backed by any official organization. They were not uncommon in the city, and with whispers of a City Grail War on the horizon, S.E.R.V.A.N.T Frames were becoming more and more desirable. As a result, these auctions were becoming more and more commonplace.
+
+Yet even that, it seems, goes even further down.
+
+In the auction hall&#39;s back room was empty, housing only a table and a few chairs in the corner. A Smarbucks cappuccino remained untouched. The back wall had humanoid figures lined up, silent and inert. In the middle of the room were two men in discussion.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="855002784084656148" id="message-855002784084656148" title="Message sent: 17-Jun-21 04:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Come now, Laurent, can&#39;t we talk about this? 30 percent is a lot! I can barely make ends meat with the remaining percentage, it&#39;s absurd!&quot; The first man stammered. He was of middling height, and plump. His hair was beginning to recede slightly, showing a bald spot in the back of his head about the size of a dollar coin. His mustache quivered as he spoke. &quot;You kno—&quot;
+
+&quot;You can&#39;t make ends meat with 70 percent? At an auction filled to the brim with some of the wealthiest men of Olympia? You&#39;ve got guts, Paude. Not that it&#39;s not obvious.&quot; The other man—Laurent—said as he eyed Paude&#39;s stomach with apprehension.
+
+Laurent was not a large man. While he towered over Paude, he would look right at home among those waiting in the auction hall. His midnight blue suit was neatly pressed, and his coattails threatened to drag behind him as he walked. He was the epitome of the phrase <em>dress for success</em>.
+
+&quot;Who takes the risk here, Paude? You? Please. If word of this auction leaks, who takes the fall? Me. Yet you seem content to leave me with 15 percent? Don&#39;t insult my intelligence. I should&#39;ve signed a contract with you a long time ago.&quot; Laurent waved the paper in front of the auctioneer, before tossing it to him alongside a pen.
+
+Laurent smiled faintly. If Magecraft had brought anything good into this world, it was the self-geass scroll. Nothing was better for business than an ironclad contract, and many contracts in the business world were sealed with them nowadays.
+
+Paude reddened slightly at the berate. Being tossed a geass without any regard for an opposing offer implied that Laurent had planned this conversation out in advance, meaning that Laurent had little care for Paude&#39;s opinions or counteroffer. As he unfurled the geass scroll, the 30% was there, clear as day. &quot;You...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jun-21 04:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="855007848614199306" id="message-855007848614199306" title="Message sent: 17-Jun-21 04:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Come now, Paude! You get to keep 70 percent, and give some minute fraction to whatever university mage you scraped out of the gutter. Even if you split 50/50 with the mage who summoned these Servants, you&#39;re still making a fortune!  Besides, we both know that if you did this at an official auction house, you&#39;d be taxed by the house, Olympia itself, and the Republic watching over you, taxing you all the way? I&#39;m taking but a minute piece of the pie. It&#39;s very rare that such an opportunity will come up again.&quot;
+
+Laurent said as he leaned down to place his hand on Paude&#39;s shoulder. It was cleverly done. A City Grail War, along with cooperation with a big name in Olympia? Away from the Republic&#39;s jurisdiction? It was too tempting not to take. Even the mage who summoned the frames would make a measly fraction, but with this auction&#39;s participants having such deep pockets, even their dregs would satisfy him.
+
+It was an easy solution. Paude signed, picked up the pen, and signed the self-geass scroll as Laurent smiled over him, though his expression seemed glassy. As Paude signed the scroll, Laurent walked over to the S.E.R.V.A.N.T Frames lining the wall. 
+
+Paude noticed his interest, and spoke up. &quot;Quite ingenious, if I may say so myself. While the Servant itself is summoned, they are subdued mentally and physically. They&#39;re barely taking enough mana in from batteries to remain corporeal. It&#39;s far easier than just letting them roam loose.&quot;
+
+Laurent nodded, though the explanation meant little to him. Magecraft was an alien-like concept to the company president. It was a sink of resources and effort, with little payout. There was no real value in Magecraft when compared to the physical luxuries of money.
+
+Which was why the City Grail War was such a seductive contest.
+
+&quot;Are you interested? All are top of the line, naturally. Each has properly been identified and checked using Servantpedia™️.&quot; Paude said, waddling up to stand besides Laurent, who adjusted his glasses.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jun-21 05:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="855009829452906497" id="message-855009829452906497" title="Message sent: 17-Jun-21 05:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I am.&quot; The president said. Summoning a Servant was too much of a hassle, and hiring a mage wasn&#39;t much better. Rolling the dice on a Servant made little sense, would it not be easier to know what you were getting out of the box? Even with a catalyst, there was the chance at failure.
+
+&quot;<strong>But if I were to get a Servant, I&#39;d want them to understand the meaning of betrayal.</strong>&quot; Laurent said thoughtfully. Paude looked up at him, and then down the line. He nodded towards the end of the line, and Laurent walked over. He read the attached tag.
+
+<div class="pre pre--multiline nohighlight">Marcus Junius Brutus: ASSASSIN</div>
+
+Caesar&#39;s backstabber. Laurent turned to face away from Paude, hand to his face. This was an unwise investment. Someone who was infamous for stabbing a leader in the back? It would be unwise to push capital into picking such a Servant. It was likely that Laurent would get stabbed in the back, just like Caesar.
+
+<em>And yet...</em> 
+
+Was this a spark of empathy? Of connection? Was his past creeping up on him? Perhaps it was a moment of weakness. This would end poorly. The single investment in Laurent&#39;s entire existence that would be based on emotion rather than reason: The Backstabber.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="855010894747795476" id="message-855010894747795476" title="Message sent: 17-Jun-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">—
+
+The auction progressed as expected, and Laurent won Brutus handily. Few wanted a mere Assassin, and even less wanted an Assassin likely to stab their owner in the back. Due to the masks worn at the auction, Laurent&#39;s foolish purchase would remain hidden.
+
+Laurent MacKenzie was the last person to enter the back room and pick up his Servant. Upon signing off a check to Paude, who left in a hurry, Laurent turned to Brutus as he finally awoke fully.
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jun-21 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="855071537123557417" id="message-855071537123557417" title="Message sent: 17-Jun-21 09:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As Brutus was in a comatose state, he kept hearing the same words over and over again.
+
+&quot;<strong>Murderer!</strong>&quot;
+
+He could see the faces of everyone who&#39;d ever call him that from the commoners of the Roman Republic to former friends to former Masters that he had. Each time, it gets louder and more people appear! Finally, Caesar appears before Brutus who takes a deep breath and tells him to his face.
+
+&quot;I did what had to be done! And I would do it again!&quot;
+
+Brutus wakes up to see Laurent before him. He surveys his surroundings and smiled. He takes 2 steps forward getting in Laurent&#39;s face... and he bows to him.
+
+He says, &quot;Hello Master, you probably already know but I&#39;m the Assassin Marcus Junius Brutus and I&#39;m here to help you win a war.&quot;
+<span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Jun-21 02:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="855150817030832178" id="message-855150817030832178" title="Message sent: 18-Jun-21 02:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As Brutu— no, Assassin came to life, Laurent stepped back to allow his Servant to bow at his feet. It was immensely gratifying, and Laurent allowed the bow for a few moments to sate his ego. It felt good to have someone taller than him bow at his feet.
+
+&quot;Rise, Assassin. You are correct in your assumptions. How acutely aware of you. You&#39;re as keen as history states you are.&quot; Laurent said as he walked in a circle around Brutus, drinking the sight in. The compliment was hollow, meaning little. It was nothing more than a formality to placate Brutus.
+
+&quot;Are there any problems with your summon? Are you at optimal power?&quot; Laurent said as he finished his circular walk, ending up in front of Brutus yet again.
+
+&quot;<strong>And most importantly, Backstabber of Caesar... Can I trust you?</strong>&quot;
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Jun-21 05:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="855201542537609246" id="message-855201542537609246" title="Message sent: 18-Jun-21 05:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He stands there with his arms crossed and sighs.
+
+&quot;Everyone asks that like I did what I did because I was power hungry. Caesar abused his power to make himself the ruler of the Roman Republic. And the sheer fact that the group making the S.E.R.V.A.N.T. frames is called <strong>the Republic</strong> proves how great it was. Just don&#39;t be a tyrant, it&#39;s simple. Oh, (fake laugh) and never call me that again!... Ok, let&#39;s make ourselves battle ready!&quot;
+
+He walks pass Laurent and begins to walk outside He sees Laurent still standing in the same spot.
+
+He looks back and says, &quot;We need to buy supplies! Aren&#39;t you coming?&quot;
+<span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Jun-21 09:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="855250751382355978" id="message-855250751382355978" title="Message sent: 18-Jun-21 09:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Just don&#39;t be a tyrant, it&#39;s simple.</em> What constituted as tyranny in a world without kings or monarchs? Laurent pondered to himself. If Brutus were to change his definition and dig deep into Laurent&#39;s history, how long would it take for his knife to be pointed towards his Master&#39;s throat? This had been unwise.
+
+<em>This City Grail War will be the end of me.</em> Laurent thought as Brutus brought him back from his stupor. &quot;It is getting late, and it is unwise for me to walk out onto the streets with a Servant. People know my face. They know what I do. When they see me out in public with a Servant, they will talk, and I don&#39;t need rivals using this Grail War as an excuse to silence me. I trust you of all people to understand.&quot;
+
+Laurent was, even as he gambled, a careful man. While he had elected to take part in the City Grail War, his future did not rely on it. If he lost, he would simply return to making money in various fields. If he went into public where people could see a Servant at this time, with the CGW abuzz, rumors would start. There were already several dozen gossip magazines about him dating x, y, or z. What would happen if they got something more concrete?
+
+It was lucky for him, then, that he had summoned a Servant perfect for concealment.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="855250787872538654" id="message-855250787872538654" title="Message sent: 18-Jun-21 09:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jun-21 08:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="855601533773414410" id="message-855601533773414410" title="Message sent: 19-Jun-21 08:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus looks back at Laurent.
+
+He says, &quot;You look stressed! Don&#39;t worry, war is a natural part of life. The way I see it, everyone&#39;s been in some kind of war. The only way to win is to prepare and have the drive to win. You (points at MacKenzie Tower) clearly have the wealth to prepare better than most but do you have the drive to usurp your opponents?... Anyway, we&#39;re gonna need body armor, grenades, and trackers, I guess. Are you to fight for the <strong>Grail</strong>?
+
+Brutus puts his hand out.
+
+He says, &quot;Just say yes and shake my hand. Then, I&#39;ll risk my life to ensure you win this war.&quot;
+<span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jun-21 10:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="855628375368794124" id="message-855628375368794124" title="Message sent: 19-Jun-21 10:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Laurent&#39;s face flickered into a frown. He had little desire for the Holy Grail. Like many others, he had read the reports of what had happened on Perespolis, and it was a complete joke and waste of time. The city had been destroyed, and thousands of people had been displaced. It did, however, offer people like Laurent a multitude of opportunities for expansion, and as such, he could not complain. In fact, he had celebrated the news.
+
+&quot;Of course I have the drive.&quot; Laurent said snidely. &quot;However, drive is not all one needs to succeed in life. You need luck. You need to good judgement. Drive and drive alone leads to an early death.&quot;
+
+Brutus was an extremely hopeful individual, despite the fact that he had been a leader during the collapse of his empire. No, perhaps it was because he had been a leader was what made him so optimistic. Laurent sighed, and shook his hand. Though it wasn&#39;t a contract set in stone, it was still a contract.
+
+&quot;Come with me.&quot; Laurent said calmly as he walked past Brutus and into the auction hall. Exiting the auction hall, the two found themselves at an elevator. Laurent pressed the button, and motioned to his Servant to stand beside him.
+
+&quot;You wanted body armor, explosives, and trackers? I don&#39;t provide body armor, but I <strong>can</strong> provide the other two. I also produce toys, cooking products, electronics, guns, and construction materials.&quot; Laurent&#39;s glasses flashed. &quot;Should Olympia win this war over Perespolis&#39;s corpse, I shall have deals lined up around the block to either repair or help with demolition of the skeleton of the city. I shall make millions, no, billions, of credits.&quot; Laurent&#39;s eyes gleamed as he envisioned the possibilities.
+
+The elevator dinged open.
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jun-21 11:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="856009626859864085" id="message-856009626859864085" title="Message sent: 20-Jun-21 11:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus had been overjoyed to once again have a comrade in arms that he would enter the battlefield with.
+
+He smiled and said, &quot;Your comments on luck are true but such power is only possible for the fates. Therefore, we must pray and prepare. Whatever you can offer will be fine. No man has ever had everything, but we... we have more than enough!&quot;
+
+Brutus had grown to like Laurent because he found his confidence inspiring and how his name gave him power reminded him of the ways of Rome.
+
+Brutus enters the elevator happy and already planning out strategies in his head.
+<span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jun-21 02:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="856054652730998795" id="message-856054652730998795" title="Message sent: 20-Jun-21 02:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Quite so. I&#39;m glad to know that you find me satisfactory.&quot; Laurent said with a self-satisfied smirk. Brutus was too energetic and content, however. He accepted Laurent&#39;s words at face value, he bent the knee to his Master without much question. It baffled the businessman&#39;s mind.
+
+<em>How could someone aware of how much pain and be so steeped in betrayal be so happy with his lot in life?</em> Laurent thought as he looked over at his Servant thoughtfully. Perhaps this was a byproduct of the seven classes that Servants were summoned under. Perhaps a Berserker would embody these emotions that Laurent expected from Brutus?
+
+But could it be that simple? Laurent chuckled to himself. Of course not. There had to be more to Brutus than met the eye.
+
+The elevator dinged open to a showroom. Laurent stepped out, gesturing for Assassin to join him. &quot;This.&quot; Laurent said, &quot;is our showroom for investors and potential buyers. Our weapons, anyway. It&#39;s far easier to sell a microwave or toy than to sell a gun, after all.&quot; This was true, especially when one needed a good weapon.
+
+The walls were lined with guns, grenades, maces, knives, and many other types of weapons. 
+
+&quot;There&#39;s a few toys that we keep under the table, if you catch my drift. However, this array should satisfy you, I think.&quot; Laurent said, turning to face his Servant with a smile as he adjusted his glasses.
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jun-21 10:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="856365967097724928" id="message-856365967097724928" title="Message sent: 21-Jun-21 10:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus laughed, &quot;By Jove, the gods must be smiling down on us!&quot;
+
+Brutus goes through the weapons one by one. For every weapon he held, he practiced using them. For example: when he held a gun, he pretended he was shooting with it and pistol whipped the air. However, when he saw the bladed weapons, he looked at Laurent.
+
+Then he said, &quot;I appreciate the thought, but... I got my own. It was there at <strong>HIS</strong>, my death, and it&#39;ll be with me forever.&quot;
+
+He pulls out his famous dagger and an air of awkwardness covers the room.
+
+He says, &quot;Oh I&#39;m sorry, would you like to touch it?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jun-21 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="856536358674759690" id="message-856536358674759690" title="Message sent: 21-Jun-21 10:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Jun-21 12:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="856750242518532106" id="message-856750242518532106" title="Message sent: 22-Jun-21 12:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Laurent watched his Servant experiment with all the weapons in the showroom. Naturally, none of them fired rounds. It was a showroom, not a firing range. Once again, Laurent felt a disconnect between his Servant&#39;s actions and history. Brutus—
+
+No, not Brutus. Assassin. His Servant was Assassin. He had to remember that.
+
+Assassin seemed to be enjoying himself, however, which was good. The closer that Assassin and Laurent were, the more likely that Assassin would trust his Master. Investing in his Servant&#39;s goodwill would most likely place Laurent in a good place, as well. This arrangement worked for both parties, as Laurent saw it.
+
+The businessman blinked in surprise as Assassin offered up his knife to him. His knife, the crystallization of his being. 
+
+<em>Was this... No, what was it...?</em> Laurent thought to himself. *Is this the vaunted &quot;Noble Phantasm&quot; that I&#39;ve been hearing about? It was possible. From Laurent&#39;s knowledge of Noble Phantasms, this knife could definitely qualify as one. If that were the case, would it be wise to take it? If a handshake was a perceived, if malleable contract, how would the touching of a Servant&#39;s weapon work? Perhaps this was how the Noble Phantasm worked...
+
+Laurent&#39;s hand outstretched to touch the knife, before slowly retreating. Laurent&#39;s mouth flickered into a downward frown.
+
+&quot;I&#39;m sorry, Brutus. I cannot bring myself to do so. It is...&quot; Laurent stopped to think to himself, before quickly resuming. &quot;It is yours. Now and forever, as you said. Don&#39;t let my hands soil your memory. However...&quot; Laurent smiled, glasses glinting. &quot;<strong>I appreciate the sentiment. I am honored you think so highly of me.</strong>&quot;
+
+In actuality, Laurent didn&#39;t want to touch the damn thing.
+
+&quot;It is late, Assa— Brutus. We will have a meeting in the morning to discuss our plans. Then, we shall go into town. Is that satisfactory to a tactician as grand as yourself?&quot; 
+
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jun-21 11:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="857467090611863582" id="message-857467090611863582" title="Message sent: 24-Jun-21 11:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To Brutus, the dagger was something he loved and hated. One point was that the dagger was what everyone points to as prove that Brutus was the monster. However, on the other hand, the dagger was what he used to kill Caesar which, although he&#39;s hated for, he felt proud of his actions. It&#39;s also what he used in his honorable death suicide on the battlefield so of course he loved it. But Brutus had many previous masters who wanted to use and hold the dagger. They would clutch it with their dirty hands and pretend to stab him with it.
+
+Then they would say stupid lines like: &quot;Look out Assassin, it&#39;s Caesar&#39;s revenge! (laugh)&quot;
+
+Brutus hated them all so even though he liked Laurent, he needed to be tested. When Brutus heard Laurent&#39;s words, he was overjoyed because he felt someone finally understand that what he&#39;d done was necessary. He sheaths the dagger once again.
+
+He replies to Laurent, &quot;You are correct, Master. Sleep is necessary to properly think and hence come up with a brilliant strategy. Sleep well Master for tomorrow, we talk strategy!&quot;
+<span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jun-21 02:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="857502824219803668" id="message-857502824219803668" title="Message sent: 24-Jun-21 02:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Laurent heaved a sigh of relief internally. He had dodged a bullet here. The idea of touching a murderer&#39;s weapon revolted him. Holding another murder weapon? No. Unacceptable. 
+
+&quot;Well, let&#39;s go then.&quot; Laurent said, guiding Assassin back into the elevator. Holding a card to the scanner and pressing a button, the elevator shot up. Several moments later, and the door opened to a luxurious penthouse with open windows and a fair bit of natural light.
+
+The penthouse was definitely luxurious, but it suffered from the fact that any possible light was often dampened by smog. Laurent sighed as he took off his coat.
+
+&quot;This is an excellent vantage point of the city. Think of this as the capital of my little empire. One that you will become a very pivotal part of. Do Servants require lodging?&quot; He asked Brutus, not turning to look at him.
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/9a4cadd32b042de1194b809195593550-EBEEE.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="855001105314611200" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jun-21 12:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="858564288624721921" id="message-858564288624721921" title="Message sent: 27-Jun-21 12:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus looked around the penthouse and looked out every window to survey the surrounding areas.
+
+After hearing the question, he responds, &quot;Not really, but it would be nice to have a room of my own to come up with battle strategies and seeing the size of this place, (sigh) I&#39;d say you have the space.&quot;
+
+He continues to look around the place going through every nook and cranny both for items to use and protection in case they&#39;re being watched.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="858565578611490847" id="message-858565578611490847" title="Message sent: 27-Jun-21 12:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus turns to say, &quot;Master may Somnia, the god of dreams, grant you a good sleep.&quot;
+
+Then, he proceeds to bow to Laurent.
+<span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-15978.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="855001105314611200" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jun-21 01:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="859126987879874610" id="message-859126987879874610" title="Message sent: 29-Jun-21 01:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The side of the penthouse made housing a Servant a nonissue. If anyone came to visit, Laurent could just claim that Assassin was a bodyguard or friend. Scoffing, he shook his head. Laurent MacKenzie wasn&#39;t known for his comradery. 
+
+&quot;Very well.&quot; Laurent guided his Servant across the living room and into a large hallway, arched with floral designs. Despite the penthouse&#39;s modern look, it seemed to appeal to more old-world architecture. After a few more seconds of walking, Laurent opened a door, which lead to a guest room.
+
+The room was sparsely furnished. There was a bed, a nightstand, and a desk elegantly organized with paper stacked at the corner. A computer monitor gleamed upon it. Several pieces of art lined the walls.
+
+&quot;It&#39;s simple, but effective. There is paper for planning, or a computer if that&#39;s more your style.&quot; Laurent said, letting Assassin enter and tilting his head. Did Servants use computers? &quot;I have a few things to do, it is late, and I&#39;d like to retire. Rest well, Brutus.&quot; Laurent left the room.
+
+And thus, the second Assassin in the City Grail War was summoned.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20mackenzie-tower%20%5B849337794521333790%5D.html_Files/e38969e26d7a7b9c38f2d740000c5804-348AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Magnetic#0081" data-user-id="291225855823446016" style="color: rgb(255,140,19)">Magneto</span>
+
+
+        <span class="chatlog__timestamp">29-Jun-21 01:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="859126995434602537" id="message-859126995434602537" title="Message sent: 29-Jun-21 01:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+
+</html>
