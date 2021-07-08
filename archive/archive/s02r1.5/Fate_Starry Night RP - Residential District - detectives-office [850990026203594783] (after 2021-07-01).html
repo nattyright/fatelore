@@ -1,0 +1,1566 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - detectives-office</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.325em;
+    height: 1.325em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+    pointer-events: none;
+}
+
+.chatlog__reference-content > a:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > .emoji {
+    width: 1.325em;
+    height: 1.325em;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    vertical-align: middle;
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__embed-youtube-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-youtube {
+    border: 0;
+    border-radius: 3px;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #5865F2;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #00aff4;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* Preamble */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: #202225;
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: #dcddde;
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: #dcddde;
+}
+
+.chatlog__embed-footer {
+    color: #dcddde;
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Residential District / detectives-office</div>
+
+            <div class="preamble__entry preamble__entry--small">A detective office repurposed into the workspace of a certain intelligence magnate. The dim lighting procured by the ancient incandescent bulbs coupled with the damp and dusty air serves to give an oldish feel to the office. The floor is in disarray: Various folders, binders and files are scattered everywhere and crumbled sheets of paper serve to punctuate every corner. Various shelves and drawers are placed across the walls, each so full of portfolios and papers that they threaten to collapse if touched the wrong way. A cork board stands on top of an expensive-looking desk, littered with photographs of famous faces and various places that are interconnected with red thread that looped on thumbtacks. Looking at the chaos and lack of organisation, one would have thought that this place has been stolen or ransacked by burglars.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 01-Jul-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jul-21 01:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="860935671693967400" id="message-860935671693967400" title="Message sent: 04-Jul-21 01:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Your turn, big man.&quot; Laura spoke for the third time this minute, tapping her fingers impatiently.
+
+She was sitting cross-legged on the floor in front of her Servant, Guan Yu, and between them was a Chess board with the pieces still in their <em>initial positions</em>. Laura had it delivered earlier today, amongst other sets, in an effort to satisfy her Servant&#39;s passion for strategy games. As he had no idea how Chess was played, she initiated him to the concept of the game and the movement of the different pieces with a quick warm-up game. 
+
+Said warm-up game ended in a victory for Laura, catching her Servant off-guard with a Scholar&#39;s Mate after only <em>three moves</em>. Sure, it was quite a sadistic way to introduce someone to Chess, but it was fun to see a new player confused as to why he was checkmated so early. Correction, it was fun for Laura.
+
+&quot;C&#39;mon... You insisted on starting first, even though I told you that it was <em>easier</em> to react as a newbie. Just start us off already, man...&quot; She sighed, growing more and more bored.
+
+True enough, Guan Yu had insisted on playing first this time, carefully contemplating the board while making full use of his signature beard stroking technique. Was he looking for a game plan before even moving his first pawn? Perhaps was he still confused about the way the pieces moved? Either way, he was hellbent on making his decisions by himself, refusing any outside help.
+
+Chess was a great way to pass time as much as it stimulated strategising. Having an activity to do while discussing also served to ease communication, as one did not have to worry about blanks in conversation while doing something that required patience and precise thinking. 
+
+...Or at least, that&#39;s what it should&#39;ve been. Laura quickly realised as Guan Yu reviewed the yet untouched board that she was not invested enough in the game to stop thinking about the silence but forced to remain silent as to let him ponder his first move.
+<em> </em></span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Jul-21 01:39 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="860935720809529354" id="message-860935720809529354" title="Message sent: 04-Jul-21 01:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In an effort to fight boredom, she kept a <em>laptop</em> right beside her. As Delphi and Olympia were now <em>connected</em>, the Citynet had expanded to house both of their data banks. It was a unique opportunity to lurk on the various forums and news websites that Olympia had as well as to see how the people from both cities interacted with each-other. 
+
+Naturally, they wasted no time before making of the City Grail War a <em>dick-measuring contest</em>, arguing as to why their side was most definitely gonna win and why the opposite side had no chance of beating them. Although those talks were petty and childish, it was fun to read the back and forth and the creative insults that were thrown by each side, some of them getting Laura to audibly snort.
+
+Past the arguing emerged a tremendous stream of <em>rumours</em>. People spotting &#39;Servants&#39; roaming across the streets, reports of great Magical Energy outburst that were speculated to be &#39;Summoning rituals&#39;, theories about the Holy Church&#39;s involvement in the war and much more. She had even seen a few theories about <em>Gossip Girl</em> being a Master. They would&#39;ve alarmed her if they hadn&#39;t been posted <em>before</em> her actual summoning.
+
+It went without saying that all that info had to be taken with a grain, or rather a <em>mountain of salt</em>. Gathering intel on the Citynet was close to <em>impossible</em>, courtesy of the baseless statements from people with too much spare time. Nonetheless, web browsing was a fun way to pass time as Guan Yu carefully picked his first move.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jul-21 04:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="860979536774823936" id="message-860979536774823936" title="Message sent: 04-Jul-21 04:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Chess
+
+A game of wits and strategy. Not so unlike the game he played with during his time. 
+
+The rules were easy to understand for him. Each piece possessed a set path and role. This made the unique ones more valuable opposed to the bountiful pawns at his disposal. The objective seemed simple, but the weight of it was shown only when he lost so suddenly it left him dumbfounded. Just when he thought he figured out the game...
+
+If Go, the game he was used to playing, could be seen as setting up your forces and managing them as a massive scale, then Chess could be seen as a single individual battle taking place before them. Instead of slowly building up his pieces, Guan Yu only had a finite number at his disposal in order to take his Master&#39;s King. &#39;I wonder how Zhuge Liang would have taken to this game...&#39; The thought soon faded into the back of his mind as he went back to figuring out his first move.
+
+His Master was clearly skilled and extremely confident in her ability to play this game. A smirk appeared on his face soon enough. Confident. Guan Yu, who was merely just a novice with only one game on his belt, is nowhere near a threat to her after all. 
+
+Clack.
+
+The sound of the first piece being moved almost echoed in the room due to the silence. 
+
+Guan Yu cannot hope to beat an experienced player through his own skill alone. What he has to rely on instead is his own personal experience on the battlefield. He knew that any force stretched too thin, and made mistakes due to that reason, were doomed to fall. 
+
+&quot;Your move, Miss Hess.&quot; 
+
+Last game Laura fought Guan Yu, the Chess Novice. Now she faced Guan Yu, the Shu Han General. 
+
+The placement of the first piece meant that they could plan their first move in this City Grail War as well! Perhaps this game had more parallels to it than he initially thought.</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Jul-21 04:45 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jul-21 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="860991728113680384" id="message-860991728113680384" title="Message sent: 04-Jul-21 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her web browsing came to a halt as the Servant made his first move. 
+
+&quot;Took you long enough, ay?&quot; She said, responding to his confident smile with a smirk of her own. 
+
+His demeanour had completely changed, his previously hesitant behaviour transforming into that of confidence and certainty. Did he figure a plan out in those long minutes of contemplation? If so, she would expect nothing less coming from <em>him</em>, the warrior that excelled in both arms and tactics. 
+
+&quot;I&#39;ve been thinking,&quot; She spoke as she made her move, advancing a pawn to the side of the one Guan Yu had moved so that he could potentially take it on his next turn. &quot;I don&#39;t consider myself <em>weak</em> as far as Masters go, but it seems like there are a few <em>monsters</em> among the Masters participating in this war. I&#39;m not confident I can win against them in a one-on-one situation.&quot;
+
+As she said those words, her mind had started to wander. She had known that <em>Kun Wu</em> was participating as a Master. Videos of his grandiose summoning had been shared around the Citynet for a few days now. She&#39;d known about <em>Rinne</em>, too. From what she had known about them and their respective abilities, she wasn&#39;t sure she could take them on by herself.
+
+&quot;How would you feel if I acted as <em>bait</em>?&quot; She asked him, eyeing the pawn she had moved. &quot;I&#39;d lure them a fair distance from their Servant, call you to join us with my insects and proceed to neutralise them. You&#39;d be sure to arrive to us faster than any other Servant thanks to Red Hare, right?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jul-21 06:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="861009265817026593" id="message-861009265817026593" title="Message sent: 04-Jul-21 06:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Proper tactics take time, Miss Hess. My defeat would be ensured well before my first move if I rode in without a plan after all!&quot; 
+
+Each move was made with next few in mind as Guan Yu took his next move almost immediately. Instead of overextending his forces, he chose to protect them by using another piece. This allowed him to safely take the piece should she decide to take his pawn instead. It&#39;s clear he wanted her to make the first mistake. 
+
+Just how far is he thinking ahead of her? Was she playing into his hands? None of that mattered. All Guan Yu wanted was to simply get into her head. He may not be able to win, but that isn&#39;t going to stop him from making sure it isn&#39;t as easy as last match!
+
+While they played their little game of wits against each other. His attention was drawn towards her and her words. 
+
+It is true that she is strong in her right. Guan Yu can vouch for her spirit. However, there are bound to be Masters who could outmatch her quite easily in an one-on-one encounter.
+
+<em>&quot;How would you feel if I acted as bait?&quot;</em>
+
+Despite her shortcomings, which she seemed to be well-aware of, the first plan she offered was to use herself as bait. A risky gambit. If they messed up, it could spell an early end for them. Would the benefits of such a gambit outweigh the cons however?
+
+&quot;Hmm...&quot; Guan Yu returned to his thoughts while he stroked his beard. &quot;I would think you to be foolish. <strong>Unless</strong>, You had a reason for such a gambit. Do you, Miss Hess? You speak as if you already have something planned out after all.&quot; After speaking, he rose an eyebrow her direction to see if she did just by the body language alone.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="861009317704499230" id="message-861009317704499230" title="Message sent: 04-Jul-21 06:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jul-21 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="861028740515364874" id="message-861028740515364874" title="Message sent: 04-Jul-21 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Do I have something planned out.&quot; She repeated his word, her gaze lazily drifting towards the ceiling. 
+
+She brought both her legs towards her chest as she further contemplated. Would she be safe with her bugs against an opponent that manipulated <em>fire</em>? What about a <em>gun-woman</em> that kept bringing the darker side of Delphi behind bars with relative ease? 
+
+She had an <em>idea</em> on how to tackle those opponents. But as far as having <em>something planned</em> went...
+
+&quot;I don&#39;t know for sure,&quot; She finally answered, voicing the conclusion she had come to in her head. &quot;But what I <em>do</em> know is that I can&#39;t really help you win against a <em>Servant</em>.&quot;
+
+She took a long, almost theatrical breath before continuing with her thoughts. &quot;I can provide intel. I <em>could</em> hinder their movement or trick their senses. What I can&#39;t do is <em>physically</em> help you win fights.&quot;
+
+While her eyes were somewhere else, her hand advanced with purpose towards the Chess board, moving a knight to protect her previously moved pawn. Perhaps it was still eerie for Guan Yu to think that it was <em>that easy</em> for his Master to rely on her bugs. Her eyes and ears were merely <em>decorative,</em> at this point. Maybe he even felt confined, seeing how she was constantly watching him without <em>actually watching him</em>. Or maybe he felt at ease, knowing that his Master was behind him at all times.
+
+&quot;I guess what I&#39;m trying to say is...&quot; Her eyes locked onto her Servant&#39;s as she talked, supporting her words with a tint of seriousness. &quot;Extending our means of winning beyond just defeating the Servant goes a long way to improve our chances. How viable and effective this method will depend on the type of opponents we face, but...&quot;
+
+Her stare was unwavering as she talked, her shoulders squared and her brows tightly knit. Her entire body language screamed <em>resolve</em>.
+
+&quot;If I can bring <em>something</em> to the table just by<em>puttin myself out there</em>, then I really don&#39;t mind the risks.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-21 12:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="861284355112304651" id="message-861284355112304651" title="Message sent: 05-Jul-21 12:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He listened intently while his master spoke. It took a great deal of strength to openly admit one&#39;s weaknesses and shortcomings like that. Even more so that in despite of that, she was more than willing to play her role as a pawn for their opponent to overextend and attempt to take.
+
+As she went on, Guan Yu kept moving his pieces forward to maintain the offensive on the board. Neither side seemed to be willing to strike first, but the more they develop their boards, the more devastating the first strike could be for the other.
+
+&quot;You needn&#39;t worry about being unable to support me physically in fights, Miss Hess. That&#39;s why I have Red Hare by my side.&quot; All he could do to back that statement up so far is a smile of reassurance. &quot;Your ability to supply intel on the fly is much more valuable to me than another blade would be.&quot;
+
+For now, that tactic is currently their finest move. Others will be made as they gain information on other servants and masters. Besides, such a gambit is most effective early on.
+
+The body language from her alone made it known to him that she wasn&#39;t going to be persuaded otherwise.
+
+&quot;Alright. We shall go along with that plan.&quot; A slight nod came from him after having agreed to the plan. &quot;I do wonder though. Who should we strike at first? We don&#39;t really have anything on the whereabouts of the others contestants yet, do we?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="861284391920992256" id="message-861284391920992256" title="Message sent: 05-Jul-21 12:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-21 02:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="861310153109274674" id="message-861310153109274674" title="Message sent: 05-Jul-21 02:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She nodded once at his approval, breaking her previously grim expression with a slight smirk. 
+
+&quot;I wouldn&#39;t call it a plan just yet but we&#39;ll have to roll with it for now.&quot; 
+
+It seemed like he understood and respected her intentions without much arguing. That was good. It showed that the trust between them was <em>mutual</em>, and that may prove to be more important than any other plan in the future.
+
+&quot;As for the whereabouts of the other contestants,&quot; She spoke, slowly lifting one of her pawns. &quot;I <em>did</em> find something interesting while strolling around Olympia, right before I summoned you.&quot; 
+
+She advanced that pawn to the battlefield, not only to consolidate her current position but also to allow her special units more freedom of movement across the board.
+
+&quot;At the center of the city, right in the middle of the Downtown area, was a Buddhist shrine of some sort.&quot; 
+
+She took her time as she talked, carefully choosing her words as she went on.
+
+&quot;I could feel Magical Energy... <em>coagulating</em> around it? If my guess is right, it&#39;s probably the work of a <em>Caster</em> trying to settle there using some sort of Territory Creation skill.&quot;
+
+The early part of a Chess game was essentially a battle to take control of the center of the board. To seize the four squares that laid at the midpoint between the two Kings and Queens usually meant victory, as one could effectively attack the enemy pieces with minimal risks thanks to the back-up of the rear.
+
+There was surely a parallel between their game of Chess and their current situation. 
+
+&quot;Say, big man...&quot; She spoke, her eyes drifting from the board to her Servant. &quot;How would you answer if an enemy general took control of a Castle right in front of you?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="861346484259782676" id="message-861346484259782676" title="Message sent: 05-Jul-21 04:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You did?&quot; The fact that she was active in this war even before she summoned him shouldn&#39;t surprise him at this point, but it was enough to capture his interest nonetheless.
+
+<em>A Caster.</em>
+
+They would make for a fine first opponent! He could imagine the fight already... Magecraft clashing against Martial Might! What a fight that would be!
+
+The more the Chess board progressed, the more dangerous each move could be for him. As more pieces became active, he continued to lose options of movement. Perhaps he could force her hand with a trade. That would cost him a piece, but he soon understands that he can&#39;t be stingy towards his own pieces. Their use as sacrifices made them serve their purpose already. This game can be rather grim. Either that or he&#39;s thinking too much about it.
+
+The question posed by her made him stop for a bit. That was a good question to ask. He had been on both sides of that situation plenty of times before. Though there is plenty of variables to consider before answering, he felt however that his master wasn&#39;t looking for that kind of answer. 
+
+&quot;If my forces aren&#39;t surrounded and no one or nothing of importance remained inside the castle, I would fall back to another and plot my next move there. If I can not afford such luxury of losing said castle, then I would ride in and face off against the aggressors until I regain control of the castle. If I fall, then I have failed in my duty as protector of the castle.&quot; 
+
+Guan Yu finished his thoughts with a nod. The man spoke from experience as he both saw and took part in both sides. He knew the importance that a stronghold played in war. The loss of one would prove devastating indeed.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="861346527854067762" id="message-861346527854067762" title="Message sent: 05-Jul-21 04:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-21 05:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="861360824999477268" id="message-861360824999477268" title="Message sent: 05-Jul-21 05:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;The second option, let&#39;s face them off!&quot; Exclaimed Laura, finally starting the offensive by taking out the first pawn of the game.
+
+He did not give her a binary answer, taking instead a broader approach to the problem by tackling various situations. That was what they needed most: a flexible mind that would adapt to each situation. She was suddenly very thankful to have been blessed with a Servant that had the mind of a <em>tactician</em>.
+
+&quot;We&#39;re gonna hit them <em>hard</em>. Defeating them aside, the best case scenario would be to drive them out of the temple before the Servant finishes setting up his Domain. That would make him waste a huge amount of time, time that he probably can&#39;t afford to lose if he wants to make full use of his abilities.&quot;
+
+Her playstyle suddenly got aggressive. As things were now, trading pieces back and forth would result in a stalemate... no, it would benefit Guan Yu since he had a one turn lead. Nonetheless, she was confident that she could retake control of the board in the following rounds.
+
+&quot;And if it really turns out to be a Caster, then you can make full use of your Magical Resistance. Cheer up, big man! This might just be the best possible match-up for you.&quot; 
+
+And as the words kept spilling from her mouth, her mind started to wander. She began thinking of the man <em>behind</em> the Servant. 
+
+Servants that used Territory Creation were usually very demanding in terms of Magical Energy. This meant that the Master could be one of two options: The first option was that he had a shit ton of Mana Batteries to supply his Servant, which further implied that he was, for all intents and purposes, rich as fuck. The second option implied that he had a <em>really big pool of Magical Energy</em>, which potentially meant that he was a skilled Magus that would probably beat her in a one-on-one.
+
+She really hoped for it to be the former.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-21 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="861391117325041704" id="message-861391117325041704" title="Message sent: 05-Jul-21 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It has begun! The first victim to fall was the pawn. Expected. Now the true battle can begin. Both sides developed as much as they could, but now it&#39;s time to strike! 
+
+Each movement now was made with the intent to capture and advance his pieces forwards. If he can avoid losing too much whenever they trade, he might just be able to force a check. However, it came with the risk of overextending and leaving an opportunity for Laura to force him to play catch up.
+
+His master suggested a direct approach. It was the right move to make. If they strike early enough and first, they just might be able to caught one of the pairs off guard to seize victory. 
+
+It is true that they had the advantage against the Caster servant due to Guan Yu&#39;s Magic Resistance. The Servant&#39;s Master is another issue altogether. 
+
+They knew nothing about them. 
+
+They will be forced to adapt whenever they do figure out what kind of master they are. Though, it seemed from the look of things that they were comfortable with adapting should they need to.
+
+&quot;Despite my Magic Resistance being high, Miss Hess, Servant Magecraft can be quite powerful as even the strongest spells a Magus could conjure up will pale to a Servant&#39;s weakest. This all depends on the Magus and Servant of course. This probably isn&#39;t always true. So don&#39;t count a Caster Opponent to be an easy match-up! The best match-up for me is a one-on-one duel with a martial opponent with inferior mobility actually!&quot; Guan Yu finished that while stroking his beard. He is more of a duelist after all, given his kit.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="861391153047011359" id="message-861391153047011359" title="Message sent: 05-Jul-21 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jul-21 08:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="861404512727597088" id="message-861404512727597088" title="Message sent: 05-Jul-21 08:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I guess you&#39;re right,&quot; Replied Laura, closely observing the battle that was taking place on the Chess board. &quot;We can&#39;t be sure of anything with those crazy Servants out there...&quot; 
+
+One thing that beginners tend to forget while trading pieces back and forth in Chess, was that a well placed Check in the middle of trading could very well reverse the tide of battle. A single moment of carelessness was all it took for Laura to Check her Servant&#39;s king, forcing him to move a piece to protect him or to move the king himself out of harm&#39;s way. That resulted in her taking a pawn out without retaliation.
+
+She was now slightly ahead. One step closer to victory.
+
+&quot;I guess all it would take is a <em>single mistake</em>,&quot; She spoke, smiling widely at her dear Servant. &quot;To take us out.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jul-21 01:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="861656205226410094" id="message-861656205226410094" title="Message sent: 06-Jul-21 01:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Just when he thought he was getting ahead, his master pulled a fast one on him. The attack on his king forced his hand and now she had the momentum! A minor setback. The game was still fresh. Victory wasn&#39;t out of his grasp yet!
+
+Laura&#39;s words rung true for them. Just one single mistake was needed for them to fall.
+
+&quot;So it would seem.&quot; A smirk appeared on his face as he continued the offensive despite the lost of momentum. If anything, this game was a lot more interesting than the last due to the length alone. 
+
+&quot;So, Miss Hess, you seem rather skilled in this game. How often do you play? Is this what you do in your free time?&quot; This looked like the best time to learn more about his Master. Especially now that they have something to keep each other occupied during the conversation. Speaking of. 
+
+Clack.
+
+The next move was made.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="861656252235907082" id="message-861656252235907082" title="Message sent: 06-Jul-21 01:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jul-21 03:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="861697083019231232" id="message-861697083019231232" title="Message sent: 06-Jul-21 03:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nah, I don&#39;t play much Chess in my free time.&quot; Answered Laura, her hand hovering over her pieces. &quot;I used to play—was forced to play a lot of Chess as a kid. That&#39;s how I picked up the game.&quot;
+
+Her offensive didn&#39;t stop here. She plunged deep in the enemy camp, checking Guan Yu&#39;s king once again from another angle. Her strategy was simple: Putting pressure on the opponent, slowly taking out all possible escape routes until there was none left. She wasn&#39;t going to give him time to regain his composure. Now was the time to attack.
+
+&quot;You can say I&#39;ve had a very... strict upbringing,&quot; She elaborated, her gaze wandering as she recollected her past. &quot;The kind that didn&#39;t let you have any free time. Growing up, my parents wanted me to be little miss perfect. I guess they thought it was a good idea to throw in a few Chess lessons along with the dozen other things they were already forcing upon me.&quot;
+
+Although she had a total poker face, her body language was giving subtle hints about her state of mind. She was fidgeting with the pawns that were out of the game, her shoulders slightly dropped and she leaned forward. Perhaps was she getting anxious?
+
+&quot;But yeah,&quot; She added, smiling faintly at her Servant. &quot;Chess ain&#39;t no hobby of mine. I&#39;m more of a Poker girl, to be honest.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jul-21 02:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="861857292504793128" id="message-861857292504793128" title="Message sent: 06-Jul-21 02:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her offensive was brutal. There was little in the way of recovery for him. His best bet right now was to force a check, even if it meant the easy loss of his piece. This way he can fight on for a few more turns! If he can&#39;t win, then he can make her pay dearly in pieces. It became clear rather quickly that he aimed to push the game towards a stalemate  at the very least.
+
+Guan Yu allowed his Master speak her piece about her upbringing. It didn&#39;t take much looking around her place to be unable to find anything towards her parents. She doesn&#39;t seem that old herself either. If they were as strict towards her as she was saying then there was only one possible outcome. The repercussions if he were to be wrong though...
+
+&quot;So you ran from home then?&quot;
+
+Guan Yu said nothing more besides those few words. Her body language and lifestyle told him enough to make an educated guess. Even though he hoped that he didn&#39;t offend her if he was wrong.
+
+Being a parent himself allowed him to connect to her story in some way. He even had a daughter that shared the same fire inside of her. Although, he probably wasn&#39;t a better parent himself. His actions during his final battle even costed him not only his own death, but his son&#39;s as well. 
+
+&quot;Well, even if it isn&#39;t your hobby, you sure made it one of mine!&quot; After he finished with a smirk, he also let loose a boisterous laugh to help liven up the mood again! 
+
+It was because of his question that the mood dropped anyways, so he had no issue with being the one to bring it back up!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="861857346267643909" id="message-861857346267643909" title="Message sent: 06-Jul-21 02:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jul-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="861896323116695572" id="message-861896323116695572" title="Message sent: 06-Jul-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She stopped, going still as she heard his question. Thinking back about the things they had previously discussed, nothing could&#39;ve hinted towards her runaway nature. How had he he deduced that? Did he just assume that based on what she had just previously said? 
+
+&quot;Wow,&quot; Finally spoke Laura, looking offended. &quot;You, my loyal Servant of all people, would think that a sweet girl such as myself would run away from home? I&#39;m shocked. <em>Hurt</em>, even.&quot;
+
+And if the theatrical tone didn&#39;t make it obvious enough, she smirked as she spoke the few last words to make it clear that she was just poking fun. 
+
+&quot;But you&#39;re not wrong,&quot; Laura admitted, her smirk turning into an earnest smile. &quot;I <em>did</em> run away from home. Best decision of my life, really.&quot;
+
+Seems like Guan Yu wanted to make the game last a little longer by desperately sacrificing a few of his pieces. Laura didn&#39;t complain. She gladly took those pieces out, revelling in the sadistic fun that playing against a beginner brought.
+
+&quot;But I gotta ask though,&quot; Spoke the Master, bringing her knees to her chest as she curiously observed her Servant. &quot;Is it that obvious that I&#39;m a runaway? What gave it away?&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="06-Jul-21 05:28 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-9B7E5.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Jul-21 12:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="862001328813375528" id="message-862001328813375528" title="Message sent: 07-Jul-21 12:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">At first, Guan Yu thought he had offended her, but her tone and smirk made short work of that thought. A wave of relief washed over him as they continued their game.
+
+&quot;Call it Parental Intuition if you will.&quot; He said with a smirk while he was being observed. A powerful skill indeed. &quot;You tend to get a reading on those things as you become a parent, Miss Hess.&quot;
+
+Since they were on the topic, he might as well speak his mind. No harm in that after all. &quot;It was your lifestyle.&quot; Guan Yu used his weapon to generally point around the room. The messy organization spoke of someone who was freed of a previous unwanted life. <em>Especially</em> the garage. He can only wonder how long it was in such a state of disrepair.
+
+&quot;It screamed of someone who had gotten used to the idea of having freedom for the first time in their lives. Worry not, I don&#39;t intent on scolding you like a parent! Besides, it&#39;s clear that you managed to carve out quite a life for yourself despite the hurdles in your path. It&#39;s impressive in a way.&quot; He gave her an approving smile before he pressed on with his final gambit.
+
+The countless trades and sacrifices wasn&#39;t all for naught! Guan Yu had managed to spearhead an assault towards her King. The slight repositioning from the trades allowed him to slip through and continue to check her King.
+
+Four moves from victory...
+
+Three moves from victory.
+
+Two moves from victory!
+
+...
+
+Soon his pieces fell just short from reaching her King. The price from trading was too much. If only he was afforded a few more turns. 
+
+The state of the board made it clear of who was the winner, despite his best attempts of course. &quot;It seems that this is my loss again. You are a fine opponent, Miss Hess.&quot; Having accepted defeat a second time, Guan Yu placed his hands on his knees and bowed to the victor.</span>
+
+                                <span class="chatlog__edited-timestamp" title="07-Jul-21 12:08 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="862001366028779591" id="message-862001366028779591" title="Message sent: 07-Jul-21 12:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-DA6AF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Jul-21 04:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="862242921114107904" id="message-862242921114107904" title="Message sent: 07-Jul-21 04:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The mention of her messy habits prompted her to take control of the bugs inside her office, curiously analysing at her living space as if it was the first time seeing it. Had she always been that messy? Either way, the scene that greeted her in the garage forced an annoyed groan out of her.
+
+&quot;Haha.&quot; Laughed Laura, monotonous. &quot;Right. The <em>great mess</em>. I almost forgot about it, thanks for reminding me.&quot;
+
+Guan Yu had gotten pretty close to beating her in his last assault, but ultimately failed due to his lack of pieces. As expected, victory was hers at the end. Even then, the way he fought in that second round, when he was close to beating her in a game he had only played twice before—that was <em>freaky</em>. This had reminded Laura of the differences between regular humans and Servants. She didn&#39;t have a person in front of her, but a Magical being that was not only crazy strong but also crazy <em>smart</em>.
+
+But right now, that same being was... bowing in front of her? What, did he want to thank her for playing Chess with him? She looked at him curiously, not knowing how to answer to his gesture.
+
+&quot;Erm... Alright, then. I guess we&#39;re doing this.&quot; Spoke Laura before clumsily mimicking Guan Yu, slightly bowing her head towards him in an effort to dilute the awkwardness. &quot;You were also pretty good yourself. Even had me sweating at the end.&quot;
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="862243205902368769" id="message-862243205902368769" title="Message sent: 07-Jul-21 04:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Playing Chess turned out to be more constructive than expected. Not only had their bond grew stronger, Laura now had a better grasp on her Servant&#39;s character. He wasn&#39;t just some old friendly dude that loved fighting and strategy games. Perceptive, quick to adapt to new situations, flexible of mind: he was much <em>more</em> than his ServantPedia™️ page had led her to think. 
+
+And, as cheesy as it sounds, she was compelled to think that he was no less <em>human</em> that her. Even if he was just a magical robot, at the end of the day.
+
+Now that their game was finished, it was time to set things moving. Their first strife in this City Grail War was nearing, and it&#39;s result would surely have a great impact on their morale going forward.
+
+All in all, they couldn&#39;t afford a loss this early into the war. Not if they were aiming for the <em>top</em>.
+
+Laura watched as her insects gathered and flew upwards, joining the &#39;others&#39;. She had steeled her resolve, sharpened her fangs, closely observed Guan Yu and decided to put her trust into him.
+
+The only thing left was to go out there and hope everything works out.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%28after%202021-07-01%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">07-Jul-21 04:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="862243424639385600" id="message-862243424639385600" title="Message sent: 07-Jul-21 04:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+
+</html>

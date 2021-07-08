@@ -1,3 +1,7 @@
+/*
+ * Seasons nav bar
+ */
+
 $('.slide-nav').on('click', function(e) {
     e.preventDefault(); 
     // get current slide
@@ -19,3 +23,16 @@ $('.slide-nav').on('click', function(e) {
 
 
 });
+
+
+/*
+ * Word counter
+ */
+
+/*
+var arr = [], l = document.links;
+for (var i = 0; i < l.length; i++) {
+    arr.push(l[i].href);
+}
+document.getElementById('word-counter-wrapper').innerHTML = arr;
+*/
