@@ -1,0 +1,2738 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - memorial-park</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Recreational District / memorial-park</div>
+
+            <div class="preamble__entry preamble__entry--small">A decently sized park placed in the recreational district of Olympia. With a centrally located amphitheater perfect for band performances. Attached is a series of hiking trails which sprawl from the central amphitheater.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 07-Jul-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/bdb9f72e156153472d577f3f8a2e5051-C7063.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">08-Jul-21 01:39 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="862568585088073759" id="message-862568585088073759" title="Message sent: 08-Jul-21 01:39 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/image0-EEBDB.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/image0-EEBDB.jpg" alt="Image attachment" title="Image: image0.jpg (1.14 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jul-21 07:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="862843676929818624" id="message-862843676929818624" title="Message sent: 09-Jul-21 07:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Tuesday, Memorial Park in Olympia</strong>
+
+It’s been a few days since Simo was brought back into the world, the adjustment has been an interesting one. Especially when it came to the weather, Delphi was warm compared to his home of Finland but Olympia… Olympia was oppressively hot. Something Gustave had made note of to him but still, he didn’t pay full attention during that lecture of their plan for the day. 
+
+The sniper has his coat wrapped around his waist as he carries along the artist’s mystic code box. Fanning himself with his hand, and being careful to keep his facial covering up. “I… I can’t believe how hot this place is.” He kept walking along aside his master. 
+
+“Painting and scouting, I know that’s our objective today…. But how long do we have to be out here for?” The sniper’s tone was pensive he truly didn’t want to know the answer to that question. Thankfully there was some relief from this heat with the clouds and maybe even the trees surrounding the park, but it was going to be an uncomfortable shelter. 
+
+As the pair continued their walk along the trail they eventually came across a centrally located Amphitheater. Families were scattered across the area enjoying a good weather day for Olympia standards. “We should also go back over strategy slightly, if we do even encounter an enemy, I need to make sure no civilian fire occurs.” Simo relaxed slightly trying to make himself comfortable with the heat in any small measure he could. “I know that I’ll be walking around some of the paths, keeping an eye on this location, but what’s the signal for when I should fire, and who I should fire at?” 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jul-21 02:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="863126457643565067" id="message-863126457643565067" title="Message sent: 10-Jul-21 02:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Delphi was a city with a pulse known to everyone, and it was always a rapid one, full of frenetic energy that sought out risk and reward without restraint. To see that pulse was a delight for any artist, but especially those who worked in abstract strokes, reducing people into blurry shapes defined by their movement and emotions. And it was a city Gustave held dear for many reasons, art among them, but now a new font of inspiration came rolling in, the air coating its metal spires in wavy distortions of heat.  All cities had weather domes, that was a fact so this heat of theirs was a purposeful choice, one to represent their fires of industry that forged a world anew and clamped down on those who worked the fires with an atmosphere that would never let them enjoy a glimpse of leisure. What was leisure but a missed chance at productivity to this city...
+
+ &quot;Ah, it really is, and unfortuntately I don&#39;t quite have access to those parks where they keep cooler for the &#39;nobility.&#39; Heh, no wonder they call it Olympus, cold masters rule on top while their servants swelter and slave below. Its miserable.&quot; Gustave pulled at his shirt collar and shaked it, hoping to give his body some relief from the heat. &quot;I&#39;m sorry for dragging you to the very opposite of the Karelian forests, Assassin, but we do need to see if we can lure an enemy master here. I want 
+ a quick assessment.&quot;
+
+&quot;Oh and for how long that will take?&quot; He couldn&#39;t help but chuckle a bit as he picked out a spot near the shaded bank of a pond and the concave depression where a concrete amphitheater sat. He took the box from Simo and let it regurgitate its contents onto the grass. Within a moment, he already had a fresh canvas set up on its easel and paints ready.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="863126498129739816" id="message-863126498129739816" title="Message sent: 10-Jul-21 02:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;As long as the piece demands, the paint flows and the challengers come. I am not worried for exact time. As long as we can achieve these three and not pass out from the heat, I will consider this a productful day. I care not for where you set up but I imagine anywhere out of sight or up high will work wonderfully for you, given your set.
+
+ &quot;Now for a signal, hmm, its a good question. How about this, if you can see my canvas, look for a freshly laid field of snow and a cross of prussian blue. That will be your signal to rise and let loose with icy precision in this world of fire and oppression. If you can not, fire when I make mention of a sojourn or seem to fall. That should work, yes?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c45cf5c293cf5d84c9babb49723ca115-4F3E4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">10-Jul-21 02:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="863126533077336064" id="message-863126533077336064" title="Message sent: 10-Jul-21 02:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jul-21 04:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="863151004006219806" id="message-863151004006219806" title="Message sent: 10-Jul-21 04:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The assassin removed their coat from their waist and sat it down next to where their master set up their painting supplies. At least another source of heat trapping had been removed from his body. “Keep everyone miserable, and they wouldn’t dare dream of a revolt…” Simo spoke as he materialized his rifle, giving it one final shine before it disappeared once more. “Ah it’s fine, the scenery is at least… good. Also being a servant is rather convenient for holding onto weapons.” 
+
+Gustave continued on in his strategizing, and just general musings. Something that Simo had grown very accustomed too. While the elderly man spoke the assassin dug through his pockets of the coat and procured a slice of bread and a packet of sugar, then placing them into his pants pocket. 
+
+What most definitely caught Simo’s attention was Gustave speaking of his home’s flag. And how any paint upon the canvas is the signal to fire, or talk of sojourn or falling could also work. He nodded in response. “If you have nothing else, it works for me. Paint something wonderful, Master.” Underneath the facial covering Gustave could tell Simo was smiling with excitement as presence concealment kicked in and he was gone. 
+
+Simo stalked for a few moments before finally deciding upon climbing up a tree. Which was a perfect overview of the amphitheater and held gustave and his painting in sight. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jul-21 04:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="863152754599395349" id="message-863152754599395349" title="Message sent: 10-Jul-21 04:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Cooler heat sank down into the very core of the park, leaving all around in a conflicting cycle. Cool enough to actually go out and ‘enjoy’ the weather, yet hot enough to make such an inconvenient endeavor. Thus, it was busier than usual but not in a way to make finding an ideal spot to rest and be creative hard. 
+
+Perfect for Lark! Well, almost perfect. Not even the lightest of clothing could make the usual Olympia weather bearable. He tried, however, with pant legs and shirt sleeves rolled up to appear tacky rather than insane. A large sun hat rested over his hair, preving his skin from frying in the intense rays.
+
+“Come, come,” he called to Lancer, “the day shan’t last long! Unbearable as is, it’s absolutely <em>splendid</em> for finding the right people!”
+
+Who those people were, he could not say. However, he did know that certain people liked to frequent such hot spots. Certain people could have their things stolen, and people who stole might be unwilling to part with their ill gotten gains so easily…
+
+Or at least that was his plan! Not the best plan, but it was there nonetheless! Who knows, maybe they could even run into a Holy Grail War contestant or two. 
+
+<span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jul-21 08:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="863393661054877736" id="message-863393661054877736" title="Message sent: 10-Jul-21 08:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The heat was mild at best for Uther. He was no stranger to marching or riding under a blazing sun. In truth this felt more of leisurely stroll than anything else to him. His master was rather aloof about the present circumstances. They are in the middle of a declared war, and he wished to parade around in the open in the hopes that they’d find someone. It was in no way strategic or thought out. Regardless it was what Lark insisted upon before heading out from their base, and as his servant he was obligated to follow. 
+
+As they came to the Amphitheater Lancer looked around to briefly admire the architecture. It reminded him of the old Roman showcases he saw when he was a child with his father. Bittersweet memories now, replaced with aspirations of having the glory of Britannia to the heavens. 
+
+Keeping a watchful eye on his master, Uther maintained a safe distance from him as well. Not a length that he wouldn’t be able to easily reach him, but enough so they wouldn’t be caught in the same proximity if an attack was launched. Although he wasn’t aware of anything right now, Uther had been on guard ever since leaving. Being out in the open like this did not sit well with him, waiting to be attacked. The only benefit of it was that he fully anticipated something to occur, and he was ready to respond when it occurred. <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jul-21 12:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="863454745745162300" id="message-863454745745162300" title="Message sent: 11-Jul-21 12:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And they were there. The ground dipped lower and lower, inclined all the way down to the main attraction of the park: an amphitheater. It wasn’t at the grand scale at any of the other music halls around, not even coming close to their size or immense power, but that was okay. Not all curved domes had to hold large dragons. Some could hold the mild lion or tigers that were a good way to start out. 
+
+Unfortunately, Lark was not here for that. About ten years ago he’d brace whatever hot, steamy weather the aristocracy deemed ‘good enough’ for the area to stand on that stage and perform for the few people crazy like him that were scattered around. Now that that particular desire was dead, he was here for the other main attraction.
+
+People!
+
+And there were a decent selection this time of day. Most of them were camped under umbrellas or trees, trying to enjoy whatever there was to enjoy from this climate. A few were in the amphitheater itself, quietly talking amongst themselves about who knows what. Who to keep an eye out for...
+
+There! An artist had set up in the shade of the building, an easel erect with a few select colors ready to mix and match as the composition demanded. They looked alone, a bit out of the way, going to be immensely distracted from the world around... the perfect target for any low-lives looking to make a quick, easy buck!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="863455235347447838" id="message-863455235347447838" title="Message sent: 11-Jul-21 12:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Ooh boy! I spy with my little eye, someone who has no idea about the idea of crime! My good fellow, I’m going to approach with utmost haste! Come up with a fake identity before we get there!” 
+
+Lark, with renewed vigor, started <em>skipping</em> towards Gustave. When Simo caught eye of him (he made no attempt to hide himself or his intentions of approaching his master), he would see a stupid idiot with a case strapped to his back and a smile plastered on his face approaching the man of the hour. No weapons, and the case looked instrumental in type. There could also potentially be another person behind, depending on if they hid themselves in time...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">11-Jul-21 01:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="863466159490465842" id="message-863466159490465842" title="Message sent: 11-Jul-21 01:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jul-21 04:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="863518455553589288" id="message-863518455553589288" title="Message sent: 11-Jul-21 04:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sniper had nestled up into his vantage point. The heat was still incredibly oppressive, even with the shade provided by both the clouds and the trees. Comfort was most definitely not going to be an option for him. 
+
+In the meantime Simo manifested his rifle and began to polish it, and clean it all the while keeping his attention focused on Gustave. No one of note had made a move towards the old man, yet. Well at least Simo thought so, but there was one peculiar gentleman Skipping his way towards Gustave.
+
+<em>’Instrument case… No other notable weapons… rather queer…. Potentially a pickpocket or an enemy…’</em> The assassin thought to himself as he made a small note of Lark’s presence.  Simo retraced the musicians steps, or at the very least where he thought the man came from. Coming across a golden haired man standing tall, who seems to be keeping watch. 
+
+<em>’Nows not the time for people watching’</em> The Finn thought to himself again as he moved his field of vision back towards Gustave, and the man who had approached him directly. Presence Concealment remained active in the meantime, keeping Simo well hidden or at least he thought it did.
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jul-21 09:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="863585860851335210" id="message-863585860851335210" title="Message sent: 11-Jul-21 09:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">For Simo, it may not be the time for people watching but for Gustave, there was hardly a better time. Yes the heat and the smog proved to be challenges when it came for applying pigment to the canvas but one abandoned such control when one went out into the field to paint. It was here in this park that life eked out some peace even as the city did its best to force them back to work. The give and take between work and leisure was written out on all the park-goers&#39; faces, the tension in their facial muscles, the occasional anxious look over their shoulder. The place was rife for confrontation, a dry field of brush awaiting a single spark.
+
+All that was delectable to the surrealist and he would use such things to distort their faces, layer the space around then with reds and oranges that seemed to warm the canvas with their presence, grays and browns charred from being near such colors, and the occasional dash of blue, the oasis around which the people huddled for but a drop of refreshment from the daily toil. It was coming along faster than Gustave thought, perhaps he would not need to be here as long as he thought...
+
+A thin red line lashed its way into existence on the piece, bleeding paint like a fresh score from the driver&#39;s whip. A bundle of bristles from his brush now lay at his foot. Did he strain too hard with the stroke? No, it simply meant someone wanted a closer look at the art unfolding before their eyes.
+
+Since Lark was skipping gleefully towards the painter, he would barely notice the thin little strings that tried to bar his way, only to give way and snag on him like spider silk. Nothing to really care for rather than to just brush away, especially with such a tantalizing and oblivious target near.
+
+&quot;Ah seems I have an audience now, hoho! Please come closer if you like. An old man like me always finds value in company,&quot; Gustave chuckled, never looking back to see who was approaching him. He was more concerned with swapping out his brush.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="863586958797701162" id="message-863586958797701162" title="Message sent: 11-Jul-21 09:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Titanium white he would choose, swirling his brush around in it before bringing it before a dark semi-circular mass. And so he began to carve away at the older coat, applying brightness where there was none before, taking care to make it particularly bright around the heads of those conversing in its shelter. Halos for those finding companionship and pleasantness in such a miserable place, something of modern saints perhaps. <em>A field of white it was, nevertheless.</em> Caution, he told Simo in his special way, enemy close to me.
+
+&quot;Tell me, do you find anything enjoyable in this city, my friend?&quot;
+
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jul-21 11:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="863624361097297950" id="message-863624361097297950" title="Message sent: 11-Jul-21 11:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He was old too?! This bozo was practically <em>begging</em> to be robbed! If it weren’t for his relatively good nature and aversion to felonies, this old coot would be lucky to be going back home with his clothes on. Fortunate for him, Lark wasn’t the lucky lass to leech his luggage. 
+
+“I’d absolutely <em>love</em> to see what you have! Unspoken rule of the area, any and all creative feats are free for anyone to see and hear,” he said. Well, maybe that wasn’t true. Or even an idea. In his head, it was a way to learn and experience new creative outlets! Everyone considered nosy and overall a detriment to their experience.
+
+One he was no more than about ten feet from the old man, he slowed himself from his blistering hops to a crawling walk. He eyes the surroundings. No neer-do-wells on their way. He more than likely scared them off. Lark put his hands behind his back, clenching them hard. Nails dug into flesh, taking the edge off his growing need. He hadn’t done <em>any</em> dangerous activities for this day, and he wasn’t sure how much longer he could go without.
+
+For now, he’d make do with idle chit chat. “Depends on who you ask. The economic class system tells me that I enjoy being near-slash-on top. Politically, there is nothing to enjoy as I will never have any hold on the going ons of daily life or policy here. The artist in me says that this place is a creative hell hole with no redemption. Personally, and between you and me,” Lark was only a few feet away at this point.
+
+“There’s a <em>splendid</em> cafe only a few blocks down from my residence. Amazing lattes, lovely staff.Makes my day every time.”
+
+Eccentric was a good start.
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jul-21 09:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="863780706952675355" id="message-863780706952675355" title="Message sent: 11-Jul-21 09:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Uther watched his master approach an elderly man out of the corner of his eye. Not inherently dangerous, but not something to fully ignore. Still maintains a safe distance Uther seemed to peer around the area and sat down as if he was simply man enjoying the pavilion. The less conspicuous he appeared the better. It was far better to  give the impression that was people watching in general instead of standing guard over a particular individual. Despite this he still maintained an active awareness of his surroundings as well as what was occurring with his master. Still remaining ready to react at a moment’s notice, but for now keeping a low profile until it was required for him to intercede in some way. <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Jul-21 05:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="863887437046218753" id="message-863887437046218753" title="Message sent: 12-Jul-21 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sniper kept his post, keeping his line of sight directly trained on Gustave. The rifle loaded, safety off, and ready to be used for its intended purposes. It’s iron sights have not yet been pointed towards a target, after all if you point a gun at someone you should intend to pull the trigger. 
+
+The Golden haired gentleman didn’t seem to come towards Simo’s master like the highly energetic one did. Almost too close for comfort. Close enough for the canvas the elderly man was painting on to be blocked from view. 
+
+The Finn attempted to shift around in the tree, in slow and subtle motions, but it was still blocked from view. Simo had a feeling his movements here wouldn’t be as effective as if he was in the snow but he still attempted his best. He’d have to use the alternate method for being signaled to attack. 
+
+From the perspective of Uther, this tree was swaying slightly wrong… not exactly with the breeze the other trees swayed with. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Jul-21 12:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="864003929469747241" id="message-864003929469747241" title="Message sent: 12-Jul-21 12:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ah so a fellow artist then! Glad to meet you. I&#39;m Gustave,&quot; the painter said, turning around briefly to welcome Lark with a grandfatherly smile full of a warmth like sheets fresh out of the dryer, not the miserable heat of their surroundings. He extended his hand for a quick shake before pivoting back to work on his piece. He did move a step to the right so Lark could more fully view the piece.
+
+It was a painting of the park, though not finished by any means. Everything in it looked warped and blurry in definition, looking at it up close would only worsen this but would show Gustave&#39;s brush technique to focused not on realism like those found in oil potraits but rather the impression of movement and emotion.
+
+&quot;It&#39;s not a bad piece, even unfinished, no? I always find it enjoyable to blur out the meaningless details and interpret what really must matter to the people inhabiting the scene. Others have called it otherworldly, some hellish, personally surreal is what I like to label it as,&quot; Gustave pointed at a few points on the canvas with a wet brush, seemingly adding small details of relief to the characters&#39; taut expressions.  &quot;Unfortunately I can not accompany you to this cafe of yours until I am done here. However, you&#39;re more than free to stick around and watch me at my craft. What do you say, young man?&quot;
+ 
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jul-21 04:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="864243524052320286" id="message-864243524052320286" title="Message sent: 13-Jul-21 04:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Technically an artist, not the same field though. Call me Lark!” He took the old mans hand, shaking the somewhat sweaty palm before taking a kneel behind the man.
+
+The painting was fine, he figured. It looked well enough, with the details that had been deemed <em>important</em> well done while the seemingly forgettable details barely done at all. To finish it off, the insight revealed that this man was more than likely not from around here.
+
+“Haha, important to these people? Good luck figuring that out. Some people here might enjoy the vaguely bearable weather, or the green that could only be found at a trash bin otherwise. However, some are also here to flaunt their possessions, dream up that ambitious project that will send another few dozen workers to double overtime.”
+
+“And most important of all, to worry over the small things,” he rose back up, hands placed on back as he bent over. “What you deem meaningless might be the most important thing in the entire scene! To pronounce something worthless as one would announce a trip to the store for groceries strikes a nerve.”
+
+Now, he twisted in position. Muscles and bones ached and popped as he continued, “I will watch a little longer, but I implore you to step outside your boundaries. Change of scenery, change of technique as I say.”
+
+And in that weird mind of Lark, familiar itches started to announce their presence. A demand he had pushed down for the last twenty-four hours surfaced back up. Action! Danger! Excitement!
+
+He clenched his hands inside each other, hiding the fingers that started to twitch and flex uncontrollably. Larks right foot began to tap at a slow, measured tempo.
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jul-21 05:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="864254858021830686" id="message-864254858021830686" title="Message sent: 13-Jul-21 05:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Uther picked up on the odd swaying of the tree branch. It wasn’t his habit Yo associate factors he crosses with circumstance, and this would make no different. With a bit of minor deductive reasoning, he had a suspicion something or someone might be up there. However, to react to this would give away his own positioning. Instead, the king of Camelot opted to act as if he hadn’t noticed, but only to himself he was training his senses on that area and waiting to see if they would take any further action. 
+
+As an added measure Uther stood up from his seat and moved to the opposite side of stage from Lark and Gustave. Admiring the architecture of the area itself. In relation to the two masters he was just few yards away to the side of them, close but no indication that he was there with either of them or that he was paying them much mind at all. Although out of the corner of his eye, he saw his master’s tension and feared he may have to jump into action inadvertently before it was truly time. <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jul-21 06:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="864264901287739412" id="message-864264901287739412" title="Message sent: 13-Jul-21 06:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He continued on watching the scene play out below him. Gustave had seemingly struck a nerve with the other man. Which made Simo chuckle slightly. The rifle still rested, at the ready, but unaimed at the current moment. Perhaps the moment for action will strike soon, but from what the Finn could see Gustave has yet to signal one way or another. <em>&#39;He&#39;s probably giving that gentleman a lecture on art.... It really seemed to strike the man&#39;s nerves.</em> The sniper thought to himself while his eyes did another sweep of the area. 
+
+The Golden Haired man has changed positions again, this time opposite of both Lark and Gustave. Giving himself a position that if anything were to happen would be opportune to jump in and help. Simo made note of that again, and returned his view once more to the two artists, potentially about to quarrel. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 02:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="864576315520319518" id="message-864576315520319518" title="Message sent: 14-Jul-21 02:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Oh is that so? Interesting how you would jump to that conclusion based only on assumptions of my intent. Perhaps you are painting another canvas entirely, a self portrait perhaps?” Though his eyes remained fixed on his work, Gustave gave Lark a wink and a short chuckle. Was he taking a diplomatic route and nudging the man to reconsider his claims? 
+
+“I’m afraid you may have mistaken me for a hobby painter, and I apologize if I gave off that intent. I’ve experienced a good deal over my life and I believe I do know how to read a man. Wouldn’t have gotten as far as I have if I didn’t…” His paint lingered on his brush as much as he did on his last words, a few drops tapping down onto his palette. He stood still for a moment, staring intently at his canvas, a critical gleam in his eye. 
+
+“Perhaps a piece of wisdom is in order, my young friend. Don’t mistake a foreigner for a fool. You take a trip over to Delphi and that alone should save you a few hundred dollars, easy. Hmmm, haggling would help with that too. A word here, a word there goes a long way, I imagine that holds here too,” he painted away at the background with broad strokes of emerald, ochre and cerulean, letting the brush conform to each little ridge on the board and give a subtle texture to the canopy. 
+
+“But yes, change in strokes is good, a failure to experiment with one’s technique is poor form. Heh, I suppose I could practice some pointillism here, emphasize the subjects’ scatterbrained yet narrow-minded attitudes. The big picture or concern for fellow man does not matter to them when there are many sparkly trinkets for them to pick up. I suppose that’s all they need to be happy. Poor souls,” Another little chuckle to be followed by a sigh and then an incessant tapping as Gustave imaged his brush as a woodpecker, drilling holes in the previous coats of paint to reveal a greater meaning. “Say, that sounds familiar, wouldn’t you agree?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c45cf5c293cf5d84c9babb49723ca115-4F3E4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">14-Jul-21 02:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="864576360336326698" id="message-864576360336326698" title="Message sent: 14-Jul-21 02:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 04:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="864597392954884147" id="message-864597392954884147" title="Message sent: 14-Jul-21 04:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Oh, don’t think I’m scatterbrained enough to miss the hint, Gustave. But I will back off and apologize. Let’s just blame it on the abhorrent heat and go from there,” Lark said. He was even growing concerned with himself. He needed to get a handle on his mentality before he painted himself a fool. More so than he already did, with his remarks. 
+
+“Normally I try to be more <em>friendly</em> with the foreigners. Different city, different mindset, different way of life. For even myself it is wonderful to be exposed to such mindsets. Unfortunately, I don’t see Delphi as different as here. Same cloth, they are. One has an assortment of accessories scattered throughout the cut, is the main difference I’ve gathered.”
+
+“However,” he cut himself short, “a person who assumes is a person who knows little. Sparkly trinkets only produce happiness in some, but others prefer something a little less materialistic. After all, not everyone here can be a money-hungry, self centered fellow.”
+
+“An exercise I do to help me out with such thoughts is when I catch myself thinking I know something about someone, I then create a million other things I think I know about them. Some could be true, but some could also be false. The only exception to this rule is for those who sit at the top of the food chain. Those buggers could crawl into a hole and be forgotten to the ages for all I care.”
+
+<em>Boring boring boring boring boring boring boring boring boring boring bor--</em>
+
+Lark clutched his now throbbing head, stopping himself short from going further. “Where hath gone thy manners,” he remarked dryly, “I must apologize again. Here I am assuming you assume. Hurts to think about, you know?”
+
+That excuse was terrible. At this rate no one would even dare approach them, ill intentions or not. Today was a bust, but that wasn’t going to work. No, Lark needed something <em>soon</em>. “Here, perhaps some music would calm things down? I know many a piece that would fit the occasion.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">14-Jul-21 04:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="864597429789655081" id="message-864597429789655081" title="Message sent: 14-Jul-21 04:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/1db0790a08736b777db5457b6cba4ef0-F2FF6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gilan#1083" data-user-id="418155771918811136" style="color: rgb(255,140,19)">Gilan</span>
+
+
+        <span class="chatlog__timestamp">14-Jul-21 08:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="864845884226928651" id="message-864845884226928651" title="Message sent: 14-Jul-21 08:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((I’ll say go ahead and skip me cause Uther will maintain his position doing the same thing he had been. <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Jul-21 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="865245981398401024" id="message-865245981398401024" title="Message sent: 15-Jul-21 10:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah on that we can agree. A tale of two cities, for them it was the best of times, it was the worst of times. We both know who fall into each of those categories within our now conjoined cites. Everything scurrying around for gold and glory. Heh, I suppose some things never change,&quot; More strokes of amber grace the canvas. Another glance back to Lark and his fidgeting hands. 
+
+&quot;Perhaps that is why certain subjects in art can speak across time. A certain beauty in that to be sure.&quot; He dips a brush in a dark blue before setting it aside, apparently indecisive on when to use it.
+
+&quot;You know what, I am starting to stall here. A little musical inspiration would be good for my work and your restless fingers. You know, my mother once told me that idle hands did the devil&#39;s work, and from what I&#39;ve seen so far, there&#39;s plenty of little devils across Olympia whether they care to admit it or not. Let&#39;s make sure you don&#39;t join them.&quot;
+
+<span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/1db0790a08736b777db5457b6cba4ef0-F2FF6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gilan#1083" data-user-id="418155771918811136" style="color: rgb(255,140,19)">Gilan</span>
+
+
+        <span class="chatlog__timestamp">15-Jul-21 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="865246163905150987" id="message-865246163905150987" title="Message sent: 15-Jul-21 10:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c45cf5c293cf5d84c9babb49723ca115-4F3E4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">15-Jul-21 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="865246318351745075" id="message-865246318351745075" title="Message sent: 15-Jul-21 10:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">whoops</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Jul-21 12:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="865264565046870116" id="message-865264565046870116" title="Message sent: 16-Jul-21 12:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lark chose not to respond to that last remark, out of uncertainty of making himself a liar. His case was practically thrown down and clasps unlocked with shaky hands as the violin was pulled out of its case. Any and all damage caused by the summoning was fixed, wood as good as new. To anyone else, it just looked like an excessively fancy string instrument.
+
+And then there was a song, perfect for the weather up above and choking them down on the ground. Light, yet impactful. A driving song to encourage commitment, determination, whatever big words the people around would like to use. To keep up whatever they were doing, to not stop for whatever reason. Perhaps this was Larks&#39; idea of a retort back to those ‘devilish fingers’?
+
+Which were now being moved away from his appendages into his own mind. The fact that nowadays he rarely played on his own without the idea of action on his mind, combined with his growing withdrawal, meant that things were getting bad. Now his eyes twitched, as if he hadn’t slept in days. He tried to hide it at first with some gentle swaying, but when he felt restlessness it changed into a circular pace. 
+
+What to do? With his gaze surveying the landscape, it was clear that no one was even attempting to rob this fellow blind. Things were looking <em>too</em> good. Too peaceful. 
+
+It was maddening. Unless…
+
+No, he promised his Father! No more starting things on his own! 
+
+Well… maybe it was okay since it was a Holy Grail War? Afterall, how could he ‘prove’ himself (get the old man off his back for a bit) if there was no combat? No bloodshed? Who cared if he had to get the deed done outside of officially sanctioned combat arenas? There was no time like the present!
+
+If only this man had a Servant. For all he knew, this was some fellow from Delphi hoping to use the War to his artistic advantage! To attack such a poor, defenseless old gentleman that had done him no wrong was… something very tempting.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865264636113977364" id="message-865264636113977364" title="Message sent: 16-Jul-21 12:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It’s not like <em>everyone</em> displayed their servant to the world, announcing either their lavish wealth or complete disregard for every law written into morals. Sometimes it was even better to keep such things secret! Afterall, an unknown variable made things better for the defender despite the initial lack of defense.
+
+Many thoughts like this played over and over inside Larks head, wearing down on his already weakened psyche. It was only a matter of time, as the Lord of Hell whispered into his hear, sweet nothings enticing the mind. 
+“Lance?” He called out to his companion, “Why don’t you join us over here?”
+
+Lancer, if he dared decide to look his Master in the eyes, would see the previous man completely gone. Saucers gazed back, only smalled from the twitch deadset in the recesses of his sockets. Crazed grin covered the lower part of his head. Each corner of his lips dared to connect his ears in an unnatural way. Possessed? By what?
+
+By the God of Violence, of course! To all around, they <em>might</em> notice a green glow from the wooden structure in his hands. Music changed pitch, tempo, attitude. The gentle driving melody had become a war march, urging on all present into a disastrous future full of devastation and destruction. But that was the fun of it!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865264688727851098" id="message-865264688727851098" title="Message sent: 16-Jul-21 12:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And the volume increased, picking up at a terrifying pace. Higher and higher, hurting the ears of all close. At the highest peak, when it couldn’t go any higher, it did. 
+
+Gustave would be deafened, unless he possessed greatly hindered hearing capabilities as is. If Lancer was within a stones toss, he too would be unable to hear anything but himself. Simone, better off than the rest. All within the park jerked their heads to his position, the war cry heard loud and clear. 
+
+And they would see the War Master, ready to dance to the death!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">16-Jul-21 12:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="865264724060667954" id="message-865264724060667954" title="Message sent: 16-Jul-21 12:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Jul-21 12:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="865271606392520704" id="message-865271606392520704" title="Message sent: 16-Jul-21 12:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The music was a welcome reprieve from the previous discussion and with it, Gustave could let his mind wander as he explored the painting before him with brush and paint. A serene experience if but for a moment, and a moment was all he needed as the inspiration came flowing back in and he set his pace to that of Lark&#39;s bow. They were connected until the notes started to curdle on the string, releasing a shrill wail that pieced even the painter&#39;s hairy lobes. 
+
+A streak of crimson scored the bottom half of the painting as Gustave clutched his ears instinctively, cursing himself as he took one hand away to fumble for that brush he had set aside previously. With anger fueled by pain, Gustave made two hard slashes in Prussian blue at the canvas, a cross of blue making itself known on the snowy, fluffy fields of the clouds. It was time to strike and the painter would make his own contribution to the effort, tossing a small open jar of deep blue paint directly at Lark&#39;s head. If the Devil with a Fiddle sought to rob him of his hearing, the enigamtic painter would deprive the musician of sight. 
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">16-Jul-21 02:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="865298515679772693" id="message-865298515679772693" title="Message sent: 16-Jul-21 02:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865299696418291742" id="message-865299696418291742" title="Message sent: 16-Jul-21 02:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://m.youtube.com/watch?v=G7XeyQyEKVw">https://m.youtube.com/watch?v=G7XeyQyEKVw</a>
+
+Something in the tone of the conversation between artists quickly changed. Becoming almost hostile between them both. Simo shifted his positioning once more readying to take a shot, not yet aiming the rifle though. 
+
+Lark became a devilish virtuoso striking up a frenzied tune. A war march. A crazed cacophony pierced through the air. Anyone unlucky enough to be near by would absolutely have hearing damage. It even made the Finn’s ears ring slightly. 
+
+The Mad Musician made one mistake however. Changing his stance near Gustave just enough for the sniper to see his signal, the familiar colors of Finland’s Flag in the shape of a cross. <em>’You better be certain, Gustave.’</em> The thought crossed his mind, only mildly maliciously. If there was one thing he’d ever regret, it would be civilian casualties. 
+
+Quickly the Iron Sights set themselves upon Lark. <strong>A breath in, and a breath out… then BANG</strong> Almost immediately before firing Uther would detect another servant in the area as presence concealment dropped, and a bullet was sent flying straight for The Mad Musician’s head. 
+
+As the bullet flew Simo dropped from the tree, and went invisible. Draining away some mana from his own reserve. <em>’Thats a new trick’</em> The sniper thought to himself and smiled, swapping his rifle for the sun machine gun rushing in towards the fray. A Small trail of snow being left in his wake. 
+
+From his invisible run he kept the SMG trained towards the Golden haired man, ready to fire incase he joined. This will be quite the first fight in his new life.</span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+                                        <div class="chatlog__embed-author">
+
+                                                <span class="chatlog__embed-author-name">
+                                                        <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCBaznd-RTJpm8EG-aOEjL2g">Atekolix</a>
+                                                </span>
+                                        </div>
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=G7XeyQyEKVw">
+                                                    <div class="markdown preserve-whitespace">Mother Mother- Hay Loft (filtered instrumental)</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/G7XeyQyEKVw" width="400" height="225"></iframe>
+                                        </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Jul-21 05:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="865341694824022036" id="message-865341694824022036" title="Message sent: 16-Jul-21 05:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That moron. Calling out his class container in front of a stranger. Now he’ll have to get involved. Luckily for his master he intended to come that way anyway as a shot rang out and combat officially began. A subtle grin appeared on the King’s face as the condition for one of his abilities had been triggered. Immediately his strength, endurance, and agility raised. This in turn made him fast as lightning. The signal of a servant being in the tree made little change to his action and intention, due to already suspecting someone being up there.
+
+Dashing in a straight line towards the two masters, Uther armor appeared upon his body and in subtle motion raised two fingers as a magical wall of air appeared behind Lark and intercepted the fired bullet. However instead of fully making the projectile inert, Lancer utilized the protective wall in such a way to redirect it at Gustavo instead, most likely his shoulder. Amongst this action, Uther simultaneously raised up his other arm and attempted to Clothesline strike Gustavo across the neck and potentially take his head off. This would involve Uther’s forearm striking the master at full force at a blinding speed. <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">16-Jul-21 06:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="865354897577607178" id="message-865354897577607178" title="Message sent: 16-Jul-21 06:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">lark[Paint flew, the artists own inconvenience to the other. Lark turned away enough, blue covering only the right eye. Firmly shut it stayed, no longer of any help to himself. The only view of the world came from next to the instrument, partially blocked by a frenzied bow sawing the strings.
+
+That stopped him none, however. Now his own servant was here, able to help attack the alone person. At least, he thought they were alone. No one had shown their faces yet. But the idea of someone being there would have to suffice for now.
+
+He let the magic subside, ending the screeching volume back to just normal loud. “Oh Lance, my Lance,” he said, “show me your potential! Your prowess! Your all!”
+
+Frenzied, staccato notes sang out as Lark continued his crusade. He pranced just outside of his servants grasp, hoping to spy with his one eye an enemy.]</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Jul-21 12:40 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c45cf5c293cf5d84c9babb49723ca115-4F3E4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">16-Jul-21 10:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="865421781779087361" id="message-865421781779087361" title="Message sent: 16-Jul-21 10:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">art$ Though no one at the park knew it, the elderly man painting on the bank of a ponder was more than an artist of oil, pigment and graphite. A lifetime aboard such cities as Delphi and Lemuria taught him how to manipulate the wills and desires of people into yet another piece of art, one much more ephemeral yet infinitely more spectacular than any single painting. Lark made for an entertaining prelude but with the action of his servant, it was time to move onto the main symphony that the violinist sought to usher in with a stunning solo. 
+
+While the jar of paint collided with Lark and split his attention and Simo&#39;s bullet called to Uther&#39;s paternal instincts, Gustave was afforded a sliver of time to turn planning into action. He kneeled down, as if to tie his shoe, only to thumb a rune in the grass and send the necessary magic through it. In but a second, the grass under his feet curled away from a singular spot, retreating into tight little curls nestled on larger spirals of grass. As the music softened and the bullet and Uther&#39;s hand converged on Gustave, servant and master could only watch as the elderly man fell out of the world and into a perfectly round hole in the lawn. It was as if a manhole had suddenly opened up and swallowed the poor painter whole.
+
+ Uther, may catch a brief glimpse of a distorted mirror within the hole before it too winked out of existence. Of course, he would now have to contend with the reflected bullet now careening towards his own torso and thigh. 
+
+Hidden behind a tree on the opposite side of the pond, Gustave felt himself being thrown back into reality and crumbled softly, coincidentally by where Simo had landed himself. He did not see anything but a couple snowflakes glimmering on a patch of clover.
+
+&quot;Simo, if you&#39;re there, be careful. Lark&#39;s servant appears to be a bodyguard in more ways than one. Perhaps it would be best to isolate and cripple him in such a way we can put pressure on the master.&quot; $</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Jul-21 10:38 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865421801589047306" id="message-865421801589047306" title="Message sent: 16-Jul-21 10:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Jul-21 10:37 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">16-Jul-21 11:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="865431725873954856" id="message-865431725873954856" title="Message sent: 16-Jul-21 11:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Simo: Chaos erupted upon the firing of the bullet. The sniper continued slightly as he saw all that unfurled before him.
+
+Lancer made an attempt at Gustave, showing some of his hand at least his speed, but the old man used one of his tricks to slink away. Lark continued to play up a frenzy. 
+
+This caused Simo to stall for a moment as the repeated pattern he saw once before in the Loft of his master showed its beautiful form again. Standing in a small patch of clovers, snowflakes collecting then melting from the raging heat. A battle involving magecraft…. This was quite something to behold. 
+
+Another noise was heard as Gustave made his entrance back into this world. Then the elderly man began to talk. “I’ll give it my best on that front. The fucker is rather fast, so it might be a bit rough. Also, we will need to have a conversation about firing potentially on a civilian, when we get home.” 
+
+Without another word the snow began to move once more. What Simo did not realize was the significant boost to his speed this ability granted, as a barrage of bullets began raining upon Uther and Lark. Most certain that the Lancer would cover his master, and treat these shots like the opening blow. Simo himself rounded around the pair, before he had to make a reappearance, placing himself upon the stage itself. 
+
+“Servant to servant. I’m rather apathetic to trading knowledge about ourselves. We’re here to kill one another, after all. What difference is it in any field of battle to know your enemy as a person.” The sniper reloaded the SMG, and then slung it over his shoulder. His rifle appearing in his other hand aimed right for the Knight class servant. <em>’Now let’s try something else</em>’ The sniper thought as magical energy began to charge the loaded bullet as it shot right for the Kings head.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865431762733891624" id="message-865431762733891624" title="Message sent: 16-Jul-21 11:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jul-21 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="865703789801111552" id="message-865703789801111552" title="Message sent: 17-Jul-21 05:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If Gustavo had only been a hair slower, the High King would be holding his head as a trophy, but no matter. There will be other opportunities, for now he needed to deal with the would be assassin. The hail of gunfire was halted as Uther moved his wind wall to surround both he and Lark. It appears that the rifleman believes himself able to flank the veteran knight. Facing a normal opponent that might have been the case, but Uther was no normal opponent. 
+
+Briefly calling out in a authoritative tone to Lark, Uther bellowed. “And you show me what makes you worthy of being my master!” In a minor burst, the wall exploded outwards just as Simo began to lecture upon the stage. The shrapnel of bullets were sent in all directions, including towards both Simo and Gustavo in his hiding place. Additionally, the wind itself would cut into flesh and cloth like finely sharpened razor blades. Using this repulsion  as a distraction, Uther utilized his heightened speed once more to virtually disappear to the naked eye as Simo got ready to fire his magical bullet, appearing just behind the servant on the stage. Not bothering with harmonious words, Lancer simply mustered up his strength and back fisted Assassin on the side of his skull. Hopefully doing some major damage and potentially knocking him away. <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jul-21 01:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="865832937261760573" id="message-865832937261760573" title="Message sent: 17-Jul-21 01:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He knew his opponent was fast. But he didn’t realize that the king was this <em>fast</em>. In the span of time between the magical energy filling the bullet and Simo pulling the trigger, Uther was gone. 
+
+Within the periphery of the Finn’s vision he saw the Golden haired man. Specifically a gauntleted fist, aimed right for the side of his skull. And then <strong>CRACK</strong> The fist connected right with his skull. If he was a normal human, this would have killed him, but this new body was something beyond human.
+
+This however had an unintended side effect, shifting Simo’s aim ever so slightly to end up trained upon Lark. As the bullet fired from the rifle. 
+
+The sniper was sent flying, as the bullet went for Lark. He eventually, and very painfully, collided with the opposite end of the Amphitheater.  Simo’s facial covering had come off as Uther struck, revealing the grinning maw of a demon beneath. The rifle disappeared once again as he took aim with the SMG and shot another barrage towards Uther, going to keep his attention.
+
+The smile kept wide, Uther had made a misstep. Lark was without his protector. And fortune favored Simo in this moment.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">17-Jul-21 01:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="865832986380075008" id="message-865832986380075008" title="Message sent: 17-Jul-21 01:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jul-21 02:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="865842392325947413" id="message-865842392325947413" title="Message sent: 17-Jul-21 02:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hails of gunfire filled the park, directed away from the main duo via wind barrier. Where the bullets went was anyone’s guess, but the fact that they <em>could</em>, in fact, go anywhere made it more than a little dangerous to be around. Already the park citizens had started to flee, running erratically in all sorts of directions in order to evade the stray shots.
+
+All except Lark. Hell, he should’ve been one of the first to run at the first sign of a counter-attack. To die immediately after engaging on another Master would surely flood the newspapers with a story to last… the rest of the week! This was the fire he was playing with.
+
+But the fire made him feel so alive! To be surrounded by danger, chaos, imminent death at a single misstep, even a hair out of place would spell his end. A life that could be robbed at any moment was one that held the most value, and every moment could be his last. 
+
+<em>And that,</em> he reminded himself, <em>will bring about the most challenge and inspiration!</em>
+
+There was only one small problem, a slight miscalculation: his enemy had a gun and some crazy good luck on their side. Lancers&#39; attack drove the Assassin through the air, a white golf ball after a perfect shot. They landed in the hole, a wonderful shot in one! Much like the one shot that came barreling towards the maniacal musician. 
+
+At the end of the day, there were two things that made this bullet not instantly remove the pair from the Holy Grail War. One, an increased Endurance via his Servant, who were in visual sight of each other. Two, and perhaps not as importantly, his own skills.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865842438634733570" id="message-865842438634733570" title="Message sent: 17-Jul-21 02:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">An increase in speed, specifically. Lancer was capable of amazing combat capabilities, and Lark was no exception. With the rapid strikes of his bow on the strings, the wood flared to life once more. The speed of his movement grew more erratic as he danced across the green floor, magically altered via Magecraft.
+
+Which was the correct play, as he <em>barely</em> moved his torso to the side. Now, instead of having lead in his stomach, it was now in his side. Blood spurted from the new opening in his body, covering the ground in a fine mist of red. Even more crimson followed down his side, his clothes a bit darker than before. The rate of blood loss wouldn’t kill him anytime soon, at least!
+
+Unfortunately, that only made the near incoherent song even more rapid. He barely processed the wound, as an ungodly amount of adrenaline coursed through his veins and trickled down his abdomen. However, just the thought alone of almost sustaining terrible damage riled up the crazed lunatic. Bright green light flared from the violin. It was a spotlight at this point, despite the sun up above dampening the glow. This mad marcher was just getting started!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">17-Jul-21 02:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="865842472889090069" id="message-865842472889090069" title="Message sent: 17-Jul-21 02:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jul-21 05:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="866434019301523456" id="message-866434019301523456" title="Message sent: 19-Jul-21 05:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave glanced from behind the tree at the ensuing chaos and at his servant, dancing around both the enemy servant and master, bowing from the enemy&#39;s swipes and lunging with his own. It was a sight fitting of its own painting but he would have to act soon if he did not want the law of numbers to invetibably bear down on his servant and crush their chances to win. He looked on as Assassin scored his first strike on Lark and took that as his own signal, dashing from cover to cover, creeping closer to where his easel still stood and the violinist madly danced. 
+
+<em>Good, just keep dancing there like the mad hatter. Just focus on Simo for me a little bit more.</em> He glanced again as he started to bend and stretch a spare brush between his hands, molding it into something akin to a whip, the bristles growing and braiding themselves to make a sturdy lash, dancing to their own alien tune all the while. <em>Just a few more centimeters... and gotcha!</em>
+
+Pulling the rope back, the painter aimed for a point just beyond the canvas and sent it lashing forward, snagging around the base of the easel. With but a spark of mana, the whip came alive with a magical blue glow, patterns etched across it like letters in an unknown script and replicated their pattern across the wooden structure instantaneously. And with that prompt, the easel was no more, disassembled into a series of inter-tangling bolas that writhed like snakes in the air, using the mana from the whip to propel themselves towards Lark. With any luck, when Gustave snapped back the whip a moment later, Lark would be snared inside, an impressive catch for the day.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jul-21 07:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="866458348198559784" id="message-866458348198559784" title="Message sent: 19-Jul-21 07:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The other Master had revealed himself, this provided an opening that they needed to seize. Lark would have to mind himself for a bit, if they wanted to make headway he couldn’t act as his master’s shield forever. Despite that there was one parting thing he could do for Lark as Uther started to move. Reforming the invisible air once more around Lark, it fully encompassed the musician’s entire body. However, this time it did not take the form of a shield instead opting for a simpler yet equally beneficial effect. Simo and Gustavo would see as Lark seemingly disappeared before their eyes becoming invisible due to Uther’s ability. Luckily the man seemed to have a fraction of skill of his own to keep himself on his feet, especially as a some rope like creature moved in Lark’s direction. 
+
+Regardless of how effective this help would be for his master. Uther did not have the time to delay as Simo opened fire on him. Now with the majority of the bullets flying towards Uther, the king could truly let loose. Dashing away Lancer had to keep moving in order to not be hit. If he wasn’t an enemy Uther would carry a modicum of respect for how adaptable and skilled Assassin was. The man appeared capable to strategize and execute action seamlessly in the heat of combat. However, this was not the time for praise and on the field of battle one mustn’t let ideology get in the way of victory, that is how a knight ends up with a crossbow bolt in his back. 
+
+As Uther sprinted it became clear that he was not moving towards Simo, but instead was running full force directly towards Gustavo. If assassin continued his assault he would directly be unleashing friendly fire upon his own master.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="866458428770615337" id="message-866458428770615337" title="Message sent: 19-Jul-21 07:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Unfortunately for Gustavo this was not Uther’s only intention. This was going to be his second attempt to use servant strength to strike full force in the center of the man’s chest at top speed. It was Lancer’s hope that there wasn’t more tricks up the man’s sleeve to have him slip through the king’s fingers again. <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jul-21 01:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="866554060417007666" id="message-866554060417007666" title="Message sent: 19-Jul-21 01:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The invisibility was both a help and a hindrance. For starters, not being able to be seen meant that once he dodged this attack from Gustave, he was practically in the clear in terms of counterattacks. Sure, his music would give a general idea of his location. However, to hit a swift target without any good indicators of said target was hard enough as is without a jacked up Servant bearing down on you or your own Master. 
+
+However, now he was less likely to be targeted! The whole point of this assault was to get his healthy (in his eyes) fix of adrenaline. Hard to do so when your opponent struggles to even know where you are. Lark and Lancer were going to need to have a talk when this was all said and done, about how he shouldn’t ruin his fun!
+
+Maybe it was better that this attack landed, so he may better make himself a target. Of course, a sitting target was perhaps the absolutely worst thing to be against someone with a <em>gun</em>. But Lancer had him covered, right? Yes, to rely on Lancer was half the reason of this relationship in the first place!
+
+Thus, the world upended itself. A quick sidestep had prevented a complete snare. Instead only the lower portion of his body was rooted, now confined within easel and brushes. The bright sky above revealed itself as he now stared at it. His bow did not stop during any of this, still strumming furiously. However, the beat started to change slightly. The incessant speed and volume calmed, more of a ‘serious march’ than a ‘murderous march’. Progress?
+
+That or it was the loss of the Endurance Rank that slowed him down. That slight gape in his side started to sting more brightly, now that his legs rested body stilled. Oh, and the ‘not being visible’ thing that might affect how that worked. 
+
+<em>Note to self, ask how that works later.</em>
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jul-21 01:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="866732295812546641" id="message-866732295812546641" title="Message sent: 20-Jul-21 01:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Assassin had failed to keep a hold of Lancer’s attention. Even with the barrage of gun fire, instead the Golden Haired servant did something to cause his master to disappear then make a move towards Gustave. He paid little attention to the now gone Lark. 
+
+There were a few options Simo could take at this moment, each of which had their pros and cons. Certainly as soon as Gustave was even close to the spray of bullets he ceased fire, not wanting to risk friendly fire. 
+
+Lancer was leaps and bounds ahead, but that didn’t stop Simo from doing something to stop Uther. Again the Servant’s magical energy drained as he went invisible, and darted away. The Snow trail wasn’t headed towards Gustave, but rather aimed to go parallel to Uther. Following at a significantly accelerated pace.
+
+The SMG disappeared from his hands once more as the Rifle materialized. He was a few steps behind, but he had to do something. Simo mustered what Magical energy he could still use without tearing himself apart. 
+
+A thought occurred in the split second between the knights approach and Simo’s aim going. The only issue is the speed that they are both moving at but, it should be accounted for by his aim. 
+
+<em>A Noble Phantasm will be needed to stop him</em> 
+
+<strong>”May my bullet strike true… This is the Result of my Legend… Valkoinen Kuolema… BULLET OF THE WHITE DEATH!”</strong>
+
+The rifle fired, from Simo’s invisible position. Aiming directly towards the Knight, it’s speed should be more than enough to make the difference and keep Gustave safe, potentially even fast enough to overcome the vast difference in speed. Not to mention the power of the bullet either.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">20-Jul-21 01:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="866732340301266986" id="message-866732340301266986" title="Message sent: 20-Jul-21 01:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jul-21 10:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="866866500039999559" id="message-866866500039999559" title="Message sent: 20-Jul-21 10:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pure focus, that’s what it was, a drive to press on during battle regardless of what presses against you. Uther knew nothing else, for one to be a mighty ruler and king they must have the passion to never falter or give in, a trait his opponent seemed to share. Despite out pacing him, Assassin refused to submit and fought to the bitter end. A shot rang out and a sharp pain hit Lancer in his side. The bullet appeared to pierce just above his hip and out the Lowe part of his torso. It was a fantastic shot and the first big one that he had landed on the king. However, Simo was about to learn the meaning of the proverb. ‘If you are going to shoot the king, make sure you don’t miss.’ or in this case make sure it’s enough take him down.
+
+That was an extraordinary shot that Assassin made, however, it would prove too little too late. Despite hitting the mark on Lancer, due to his armor, high endurance, and magic resistance Uther was able to do as he always had, press onward. It shirked him only a step or two, but ultimately did not break his stride. Not slowing in his approach Lancer continued with his attack, striking downwards upon Gustavo’s legs with a sweeping forearm swing, cracking against the bones of both of them with his metal grieve. The master would have to pull out something great to get out of this one, otherwise Uther intended to soon finish the job. <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="867234377044852746" id="message-867234377044852746" title="Message sent: 21-Jul-21 10:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There were risks worth taking and those that only a fool would take. Gustave had thought himself the master of risk evaluation, it was just a tangled table of probabilities. Math with a speck of chance was all it really was and Gustave had bet on the wrong outcome. He had hoped he could have stopped that devilish music all together but Lark just kept on playing at a feverish pace while restrained and now he had exposed himself to the enemy servant with no good payoff. 
+
+He glanced up to see a mass of muscle and steel charging towards him at full speed and he knew right then that there was nothing he could do to stop Uther&#39;s pure momentum or get out of its way in time. Even if Simo would land a shot on Uther, the probability of him being tossed to the side was low. Gustave knew he could very well die and his own little dream would be snuffed out before it could even come to light. So he did what he had  always done before, tipped his head down and started working. 
+
+He would be an easy target, yes, but if this one last desperate gamble pulled through and Lancer found the prospect of an enemy master tempting, he would come out alive. Deep breath in and deep breath out... With a loose clump of dirt clasped between his palms, the old painter rapidly inudated the soil with mana, letting it flow freely from his hands to the earth. Deep breath in and deep breath out... he opened up his hands and let the soil flow freely into a light breeze, scattering randomly around him while he locked his eyes onto Uther.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="867235038592368640" id="message-867235038592368640" title="Message sent: 21-Jul-21 10:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">When Lancer came up and delivered his wrath upon Gustave, it was excruciating, feeling his legs snap like toothpicks under Uther&#39;s kingly wrath. As he fell like an old tree, painful memories from long ago flooded his brain alongside the distressed pulses of his nerves set aflame. Hate came creeping back in, a risk taken, mistakes made, was he making the same ones again? No, he couldn&#39;t let that happen. If the enemy servant wished to trade blows, so be it. He had yet to see the Chalice he had made with his own sweat and blood over the years, his conquest over the fabric of space itself. All it took was him falling to the ground to spark it, the dirt from before, the flash in the pan before the whole area around him was overwritten by a new template, a texture typifying the laws of the universe.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="867235130975715338" id="message-867235130975715338" title="Message sent: 21-Jul-21 10:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://images.fineartamerica.com/images-medium-large-5/mandelbrot-set-square-format-art-matthias-hauser.jpg">https://images.fineartamerica.com/images-medium-large-5/mandelbrot-set-square-format-art-matthias-hauser.jpg</a></span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/mandelbrot-set-square-format-art-matthias--A4B0E.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/mandelbrot-set-square-format-art-matthias--A4B0E.jpg" alt="Thumbnail" loading="lazy">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 10:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="867236988443951134" id="message-867236988443951134" title="Message sent: 21-Jul-21 10:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A grail unlike any Uther had ever seen before etched itself into the ground near him with a beauty as alien as the angels of the old world. And it was coming for him, shooting out like a cone and about to toss him into its infinite valleys. 
+
+And that very well happened as the cup like structure had been aimed with his trajectory in mind. One moment he was running past the crippled old man and the next he had almost outpaced the bizarre formation only to find his paces digging into more and more malleable earth. Now it was as if he was trying to march up a billowing sheet of fabric, his feet slipping. It was odd, the last thing he saw on the ground was a blue flower and when he looked down again, it kept seeming to show up again and again until the petals started blending together and the ditch he had made for himself seemed like it had no lower limit, as if it was exponentially racing off towards a negative infinity, an endless pit of spinning color and repeating patterns.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c45cf5c293cf5d84c9babb49723ca115-4F3E4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">21-Jul-21 10:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="867237059407118349" id="message-867237059407118349" title="Message sent: 21-Jul-21 10:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://tenor.com/view/blue-spiral-gif-19568103">https://tenor.com/view/blue-spiral-gif-19568103</a></span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/tenor-5FD6D.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/tenor-5FD6D.jpg" alt="Thumbnail" loading="lazy">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-259F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="862843675791589386" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 10:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="867238865667620885" id="message-867238865667620885" title="Message sent: 21-Jul-21 10:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And as fast as it was accelerating, it just as quickly slowed down and Uther could feel the air around him tense up with his own mana, nonetheless. It so desperately wanted to find an end and punch out through the ground elsewhere, but the accumulation of mana packed within a servant was simply incompatible with Gustave&#39;s near-miraculous craft and it just pilled up within the pit that was simultaneously only inches deep yet seemed miles tall until the instability and mounting chaos was too much for the formation to take. 
+
+With the sound of a crisp snap, Uther was sent flying out of the Chalice at speeds that he could only imagine the dragon king Vortigern capable of inflicting. He would careen in the air for only a few seconds but it was with impressive force that he digged his own shallow trough into the dirt. 
+
+Meanwhile the area around Gustave once was seemed almost liquid from the shock, rolling up and down like the sea, dust constantly shooting up into the air and giving into the dance of entropy.  Lark&#39;s snares would come undone as the whole chaos unfolded and Simo might just see his master knocked back into a tree
+
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-E2896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="862843675791589386" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 12:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="867256069817368597" id="message-867256069817368597" title="Message sent: 21-Jul-21 12:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The shot struck…. But this servant, one of the 3 knight classes, was a force to be reckoned with. A combination of factors were at play, being magic resistance, an extremely high endurance, and armor. At least that is what Simo came to the assumption of with what knowledge the chip has bestowed upon him. It didn’t even knock him away in the slightest… <em>’Quick, Durable, and…. Determined… 3 things that are rather dangerous… I like this one… this shot however will end him.’</em> The sniper thought to himself as he readied his aim once more, continuing the forwards momentum. 
+
+Then things, like in all circumstances involving Gustave’s magecraft, became weird. No doubt Uther had connected and subsequently broken the elderly gentleman’s legs. But that pattern appeared once more, the world itself had its texture overwritten. No not overwritten, rewritten to how Gustave saw fit. 
+
+Reality was a paintbrush, and Gustave it’s artist. The Finn had little clue of what was going on within the confines of the Chalice. Just as suddenly that it was created, the brush rejected its wielder. 
+
+Uther was spat out far from this location, while Gustave was also spat out once more. In his invisible appearance, the sniper and his accompanying snow drift made quick pace to their master. An arm would then be felt around Gustave’s shoulder. 
+
+“By my estimates… we only have a few more seconds left for a get away….” A familiar voice would whisper to the elderly man, as he was hoisted upon shoulders that were physically there, but not visibly there. “Hold on tight…. I’ll be doing the running…” The sniper made off at a breakneck pace, using the last few seconds of his speed boost to keep the distance between the pair and their adversaries. Going to make a clean getaway. 
+
+Within Gustave’s mind voices would be heard… long dead voices. They weren’t familiar to the artist however, and each one spoke in fragments. “We foun-….” “How cou-….” “That glorious ba….” “His…”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="867256148751155210" id="message-867256148751155210" title="Message sent: 21-Jul-21 12:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He continued the dead sprint clear into one of the many trails leading off of the park. Headed back towards the city proper, and clear of The Mad Musician and The Golden Haired Knight. The sniper became visible once more and his speed dropped. 
+
+Simo had learnt a few things from this encounter. Firstly, he was capable of miracles. Secondly, he could withstand tremendous blows. Thirdly, he possessed something known as a Noble phantasm. Finally, other servants were more dangerous than previously thought. 
+
+Surely some would slip up, and treat Simo as not even a threat, but this first fight… this Knight didn’t have the arrogance to do that. And that left the sniper to ruminate. 
+
+The Finn continued forwards carrying Gustave upon his back, not even caring about the forgotten over coat. He needed to get them to safety first, before other worries. could be brought up.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">21-Jul-21 12:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="867256189561470976" id="message-867256189561470976" title="Message sent: 21-Jul-21 12:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/3ff238213ab5219ae34f36fac7d72429-135B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="862843675791589386" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 01:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="867270380988137473" id="message-867270380988137473" title="Message sent: 21-Jul-21 01:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lark didn’t have the ability to watch the madness unfold. It wasn’t even his brand this time! No, instead he played his jig up at the sky for the insects and worms that writhed in the dirt. The high he had from earlier wore down as wormholes opened up, Lancer went flying (he did see that spectacle, which warmed his heart), and the assumed Master Servant pair more than likely escaped. At least, he thought they did. No bullets came flying his way, and Lancer did not speed off to combat anyone. A win in their books!
+
+Maybe. A dull pain greeted a descending, rational man who had bitten off more than he could have ever chewed. Even worse, it was only getting worse by the second. Lark reluctantly stopped his music. His instrument was deposited to the side as he rolled up his shirt. No metal bits shone through the viscera, and the bleeding was a lot calmer. Still needed to be patched up, but no rush was needed. 
+
+Which gave him all the time in the world to come up with any sort of explanation for his actions! Holy smokes, that was <em>bad</em>. Those mental gymnastics he pulled earlier were quite disgusting. As he dug shaky fingers into the soil, he contemplated everything that just occurred in this brief period of time. 
+
+“Lance, are you alright? I think an apology is in order, but perhaps a different locale is in order… what is your opinion regarding coffee shops?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">21-Jul-21 01:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="867270386702090240" id="message-867270386702090240" title="Message sent: 21-Jul-21 01:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20memorial-park%20%5B862568557703462942%5D%20%28after%202021-07-07%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-8E7A6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="862843675791589386" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 01:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="867274173013557258" id="message-867274173013557258" title="Message sent: 21-Jul-21 01:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">For the first time in this entire encounter Uther was truly caught off guard. The visage that he bore witness could only be described as some sort of mysticism that he had only previously seen Merlin employ. His own propulsion of speed seemed to be used against him as he was repelled backwards into the air. There was not much damage to be had, and with subtle swing of his hips midair his feet struck the side of a tree where a small crater formed in the bark from the force.
+
+In the distance he watched their opponents flee to safety. It appeared Lancer and his master had won this round, but how close it came to turning the other way at times. The King wished to bask in the victory, but all he could think of was the skill of that other servant and how at the end he was at last able to catch up to him. The bullet wound he sustained was still fresh, and he would likely need to get it patched up soon himself. A worthy adversary indeed.
+
+It was at this moment that he heard Lark call out for his servant. Uther landed to the ground with a thud and went over to his master. The invisible cloak of air fading from him as Ithet reached out to lift Lark to his feet. “I’m aware of coffe, however, one does not drink beverages of the coco bean after winning a battle. A knight or soldier shall go to the nearest tavern or pub and have their fill of alcohol.” Uther wrapped his arm around the man and slowly started to usher him away. “We will get our food and drink, and from there we shall discuss what occurred today.” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
