@@ -1,0 +1,1675 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - consulting-firm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Downtown / consulting-firm</div>
+
+            <div class="preamble__entry preamble__entry--small">A middle-sized consulting firm associated with the Church that also saves as the base of operations for its more covert operatives. Numerous employees at the firm are actually operatives that have seamlessly blended into Olympia&#39;s populace and serve to monitor the aristocracy from right under their nose.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 22-Jul-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 07:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="868099826234036284" id="message-868099826234036284" title="Message sent: 23-Jul-21 07:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Beep beep. Clack.</em>
+
+Orecchiette grabbed the soda can from the vending machine and popped it open. Tiny bubbles fizzled out of the can, barely making it past the lid before the executor put the drink to his mouth and took a few big gulps. 
+
+Fizzy soda was still far from his favorite beverage, but Orecchiette found himself growing rather attached to their aluminum container. Or, more specifically, the act of popping them open. The crisp <em><strong>pop!</strong></em> of the seal breaking after applying just the right amount of pressure introduced a delight that simply couldn&#39;t be found in unscrewing a PET bottle cap, or drinking straight from a glass.
+
+Plus, he needed the sugar.
+
+The brisk tang of the lemonade relieved his thirst, the cool liquid slithering down his throat and cooling his overheating body on a hot summer&#39;s day that seemed to stretch forever and ever. Orecchiette pulled at the collar of his turtleneck to release some heat, but found his shirt to be totally drenched in sweat.
+
+That&#39;s what you get for dressing against the weather, he supposed.
+
+It wasn&#39;t the worst he&#39;d experienced, but unfortunately, he had relocated back inside an air-conditioned building, which cooled his shirt rapidly and turned it into a clammy piece of fabric that was impossible to ignore.
+
+Orecchiette set down the soda can on the top of the vending machine and started for his room. A change of clothes was in order. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 08:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="868106963593072660" id="message-868106963593072660" title="Message sent: 23-Jul-21 08:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It had been a long week.
+
+After Orecchiette had arrived and showed his true colors, Pappardelle could not help but burden herself with the duty to keep an eye on him. Executors of the Church worked best alone, but she couldn&#39;t forgive the act he had committed. The act of nonchalantly taking down a city and treating it as &#39;collateral damage&#39;. Even worse, <em>he had taken down a city.</em> <strong>On his own.</strong> She had never heard of an executor accomplishing something like that on their first mission.
+
+She almost regretted this decision once she was greeted by the paperwork required to assist an executor in field missions. There were several consent forms required to sign, usually just in case Pappardelle sustained any damage during Orecchiette&#39;s missions, in which the Church offered various benefits, such as healthcare and insurance. Of course, obtaining those perks required her to sift through this paper jungle.
+
+She spent three days signing away. Rereading each clause thoroughly. Signing with her right hand and her left hand on two different sheets of paper. She signed so many things that she couldn&#39;t even recognize her own signature, seeing it as a meaningless scribble that served as a stamp of approval.
+
+Even worse, she was trapped in a cramped room. AC existed in Olympia, since the population wouldn&#39;t survive otherwise, but it was truly telling of the city&#39;s condition when the room still felt boiling even with AC around. She was far too proud to remove her Church issued outfit, so an aroma of stickiness and sweat permeated the air. Thankfully, no one ever entered her room, so she felt safe. Comfortable, even.
+
+Eventually, she was done. The last signature had been penned and all she needed to do was scan the paper. However, she would rather sigh in relief and be glad that she was done.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868107008073666570" id="message-868107008073666570" title="Message sent: 23-Jul-21 08:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Hmph.&quot; She harrumphed, lying in bed triumphant as she pointed her pen upwards. Yet another victory in her grasp, worthy of the title of &#39;Church typist&#39;. After a few minutes of nothing, she got out of bed and decided to finish the job. She stacked the signed papers on the bed and applied a dose of perfume on her neck to mask the sweaty scent around her. She needed one final check.
+
+She grabbed the stack of papers and immediately headed towards Orecchiette&#39;s room. This final step was more formal than anything, but she still wanted to get his approval on her request to aid him in field work. This would be his last chance to back out, in case he didn&#39;t want his supervisor to intrude on his affairs.
+
+She arrived at his room, waiting outside the door as she lightly knocked with her foot due to her hands being occupied. &quot;Ahem, Orecchiette? I have come here on urgent business.&quot; She said with a commandeering voice. &quot;Please, let me in. It won&#39;t take longer than a few minutes.&quot; <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="868118870177759253" id="message-868118870177759253" title="Message sent: 23-Jul-21 09:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Pappardelle?&#39; Orecchiette&#39;s voice greeted her. Not from the other side of the door, but from the hallway behind her. The executor moved down the hallway at a brisk pace, stopping at his doorplate to reexamine its room number before turning his attention back to his senior.
+
+&#39;This is <em>my</em> room, I believe.&#39; He stated in an inquisitive tone, brows rising. A dignified member of the church, breaking and entering? 
+
+He fished a small keychain with a single key attached out of his pocket. The ultimate proof of his rightful ownership to the room.
+
+&#39;Please move aside,&#39; He twirled the key on his finger, &#39;I need to change.&#39; 
+
+Had he been more observant, he would have noticed the stack of papers in Pappardelle&#39;s hands and come to a more reasonable conclusion. Unfortunately, the urge to get out of his unpleasant outfit far outweighed his curiosity. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 09:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="868121756664213515" id="message-868121756664213515" title="Message sent: 23-Jul-21 09:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pappardelle knocked again, but received no reply. Was Orecchiette sleeping in, or were they outside? She was tempted to abuse her higher authority to get in, until she heard a voice reprimanding her from afar. A familiar one.
+
+&quot;Ah, good to see you he-&quot; Before Pappardelle could greet him properly, Orecchiette had already started berating her for standing so suspiciously behind his own room. A misunderstanding had occurred.
+
+&quot;Ahem, I am merely here on business. It won&#39;t take long, I promise.&quot; She replied, but Orecchiette cut her off with his own problems. He was practically sweating in his outfit, his musky aroma invading her nostrils as she caught attention of his wet pectorals. Had he been standing out in the sun for hours?!
+
+Changing outfits was a sensible choice. Pappardelle would even approve it...in a more casual setting. But right now, both of them were hands of the Church, working inside a Church owned consulting firm and about to discuss matters regarding you-know-what. To remove all signs of professionalism and talk in khakis and t-shirts would make her the laughing stock of Olympia.
+
+Plus, she was still in her Church uniform! If she was forced to suffer like this, why could Orecchiette get off scot free?
+
+&quot;Hmph.&quot; Pappardelle harrumphed. &quot;Is it common for you executors to wear casual clothes during professional meetings? This isn&#39;t a covert operation where you are required to blend in. This is a business meeting, where we expect our Church members to follow proper dress code. Are you really going to change outfits in front of your own supervisor?&quot; She stared at him, judging his intent.
+
+While it sounded like she was trying her best to abide by professional standards, in reality Pappardelle was just jealous that Orecchiette had the guts to change outfits while she didn&#39;t. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 10:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="868131093814063134" id="message-868131093814063134" title="Message sent: 23-Jul-21 10:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Orecchiette didn&#39;t utter a single word. He looked at Pappardelle - no, he <em>stared</em> at her, his eyes boring into her like lasers, making her question whether she had said something wrong.
+
+But she was only following standard procedures!
+
+Nonetheless, her words seemed to have frozen the executor even more efficiently than the AC blasting overhead. For a moment Orecchiette remained silent, his face impassive and unreadable...Oh no, it seemed that she had truly crossed a line...
+
+&#39;...What?&#39;
+
+The executor tilted his head in confusion.
+
+&#39;Is this your attempt at cracking a joke?&#39; He asked, a hint of incredulity in his voice. &#39;If that&#39;s the case, I&#39;m afraid I did not &quot;get it&quot;. You will need to enlighten me with an explanation. Later.&#39;
+
+When it became clear that Pappardelle had no intention of moving from the doorstep, the executor decided that an act of transgression was in order. He approached the woman, placed his hands under her arms, then lifted her up like a mannequin and placed her just far enough from the door for him to insert his room key.
+
+The key clicked into place. Orecchiette pushed the door open, revealing a simple room - but then he slipped inside and swung the door shut in Pappardelle&#39;s face.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 10:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="868135265724682290" id="message-868135265724682290" title="Message sent: 23-Jul-21 10:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pappardelle was notorious for being a party pooper at her previous workplaces. She always made sure to keep everyone in line, paying attention to their respective progress and chastising those who slacked off. Her presence alone boosted productivity, but it also caused resentment between several co-workers. No wonder they celebrated once she decided to change her career path and become a supervisor.
+
+However, her attitude of being a professional typist hadn&#39;t changed. She often spoke her mind, bluntly so. Orecchiette may be a prestigious executor, but he hadn&#39;t been taught any professional manners, it seemed. It was Pappardelle&#39;s duty to educate him and make sure he behav-
+
+Why did she feel so tall? She couldn&#39;t even sense her feet touching the floor. Almost as if someone had...
+
+...Picked her up.
+
+Orecchiette ignored Pappardelle&#39;s complaints, taking them as a joke as he went on with his life. He gracefully placed his supervisor aside as he opened his room door and shut it behind him in an instant.
+
+Pappardelle remained frozen for several seconds. She eventually processed what had happened and started kicking at the door. &quot;Orecchiette! What sort of treatment was <em>that?</em> I&#39;m not a pet that you can shoo off!&quot; She complained, albeit she toned it down out of shyness upon remembering that they were in a public building. Still, it did hurt to be spurned by your own junior. How was she supposed to supervise someone who didn&#39;t respect her?
+
+&quot;...Look, let me in. I don&#39;t plan on intruding on your personal life, but I need these papers to be checked.&quot; She held the handle, but to her surprise, the door opened itself quite easily. Orecchiette had closed it, but he hadn&#39;t locked it. She cautiously pried the door open, taking a peek inside to see if she was permitted to enter. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 12:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="868163814900793384" id="message-868163814900793384" title="Message sent: 24-Jul-21 12:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I did not shoo you off. I simply repositioned you. You may step back now.&#39; Orecchiette&#39;s voice came from the other side of the door, matter-of-factly and without a hint of remorse. Next came the sound of many belts unbuckling and zippers unzipping.
+
+Had Pappardelle been any wiser, she would have heeded the noise and reconsidered her approach. Being the capable woman that she was, however, she decided to take matters into her own hands, literally. The well-oiled handle turned without a hitch, letting her open the door just wide enough for her to poke her curious head in-
+
+<em><strong>smack</strong></em>
+
+A ball of dark fabric came flying out of nowhere, cold and dripping with sweat. It landed on her face unapologetically, then caught the hem of her headpiece and simply <em>hung there</em>, leaving her in total darkness.
+
+Meanwhile, Orecchiette continued to change in blissful ignorance. 
+
+As it turned out, putting on fresh clothes was much easier than peeling off soaked ones. By the time Pappardelle had recovered enough from her shock and removed her sweaty &#39;habit&#39;, her junior had already finished changing and was standing at the door, staring at her unblinkingly through the door crack clad in...
+
+...Another set of stifling, Church-issued uniform.
+
+&#39;...Can I have it back?&#39; At least he was still polite enough to ask!
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 02:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="868192167317864499" id="message-868192167317864499" title="Message sent: 24-Jul-21 02:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Perhaps the shock had clouded Pappardelle&#39;s perception, since she did not even hear the sound of Orecchiette untangling his belt. Instead, she peeked inside against the lack of her better judgment.
+
+She was immediately assaulted by a black fabric. Sweaty, sticky, yet filled with a manly fragrance. It got stuck on her headpiece, completely blocking her view as she attempted to shake it off due to her busy hands. She couldn&#39;t grab the cloth without dropping her papers.
+
+Not to mention, the fact that the cloth was sweaty gave her a good idea on what it was. A deep red blush was hidden behind that black fabric, as she felt filthy for being covered in Orecchiette&#39;s used outfit.
+
+It didn&#39;t smell <em>bad</em>, but still...
+
+&quot;I&#39;m not a clothes rack either!&quot; She screamed out, shaking her head furiously and causing the black cloth to fall down on the paper stack. With her vision restored, she stared forward and noticed that Orecchiette had already changed back to...a new uniform that was identical to his old one? She didn&#39;t know whether to be impressed or disappointed. It took her at least 20 minutes a day to put on the various belts and zippers that were part of official Church uniforms. Orecchiette managed that in a matter of minutes.
+
+He didn&#39;t seem the least bit fazed by Pappardelle&#39;s sweaty face, her embarrassing blush and his black cloth resting on her mountain of papers. Instead, he simply asked for the outfit back.
+
+His complete nonchalance was astounding, as if he had no room to perceive Pappardelle&#39;s embarrassment. Realizing that well enough, the supervisor angrily shoved the paper stack and Orecchiette&#39;s sweaty shirt towards the man&#39;s chest. &quot;Take them both! I need you to have a good read anyway.&quot; She harrumphed, before closing the door behind them. Finally, some privacy. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="868228301938917396" id="message-868228301938917396" title="Message sent: 24-Jul-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Orecchiette blinked in surprise at Pappardelle&#39;s sudden outburst.
+
+&#39;I am aware.&#39; He tried to placate her. &#39;I was simply trying to assess the situation and decide whether an apology was required of m-&#39;
+
+But Pappardelle was way ahead of him. She pushed both the paper stack and his wet ball of shirt into his hands, then <strong>SLAMMED</strong>the door shut so hard that even paint started to chip from the edges of the doorframe. 
+
+&#39;-me.&#39; Orecchiette finished his sentence, breathed in paint dust, and coughed.
+
+Then he tossed the wet shirt onto the floor and pulled the door open again.
+
+&#39;I can&#39;t read this.&#39; He said to an unsuspecting Pappardelle, holding up the first few pages of the documents that had fallen victim to his own sweat. Ink smudged dotted the papers where Pappardelle had signed expertly with her fountain pen, while the rest of the printed words blurred way too much to be intelligible.
+
+&#39;I also do not possess a pen.&#39; The executor added without batting an eye. &#39;Nor a chair,&#39; He paused, a rather peculiar expression on his face. No way. Could it be? Was that...guilt? &#39;Not anymore. I would need to relocate.&#39;
+
+&#39;My drink is still downstairs.&#39; Ah, yes, the irrefutable one-two-three punch of flawless rationalization. Either Orecchiette was as dense as they come and trying to be thorough, or he really, <em>really</em> didn&#39;t want to be in his room.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 08:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="868282343264256010" id="message-868282343264256010" title="Message sent: 24-Jul-21 08:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Orecchiette seemed utterly taken aback by his supervisor&#39;s ramblings. Despite how calm and collected Pappardelle could be, it seemed that his demeanor and hers didn&#39;t quite match. What a peculiar case.
+
+But back to more important matters, such as Orecchiette noticing the sweat on Pappardelle&#39;s neatly stacked papers. The damage had already been done as some of the text was now faded and wet. The moment he noticed that, he started acting weird, which confused his supervisor.
+
+&quot;You don&#39;t have a pen? Incredulous.&quot; Pappardelle chastised him, before placing her hand on top of her bosom. &quot;But worry not, because this is why I am here. Anything you lack, I am here to deliver!&quot; She boasted, dragging a pen out of her tattoo and handing it over to Orecchiette.
+
+&quot;As for a chair, simply rest on your bed. I allow it.&quot; She patted his shoulder, implying he should calm down. Orecchiette may sound like an emotionless machine, but even his supervisor could sense that something felt off in his excuses to leave.
+
+&quot;Let me take your drink instead. Consider it payback for entering your room.&quot; She did a light bow, as if trying to apologize for her earlier outburst. &quot;I am even willing to buy you a new drink, if that&#39;s what you wish. Would milk be alright? I heard the vending machine broke again.&quot;
+
+Orecchiette didn&#39;t know what to think. The nosy and noisy supervisor was now pampering him the moment he came up with excuses. She truly believed in his words and decided to act accordingly. He didn&#39;t know whether to find that na&#239;ve or admirable. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="868507663170957334" id="message-868507663170957334" title="Message sent: 24-Jul-21 10:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Orecchiette accepted the pen but didn&#39;t budge.
+
+&#39;And what of these documents?&#39; He shook the wet pages in his hand, some of which had even started to tear thanks to gravity hard at work. &#39;Should we not head down to your office for a fresh copy? There is no printer to be found in my room.&#39; 
+
+&#39;...Unless your printer also broke?&#39; 
+
+There it was, the million-dollar question. Orecchiette raised an eyebrow as he judged Pappardelle&#39;s intent. She may have gotten away with the excuse last time, but what of now? 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 03:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="868576576474849372" id="message-868576576474849372" title="Message sent: 25-Jul-21 03:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It seemed as if Pappardelle had not realized the damage Orecchiette had done to her documents, since it took her a double take to realize the smears and smudges of the wet ink and paper that had coalesced into one. She was shocked, taken aback even. She took a gulp of air to avoid panicking.
+
+&quot;...I suppose you are right.&quot; She replied, before Orecchiette pried further and asked about the state of her printer. She looked surprised, biting her lip as she bid her time on how to reply. How could she tell him...
+
+How could she tell his junior that she didn&#39;t even <em>own</em> a printer?
+
+&quot;Ahem, you are unfortunately right on the money with that.&quot; Pappardelle replied while avoiding eye contact. &quot;Thankfully, this consulting firm should offer several printers for a second batch of sheets. I shall lead you to it.&quot; She said, opening the room door and allowing Orecchiette to finally leave.
+
+The two made their short trek over to the pile of scanners and printers located at one of the office floors. Despite the paperwork being Pappardelle&#39;s duty to complete, she seemed rather content with letting Orecchiette take the reins.
+
+&quot;Go ahead and print a new batch, Orecchiette. I trust you know how to use a printer?&quot; She ordered, before her attention was caught by a nearby employee waving at her, before doing some odd sign with their hands.
+
+&quot;...Give me a few minutes. It&#39;s urgent.&quot; She cryptically said before leaving Orecchiette stranded in that heated room filled with machinery. Well, his task required him to print quite a few pages, so he would be waiting there regardless. Just had to be careful to not work up a sweat again.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868576592295788596" id="message-868576592295788596" title="Message sent: 25-Jul-21 03:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Four minutes passed, as Pappardelle finally returned to the room. Her expression had changed, almost as if she had received bad news.
+
+&quot;Orecchiette, have you heard of any rumors of contestants in the City Grail War breaking the collateral damage rules? Article 2 of Protocol 6?&quot; She inquired. &quot;Specifically, a Master from Olympia. Do you have any knowledge about that? Also, where&#39;s my papers?&quot; <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 10:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="868861335709057034" id="message-868861335709057034" title="Message sent: 25-Jul-21 10:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Crisis averted.
+
+Orecchiette closed his room door with much relief. He didn&#39;t know why Pappardelle looked so disturbed every time he brought up the issue with her printer, but for a distraction, it seemed to work well enough. He followed her down to the office floor until they stopped at what seemed like the printer area. Oddly, but not unexpectedly, Pappardelle stepped aside once more and insisted that her junior print the papers himself.
+
+&#39;I do know how to operate a printer, that is correct. I suppose I&#39;m at fault for ruining these pages.&#39; He obliged, turning on a vacant machine with a few press of the button. &#39;Do you have the original files on you? There is an USB slot-&#39;
+
+Before he could finish his question, however, Pappardelle cut him off and hurried away. She went down the hallway with another employee who looked out of wits, already deep in discussion by the time they were out of earshot.
+
+It must&#39;ve been something urgent, Orecchiette decided. He was naturally curious, but not curious enough to abandon his workstation. Unfortunately, without the original files, there was no way he could get started on printing a second batch. Therefore, he had no choice but to start reading the other intact documents to pass the time.
+
+When Pappardelle returned, Orecchiette was busy signing away the documents on the top of the printer, with a signature that paled in comparison to that of Pappardelle&#39;s.
+
+&#39;Rumors?&#39; He looked up and briefly recounted the day in his head. &#39;I haven&#39;t run into anyone participating in the City Grail War. I was at the church all day. Is this about the stray Servant that broke out of the factory? I thought we were supposed to turn a blind eye to it, for now.&#39;
+
+He handed over the stack of signed papers at Pappardelle&#39;s behest.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868861355460034600" id="message-868861355460034600" title="Message sent: 25-Jul-21 10:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;This is the rest of them, but I can&#39;t print the damaged documents without access to the original files. You left before I could ask.&#39; He stretched out his hand expectantly, thinking that she&#39;d produce a USB stick like she did with her pen. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="868870315114106920" id="message-868870315114106920" title="Message sent: 25-Jul-21 11:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The fact that Orecchiette didn&#39;t know about the recent developments in the City Grail War left Pappardelle with some relief. Almost as if she felt proud to be delivered this information first, since she dreaded the idea of being lectured by Orecchiette.
+
+&quot;The rogue Servant is also an issue, but this is far more important. Apparently, <strong>one of Olympia&#39;s own candidates fought another Servant in a public area.</strong> The fight resulted in heaps of collateral damage and public complaints. All directed towards the aristocracy and the Church, of course. Due to our alliance with Olympia, we have no choice but to pay a portion of the damage costs.&quot; She explained.
+
+&quot;This, of course, cannot stand. For the Church is incredibly generous, but such generosity does not equate to weakness. An example must be made out of these interlopers. Do you follow, Orecchiette?&quot; She added some extra flair to her speech, sounding like a judge about to smite those who dared oppose the Church&#39;s rules. She awaited Orecchiette&#39;s response with much anticipation.
+
+<em>&quot;...C&#39;mon. I made sure to sound incredibly professional and threatening! Can&#39;t you even muster a &#39;wow&#39; or a &#39;cool&#39; or whatever they usually say?&quot;</em> She stared at Orecchiette with expectant eyes. Perhaps Pappardelle was simply too used to positive reinforcement and praise...
+
+Thankfully, Orecchiette&#39;s mentioning of the USB would humble her, as she realized once more that she needed to cover her ass.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868870334646976523" id="message-868870334646976523" title="Message sent: 25-Jul-21 11:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;...You-es-bee?&quot; She blurted out, pronouncing the word in an inexperienced manner as her mind went into a panic.
+
+<em>&quot;What did that do again? I think you stuck inside one of those machines...for some reason? Ugh! Why can&#39;t people just hoard books?!&quot;</em> She thought in her head, trying her best to come up with a reason to avoid that question. A figurative lightbulb lit up in her head.
+
+&quot;Of course, the papers are important, but this affront against the Church takes higher priority! I recommend focusing on this first, Orecchiette.&quot; Great, now he would forget that the conversation about papers ever happened! <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jul-21 01:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="868905190491816017" id="message-868905190491816017" title="Message sent: 26-Jul-21 01:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Orecchiette listened intently to Pappardelle&#39;s report. A certain smugness betrayed his supervisor&#39;s voice, but he paid it no mind. Who managed to acquire the information first was never important. He could very well leave the intel gathering to the church employees scattered around the city, while he focused on his own pursuits. Eventually, everything would circulate back to him and Pappardelle anyway. They were the two acting judges to this City Grail War, and they alone had the final say on relevant matters. This was never meant to be a race.
+
+It wasn&#39;t meant to be a race...yet Pappardelle was practically glowing as she briefed the executor on the latest happenings of the War, her demeanor shifting from that of a nagging church nun to an authoritative judge in the blink of an eye. Orecchiette had been exposed her professionalism a few times, but it still amazed him whenever it happened.
+
+But what was even more amazing was her lightning quick reflex to dodge questions whenever they concerned the printer, it seemed. 
+
+Orecchiette retracted his hand when Pappardelle deflected his USB request with yet another well-timed excuse, knowing that it was impossible to get anything substantial out of her regarding this matter. He was more than happy to oblige, as he wasn&#39;t the biggest fan when it came to signing documents, but the nun&#39;s behavior still confused him. Now she was bumbling like a trainee, demanding that he focus on the work at hand...
+
+&#39;You have a wonderful spectrum of expressions, Pappardelle.&#39; He complimented her. &#39;Have you taken an acting class before?&#39; <em>Credit given where credit is due</em>, he supposed. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jul-21 05:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="868969188402806795" id="message-868969188402806795" title="Message sent: 26-Jul-21 05:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If there was one thing working as a typist had thought her, it was that people valued the way you phrased things.
+
+Whether you writing sounded enthusiastic or dull. Whether it had an optimistic outlook or a pessimistic one. Even objective data reports, such as statistics and research papers, benefited from these subjective factors.
+
+Speaking was the same. When Pappardelle had first started her job, she was completely lost. Not only was she incapable of handling office electronics, but the professional lingo of her workplace was tiring, pretentious and overtly complicated. She was the laughing stock of the office, constantly berated and reprimanded for &#39;improper conduct&#39;.
+
+But she never gave up.
+
+She spent hours memorizing words from dictionaries. Reading books about speech patterns and how to pass interviews. The internet was a great resource, but due to her lack of income, she could never afford modern technological devices. Instead, she relied on public libraries.
+
+Within a few months, she had finally done it. Aced every interview and completely adapted to the workspace lingo, even if it made her sound insincere and like she had a stick up her ass.
+
+To see Orecchiette bluntly state something so obvious immediately caused alarms to ring in her head. Perhaps it was simply her own self doubt speaking.
+
+&quot;A-Acting class? I-&quot; She hadn&#39;t, but she had read various books on the subject. A lot of them were helpful for interviews, specifically. 
+
+&quot;I assure you, I&#39;m being quite sincere! I..I only sounded imposing because I wanted you to understand the severity of the transgression committed by that Olympia Master. It is my duty as a supervisor, after all!&quot; She immediately backpedaled, overthinking things and believing Orecchiette&#39;s statement to be a passive aggressive insult. Modern workplaces had truly rotten her brain... <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jul-21 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="869233324193894440" id="message-869233324193894440" title="Message sent: 26-Jul-21 11:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;You were trying to impose? Since when?&#39; Orecchiette rubbed his chin and pondered Pappardelle&#39;s earlier speech one more time. She certainly did not lack determination, but to equate that to <em>imposing</em> was a bit of a stretch. Compared to the verbal abuse he&#39;d receive at times from a University instructor, Pappardelle&#39;s version of &#39;harsh words&#39; felt like a summer breeze. 
+
+So why was she apologizing all of a sudden?
+
+<em>&#39;Was I not being clear enough?&#39;</em> The executor wondered. It seemed that he and his supervisor were often at odds with each other over the most basic of semantics. How did a genuine compliment from him turn the nun into a stuttering wreck? She was especially sensitive after hearing him mention acting classes - did she take that as an insult?
+
+Everything clicked into place.
+
+&#39;I retract my previous statement then.&#39; He said formally. &#39;I seem to struck a nerve by suggesting that you honed your skills via shortcuts. Regardless, this expressiveness of yours is quite an enjoyable attribute. You should not be ashamed of it.&#39;
+
+&#39;Though you needn&#39;t repeat yourself so much. I have heard you loud and clear the first time: as an overseer of the War, if would be foolish of me to downplay the severity of your report just because there hasn&#39;t been any casualties. Sin begets punishment; a violation to the agreement between Olympia and Delphi is a punishable offense, even if the perpetrator is one of our own. I hope you are aware what this insinuates?&#39; With his borrowed pen he rapped the fat stack of signed documents, most of which he&#39;d only taken a cursory glance before all the clauses in fine print started trying his patience. 
+
+&#39;You&#39;ll be carrying much more than just pens and USBs.&#39; 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 06:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="869340894560657438" id="message-869340894560657438" title="Message sent: 27-Jul-21 06:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pappardelle was absolutely flabbergasted. From mocking her demeanor by comparing her to an acting class reject, to pretending to misunderstand and act like they did nothing wrong? Truly, this Orecchiette was a heinous fiend who wished to undermine her!
+
+...Is what she wished she could have said, but the man&#39;s behavior was far too <em>weird</em> to be that of a scheming co-worker. He acted innocently even, by staring at Pappardelle with twists and nods, like a dog observing an unknown object.
+
+He even retracted his offense later! And even praised her!
+
+&quot;Ahem, I-&quot; At this point, it was hard to judge Orecchiette. Friend or foe? They sounded robotic and with a few screws loose, yet they reacted positively to anything Pappardelle said. She couldn&#39;t tell if their praise was legitimate or not, and it was enough to get a woman flustered.
+
+So, in order to can these unneeded emotions, it was best to focus on work. 
+
+Especially after Orecchiette&#39;s insinuation.
+
+&quot;...You don&#39;t need to lecture me on that.&quot; Pappardelle replied, standing her ground as she stared Orecchiette down...despite being shorter than him.
+
+&quot;Orecchiette. <strong>I hereby order you to persecute the Master of Olympia.</strong>&quot; She raised her hand in a dramatic fashion, as if knighting Orecchiette as a sign of good favor. &quot;Your target is <strong>Lancer of Olympia</strong> and their Master. Dispose of the Servant and make sure that the Master pays their dues.&quot;
+
+After her speech was over, she lightly bowed, no, knelt in front of him. &quot;And as part of our new contract, Pappardelle, your supervisor, offers herself to you as your <strong>sword and shield.</strong> You may use me as your see fit. Misuse me, however, and I shall be sure to leave a scathing review in my next report.&quot; <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 01:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="869636363039952927" id="message-869636363039952927" title="Message sent: 28-Jul-21 01:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pappardelle had just issued an official order.
+
+It felt strange, to say the least, to receive a directive from her <em>in person</em>, and only for the <em>first time</em>, after months of having been assigned under her supervision. They had always communicated on the phone back in Persepolis, and even then, his reports were infrequent and succinct, and he was given free reign to act entirely within his own discretion for the majority of the operation. 
+
+It wasn&#39;t that he did not enjoy the freedom. Though he couldn&#39;t say that he did either. His faith in the Church had never wavered. He knew exactly what he had to do, and exactly how to achieve it. Yet after subduing the Mafia, after uncovering the fake Grail, even after executing the sixth Master and plunging the city into utter chaos, all that he had experienced could only coalesce in his mind into a simple, mind-numbing question.
+
+<em>&#39;What next?&#39;</em>
+
+He had been trained for nineteen years to wait for an order that would never come.
+
+But not anymore.
+
+His heart quickened just thinking about the days to come. 
+
+But one thing bugged him. He stared at the women, who had assumed a kneeling position as if she were submitting to him. Was this some kind of standard procedure for supervisors that he wasn&#39;t aware of? Must they go through this every time she issued him an order in person?
+
+Orecchiette frowned. This seemed oddly inefficient.
+
+So he did the one thing that made sense to him, by placing his hands under the nun&#39;s arms and picking her up, mannequin style, once more. 
+
+&#39;If I may,&#39; He stared at her, who was now being held a few inches off the ground so that she was at his eye level. &#39;Please refrain from bowing or kneeling while issuing orders in the future. I would like to have you where I can see you. If I can&#39;t see you, then I cannot guarantee your safety and subsequently, your ability to write a scathing report.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 05:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="869695236216082432" id="message-869695236216082432" title="Message sent: 28-Jul-21 05:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It felt like Pappardelle&#39;s oath to stay by Orecchiette&#39;s side had left him starstruck, since he refused to reply for several seconds. Perhaps he was impressed by his capable supervisor? Feeling honored by the sincerity behind her vow? Thinking about how to best handle a Lancer class Servant?
+
+Pappardelle felt very self-assured. She had undoubtedly earned Orecchiette&#39;s goodwill with such an elegant gesture. Not to mention she made sure to sound as serious as possible to further sell her own commitment.
+
+If only she knew what was brewing inside of his head.
+
+After Orecchiette was done judging Pappardelle&#39;s inefficient gesture, he grabbed her like a stray kitten and raised her up. A red flush escaped Pappardelle&#39;s face.
+
+&quot;What are you-&quot; She instinctively asked, before calming down upon hearing Orecchiette&#39;s words.
+
+&quot;Uhm, sure. I&#39;ll make a note on it in my-&quot; Her eyes widened. &quot;Wait, are you implying that I&#39;m short? Well...Compared to you, maybe. But overall, I am merely of average height. Please make sure to remember that.&quot; She sternly replied with a nervous gulp.
+
+&quot;...Can you, um, let me down now?&quot; She asked, her face turning red again. Were Orecchiette to look at his feet, he would realized that he had raised Pappardelle so high that she was now hovering above the ground. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/62ccd06f2c1b2245993454450a6fa4ac-81900.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Orecchiette#0000" data-user-id="860236329321103380" style="">Orecchiette</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 01:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="869997403611209729" id="message-869997403611209729" title="Message sent: 29-Jul-21 01:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Orecchiette looked down and immediately spotted the problem. Despite Pappardelle&#39;s claim of being of average height, she was clearly heavily supplemented by a pair of heeled shoes. Did she take those into account as well? The executor shook his head and set Pappardelle down. 
+
+&#39;Apologies. I did not realize.&#39; He said, making a mental note on how light the nun was. &#39;I am aware of my own height, though I wasn&#39;t referring to that.&#39; His gaze shifted downwards...until they rested on Pappardelle&#39;s chest.
+
+How scandalo-
+
+Orecchiette didn&#39;t even allow the nun to finish that thought. He reached ahead and prodded her tattoo. Twice.
+
+&#39;This is a desirable height.&#39; He commented happily. &#39;Maybe you do know what you are talking about.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20consulting-firm%20%5B860207211375230976%5D%20%28after%202021-07-22%29.html_Files/4c3ae670fa7bdc293b2492e1d1c61f2a-B89B6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pappardelle#0000" data-user-id="860236329321103380" style="">Pappardelle</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 05:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="870052609845772358" id="message-870052609845772358" title="Message sent: 29-Jul-21 05:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pappardelle was a patient woman. In a society filled with those who worked less than her, those who worked slower than her and those who were nowhere near as efficient, she had gotten used to mediocrity being the default state of human beings. Even an infallible genius such as Orecchiette must have had something that he was terrible at.
+
+Dropping a shortstack that was hovering above ground was probably one of his weaker areas. She had waited a whole minute now, yet the executor was still staring at her like she was some sort of zoo animal. Pappardelle had remained silent out of politeness, since she knew repeated reminders were annoying. But just how long was she supposed to-
+
+<em>No way.</em>
+
+She had been staring at his face for a while and noticed a subtle change in his gaze. Instead of staring blankly, his eyes were now looking with a purpose, as if something had caught his attention. She immediately followed his gaze and wondered where it was pointing to.
+
+It connected to her chest.
+
+&quot;....!&quot; Pappardelle bit her lip. Surely this was a mistake? So far, Orecchiette had acted in a way that was completely separate from that of a pervert. He would have spoken up if he had an interest in her. Definitely! Whatever he was looking at, he wasn&#39;t doing it on purpose.
+
+...Or maybe he just didn&#39;t get a good look until now?
+
+<em>&quot;Is this harassment?&quot;</em> Pappardelle thought to herself, blushing and wondering on how to react. Should she reprimand her pupil or give him the benefit of the doubt? He hadn&#39;t said anything uncomfortable y-
+
+He poked her. Right in the chest.
+
+Twice.
+
+....</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="870052646545928243" id="message-870052646545928243" title="Message sent: 29-Jul-21 05:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Her brain fried. It went ballistic. He spoke a few words afterwards, and while Pappardelle understood, it all felt too sudden. He was even smiling at her like an idiot, despite how inappropriate his actions were. It all gave the signs of a person that had no idea on how their actions affected people&#39;s reactions. A person that never hung around people, at least not the co-workers that Pappardelle was used to.
+
+What kind of person was she even mentoring?
+
+She instinctively slapped his hand away, before doing the same with his other hand so that he would lose his grip and let her fall to the floor.
+
+&quot;Don&#39;t <strong>EVER</strong> do that again unless we are in a field mission. Okay? Good.&quot; She replied sternly, grunting and sighing with an exasperated expression on her face. She was tempted to chew him out. Report him for sexual harassment. But the truth was clear: Pappardelle had misjudged Orecchiette. He was a genius in various ways, but he had no work experience, nor social experience.
+
+He was <em>dense.</em> Dense, but innocent. She could fault him for many things, but being evil was not one of those.
+
+&quot;...I am glad that you find it comfortable, at least.&quot; She said while avoiding eye contact, then five seconds later she regretted it and wished she had shut up. She went back to work mode to dissolve the awkward tension in the room.
+
+&quot;Regardless, I&#39;ve given my report. Get ready to face Lancer and their Master in a few days. I&#39;ll be sure to prepare your armory. Let&#39;s decide on a meeting point tomorrow.&quot; She said before storming off. Pappardelle seemed rather angry, but would Orecchiette ever figure out the why? <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

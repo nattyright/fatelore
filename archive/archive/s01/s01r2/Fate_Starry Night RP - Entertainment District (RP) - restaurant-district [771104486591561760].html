@@ -1,0 +1,3140 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - restaurant-district</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Entertainment District (RP) / restaurant-district</div>
+
+            <div class="preamble__entry preamble__entry--small">A district filled with restaurants ranging from small to high establishments of fine dining. They are graciously kept open by hidden donations from the mafia, who uses the restaurants to smuggle in supplies to the mafia areas. The aristocracy does not know about these hidden agreement between the two areas.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">08-Nov-20 07:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="774781005373636618" id="message-774781005373636618">
+            
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/zTowOxb-D41A1.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/zTowOxb-D41A1.jpg" alt="Image attachment" title="Image: oleksandr-riazanov-visualization-restaurant1.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-21 02:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="808403088053764126" id="message-808403088053764126">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Under the Persepolis Seizure of Illicit Materials act, section four, subsection nine, I hold the authority to conduct a thorough search of all premises within the entertainment district. Step aside, and allow me to conduct my search.&quot;</strong> 
+
+<em>&quot;Geh, whadyafuk are ye talkin&#39; bout, ya fookin&#39; tin can! Y&#39;aint got shit to do about me fucking restaur-&quot;</em>
+
+<em><strong>CRUNCH.</strong></em>
+
+The cyborg smacked aside the irritable little chef, sending them flying into a nearby stack of boxes. How obnoxious. Could these insolent dogs not roll over and allow them to conduct their search in peace? Were they truly so incapable of losing a few possessions to ensure their continued functioning without error?
+
+Well, it was of no concern to him. No matter the circumstances, it was wealth he required, and wealth he would attain. Thus, he turned his attention to Berserker, glassy lenses focused on the eyes of the king.
+
+<strong>&quot;Take what resources you wish. Leave nothing of value behind.&quot;</strong>
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-21 02:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="808407449648234527" id="message-808407449648234527">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas stepped forward, “You think of me as one to forget our mission? All of our progress is because of my executive actions and planning. Though, I will say... your knowledge of the laws of this world are superb. If only such rules existed when I was alive and kicking, the world would’ve never dared forget my name or lose my stomping grounds.”
+
+Gold eyes surveyed the dingy restaurant, seeing very little worth taking to begin with. This place looked to be falling apart at the foundation, decor assembled with a pittance. “Say, this will not be our only stop for the day, correct? I feel that this soul will have very little to give to our cause, which upsets me. How come so many are unable to pay their dues to their rightful king?”
+
+He started with the first table he saw, placing his palms onto the surface and watching the material slowly transform into the most beautiful of colors, gold. “I think for starters, a few tables are in order. To make sure you never forget to leave room for the king,” he stared at the upturned man currently trying to right himself in the boxes.
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span>  <span class="mention" title="ResIsBestStat#5104">@Dad</span>  <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-21 03:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="808416417098629130" id="message-808416417098629130">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A day had passed since the incident, yet Pascal was still fuming. His disdain could practically be sensed at his workplace, where he was trying his best to appear calm and polite to the usual string of customers. Deep down, however, he wanted to scream: Scream about how much of a complete <em>dumbass</em> he had obtained as a Servant. An idealistic idiot who compared themselves to courageous heroes from fictitious novels. Why were Heroic Spirits so bothersome?
+
+<em>&quot;Oi, Pascal, you deaf or something? Can&#39;t your hear the young lady asking for seconds from table 7? Get your ass over there!&quot;</em> The old and grumpy chef ordered the man around. The owner of the Crab &amp; Lettuce was wise beyond their years, but their rude demeanor didn&#39;t earn them any favors. Especially with Pascal.
+
+&quot;I&#39;m coming, coming!&quot; Pascal hurried, although inside he was most likely thinking about how much of a nuisance this job was.
+
+<em>&quot;Maybe it&#39;s time for me to hit the road. Sneak into a boat and move for the next island. I&#39;ve saved up enough cash anyway.&quot;</em> He thought, serving seconds as his boss called him once more.
+
+&quot;Also, we ran out of onions. Go fetch a few onion bags from the nearby store. For some reason, they aren&#39;t allowing deliveries around this district nowadays. Can ya believe that?!&quot; The owner lamented, while Pascal just nodded and sighed. He had a long day ahead of him...
+
+He grabbed some cash and left the restaurant, heading for the nearby stores. Some of the smaller establishments not only served food, but also sold produce similarly to a grocery store. It wasn&#39;t too far awa--
+
+<strong>CRUNCH.</strong>
+
+He heard an odd noise. Coming from a restaurant nearby, perhaps? A crunchy sound that made his ears flinch a bit. Strange.
+
+He proceeded to ignore it and keep walking. Thankfully, the grocery store was only a few feet away from where he had heard that strange noise.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="808416443388788816" id="message-808416443388788816">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-21 04:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="808431503146614805" id="message-808431503146614805">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><s>As Pascal was being worked to the bone by his superior, Rider was in Pascal&#39;s closet, doing math. He was not allowed to leave Pascal&#39;s closet. Leaving Pascal&#39;s closet would result in being deactivated. Staying <em>in</em> the closet was good. As such, there was little for Rider to do but scribble calculations and theories.</s>
+
+Shortly put, Rider was grounded.
+
+Clumsily twirling the pencil, he sighed slightly. His hands were too bulky, and as such, he could barely hold the pencil, much less write with it. However, he persevered, eventually covering an entire notebook in calculations that would make most modern mathematicians&#39; heads spin.
+
+Using Opportunity as a baseline, was trying to calculate the amount of up-time he could have on his mount, as well as his <em>other</em> Noble Phantasm. So far, the math was so-so. It needed more tests.
+
+Which meant that Rider needed somewhere and someone to test with. That wasn&#39;t going to happen, especially with Pascal breathing down his neck constantly. Houston had not been happy, following the recent excursion, much to Rider&#39;s surprise. He had almost not purchased mana batteries for his Servant.
+
+Despite this, he heard Pascal&#39;s boss order him outside. Taking this opportunity, Rider opened the closet door. Having finally come out of the closet, he went to the nearest window, and watched his Master leav—
+
+<strong>CRUNCH.</strong>
+
+Rider&#39;s improved physique barely allowed him to capture the sound, he turned towards it—a nearby restaurant. Pascal turned to look towards it as well, before quickly walking off. However, a fair amount of magical energy was pouring from the restaurant. A Servant? Were they the same one as the ones he had thought at the shipyard? More importantly, what was that crunch?
+
+Taking a passing glance at the closet, Rider hopped out of the window, soaring gracefully to the roof of the nearest building. As Pascal went into the grocery store next door to the unnerving sound, Rider hopped down, and poked his head into the restaurant.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="808431567016951808" id="message-808431567016951808">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="808434467604529162" id="message-808434467604529162">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;There are a variety of different restaurants operating within the entertainment district. Some of them are operating illegally, while others have foolish loyalties towards the mafia. Should any business bear either, they will be taxed. No exceptions.&quot;</strong> Szrac further elaborated to Berserker. His overwhelming greed was difficult to work around, but he supposed he should be thankful that Midas has any remaining sanity at all. 
+
+Approaching the tables, the cyborg fished out a bundle of stickers, slapping one onto a table, before moving on to the next and repeating the process. The sticker was a simple rectangle, four words in bright red...
+
+<em><strong>REPOSSESSED BY THE ARISTOCRACY</strong></em>
+
+<em>&quot;Oi! Git yer mitts off me tables, ya scumb-&quot;</em>
+
+The restaurant owner was clearly enraged by this blatant misuse of power, something that would be his undoing. The chubby man lurched towards Szrac, causing the machine to strike the man again, this time with much greater force. This sent the chef hurtling away, slamming through the wall of his restaurant and slamming him into a scuffed, poorly-dressed hackjob cook on an errand.
+
+<strong>&quot;I am told many businesses have special locks and mechanisms in which they hide their profits. I am sure you will have no issue ripping them open and laying claim to the currency within, Berserker.&quot;</strong>
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-21 04:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="808440602874216459" id="message-808440602874216459">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas smiled as his ‘master’ sent the commoner flying into the building over. Something about the action filled his empty heart with something resembling affection. “Easily. I fear for the possessions inside, but they must be claimed and inspected under the watchful eyes of experts to deem them either illegal or dangerous.” Midas took his hands off the last table to be claimed, instead making his way further inside the decrepit building. 
+
+Past the counter to the back, there was an office as ugly as the front of the building. Some papers sit on a desk, perhaps ledgers for tax purposes. Yet the real prize was the big metal cube sitting under the desk. Midas stepped around and knelt. A dial sat in the middle of the door, a handle sitting right underneath. 
+
+Instead of trying to guess the combination he simply grabbed the handle and pulled, testing to see which of the two would give first. As per usual, it was the handle. It came off suddenly with a loud snapping sound. Midas tossed aside the golden bit as he instead shoved fingers into the very cracks of the safe. Metal warped around his force, turning gold at the touch. It only took a relatively little amount of force for the door to fly open, crashing into the side and flying away into the wall. 
+
+<strong>CRUNCH</strong>
+
+And there was relatively little money inside, bills and coins scattered inside. A bulge sat underneath the pile, which did not interest him in the slightest. Midas yanked the safe from it’s position, toppling the desk over and making a mess of the small space. He returned to the front and set the golden box onto the counter, which dug into the wood. “This commoner had little in terms of finances. If I had to assume anything, it is because he paid off the Mafia recently or because he did not take into account his taxes towards his king. Regardless, I will now confiscate anything dangerous from the kitchen.”
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span>  <span class="mention" title="ResIsBestStat#5104">@Dad</span>  <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-21 05:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="808454889146810378" id="message-808454889146810378">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pascal kept idly walking. He swore he could hear more disturbing, crunchy noises from the distance, but chose to ignore them. None of his business, especially since detours meant running late from work. Just as he was about to enter the grocery store, however--
+
+<strong>CRASH!</strong>
+
+A man, or to be more accurate, a half-corpse landed right on top of him. Obese and unconscious. They slammed themselves right on top of him, like a flabby patty. Of course, Pascal was utterly shocked. This shock then turned into frustration, as he had to shove the man aside to avoid being crushed by their weight. 
+
+&quot;What the fuck?! Where did you come from?&quot; He asked, exasperated. He could not help but curse upon witnessing such a ridiculous sight. Who launched this man?
+
+He turned to his right, and realized that the man had come from the place filled with suspicious noises...now featuring a gaping hole in the building that was oddly man-shaped.
+
+This screamed danger. Therefore, Pascal did the reasonable thing and grabbed his phone. He was trying to call the local police... <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-21 01:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="808750926214725632" id="message-808750926214725632">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rider peered into the restaurant, light gleaming off his visor as he did so. Two people were ransacking the restaurant, and they were the oddest duo that Rider had seen since his summoning. One was most definitely a Servant, given its magical energy signature. The other, however....
+
+Armor gleamed wickedly, contrasting Armstrong&#39;s duller, less noteworthy sheen. The first thing to pass through Rider&#39;s mind was the idea of a fellow astronaut, but this obviously wasn&#39;t the case. Pascal didn&#39;t know what an astronaut was, meaning that it was likely that they didn&#39;t exist anymore. 
+
+As the restaurant owner came to confront the false astronaut, he were quickly smacked through the wall by the presumed Master. Meanwhile, the Servant proceeded to ransack the place. Outrage blossomed in Rider&#39;s chest.
+
+Pascal was nearby, meaning that it would be wise to group up with him a-
+
+Rider pointed a finger at the duo, before enhancing his voice to titanic levels through a speaker on his suit, and blaring out:
+
+&quot;<strong>STOP RIGHT THERE, CRIMINAL SCUM!</strong>&quot; <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-21 01:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="808753936558850048" id="message-808753936558850048">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With his servant busy ransacking the rest of the store for anything valuable, the cyborg continued to lay claim to the variety of tables and chairs. They were shoddy in quality, and likely worth little in terms of money. However, perhaps they could be burnt to fuel the generators of the power plant...
+
+His ransacking would soon be interrupted, however, by the presence of another proclaiming him as a criminal. Turning around, Szrac looked at his accuser, disdain within his eyes.
+
+They were clearly a servant, clad in some completely ridiculous garb. It was similar to his mechanical armour, though it sacrificed much functionality for pointless aesthetics and unnecessary gimmicks. What point was there in having such a large visor, and wasting so much space for apparatus in the process?
+
+Whatever the case, this servant had overstepped their bounds.
+
+<strong>&quot;You have no authority over me, exoskeleton.&quot;</strong> Szrac replied with disdain, cocking his head towards Armstrong. <strong>&quot;You are beneath me, as is your master. Leave now, or suffer the consequences of interfering with government processes.&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="808796837792186368" id="message-808796837792186368">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>beep...beep...</em>
+
+Strange. Usually the police would respond quicker, but it had been almost two whole minutes and Pascal was still stuck on the line. He started getting worried: being a sitting duck next to a man who had been sent flying from a nearby building was NEVER a good idea. Maybe it was best for him to run away and make the call afterwards...
+
+...Or so he hoped. Unfortunately, a familiar voice rung his ears. Armstrong was nearby, his voice coming from the damaged building in the first place. He was talking about...criminals? Oh no...
+
+<em>&quot;Robbers?&quot;</em> Pascal thought, sweating bullets as he felt like leaving. However, from the sound of it Armstrong was already confronting the robbers. Considering that he had blown up the docks just a day ago, maybe a few thugs would be child&#39;s play for him to handle. Plus, he couldn&#39;t abandon Rider: They were living evidence that Pascal had summoned a Servant! If the aristocracy caught wind of that, who knew what would happen?
+
+Therefore, Pascal got closer, reaching the entrance of the restaurant as he saw Armstrong standing nearby.
+
+&quot;What are you even doing here? I told you to stay in the closet!&quot; Pascal shouted, before looking forward to catch a glimpse at the thieves...only to be greeted by a hulking suit of armor. 
+
+&quot;...What the HELL is that thing?! They look pissed!&quot; Pascal blurted out loud, probably annoying Szrac even further. &quot;What did you do?!?&quot; Pascal stared back to Armstrong. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-21 10:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="808880555419500584" id="message-808880555419500584">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The blare of a loudspeaker rang in his ears as he left the safe on the counter and approached the outside of the restaurant. His master was confronting a couple of commoner filth, the ‘master’ no more than a bum to be ignored and swatted if need be. The servant was surely a foreign creature in this world, but not one that appeared threatening in the slightest. He did enjoy the way his head reflected the sight before itself.
+
+“I recommend getting that distasteful thing out of my sight, peasant. Yourself shortly after. As the man said, we are conducting searches on residents believed to be breaking the law. Move along now.” He said. Anger started building in his gut. Mere commoners had no right interrupting official business. Especially his.
+
+Midas regarded the servant more, taking in it’s attire and demeanor. It seemed pissed off at him, and he hadn’t the slightest clue why. All citizens must pay their taxes, otherwise punishment was in order. Why be mad at him for punishing a law breaker?
+
+“And you, servant. Tell me your name.” he commanded. 
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-21 02:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="808952826062569532" id="message-808952826062569532">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;The closet will have to wait, I&#39;m afraid!&quot; Neil Armstrong gave a flamboyant shake of his visor as Houston shouted at him, having gotten close enough to see Rider staring proverbial daggers at his soon to be opponents. The closet was a dangerous threat, capable of bringing the most rebellious of Servants to shame, but not Rider.
+
+Holding up a hand towards Pascal, Rider glanced at him—or at least tried to, given his visor. The message was clear. <em>Stand back</em>. The reasoning behind the warning was fairly obvious: a battle between Servants was bound to get messy. Especially with a Rider class Servant involved, given their prowess and infamy for having powerful Noble Phantasms.
+
+The only thing that could possibly spread more destruction would have to be a Berserker, but there was no way that Rider was that unlucky. Besides, the tin can&#39;s Servant seemed to be pretty sane. 
+
+...right?
+
+&quot;This lot aims to ransack this restaurant! We cannot allow this to happen. Especially for that poor owner. First, it&#39;s restaurants, then it&#39;s real estate agencies, and then it&#39;s NASA itself! If they&#39;re allowed to throw such weight around, who knows where the abuse of power stops!&quot;
+
+&quot;As for you, Servant! You have no pride, if you&#39;re willing to ransack a restaurant. Judging from the crown on your head, you must be a king! Shameful! My name? <strong>Call me Armstrong.</strong>&quot;
+
+Rider struck a <s>fairly ridiculous</s> cool pose.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="808952880488120341" id="message-808952880488120341">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="809063889118429204" id="message-809063889118429204">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pascal just watched the conversation unfold, sensing all possible escape routes disappearing one by one as Armstrong insisted on staying to play hero.
+
+&quot;You&#39;re even telling him your <em>name?</em> Are you out of your goddamn mind?!&quot; Pascal shouted. A Heroic Spirit, revealing their true name? What did he do to deserve such an idiotic Servant...
+
+&quot;Uh, look, you two. I think we both got off the wrong foot here.&quot; Pascal attempted to reason with the two individuals. &quot;My Servant is quite the unruly sort, so I apologize for them discussing random garbage. They have a low level of Madness Enhancement, haha!&quot; He gave a nervous laugh, trying to defuse the situation.
+
+&quot;Now, if you will excuse us, we will just step aside and pretend that this whole thing never happened.&quot; He said, tugging at Armstrong and inciting him to leave. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-21 10:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="809066816344948756" id="message-809066816344948756">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His servant was actually foolish enough to reveal his true name? How idiotic. Clearly, they had some kind of sanity degradation skill? Perhaps they were another Berserker? No matter, they had given up vital information, and would pay the price...
+
+<em>ENGAGE LONELY.NET HISTORY ARCHIVE SEARCH: ARMSTRONG</em>
+<em>Searching...</em>
+<em>Searching...</em>
+<em>Searching...</em>
+<em><strong>DING</strong></em>
+
+Glancing over to the list of results, Szrac looked back at the astronaut and his master disdainfully. Such a show of defiance would not stand, no matter how much they grovelled for forgiveness. Examples must be made, after all.
+
+<strong>&quot;You apology is denied. You may show your sorrow in a prison cell. As for your servant, Lance... they too will be</strong> <em><strong>repossessed</strong></em>  <strong>for the greater good.&quot;</strong> The cyborg replied. Outstretching a hand, the metal cutlery around the room suddenly began to float, the effects of Szrac&#39;s metallurgy taking hold of them. He was beginning to attack!
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-21 02:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="809128035366207529" id="message-809128035366207529">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Shaking his head with even more fervor, Rider poked his finger into Pascal&#39;s chest. &quot;If you&#39;re more worried about yourself, then remember this: if this isn&#39;t punished now...&quot; He lowered his voice into a whisper. &quot;You could be next. We need to dive right into the heart of the problem. And the heart...&quot; Rider raised his voice, looking back at Szrac. &quot;...is you, tin man!&quot; 
+
+Ironic, the toaster insulting the tin can. However, Rider wasn&#39;t known for being the most aware of his situation. Or aware.
+
+&quot;Forget it, he wouldn&#39;t forgive you, even if you licked his boots. He&#39;s got an iron rod shoved far up his a—&quot; Fitting that Rider elected to use iron as part of his insult, as metals had begun to float menacingly. Getting punctured by a dozen sporks wasn&#39;t the best way to go. &quot;It is time to run, Master. Go. I&#39;ll take care of this Magneto knockoff.&quot; <em>What the heck was a &quot;Magneto?&quot;</em>
+
+A mounted laser cannon appeared on Rider&#39;s shoulder. It looked absurdly heavy, yet Rider carried it like it was nothing. With several blasters attached to it, several began locking onto the Aristocrat thug and his mysterious Servant, before unleashing a hellstorm of lasers, accompanied by a ridiculous &quot;pew pew&quot; sound.
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-21 05:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="809170426239909958" id="message-809170426239909958">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas did not fear the cannon that appeared onto Armstrong’s shoulder. He did not fear the targeting sequence that shortly followed after. Even as a barrage of lasers started racing towards him, he was concerned little. The first one coming his way was dodged with relative ease, moving to the side at the near last second.
+
+The explosion was noisy, but relatively harmless. The second one came even faster, which gave him a little scare. Thankfully he was capable of dodging that one too, side stepping even further. These fools, how dare they pretend they were capable of--
+
+Of course, that’s when the third laser came by. There was no way he was dodging that thing, so he didn’t. That thing <em>hurt</em>, to say the least. It struck him hard in the side, sending him back a few feet. If he didn’t have modified Endurance from his Madness Enhancement that surely would’ve done a big number to him.
+
+Instead, it pissed him off more than destroyed him. He looked a little worse, edges of his shirt singed. His ears twitched rapidly, making sure that his target was still there.
+
+“I warned you,” he said, dashing forward after a few seconds of recovery. He immediately went to where Armstrong was last and swung his entire arm towards that location. Whether he was still there or not was to be determined.
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-21 07:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="809199669212479518" id="message-809199669212479518">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pascal&#39;s apology had gone for naught. If anything, Szrac and his Servant seemed to be even <em>angrier.</em> Tensions had escalated too far, as Armstrong was now wielding weapons against the two assailants, weapons that Pascal had no idea of. How was he supposed to command his Rider if he didn&#39;t even know what they did?!
+
+He did know <strong>one</strong> thing at least.
+
+&quot;Rider, stop playing hero and just summon your Noble Phantasm. The with the weird wheels! Get us out of here!&quot; He shouted, but Armstrong was already preoccupied. Midas had taken a blow head on, yet he was still standing and brimming with rage. The Servant directed themselves to Armstrong in an effort to cull them instantly.
+
+Pascal had no idea about how fast Rider was. Sure, they were faster than him and most humans, but were they faster than other Servants <em>by comparison?</em> He didn&#39;t know, and a single hit could prove to be fatal in a Holy Grail War. At least, that&#39;s what his brother always lectured him about.
+
+...
+
+Therefore, while Midas was busy trying to pummel Armstrong, Szrac would sense something amiss in the air. Armstrong&#39;s Master was quivering, their buttocks trembling in fear as they might as well be considered a non entity in this fight. The only threat was Rider--
+
+<em>fsss</em>
+
+At least, that was until Szrac felt some slight change in the atmosphere. A strong odor had filled the room, one noticeable enough to get past his armor and penetrate his nostrils: Gas. Methane. A gas leak had occurred inside of the restaurant during the ensuing scuffle? The place would become a fire hazard if left unattended... <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-21 07:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="809203731249365013" id="message-809203731249365013">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Threats had been exchanged, and neither side seemed willing to back down. Thus, it was inevitable that the two would clash. Armstrong launched a barrage of lasers at Midas, but the attacks only seemed to piss him off. Berserker then proceeded to lurch at Rider, intent on punishing the fiend for his insolence.
+
+That left Szrac to deal with the other interloper. After all, if one was to kill the master, the servant was soon to follow. This one certainly seemed rather incompetent, barely able to control their quarry, let alone order them efficiently. It was akin to shoot fish within a barrel.
+
+<em><strong>!!!WARNING!!!</strong></em>
+<em>METHANE LEVELS INCREASING TO DANGEROUS LEVELS</em>
+
+A warning popped up upon his interface. Had his tussle with the cook earlier led to a gas leak? No matter. He&#39;d simply have to finish this fight quickly, before anyone thought to take advantage of these circumstances.
+
+He pointed an armored finger towards Pascal, and in an instant, he found dozens of forks, knives, and spoons? launched towards him. Such a storm would be certain to stab, slice, and spoon? him to pieces, unless he could somehow dodge or block.
+
+Somehow, Szrac doubted that he could dodge or block.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-21 10:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="809254704864821248" id="message-809254704864821248">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If Rider had noticed that even Pascal had entered combat, he would&#39;ve given him a pat on the back. Unfortunately, he and Berserker had to have a little match of their own. Hopefully his Master could pull through. Pascal&#39;s reasoning behind using Armstrong&#39;s Noble Phantasm was sound, and Rider elected to heed it, partially.
+
+&quot;Understood. Allow me to test myself against this Servant, as well as determine their class. If we can win, then we should at try! Otherwise...&quot; Should the situation become unreasonable, they would retreat. Hopefully Pascal would get that message, despite the two of them working together as well as uranium fuel and a rocket most of the time.
+
+Midas began his assault, running towards Armstrong in an attempt to crush the Rider&#39;s visor with an arm.
+
+If Rider had appropriate measurements, such as height and a firm grasp on distance, it was likely that he would&#39;ve bee able to dodge Midas&#39;s strike. However, he had nothing but vague values scraped up from memory and estimation.
+
+<em>Damn. I should be playing more cautious.</em> Armstrong thought, before shaking his head. Not revealing his Noble Phantasm off the bat was about as cautious as he could be, barring avoiding combat entirely.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="809254769419091988" id="message-809254769419091988">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Berserker struck, and Rider received, barely raising his arms before getting getting smashed through the plastered and insulated walls of several restaurants. The strike would&#39;ve liquified the organs of any mere man, or a particularly squishy Assassin or Caster. Rider, on the other hand, received a mildly dull ache, as well as having the proverbial wind knocked out of him. Mechanized Armor stacked with high natural endurance made Armstrong a very annoying αγκάθι in Midas&#39;s side.
+
+People in the first, second, and third restaurants over screamed and ran as Rider dusted himself off, and removed a random spork from his glove. He waved a hand at a gawking chef, who ran for a phone. &quot;Don&#39;t worry about the authorities, go!&quot;
+
+Manifesting a pistol grip drill in his hand, he rose to face Midas, who was lounging towards him a very kingly manner. Armstrong wanted to punch him in his stupid face. Sadly, he&#39;d have to settle for drilling into it. 210 revolutions per minute? That&#39;d put a few holes in the king&#39;s ego.
+
+Rushing towards Szrac&#39;s Servant, Rider prepared to stab him in the chest, drill whirring mercilessly. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-21 12:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="809286391451746354" id="message-809286391451746354">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas smiled as the body of the foreign creature was sent flying quite literally into the buildings beside them. The way his body molded itself into the flimsy walls and created terrified screams reminded him of his golden days. No pun intended.
+
+To be completely honest, he didn’t care for the life of these two ne’erd-do-wells like his master did. Sure, the Rider was annoying with his moral high ground. Yet yelling at him to stop wouldn’t do anything. If it weren’t for his ‘master’, he would’ve been more than willing to let them go so long as they did not stop his taxation. Thus, Midas only looked to see if Rider would engage again. He meandered over to double check his suspicion that he ultimately would.
+
+And he did. He rose from the rubble and donned a weapon once again ahead of Midas’ time. It looked like those firearms he’d seen before, cowardly things only used by those weak and unwilling to actually fight. Instead of firing more lasers, he instead decided to charge the king. He had to admit, this Armstrong fellow wasn’t as weak as he originally thought.
+
+Midas kept calm, letting the man run him down. Instead of trying to dodge his attack, though, he met it head on. He grabbed the actual weapon itself, barely pushing it away after it grazed his chest. His goal was to brute strength the weapon away and towards its owner, and it slowly worked. His strength was higher, even if by just a little. It was only a matter of time before the tool would either burrow into Rider’s own thick skull or turn to gold, maybe incapable of working entirely.
+
+Already the transformation had begun. The places where Midas gripped started to change from it’s usual color into a bright and shiny gold...
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-21 11:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="809453113307299840" id="message-809453113307299840">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pascal witnessed Armstrong being launched an enormous distance away. From a single blow, nonetheless. Servants could be truly terrifying, a prospect that he only realized once Midas walked past him in order to focus on Rider again. Pascal had been ignored, because Midas knew without a doubt that the inexperienced Master was no match for him. It was humiliating, yet truthful.
+
+Szrac would be his opponent instead, the tin can somehow managing to empty the entire kitchen&#39;s cutlery at him in an instant. Forks and knives were great tools, but also dangerous hazards. A dropped knife had no safe end, so a homing knife could only spell a quick demise.
+
+But Pascal wasn&#39;t hopeless enough to stand still and take it. Armstrong&#39;s reply had bolstered his resolve, if even by a little bit. <em>&quot;I just need to survive until that idiot admits that we are outmatched! Hopefully he realizes that so--&quot;</em> His thought process was interrupted as his flight instincts kicked in, focusing on the flying cutlery and dedicating 100% of his mental capacity to avoiding it.
+
+He wasn&#39;t fast enough to dodge it, nor was he sturdy enough to take the hit. Thankfully, however, he was cowardly enough to have been standing next to the restaurant entrance this whole time. Szrac might have created a huge hole in the wall just a moment ago, but that was far from the front door of the building.
+
+Therefore, Pascal simply stepped back and slammed the door on him. The knives pierced through the wooden door, stabbing it while the forks failed to do even that. Cutlery wasn&#39;t designed to chew through doors, after all. Pascal stood behind his makeshift shield, staring at the numerous knives that had pierced the door and were now stuck on it. He sighed with relief.
+
+<em>&quot;Okay, okay. What next, what next?&quot;</em> He thought in a panic, knowing that the tin can would probably just open the door and try the same strategy. An idea lit up in his head.
+
+Szrac then heard various thumps and chanting coming from behind the door.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="809453149429563422" id="message-809453149429563422">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Feb-21 12:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="809460408557371453" id="message-809460408557371453">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As Rider and Berserker continued their brawl, that left Szrac to finish off Pascal. Their&#39;s was less of a fight, and more a game of cat and mouse. While the astronaut might have been equally matched with his adversary, the chef was a hackjob of a mage, especially when compared to the obviously more competent mage of metal.
+
+Fortunately, he had one advantage against the cyborg - he was a huge coward. He had refused to step into the restaurant out of fear, and in doing so, had accidentally positioned himself next to a suitable shield. The projectiles clattered against the door, landing on the floor in a pile.
+
+Irritating. Did this rabble truly lack the sense to lie down and accept their fate with dignity? Must they desperately cling to their fate in such an unbearably pathetic manner? Disgusting.
+
+Unfortunately for Pascal, he had chosen a most lacking hiding place.
+
+The door suddenly began to rattle, wood chipping away as though it were being torn apart from the inside. It was at this moment that the chef would have a horrible, no-good thought:
+
+<em>Doors had metal inside them.</em>
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Feb-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="809521394223677482" id="message-809521394223677482">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Armstrong knew it wouldn&#39;t be that easy.
+
+Stabbing a Berserker with an industrial drill was a good idea in theory, but Rider, for all his boasting, wasn&#39;t known for his physical might. He was a thinker and an idealist. Kings typically had to deal with dragons and gods and magic and who knew what else.
+
+Thrusting the drill into Berserker&#39;s chest, Midas quickly intercepted it, and began turning it against the astronaut. Armstrong caught a glimpse of Midas&#39;s eyes, messily mixed with greed and insanity, a testament to the Berserker class container, as well as the man&#39;s own legend. It was unnerving, as Rider had never seen someone so deranged and violent before. That included scientists that he had helped pillage from Germany following World War II...
+
+Nonetheless, Madness Enhancement helped Midas turn the tables on Armstrong. The drill whirred in protest as it stopped, before beginning to sputter as something akin to gold crept across the frost. &quot;What kind of sorcery is this!?&quot; Armstrong yelled in surprise.
+
+The tool exploded, and Rider let go. He leapt back, using his lessened gravity to his advantage as he pelted the enemy Servant with his laser gun. He looked down at his former tool in disbelief, which had become entirely gold after Berserker had touched it.
+
+Gold... Touch...? That was certainly a famous power. Even Armstrong, a strong advocate for science, knew of it. Which meant that his foe...
+
+Rider pointed a hand at Berserker. &quot;Could you be...?&quot; 
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Feb-21 06:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="809557662751653919" id="message-809557662751653919">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas once again faced down a barrage of lasers, this time a few more in number. His okay Agility, more awareness of what was going to happen AND more time to react meant that he once again dodged most of them, even if by the skin of his teeth. The way he moved just in rhythm to keep himself unharmed could be described as a weird dance. 
+
+“You will have to try harder--” he started to gloat, before realizing that the barrage wasn’t quite just over yet. As a matter of fact, there was one more laser still currently homing in. He tried is best to step out of the way, but found his side once again getting shot. Due to the closer proximity of the laser from original destination, this one actually sent him reeling.
+
+His body was knocked back a dozen feet or so, flying as those bad guys did in the cartoons with arms and legs outstretched in that funny way. 
+
+However, this wasn’t as funny when he caught himself on his feet and dug himself into the ground itself. Pavement caved under his strength. His legs were now partially submerged into the ground. His clothing was now thoroughly destroyed where the point of impact was, fabric around it scorched soot black. 
+
+And he was absolutely pissed. Didn’t help matters when this knave was suddenly aware of his existence. Specifically, who he was. 
+
+“Commoner, you have crossed the wrong king. You will make a <strong>FINE</strong> addition to my vault. The way the light will reflect off of your golden head will bring me MUCH JOY!” He reached over and grabbed a street sign right next to him. His muscles strained as the metal pole was freed from it’s binds. He tore the actual sign part from it and threw it to the side. 
+
+A pissed off Berserker with a new weapon slowly turning gold charged the astronaut at a speed that would induce panic in most men. 
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Feb-21 10:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="809607278151204864" id="message-809607278151204864">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pascal was next to the door, but he wasn&#39;t staying still. No, he had an actual plan of some sort. Some light footed taps, a few enhancements here and there...Magecraft?!
+
+<em>&quot;To think I&#39;m casting this in an actual fight...I must be the biggest moron of all time!&quot;</em> He thought to himself, yet kept going whenever he glanced back to the knives embedded on the door: It was either this or getting turned into a shish-kebab.
+
+Eventually, he started to notice that the door was rattling, almost as if plunging itself towards him...
+
+<em>&quot;Is that guy shoving the door at me? Trying to crush me with it?!&quot;</em> Pascal panicked, quickly backing off as he continued to cast his spell. His incantation was done and his Magecraft was already active. All that was left was for &#39;it&#39; to reach its target.
+
+Szrac was seconds away from tearing the door away from its hinges and flailing it at Pascal, but his attention would be directed elsewhere: Droplets of rain had started to fall down from the ceiling. A leak? Such a miserable restaurant, unable to even pay for proper plumb--
+
+<em>brrrrrr</em>
+
+An ominous sound could be heard above him. He looked up, noticing a gray, puffy cloud on top of the ceiling that was currently pouring rain on his body. A miniature cloud in a closed space? That was Magecraft all right. His target was a Magus after all, and not some random shmuck Master. This spell was perfectly fitting: It seemed to be about as useless as its caster. What would a light drizzle do against his steel armor?
+
+<em>brrrrrrr</em>
+
+The cloud got grayer, as if something sinister was brewing inside. The light drizzle turned into a heavy downpour. Sparks of electricity could be seen within the cloud, until...
+
+<em><strong>ZAP!</strong></em>
+
+A lightning bolt fired, homing towards Szrac with ease due to the man&#39;s metallic armor. Like a lightning rod, he attracted the bolt and received it with open arms. Electricity coursed through his wet armor as his system tingled with errors befitting an EMP reaction.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="809607307235164191" id="message-809607307235164191">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Feb-21 12:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="809818089319432192" id="message-809818089319432192">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The bolt of lighting raced down, drawn to the walking hunk of metal covered in water. He was practically a lightning rod! But the cyborg had faced such occurrences before. Focusing his metallurgy upon one of his shoulderpads, the plating warped into a spike, catching the lightning before it could land a direct hit.
+
+It prevented most damage, but not all of it. Even with the numbing of his pain inhibitors, it still was not particularly pleasant. Szrac staggered for a moment, stunned by the shock. Yet he soon found his footing once more, and looked over to Pascal. 
+
+His disdain had evolved into loathing.
+
+<strong>&quot;You must think you are very smart. Do you wish me to praise you for your boundless intellect? Your parents obviously never had reason to do such a thing.&quot;</strong> The mercenary scowled. <strong>&quot;But you will receive nothing from me. You are undeserving of it.&quot;</strong>
+
+Szrac then burst into a sprint, proceeding to slam through the door and reduce it to little more than splinters. It appeared that the mechanical mage was beginning to take things seriously now.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Feb-21 06:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="809910939695448094" id="message-809910939695448094">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Berserker&#39;s face contorted into outrage, madness twisting his features even more. Berserker had never been more threatening, and Rider had never felt more unnerved. It was as if Berserker&#39;s presence had become an oppressing force pushing down on Armstrong. It almost felt like a skill, but it wasn&#39;t. It was simply Berserker&#39;s kingly authority. 
+
+Chills blossomed in Armstrong&#39;s spine, but not enough to back down. His will would not allow it, for it was unyielding. Despite that, he took several steps back onto the street in wariness. As he had learned, fighting Berserker in close combat was a recipe for disaster.
+
+However, Berserker&#39;s anger confirmed Armstrong&#39;s suspicion. His opponent&#39;s identity...
+
+&quot;I know who you are. A king cursed to turn that which he touches into gold... Commonly known as the Golden Touch. Even I&#39;ve heard of you, even in my own time. You&#39;re plastered in dozens of books, <strong>King Midas</strong>!&quot; Rider pointed his gloved hand at his opponent. 
+
+&quot;I thought you lost your power, and died in grace. Apparently not. I suppose that it&#39;s up to I, Armstrong, to put you in your place! I suppose this is an excellent... <em>Opportunity</em>&quot;
+
+With that, Armstong began to glow brightly, being bathed in magical energy as Midas&#39;s weapon became an extension of himself-of gold.
+
+When the light cleared, Rider had been replaced by his odd wheeled mount. Several laser guns manifested on top of it, and wheels screeched against the asphalt as Rider and Opportunity prepared to run down Midas. Despite his wariness of close combat, he was apparently very confident in his mount.
+
+Besides. He had guns. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Feb-21 08:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="809950794664116224" id="message-809950794664116224">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;No screams? Did it hit?&quot;</em> Pascal pondered, standing away from the door for his own safety. He was worried that it would burst at any moment, with knives aiming straight for his neck and heart if he dared to inch closer. For now, he could only hope his miniature cloud had found its target.
+
+Rain dance. An ancient form of shaman magecraft utilized by Native Americans. Pascal&#39;s prestigious family was lucky enough to have a book containing such magnificent arts. Of course, his circuits were pitiful, and he was unable to master any spell besides this basic one.
+
+Indeed, it was no match for Szrac.
+
+The tin can erupted from the door like a silhouette in a pop out book. His visor was red and fuming, a sign that he didn&#39;t take too kindly to being zapped by mysterious clouds. Pascal was a few feet away, but Szrac could most likely catch up to him in a matter of seconds, especially when the man was a cowering, nervous mess.
+
+<em>&quot;Shit! What even is he?!&quot;</em> His mind was in disarray. How was he supposed to defeat a Magus that seemed to be more machine than man? Not to mention they were aristocracy. He&#39;d be skinned alive if the high society of Persepolis found out about Rider&#39;s misdeeds...
+
+&quot;Shut up! Think! Focus! Think!&quot; Eventually, his pessimism decided to forcibly convert itself into optimism. He tuned everything out, resorting to thinking out loud as Szrac could not help but find the sight pitiful. Some people simply didn&#39;t deserve Magecraft. Perhaps he should relieve him of that burd--
+
+&quot;...Gas.&quot; Pascal muttered. Just loud enough for Szrac to hear.
+
+&quot;The building is filled with gas, isn&#39;t it? My cloud is still there. <strong>Would be a shame if it started a fire inside...</strong>&quot; He said, bluntly, before doing the unthinkable.
+
+<strong>CRASH!</strong>
+
+He broke a window with his elbow and launched himself in. He was back inside the restaurant! Was he planning on blowing himself up? Or was he luring Szrac inside...?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="809950824263843861" id="message-809950824263843861">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Feb-21 12:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="810178966870163471" id="message-810178966870163471">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas did not even think about the mount his opponent had summoned as more than a thing he had to deal with. Sure, it was a pretty cool and very dangerous vehicle AND weapon to go up against. Surely it could blow him to smithereens and run him over before he could put a dent into it if he wasn’t careful.
+
+But could it withstand the force of a double footed, feet first, kick directly into the windshield?
+
+He did just that, leaping forward with superhuman strength and bent knees directly into the strange mount. He was ready to either cleave the head off of this knave, or break the glass and stab him with the makeshift spear he had--
+
+Instead of doing either of those things, he instead collided with the glass and failed to break it. If his endurance wasn’t higher than most his legs would have surely been broken, smashed to dust under the force. That didn’t happen, but he sort of slid off of the currently moving vehicle and fell to the ground awkwardly. 
+
+He was quick to rise back to his feet, watching the mount keep moving past him. If anyone were watching him, they’d no doubt be laughing at his failure. It was rather silly looking, those last few seconds. Berserker did not like being mocked.
+
+In the heat of the moment, he decided that simply throwing the pole would maybe be the best idea. And so, he did. Aiming at least a little, he did a few steps forward before releasing the golden weapon down the street and towards Rider.
+
+Midas was not a person renowned for their accuracy with ranged attacks, unfortunately. 
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Feb-21 03:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="810238587043184681" id="message-810238587043184681">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was becoming evident that, in a battle of strength, Pascal could not beat Szrac. However, it a contest of magic... Pascal also could not beat Szrac. But maybe, just <em>maybe</em>, Pascal could beat Szrac in a contest of pure wit... maybe.
+
+The cook threw himself back inside the restaurant, smashing through a window in the process. Yet he also gave away his plan - he was going to use the gas inside the restaurant to cause an explosion.
+
+Yet Szrac was outside the restaurant, and Pascal was inside it.
+
+<strong>&quot;If you are so quick to die, then I will not stop you. However, I will not allow you to take me with you.&quot;</strong> The cyborg stated plainly, his magical circuits flaring to life once more. Tearing off the now-unusable spike of metal from his armor, he twisted it through arcane means once more, creating a spiked wheel of metal. With a point of his finger, the wheel began to rotate at lightning speeds, before floating into the restaurant, moving towards Pascal with intent to cut him to shreds!
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Feb-21 09:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="810315173260427314" id="message-810315173260427314">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thank god for Windex.
+
+As soon as he had prepared to run down Midas, Armstrong had the unfortunate luxury to see his opponent mushed awkwardly against his windshield. He clucked his tongue in frustration. Couldn&#39;t Midas just swallow his pride and get ran over like any normal king?
+
+Tapping a button on his dashboard, windshield wipers began wiping the windshield, causing Midas to lose his balance and fall to the pavement. Braking and turning, Armstrong managed to do a 180 on the fairly cramped street. Whether it was Rider&#39;s own Riding or Opportunity&#39;s maneuverability remained to be seen.
+
+&quot;Stupid Greek king... He&#39;s worse than Glennan on smoke break.&quot; Armstrong muttered, revving his engine once again, before speeding Midas down. If at first you don&#39;t succeed, launch another rocket into space.
+
+Midas&#39;s improvised golden missile, against all odds, struck true, getting lodged between two of the wheels, causing the wheels to automatically lock, leading to Opportunity flipping over, and onto its side.
+
+Huh. Apparently someone with E rank luck was bound to get lucky at least once.
+
+Despite that, several of the laser guns began firing, intent on peppering Midas with holes. It would be nearly impossible to take a step closer. Rider clawed his way out of the rover, coughing static and cursing.
+
+&quot;I didn&#39;t know someone deathly afraid of showers could throw like that. Lucky break.&quot; Rider scoffed as he got to his feet. 
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Feb-21 12:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="810363413423063050" id="message-810363413423063050">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Berserker’s aim was true, somehow. His wild throw managed to lodge itself somewhere inside the rover’s wheels or something, causing it to flip and find itself on its side. He grinned wildly, taking slow kingly steps towards Rider. It was time to end this conflict.
+
+Or, he’d like to do that. Another round of lasers found its way into the air and towards him. If Tyche was watching this battle, he was surely being punished for his stroke of luck mere moments before. She was lucky he had not found his way to Mount Olympus.
+
+And this time, he didn’t get hit by a single laser. Granted, his strategy this time around was not to dodge any of them, but let them get eaten by a nearby store front. He stepped towards the restaurant before diving right into the building. Glass broke messily, shattering everywhere. He landed gracefully onto the ground, pushing himself back towards the window and under the sill. 
+
+Almost all of the projectiles collided into the floor right in front of him, not quite able to do greater than a ninety degree angle. One of them didn’t even bother trying. Instead, it crashed right into the other side of where he hid. Dust blew everywhere, makeshift cover turning to smithereens and ashes. Berserker felt the blow but not nearly as strong as the other two he had eaten cleanly.
+
+He rose from the ground, rushing over to the opposite wall closest to the overturned Rover. He think he saw Rider pulling himself from the vehicle, but he dared not peer much further without risking another barrage. That damned mount was the new target. If only he had some help with the matter…
+
+“Szrac,” he yelled out loud down the street, “You absolute cretin! Turn your attention to the Servant, not that pathetic excuse of a master! Glory and <strong>riches</strong> await those who best opponents worthy of combat!”
+
+“And you, Rider! Quit these games! Not a single thing will stand in my way to a mountain of wealth!”
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Feb-21 12:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="810365379485761566" id="message-810365379485761566">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Little did Midas know that Szrac was plugging himself into an outlet...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Feb-21 12:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="810365739961155634" id="message-810365739961155634">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Bout to cause a power outage just for shits and giggles</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Feb-21 10:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="810517283906650162" id="message-810517283906650162">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It really seemed easier in movies and novels. Action heroes were no strangers to jumping through glass windows and landing without a scratch, but Pascal was already in pain after elbowing a window and watching shards of glass get stuck in his arm. It was excruciating, like he had been pricked by an army of needles. The adrenaline had muted its effects, but he still felt like he was going crazy just by being around these ridiculous situations.
+
+Speaking of ridiculous, the spiked wheel of metal death was <em>beyond</em> ridiculous. Szrac was brutally efficient and it showed, since he had no issues culling down citizens in the blink of an eye. As Pascal tried his best to run away from the acupuncture nightmare, he realized that his flimsy human legs could not outspeed something powered by Magecraft and state of the art technology.
+
+In other words, he was fucked.
+
+But knowing that his demise was certain, he could still attempt something.
+
+<em>&quot;Please don&#39;t do it please don&#39;t do it please don&#39;t do it&quot;</em> Scrabbled thoughts squirmed around his head as his body moved on its own, as if it knew that this stupid plan was the only way to ensure Pascal&#39;s survival.
+
+Just as the wheel was moments away from slicing him in half, Pascal finally reached the half destroyed kitchen and stood in front of the oven. It felt like he was shielding it completely, ergo, he was making the oven a target.
+
+So, if Szrac&#39;s wheel proceeded to slice through Pascal, it would most likely slice through the oven as wall, causing an explosion that would ignite the nearby methane. Szrac would most likely be caught in the blast, but it would mean Pascal&#39;s demise for sure.
+
+...Of course, Szrac could also opt to further leave the restaurant and slice Pascal after he was a safe distance away, but that meant giving the cook a few more precious seconds...  <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Feb-21 10:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="810703846833258516" id="message-810703846833258516">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It seemed that Pascal&#39;s luck had run out. The metal disc would cut through both the cook and the oven behind him, slicing him to pieces and then exploding him to smithereens. Sure, the explosion would likely scuff his armor, but that was nothing compared to having his LIFE scuffed! 
+
+And yet, that moment never came.
+
+<strong>&quot;Must he be so incapable of fighting his own battles?&quot;</strong> Szrac scowled, muttering under his breath. Well, it was no matter. It was evident that Rider&#39;s master posed no true threat. Not only was he an awful mage, but he was also a spineless coward. Now that the cyborg had displayed his dominance, there was no purpose in killing him.
+
+Instead, he&#39;d simply destroy Armstrong. If he lacked a servant, he was no longer capable of participating in the Holy Grail War. That made him as good as dead.
+
+The metal wheel clattered to the ground, and Szrac turned his metallurgy elsewhere - to the flipped body of Opportunity. The metal hull began to tear and rip, reforming into tendrils before lashing out and trying to grab the escaping astronaut. Those not large enough to sufficiently impede him instead set about destroying the rover from the inside, trying to destroy whatever mechanism made the weapons function.
+
+<strong>&quot;Continued resistance is futile, Armstrong. Give up, and I shall spare you the indignity of deactivation. This is the first and last mercy I shall offer to you.&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Feb-21 12:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="810726040645009460" id="message-810726040645009460">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Team Cook and Astronaut wasn&#39;t doing so well.
+
+Pascal had bent the knee to Szrac, and although Armstrong had initially been overpowering Midas, a lucky shot and the intervention of Szrac meant that Armstrong was hard pressed for survival. No matter how good he was at eating hits from Midas and his Master, they&#39;d wear him down eventually. To make matters worse, he lacked the offensive pressure to get out of such a bind.
+
+To make matters worse, Szrac was trying to <em>pity</em> him.
+
+Using his <em>other</em> Noble Phantasm was not an option. It was unlikely that he&#39;d be unable to take out both Midas and Szrac in such a short time, and to make matters worse, Pascal wouldn&#39;t survive its activation. To cap it off... Rider didn&#39;t have the energy to activate it.
+
+If anything, Houston had done well to evade him for so long.
+
+&quot;Houston, we&#39;ll go along with <strong>your plan</strong>!&quot; Rider shouted as Szrac held out his hand, and began to twist the armor off Opportunity. Opportunity wasn&#39;t entirely metal—most of its systems were a mishmash of plastic, fiberglass, and wiring—but the armor that made Oppy a safe haven were getting torn apart. Luckily, it could still be driven.
+
+Hands and claws of metal burst from Opportunity, reaching to ensnare their former master. Luck was on his side, letting him dodge a few of the reaching hands. As he leapt into the cabin of Opportunity, Armstrong felt the grasp of metal on his leg. Drat.
+
+There were also hands of metal digging into Opportunity&#39;s console. Drat^2.
+
+&quot;Oi! For someone in a tin can, you&#39;d think you&#39;d treat machines with a little bit of respect.&quot; Rider complained, his laser cannon blasting at the metal digging into his console.  Most of it weakened within a few shots, which Armstrong grabbed, and threw out the window. The rest, Armstrong simply melted.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="810726117136007168" id="message-810726117136007168">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The intensity of the pressure on Rider&#39;s leg increased, beginning to pull him out of Opportunity. He held on for dear life, feeling the intensity increase. However, just when he couldn&#39;t hold on any longer, Opportunity flipped off of its side, and back onto its wheels. Wee!
+
+However, Szrac had done his job, and the laser cannons stuttered to a halt after several long seconds. Midas was coming. The metal moved to restrain Armstrong. Desperately, he began blasting at Szrac, hoping to distract him. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-21 10:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="811246726249185343" id="message-811246726249185343">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pascal awaited his terrifying demise, or the lack thereof. His gambit was focused on Szrac prioritizing his own survival over his, but it was an half-assed plan developed by an half-assed cook. Of course Szrac didn&#39;t buy it. If anything, he found it pathetic, so they pathetic that the wheel stopped moving altogether. At first, Pascal took that as a sign of Szrac falling for his bait. He felt like dancing and celebrating, but the truth was much more cruel.
+
+He overheard Szrac&#39;s conversation from outside and realized that he had simply changed targets. It made sense, after all, a Servant was several times more threatening than Pascal could ever hope to be. This was worse than him getting killed in a gas explosion. It was far more humiliating and far more damaging to their odds of surviving this encounter: A Master could not hope to defeat a Servant. So, if Pascal lost his Servant, then he&#39;d be worse off than french toast.
+
+<em>&quot;Fuck. Fuck, fuck, fuck! Why didn&#39;t that dumbass of a fishbowl just listen to my advice and get us out of here when we got caught?! If we had just gotten on the ride and left...&quot;</em> He dropped to his knees and started staring at the floor in disdain. The situation seemed hopeless, yet he was unable to take it with grace. He was filled with fear, anger and irritation at his Servant&#39;s stupid acts of heroism.
+
+But his hope would be restored, as Armstrong communicated once again through distorted radio chatter.
+
+<strong>&quot;Houston, we&#39;ll go along with your plan!&quot;</strong>
+
+Despite being cornered, despite being stuck on a wall, the foolish astronaut still intended on surviving.
+
+Pascal wanted to call him a moron, but that sort of blind optimism and courage was exactly what he envied in others. He couldn&#39;t badmouth it right now. Not when he had already given up hope. Instead, he reluctantly followed through, his body moving on its own as he realized that this was his best chance at survival.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="811248332910755870" id="message-811248332910755870">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Szrac was already halfway done demolishing the Opportunity, despite Rider&#39;s best attempts at escaping his magnetic grasp. A Master could not hope to beat a Servant, but a Midas was moments away from finishing the job. It seemed like an easy victory.
+
+Until Szrac heard rumbling yet again. A heavy downpour collided on his armor, drenching him in water as he stared upward and realizing that a cloud had formed on top of his head.
+
+<em>That guy...</em>
+
+&quot;...Hands off my ride home, tin can. Or I&#39;ll seriously fry you to bits this time around. I might be dead after I do that...but I can vouch for Rider demolishing you after that.&quot; Pascal threatened, standing a few meters away from Szrac with sweat dropping from his brow. His tendency of making heavily skewed gambits hadn&#39;t changed.
+
+&quot;Rider, if I die, take this guy out with me!&quot; He shouted out loud, giving a verbal order.
+
+&quot;There. Now what?&quot; He stared back to Szrac, testing his judgment. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Feb-21 01:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="811292826791968859" id="message-811292826791968859">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Armstrong was now between a rock and a hard place, crippled by the twin attack of Szrac and Midas. Opportunity had taken heavy damage, the hull flaking and warped from the effects of the Metallurgy. Even worse, the rover had taken much miscellaneous damage in the process, further reducing its proper functioning. It wouldn&#39;t be long before Rider was backed into a corner.
+
+At least, that would be the case, if it weren&#39;t for one particularly annoying, particularly worthless, yet particularly foolish man.
+
+<em>Sploosh.</em>
+
+Through his rain magic, Pascal had drenched Szrac in water, clearly intending to perform another lightning strike. Did he truly believe repeating his previous attack on a grander scale would function, when it barely worked the last time.
+
+<strong>&quot;How irksome. Do you truly believe your petty tricks will succeed in stalling me? For this insolence, I-&quot;</strong>
+
+And then, the Opportunity&#39;s lasers landed. Pascal&#39;s stupid stunt had inadvertently worked wonders, the beam striking the cyborg in the chest and launching him backwards. Had the cook actually been a master strategist this whole time?
+
+No. No he wasn&#39;t. 
+
+Dead men were not capable of strategy.
+
+The mechanical master stood up, now nursing a giant wound in his armor. It had just barely avoided killing him, leaving a few thin layers of dermis to prevent a complete failure. However, that wasn&#39;t the main problem.
+
+Suddenly, the ground beneath Pascal began to shake and vibrate, as though it had been gripped by an earthquake. Nearby stacks of boxes tumbled over, and the now-wrecked restaurant began to crumble and collapse from the pressure. Anything not tied down to the ground would find itself unsteady, including the chef, who would suddenly find himself unable to keep his balance.
+
+<strong>&quot;You were given ample warnings, and yet, you did not listen. You will be made an example of. None will repeat your folly.&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Feb-21 10:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="811421364615512084" id="message-811421364615512084">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas simply watched everything unfold, slowly approaching the worse for wear rover and certainly worse for wear people. His master had finally gained their wits and focused on the main prize: Rider. The enemy master was still a fool, blasting Szrac with lightning, but Berserker would be lying if he said that the fool still had a card or two up their sleeve.
+
+And that would end as Midas finally arrived to the scene of the most struggle. The ground shook, but he held his ground and approached the somewhat husk of the vehicle that had caused him much trouble. Certainly functional, but that was what Midas had hoped to rectify in the coming moments.
+
+“I’ve always wondered, “Midas said, placing a hand onto the front end of the rover, “which is mightier: me? Or is it my Gift? Would you be willing to lend a helping hand in my experiment?”
+
+A Noble Phantasm belonging to a Servant with any sort of Magic Resistance would naturally resist the golden touch. Yet after a few seconds, a glacially slow golden print began to form where he touched. It would take too long for him to transform the rover into one of a different material, perhaps an hour or two, but Midas cared not. This weapon would sit in his newly created vault even if it killed him. Madness Enhancement was one hell of a drug and it would prioritize his own twisted greed before even his Master, a few steps too close to an early demise.
+
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-21 01:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="812014545127342121" id="message-812014545127342121">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Armstrong wasn&#39;t doing so hot, despite his boasts. He was struggling to stand. Was he spinning or was the ground shaking...? Suddenly, he looked up, as though receiving a radio signal. Not a radio signal... A command. Rider turned to see Pascal, battered and bleeding, standing up to Szrac. Could it be possible that Pascal had found something to fight for? Even if it was something as simple as Szrac getting punted into the ocean, it was miles better than before. His Master had grown.
+
+&quot;Understood, Houston!&quot; He gave a salute, before turning to his opponent.
+
+Physically, he was doing fine. Few things had actively harmed him during this scuffle between both Midas and Szrac—high endurance and Mechanized Armor saw to that. However, there were still definite losses in strategic footing, as Armstrong knew from military experience. Losing the mobile and offensive benefits that Opportunity provided had meant that Armstrong had lost all methods of quickly dealing with Berserker, as well as his Master. To make matters worse, he had lost his footing as well. Earthquakes on a floating <em>manmade</em> island? It was obviously the tin can&#39;s doing.
+
+Things were looking quite bad indeed.
+
+He wasn&#39;t one to give up, though. He hadn&#39;t flown hundreds, nay, <strong>thousands</strong> of aircraft just to give up to a tin can and someone who didn&#39;t understand the concept of &quot;look with your eyes, not your hands&quot;. He was Neil Armstrong!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="812014603872501851" id="message-812014603872501851">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What&#39;re you babbling about, Berserker? You have no talent except being a colossal idiot. Both in legend and in practice.&quot; Rider said as he blasted his opposing Servant in the face. &quot;Get away from Oppy.&quot; Despite that, Midas held firm, grasping as Opportunity with the obsession that only Madness Enhancement could provide. It would take hours to corrupt Opportunity in its entirety. Longer, possibly. It was made up of numerous, interconnected parts. Some of which were separated. To reach even the essential systems, it would take more time that Midas could afford.
+
+Madness was one hell of a drug.
+
+Taking a halfhearted leap to get airborne and avoid the crumbling earth, Armstrong manifested a monkey wrench and gave Midas a firm <strong>THWACK</strong> on the head, knocking him to his knees temporarily.
+
+Rider almost lost his grip climbing into Opportunity&#39;s thrashed and vibrating interior, Rider quickly started it up. Opportunity was sliding across the ground due to Earthshaker, meaning that traditional driving was impossible.
+
+&quot;If we&#39;re shifting left at a rate of .2 meters per second...&quot; Rider muttered, the calculation quickly done before he had even finished speaking. There was a chance, an <em>opportunity</em> to get out of this. Giving his dashboard a smack, the rover began to move, almost running over Midas as it turned around, almost crashing into a building as it did so. Even taking Szrac&#39;s earthbending into account, it was difficult to control. The rover was on its last legs, but it had more than enough power to make a retreat. It sped towards Szrac and Pascal. 
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-21 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="812040496238428230" id="message-812040496238428230">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pascal was ready to zap Szrac to smithereens (if he was even capable of that). Fortunately, Armstrong had intervened, firing lasers that launched Szrac all the way back to a nearby wall. A gaping hole in the armor&#39;s chest and Szrac&#39;s exasperated grunts were all Pascal needed to hear to realize that his opponent was in dire straits.
+
+Of course, once bitten, twice shy. Szrac wouldn&#39;t let the same mistake happen once again. There would be no mercy, as Pascal felt the ground below him quiver. He lost his balanced and stumbled around while pieces of furniture, cooking utensils and rubble started to fall around him. The house was about to crumble!
+
+&quot;Folly? You&#39;re literally bringing whole <em>buildings</em> down! This wouldn&#39;t have happened if you hadn&#39;t started tossing people through walls!&quot; Pascal protested, filled with so much anxiety and despair that the best he could do was lash out at Szrac with angry criticisms, albeit some of them seemed rather reasonable.
+
+Just when he was thinking about accepting his death, Armstrong started to make his way to the building. He was riding Opportunity, which was good, but Opportunity was huge, which was <em>bad</em>. If that humongous vehicle collided with the already collapsing restaurant, there was no doubt that Pascal would have been buried.
+
+But he still had tools at his disposal. Armstrong was having trouble handling the vehicle in the face of an earthquake, but there were objects that were unaffected by such natural disasters: Clouds. Pascal directed his miniature cloud towards the path Armstrong was taking. It started peppering the ground, the floor, anything beneath it really, with puddles of water. 
+
+Opportunity&#39;s wheels started slipping, as Armstrong lost further control. But after analyzing his route, he realized that he was being guided. The puddles were sliding him around and making him faster, allowing Opportunity to crash into its main target: Szrac.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="812040556209242133" id="message-812040556209242133">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Now, Szrac could either opt to take this blow head on, or cease his earthquake and get out of the way. <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-21 05:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="812071931175763979" id="message-812071931175763979">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Even in his wounded state, Szrac was more than a match for Pascal. After all, petty parlor tricks could not compared to the raw talent of practiced magecraft. Even in his wounded state, it would not take much effort for him to physically tear the runt apart.
+
+<strong>&quot;You believe I care?&quot;</strong> The cyborg asked, amused by his pointless complaints. <strong>&quot;My body is iron, unmoving and uncaring. It will survive any trial, any tribulation, as it has thousands of times before. Yours, however, will break. It will shatter into a thousand pieces. None will mourn your lost.&quot;</strong>
+
+However, before the magus could finish off his lesser, he was interrupted by Opportunity swerving towards him. Tch, how irritating. Was that damnable Rider so incapable of minding his own business?
+
+Scowling, Szrac was forced to deactivate Earthshaker, but he was not about to let these interlopers get away. Instead, the cyborg leapt upwards, using his metallurgy to enhance the height of the jump, and landing on the roof of Opportunity. His metallurgy came to life once more, the hull warped to create gaps for him to cling to, allowing him to hold on to the swerving rover.
+
+<strong>&quot;YOU WILL NOT ESCAPE HERE WITH YOUR LIVES.&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-21 05:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="812078043518599188" id="message-812078043518599188">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas ate the laser this time around, uncaring of his well being. It took a solid wrech <strong>THWACK</strong> to the head for him to finally let go of the machine. Anger flared up, his desires taking control. That vehicle would he his, Rider be damned. 
+
+Until he was nearly hit with the thing. He was forced to once again avoid an attack in order to not potentially die. This time, he overcorrected his movement and sent himself rolling backwards a few yards too many for him to begin to catch up with the mount. By the time he corrected himself and analyzed the scene, Rider was already barreling towards his Master, who jumped on top of Opportunity and was holding on for dear life. Or dear anger, he doubted it was accidental.
+
+No, no no no no no no! To be denied of his greatest prize, his first treasure, his first right as a King?! Unacceptable.
+
+And so, like any sane person wouldn’t do, he started to chase after. Damn the magus, damn the Rider, damn his master.
+
+A King was not to be denied.
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-21 06:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="812094921250308127" id="message-812094921250308127">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Opportunity drifted.
+
+The people at Voshkhod in the USSR could eat their hearts out. NASA won yet again! Pascal&#39;s clever use of Magecraft had given Rider a red carpet straight into smashing into the already crippled Szrac. No matter how impressive that armor was, it wasn&#39;t made in America, and as such, was comparable to paper under the weight of Opportunity.
+
+Rider would give Pascal all the medals once they had gotten out of this mess, but in order to do that, they needed to escape first.
+
+The battle would be very difficult to win with Midas going berserk and Szrac still kicking. Rider had lost offensive abilities thanks to Opportunity&#39;s guns being wrecked. There was no reason to keep fighting like this.
+
+Szrac dodged Oppy, which skidded to a halt. &quot;Ahoy there, Houston! Glad to see that you&#39;re not dead. We have an escape to make, and you summoned the right Servant to do the honors!&quot; Armstrong declared, grabbing Pascal by the shirt and heaving him into Oppy&#39;s cabin. Rider hopped in after him.
+
+&quot;Good! The earthquake stopped. I didn&#39;t know earthquakes affected floating cities.&quot; Armstrong&#39;s visor twinkled with amusement. &quot;Now begins our graceful retreat. Rider manifested another monkey wrench, and tossed it to his Master. &quot;Your friend&#39;s Servant is a Berserker named King Midas. Anything he touches gets turned into gold. Don&#39;t get touched. Whack anything that&#39;s not my loving face with that wrench. Got it? Good. We depart!&quot;
+
+Rider put the pedal to the metal as they began driving away from the restaurant, which collapsed. It took but one second for a loud <strong>THUD</strong> to be heard on the roof of the damaged rover. Rider froze. &quot;What.&quot;
+
+More scrapes came from the roof, causing Rider to poke his head out, only to be met with Szrac. &quot;Gagarin, can&#39;t you just <em>give up</em>!&quot; Armstrong spat as he climbed out of the window and blasted at Szrac.
+
+Pascal was left alone in the cabin, and Oppy swerved...
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-21 07:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="812097479637598218" id="message-812097479637598218">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Szrac was vile. Insane, even. He replied to Pascal&#39;s insults with demeaning words of his own, talking about his own superiority above everyone else. About how he would crush Pascal and Armstrong like ants. Even for an aristocrat, this was beyond the height of arrogance. It was so ridiculous that Pascal&#39;s fear had morphed into anger and irritation.
+
+&quot;Oh my god, <strong>SHUT UP!</strong> Is your brain a toaster too?! It doesn&#39;t take a genius to realize that breaking property for no reason is the <em>stupidest fucking thing you could d--</em>&quot;
+
+Said Pascal, the man who had made many stupid decisions himself. His most recent one was attempting to ram Szrac with Rider&#39;s Noble Phantasm. <em>&quot;Surely he&#39;s not delusional enough to take it head on, right? He&#39;ll just dodge!&quot;</em> He thought in his head, hoping that Szrac would get out of the way. As horrible of a person the tin can was, Pascal wasn&#39;t one who wished for senseless slaughter. It was a frail attempt to remain &#39;innocent&#39;.
+
+But Szrac did otherwise. He dodged, but he also attacked, plunging on the Opportunity and attempting to dismantle it completely. Pascal was shocked, to the point he didn&#39;t even perceive Rider dragging him inside the vehicle. He only woke up when he saw the wrench lying in his lap, along with a vague order to look out for a golden touch. Armstrong then disappeared as soon as he came, confronting Szrac while Pascal was left bi himself...
+
+...
+
+Wait, did this thing drive automatically or--
+
+<strong>CRASH!</strong>
+
+Opportunity crashed straight through the restaurant wall, demolishing it with ease due to the prior damage the structure had received. Rubble rained down on Szrac and Armstrong as the latter realized that he had left an idiot at the wheels.
+
+&quot;How do you even drive this?! There&#39;s no mana connections or circuits inside!&quot; Pascal screamed, having never driven a car in his life. Instead of grabbing the wheel, like a reasonable person, he started wildly mashing the pedals and hoping they would do something.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="812097523808337971" id="message-812097523808337971">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+The buggy sped up... <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-21 07:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="812104031144378408" id="message-812104031144378408">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Getting hold of the Opportunity was the easy part of this endeavor. The harder part would be to destroy it, and the hardest to annihilate Rider and his pathetic master. Especially when they insisted on being so ungodly persistent, like grotesque little roaches scuttling under the furniture.
+
+Speaking of which, one of those pests had reared their ugly head once more. Armstrong peeked out of the side of the Rover, firing most blasts at the hanger-on. However, the durability of his vehicle had inadvertently backfired. Szrac channeled his metallurgy into the hull, causing a sheet to shift upwards and act as a barrier. Even the cosmic blasts of a servant struggled to pierce through it, a testament to the engineering skill of NASA, and how badly this was working out for him.
+
+However, his efforts didn&#39;t end simply at defense. The hull that surrounded the inside also began to shift and change, and Pascal would notice the roof taking a much less pleasant shape -  that of spikes, slowly extending downwards like the stalactites of a cave. If left unchecked, they&#39;d puts holes in him like swiss cheese!
+
+<strong>&quot;Giving up? Only when I have ground you to ash will I relent.&quot;</strong> The cyborg answered plainly. Giving how ridiculous the situation was getting, such an absurdly chuuni statement even seemed believable! 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Feb-21 04:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="812425631736135760" id="message-812425631736135760">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Come now, Gagarin.&quot; Rider said, nicknaming Szrac after one of his fellow cosmonauts. In theory, a compliment. In practice, it wasn&#39;t. Gagarin was a Soviet cosmonaut. If anything, it was a term of respect for Szrac&#39;s skills. However, those skills could only get him so far. Opportunity was running out of metal to <em>mettle</em> with, thanks to Szrac&#39;s interference earlier. Soon, it would be a frame of plastic and various other materials. Functional? Yes. Strong? No. Able to be metalbended? Unlikely.
+
+Rider&#39;s trusty tool belt had many useful equipment in it, courtesy of being an astronaut. It wouldn&#39;t do to <em>just</em> have a laser gun. As Midas knew all too well, Armstrong had a mountain of astronaut tools at his disposal. Manifesting a laser cutter, he prepared to start cleaving through Szrac&#39;s makeshift defense.
+
+Then Opportunity hit a wall.
+
+Both Szrac and Armstrong yelled in surprise as debris rained from the skies, making a satisfying <em>donk</em> as it landed on Szrac&#39;s armor. 
+
+&quot;WHAT&#39;RE YOU DOING, HOUSTON? DRIVE IT LIKE A CAR. THE WHEEL. USE THE WHEEL!&quot; Armstrong roared as he almost fell off Opportunity, quickly grabbing onto the frame and pulling himself up. The metal cutter was lost to the ether.
+
+Snarling, he produced an industrial strength harness, used to prevent astronauts from floating away during spacewalks. Nothing in Szrac&#39;s arsenal would be able to destroy it quickly. Probably. He&#39;d need to attach it to something durable, though...
+
+Rider flung the harness into the cabin, where it connected to the seat automatically. Running across the roof of the rover, Armstrong manifested another pistol grip tool, smaller than the one used against Midas. It was bound to have pierce Oppy&#39;s armor, and hopefully Szrac as well. With a firm thrust, Armstrong lunged towards his foe...
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/170ee6731894c1a133e3c30f5f742b86-F22E6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(236,81,81)">The Attacks</span>
+
+
+        <span class="chatlog__timestamp">20-Feb-21 06:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="812456398494760991" id="message-812456398494760991">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">20-Feb-21 06:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="812456464521363516" id="message-812456464521363516">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">sus....</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/0a4b4ba5ea9b9c4b14c47e50746e366a-3903F.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(236,81,81)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">20-Feb-21 06:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="812456912016506881" id="message-812456912016506881">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">When Rider sus...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Feb-21 07:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="812467144381169671" id="message-812467144381169671">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wheels? Why wheels? Doesn&#39;t this thing have circuits?! What sort of backwards age do you come from?!&quot; Pascal shouted, mashing the pedals and spinning the wheel wildly. This caused massive swerves from the vehicle, having it crash in several buildings and lamp posts while Armstrong was busy struggling with Szrac. At this point, it was apparent that he wouldn&#39;t get Rider to their destination. If only Armstrong had a way to kick Szrac off...
+
+...Speaking off, Pascal had swerved so far off course that they were now leaving the restaurant district and heading straight for some railings. As panicked passerby ran away, Armstrong realized that they were now near the sea. It really gave his noggin a joggin... <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Feb-21 11:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="812528021441216552" id="message-812528021441216552">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With the metal plating of Opportunity reduced to near nothingess, Szrac was quickly running out of advantage of leverage against Armstrong. Meanwhile, Rider could simply continue to conjure weapons and tools to suit his needs out of thin air. It evidently wasn&#39;t sustainable, and the magus was certain to lose once he ran out of resources.
+
+Fortunately, the idiot at the wheel had no understanding of how to operate such complex machinery. He swerved about wildly, the rapidly shifting momentum further fueled by the wetness of the wheels. Glancing up, the cyborg would notice the railing ahead.
+
+They were nearing the ocean.
+
+An idea came to Szrac. Though he was incapable of attaining victory, he could ensure that his opponents suffered dire defeat. 
+
+<strong>&quot;Drown.&quot;</strong> The mercenary stated simply, channeling his metallurgy once more into the metal spikes in the cockpit. Using what little metal remained, the spikes shot down, piercing into the steering wheel and locking it firmly into place. With that last act, Szrac leapt upwards, the momentum of the Opportunity leaving it behind as it skidded off.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Feb-21 01:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="812549299111854111" id="message-812549299111854111">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;FUCK YOU DARTH VADERRRRRRRR!!!&quot; Armstrong screamed as he and Cook fell into the ocean to the deaths.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Feb-21 01:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="812550439983382528" id="message-812550439983382528">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">we call these DUBS</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Feb-21 09:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="812857243359641610" id="message-812857243359641610">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rider almost wanted to give Szrac a begrudging round of applause. The man was positively, absolutely batshit insane, but there was a method to his madness, unlike his Servant. As long as Szrac defeated his opponent, it didn&#39;t matter. Honor? Pride? Irrelevant. He would destroy both Servant and Master with both a nuclear bomb and a knife to the back, as long as it did the job.
+
+Armstrong respected that. That didn&#39;t stop him from wanting to throw Szrac into a bathtub with a toaster.
+
+Opportunity was a lost cause. There was no feasible way it would survive the journey home. It had done its job. Precision NASA engineering.
+
+&quot;Hey, get back here! WHY&#39;RE YOU RUNNING. GET BACK HERE!&quot; Rider snarled as Szrac got out of dodge, leaving Armstrong, Pascal, and a heavily damaged Opportunity. Despite the fact that Pascal didn&#39;t know anything about driving, their ride had become... <em>straight</em>. As though the wheel were locked in place. Locked...
+
+Oh no.
+
+&quot;He did NOT!&quot; Armstrong said, crawling back into the cabin with Pascal. A spike was embedded in the steering wheel, courtesy of Szrac. Armstrong laughed. &quot;I <em><strong>singlehandedly</strong></em> built spaceships on my own. I <em><strong>singlehandedly</strong></em> performed all the mathematical calculations and engineering for mankind to reach beyond our little ball of water and rocks, and he thinks that a metal spike is gonna stop me?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="812857271372480542" id="message-812857271372480542">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Singlehandedly? That didn&#39;t make much sense. However, there were more pressing matters to attend to. Armstrong first tried to remove the spike, but to no avail. Szrac had done an excellent job with his last spike, much to the cosmonaut&#39;s chagrin. Armstrong punched through the dashboard of Opportunity, and placed his hand inside the mechanisms that allowed the steering wheel to steer. He felt for the gear that controlled the turning, before slicing off the steering wheel and forcefully moving the gear. Such was the power of a master mechanic.
+
+Opportunity barely shifted to the left before they were airborne.  Luckily, the slight turn had them land on a bump, which gave Opportunity a bit more height. 
+
+If Szrac expected Opportunity and its passengers to fall flat into the ocean, he would be very disappointed (and outraged) to see Opportunity casually float away, as though under the effect of lessened gravity. The stupid rover and the astronaut both had the same anti-gravity ability.
+
+Grabbing Pascal by the collar, Armstrong crawled to the top of the rover. &quot;I&#39;m going to jump when we&#39;re at the peak of our arc. We&#39;ll make an escape on foot. Ready? Three... Two... One... Now!&quot; Rider shouted, leaping through the air, disdainful cook in hand. They landed on the railing a few hundred meters from Szrac, out of his view. Opportunity crashed into the ocean, before quickly sinking.
+
+They had gotten away.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/80e65f2408d1d92fa857fc009a966c73-57883.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="King Midas#0000" data-user-id="800157760419397632" style="">King Midas</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-21 12:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="813078180281188362" id="message-813078180281188362">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Midas was losing distance, and fast. The rover kept going, Szrac stuck on the top and Berserker tailed. At this point of the chase, one would be hard pressed to see him as anything but a feral animal. His face contorted with rage, movements ragged and desperate. Eerily similar to a dog chasing after a car. No one currently near the mount was probably looking back at the servant not currently attacking, but if someone did they’d see a terrifying man with wide eyes and a lust for the ride they were currently in or on.
+
+Midas normally would’ve continued to follow the mount long after Szrac jumped, even after it had jumped from the ground and sailed into the distant sky only to sink into the ocean stretching as far as the eye can see. Szrac would’ve been down a servant and out of the Holy Grail War before it had even really began.
+
+Yet something reached deep into his mind. Perhaps a long missing conscience or a voice of reason in the sprawling labrinth one would call his thought process. A cry to stop, a plea to cease their path forward to a sure death.
+
+So he obeyed. His steps lost their energy, momentum carrying him forward but definitely slowing down. Sea air peppered his skin as he neared the edge. It looked like he was destined to meet a watery end, no active measures had been taken to slow himself down.
+
+Until he dug his feet into the ground one last time. Concrete cracked and flew away from the miniature trenches he put into the street. His energy was transferred and depleted until he stood over the edge where there once was railing and safety from the abundant ocean.
+
+Berserker watched the Rover plummet into the sea, falling and falling until water swallowed up the treasure he so desired.
+
+Gone.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="813078306626207764" id="message-813078306626207764">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He stood there for a few moments longer, entranced by something. Water continued to sprinkle him, ocean never ending. Or perhaps the remnants of his brain calmed that insatiable greed deep in his heart for but a few moments?
+
+Not in a million years. He roared into the air, hands clawed at his sides. Midas was back to his old Berserker self, and there were no words to describe his rage. The only thing now was to see how big the bill would be for all the shit he was about to tear apart...
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/4b910fb5f8b05f8c405e43ef26a169fe-4D54E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Szrac Vaughn#0000" data-user-id="800157760419397632" style="">Szrac Vaughn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-21 12:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="813081943955865600" id="message-813081943955865600">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The cyborg landed feet-first onto the concrete ground, the momentum causing him to skid slightly. As he slowed to a halt, Szrac had nothing else to do but watch the Opportunity float away, and for its inhabitants to escape.
+
+He stood there for a moment, silently simmering in anger. Certainly a more dignified reaction than that of Berserker, who screamed with primal anger as he watched their escape. Judging from his understanding of Madness Enhancement, that seemed to be standard. It would take some time for his boiling insanity to cool.
+
+The cool sea breeze brushed against the burnt gap in the Sarcophagus, brushing against the dermis. It was uncomfortable. He did not like it.
+
+This would be a matter of patience. In time, Szrac would encounter that pathetic excuse for a master and his Rider once more. He would simply have to ready himself for such an occurrence. Thus, he turned away, walking back towards the Power Plant.
+
+While Midas let loose his anger in a wild rampage, Szrac would focus his on fine-tuning his body and mind for the next fight to come.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-D560E.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="800157760419397632" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-21 05:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="813168018938396692" id="message-813168018938396692">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;AAAAAAAAA&quot;
+
+Pascal had been screaming non-stop ever since he saw spikes emerge from inside Opportunity. They pinned the steering wheel in place, preventing the chef from making any movements at all.
+
+&quot;Rider. Rider! Get back here you--&quot; Armstrong had already descended once he realized something was wrong. He started ranting out loud in a manner similar to Pascal, blabbering about things that his Master didn&#39;t quite get.
+
+It didn&#39;t matter though. What mattered was their survival, which Armstrong so gracefully provided as he revealed Oppy&#39;s secret function: Low gravity. Pascal couldn&#39;t help but be mesmerized as he saw the buggy temporarily float. They were <em>flying.</em>
+
+...For now, at least. Armstrong quickly warned him that they would have to jump and that Oppy&#39;s fate was sealed.
+
+&quot;Wait, wha--&quot; He was tossed out by his own Servant before he could even compute the decision.
+
+They landed near the docks, noticing a stink eye belonging to Szrac and Midas from a large distance away. Pascal didn&#39;t waste time, immediately running away in the opposite direction and avoiding the Master &amp; Servant pair like the plague. Armstrong followed suit, as they eventually managed to hide themselves in one of the many alleyways that populated the restaurant district.
+
+&quot;....We&#39;re so <em>fucking</em> dead. That guy in the metal armor was an aristocrat! They saw my face! They saw <em>our</em> faces! We&#39;re toast...&quot; Pascal exploded, sitting on the ground and covering his face with his hat. The gravity of the situation was starting to crush him. He would have to change islands yet again... <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20restaurant-district%20%5B771104486591561760%5D.html_Files/533be664d81231e822e25379dde7cd7e-CE079.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="800157760419397632" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-21 08:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="813211885096665144" id="message-813211885096665144">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Armstrong snorted indifferently as Pascal had a mental collapse from the previous fight. &quot;Please. &#39;That guy&#39; is going to have to deal with fixing his own armor, healing, and keeping Berserker from running into my open arms. He won&#39;t be back for a while. It&#39;s <em>because</em> he&#39;s an Aristocrat that we&#39;re safe. He can&#39;t sent attack raptors or dogs after us, especially since Midas wants my head on a spike. He&#39;ll heal, then we&#39;ll fight again. It&#39;ll take a while.&quot;
+
+Squatting down on his knees, Rider gently put a hand on Pascal&#39;s shoulder. The heat of battle was dying down, and a quiet calmness had come over the Servant known as Neil Armstrong. &quot;Besides.&quot; He said quietly. &quot;They haven&#39;t seen <strong>my</strong> face yet.&quot; He tapped his visor.
+
+&quot;Now come on. Up and at &#39;em.&quot; Armstrong pulled Pascal to his feet, and began marching off. It didn&#39;t take him long to turn around. &quot;If it makes you feel any better. I haven&#39;t taken any damage. Midas is looking a lot worse for wear, and Gagarin&#39;s got a few massive chunks in his armor, thanks to you. The worst you&#39;ve got is a couple scratches and an eye opening experience. 
+
+Armstrong wistfully looked up. &quot;Oh, and Opportunity, I suppose. No matter, he&#39;s already in the process of disappearing. It&#39;ll take a bit of time to get enough strength to resummon him, sadly. You should be proud, Houston! You defeated an Aristocrat! Defeat was a strong word. Szrac was probably thinking of ways to flay Pascal as they spoke, but that was neither here nor there.
+
+&quot;Let&#39;s go get some beer or something. Might as well celebrate your advancement from a spineless wimp to a full fledged commander!&quot;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

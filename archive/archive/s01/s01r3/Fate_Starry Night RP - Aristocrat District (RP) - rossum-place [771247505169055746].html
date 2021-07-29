@@ -1,0 +1,1350 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - rossum-place</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Aristocrat District (RP) / rossum-place</div>
+
+            <div class="preamble__entry preamble__entry--small">Near the divide between the Aristocrat District and the Old Test Site lies a complex known as Rossum Place, well known for its alchemical and magitech repair services. Supplier of mana batteries, Home of the Tovesky Family and their Homunculi.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-6CDC4.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(236,81,81)">Nat</span>
+
+
+        <span class="chatlog__timestamp">30-Oct-20 04:08 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="771465487132393482" id="message-771465487132393482">
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/image0-95C9C.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/image0-95C9C.jpg" alt="Image attachment" title="Image: uSaE79Z-7A47E.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div> 
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-11A04.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778878866873516082" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="816320919647158282" id="message-816320919647158282">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The rain tapped against the windowsill gently, it was a calm, reassuring sound to Kari. One that she really needed in this instant. While it usually provided a rhythmic beat that really let her think and reflect upon her past actions and plan ahead in those rare quiet moments, this morning, it was a counter to the relentless ticking of the family clock that stood imposingly in her bedroom. She rarely paid it attention before but today it served a grim purpose, every second ticking down to a certain end that she did not know and could not go around.
+
+Today was the day she was to begin her offensive against those who wronged her by taking her father’s life. The day she had dreamed about for almost four long years, and had prepared countless ideas on how to bring the murderer and the twisted system of the city that spawned them to a swift justice. She should be rearing to go from the moment she got up but she was anything but eager.
+
+What it was she didn’t fully know, perhaps it was how she had gotten out of that fight with the right hand of the Yakuza by the skin of her teeth and losing Ada in the process or maybe it was how easily she had been pulled away from that goal since she had gotten back and wrapped up in the drama of others that had nothing to do with her. They were enjoyable, she couldn’t deny that. 
+
+Yet why they popped into her head was not comforting at all. They were those events on the side of her mission that served like warning signs for the road ahead and offered detours to her if she wished. Yet to turn back now would be to dishonor her vow to her father’s memory and give up that shot at stomping down on the rot within the city that was likely tearing more families apart by the day. And that’s when it hit her.
+
+Karolina Tovesky, the Fourth Heir of the Fourth Branch and master of ice-based magecraft, had gotten cold feet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816320989151232082" id="message-816320989151232082">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Normally, alcohol would provide the necessary fortitude to carry on ahead but this was an ailment that would not be cured by liquid spirits. No, they’d likely make the problem worse, as loath as she was to admit it. She rolled out of bed and dragged herself over to the bathroom and filled up the sink with water as cold as the faucet would allow it. 
+
+Taking a deep breath in anticipation, Kari plunged her head into the bitter cold, hoping that the shock would get her mind sharp again. Yet that dramatic reaction she expected never came as a familiar pulsing sensation spread through her face. Oh that’s right, she had forgotten about the very system that kept her magical circuits from killing her. Those yards and yards of plumbing flush with coolant were needed to control the temperature of that metal coffin of circuits so her heart wouldn’t melt under it all.
+
+It was both a gift that gave her an almost bottomless supply of mana to use but also a curse that had scarred and disfigured her body on the inside. Perhaps she should have waited for her mind to cool before going through with the installation so soon after her father’s death. Still it was useless to obsess over that choice now. There was no going back so she might as well move forward like the stream of water now leaving the sink as she sighed in disappointment. 
+
+Perhaps it would be best to do the same and head downstairs to see if Ada or Kafka was around. After all, it was no use trying to take back what had already happened. There was a choice to take now and perhaps this once, she wouldn’t be so focused on her own goal, the past few weeks notwithstanding, and ignore the advice of others. She could count on that much from Ada...
+
+<span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-22017.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778878866873516082" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 01:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="816368911947006003" id="message-816368911947006003">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em><strong>CRACK</strong></em>
+
+Ada paced around the study in a frenzy, holding onto the severed end of a tablet. On its dying screen flickered the serene face of a woman. It was a snippet from one of ServantPedia™️&#39;s many pages. To be even more precise, it was a portrait of Ada Lovelace in her prime, smack down the middle of her Servant profile. The portrait was quite pleasing to the eye. Whoever painted it must&#39;ve been paid a good sum for their superb work.
+
+&#39;<strong>What in God&#39;s name is this load of trash???</strong>&#39; Servant Ada sounded anything but pleased. &#39;They burned clean of my notes and letters but not this! It&#39;s always the portrait. <em>Always</em> the god damn portrait! Who gave them permission to upload it onto the wiki?!&#39; He brought the tablet up to his face and started scrolling down the page in hopes to find the page&#39;s contributors, but then realized that the device had already been snapped in half.
+
+&#39;<strong>WHO BROKE IT?</strong>&#39; He snapped the already broken device into two fourths, then tossed both chunks away. One of them landed in the trash can by the wall, the other missed it by a few feet.
+
+Ada Lovelace was extremely displeased.
+
+&#39;Useless hunk of junk!&#39; He mumbled under his breath, then strode towards the only remaining (and functional) device in the room: Kari&#39;s personal computer. He slid over the desk, ripped a few cables out of his sleeve and jammed them haphazardly into the side of the computer. 
+
+A few beeps and boops later and the computer unlocked itself. Ada didn&#39;t even bother with the mouse and keyboard. Using the cables to mimic mouse and keyboard signals, he navigated his way to a browser, then hacked into ServantPedia™️ using a throwaway expert account with the privileges to edit wiki pages without needing approval. Once that was done, he immediately started scrolling through his own page until he got to that same portrait again.
+
+A few centuries later and it looked horrid as ever. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816368954053492778" id="message-816368954053492778">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ada moved to delete the image, but then an idea crossed his mind. Pulling up the page&#39;s edit history, he traced the image back to its original uploader and perma banned them from accessing ServantPedia™️ ever again. He then did the same thing to all other editors who contributed images on his page. Still not feeling satisfied, he started removing edit permission of his page from every single account, including the admins&#39;, aside from his own throwaway one.
+
+Unfortunately, his page seemed to be associated with quite a few other notable figures of the past. In tempering with the editors of his profile, a few other Servant pages started becoming affected as well. The association spread like wildfire and in the span of a few minutes, the entire website was under siege.
+
+&#39;That&#39;ll teach them to mess with me,&#39; Ada hummed to himself as he continued wreaking havoc on the world&#39;s most trusted (and only) Servant database. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-11A04.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778878866873516082" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Mar-21 02:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="816734380663111690" id="message-816734380663111690">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kari came down into the kitchen, hoping to catch one of the homunculi that she often saw throughout her stay. She knew Kafka typically lounged here in the mornings, always willing to give Kari a few minutes of his time and regardless of his workload. Yet the room was completely quiet except for the sound of rainfall outside. 
+
+The only thing out of place was a single cup of freshly made coffee siting on a tray, a mint sitting beside it for afterwards. Seeing that made Kari smile a bit, even when he wasn&#39;t there, Kafka always was looking out for her. Now all that remained was to find Ada and see if he was more ready for the grim affair of the day than she was. 
+
+Of course that was before she heard things get violently thrown around within the study. Naturally, Kari dipped into the study to find several tables and terminals shattered around the trash can but that was a secondary concern to the figured hunched over her own personal desk and her own computer, laughing like a mad man. 
+
+&quot;Ada, what is all of this?&quot; Kari said, her voice a bit more meek than usual, trying to be as stern as possible. This would be curious coming from someone as typically aggressive as Ms. Tovesky. Clearly there was something bothering her. Though she was concerned herself with Ada&#39;s current condition. &quot;And what are you doing with my computer.&quot; 
+
+<span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-22017.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778878866873516082" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 03:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="817122382636515348" id="message-817122382636515348">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;<strong>This</strong>, Miss Kari, is me righting the course of history with weapons of the future.&#39; Ada didn&#39;t even bat an eye at Kari&#39;s cross examination. He was simply helping a noble cause as far as he was concerned; it marked his first hard won battle of the day, and he deserved to bask in the glory of his triumph for at least another minute.
+
+Ada held up an arm and beckoned Kari over. He took the only seat in front of the desk, so Kari would have to make do with standing...until her Servant dragged her unceremoniously into his lap. It would&#39;ve been quite the bold gesture, were it not for the fact that Archer&#39;s mechanized leg was about the most uncomfortable seat within at least a ten mile radius. Archer, of course, did not sweat such small details. Instead he directed Kari&#39;s attention to the screen, which was refreshing at quite the alarming rate as ServantPedia went through a meltdown. 
+
+&#39;Just a moment.&#39; He slapped the side of the screen quite hard like some computer illiterate trying their hands at fixing a faulty computer. Yet somehow, the screen magically stabilized. The flashing stopped; a new browser window sprang up on the right half of the screen, showing both Master and Servant the clean and (slightly) archaic front page of Persepolis&#39; city wide web.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817122422410575932" id="message-817122422410575932">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ada tapped the only remaining image he hadn&#39;t deleted from his profile. &#39;We&#39;re too far from archive cities to retrieve their catalogues. Same with auction sites. Who gave Persepolis&#39; upper management permission to park this city so far away from everyone else? You&#39;ve been to places, however.&#39; It wasn&#39;t hard to pull up Kari&#39;s past itineraries. Kari was probably starting to regret giving his Servant so much agency over household appliances. Ada, once again, did not sweat such small details. After all, data privacy wasn&#39;t really a thing until after he had passed away.
+
+&#39;Any leads on where the originals could&#39;ve been?&#39; He glanced at Kari when she didn&#39;t immediately answer, or come at him with a wrench. &#39;Got on the wrong side of the bed today?&#39; He joked, &#39;Or are you actually compiling a list of auctions for me to grace in person?&#39;
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-11A04.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778878866873516082" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Mar-21 02:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="817278061954990110" id="message-817278061954990110">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wha- hey, what do you think you&#39;re doing?&quot; Kari said, being shaken somewhat out of her stupor by Ada&#39;s hand suddenly grabbing her and put her into Ada&#39;s lap. It was not only uncomfortable to sit on because of the bulky machinery but also because the metal began to press into her own implants underneath her skin. To top it off, Ada&#39;s leg started to accumulate a layer of condensation as the chilling air rolling off of Kari&#39;s cooling system clashed with the steam-heated boiler plates below.  
+
+She rustled around frequently as she constantly tried to find at least one somewhat tolerable spot before resigning herself to it and pressing up against his chest in order to minimize contact with the harsh, unforgiving specifications of his artificial legs. He could her mumble all the while as she watched her servant vandalize site after site in his own personal vendetta that seemed so silly to her. She made sure to jab him in the stomach with her elbow when he pulled up her past itinerary. 
+
+&quot;Honestly, I have no clue nor do I particularly care for where they are. Like even if you find them and get rid of them, you will still have the memory of it burned into your mind forever. Sure you can change people&#39;s perception of what happened but the act still happened and the scars it gave you will always be there to remind you of it.  You just can&#39;t chase after the past and expect it to change if you remove something or someone from the picture. It&#39;s so stupid...&quot; Kari trailed off as her words sounded almost like they were just as much pointed at herself as they were at Ada. She took a few breaths as she thought on it.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817279220313096222" id="message-817279220313096222">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She couldn&#39;t tell if it was Ada or herself that she was more annoyed with at the moment but it was a kind of confrontation that made her soul feel uncomfortable too like if she found the floor around her start to slide away with nothing but a dark abyss below, threatening to leave her falling. She had to do something but she was starting to question what that was that she really wanted to do. 
+
+Shifting once again against Ada, the prod of metal made her refocus. She sighed at her weakness in letting herself question her own goals. There was work to be done and the deadline was fast approaching. 
+
+&quot;Ada, I hope you found the time to look over the target files. We do have work to do today after all and we can&#39;t let our own little hangups get the best of us,&quot; She said, almost as if she had forgotten her previous state though if Ada did care about the small details, he would catch the bitter tang of denial laced into her tone just like the hint of liqueur in her coffee. 
+
+<span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-22017.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778878866873516082" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Mar-21 02:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="817466753043005502" id="message-817466753043005502">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Nonsense. Just like all data, memories are always susceptible to degradation over time and space. Have you mages not invented spells that temper with the mind as well?&#39; Ada wasn&#39;t so easily convinced. &#39;I am not trying to bury the past. Quite on the contrary. ServantPedia receives more traffic than all the world&#39;s libraries and museums combined, therefore I cannot allow it to host information provided through the lens of bias. It is simple as that. Or are you going to accuse my actions of bias as well?&#39;
+
+Ada drummed his fingers against the tabletop, the tap-tapping blending in with the rain hitting the windows. The rhythm pleased him immensely.
+
+&#39;Unfortunately for you, <strong>I alone have the right to pen my own page.</strong> And I say no portraits. And look, it&#39;s gone.&#39; As if on cue, the last of the images disappeared from his page in one go. Ada mistook Kari&#39;s silence for protest and burst into laughter. &#39;You never struck me as the type to be hung up on the past, Miss Kari. Besides, why sulk over a cheaply made profile when the genuine article is right in front of you, hmm?&#39; 
+
+Of course, it was very like the head of the Tovesky family to immediately shift gear and go into work mode to dodge questions. Ada shrugged off the cold shoulder and reclined in his seat. 
+
+&#39;I have them downloaded right here.&#39; He tapped the side of his head. &#39;Hard to say that I spent any time at all perusing them. There just wasn&#39;t much worth looking at. Not compared to the fine specimen right here, at least.&#39;
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817466787184377867" id="message-817466787184377867">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ada&#39;s eyes bored into her. Or rather, the underlying, unmage-like grid embedded underneath her skin. Kari&#39;s squirming hadn&#39;t escaped his notice. It seemed to be genuine discomfort stemming from a most curious support system sprawled all over her body. 
+
+Intriguing.
+
+The Lord taketh and the Lord giveth. Suddenly, losing Saber didn&#39;t feel so bad. Ada pondered for a moment just why he had subjected himself to Saber withdrawal by hacking into everything he could get his hands on when he could&#39;ve used all that time to tinker with Kari&#39;s cooling system. What a waste of time.
+
+But thankfully he could still make up for lost time, starting with some data collection.
+
+&#39;Master,&#39; Ada addressed Kari solemnly. &#39;There is something I wish to do before we leave.&#39; The cables from his sleeve retracted from the computer and floated menacingly in front of Kari instead. Oh no, she was well aware of what that gesture entailed...
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-11A04.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778878866873516082" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Mar-21 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="817476461413138443" id="message-817476461413138443">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Perhaps we do but only cowards would dare use them. And I believe I&#39;ve made it very clear I am no coward,&quot; Kari shot back at Ada, her blue eyes more frigid than ever as they bore into Ada&#39;s skull like an ice pick. &quot;I am not a machine to be resest and I certainly hope you don&#39;t see yourself that way either...&quot;
+
+Her annoyance at herself turned more and more outward as Ada made light of her state and openly laughed. Her silence at Ada&#39;s question of bias provided a sufficient answer in its simplicity. She was starting to feel more than a little upset at her servant to put it lightly though what he did next totally threw her out of balance. 
+
+&quot;Excuse me? Don&#39;t tell me you&#39;re trying to use your seductive devices on me to get out of work, you... you deviant!&quot; Kari instinctively balled her fists, for she was not one to run and hide when cornered. Still the blush coming to the surface of her cheeks spoke volumes of her confused state and embarrassment. She became further concerned and irritated as Ada turned his cable&#39;s attention to her body and the mechanical system which lay within. &quot;Oh no, you&#39;re not violating me like you did to Saber! I saw what you reduced her down to, ain&#39;t happening to me, not unless I control how this is going to go!&quot;
+
+She jumped back but lowered her arms as her mind kicked in. She still viewed Ada with suspicion. She had to word what she said next carefully if she was to get out of this in one piece and sound of mind. It was just one thing she would bear and then they could finally get on to what she had put off for weeks now.  &quot;If you want to investigate this mechanical curse I&#39;ve given myself, fine. However, you try one lewd thing or stick a cable in one of my biological orifices rather than the actual cybernetic ports, I will cut your cables or worse. Am I understood, Archer?&quot; 
+
+<span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-22017.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778878866873516082" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Mar-21 01:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="817807443387744267" id="message-817807443387744267">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I see,&#39; said Ada. &#39;Thank you.&#39; He took Kari&#39;s accusation in stride. &#39;I&#39;ve heard that brilliance and deviance go hand in hand, though I believe the word &quot;genius&quot; would suffice.&#39; He smiled curtly, then pushed Kari&#39;s keyboard out of the way and manifested the Chicago Typewriter in its place. A handful of glitch flakes flitted around the laptop in a halo, as if the gadget itself was a projection. Yet it remained corporeal as ever when Ada typed a string of commands into it. 
+
+&#39;Don&#39;t worry,&#39; Ada noticed Kari&#39;s agitation. &#39;I know the process like the back of my hand. You&#39;ll be fine. Just breathe normally.&#39; He threw up his hands when that clearly turned out to be counterproductive and riled her up even more. &#39;Saber was a special case. Her attire was <s>distracting</s> a challenge to get around, plus she refused to cooperate. It&#39;d be one thing if I could persuade her beforehand, but I had the suspicion that she didn&#39;t do well with conversations.&#39;
+
+And that was why he and Rider resorted to manhandling Saber? Scientists truly were a force to be reckoned with. Perhaps it would be in Kari&#39;s best interest to keep these nerdy Servants away from one another in the future...
+
+Ada tossed the ends of a few cables Kari&#39;s way.
+
+&#39;If you are concerned with my inexperience of the female anatomy, feel free to do the honors. It&#39;s not like I don&#39;t have standards,&#39; He let out a sigh, as if he was underwhelmed at the thought of Kari&#39;s supposition. &#39;Hand over the data and I will leave you alone.&#39;
+
+<em>For now,</em> he thought. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-11A04.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778878866873516082" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Mar-21 02:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="817819703551983638" id="message-817819703551983638">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kari still viewed Ada with some suspicion as he batted aside her remarks, though it was hard to stiffle a laugh at his comments about Saber. They had both seen what that giantess was like and Ada&#39;s words rang true. It helped Kari relax a bit as she prepared to let Ada examine the web of tubes and wires that ran throughout her body like a second circulatory system. She grabbed the ends of the cables and set them beside her as she began to undress. 
+
+&quot;You know, this won&#39;t be the first time you&#39;ve seen it, though I wish you had remembered that moment...&quot; Kari said, avoiding Ada&#39;s gaze as she took off her jacket and then her gloves. She seemed to hesitate before taking off her top, her fingers fidgeting at the hems. He might notice that the tips were the same type of grey as frostbite. &quot;I guess that&#39;s part of why I wanted you to have those memories, to make it a bit easier for both of us.&quot;
+
+She sighed, hesitated again but finally took off her turtleneck in one fluid motion, revealing the body underneath. It was surprising how similar upon close examination Kari&#39;s arms mirrored the same layout of artificial circuits as the homunculi that patrolled the halls though along them ran what looked like large violet veins, surrounded always by a faint redness as if the body was suffering an allergic response to them. Her magic crest resided on the very tops of her arms and gave off the illusion of looking like robotic joints with the gears and mechanisms exposed. Two cooling veins seemed to jump out above and below the crests before diving into the center of them.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817819742592041011" id="message-817819742592041011">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Even her sports bra could not hide the rather large metal plate placed over her sternum or perhaps it was a replacement for it entirely to protect the systems within. All of the cooling lines seemed to flow towards where her heart roughly way though Ada would also notice vents placed just under her armpits exuding a hot but light breeze.
+
+She took the cables and gently placed them in metal ports scattered across her arms and chest, each confirming connection with a click. Though she soon realized she had a few left and brought her softened eyes back to Ada. &quot;Listen, can you just fit a few into my back ports for me? You may not remember but they should be easy enough to find for a &#39;genius&#39; like yourself. Once you have that done.... <em>sigh</em> I guess I&#39;ll be all yours.&quot;
+
+Kari turned around and the cybernetics were even more obvious to see. Thin slices of black metal were jutting out of her shoulder blades, coated in a light covering what appeared to be coolant. Other fins seemed to be nestled right underneath the skin. The contours of her back were dotted with silver ports or what appeared to be something akin to branching pipes and wires, not unlike a second circulatory system. Once again, they might also resemble that circuitry found among the homunculi. She may not have been the metal monster Szrac was but her body was just as scarred in a different way. 
+<span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-22017.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778878866873516082" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Mar-21 03:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="817845704089272361" id="message-817845704089272361">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Well, well, what do we have here?</em>
+
+Even though Ada already had an inkling when Kari sat in his lap, he still felt his pulse quicken when Kari finally exposed her back to him. The sight was simply stunning. He had never experienced what love at first sight was like, but if he had to guess, then this would be pretty close. Circuits and ports lined Kari&#39;s arms and torso, sewing into her flesh a map of silver and violet. It was intricate yet crude, a life support of sorts that should never been seen inside a human as opposed to a machine. It was an industrial grade cooling system, for goodness sake!
+
+Whoever customized it to fit inside a human was no doubt an extreme sadist. And that alone spoke volumes of the severity of Kari&#39;s condition. 
+
+&#39;Goodness me, now I&#39;m even more jealous of my previous iteration. I hope he didn&#39;t take the liberty to work on you already, because that&#39;s exactly what I&#39;m going to do. Though knowing myself...&#39; He clucked his tongue in dismay, &#39;There is a near 100 percent chance that I have already beaten myself to the punch.&#39; Ada commented as he pulled out a few more cables out of nowhere and stuck them into the exposed ports on Kari&#39;s back.
+
+&#39;Aha. <em>I knew it!</em>&#39; He exclaimed like he had caught someone in unspeakable acts, only in this case it was himself. Or rather, a different version of himself. &#39;This is my handiwork. There&#39;s no doubt about it, I&#39;m the only one I know who would order these tubes by the musical pitch they produce when coolant flows through them. Nice work, previous me!&#39;
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="817845744219586561" id="message-817845744219586561">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ada kept mumbling to himself as he metaphorically dissected Kari from within his laptop. This wasn&#39;t even half as vulgar as what had happened at <span class="mention">#crab-and-lettuce-restaurant</span>, yet some it felt worse. Way worse. It was one thing to listen to her body being treated as data sets, but another to listen to her Servant having a one-way conversation with himself, even though they were technically two different entities.
+
+Just what had she gotten herself into...?
+
+
+Ada suddenly slammed his laptop shut.
+
+&#39;<strong>That&#39;s enough.</strong>&#39; He said, getting up from his seat. &#39;I knew I shouldn&#39;t have praised him so quickly. Miss Kari, what did the previous me do to you? Your cooling system is a sloppy patchwork held up together with tape and glue. Aesthetically speaking, it&#39;s flawless. But functionality wise? If I hadn&#39;t recognized my own signature, I&#39;d have suspected that you summoned a different Servant pretending to be myself! But this only makes it worse!&#39;
+
+Ada grabbed Kari&#39;s arm and started inspecting the veins with his eyes. 
+
+&#39;Look at this. Your body is clearly rejecting these tubes! An allergic reaction is the last thing I&#39;d want for an integrated system like yours, but he just left it like that? Unforgivable. <em>I</em> was summoned with <em>his</em> Spirit Core?!&#39; He narrowed his eyes in disgust. &#39;Inconceivable!&#39;
+
+He was furious!
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-11A04.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778878866873516082" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Mar-21 01:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="818174801133830155" id="message-818174801133830155">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kari had thought that by showing Ada the secret of her power and discomfort that it would be easier for her to feel some semblance of comfort and end the shame of having bought her near-limitless supply of mana at the cost of her body. However it seemed to only make her feel worse and want to slither away. Ada&#39;s clinical dissection of his past work and fascination with the system within her brought back painful memories of when they first implanted the system to manage the artificial circuits she demanded to be placed around her heart.
+
+Still she felt compelled to set the record straight as Ada criticized his past self with out knowing the full picture. 
+
+&quot;You weren&#39;t there, Ada. We were both on our last legs after having faced the right hand man of the Yakuza and an Assassin servant. You were just as angry then as you were then, furious you stuck in a deficient container. Yet he ... he showed kindness when I showed weakness and bore my back to him. He kept me alive with the last of his energy, a parting gift of passion even if it did not fix everything,&quot; Kari said, looking over her shoulder at the man at war with himself. &quot;You two really are one and the same even if you don&#39;t want to admit it.&quot;
+
+&quot;Now if you want to beat his efforts, I&#39;ll give you an hour to refine my system as much as possible but no longer. We do have business to attend to today and we can not waste anymore time. What do you say, think you can best your own work?&quot;
+
+<span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-22017.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778878866873516082" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Mar-21 03:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="818196440081235978" id="message-818196440081235978">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ada raised an eyebrow. &#39;Is this a challenge? You wish to have me fix what the previous me could not?&#39; His eyes were stern and his voice quite serious as he took a long, hard look at the veiny fixture on Kari&#39;s arm. &#39;Do not cover for him. I have no interest in my previous iteration&#39;s noble cause, but a botched job is a botched job. I can hardly consider this a challenge. What I propose is a complete rework of the system, and it simply cannot be done in an hour. I refuse to settle for anything less than perfection.&#39;
+
+Ada said with a tone that clearly indicated he was not open to negotiation. The lackluster performance of this other him had disappointed him greatly, and Kari&#39;s explanation only aggravated him further. Were he placed under the same circumstances, maybe he would&#39;ve done the same. But that was neither here nor now. The current Ada Lovelace hadn&#39;t the experience to share that same sentiment, and right now, residing in the finest S.E.R.V.A.N.T. frame and well fed on mana batteries, was a pampered genius far too detached from the concept of &#39;limitation&#39; and &#39;working with what you&#39;ve got&#39; to even begin to consider the truth in Kari&#39;s words.
+
+In other words, he was well and truly pissed.
+
+&#39;Me, barely making it through a fight versus an Assassin class Servant? Surely you jest.&#39; He said, exasperated. &#39;Need I remind you of the scrimmage with the red Saber? I matched Saber with my worst hand and was able to hold my own. What does the Assassin class have that I lack? When it comes to the art of assassination, surely nothing can compare with a well-calculated shot from afar?&#39; Having only snippets of secondhand knowledge was driving him nuts. This had to be a bug. He couldn&#39;t allow any version of himself to drag his name through the mud.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="818196466522128445" id="message-818196466522128445">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I have a request, Miss Kari. If we were to encounter an Assassin class Servant during our search, please allow me to handle him my own way. In exchange, I will administer a few quick fixes to your cooling system, but the full operation will have to be rescheduled for another time...&#39;
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Aristocrat%20District%20%28RP%29%20-%20rossum-place%20%5B771247505169055746%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-11A04.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778878866873516082" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Mar-21 03:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="818204995941302333" id="message-818204995941302333">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You&#39;d be surprised how much a defective SERVANT suit could ruin your performance,&quot; Kari bit back, flipping her hair away from a cable though it did come off as smug. &quot;Though you&#39;ve been doing wonderfully in the new model. Amazing what can change in ten years for technology, eh?&quot; 
+
+&quot;Oh and I have no doubt you&#39;ll do well. Red Saber was a more challenging fight but if the Assassin is the one I remember, do stay on your toes. He has a tendency of punishing overconfidence. And I accept your wager. Now the clock&#39;s ticking so show me how much better you are...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+</body>
+
+</html>

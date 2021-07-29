@@ -1,0 +1,1020 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - abandoned-factory</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Factory District / abandoned-factory</div>
+
+            <div class="preamble__entry preamble__entry--small">A notably old factory that has stood the test of time for an entire decade. Unfortunately, all good things must end as the factory was decommissioned and repurposed as a battleground. There are rumors saying that the closure was due to faulty equipment, resulting in the factory breathing back to life during random parts of the day. Some spectators theorize that the factory might even spring back to life during a fight between Servants.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-C7063.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 01:05 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="848426917581160508" id="message-848426917581160508" title="Message sent: 30-May-21 01:05 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/aTpX9hih-9FEEC.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/aTpX9hih-9FEEC.jpg" alt="Image attachment" title="Image: aTpX9hih.jpg (52.86 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/ae5b919bb79df9c3e3606e0f563f042a-A444B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="840644936180957245" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="869681399735656548" id="message-869681399735656548" title="Message sent: 28-Jul-21 04:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The night was humid, and the factory itself was still and quiet. Unlike before Uther ensured there were no witnesses or onlookers this time. It was simply him and his master. The king had drug Lark out here late in the evening, because he believed that they weren’t truly connecting as a team. As a strategist Lancer knew that no matter how strong a single warrior, their demise is inevitable if they don’t have a conditioned army backing them up. Part of that included something Uther wished to bring up with Lark later, but for now they needed to work on themselves first. 
+
+Moving into an open space in the center of this abandoned factory, Uther cackled to himself. “This will be perfect. Alright master, this is what you have bought from me. In exchange for my leniency towards your reckless behavior I need to know for certain you can handle yourself in a fight. So what I request of you know is for you to show me the extent of your defensive prowess. How do you intend to defeat the enemies that face us?” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/3ff238213ab5219ae34f36fac7d72429-4A99E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="840644936180957245" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 05:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="869688590907621447" id="message-869688590907621447" title="Message sent: 28-Jul-21 05:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What luck. Lark had hoped to relax and do some actual business in his establishment and say hello to all the employees that hadn’t been there due to the broken windows. Instead, here he was, dragged out to the abandoned factories in the middle of the night. At least the leaders of Olympia had the decency to make sure these things weren’t operating, otherwise it would be too hot to handle even in the much cooler dark. 
+
+At least he had the foresight to grab his Violin case, as this was apparently a training thing. Lancer didn’t even know the first thing about the market, with his consideration of what an equal trade was! They were going to have to sit down to talk about how he had operations to run during the night and that all activities needed to be scheduled ahead of time. 
+
+“Listen, I understand your desire to, as someone would put it, ‘better myself’,” he air quoted, “yet I’m not sure we’re on the same page here. You want me to show my defensive capabilities and how that will defeat our foes? A Servant is very much capable of the ‘a good offense is a good defense’ thing, but us humans are a little less durable. If I choose the defensive, you shouldn’t expect me to be able to defeat an opponent.”
+
+However, Lark begrudged the command and slung his case off his shoulder and onto the ground. It was quickly brought out and placed on top of his shoulder, bow in hand. “I’ll give you a run down of the few spells I know. I can increase my agility, I can displace air in order to throw people off their feet if not prepared, and I can deafen people close to me.”
+
+He threw a slew of notes out on a whim, to make sure all the strings were properly tuned. They always were, but it was the principle of the matter. “Sorry I don’t know the spell that kills people instantly, the Holy Church would’ve had my head long before I took anyone else’s.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">28-Jul-21 05:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="869688594812534885" id="message-869688594812534885" title="Message sent: 28-Jul-21 05:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/ae5b919bb79df9c3e3606e0f563f042a-A444B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="840644936180957245" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 06:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="869705294031224862" id="message-869705294031224862" title="Message sent: 28-Jul-21 06:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">For the time being Uther listened to Lark’s typical ranting and observed his magical abilities. They seemed passable in certain circumstances, but not entirely the best. Despite that, Uther was not going to knock his masters accomplishments, no matter how big or small they may be. “Those skills of yours are indeed impressive, and in certain circumstances they could be quite useful. However, in response to your comment earlier, I agree Servants are most suited towards front line combat. With that said, I also agree we are not quite understanding each other yet. I apologize for how blunt this may be, but you quite nearly got your was kicked in our last fight. If it wasn’t for me jumping in so frequently, the results might have been worse. The one time I left you to fend for yourself you got grappled by a arcanum creature. I understand you’ve kept yourself alive so far, but this is a entirely different monster you face. We face beings that go beyond our normal understanding of capability. This is why I’ve brought you out here, to selfishly ask something of you.” 
+
+Uther slowly moved forward in front of Lark. “I’m wanting to train you so that you can stand on your own when I’m not around. Despite how fast I am I can’t continuously fight the enemy and protect you at the same time. If I’m going to freely trust you to take care of yourself, I need to be confident that you can. Which is why I’m requesting to train you in how to fight, not so that you may be on the front lines with me, but so that if you get attacked you can get yourself out of the situation. So I ask you, will you allow me to train you?” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/3ff238213ab5219ae34f36fac7d72429-4A99E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="840644936180957245" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 12:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="869799455317176360" id="message-869799455317176360" title="Message sent: 28-Jul-21 12:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Fair enough,” he said in response, “not like the little track record I have to show you has anything of promise.” To be grabbed by that arcane monster and to get shot was certainly not promising. In his defense, how the hell are you supposed to dodge a bullet?! Those things aren’t extremely deadly without reason. He was lucky to not have taken it to the chest. 
+
+And yes, it figured that the combat oriented Servant would like to know how combat capable his Master was. If every encounter would end with Lark sustaining some sort of injury, it wouldn’t be long before he got unlucky enough to put an end to this whole endeavor. Still, a heads up would’ve been nice…
+
+Lark lowered his instrument as he took up a calmer stance. His bow twirled in a circle around his finger as he considered the proposition. The second he said yes, he was surely to get beaten to a pulp. That’s how guys like Lancer operated. At least, that was the vibe he got from him at the moment. Say yes, ask how it was going to go down, and next thing he knew he would be lying face down in the leftover soot and dust. 
+
+He turned away from Lancer, gaze locked with the moon above. Silver light graced the scene around them, a spotlight for which to play under. No eyes lay on the musician, yet he could feel the heavens themselves waiting for an answer. <em>Will you arise to the challenge,</em> they asked, <em>or will you settle for mediocrity?</em>
+
+The strings collided softly with each other, drawn to play an eerie note. Then another. And then a few at the same time. Sickly green light clashed with the white from above as a melody formed. One that would be found in a Tavern deep within the night of a kingdom, a hearty jig to keep the drunken men in high spirits for the day to come. Maybe it would be one Lancer would vaguely remember, if they had ever passed such a building before.
+
+“Well, what are we waiting for? The night will only last for so long.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">28-Jul-21 12:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="869799471456878652" id="message-869799471456878652" title="Message sent: 28-Jul-21 12:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/ae5b919bb79df9c3e3606e0f563f042a-A444B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="840644936180957245" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 11:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="869961658586525776" id="message-869961658586525776" title="Message sent: 28-Jul-21 11:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Approaching Lark from behind Lancer took him by the arm and placed a long dagger in his master’s hand. “This is how most soldiers begin to learn, just as you had to initially study individual notes before you could know how to properly put them together to make your wonderful sound, same shall be the basic uses of the blade. It has its obvious uses pertaining to sticking the pointed end in your opponent. However, there are other uses you could incorporate. It can be used to get yourself out of restraints, the metal can reflect beams of sunlight to provide a temporary distraction, and most importantly if practiced enough can be a main form of offense or in your case defense.” Uther stepped back a few paces and put his arms behind his back. “I want you to go ahead and show me how you would attack someone with that weapon. Just mime your actions, I’ll observe and guide you on how to proceed from there.” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/3ff238213ab5219ae34f36fac7d72429-4A99E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="840644936180957245" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="870016346933563443" id="message-870016346933563443" title="Message sent: 29-Jul-21 02:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ah, here it begins! Lancer approached slowly, which gave Lark time to think out how this was going to go. Perhaps a grapple from behind, or maybe a foot to his spine! No, too simple, maybe it was time for--
+
+And then he was given a knife. With two full hands. He had to quickly rearrange his hands and what they were holding in order to not drop everything on the spot. Instrument repairs added up fast, and he wanted to avoid such a recurring cost as much as possible. In the end, the handle of the short blade was lodged between his hand and the bow, to make a sort of double purpose, two-in-one arrangement. 
+
+...What? 
+
+“How to attack someone? Well, it’s a dagger. Short ranged, probably suited for stabbing more than slashing but the latter works in a pinch. That isn’t the issue at hand. What is,” he revealed the convoluted way he held the two tools, “is this sort of thing. I either attack in the only way possible with such a configuration, which is predictable and probably not going to work on shorter individuals, or I stop playing to launch a meager counter-offense that also stops my music, and thus, my spells.”
+
+He held up the violin in response, the green glow already dissipated. Lark stepped closer anyway, despite the obvious shortcomings of the proposal. “Ideally, I’d want to use this dagger, which I have absolutely no idea how you got and am concerned with your methods, like so,” he took tentative mock stabs at his Servant, thrusts that showed the action but not to actually try and harm the person. He kept them short, in order to better play to the potential strengths of a blade. 
+
+“And if needed, maybe something like this,” this time, they were playful swipes. Restricted in nature, in order to maintain the weapons overall distance to himself so that it would not be easily knocked away or to open himself up too much. 
+
+&quot;All of these motions require me to stop playing, which is in my opinion an absolutely <em>terrible</em> idea.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">29-Jul-21 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="870016354139394048" id="message-870016354139394048" title="Message sent: 29-Jul-21 02:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20abandoned-factory%20%5B840643133594796102%5D.html_Files/ae5b919bb79df9c3e3606e0f563f042a-A444B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="840644936180957245" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 12:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="870161483969994792" id="message-870161483969994792" title="Message sent: 29-Jul-21 12:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Uther nodded as he observed his master’s thrusts. Lark was no skilled assassin, but he at least showed competence in how to use the blade. Once more his master had a point about not having enough hands to use his violin and wield the weapon at the same time. Luckily for him, Lancer already had a relative solution for this. “I agree with your sentiment, which is why we are going to work on and develop your wind manipulation magecraft.” 
+
+Reaching over Latk would feel the dagger in his palm begin to lift up in the air by a form of Uther’s own wind surrounding the object, lifting it up in the air, and having it freely float in front of them. “If I can teach you how to utilize your craft in such a manner, you can keep your enchantments up while also protecting yourself. Also it does not have to only be a knife, it could any weapon, or even the environment around you. Think of it akin to practice and gaining calluses on your fingers, this will only come to you through deletion and practice. You have potential master Lark, let us hone in on it.” Uther would then proceed to instruct on the different ways and methods Lark could develop his wind music. <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

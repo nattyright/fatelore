@@ -1,0 +1,1526 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - buddhist-temple</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Downtown / buddhist-temple</div>
+
+            <div class="preamble__entry preamble__entry--small">A lone Buddhist temple set on the outskirts of Olympia. This structure sees only one visitor due to the long and winding path to travel on. Jampo makes it his mission to travel to this temple each day after his work to pray and cleanse his soul, and to bite back the rising tide of Ashura that the work day brings out. Due to the secluded nature, Jampo has decided that this might serve as the best possible candidate for a Master&#39;s Workshop, and has decided to remain here for the rest of the coming War between Delphi and Olympia.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 22-Jul-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/5ee7e92d8d326806ad16657f0ba50a1b-6D297.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Killer#6882" data-user-id="563088168467955743" style="color: rgb(255,140,19)">Killer</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="868171458738810990" id="message-868171458738810990" title="Message sent: 24-Jul-21 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868171510731378708" id="message-868171510731378708" title="Message sent: 24-Jul-21 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">.
+.
+.
+.
+.
+.
+.
+.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/f536e140548023904625d7200ce4368e-799BB.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="868171553068707942" id="message-868171553068707942" title="Message sent: 24-Jul-21 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">amogus?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 12:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="868171756362424410" id="message-868171756362424410" title="Message sent: 24-Jul-21 12:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">sussy...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/51d4eaf7e08b6e7824f3074a11b55247-BCF50.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jampo#0000" data-user-id="856006976077430806" style="">Jampo</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 12:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="868172967954243586" id="message-868172967954243586" title="Message sent: 24-Jul-21 12:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The wound would leave a mark. Fitting, considering it was a slash delivered by a deity, but Jampo would rather have received his blessing rather than the blade side of his guandao. 
+
+The monk holds a compress over the spot, bandages unfurled and flailing softly in the breeze brought by the flowing river beside him. He squeezed the small cloth, soaked in the cool waters, against his chest. Small pink droplets roll down his bare skin, traversing each mountain range of his muscled trunk as he sighs in content. 
+
+Saber was no doubt furious. The Servant had almost made it a mission not to speak to Jampo, merely concerning himself with the continued expansion of Dolorous Gard, which even now grew larger and took over more of the temple with each passing day. They would have to talk at some point, he knew, and most likely Brandin would show his displeasure with his previous engagement of Lancer.
+
+&quot;Foolish old man thinking he can withstand a war...<em>sigh</em>, what am I going to do? How could I think this was a wise decision...&quot; ( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/1cca97d257a7698bc95384a0561b4902-EB8CE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Swarm#0000" data-user-id="856006976077430806" style="">The Swarm</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 01:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="868178901820641282" id="message-868178901820641282" title="Message sent: 24-Jul-21 01:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hmm. What <em>are</em> you gonna do...&quot;
+
+A faint whisper, barely audible even for the monk&#39;s sharp ears.
+
+&quot;But it&#39;s funny, it seems like we both have that annoying habit of talking to ourselves. Glad that I&#39;m not the only weirdo around.&quot;
+
+That dull tone devoid of inflections, those words that flowed without interruption—there was no mistaking it. <em>The swarm was speaking to the monk.</em> Masses of insects that had been hiding between the cracks of the walls, taking refuge in the tight crevasses that the wood and the stones housed. Subtle enough that they wouldn&#39;t raise attention if one hadn&#39;t known about their presence.
+
+A lone fly buzzed through the quiet room, wandering through the air as it approached Jampo. It landed on his bare chest, looking at the tainted white cloth with unconcealed curiosity.
+
+&quot;Wow, that wound looks even uglier up close. This is what you get for getting in a fight with my Lancer, I guess.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 01:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="868178931348570124" id="message-868178931348570124" title="Message sent: 24-Jul-21 01:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Killer#6882">@Killer</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/51d4eaf7e08b6e7824f3074a11b55247-BCF50.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jampo#0000" data-user-id="856006976077430806" style="">Jampo</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 01:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="868181118145413160" id="message-868181118145413160" title="Message sent: 24-Jul-21 01:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The whispers and hushed tones, the faint chittering of insect wings rubbing together. The Swarm, Lancer&#39;s Master...er, their familiar...
+
+&quot;You seem more than impeccable with timing, Master of Lancer. You always seem to be around when an inane remark is needed, heeheheehehe,&quot; Jampo responds, cordially, removing the compress to allow the fly a better look at the mark. Remarkably, it actually looked like it had healed quite a bit since the fight, more than it should have. Glistening pink scar tissue warped it&#39;s way across his body, a thin red mark etched in the center of the mountain range as a light red scab. 
+
+&quot;It might not be what you want to hear, but my Qi...apologies, Mana, helps me heal nicely. Though such a gash will likely remain with me; as you&#39;ve said, it&#39;s what I get for picking a fight with your Lancer, hehehe.&quot; 
+
+He starts tying the bandages back around himself, tightly winding the gauze around his body as he closes his eyes. Considering the nature of the Swarm, it wasn&#39;t like eye contact was needed...
+
+&quot;Is there something you need, Master of Lancer? Should Saber sense your presence, it likely won&#39;t end well for these insects. I&#39;m more open to talk, but I sense you knew that. Is this a progress report? Do I need to hand in a disciplinary sheet, make sure we&#39;re following the rules....I never had public schooling, is that how it works?&quot; ( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/1cca97d257a7698bc95384a0561b4902-EB8CE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Swarm#0000" data-user-id="856006976077430806" style="">The Swarm</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 02:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="868195623382437888" id="message-868195623382437888" title="Message sent: 24-Jul-21 02:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hoho,&quot; Laughed the swarm, their buzzing a tad louder. &quot;Openly telling your opponent about your little tricks? Ain&#39;t that ballsy. We&#39;re still <em>enemies</em>, even if we&#39;ve temporarily agreed not to start shit.&quot;
+
+The little fly walked upon the pink line that extended through the monk&#39;s chest, feeling it through its sensitive claw-like legs. The man really was a <em>monster</em>, being able to recover that nicely from a wound inflicted by her Lancer. In just a couple of days, nonetheless.
+
+&quot;Don&#39;t ask me, I&#39;ve never had public schooling either.&quot; The swarm spoke, nestling deeper in the cracks as the monk mentioned his Saber&#39;s alertness. &quot;But you&#39;re right, I did want to talk to you about stuff, although I will say—this is not about the truce. This is about you, me and that <em>Brandin</em> guy.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 02:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="868195645234769970" id="message-868195645234769970" title="Message sent: 24-Jul-21 02:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Killer#6882">@Killer</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/51d4eaf7e08b6e7824f3074a11b55247-BCF50.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jampo#0000" data-user-id="856006976077430806" style="">Jampo</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 03:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="868214720300199936" id="message-868214720300199936" title="Message sent: 24-Jul-21 03:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jampo smiles brightly at the mention of their truce, almost a bit maniacally as he stifles a laugh. His body shakes, causing the muscles around his wound to quiver and contract, the man buckling slightly as he reigns in the violent motion. The wound itself was almost like a crack in a vase, a fissure by which Burst could leak through...
+
+&quot;Y-yes...yes I suppose this wound is reminder enough that we are not too friendly to share secrets. But, maybe you can look at it as me flexing my power, hehehe...oh, that still hurts.&quot; 
+
+Wincing, Jampo&#39;s face contorts savagely, one hand applying pressure on his side while the other squeezes around a nearby rock...and digging into the surface, tiny cracks accompanying his intrusion. 
+
+&quot;<em>Pant...pant...</em> So...if it&#39;s not the truce you&#39;re concerned with...what&#39;s on your mind? I can&#39;t imagine it&#39;s normal for two Masters to discuss one Servant. I&#39;m a simple man, Master of Lancer, it might be better for you to spell it out. Though maybe that&#39;s hard for you too, seeing as we have similar education.&quot; 
+
+Did this old fart just wink at that? Dealing with Jampo might be akin to dealing with some suburban dad... ( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/1cca97d257a7698bc95384a0561b4902-EB8CE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Swarm#0000" data-user-id="856006976077430806" style="">The Swarm</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 05:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="868423795210330154" id="message-868423795210330154" title="Message sent: 24-Jul-21 05:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Thank you for your concern, but I&#39;ve no problem spelling things out. <em>Bees</em> kinda are my speciality.&quot; 
+
+Barely a 3/10 as far as puns went, but whatever. It might amuse that winking suburban dad-monk to an extent.
+
+&quot;So, I&#39;ve this little theory about your involvement in this War.&quot; The insects spoke, quieter than ever. &quot;You seemed more inclined to have a dialogue instead of a fight, you were very upset when you learned about my death and you just cursed the decision that lead you to become a Master in the first place—&quot;
+
+<em>—You&#39;ve been forced to participate in this War, haven&#39;t you?&quot;</em>
+
+A little silence etched as the bugs looked through their windows, monitoring the monk&#39;s reaction.
+
+&quot;It&#39;s the only plausible way to explain everything I mentioned. Someone&#39;s threatening you into doing all that. Maybe they&#39;ve taken your family or people you care about hostage so you have no choice but to fight, maybe they&#39;ve coerced you using something else. Either way, you&#39;re being forced to do all this, right?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 05:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="868423809168998400" id="message-868423809168998400" title="Message sent: 24-Jul-21 05:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Killer#6882">@Killer</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/51d4eaf7e08b6e7824f3074a11b55247-BCF50.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jampo#0000" data-user-id="856006976077430806" style="">Jampo</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 12:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="868525154727251989" id="message-868525154727251989" title="Message sent: 25-Jul-21 12:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The soft features harden as the Swarm broaches the subject. It would be a long War ahead, with many challenges and obstacles in the way. Master of Lancer themselves were but one in a line of Masters that would be seeking to take victory from him. Or rather, who he was fighting for...
+
+&quot;...Master of Lancer, you say forced as if it were against my will. It&#39;s not exactly correct.&quot; 
+
+The monk takes a deep breath in, folding his palms together while closing his eyes. A meditative stance. His chest deflates as he exhales, beginning a rhythmic pattern of breathing as he continues. 
+
+&quot;To be forced is not always to the detriment of one being acted upon. How we conduct ourselves is based on how we exude force on ourselves. We use force to maintain our ways of life, to conduct our daily rituals, to help others or not...to resist temptation. If I am forced to participate, it&#39;s only if my goal is something I find needs to be fought for, just as I&#39;m sure your goal you believe is worth fighting for. Which is why, no matter how damaged you may get, no matter how many obstacles I face, we continue fighting not because it&#39;s against our will, but because it is an extension of our will.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868525259157028916" id="message-868525259157028916" title="Message sent: 25-Jul-21 12:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Jampo&#39;s eyes open once more, a firm gaze lighting itself on a lone insect from the Swarm, using it as a centerpiece to focus himself on. 
+
+&quot;I have no more family. I have no one who cares for me to such an extent, and I feel grateful everyday for that. But there are people on this ship that deserve more than what they have, and deserve the chance to climb from the pit that Olympia has sunken them to. Master of Lancer, this is why we still remain enemies as you call us: no matter your intentions, you stand in my way of Olympia becoming a better place. I do not wish to fight, but by the convictions I have, I am forced to. I may doubt myself, but this goal pushes me to act. That is Force. What forces you?&quot; 
+
+The question lingers as Jampo closes his eyes again, returning to his meditative trance and leaving Laura with the chance to ponder the monk&#39;s involvement further. A destructive force that&#39;s destroyed countless ships. A simple old man that makes dad jokes. A Righteous freedom fighter. What was Jampo exactly?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868525314295361586" id="message-868525314295361586" title="Message sent: 25-Jul-21 12:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/1cca97d257a7698bc95384a0561b4902-EB8CE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Swarm#0000" data-user-id="856006976077430806" style="">The Swarm</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 02:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="868737751116312618" id="message-868737751116312618" title="Message sent: 25-Jul-21 02:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Time passed as the buzzing grew more and more faint, ultimately stopping all together. A deep silence ensued, enveloping the monk in a most oppressive atmosphere. Hundreds of eyes, thousands of windows—all pointed towards the same individual.
+
+&quot;Alright, fair.&quot; Spoke the swarm, breaking the silence. &quot;My assumption was <em>technically right</em>, but it seems like you&#39;re owning that which forces you to participate. I guess it&#39;s... duty that pushes you forward?&quot;
+
+&quot;In my case, it&#39;s personal gain. Maybe philanthropy to a lesser extent. Not gonna go into details, but it&#39;s something I can only acquire via this City Grail War.&quot;
+
+The lone fly that the monk had chosen to stare down approached the monk, hovering at his head-level.
+
+&quot;It must be hard to be bound by both duty <em>and</em> morals, especially when those two intersect and clash with each other. And you&#39;re practically... alone in your endeavours, with walking tin cans as your sole company. Must be pretty damn troublesome to work with a Servant like <em>Brandin</em>, one that does not support his Master but rather <em>leeches</em> on him.&quot;
+
+The bugs&#39; speech had a change of tone towards the end, akin to <em>disgust</em>.
+
+&quot;He&#39;s relatively docile, but <em>thorough</em> in his endeavours. Some of his views probably clash with yours too, seeing how you reacted to him &#39;killing me&#39; in our last fight. And if you didn&#39;t know, he is <em>prone</em> to leaving his Masters in disarray whenever situations turn sour. Not only do you have to worry about your <em>demons</em>, but also of your own Servant&#39;s infidelity and cowardice. Those issues will keep piling up, eventually crushing you if not addressed properly.&quot;
+
+The swarm quieted much like the monk previously did, leaving him the time to carefully consider their words. 
+
+&quot;My point is—I can make this whole ordeal <em>easier</em> on you. What you seek is <em>control</em>. I can&#39;t help you contain whichever it is that you&#39;ve buried inside you, but I can help with something else...&quot;
+
+&quot;With <em>Brandin</em>.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">25-Jul-21 02:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="868737775028019220" id="message-868737775028019220" title="Message sent: 25-Jul-21 02:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Killer#6882">@Killer</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/51d4eaf7e08b6e7824f3074a11b55247-BCF50.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jampo#0000" data-user-id="856006976077430806" style="">Jampo</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 10:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="868866818410938449" id="message-868866818410938449" title="Message sent: 25-Jul-21 10:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ah. So that&#39;s what this was. 
+
+&quot;I trust Saber,&quot; Jampo says, clasping his hands together. The river flows beside the two parties (or rather one party and the assortment of bugs), burbling as beams of light bounce from the rolling waves and shine across the monk&#39;s grizzled visage. 
+
+&quot;...Of course, I have had my worries. I&#39;ve wondered if my intentions can be maintained in this City Grail War. I understand it&#39;s foolish to hold on to such morals. I know you believe it to be so, I won&#39;t hold that against you...hmmm, I need a name to call you...&quot; 
+
+Of course, before the mound of bugs could protest or perhaps steer the man back on track, he was already lost in his own head, contracting something to the visage of...well, insects. 
+
+&quot;Ah...so simple. Bug. Bug, Master of Lancer. Ahhhh, very good, this is perfect, hehehhehheeh, little Bug.&quot; 
+
+Jampo rocks on his backside, giggling wildly before collecting himself, slapping his cheeks and pounding his chest. &quot;Mmmhm...right, well Bug, I won&#39;t hold your own reservations about me against you. We all walk our own paths, after all. However...if you could help me with Saber, theoretically, how would you propose such a thing?&quot; 
+( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">26-Jul-21 01:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="868900906266144839" id="message-868900906266144839" title="Message sent: 26-Jul-21 01:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Killer#6882">@Killer</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/1cca97d257a7698bc95384a0561b4902-EB8CE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Swarm#0000" data-user-id="856006976077430806" style="">The Swarm</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jul-21 01:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="868902749247529000" id="message-868902749247529000" title="Message sent: 26-Jul-21 01:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If the insects could shrug, they would. 
+
+It was odd how he had never bothered to ask about the swarm&#39;s commander&#39;s name, insisting on calling her <em>Master of Lancer</em> ever since the beginning of their conversation. But then again, the guy was weird. In more ways than one. And Bug was alright as far as aliases went. The swarm decided to roll with it.
+
+&quot;It&#39;s quite simple, Jampo.&quot; The swarm answered. &quot;What I&#39;m offering you is <em>control</em>. I can watch him at all times, observe and document every single action he takes no matter how small or discreet. I can also report them to you <em>just as easily</em>.&quot;
+
+The fly that had been his focus approached the monk, graciously landing on his clasped hands.
+
+&quot;If you&#39;re ever worried that he may betray your trust or commit wrong doings in your back—you&#39;ll <em>instantly know</em>. You can get a good night&#39;a sleep without having to worry about your partner straying from the path. Or on the contrary, you might discover that he has been doing <em>naughty stuff</em> behind your back, giving you the opportunity to correct him and keep him at bay. Giving you more <em>peace of mind</em>. You could use some of that seeing how <em>unstable</em> you are, couldn&#39;t ya?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/51d4eaf7e08b6e7824f3074a11b55247-BCF50.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jampo#0000" data-user-id="856006976077430806" style="">Jampo</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jul-21 02:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="868920744887873548" id="message-868920744887873548" title="Message sent: 26-Jul-21 02:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Bug was speaking of a surveillance system of sorts. A means by which to keep tabs on Saber, watch his movements.
+
+Of course, Bug obviously wasn&#39;t doing this out of the goodness of their hearts. Not if Jampo had read this Master right. This was a means to circumnavigate Saber&#39;s desire to remain unmonitored, and in fact this would be Jampo betraying the trust of his own Servant. Brandin&#39;s methods were unseemly, and if Bug was correct, the Servant wouldn&#39;t hesitate to abandon Jampo at a moments notice. Was this the right path, however...
+
+&quot;...There is a great risk, Bug. I want you to know this now...you may see me as a strange old man. Indeed, I can be. I enjoy the sound of the riverbed, the color yellow makes me gassy, and I&#39;m never sure whether to pronounce it as Toe-may-toe or Toe-Mah-Toe. Apparently it&#39;s simply point of view...it is why I&#39;ve avoided them altogether. I won&#39;t eat one, understand that. 
+
+&quot;However, most important above all...I will not lie. If I accept this proposition, and Saber asks, I will reveal the truth to him. The consequences I will accept fully, but you must do the same if you are willing to enter a contract with me. I am an honest man. Are you an honest...bug?&quot; 
+
+It was a matter of honesty? Integrity? Surely he must be joking. Of course Laura could just as easily lie and say she was...that would be easy with Jampo, right? It seems he trusted people blindly...for the most part. ( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/1cca97d257a7698bc95384a0561b4902-EB8CE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Swarm#0000" data-user-id="856006976077430806" style="">The Swarm</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 12:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="869256259973562428" id="message-869256259973562428" title="Message sent: 27-Jul-21 12:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Am I honest?&quot; Reacted the swarm, scratching their tiny bug heads with their tiny legs in confusion. 
+
+That was a weird thing to ask. What did he mean by honesty in this context, even? If their deal came to light, she would have no choice but to suffer from the consequences anyway. Not to mention that bringing honesty into what was basically the ultimate breach of trust for his Servant was kinda... contradictory.
+
+The swarm&#39;s commander thought back to the dissonance she had experienced upon their first meeting. Of all the people she had worked with, she had never met a man with such interesting behaviours and unpredictable reactions. You could never really tell what was on his mind, so much so that the moment you think you&#39;ve pegged him—he does or says something that completely shatters the image you previously had of him. <em>Unfathomable</em> was an accurate description for him.
+
+And this, amongst other reasons, was what made him <em>scary</em> to her.
+
+&quot;I&#39;ve no idea what you mean by honesty, but I can tell you this much—In Delphi, you can only go so far without being honest with your clients.&quot; Bug said, a touch more serious than previously. &quot;Trust between customers and providers is <em>key</em>. If you fuck your clients, they&#39;ll eventually find a way to fuck you right back. And if it&#39;s not them, it will be some rival business that has better a better relationship with it&#39;s clientele banking on the fact that you&#39;re being an <em>asshole</em>.&quot;
+
+&quot;I don&#39;t know if I&#39;m what you&#39;d call an <em>honest Bug</em>,&quot; Whatever that means, thought the swarm. &quot;But when it comes to business, I am <em>straight</em>.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">27-Jul-21 12:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="869256276264247367" id="message-869256276264247367" title="Message sent: 27-Jul-21 12:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Killer#6882">@Killer</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/51d4eaf7e08b6e7824f3074a11b55247-BCF50.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jampo#0000" data-user-id="856006976077430806" style="">Jampo</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="869258752786841680" id="message-869258752786841680" title="Message sent: 27-Jul-21 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That straightforward nature...say what he might about Bug, but she was a Master that was direct and, as they put it, straight in who they were. It might be why so far he can&#39;t help but like her. Even if her words always had a tinge of slipperiness to them, they did flow towards a true goal or angle....however...
+
+&quot;...So...<strong>vulgar.</strong>&quot; 
+
+Jampo&#39;s body trembles, and the bugs could see a new body of water: a stream of tears flowing down the old man&#39;s face. Was he crying? 
+
+&quot;I could understand without the vulgar words, you know. Haaaah, to say such things as....as that, it&#39;s too much. How do your clients deal with such things?! Oooooh, my ears are ringing, eeeeeeech.&quot; 
+
+Jampo&#39;s face contorts once more, scrunching and twisting on itself as if he had just taken a taste of a sour lemon or rotten fruit. 
+
+&quot;Fine, fine, deal, so long as you don&#39;t use such language ever again! What a crude Master, it makes my skin crawl, eeeeeesh. First you flirt with a monk and now this, such brazen shamefulness!&quot; So much for not judging her! ( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/1cca97d257a7698bc95384a0561b4902-EB8CE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="The Swarm#0000" data-user-id="856006976077430806" style="">The Swarm</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 12:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="869262538846646352" id="message-869262538846646352" title="Message sent: 27-Jul-21 12:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He was crying. Had the swarm said the wrong words? But he had been fine with vulgarity up until now, hadn&#39;t he? The commander suddenly felt a tang of relief, knowing that she wouldn&#39;t have to deal with him for a while...
+
+&quot;That&#39;s just who I am, I like vulgarity. Helps me express myself to the fullest.&quot; Answered the swarm, almost mockingly.
+
+The bug that settled on his hand opened his front legs, almost hugging the monk&#39;s finger tip in an attempt to emulate a handshake. <em>Emulate</em> being the keyword, here.
+
+&quot;Glad to be workin&#39; with you, Jampo. I&#39;ll be keeping an eye on that little rascal of yours.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Downtown%20-%20buddhist-temple%20%5B848820423390658591%5D%20%28after%202021-07-22%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-52644.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">27-Jul-21 12:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="869262551337275422" id="message-869262551337275422" title="Message sent: 27-Jul-21 12:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Killer#6882">@Killer</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

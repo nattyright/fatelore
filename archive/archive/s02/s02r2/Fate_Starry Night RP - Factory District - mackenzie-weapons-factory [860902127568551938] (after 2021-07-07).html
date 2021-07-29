@@ -1,0 +1,1508 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - mackenzie-weapons-factory</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Factory District / mackenzie-weapons-factory</div>
+
+            <div class="preamble__entry preamble__entry--small">A place where weapons of all kinds and calibres are constructed exactly to specification, before being shipped off to be sold. Here, people and machines alike work sprawling shifts under suffocating circumstances, all for the most meagre of paychecks. &quot;Ethics&quot; have little sway here. All that matters is minimising cost, and maximising profit.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 07-Jul-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-334C5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="860940513980186675" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jul-21 06:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="864269387652923402" id="message-864269387652923402" title="Message sent: 13-Jul-21 06:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The factory was a clean and eloquent building of gray-steel walls, massive doors, and trucks. However, they had all been silenced, and nothing as minute as a switchblade had come off the factory&#39;s assembly lines since the incident.
+
+Many families had called in, and MacKenzie&#39;s call centers were overrun with tearful wives and enraged parents. If this wasn&#39;t resolved soon, it would turn into a massive PR nightmare for MacKenzie Industries.
+
+Laurent walked up to the factory&#39;s fence, where several men in armor and guns marched to secure the factory&#39;s perimeter. None batted an eye towards Assassin.
+
+After speaking with a few of the hired soldiers and speaking into his phone, Laurent turned a corner, and turned around to speak to his Servant.
+
+&quot;I spoke to Paude, who I purchased your Frame from. He hasn&#39;t made any sales since the auction. He&#39;s either lying through his teeth, or this is completely unrelated. Either way, we&#39;re going to give him a visit once this is over.
+
+Laurent looked towards the massive building, glasses glinting. His face was a mask. He turned towards Assassin.
+
+&quot;What do you think of this situation, &#39;soldier&#39;? This is where your expertise should come in.&quot; Laurent said, peering over Assassin&#39;s shoulder to watch the men marching around the factory. Laurent obviously didn&#39;t want to reveal Brutus&#39;s identity, or that he was even a Servant at all.
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/9a4cadd32b042de1194b809195593550-ABA15.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="860940513980186675" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 10:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="864695112394211348" id="message-864695112394211348" title="Message sent: 14-Jul-21 10:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus says, &quot;What&#39;s obvious is that the Servant thinks they have an advantage because they have the hostages and factory. However, we can sneak into the building using your knowledge of its interior. That&#39;s when I go in disguised as a worker and join the rest of the hostages allowing me to free them easily.&quot;
+
+Brutus immediately transforms using his skill, <strong>Espionage</strong>, to make himself look like a worker.
+
+He looks at Laurent and says, &quot;Any questions?&quot;
+<span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-334C5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="860940513980186675" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 10:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="864699847343865877" id="message-864699847343865877" title="Message sent: 14-Jul-21 10:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Without speaking, Laurent whistled, and a soldier came running forward. Murmuring into his ear, the soldier saluted and jogged off. A few moments later, he returned with a rolled up blueprint. He tossed it to Brutus.
+
+&quot;There&#39;s a vent on the roof, it&#39;s standard Olympian building procedure, most factories have them. Munition factories are no exception. Sneak in. Save the workers if you can, but if you find a Master or Servant...&quot; Laurent adjusted his glasses, the light of the sun glinting off them, leaving Laurent&#39;s face difficult to read.
+
+&quot;<strong>Kill them.</strong>&quot;
+
+Laurent said, looking over at his partner and Servant. The man blinked wordlessly, then shrugged. &quot;It&#39;s the best way to stop this from ever happening again. We&#39;ll have to make an example out of them to stop other incidents like this from happening to other innocent workers.&quot;
+
+This was a lie. Laurent had little care for his workers. He had been insulted, and the death of those responsible was demanded. 
+
+&quot;I can&#39;t go with you. This is my property, and I won&#39;t go sneaking around my own back door. Be my right hand, Assassin. I shall entertain our guest, while you strike from behind.&quot;
+
+Laurent would not skulk around in the dark, not while he ran this company. He needed Assassin to view him as a brave and tactical man, one worth sticking by. Brutus was valuable, and as such, needed to be kept content.
+
+&quot;Trust me, I have some tricks up my sleeve. You have no need to worry about me, Laurent said, turning away to walk towards the factory&#39;s main entrance. Brutus could see the glint of a gun tucked inside Laurent&#39;s belt as the man whistled.
+<span class="mention" title="RaptorAttacks#0350">@The Survives</span> <span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/5ecd29841523ddbd4f25114507d9cef5-B1849.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="860940513980186675" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 11:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="864704760811487262" id="message-864704760811487262" title="Message sent: 14-Jul-21 11:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With a plan formed, there was little left to do but set it into motion. After all, their opponent would not come to them willingly, not when they were in possession of such bountiful advantages. No, it was up to them to go on the offensive. Whether they were driven by a desire to free the captive workers, or to minimise the loss of profits, both Master and Servant had a reason to fight. 
+
+It wouldn&#39;t take much effort for Assassin to find the vent upon the top of the factory. Namely, because of the dense smog that poured forth from it. Every breath taken was accompanied by an acrid aftertaste that lingered far longer than one would like. However, if one could ignore the wafting pollutants, it would serve a suitable entry point. 
+
+It would take a minute to climb down safely and silently, given the lack of footholds to allow for smooth navigation. Upon reaching the bottom, however, Brutus would find himself afforded a birds-eye view of the factory floor, obscured solely by the rising smoke. That would provide him with a front row seat to Laurent&#39;s entrance shortly after.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="864704813080903710" id="message-864704813080903710" title="Message sent: 14-Jul-21 11:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">-----</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/5ecd29841523ddbd4f25114507d9cef5-B1849.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="860940513980186675" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 11:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="864707593883615252" id="message-864707593883615252" title="Message sent: 14-Jul-21 11:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Laurent was already familiar with is factories, their layouts and their architecture. Therefore, traversing it was no problem. From the entry doors, he would enter into a lobby, a small space, consisting of a cramped corridor, an even more cramped office, and a few chairs for those waiting for appointments. That, and the double doors in front of him, doors that led to the factory proper, where the source of this conundrum undoubtedly lay.
+
+No time like the present.
+
+Pushing them open, the CEO would be greeted by a gout of noxious fumes and a gust of warm air, a most unpleasant welcome. However, one that had passed him, he would be able to look ahead at what had become of his weapons factory.
+
+At first, it appeared to be... nothing. Workers went about work, melting and smelting, using the raw materials to construct components, using those components to construct different components, and the like. Hardly anything out of the ordinary. 
+
+However, upon closer inspection, Laurent would spot the metal bindings that trapped the workers, chains and manacles forcibly keeping them in place. Furthermore, the giant vats, usually filled with liquid alloys, had a distinct, prominent golden tinge to them. Stranger still was what they were constructing: Not weapons, but trinkets. Goblets, necklaces, trophies, statues, all made of precious metals meant to be used in circuitry. 
+
+As if to put the final nail in the coffin, a voice boomed out from the centre of the factory. Deep and bold, yet swimming in absolute arrogance.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/0d4761a5672b5d0e8c5ffd585fad838a-64B98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Avarice#0000" data-user-id="860940513980186675" style="">Berserker of Avarice</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 11:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="864710571554242601" id="message-864710571554242601" title="Message sent: 14-Jul-21 11:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Finally come to see whats become of your property, have you? Hah! Took you long enough! Were I a man of fewer virtues, this place would be rubble. Be fortunate I have seen to improve it so thusly.&quot;</strong>
+
+Berserker sat an the centre of a crossroads of catwalks, where multiple pathways converged. Now, however, it had been turned into a monument towards the new owner. Various metals both solid and liquid had been bent and shaped into a makeshift throne, upon which the wicked figure rested. Within one hand was a giant sword, brutish, thick, a gladiatorial tool of destruction. Within the other was a more elegant blade, refined, befitting of a ruler.
+
+They were surrounded by six workers of mixed gender, mostly consisting of administrative staff, their clothing having been torn apart and crudely remade with dozens of staples and chains. Their new designs possessed a distinctly Roman flair, not dissimilar to the toga of ancient times. Less &quot;fashionable&quot; was the chained collars they bore, iron bands wrapped around their neck, each one keeping them forcibly leashed to their new master.
+
+Berserker leaned forward, faceless helm tilting towards Laurent with curiosity. 
+
+<strong>&quot;Tell me: Are you diplomat, warrior, or slave? Do you intend to struggle against the Empire, or do you intend to survive?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="864710606041120799" id="message-864710606041120799" title="Message sent: 14-Jul-21 11:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Tres Master#0916">@Tres Master</span> <span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-334C5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="860940513980186675" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jul-21 12:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="864720059100037150" id="message-864720059100037150" title="Message sent: 14-Jul-21 12:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This factory was disgusting.
+
+Everything from the noxious fumes that filled the air to the dead atmosphere that left the factory lifeless was another slap in the face to the shrewd businessman that owned it. He had not turned this place into the state of the art factory that it was, only for it not to produce goods.
+
+Laurent&#39;s disdain for the renovated building was underlined by another emotion: worry. Here he was, walking into his own building, and Laurent felt worried. Maybe he should&#39;ve asked Assassin to stay by his side, but he dismissed the thought. He wouldn&#39;t be cowed by someone who so wastefully used his estate.
+
+As he entered the factory floor, Laurent scraped his hand against several heavy barrels of fluid—presumably fuel for several of the machines that pressed material into form.
+
+Mackenzie looked out of place among the group of slaved workers building a monument to the enemy&#39;s sloth. While they were dressed in a mix of MacKenzie Munitions uniforms, Laurent stood in a crisp suit, as if this was nothing more than a visit to one of his many factories. It was, for all intents and purposes, a middle finger to the factory&#39;s occupier.
+
+Laurent looked around, face reddening slightly from the waste of precious materials and labor. Or perhaps it was just the heat. He looked up at the opposing Servant, unable to discern the class. That massive sword proudly proclaimed Saber, yet Laurent was nto convinced. Only a madman would fight against MacKenzie Industries in broad daylight, and it was likely that this had been done with no prior planning, due to Laurent&#39;s lack of direct enemies. 
+
+This had to be the Mad Dog of the City Grail War: Berserker.
+
+&quot;Can&#39;t a man visit his own property? His own people? His own source of income? His own empire?&quot; Laurent asked, sparks glinting in the reflection of his glasses.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="864720328692989952" id="message-864720328692989952" title="Message sent: 14-Jul-21 12:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I come as an owner, to refute any claims that his belongings don&#39;t belong to him. I am, however...&quot; Laurent straightening his tie, &quot;not obliged to represent my own empire at this time. As such, I am a diplomat. For now.&quot;
+<span class="mention" title="Tres Master#0916">@Tres Master</span> <span class="mention" title="RaptorAttacks#0350">@The Survives</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/0d4761a5672b5d0e8c5ffd585fad838a-64B98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Avarice#0000" data-user-id="860940513980186675" style="">Berserker of Avarice</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Jul-21 04:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="864972659094978600" id="message-864972659094978600" title="Message sent: 15-Jul-21 04:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;So, that&#39;s your game, is it? Huhuhuhuhuhuhuhuhuhu, very well...&quot;</strong>
+
+Berserker pulled themselves up off their throne, his attendants shrinking back, flinching, as if expecting the worst. Fortunately for them, they were spared the worst, for their lord&#39;s attention was firmly placed elsewhere.
+
+<strong>&quot;So, what is your game here? You have the seem of an intellectual about you. Surely, you are aware of this disadvantage you place yourself in, facing a servant alone. Unless... you are not alone, are you?&quot;</strong>
+
+The golden servant stepped forth, armoured footfalls echoing upon the gangway. An implicit threat, for one wrong word would almost certainly lead to Laurent&#39;s untimely death.
+<span class="mention" title="Tres Master#0916">@Tres Master</span> <span class="mention" title="Magnetic#0081">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-334C5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="860940513980186675" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Jul-21 05:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="864978174889689109" id="message-864978174889689109" title="Message sent: 15-Jul-21 05:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This Servant was wise. <em>No, not wise. Smart.</em> Wisdom and intellect were not one in the same. If &quot;Berserker&quot; were wise, he would not have raised his hand against Laurent.
+
+&quot;<strong>A Servant is a tool. One that lives to serve its Master. That Master can change. Servants can be bought. They can be sold. There is so much value placed on the Master and Servant contract, but it falls as soon as the balance of power is upset. A contract that is not ironclad is of no value when not skewed in my favor.</strong>&quot;
+
+Was this a genuine truth? Laurent spoke in the same tone when both lying and speaking truths, yet the words were dyed with a mix of disdain and amusement. Did this mean the businessman in question had walked to barter with no Servant?
+
+&quot;Everything here belongs to me. You&#39;ve done a good job at giving my men <strong>value</strong>. They aren&#39;t slacking, and goods are being produced. You have done well.&quot; Laurent spread his arms, suit billowing slightly as he did so. 
+
+&quot;The sight of men not working, of them not having value must disgust you. As long as they work under you, their lives must have meaning. I am the same. We are not different.&quot; Laurent smirked.
+
+That was why this Servant couldn&#39;t be allowed to live.
+<span class="mention" title="RaptorAttacks#0350">@The Survives</span> <span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/9a4cadd32b042de1194b809195593550-ABA15.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="860940513980186675" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Jul-21 07:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="865008676531077150" id="message-865008676531077150" title="Message sent: 15-Jul-21 07:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus had entered the factory and transformed to look like one of the workers. He walked through the factory and felt happy because the gods must be smiling on him for giving him a Master with such grand wealth. Brutus would go up to workers and try to console them.
+
+He would say things like: &quot;Don&#39;t worry, your boss has sent me to save you,&quot; and &quot;Are you hurt?&quot;
+
+However, the answers were mostly grunts or &quot;Uh-huh&quot;. This made it obvious that they were being controlled in some way and, even though Brutus didn&#39;t have magic that could remove the mind control, there was one surefire way to get rid of mind control destroying the controller. Brutus didn&#39;t want to just move the workers because he was worried they might warn the Servant controlling them. This became personal to Brutus because he was against any form of dictatorship which is why he went against Caesar and seeing this made him feel like there was another Caesar who needed to be killed.
+
+He remembered his master&#39;s words: &quot;if you find a Master or Servant... <strong>Kill them</strong>.&quot;
+
+And although he was already going to do so because it was his master&#39;s will, he had more incentive now. That&#39;s when he heard his master&#39;s voice and followed it to see his master speaking to the Servant. He became very proud of his master for his bravery since he was facing a Servant alone. His master&#39;s distraction would allow him to sneak up to the Servant and kill him as long as his master kept the Servant attention away from him.
+
+Brutus became to sneak toward the Servant. Then, he took out his dagger and raised it. Brutus&#39; anger toward this Servant quickly turned into bloodlust because all he wanted to do was kill the Servant for what he&#39;d done to these people. This strong bloodlust was beginning to destroy his transformation but as long as Laurent kept him in place it would be fine.
+<span class="mention" title="Magnetic#0081">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Survives</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/0d4761a5672b5d0e8c5ffd585fad838a-64B98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Avarice#0000" data-user-id="860940513980186675" style="">Berserker of Avarice</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Jul-21 12:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="865452702841962538" id="message-865452702841962538" title="Message sent: 16-Jul-21 12:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Hn, you diplomatic edge serves you well. Weaving together your insults and compliments so elegantly. Invoking my ire, but not my rage. You would do well to never forget that skill.&quot;</strong>
+
+It seemed that everything had been going to plan. Laurent had distracted Berserker, and Marcus had successful snuck inside through the vent. All the workers were in a stupor, scared into compliance, unable to raise a word of complaint for fear of what might occur. That was for the best. It meant nobody could interfere with what came next.
+
+Assassin skulked down the central path, beyond the throne, to the exposed back of Berserker. The knife that killed Caesar was raised. But before he could strike, Brutus would feel something within him stir. A memory, one that once lay dormant, came to the front of his mind. 
+
+<em>Standing beside him, within an amphitheatre. Listening to him speak. Speak of the virtues of Roma. His voice, full of mirth and joy, spreads far across the people. Within the eyes of the crowd, there is hope. Hope for a better future.</em>
+
+<em>But the armour that weighs upon you, the way people&#39;s gaze dims when their eyes flick over to you, the way your throat feels so painfully dry. You are not yourself.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865454211160604712" id="message-865454211160604712" title="Message sent: 16-Jul-21 12:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Like a flash of lightning, that recollection left as soon as it arrived. In that split-second, Brutus would notice a shift in his foe&#39;s demeanour. He stood a little straighter than before, his head tilted slightly higher. A newfound awareness.
+
+The knife plunged down, but it was too late. The strings of fate had altered their dance, the pull of karma had interfered in this fated death. Berserker spun around, and with the smaller of their two swords, intercepted the plunging knife, denying the killing blow.
+
+<strong>&quot;It seems your coup has failed. You were neither diplomat, warrior, nor slave. No, you are lower than scum! You are</strong> <em><strong>Rebels!</strong></em> <strong>GRAGH!&quot;</strong>
+
+His patient had frayed, and now, Brutus found himself in close combat with the fellow Roman. The second club-like sword came swinging down, intending to shatter the skull with a single well-placed blow!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="865454242051391529" id="message-865454242051391529" title="Message sent: 16-Jul-21 12:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#0081">@Magneto</span> <span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-334C5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="860940513980186675" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Jul-21 01:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="865459751943929867" id="message-865459751943929867" title="Message sent: 16-Jul-21 01:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Being complimented didn&#39;t warm Laurent&#39;s ego. He didn&#39;t need some vandal to tell him he was good at his job. He swindled people, took their assets, and drove them into the ground. He was a businessman, that was what he did.
+
+&quot;There is nothing more satisfying than delivering an insult.&quot; Laurent said cleanly. He saw a factory worker slinking around in the background, behind his enemy&#39;s back. Laurent squinted, using the boost his glasses gave to identify the worker. They weren&#39;t chained. Assassin.
+
+His Servant went for the kill.
+
+He failed.
+
+&quot;Berserker&quot; was alert. How had Assassin&#39;s attack failed? Was it a fluke? Impossible. Laurent&#39;s knowledge on Servants was secondhand, but how could a Berserker, whose mind was hazed with madness, become alert to an Assassin&#39;s knife? Just his luck.
+
+&quot;False. You are in my property. You <strong>BELONG TO ME</strong>!&quot; Laurent scoffed as his right arm began to glow brightly.
+
+Several barrels of fluid—the ones Laurent touched as he entered the room—rushed towards Berserker of Avarice haphazardly, hitting catwalks and one another as they rushed forward.
+
+As they fell towards his foe, Laurent produced a revolver. Remarkably heavy, and suspiciously long, &quot;MK&quot; was stamped into the grip. Laurent shot a few bullets in Berserker&#39;s vague direction. He was not a professional shot, but he could at least hit the broad side of a barn.
+
+Laurent sprinted quickly towards a line of workers operating equipment that cast metal. With a few close ranges shots, the chains of a few workers shattered. 
+
+&quot;Go. You will be reimbursed for your struggles here.&quot; Laurent said, reloading the gun.
+
+The workers fled, and Laurent turned and freed a few more. Saving his own employees would be good for business. Every good deed had an ulterior motive.
+<span class="mention" title="RaptorAttacks#0350">@The Survives</span> <span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/9a4cadd32b042de1194b809195593550-ABA15.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="860940513980186675" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Jul-21 10:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="866150933426339851" id="message-866150933426339851" title="Message sent: 18-Jul-21 10:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As quickly as the memory appear, it disappeared. Before he could process the memory, he noticed Berserker&#39;s sword swinging down and barely avoided it. Then, he noticed his master saving his workers. This showed Brutus how great of a man his master was. Brutus knew he couldn&#39;t win a fistfight with a Berserker, so he&#39;d have to distract him and try to use the fluids that Laurent had spilled to his advantage.
+
+Brutus began to speak to Berserker saying, &quot;If we&#39;re scum, what are you? Only lesser men could satisfy themselves by controlling innocent people, which is sad because by your appearance you&#39;re also Roman so either you know me or I know you. Either way, you&#39;re a tyrant and tyrant&#39;s need to be dealt with and lucky for you <strong>that&#39;s my specialty!</strong>&quot;
+
+As he spoke, Brutus walked closer to a spill of the fluid and egged Berserker on trying to make him anger. However, Brutus couldn&#39;t still couldn&#39;t shake the memory that entered his mind. What was it? And why did he remember that?
+<span class="mention" title="Magnetic#0081">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Survives</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/0d4761a5672b5d0e8c5ffd585fad838a-64B98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Avarice#0000" data-user-id="860940513980186675" style="">Berserker of Avarice</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jul-21 12:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="866717827934453810" id="message-866717827934453810" title="Message sent: 20-Jul-21 12:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The drums were flung wildly, meant to be a distraction, and nothing more. For all their ego and their supposed madness, Berserker was no fool. He sidestepped each of the barrels as though he was dodging foot traffic, allowing them to crash down and spill their fuel.
+
+It was of little import. What did matter was his petulant slaves assuming they were allowed to escape.
+
+<strong>&quot;CEASE!&quot;</strong> Roared the Roman, swivelling on their heels and flinging their gladiatorial, club-like blade towards the exit. One of the unfortunate workers was caught in the back of the skull, fracturing it open. Blood and grey matter splattered against the catwalks as the attempted escapees stopped in their tracks, looking on in horror. They could not move. Their legs would not let them. They sank down to their knees, terrified, frozen by fear.
+
+It was as though all traces of their morale had been stolen from underneath them by some unseen force. Laurent&#39;s best efforts had been reduced to naught.
+
+<strong>&quot;Now, sit still and die like the criminal you are!&quot;</strong> Berserker snarled. Charging forth, they gripped their noble sword with both hands, dashing towards Brutus and thought the pooling oil, seeking to plunge his sword into Assassin&#39;s chest!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="866717864803434506" id="message-866717864803434506" title="Message sent: 20-Jul-21 12:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#0081">@Magneto</span> <span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-334C5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="860940513980186675" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jul-21 01:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="866734075729674291" id="message-866734075729674291" title="Message sent: 20-Jul-21 01:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A worker&#39;s head had been completely annihilated, and as his lifeless body collapsed to the floor, a chill went down Laurent&#39;s spine. It had been done with intention—kill one, scare the rest. The death had a point, but it was completely and utterly cruel. Laurent swallowed the bile rising out of this throat as he rose to face his threat.
+
+&quot;Stupid beast! What do you take me for?&quot; Laurent snarled in rage. &quot;I may not be perfect, but I don&#39;t have to kill my men to get them to stay!&quot;
+
+As Berserker of Avarice dodged the drums, Laurent couldn&#39;t help but scoff. Was that the best his foe thought he was capable of? Throwing drums at a barely passable speed? Laurent&#39;s Magic Crest glowed, and the barrels did a 180, flying in one direction, all towards Berserker.
+
+<strong>Clonk.</strong> More fuel and oil spilled onto the armored fiend.  
+
+Laurent turned towards the workers on the catwalks, still stunned from Berserker&#39;s display of ferocity. &quot;Move, or I&#39;ll kill you myself,&quot; Laurent said. &quot;And unlike him, I can kill you from anywhere. MOVE!&quot; Laurent&#39;s calm voice became a roar. 
+
+The workers moved, but so very slowly. Damn them. 
+
+&quot;Assassin. The workers. Go!&quot; Laurent said, aiming his gun towards the fuel-drenched Berserker. Laurent counted to five, giving Assassin an attempt to retreat.
+
+<strong>Click.</strong> The hammer fell. The gun fired.
+
+<strong>Chink.</strong> The bullet struck armor. A spark.
+
+Berserker went up in flames.
+<span class="mention" title="RaptorAttacks#0350">@The Survives</span> <span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/9a4cadd32b042de1194b809195593550-ABA15.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="860940513980186675" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jul-21 09:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="866851416488280094" id="message-866851416488280094" title="Message sent: 20-Jul-21 09:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus was thankful to and proud of his master for helping him and the people escape. He moved away from Berserker and watched him burn.
+
+He smiles and says, &quot;Dear Gods, another Roman has been sacrificed to you please use their life as an exchange for our good luck.&quot;
+
+As he ran, he was distracted by the memory that Berserker gave him and the same thought kept crossing his mind: &quot;Who was that servant?&quot;
+<span class="mention" title="Magnetic#0081">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Survives</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/0d4761a5672b5d0e8c5ffd585fad838a-64B98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Avarice#0000" data-user-id="860940513980186675" style="">Berserker of Avarice</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 06:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="867169021278027817" id="message-867169021278027817" title="Message sent: 21-Jul-21 06:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>BANG!</strong>
+
+The sound of the explosion rang out throughout the compound, echoing through the factory as Berserker caught fire. However, that alone would not be the end of their enemy. No, that privilege would belong to the collateral damage they caused. 
+
+The catwalk underneath the golden warrior, now melted by the scorching flames, suddenly gave way. In an instant, the servant was plunged down, falling deeper into the facility. Laurent would instinctively know what awaited at the bottom - maintenance, most pertinent among that list, waste disposal systems. Should their opponent survive both the flame and the fall, they would surely be afforded an easy exit. 
+
+<strong>&quot;I! WILL! REMEMBER! THIS!&quot;</strong> The tyrant roared as gravity dragged them down. Soon after, they faded from sight. Soon after that, they would hear the most distant <em>thud</em>, the impact of the raging beast hitting the ground.
+
+He was dealt with. For now, anyway. 
+
+<strong>BERSERKER OF AVARICE</strong>
+<em>True Name: ???</em>
+<em>Condition: Defeated, Forced to Retreat</em>
+<em>Status: Unknown, MIA</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="867169053167714325" id="message-867169053167714325" title="Message sent: 21-Jul-21 06:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#0081">@Magneto</span> <span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-334C5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="860940513980186675" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Jul-21 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="867314611804176384" id="message-867314611804176384" title="Message sent: 21-Jul-21 03:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As Berserker went up in flames and howled like a mad dog, Laurent could not help but smile.
+
+Was this all that fighting a Servant amounted to? It was a breeze. Simple, almost amusingly so. Was this a trick? Laurent couldn&#39;t help but feel like he was forgetting something important...
+
+Nonetheless, Berserker had done a good job of surveying the factory. He knew exactly how to escape. Laurent almost wanted to applaud him, but Berserker was still out there. He needed to make an example of the Servant, as well as his Mast—
+
+Laurent clicked his tongue in annoyance. That was what he forgot.
+
+&quot;Your job,&quot; Laurent began, taking his glasses off to rub them of dust and debris, &quot;is to gather information and stab my foes in the back. I chose you because you are discrete.&quot; Laurent replaced his glasses, and turned to face Assassin.
+
+&quot;We don&#39;t know Berserker&#39;s identity, nor do we know his Master. If he is Roman, then I leave it to you to figure out the former. I will figure out the latter.&quot;
+
+Laurent was obviously done with the conversation, and waved his hand in thoughtful dismissal. He turned to all the workers still on the factory floor. 
+
+&quot;I am sorry, once again, for what all of you have been through. You will all receive compensation for today.  <strong>Do not mention my associate&#39;s Servant, who I have brought here today. Doing so will result in the loss of all benefits.</strong> Pack it up, and get out of here.&quot;
+
+Laurent picked up his phone and whispered an order into it, which would be transferred to security outside. All workers would be screened and interrogated. The Servant&#39;s Master would be found and tortured. 
+
+&quot;We&#39;re done here. Let&#39;s go.&quot; Laurent said, and walked out.
+<span class="mention" title="Tres Master#0916">@Tres Master</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Factory%20District%20-%20mackenzie-weapons-factory%20%5B860902127568551938%5D%20%28after%202021-07-07%29.html_Files/9a4cadd32b042de1194b809195593550-ABA15.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Marcus Junius Brutus#0000" data-user-id="860940513980186675" style="">Marcus Junius Brutus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Jul-21 10:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="867598720207290368" id="message-867598720207290368" title="Message sent: 22-Jul-21 10:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brutus was still recovering from the interaction because what were the chances that two Romans would both meet in this current world are insane. He wanted to know who this Servant was and what those memories were more than anything.
+
+So he responded to Laurent&#39;s orders with: &quot;Yes, Master!&quot;
+
+He smiled and walked away with Laurent.
+(I&#39;m writing this on a different devices so hopefully it comes out ok)S@</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

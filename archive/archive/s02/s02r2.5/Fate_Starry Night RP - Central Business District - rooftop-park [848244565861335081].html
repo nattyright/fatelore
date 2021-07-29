@@ -1,0 +1,1059 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - rooftop-park</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Central Business District / rooftop-park</div>
+
+            <div class="preamble__entry preamble__entry--small">What better way to show off one&#39;s wealth than by using one of the most expensive areas as a battleground for the City Grail War? The rooftop park that was designated as a battleground is one of Delphi&#39;s largest. Spanning the rooftops of 3 adjacent skyscrapers, the park is lush with vegetation. It&#39;s practically a mini forest in the heart of the city. Cameras have been installed at key locations for the duration of the War.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-C7063.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">30-May-21 01:07 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="848427495258325033" id="message-848427495258325033" title="Message sent: 30-May-21 01:07 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/vWMJu5Jh-16FA8.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/vWMJu5Jh-16FA8.jpg" alt="Image attachment" title="Image: vWMJu5Jh.jpg (143.37 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-5AA47.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 01:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="869809916318203924" id="message-869809916318203924" title="Message sent: 28-Jul-21 01:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To set foot in the dizzying heights of the Central Business District was the dream of any young Delphian and Gustave could recall his own dreams at doing so. To be up there would be to reclaim the glory, honor and prestige that had made his family well-known in the old world. The call of such treasures was never something that left his mind, not as he departed to Lemuria as an older child, not as an eager young researcher, not as a premiere professor and investigator of magecraft and definitely not as the aging head of the family. If he was to cement his legacy and give his children what his parents could not, to claim his spot up here would prove his true worth.
+
+All this swirled in his head as the elevator shot upwards for his destination and fated meeting with a mysterious stranger who already walked in the halls of power. How long had it been since he had been in similar towers in Lemuria? Five, ten years? It didn&#39;t matter but the etiquette from such journeys did. 
+
+As the room came to a stop and the door opened with a pleasant chime, Gustave grabbed his cane and began walking carefully into the light, tipping his cap downwards. 
+
+His potential partner could watch as an older man in shirt and vest came forward, his stride trying to mask the residual injury suffered and an stoic expression splayed itself across his face. 
+
+&quot;Greetings there, sir. Are you the one who left such a nicely written letter for me? I have come despite your directions. Do you have plans for a luncheon, I see?&quot; He pointed his cane towards a saucer complete with a rather elegant looking sandwich paired with a drink in hand-crafted crystalware.
+
+<span class="mention" title="Magnetic#0081">@Magnugget the Malicious</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/fe15d67c37b4ce3484bfa134caff1534-52D67.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Narrator#0000" data-user-id="869809915458379776" style="">Narrator</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 01:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="869813154736119819" id="message-869813154736119819" title="Message sent: 28-Jul-21 01:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The garden was beautiful. A complex spanning multiple rooftops filled to the brim with artifical lakes, rose gardens, and archways filled with plants. It was like walking through a wild yet still carefully maintained garden. There was not a single root to trip on. If Delphians were known for anything, it was elegance and beauty.
+
+A few visitors of the garden despite its confirmation as a licensed battleground for the war were peppered about. Some parents had even brought their children. How unworried were these people? Did they not know the destruction some of these Servants were? Madness. Gustave&#39;s grandfatherly instincts nudged at him to give these kids a scolding, but the urge was resisted.
+
+He was here for a reason.
+
+After wandering for a bit, Gustave found a small, secluded garden with a man and a child. The man vibrantly splayed his hands out, as though telling a story as the child laughed. Turning to see Gustave, the man&#39;s eyes flickered from behind glasses. He gave the child a few credits, presumably to get him to go get ice cream or whatnot, whatever got him away from here.
+
+The child left, and the man stood up.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-746B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 01:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="869813998558793769" id="message-869813998558793769" title="Message sent: 28-Jul-21 01:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Welcome, Mister Renoir,&quot; the man said evenly. Now that the man had gotten closer to Gustave, his face looked faintly familiar. He smiled evenly as he smoothed his shirt. He gestured for Gustave to take a seat, along with a sandwich.
+
+&quot;My name is Laurent MacKenzie, and I am—was— the Master of Assassin.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-5AA47.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 04:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="870033110362882049" id="message-870033110362882049" title="Message sent: 29-Jul-21 04:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The rooftop garden was an sampling of the Elysium that the common folk of Delphi would never touch and here he could walk unperturbed. His eyes drifted to the children playing carefree on the grounds. There was no doubt such a finely manicured place was also found on the old Renoir family grounds and with luck, his own grandchildren could do the same here soon. But that was a passing thought for passing people, his time lied with the Olympian ahead. 
+
+&quot;Thank you, Mr. MacKenzie. I am humbled to be invited by such a successful young man. Maintaining your family&#39;s industry is a great accomplishment though I am sorry to hear that your inital ventures into this grail war ended with disappointment. Still, one should consider themself fortunate to still be alive and perhaps a bit wiser too...&quot; Gustave made a shallow bow before resting his cane on the armrest of his chair and slowly easing himself into the contours of it. He made a little chuckle after taking a swallow from the provided glass.
+
+&quot;I assume you have more details to discuss about this &quot;arrangement&quot; and undoubtedly keep your influence in the war but humor me for a second. That&#39;s a nice young lad you had there, full of energy, full of dreams. If he&#39;s yours, he&#39;s definitely got the family drive for success. I can only hope my own children foster their kids in such a manner. I had worked hard to get where I am and they just as much, complacency is the last thing they need and I do worry a bit about it.&quot; He stared off at the grounds, taking in the scene while he replenished his energy with the sandwich. &quot;A family at its zenith should be especially wary that such ideas don&#39;t take hold, wouldn&#39;t you agree?&quot;
+
+<span class="mention" title="Magnetic#0081">@Magnugget the Malicious</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-746B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 05:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="870048976148258886" id="message-870048976148258886" title="Message sent: 29-Jul-21 05:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh? Have I already become a household name here in Delphi?&quot; Laurent chuckled, musingly swirling wine in a cup with a far off look in his eyes. He already knew about his rising popularity in Delphi, but hearing it out of the words of someone from the city was immensely gratifying.
+
+Laurent&#39;s magic circuits hummed along quietly, proactively weaving a spell around himself. Gustave was kind and amicable, but that could all be a mask. A ruse. His Archer could be hiding behind any ounce of foliage, waiting to blow his head into a fine red mist. He doubted that Gustave would kill such a prominent businessman in such a public place, but one did not stay alive in Olympia&#39;s cutthroat business world without having contingencies in place.
+
+&quot;However, you are far more noteworthy than me. I make and sell guns, among various other things. If I died and my company died with me, it would result in a short term collapse of the Olympian economy, true, but it would eventually recover. <strong>I am replaceable.</strong> Your accomplishments are not.&quot; 
+
+Was this a brag or a cry for pity?
+
+&quot;That boy is not mine.&quot; Laurent said simply, looking away from his glass of wine to face Gustave. &quot;I have a child, and had a wife. She died during childbirth, and my daughter has been sent away in the face of this war. No matter what happens, she will be well looked after.&quot;
+
+&quot;I concur, however. Down to business.&quot; Laurent&#39;s tone changed from quiet musing to stern businessman eloquently and quickly. MacKenzie Industry&#39;s president was no slouch when it came to deals, that much was obvious.
+
+&quot;Having lost Assassin, I no longer have a place in this war. I can compete, but this is not as cutthroat as Perespolis&#39;s Holy Grail War, where entire pieces of infrastructure and being atomized and hundreds of men are being mauled. There is a chance to still make something out of this egotistical match between Olympia and Delphi.&quot;
+
+Laurent leaned forward, words sliding out of his mouth, carefully sweetened like a fine tea.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="870049127201927198" id="message-870049127201927198" title="Message sent: 29-Jul-21 05:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Your Archer is a sniper, correct? Powerful, eloquent, presumably difficult to track. All it takes is one shot to the head and you can take out a Servant. No further casualties.&quot;
+
+If the battle between Gustave&#39;s Servant and Olympia&#39;s Lancer was anything to go by, this wasn&#39;t the case. The entire park had threatened to become a smoking crater for most of the engagement.
+
+&quot;However, you lack information on your targets to make the proper kills. I lack an ability to enforce my desires for this war&#39;s outcome. There is no hope for me. But there <strong>is</strong> hope for you.&quot; 
+
+&quot;This partnership will most likely deteriorate near the end of the war, but it matters little. As long as somebody wins that does not threaten my interests in Olympia, nor threatens future prospects in Delphi. And once I am heavily involved in deals in Delphi...&quot;
+
+The businessman smiled.
+
+&quot;Who is to say I don&#39;t sink my fangs into a Lemuria, and most importantly: <strong>a certain council</strong>?&quot;
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-5AA47.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 07:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="870085181619470417" id="message-870085181619470417" title="Message sent: 29-Jul-21 07:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;If not you, its hard to not know the MacKenzie family name, your products are well known the seas over and this, as you know, is quite the hub for commerce. People trade names just as easily as money,&quot; Gustave settled into his chair quite comfortably and his words flowed smoothly as silk, almost swadling Laurent with their friendliness. They were useful things that could buy all the time he needed to understand his lunchmate.  &quot;Ah now the tables are turned. Please, what I do is nothing extraordinary, people take what I have done for granted, its a part of their lives that goes unnoticed. It is my students, however, that are my true accomplishments.&quot; 
+
+&quot;Yes and the cities were smart to confine it to certain areas. We don&#39;t need to end up increasing the prize pool by a factor of three with our own resources. One has to be careful not to upset the moderators and I am not surprised my past assailant was so reckless. He would have failed my course was he my pupil.&quot;
+
+&quot;What you say is what you have seen by observation and may hold some truth to it. As for this temporary partnership,  it is an inticing offer that would be hard for me to turn down. I have to say you businessmen always know how to corner your target, don&#39;t you. Well done,&quot; He gave Laurent a few good natured claps as if he had passed some test. 
+
+&quot;But hoho, now you&#39;re being a bit too ambitious, Mr. MacKenzie. You may be a great hunter in your own way but what is a single lion to a pack of wolves in a place you can not even find? I would temper your thoughts there and such things will bare no effect on my decision on the partnership&quot;
+
+<span class="mention" title="Magnetic#0081">@Magnugget the Malicious</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-746B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 07:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="870092139227394099" id="message-870092139227394099" title="Message sent: 29-Jul-21 07:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The gardens echoed with the sound of Laurent laughing. &quot;You&#39;re right, but will you turn me away for that reason alone? If this war ends with my death, and you remain standing, you will still get a wish. If the war ends with us both standing, you get a helping hand in the coming years.&quot; Laurent abstained from mentioning what would happen in the scenario of him surviving while Gustave died. That would have no affect on this negotiation.
+
+Laurent&#39;s eyes betrayed nothing as he took a sip of wine. <em>Old man, despite your brilliance. I know for a fact that nobody could get kicked around like you and not want revenge on those who wronged you.</em> Gustave was a tender grandfather, most likely. However, he was sly. A genius, even. A pawn in Lemuria&#39;s schemes was likely to pick up a few political tricks. If they both survived this war, perhaps a business partnership was in order, though Laurent silently scoffed at Gustave&#39;s claim that Laurent should be more realistic with his goals.
+
+<em>I&#39;m not nearly ambitious enough.</em>
+
+&quot;If you would like further assurance, I will help you. I am no great mage, but I did not fight back Olympia&#39;s Berserker with honeyed words and buttery promises. I am a businessman. We are all scum, and care primarily about our profits. I will not lie to you, because I would rather not be lied to in kind. For that reason, I am willing to fight alongside you for what I desire, instead of simply sending you forward to die.&quot;
+
+Laurent placed his glass on the table. He considered eating a sandwich, but decided against it. He offered out his hand.
+
+&quot;So then, is this alliance sealed?&quot;
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-5AA47.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 10:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="870126774250504252" id="message-870126774250504252" title="Message sent: 29-Jul-21 10:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hmm I suppose not, though I suppose if there was an untimely event that resulted in your termination, a parting gift of 20% ownership in your industries would only be fair, no?&quot; Gustave chuckled in response to Laurent and countered with his own joke. Even if it could be a front, there was something to be said for joviality even in the face of grim topics. It wasn&#39;t meant to test Laurent&#39;s resolve though him biting on the offer later would not be bad, per se.
+
+The businessman proved his equal in cunning, each word he said conveying an undertone of ambition, a dangerous ambition that combined with the tendencies of the Olympian aristocracy made Gustave feel as if he was chatting with a rising tyrant waitng for his chance to rule. A close eye would have to be kept on him at all times. He had a similar fellow under his wing before and he well-knew how that ended.
+
+&quot;Now that may be just what this arrangement needed. Your assistance would be invaluable in preventing our enemies from making an untimely escape. If not for a moment, we shall be allies. You have a deal, Laurent. Let us hold each other to honoring it,&quot; Gustave shook Laurent&#39;s hand with surprising strength and locked eyes with him, an odd, machine-like glint in his eyes.
+
+<span class="mention" title="Magnetic#0081">@Magnugget the Malicious</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-746B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jul-21 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="870130742942908447" id="message-870130742942908447" title="Message sent: 29-Jul-21 10:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">20%? Laurent pondered the notion. Olympians rarely split percentages of their companies among themselves. It wasn&#39;t good to decentralize a business outside the family. Delphians did it constantly, however. Laurent smiled and inclined his head.
+
+&quot;I&#39;ll do you one better. If we both live to see the sunrise at the end of this round, I&#39;ll quintuple your proposal. Prove your capabilities, and I&#39;ll give you 100% until my daughter comes of age. If that happens, you will tutor her in the ways I cannot. It will be sealed by Geass Scroll.&quot;
+
+The audacity of the deal was absurd. 
+
+There was no reason for this stranger to give Gustave even a single dollar of his company. They had barely just met! Was it a trap? Was Laurent calling Gustave&#39;s bluff? Or perhaps MacKenzie Industries meant nothing to Laurent after he died.
+
+The two shook hands. Laurent&#39;s eyes twitched slightly at the old man&#39;s grip. The traditional contract was signed.
+
+&quot;Well, I shall be going. There&#39;s a meeting with the Olympian Quality Control Board that I have to catch. A hundred years of service, and they still think we can&#39;t make a proper rifle.&quot; Laurent sighed, standing up. &quot;I&#39;d offer to walk you back to your home, but I don&#39;t know Delphi very well. Shine over that paper I gave you with a black light, bottom right corner, you&#39;ll have my phone number. I already have yours.&quot;
+
+Laurent inclined his head, and walked past Gustave, disappearing into the rose bushes, as if he had never been there.
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

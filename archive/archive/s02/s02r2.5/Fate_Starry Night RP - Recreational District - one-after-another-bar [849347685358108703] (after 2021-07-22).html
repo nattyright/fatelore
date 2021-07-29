@@ -1,0 +1,1443 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - one-after-another-bar</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Recreational District / one-after-another-bar</div>
+
+            <div class="preamble__entry preamble__entry--small">A classier bar named after the way notes proceed in a song and to encourage drinkers to keep going after the first round. One of the more wholesome places in the Entertainment district, for those wanting a reprieve from daily life with gentle music. A competitor above was bought out by the de Allegro family, repurposed into a modest home for Lark who owns the place below. Home away from home.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 22-Jul-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-C64B9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="854813699281256468" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 05:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="867875209226485780" id="message-867875209226485780" title="Message sent: 23-Jul-21 05:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Almost akin to an owner dragging in a pet that got caught in the rain, Uther ushered Lark into the bar and helped him to a seat. “Speak loud and well my master, I do believe we have much to discuss in concern of what just transpired at the Amphitheater. How is your wound, do you require clerical aid?” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/3ff238213ab5219ae34f36fac7d72429-DF864.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="854813699281256468" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="867877975721377833" id="message-867877975721377833" title="Message sent: 23-Jul-21 05:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lark clutched the small hole in his side as they finally arrived at his home. Door unlocked (must’ve forgotten), they barged past and slammed it shut behind. Blinds were drawn, revealing a beautiful landscape of the tall buildings all around. Instead of bright neon lights, however, were reflections of the sun about a million times over. The dark was what made it pretty, so this would have to do for now. Better yet, it was cool inside the bar thanks to the express installation of windows. These were a lot thicker, to prevent the occurrence from happening again. Hopefully.
+
+Perhaps even worse, they were not alone. Geeves was there, polishing glasses behind the bar. “Welcome back, Master,” he called, setting down the current cup, “how did your-- oh.” He fell silent at the sight, not quite shocked but surprised nonetheless.
+
+“Well,” Lark said, “it hurts. I’ve had worse though. The stories-- <em>fuck</em>, can wait. Geeves, grab the first aid kit from upstairs, would you? And don’t make any phone calls. They’ll find out soon enough.” 
+
+Geeves hurried to grab said medical supplies, leaving the pair alone for the time being. “The answer is yes, obviously, but that’s what he’s for! Helping out with any nicks scrapes and broken bones--” he muttered that last part, hoping that Lancer wouldn’t hear. Just what kind of stuff did this guy get into?!
+
+“Help yourself to whatever’s back there,” he motioned to the vast display of bottles sitting in view, “for your victory drink. I’m good for now, if you’re worried about me collapsing to the ground dead. Beer pitchers are in the cabinet to the right. We use them for special occasions, and this is probably one of those for you.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">23-Jul-21 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="867877985347567616" id="message-867877985347567616" title="Message sent: 23-Jul-21 05:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-C64B9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="854813699281256468" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 05:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="867887980907855882" id="message-867887980907855882" title="Message sent: 23-Jul-21 05:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The king watched as his master’s manservant went to fetch medical supplies. The nonchalant attitude that Lark held was becoming far more concerning than initially thought. The way the man had behaved during that encounter was in a phrase, eye opening. 
+
+Moving towards one of the far cabinets pointed out to him. He grabbed a large bottle of what appeared to be bourbon and two small glasses. Uther poured a small fraction into each, and placed them upon the bar that stood between him and Lark. Lancer took a quick swig before wiping his chin with his sleeve. It was far more diluted in alcohol content then he had in his time, but it’ll do. 
+
+Once he had his first drink he’d stare across at Lark, fill up his glass once more, and without warning he’d throw the drink at his master’s wound attempting to enact that burning disinfecting effect upon him. “Do you enjoy that? Does it give you pleasure feeling pain, putting yourself in danger?” There was a deep irritated firmness to his voice, almost like a general speaking to his fellow men. “I knew you had perversions when it came to being in danger, however, I did not suspect you would take it to such a degree. There was no reason for you to start that fight, no true provocation had come your way other than a few cross words. However, you couldn’t help yourself could. That was the time and place for you to get your fix.” 
+
+Uther’s face was red and despite them coming out with a seeming victory , he was treating it as a complete blunder. “I hope your euphoria was truly worth it, because I’m not certain you fully grasp the levity of your actions. It was not only your life you risked out there. You risked mine and all those innocent people, individuals who had nothing to do with this conflict or your twisted games. We may have taken the win of our enemy, but this was a battle that did not need to be fought, especially not there. Please at least give me the acknowledgment that you understand what I’m telling you.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/1db0790a08736b777db5457b6cba4ef0-F2FF6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gilan#1083" data-user-id="418155771918811136" style="color: rgb(255,140,19)">Gilan</span>
+
+
+        <span class="chatlog__timestamp">23-Jul-21 05:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="867887993405440000" id="message-867887993405440000" title="Message sent: 23-Jul-21 05:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/3ff238213ab5219ae34f36fac7d72429-DF864.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="854813699281256468" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 10:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="867952867263250432" id="message-867952867263250432" title="Message sent: 23-Jul-21 10:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The splash of alcohol that joined the stained mess of his shirt was certainly a surprise. Lancer somewhat succeeded  with his goal, as a small fraction of bourbon flared his bullet wound. Lark hissed, covering the hole with his hand again. 
+
+However, the scolding was not. In fact, he had suspected the King would go into this sort of monologue as soon as they reached the privacy of the bar. Word for word, he predicted the shpheal given to him. Not that he didn’t deserve it, of course.
+
+He chuckled darkly, “I’m not foolish enough to fail to see the ramifications of my actions, Fath— Lance. Do you seriously think that not a single regret has plagued my mind since that brawl? I know what I did was wrong, and there isn’t a single excuse that would proficiently save me from judgement.”
+
+The musician hadn’t planned on drinking hard liquor, but he could feel a restlessness starting to build. He downed it all in one go and slammed the glass back on the countertop.
+
+“What do you want from me, dearest servant? Anything you might desire from me will have to take a back seat, as my family has already asked everything you can think of and more.”
+
+Clearly this wasn’t his first rodeo, and it would not be his last.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">23-Jul-21 10:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="867952884212445184" id="message-867952884212445184" title="Message sent: 23-Jul-21 10:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-C64B9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="854813699281256468" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 10:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="867955920402006016" id="message-867955920402006016" title="Message sent: 23-Jul-21 10:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Uther leaned in remaining as stoic and serious as ever. He merely poured another shot into his master’s glass and slid it his direction. “What I want dear master, is for one understand why you have these urges. What is it that drives this behavior forward. Once we establish some sort of source, I want to help you mitigate it, or at least make it more manageable. Recognizing that one has a fault does not make them a poor warrior, letting themselves wallow in it and not working to fix said flaw is. So I want to get to the root of it all. What is it that truly makes Lark de Allegro tick.”
+
+Lancer took a swig of his own drink, and glanced out at the night sky. “Why don’t we start at the beginning. When did you first notice you started having this urges. What was the catalyst that pushed you to seek danger wherever it may lay?” It seemed that Uther was slowly lowering his tone and speaking less as a king or a general and more as a man seeking answers. In some ways this gave a small peak into Pendragon’s own persona, something beyond all the bravado and nobility. <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/3ff238213ab5219ae34f36fac7d72429-DF864.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="854813699281256468" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 12:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="867988043620044860" id="message-867988043620044860" title="Message sent: 23-Jul-21 12:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Well <em>this</em> was surely new. Usually once a conversation got to this point the person Lark was talking to would slowly but surely realize he was helpless and walk away, or bash their head against the metaphorical wall until they, well, walked away as well. To give credit is where it’s due, Lancer at least wanted to try and see what was going on underneath that hood. 
+
+If only that would help.
+
+Lark smiled as he stared daggers into the floor. “That’s a first. You want to know when this started? How I slowly but surely degraded myself into a, quote-unquote, ‘thrill seeker’? That one isn’t hard to figure out at all.”
+
+“I got too good. At the violin, that is. One day, I woke up and realized that the odds of someone being able to match me in my craft was next to none. No savants of the genre existed, certainly on Olympia. So, I challenged myself. Made up arbitrary conditions to see how far I could push myself. Once I mastered those, I went further.”
+
+“And I peaked. Nothing could excite me, fill me with that… drive, that thrill of a perfectly played string of sixteenth notes at the fastest tempo you could imagine, the joy of making a mistake only to fix it after hours of practice, the <em>ecstasy</em> of a performance in front of an audience where I couldn’t have played better if I tried.”
+
+Geeves returned, carrying a large white box with a red plus on the front. He wordlessly knelt down, pulling up the shirt to examine the damage. He muttered a few words to himself as he opened the box to see what would be best for this.
+
+Lark, meanwhile, faced his servant again. “Now tell me, my dearest therapist, how one reaches a peak not even within the mortal realm? To get inspiration in a drab, dreary world,” He held up his hand to his forehead in a dramatic fashion, “to go where no living being hath dareth go before?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">23-Jul-21 12:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="867988047428472853" id="message-867988047428472853" title="Message sent: 23-Jul-21 12:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-C64B9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="854813699281256468" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jul-21 11:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="868154545577000970" id="message-868154545577000970" title="Message sent: 23-Jul-21 11:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">listening to the words spouted by his master Lancer kept a straight face taking in everything he was say. The more Lark went on about his woes and seeming boredom, it started to sink in for Uther what kind of individual he was dealing with. His master was a narcissist. In many ways the King could understand where he was coming from, and could rationalize how one could get to that level. Letting out a deep sigh, Uther reached over and pat Lark on the shoulder. “Although I do not share your ideals of art, I can understand what it’s like to aspire for something greater than yourself. However, I do also believe that a sense of practicality should enter the mind as well. You seek to experience the thrill of death to give you inspiration, to fuel your creative drive. Let me ask you, have you seen someone due before. Have you killed someone before? Have you watched the light leave someone’s eyes knowing that all they are, all they ever will be ends right there in front of you, sometimes because of you. You have hinted at the many injuries you sustained, and seem to brush off the severity of the situations that earned you them. If I’m to answer your question, I need to know how far you’ve taken this drive of yours.” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/3ff238213ab5219ae34f36fac7d72429-DF864.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="854813699281256468" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 01:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="868182844009222176" id="message-868182844009222176" title="Message sent: 24-Jul-21 01:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lark burst out laughing as soon as Lancer finished speaking. His body rolled, mouth wide open and spittle going everywhere. He smacked the counter over and over on instinct, his comedically loud sounds unable to get this sudden joy alone. 
+
+It took a full minute for him to calm down enough to sit still, still enough for Geeves to continue his doctor work. Lark wiped his eyes, “Oh, forgive me for my rudeness there. It’s just that one part, the ‘you have no idea what you’re doing’ part, absolutely cracks me up!”
+
+“Of course I understand the severity of the situations I get my injuries from! It’s the entire point. To ask that, after the enough you know me, comes off as ignorant. No offense, you mean well.”
+
+He slid his finger around the rim of his glass, “To answer your other questions: a few relatives on their death beds, but I haven’t killed anyone myself. I’m crazy, not deranged. And my ‘drive’ hasn’t gone farther than that stunt I pulled today, even when it first started out. I get my inspiration* from thugs and ne’er-do-wells, ruffians up to no good. I stop a crime and satiate myself, the victims get some help and time to contact the authorities, throw confetti, party’s in an hour, don’t be late.”
+
+*Inspiration=fix.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 01:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="868183876432982049" id="message-868183876432982049" title="Message sent: 24-Jul-21 01:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/bdb9f72e156153472d577f3f8a2e5051-C7063.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 02:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="868192199463022662" id="message-868192199463022662" title="Message sent: 24-Jul-21 02:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(translator&#39;s notes)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-C64B9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="854813699281256468" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 04:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="868231661962293320" id="message-868231661962293320" title="Message sent: 24-Jul-21 04:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I wasn’t asking, I was stating an observation.” Uther seemed unmoved by the boy’s incessant laughing, it only served to prove his point that Lark truly is out of his depth. “I did not say you don’t understand them, I said you brush them off, meaning you don’t care. You don’t care what happens to you and you damn sure don’t care about how your actions effect the others around you. You may have a grasp on how dangerous this all could be, but it doesn’t seem to stir you in the slightest to think how this effects your family or those who look after you. I wonder how many times Sir Geeves has had to patch you up, get his hands dirty because you couldn’t resist sticking your neck out.”
+
+Uther let out another deep sigh, as if he himself was exhausted. He knew this conversation was only going in circles. No amount of prodding will get his master to change, nor should he expect it to. Instead, he should take a different tactic entirely that very well may satisfy the both of them. The king stood up now and moved front from behind the counter and took a seat next to his master. “You do not understand fully grasp death, loss, or sacrifice. Perhaps that is the problem. In your own ignorance, you wish to have a glimpse of what heroes, soldiers, and men of war have faced for over multiple millennia.” Despite Lancer speaking coldly, it did not seem like he was truly berating anymore. More so he was trying to teach Lark something that perhaps only a few men could. “You and I are not going to see eye to eye on our ideologies, and based</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="868231732950859787" id="message-868231732950859787" title="Message sent: 24-Jul-21 04:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">on your frequent reaction to my statements it seems you are tired of being lectured and treated like a child. So, henceforth I shall no longer treat you as such. You wish for others to respect your aspirations then so be it.” 
+
+Uther then reached out and took hold of Geeves hand mid-stitch. “Thank you for your hospitality, but Master Lark should receive no more extraneous treatment. These are the decisions he’s made of his own free will and we shall respect them. He wishes to experience what it’s like to witness death at its nearest peak, that means he shall do his own stitches from now on. It would be disingenuous for him to constantly have a safety net or someone there to heal him when he goes too far. And before you remark master, this is not a punishment. I merely wish to give you that broader understanding and inspiration that you crave. The feeling of looming death only grows stronger when you realize you only have yourself to rely on to keep you alive. Of course I will still be around, after all you can’t be reasonably expected to take on other servants. However, with that said perhaps I haven’t give the proper opportunity and encouragement you required of me. Part of King’s job is to serve the people and lead them in ways that they may not grasp. I don’t mean that in a derogatory way, my point is that I’ve experienced far more death than you have in your entire lifetime. If anyone can show you the true nuances of departing, it might as well be me. Will you allow me to share my experience with you?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/1db0790a08736b777db5457b6cba4ef0-F2FF6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gilan#1083" data-user-id="418155771918811136" style="color: rgb(255,140,19)">Gilan</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="868231770015928360" id="message-868231770015928360" title="Message sent: 24-Jul-21 04:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/3ff238213ab5219ae34f36fac7d72429-DF864.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="854813699281256468" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 05:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="868243789691621456" id="message-868243789691621456" title="Message sent: 24-Jul-21 05:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Finally, Lark smiled. Not in any harmful, dark, sarcastic way. No, this was a genuine smile. He had just been told to figure himself out, to be left to fend for himself, and he was smiling.
+
+“Oh, what joy! A fellow who takes notice of my intentions. Yes, I <em>should</em> be the one to fix myself up! Any and all wounds should be repaired on my own, you are correct! How silly of me to not take into consideration my subjects feelings on the matter. Geeves, I will rightfully handle this stitching on my own.”
+
+Lancer would find a hand clapped onto his closest shoulder, “Here I was thinking you’d give up like all the others! Well, in a way you have, but in a good way! Very well then, lead on my king!” 
+
+Geeves, meanwhile, handed the thread and needle to Lark. His eyes met Lancer, and they were not filled with with happiness, or relief, or understanding. No, they held something darker: bitterness. The king had gained him more free time, and he was upset? What was wrong with this group of people associated and related to this family? There was clearly more to it than meets the eye.
+
+“Now, we can discuss further details in a bit, but for now, I must sit down somewhere more proper in order to finish these stitches. You stay there, and enjoy your liquor, and I shall return shortly!” 
+
+Carefully, he returned to a standing position and made his way to the back. That left just Lancer and Geeves, the latter still stewing on his own. Of course, he could go against his Masters wish and join him in the back, but the decision was his. It’s not like Lark could go anywhere by sneaking off…</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 05:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="868243816719745044" id="message-868243816719745044" title="Message sent: 24-Jul-21 05:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-C64B9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="854813699281256468" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 08:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="868471694229143552" id="message-868471694229143552" title="Message sent: 24-Jul-21 08:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Uther turned to the humble servant, lightly patted the side of the man’s shoulder, and spoke at a tone that only Geeves could hear. “You highly frustrated with me. Your expressions give you away. Likely you assume I’m a mad man for endorsing my master’s reckless behavior. The truth is I still feel as strongly as I did before that his actions are moronic and in many ways selfish. However, despite disagreeing with him, I understand Lark and his feelings. He is constantly told that he can’t do something, which in his mind makes him wish to do it more. He believes as long as he doesn’t take it too far, there’s no harm in it. Park is like a teenager begging for his free to leave the home and venture on his own, inexperienced on what he faces without family or friends to fall back upon. In addition, he believes to understand the gravity of his actions and the ramifications of facing death. I intend to give him the most intimate understanding without letting him perish. Sometimes if you wish to teach a lesson to a spoiled child, you have to let them fall on their ass and allow the opportunity to pick themselves up. Rest assured Sir Geeves, I will continue to protect Master Lark. With that said, if there is any further insight into the situation that you can provide for the situation that I’m not yet aware of, I’d appreciate hearing it before I proceed any further.” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/3ff238213ab5219ae34f36fac7d72429-DF864.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="854813699281256468" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 04:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="868591844932612206" id="message-868591844932612206" title="Message sent: 25-Jul-21 04:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Yes, protect him. That’s why he came home with a <em>bullet hole</em> in his abdomen. His first outing with you, and he gets shot,” he whispered. “And your first idea is to allow him <em>more</em> freedom?! You are absolutely right: I am furious. Livid! Appalled by your judgement skills, despite proclaiming yourself a king.”
+
+Geeves swept Lancers hand off his shoulder and proceeded to step closer. The only thing that kept the butler out of Lancers face was the height difference, neck craned to meet eyes. “I can only imagine what happened out there. Did you too fall victim to the excitement of battle? Or perhaps you thought yourself clever, able to take your eyes off of him for a single second in the midst or combat? Maybe it was a stray shot that made its way past you, but you must forgive me for finding that hard to believe. Oh, it could never be your fault. All praise the infallible Royalty!”
+
+Another step forward, and now the old man was rubbing chests with the knight, fine fabric meeting warm metal. “And to assume we keep him under lock and key is preposterous. He has enough freedom in his decision making. Along with that, all previous outings were supervised closely by Rose and I, and no major injuries occurred during any encounters. We are right in doing so, as the ‘spoiled child’ is prone to putting himself in danger. To let him have true freedom is to push him into the grave with your own two hands. You know that as well as I, and you let go of the leash.”
+
+And as fast as he had invaded the others personal space, he was gone. Backed off to retrieve the medical supplies taken out and properly put them back. To see such emotion in one that rarely shows it at all is the sign of something wrong. Or perhaps he’s too protective. Lark shouldn’t take too much long, right? How long does it take to finish stitching yourself up, anyway?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">25-Jul-21 04:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="868591864142503946" id="message-868591864142503946" title="Message sent: 25-Jul-21 04:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/ae5b919bb79df9c3e3606e0f563f042a-C64B9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Uther Pendragon#0000" data-user-id="854813699281256468" style="">Uther Pendragon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 07:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="868824483056730152" id="message-868824483056730152" title="Message sent: 25-Jul-21 07:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Uther could understand the man’s frustration and based on the way he spoke it was clear that he cared for the boy. Although there did seem to be something much more to it. Despite that, he was wrong in his assumption of the king’s intentions. Everything they had done so far had not worked, and no amount of lecturing or hovering was going to change that. It may be a gamble, but the only way they were going to get through was if Uther allowed Lark a little more leniency. The fact of the matter is Uther can’t fight and protect him at the same time, Lark will have to be able to stand on his own. Geeves blamed Lancer for the bullet wound, however, that was par for the course for what they face. This what’s a war and in a war people get hurt, to ignore that principle would be ignorant in their own right. If they truly wanted him safe then should have stopped him from summoning the high king in the first place. With that box open, all that was left to do was for Uther to do what he can to prepare his master for the conflict ahead. 
+
+Pulling away from the counter Lancer went in search of Lark. It was indeed taking him awhile and Uther wanted to ensure that his master had not inadvertently shoved a needle through his thumb. Going into adjoining room Uther called out. “Master are you in here? I hope all is well and I won’t have to wrestle you away from a sewing needle.” <span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/3ff238213ab5219ae34f36fac7d72429-DF864.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lark de Allegro#0000" data-user-id="854813699281256468" style="">Lark de Allegro</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jul-21 01:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="868913235280154696" id="message-868913235280154696" title="Message sent: 26-Jul-21 01:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While Geeves was left to stew, Lark was currently in heaven. He sat immediately in front of the entryway faced forward, lamp shining on his lower side. From a quick glance, his needlework looked neat enough. Neat stitches looped around the hole, or rather the remnants of the hole. The only indication that such a wound even occurred were the stitches themselves. It was still bloody as hell though, but that wasn’t something a little running water and a good scrub could fix! 
+
+“Not at all, just finished the sewing,” he pulled the twine closer up and bit down on it. A quiet snap was heard, as all the leftover thread gracefully slid down the air and to the ground. “Not too bad if I say so myself. A lot like repairing holes in clothes.”
+
+He stood up and twisted like a spinny pasta noodle, “And I’ve never felt better! A little bit of repairing yourself really wakes you up. Poking a needle into yourself keeps you awake. I don’t think I need that coffee anymore. Or bourbon, but you’re more than welcome to finish that off. Now all we need to do is clean up around here and make it look like a bloody maniac didn’t ransack the place before the first employees show up in…”
+
+He looked at his wrist to check the time. If Lancer was not blind, he would be quick to notice that Lark did not have a watch on. “About two hours. We have time to relax for a bit, then.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Recreational%20District%20-%20one-after-another-bar%20%5B849347685358108703%5D%20%28after%202021-07-22%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-C3B5B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(255,140,19)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">26-Jul-21 01:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="868913241785516072" id="message-868913241785516072" title="Message sent: 26-Jul-21 01:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

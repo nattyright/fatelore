@@ -1,0 +1,1389 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-clinic</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            margin: 0.1em 0;
+            padding-left: 0.6em;
+            border-left: 4px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.25em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.2em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            vertical-align: middle;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Mercantile District / the-clinic</div>
+
+            <div class="preamble__entry preamble__entry--small">Tucked into the back alleys of Delphi exists a covert medical service. In a city of wolves it pays well to be on the sideline to patch up the survivors of certain private disputes.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 22-Jul-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/bdb9f72e156153472d577f3f8a2e5051-C7063.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 12:33 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="868169049895493652" id="message-868169049895493652" title="Message sent: 24-Jul-21 12:33 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/image0_2-75DCD.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/image0_2-75DCD.jpg" alt="Image attachment" title="Image: image0_2.jpg (23.14 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="868170970748289085" id="message-868170970748289085" title="Message sent: 24-Jul-21 12:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention">#memorial-park</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-A2339.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="868186412648898570" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 01:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="868186413701664798" id="message-868186413701664798" title="Message sent: 24-Jul-21 01:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He had been moving as fast as possible with the still wounded Gustave. Occasionally the elderly master would come enough to consciousness to give directions to the soldier. Simo had been in these situations before, dragging wounded comrades back to medic tents. 
+
+Though the weather in those situations were significantly worse. But also they weren’t old men, who were also punched with enough force to snap legs in two. 
+
+Simo continued forwards, thinking he finally made it to where Gustave was directing him. A mostly unsuspecting exterior, with a nice little sign for the front. Extremely beautiful actually, but not lit up, allowing for attention to not be brought upon it.  
+
+<strong>The Blackwell Apothecary</strong> 
+ 
+“This looks like the place…” The sniper didn’t hesitate at the door, and pushed his way In. The injured Gustave still in a fireman’s carry. 
+
+At the front desk sat an elderly woman in large glasses, reading from her book. <em>Pride and Prejudice</em> an old world novel, one of the classics from an ages long ago. She didn’t even look up from her desk. “Are you here for supplements?” 
+
+“No ma’am… a more… medicinal touch is needed.” Simo responded, and she closed the book and set it upon her desk with a thud. 
+
+Her hand waved them forwards as they walked into the back rooms of the apothecary, slowly changing into flooring and decor one would expect of a doctor’s office.  The homely feel of the front was replaced by the cold and lonely appearance of a medical examination room. 
+
+“Thank you, ma’am.” The Finn gave the elderly woman a nod as he moved to set Gustave upon the exam table. He began to pace. 
+
+His mind went from thought to thought. Fixating specifically upon the Knight he fought, and his master. The mysterious Knight…. The speed and endurance led Simo to conclude that he would be of the berserker or lancer class. At least with the knowledge he was provided. Either way, that Knight held a kingly presence about him….</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/3318b2a800306941522cef41d919362f-BDBB1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blanche Calloway#0000" data-user-id="868186412648898570" style="">Blanche Calloway</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 01:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="868188621704925236" id="message-868188621704925236" title="Message sent: 24-Jul-21 01:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Another noise was heard breaking the sniper’s thoughts. A door opening then closing as a middle aged woman appeared before the pair. Without another thought Simo aimed the rifle right at her. 
+
+She stood there in green scrubs, unflinching at the gun aimed for her head. “If you pull, you’re losing his best bet.” The woman spoke in a monotonous voice, unwavering in its tone. Upon closer inspection, Simo spotted blood stains on her scrubs… 
+
+“Patient name. And if you wouldn’t mind, dissipate your rifle servant. Also, cover your face.” Without another word she moved towards the examination table and saw the broken legs before her. The man looked familiar to the woman…. Perhaps a previous patient?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-A2339.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="868186412648898570" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jul-21 01:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="868188854497181726" id="message-868188854497181726" title="Message sent: 24-Jul-21 01:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He kept the rifle on her but then let it disappear. “Gustave Renoir.” Simo spoke softly as he tried pulling up what remained of his face covering.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 01:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="868188866274787418" id="message-868188866274787418" title="Message sent: 24-Jul-21 01:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-547D8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="868186412648898570" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 11:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="868692661782069299" id="message-868692661782069299" title="Message sent: 25-Jul-21 11:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave could barely recall anything after he had tapped into the Chalice&#39;s potent abilites to paint reality anew, nothing more than shallow dips in and out of consciousness obscured by the haze of agonizing pain and the hormones flooding his body to blot it out. Fragments of phrases from ghosts of a different world were what he heard and a guardian wreathed in snow along with a blurred background where what he saw. He could not recall how he could have given the white ghost directions to Blackwell but they ended up there nonetheless. 
+
+Margaret&#39;s voice was the first human he heard and her gentle voice, cultured by years of reading the fiction of yesteryear and old world treasures. He drifted out again only to open his eyes to an uncompromising white light, its luster sterile yet the one who turned it on was the opposite even if her words seemed so.
+
+&quot;Nurse Blanche... dedicated ... ah! to your work as ever. I trust my serva- nghhh . . .&quot; Gustave said with a veneer of a grin, trying to keep ahold of his grandfatherly appearance as long as possible, he owed as much to Ms. Calloway. She had helped back when he needed it most, so close to losing his most precious gifts.  &quot;He told you the situation right? I suppose I couldn&#39;t stay out of trouble forever.&quot;
+
+After taking another moment to compose himself as he found himself besieged by a creeping wave of nausea and the merciless searing flames that his nerve sent pounding into his consciousness. 
+&quot;I couldn&#39;t think who else to turn to... who&#39;s the attending here? It couldn&#39;t still be...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/3318b2a800306941522cef41d919362f-BDBB1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blanche Calloway#0000" data-user-id="868186412648898570" style="">Blanche Calloway</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 11:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="868700129765519371" id="message-868700129765519371" title="Message sent: 25-Jul-21 11:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her face didn’t give away her recognition upon hearing the man’s name. But something about her eyes did. “An old patient… I’ll need to get his record fir-“ 
+
+Gustave had awoken again. And his voice filled the examination room. “It’s good to see you once again, Mr.Renoir.” The woman’s expressionless face turned towards Simo. “The Servant did not, he did however point a firearm at me upon entering. But from how you look, your legs are definitely broken.” Her tone remained even and monotonous as she moved towards the sink and washed her fingers. 
+
+“The attending is Toulouse still. I couldn’t think of a better place to turn to either.” She finished washing her hands and donned a pair of gloves while gathering supplies from the cabinet. 
+
+Coming to gustave with a small needle and a vial of clear liquid labeled <em>morphine</em>. “Though I am curious as to why you of all persons now has a servant at their disposal.” As she spoke her hands made quick work of prepping an area, drawing the medicine then injecting it into the elderly man. 
+
+In the background Gustave would see Simo sitting quietly now, his legs crossed and hands in his lap. Patiently awaiting to see what will happen next.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-547D8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="868186412648898570" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 12:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="868705460004487169" id="message-868705460004487169" title="Message sent: 25-Jul-21 12:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave nodded at Blanche, now trying to keep his words to a minimum since every one of them seemed to come with a little extra pain and a little less breath. Suppose that must be the cost of trying to remain conscious with shattered limbs. The promise of liquid release from such pain danced within its little glass tube as Blanche discharged any air bubbles from the syringe. 
+
+Now that did entice him to speak a little...
+
+&quot;Ah well, I suppose we&#39;ll have to catch up after the operation... to be honest, I&#39;m surprised to see you here and not in Lemuria as well,&quot; Gustave did his best to roll up his sleeve so that Blanche could inject the morphine though he did ultimately need her to finish the job.  He let out a long sigh of relief and said a few words before drifting off to sleep.
+
+&quot;Simo, I&#39;m in a miracle worker&#39;s hands now, please don&#39;t worry when he shows. He&#39;s . . .  an un-orthodox . . .  fellow.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c0cf10b2847e510dd68d1fbe4274e929-58FBC.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Caster of Toulouse#0000" data-user-id="868186412648898570" style="">Caster of Toulouse</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 12:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="868710226503807017" id="message-868710226503807017" title="Message sent: 25-Jul-21 12:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Even before the doctor entered the room, he was preceeded by an odd concotion of fumes. There was the sharp sting of alcohol that could very well work as smelling salts yet compounded by the blissful sweet aroma of lavender that many now would use as perfume. Someone with as sharp as senses as Simo would doubtless be confused by such a mix of scents, what kind of vain hypochondriac would douse themselves in both? Didn&#39;t they know that appearances don&#39;t matter in the operating room? 
+
+The doors were thrown open by a gaggle of staff, scurring about the OR, setting up equipment, checking vitals and conferring with Blanche before a black shadow drifted into the room silently behind all of them and the smell from before only got stronger. It looked like some giant crow had just perched by Simo&#39;s master, its head tilted to the side as if regarding a meal of carrion while its wings were held close to its cloaked chest, hands held at distance from anything. 
+
+It turned its beak first to the head nurse and then to Simo, a series of three lens, opaque in the dye of dried blood, and the Assassin could feel himself examined for every little slight defect and irregularity in his frame in but an instant before it spoke. &quot;You, the associate of Mr. Renoir? Please vacate the operating room until the Lord&#39;s Work is done, I can not permit you to contaminate the sanctity of my Table with any foul aers. One can watch from the waiting room, there is what they call a &quot;vi-deo feed&quot; as so one can continue their contract from remote.&quot;
+
+&quot;Now  is the patient properly prepared for us to begin mending...&quot; The crow said, lurching back over Gustave&#39;s body, leaning to one side so an attendant could turn on the small headlamps attached to the side of his hood. 
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-A2339.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="868186412648898570" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 12:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="868712610864959538" id="message-868712610864959538" title="Message sent: 25-Jul-21 12:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave said that this fellow would be an unorthodox one, but the scents… by god the scents were so conflicting it hurt to smell anything. 
+
+Then doors flung open as the staff began their frantic dance to prep the operation room. A shadowy figure then  brought itself forwards as it perched near Gustave. 
+
+This was another servant no doubt…. But one that had a more unfortunate twisting of appearance than Simo had… 
+
+It spoke, but before any words were said… every inch of Simo was examined, laid bare for this creature to see.  “Yes. I shall… Gustave, you trust them. I have to trust them too I suppose.” He spoke with as much certainty as he could while standing and leaving the room.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/3318b2a800306941522cef41d919362f-BDBB1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blanche Calloway#0000" data-user-id="868186412648898570" style="">Blanche Calloway</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Jul-21 12:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="868715569262784523" id="message-868715569262784523" title="Message sent: 25-Jul-21 12:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Blanche gave a quick report to the operating staff, summarizing what is going on in this moment, and what they should be weary of. Before turning to her Servant. 
+
+The Caster’s appearance always did remind her of a carrion bird, an especially hungry one. Always awaiting to see what it could help pick clean. 
+
+The nurse had two more needles in her hands as she accessed a vein and placed an IV. Before coming with an anesthetic solution. “Pain medication has been given, operating sight confirmed, just need to dim his lights and we will be ready.” 
+
+“Would you like the honors, Toulouse?” The nurse held the anesthetic towards the Bird-man. Her expression changed slightly, she could never hide her excitement for any surgical procedure. Especially with how Toulouse tended to operate.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">25-Jul-21 12:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="868715594587988048" id="message-868715594587988048" title="Message sent: 25-Jul-21 12:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c0cf10b2847e510dd68d1fbe4274e929-58FBC.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Caster of Toulouse#0000" data-user-id="868186412648898570" style="">Caster of Toulouse</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="869407476804648990" id="message-869407476804648990" title="Message sent: 27-Jul-21 10:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Naturally. Injecting intravenous anesthetic now,&quot; the crow-man thumbed down on the syringe before handing the IV off to the anesthetist  and gesturing for an attendant clad in scrubs just has black as his to come forward with a cart. &quot;You know, master, I never stop being amazed by how much and how little the field of medicine has advanced since I had finished my work the first time around. Truly a miracle, this world is...&quot;
+
+Caster leaned over the legs of Gustave, bringing his beak close to touching the old man while his hands glided over the skin, applying gentle pressure in places, occasionally marking a spot in red chalk.
+
+&quot;Hmm, the patient&#39;s tibias are fortunate to only be fractured in several places. The march of time and the wrath of  what I can only assume to be a servant have made his bones week. This will take weeks to properly heal if treated as prescribed...&quot;  
+
+&quot;Yet if he is still funded by the same benefactor and now enlists the fealty of a champion, I am afraid he does not have the luxury of time. I will simply have to make do with the witchcraft I find myself now imbued with to accelerate the process. Help me as needed, Nurse, for you are to see secrets of the human body that would have had me burned at the stake in Toulouse and crucified in Bologna,&quot; Caster said with both a giddy note of relish and an apprehensive tang of disgust that melded wonderfully together for an all-together dramatic atmosphere. As if he knew the effect of his words, he swiped a small container  from the nearby cart and positioned between his hands. It was carved from human bone into the shape of what could only be some slumbering insectoid monstrosity curled up on itself.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c0cf10b2847e510dd68d1fbe4274e929-58FBC.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Caster of Toulouse#0000" data-user-id="868186412648898570" style="">Caster of Toulouse</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 11:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="869413908367179777" id="message-869413908367179777" title="Message sent: 27-Jul-21 11:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He brought it up to where his lips must be under such a mask and whispered words that only Blanche could hear if she strained to do so. <em>Oh vial of the damned and the redeemed, compact of a thousand souls suffering under pestilence foreign, deliver unto me that which I hath accrued over years fair and horrid. Summon forth onto this mortal realm once more, crystallization of my knowledge and ministry for the stricken...</em> <strong>Cursus Medicus: Ars Physiologie</strong>
+
+As if it had always been there, a whole set of medical instruments that Blanche could easily identify and those completely alien to her came into being before Toulouse&#39;s outstretched arms. A jar of filled with slimy tube-like creatures likewise manifested at his side. He gazed over them, hand hovering righ above the focus of his gaze before he picked up a scapel.
+
+Over the next hour, the staff watched from around the table as Caster&#39;s hands worked with the force and tools of a butcher, cobbled together bone fragments with the nails and a carpenter and aligned all the mangled nerves, veins and muscles with the precision and patience of a clockmaker. His tone with Blanche was as a guild master would handle an apprentice, guiding her through procedures that were archaic yet futuristic in mindset that defied the conventional dogma of modern medicine. The results were nothing but art in their execution and there was no doubt that Caster was a sculptor of the flesh to the degree Michelangelo could mold marble. 
+
+As the surgerugy came to a close and Toulouse set about closing the incisions, he began to hum an old hymn that coincided with the rhythm of his stitchwork and nudged the jar with his clothed elbow.  &quot;Dear Blanche, if you could please, take the leeches and apply them to his left arm. They should remove any lingering bad humors to balance the system and apply the other set to his right, they should regurgitate the blood of a saint into him to aid in his recovery.&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/3318b2a800306941522cef41d919362f-BDBB1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blanche Calloway#0000" data-user-id="868186412648898570" style="">Blanche Calloway</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 11:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="869424443770953788" id="message-869424443770953788" title="Message sent: 27-Jul-21 11:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A slight grin came to her face as the Caster injected the anesthesia. “Even more impressive we held onto what little headway we made, after the floods.” One of the other attendants brought over to her a clipboard, which she began to sign and double check as Caster marked the elderly man’s legs. 
+
+“A curse of being human. No matter your prowess as a magus, servants can still cause problems.” The woman gave a final look over her list and was given other things to look at by the various bodies busying themselves within the room. “I’m glad that they did not, if that were to have been the case, well we might not get to see you perform these acts.” 
+
+Then began Blanche’s personal favorite portion of any particular operation. The Butcher came out of her servant. Cruel and crude cuts were made, but at the same time there was an art to the act. As there is with all medicine. 
+
+“Time.” Blanche spoke aloud as the surgery came to its closure. “Gladly, Toulouse.” She responded lifting the lid of the jar, and taking the slimy creatures into her hands, then placing them where the doctor requested. It was a skill she had become accustomed too, due to the unusual style of her servant. “I would say this is some of your best handiwork yet.” The nurse congratulated her servant as she removed the bloodied surgical gloves from her hands and moved to exit the suite. “I’ll go let his servant know that he should be up an running in a few moments. Then we can discuss billing.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-A2339.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="868186412648898570" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jul-21 11:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="869426274215526490" id="message-869426274215526490" title="Message sent: 27-Jul-21 11:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The assassin didn’t dare to look up at the screen. The noises alone, were mortifying. There is a stark difference between the bloodshed in war, and that which sounds like torture being performed. 
+
+So Simo turned to an old nervous habit of his, cleaning his rifle. First it was meticulously field stripped, then each an every portion of the weapon was given a cleaning. After each piece was deemed clean enough he finally pieced it back together, and looked up to be face to face with the head nurse. 
+
+The sniper slowly set the rifle down and let it disappear. “You know, you have more blood now than you did earlier. On your clothes that is. I feel like that must be pretty common in this sort of place.” He spoke bluntly as Blanche made a motion for the Finn to follow her back into the room. She obviously didn’t want to comment about the blood, or at least that’s what Simo thought. 
+
+So he was lead back to the initial examination room.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c392b6cd77295a38fc5fee6ce190160b-368F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">27-Jul-21 11:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="869426289126293566" id="message-869426289126293566" title="Message sent: 27-Jul-21 11:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c0cf10b2847e510dd68d1fbe4274e929-58FBC.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Caster of Toulouse#0000" data-user-id="868186412648898570" style="">Caster of Toulouse</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 11:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="869779085251993611" id="message-869779085251993611" title="Message sent: 28-Jul-21 11:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It would appear so, it would appear so, dear Master. Though I would also not underestimate the ferocity that the world can inflict upon the mortal coil. One should be lucky to wonder the streets today and not worry about foul vectors of disease...&quot;
+
+&quot;Thank you again, Master. You humble me greatly with your praise. To make the lame walk again is a feat few can personally attest to and I would avoid comparisons to a certain mender of bodies and souls, such an idea still remains sacreligous in this frame and so divorced from his earthly ministry...&quot; The crow trailed off again, briefly and unconciously making the sign of the cross on his chest, yet another rote memory of his spirit.  
+
+Simo would find both his master and doctor present in the room, the former peacefully asleep and still in the surgical smock while the latter perched himself in a nearby chair, watching over Gustave. He turns to look back at Simo and that same penetrating gaze returned.
+
+&quot;I do not need to ask as to what caused such an injury. To being such as us, the conclusion is forgone. I know about this grail war, even we know in this shaded corner. But tell me, servant. How much of his past did Mr. Renoir tell you? For this is not the first time I have tended to our shared acquaintance&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-A2339.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="868186412648898570" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 12:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="869802962912948285" id="message-869802962912948285" title="Message sent: 28-Jul-21 12:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He was brought back into the room holding the crow and his master.  Gustave was right, these two were the best bet. The elderly man was asleep peacefully with both legs still intact. 
+
+Something short of a miracle had to have been performed. The Doctor spoke up inquiring about what Simo does know of Gustave. “Very little, if I were to be honest. Dark past and the likes you tend to keep those skeletons in their closet.” The sniper responded as he walked over to the resting master. 
+
+The nurse had already moved on back into the depths of the facility, she had other work to attend to while her Servant spoke with his audience. 
+
+“Are there things I need to be aware of? Was Gustave Renoir a dangerous man? Is participating in this war a grand suicide note for him?” Simo asked Toulouse, doing his best to avoid the penetrating gaze the doctor held.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-clinic%20%5B868168939031642213%5D%20%28after%202021-07-22%29.html_Files/c0cf10b2847e510dd68d1fbe4274e929-58FBC.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Caster of Toulouse#0000" data-user-id="868186412648898570" style="">Caster of Toulouse</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jul-21 01:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="869820010892263434" id="message-869820010892263434" title="Message sent: 28-Jul-21 01:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yes, one could say such skeletons should be kept hidden when possible. It does the patient no good to worry about things not immediate to their prognosis,&quot; Toulouse shrugged before fixating on a point below Simo&#39;s eyes. &quot;I do applaud your adherance to proper facial protection by the way, the best way to negate spread of contagion outside of general cleanliness...&quot;
+
+&quot;But I am getting off topic. Yes, your master and mine both worked on the hidden city of Lemuria, one of the new world&#39;s engines of progress. It was a truly magnificent place but it was not some utopia. Costs pile up and the city was known to grind up the lives of many to feed its curiosity. And even a gifted physician such as myself could not save everyone.&quot;
+
+&quot;Your master was one of the city&#39;s shining stars, capable of wondrous feats of movement that were an art unto themselves but some wanted his research for themselves. They conspired to arrange for an accident in his lab. I do not know how he survived the disaster but his assailant did not, regardless he was one of my greatest achievements. I restored sight to the blind, my first miracle on his body.&quot;
+
+Caster had now come closer to Simo, the beak of his mask almost able to snag Simo&#39;s coverings and expose what lay underneath. The smells from before were overwhelming now though Simo could now detect hints of a warm metallic note, ones that only contributed to his looming presence.
+
+&quot;I now entrust him once again to your care and I leave you with a reminder. Even here, there are those who covet what he has. Be sure to protect him from all such sinners for while I can mend many wounds, the one miracle of my Lord that I can not accomplish is the raising of the dead. See fit that I do not have to attempt such heresy. There are some miracles better left undone.&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

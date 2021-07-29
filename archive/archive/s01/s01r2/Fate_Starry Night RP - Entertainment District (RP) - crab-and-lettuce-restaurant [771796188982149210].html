@@ -1,0 +1,2323 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - crab-and-lettuce-restaurant</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/a494bd87fdda388be63bbea3bb70cfd0-643D1.jpg" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Entertainment District (RP) / crab-and-lettuce-restaurant</div>
+
+            <div class="preamble__entry preamble__entry--small">A restaurant with two floors that is currently on the verge of closing. The owner has decided to the turn the second floor into cheap accommodation in an effort to pay the bills. It seems like it has already been inhabited.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/f536e140548023904625d7200ce4368e-71B0B.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(236,81,81)">Dad</span>
+
+
+        <span class="chatlog__timestamp">31-Oct-20 02:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="771796924054372383" id="message-771796924054372383">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/oleksandr-riazanov-visualization-restauran-0E5B8.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/oleksandr-riazanov-visualization-restauran-0E5B8.jpg" alt="Image attachment" title="Image: oleksandr-riazanov-visualization-restaurant1.jpg (1.98 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-21 11:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="813799240659632153" id="message-813799240659632153">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Somewhere inside the dingy little restaurant, a phone began to ring. The handset popped off the phone on its own, then a hand emerged from the receiver. A fully grown man followed, climbing out of the receiver obviously too small for his size like it were the most natural thing in the world. 
+
+He landed on the floor with less grace than he would have liked. Blood oozed from under the fabric of his vest, reminding him of the foolish exploits he had conducted during the fight with Saber. He had escaped by the skin of his teeth and almost eaten Saber&#39;s Noble Phantasm for a second time in the span of minutes, all so that he could take one more peek at her data. The end result was well worth the risk, but now that he was safe(r) and alone, he became aware of the other glaring problem: his mana tank had all but emptied out, all to try his hands at driving off an anti-fortress Noble Phantasm. 
+
+Satisfying? Yes. Stupid?
+
+He noticed the oily and fishy smell wafting through the air. Had he invaded someone&#39;s kitchen by accident?
+
+Ada pressed a hand under his ribs to stem the bleeding and walked out of the room he had crashed into with a slight wobble in his steps. He needed a fresh change of mana batteries fast, or risk bleeding out like an ordinary human being. 
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 12:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="813805635043852408" id="message-813805635043852408">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Holy Grail Wars were terrible for business.
+
+Nary a soul had entered the Crab &amp; Lettuce ever since Rider&#39;s scuffle with Berserker just a few blocks down. The restaurant district as a whole had been put under curfew, with several searches occurring in buildings near the site of the battle. People were prohibited from roaming the district late at night until the investigation was concluded, which resulted in most clientele being too scared to even approach their usual hangouts. Pascal knew the truth of the battle, but other didn&#39;t. To them, it was yet another feud between the mafia and the aristocracy, meaning that it was possible for either side to strike back. They valued their lives over freshly made veggie crab bake.
+
+Pascal couldn&#39;t blame them. Who he could blame, though, was Rider, the one who had caused <em>all of this.</em>
+
+&quot;If he hadn&#39;t tried to play hero, that tin can would have just trashed that one store and that&#39;s it. Now the entire district is locked down...&quot; Pascal seethed, vividly remembering Armstrong&#39;s chuckles and how Rider claimed that the fight was a learning experience.
+
+&quot;You hear me, Rider?! Keep scrubbing those windows clean, if you know what&#39;s good for you!&quot; Pascal shouted, irate and visibly annoyed. The damage was done, but he wasn&#39;t satisfied. Armstrong&#39;s reward for his bravery was to clean the windows of the 2nd floor. Thankfully, that meant being out of sight of the restaurant&#39;s customers.
+
+...If there were any.
+
+&quot;Business is terrible today. At this point, I wonder if I&#39;ll be able to afford mana batteries.&quot; Pascal sighed, carrying some leftover edibles upstairs. Halfway through his trek, he heard the landline ringing.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="813805674084827163" id="message-813805674084827163">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<em>&quot;Shit.&quot;</em> He thought, quickly climbing up the stairs and temporarily placing his cargo at the top. He quickly ran back down the stairs, only to realize the phone had stopped ringing.
+
+<em>&quot;Shit, what if it was an important call? Let&#39;s hope it save--&quot;</em> He then noticed a man wobbling around the dining area, apparently headed for the restaurant exit.
+
+&quot;No! Wait! We&#39;re still open!&quot; Pascal shouted while waving his arms, confusing Ada for a customer. The first customer of the day, even.
+
+&quot;I apologize, I was setting down some cargo. What can I get you, sir? Trust me, I can cook a 5 star meal real quick.&quot; He pleaded for Ada to stay, hoping that they had a large wallet. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-96C9A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778405813428420609" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 12:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="813812067483123722" id="message-813812067483123722">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The fight with her fellow aristocrat had ended abruptly, granted it was by her hand. There was really nothing more to gain from it. She had come to find that iron mercenary but had a little training bout with a decidedly less impressive aristocrat instead. With that whole scuffle, she had wasted valuable time that could have been spent building alliances or actually trying to uncover new evidence related to her father&#39;s death. 
+
+There was just one problem with the Holy Grail War, virtually no one involved in it seemed to be a member of the Mafia. She had hoped it would draw out some of the more arrogant members of the gangs but to no avail. Was this just a big time waste for her? Perhaps if it wasn&#39;t for the power the grail could grant her should she win. What she would do would doubtlessly be better for everyone than all those selfish wishes of the other contestants most likely.
+
+She stewed over these thoughts more as she walked back towards the center of town. Ada had disappeared at the end of the fight and Kari would look for him but at the moment she had more pressing concerns as her stomach rumbled. Time to for a break and recharge before pursuing more leads or Ada. 
+
+&quot;Yes, I&#39;ll have the number 6 special please,&quot; she said to the man at the counter of one of many food stands in the area. Something quick but filling with preferable to her compared to that restaurant across the street. Something about crab and lettuce together was off-putting to her. 
+
+&quot;Ms. Tovesky, I trust you are not busy, correct?&quot; A voice behind her said with a familiar robotic tone.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="813812451153543229" id="message-813812451153543229">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Marie, what are you doing out this far out from Rossum and why in public?&quot; Kari said, setting down a piece of fried chicken. She was not expecting a visit from her homunculi at this hour but a lead from her security head was more than worth the intrusion. The maid in combat fatigues shrugged before sitting down beside her on the bench. 
+
+ &quot;I have finished compiling several new avenues of investigation for you to review. I believe at a break like this, it may prove fruitful for you in deciding a new objective in this &#39;war,&#39;&quot; she said, setting a manila envelope on the table in front of Kari before opening it for her and letting her read each one. She did not let Kari touch them however with her greasy fingers. 
+
+Kari and Marie would both glance up around them at sporadic intervals to make sure no one was watching them from afar. They did not yet notice what was happening inside the restaurant.
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 02:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="813834899210764376" id="message-813834899210764376">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ada ignored the commotion coming from the floor above.
+
+To engage with a stranger now could only lead to one thing, and that was him bleeding out from having to waste precious time explaining his reason for being here. So, like the smartass he was, Ada only quickened his pace when he heard himself being addressed. <em>God, what&#39;s with all these tables and chairs?</em> 
+
+He continued to not perceive Pascal as the man asked him to wait. He placed a hand on the front door and pushed it open a crack-
+
+<em>Orders? A meal?</em>
+
+The man stopped in his tracks as Pascal&#39;s words were finally registered. He hadn&#39;t just landed in someone&#39;s residence. This was a god damn restaurant! And it was completely empty on such a fine day.
+
+<em>Such desperation,</em> Ada thought as he turned around. <em>This is no way to run a business.</em>
+
+But Pascal&#39;s words still rang true. A man&#39;s gotta eat. Servants included.
+
+&#39;I&#39;d like a fresh set of mana batteries to go,&#39; He smiled curtly, making no move to explain his state of being nor the bizarre request he was making. &#39;Do you take wire transfer? I just need an account.&#39;
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 02:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="813837794849456128" id="message-813837794849456128">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Since this was his first customer for the entire day, Pascal was willing to take any sort of ragged or suspicious individual. The restaurant district was frequented by mafia members, for crying out loud! One weird client here and there wouldn&#39;t matter at all, as long as they were civil of course.
+
+Therefore, he dutifully ignored Ada&#39;s odd appearance. His robotic legs were brushed off and the black bags resting under his eyes, a sign commonly associated with not sleeping for more than 2 days, were respectfully shunned.
+
+However, there was one thing that Pascal couldn&#39;t ignore, and that was orders that didn&#39;t fit in the menu.
+
+&quot;...Mana batteries? What?&quot; Pascal repeated, Ada having asked for an order that put every vegan to shame. &quot;...I&#39;m sorry, but, this isn&#39;t a stationery or anything. We&#39;re a restaurant! We serve...food!&quot; He pointed at a lone plate with a crab and lettuce resting on it.
+
+&quot;Or is this slang for some sort of recipe that I don&#39;t know of? Hmm? Well?&quot; <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 02:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="813846223059681291" id="message-813846223059681291">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">First closets, now windows. These punishments were getting out of hand. Pascal had Rider working like a dog. He hadn&#39;t had to clean this much since he was in both NASA and the Air Force. Cleaning the entire Space Command at Houston had been rough. Wait. No. That wasn&#39;t right, was it?
+
+Squirting some Wintdrex™️ onto the window, Rider sighed as he wiped it clean, leaving the windows to sparkle. One down. Ten to go, and Pascal had implied that as soon as he finished, he would be on toilet duty. Armstrong didn&#39;t want to know what he&#39;d have to do after that. Knowing Houston, it&#39;d be something insane, like scrubbing the floors with a toothbrush.
+
+He turned to the bed, where his astronaut suit lie uninhabited. He gave the visor a squirt, and scrubbed it until it shined. If the windows sparkled like stars, the helmet shined like the sun. It was certainly the shiniest Mechanized Armor around, and the undersuit that went with it would be the cleanest one around once he was done with it. 
+
+Without the armor, Neil Armstrong looked positively normal. He looked like a typical office worker, with an ID in the breast pocket. The ID seemed to blur, as if it couldn&#39;t decide on a name or face. NASA and its logo was stamped across from the breast pocket.
+
+With one last squirt, Rider realized that the Windrex bottle was empty. He had used about half of it on his visor. Whoops. That meant he&#39;d need to go down stairs.
+
+To Houston. Grand.
+
+Surely Pascal would understand his need for more cleaning supplies? How was he supposed to do Pascal&#39;s dirty work without proper equipment. Armstrong&#39;s infinite tool belt didn&#39;t include cleaning supplies.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="813846245637357618" id="message-813846245637357618">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He opened the door to the ground floor, and took a casual leap out. &quot;Houston, I—&quot; Armstrong fell like a rock. The suit gave him anti-gravity abilities, and Armstrong wasn&#39;t wearing it.
+
+As Pascal would try to make Ada buy something, he&#39;d hear a train of thuds, curses, and swears. He knew who it was instantly. A man fell to the base of the stairs. Who was this? They didn&#39;t look anything like Pascal&#39;s Servant!
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-CA1F6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="778405813428420609" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 09:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="814126217183232040" id="message-814126217183232040">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Urgh, so tired...</em>
+
+Sinmara wasn&#39;t sure how long it had been since the brawl at the Scrapyard? Hours? Days? Weeks? She wasn&#39;t exactly sure. The concept of time had melted into a malformed nothingness, devoid of any and all meaning. It had been swept away, replaced with a raw, beast-like survival instinct. She simply wandered aimlessly, without rhyme or reason.
+
+She needed mana. Namely, mana batteries. She&#39;d managed to absorb what was within her Giant&#39;s Outer Shell, and her Independent Action allowed her to carry onward, but that wouldn&#39;t last. 
+
+Shit, what was this? Was this a fucking joke?! She&#39;d survived the battle against Archer, only to starve to death? No!
+
+Eventually, her aimless staggering through back alleys and scum-filled passages led her to a building. According to the sign hanging off the back door, it was something called &quot;Staff Only&quot;? Some kind of wizard&#39;s club, perhaps? She couldn&#39;t tell. Her eyes were too busy aching with ash and soot to see clearly. Whatever the case, it was better than nothing. Maybe they had some spare mana batteries lying about she could make use of?
+
+If nothing else, it was a start. Sinmara staggered over to the back door and forced it open, snapping the locking mechanisms as she stumbled into the staff rooms. If she was lucky, she&#39;d find some mana batteries here.
+
+Maybe some clothes that weren&#39;t burn to a crisp would be nice, too. It was starting to get chilly.
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-96C9A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778405813428420609" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-21 11:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="814163272252784701" id="message-814163272252784701">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While Kari was busy pouring over the documents provided and eating lunch, Marie had deviated from the normal routine. While she typically would not pay attention to the business of people across the street, the door of the restaurant was cracked open just enough for her to detect multiple potent mana signatures within. Her inhuman red eyes locked with the door and windows, prying in from afar with an uncanny mix of mechanical lenses, chimeric implants and magical abilities. 
+
+&quot;Kari, I have detected two highly dense clusters of mana across the street,&quot; She paused, sniffing the air for a second to provide further authentication for her deductions. &quot;One of who&#39;s signature matches that of your servant, leaking suit fluids at that. Secure the documents and we will secure Archer before his core becomes starved.&quot;
+
+Kari made a grunt as she swallowed a chunk of chicken, wiping her fingers off before slipping everything back into the envelope and quickly following behind the homunculus who had already started to walk off towards the restaurant. She was a bit concerned about the fact there was another servant there but between her, Marie and a revitalized Ada, they should be able to make short work of them should they prove a problem, right? 
+
+The bell at the door ringed twice as an unusual pair of women entered Pascal&#39;s establishment. The first had silver hair tightly tied into a bun and unnatural red eyes like those of a cat. She was wearing a mix of combat fatigues and maid accents. Her eyes immediately locked onto that of Ada and did not leave his person.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="814163348538523728" id="message-814163348538523728">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The second woman was wearing a stylish red coat, sunglasses and thigh high suede boots. Compared to her sophisticated, cosmopolitan look, she was holding a half finished paper tray of fried chicken. Upon seeing Ada, she tried fishing out something from her belt and doing it rather poorly at that.
+
+&quot;Servant, Archer-class. We have come to retrieve you. I am sure Ms. Tovesky has the necessary mana batteries to return you to a nominal state,&quot; the first woman said in an odd sing-song tone.  
+
+&quot;Hey you don&#39;t mind if I bring this in, do you?&quot; The second woman said, gesturing to her food before setting it down on a nearby table so she could better find what she was looking for
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Feb-21 12:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="814165522496225350" id="message-814165522496225350">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ada nodded along as Pascal declined his order. &#39;I heard you loud and clear, sir,&#39; He said chipperly. &#39;Food is sustenance. Mana batteries are sustenance. If they are both sustenance, then are mana batteries not a type of food?&#39;
+
+He, too, raised a finger and pointed at the restaurant&#39;s name plate.
+
+&#39;Crab and lettuce embellish your sign, yet your restaurant is well stocked with meats and fruits. I am not a difficult customer. I wouldn&#39;t ask of you something your establishment cannot provide.&#39; He said pointedly. &#39;Sir.&#39;
+
+He took a step aside when some poor chap rolled down the staircase. What an odd way to take their leave. He moved to push open the front door in case the guy decided to roll all the way out of the building, but the door had already swung outwards. In walked two women, both of which he recognized at a glance.
+
+&#39;Ah. My wallet has arrived.&#39; He greeted his Master without a trace of embarrassment for abandoning the battlefield early. &#39;Cash is now an option as well, if you wish to avoid taxes.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Feb-21 01:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="814180677745770526" id="message-814180677745770526">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I&#39;m afraid I don&#39;t follow.&quot; Pascal replied, raising an eyebrow at Ada&#39;s remarks. They reminded him of the type of people who insisted on being technically right, the kind that were unable to read the room. Well, they were still a customer, as weird and awkward as they were. Maybe if Pascal just gave them directions to the nearest stationery then--
+
+&quot;...Wallet?&quot; Two boisterous women entered the restaurant, ignoring Pascal entirely like he were a fly. Instead, they focused on the stranger with the robotic legs. Was chrome in fashion nowadays, or were these three all acquainted with each other? It was only once the word &#39;Servant&#39; was mentioned that he realized who exactly he was talking to.
+
+Kari then set her food down on the table, an act that immediately triggered Pascal&#39;s years of cooking and serving expertise.
+
+&quot;Ahem, I&#39;m afraid tables are only reserved to paying customers. Either you buy or something or you eat your food outside, please.&quot; Pascal replied, being a bit irritated at the sudden development of events. Not only was this &#39;Ada&#39; guy actually a Servant, but judging by the demeanor and attire of the women around him, they were most likely members of the aristocracy. A Knight class Servant to boot.
+
+Rider was in danger and Pascal had to make sure to hide his presence. Therefore, when the (figuratively) naked Rider descended down the stairs, Pascal was flabbergasted.
+
+&quot;<strong>HUH?!</strong> Who the <em>hell</em> are you? Armstrong? Armstrong?!&quot; Pascal shouted, calling Rider by his true name, since using class names next to an Archer would be suicide. He was unaware that Armstrong was already down here, and therefore stared down at the man resting near the stairs.
+
+&quot;What did you do to him?&quot; Pascal asked in an almost threatening tone. He had confused the man in front of him for someone who had incapacitated Rider.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="814180796776579072" id="message-814180796776579072">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/5ecd29841523ddbd4f25114507d9cef5-84F5D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="778405813428420609" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Feb-21 01:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="814180850140708864" id="message-814180850140708864">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Meanwhile, the (literally) naked Sinmara kept stumbling in the restaurant&#39;s staff room. No magic tricks or buns in hats could be found in here. No signs of mana batteries either. Strange, she swore she could sense some strong traces of mana nearby. Familiar traces, even.
+
+Well, this was a bust. Maybe she should just leave and attempt to find mana batteries elsewhere. Unfortunately, this was easier said and done: When she attempted to casually waltz to the nearest stationery, she was denied access due to her &#39;looks&#39; and called something weird. A stripper? Streaker? Flasher? Whatever. Those modern human terms had no meaning to her, especially if they didn&#39;t rhyme with death, damage and destruction.
+
+But it seemed to be related to clothes, or a lack thereof, to be precise. Hmm, how to fix it...
+
+She checked the staff room for any mage uniforms they had, but this place didn&#39;t seem to be a mage workshop at all! Instead, she found an old poster about a restaurant called <em>Maid(en) Dragons.</em> The first part of that name seemed a bit sus, but the second part rocked hard! Dragons might have been extinct, but Sinmara quite admired how much chaos they could inseminate with one firey breath.
+
+Of course, nothing could prepare her for what she found next to the poster...
+
+A maid uniform...with accessories that resembled dragon scales, horns and claws. It even came with a dragon tail! It was a bit small for her size, meaning that part of her skin would still be visible, but it was better than being buck naked.
+
+There were no other clothes nearby... <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-CA1F6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="778405813428420609" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Feb-21 01:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="814187876651761695" id="message-814187876651761695">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Well, this was awful. Not only were there no mana batteries, but there also wasn&#39;t much in the way of clothing. Sure, they had plenty of aprons, but what kind of weirdo would go around wearing an apron and nothing else? Some kind of fuckin&#39; gross pervert weirdo, that&#39;s who.
+
+Then again, it wasn&#39;t like she had many options. She needed mana batteries sooner and later, and Sandro was nowhere to be seen. Probably busy crying about his dad and smoking cigarettes. Why couldn&#39;t he just be a true punk rocker and HATE his dad while smoking cigarettes? It simply made no sense...
+
+However, when all hope seemed lost, the giantess stumbled upon an answer. A poster for some kick-ass dragon band! Dragons were awesome! There were plenty of them in Ragnarok, and that was a hoot and a holler! Or, y&#39;know... so she heard. Then again, punk rock outfits fit her perfectly! This one would be no differ-
+
+This one was different.
+
+What was this Imagine Dragons bullshit?! It was so lewd and dumb! How dare these idiots further contribute to the degradation of punk culture with their filthy fetishes! She wouldn&#39;t wear this under ANY circumstances!
+
+It was at this moment that Sinmara heard an odd series of thumps and bumps, akin to someone falling down the stairs.
+
+<strong>&quot;Tch, fuck this...&quot;</strong> Sinmara angrily whispered to herself, glancing around awkwardly before grabbing the outfit. It was a good thing that the Crab and Lettuce was too cheap to run CTV...
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Feb-21 01:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="814194124101910628" id="message-814194124101910628">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It took Armstrong falling down the stairs and into a slowly filling restaurant to realize how much he missed his suit. It was basically his trademark! Without it, he was a shadow of his former self, and if Pascal&#39;s reaction was anything to go by, completely unrecognizable. Would his self esteem ever recover? He was just as capable a Servant without his armor, but the perks it provided were useful.
+
+It also a great way of hiding his face. Armstrong shook his head. Was his personality really that dependent on looking like a toaster? Was this how far the great Neil Armstrong had fallen?
+
+ &quot;Master, get a hold of yourself. It&#39;s me!&quot; Armstrong said, getting to his feet and shaking Pascal. &quot;Houston! Pascal! Earth to Master! I just took off the suit. It&#39;s still me!&quot;  Pascal&#39;s head flopped back and forth due to Armstrong&#39;s shaking. He looked at Ada and his presumed Master.
+
+&quot;But we have guests. Don&#39;t forget your manners, Master.&quot; Armstrong said, straightening his tie. Was this really Armstrong? His boisterous attitude had been toned down. The inconsistency was alarming. He gave Ada a once over, before raising his eyebrows as he looked at the Archer&#39;s legs.
+
+&quot;Impressive mechanisms at work. Hydraulics? Traditional electricity? Steam? <em>Nuclear</em>? Nothing as impressive as NASA, of course. I&#39;d like to take them apart and put them back together.&quot; Armstrong peppered Ada with questions? A fellow Servant of science? It truly was Armstrong&#39;s lucky day.
+
+Little did the Servant know that his day would get far weirder as Sinmara obtained a maid outfit. Terrifying...
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-96C9A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778405813428420609" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Feb-21 11:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="814342551036362783" id="message-814342551036362783">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wallet? I&#39;d like to think I&#39;m a bit more than just your wallet, Ada. I&#39;m hurt,&quot; Kari quipped back at her servant , taking off her sunglasses to emphasize her point.  She then rolled her eyes as Pascal went full anal waiter on her. One sassy servant was enough for Kari but now this? 
+
+&quot;Listen, if it will make you happy, I&#39;ll take a glass of wine. Place like this should have some right? Oh and make sure its one of those larger glasses, I&#39;m thirsty,&quot; She waved off Pascal as if to dismiss him before turning back to Ada and finally handing him some mana batteries. &quot;And here you go, I don&#39;t think that man has any spares, you&#39;re lucky I had even more spares than you used already.&quot;
+
+While Kari was busy with handling Pascal and Ada, Marie had turned her attention from Ada and towards Armstrong and Pascal instead. &quot;Please do not stare at the servant, Magi,&quot; the maid said, addressing them with the best information that she had available. &quot;It is quite rude to obsess over another&#39;s appearance.&quot;
+
+She takes a second look as her instincts pulled her towards the back of the room. &quot;Do you have anyone else working here, by any chance? &quot;
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Feb-21 02:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="814378761826598943" id="message-814378761826598943">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Oh, yes, just a bit.&#39; Ada agreed with Kari. &#39;Don&#39;t be alarmed, if was only a compliment. A little investment now could very possibly save you the trouble of procuring another frame.&#39; He was really pushing his luck, but who wouldn&#39;t when they were quite literally at death&#39;s door? How laughable, to think that all it&#39;d take to crush a Servant was to take away their source of mana...
+
+He caught the mana batteries thrown his way. &#39;I suppose I <em>am</em> pretty lucky today.&#39; He said, holding up the vitamin-like pills with disgust before downing them in one gulp. The pills dissolved before they could travel all the way down his esophagus, filling him with a burst of renewed energy. This allowed him to finally summon and plug a few cables around his wounds to kick start their healing process.
+
+Refreshed and no longer in a race against time, Ada decided to give the one obtuse man in the room a thorough lecture. Pascal&#39;s restaurant was doomed to fail if he couldn&#39;t even draw the parallels between mana batteries and food. In an age where Servants coexisted with humans, would it be a stretch to expect a restaurant to serve mana batteries in addition to a five course meal? In fact, this cook even had a Servant of his own!
+
+Ada glanced down at his legs then back at the white-collar Servant fawning over them. His glasses gleamed.
+
+&#39;Good old-fashioned, reliable steam.&#39; He admitted proudly. &#39;Too old-fashioned for NASA, I suppose, but a no-fuss experience to maintain in comparison, Spaceman.&#39; It wasn&#39;t difficult to put two and two together, what with Pascal screaming his head off about an Armstrong and the badge on Rider&#39;s shirt. Perhaps it was fate that brought forth scientifically inclined Servants in abundance, on an island starved for development?
+
+However, certain standards still had to be kept. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="814378835499679775" id="message-814378835499679775">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;You wish to dismantle my legs? And...and put them back together?&#39; He repeated the question with a frown. &#39;I&#39;m afraid I&#39;ll have to decline. What can we possibly gain from such a meaningless endeavor? You and I would have wasted precious time that could be used to greater effect. Such as revitalizing your Master&#39;s flopping business.&#39;
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 02:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="814558163189497937" id="message-814558163189497937">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;The Servant? What?&quot; Pascal replied to Marie&#39;s off hand remark, before looking back at Armstrong and hearing the man call him Master. &quot;<em>What the hell.</em> I thought the fishbowl was glued to your head.&quot; He seemed to be in a state of shock, unable to handle Armstrong&#39;s full visage. Of course, he quickly snapped back to reality once his Servant started nerding out about mechanics and engineering, something that made it very, <strong>very</strong> easy for Ada to deduce the astronaut&#39;s identity.
+
+Pascal swiftly grabbed Armstrong by the shoulders and whispered in his ear.
+
+&quot;You nincompoop. This guy is an <strong>Archer.</strong> As in, knight class. We&#39;re dealing with aristocrats! They might have been sent by the tin can...&quot; Pascal implied, conspiracy theories brewing in his head until he heard both Ada and Kari&#39;s complaints in unison.
+
+&quot;Ahem! For your information, this is <em>not</em> a flopping business. It&#39;s just a bit slow until night time, yes.&quot; Pascal replied, sighing as he turned back to Kari. &quot;I&#39;ll serve you wine in an instant, darling. Red? White? Details are always appreciated.&quot;
+
+Before he could receive a response, Marie suddenly inquired him about any additional workers.
+
+&quot;Additional staff? Well,&quot; Pascal mulled over this innocuous question. Why could this woman possibly ask such a thing? Wait...were they sizing him and Armstrong up and seeing if they had reinforcements? If it were only two of them, then they were already outnumbered! How despicable...Completely befitting of the aristocracy.
+
+&quot;....We do! Indeed!&quot; Pascal gave Armstrong a subtle wink. &quot;An army of chefs is waiting just in the back. They&#39;ve been working non stop since morning in our, uhhh, second kitchen! Yes.&quot;
+
+He turned back as if nothing happened, hoping Kari would just order her wine and stop prodding around. <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 02:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="814566419995164752" id="message-814566419995164752">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;It&#39;s a spacesuit, why wouldn&#39;t I take it off? Shoot me dead if NASA can&#39;t invent a piece of equipment that I can&#39;t take off.&quot; Armstrong grumbled as Pascal goggled at him. He absentmindedly fingered his ID, before being grabbed by Pascal. He listened to Pascal&#39;s conspiracy theories, before stroking his chin thoughtfully.
+
+&quot;They&#39;d be pretty bad at their job, then.&quot; Armstrong said quietly. &quot;Archers use bows and guns and all matter of ranged projectiles, yeah? Why wouldn&#39;t one just put an arrow in my skull while I was cleaning windows? Perch on a nearby rooftop and it&#39;d be easy as pie. If it turns out that they <strong>are</strong> out to get us...&quot; Armstrong grinned. &quot;They shouldn&#39;t have gotten so close.&quot;
+
+Wonderful, even without the armor, Rider was still completely nuts and overconfident. He was just far better at hiding it now.
+
+Extracting himself from his huddle with Pascal, he turned to face Ada. &quot;Steam, eh? Old, but it&#39;s obviously working well for you. Never was my forte. Tell me, are you superheating coils to turn the wat—&quot; A glare from Pascal shut him up.
+
+Additional staff? Armstrong had been holed up in the restaurant for a while, and he knew for a fact that the staff was just Pascal and the old man. Armstrong followed the same train of thought. Was it an ambush? Unlikely. 
+
+&quot;Yes. We have several chefs. If you&#39;ll give me a moment, I&#39;ll go and check in on them.&quot; Armstrong said with finality, before moving into the back. If there was another Servant, he would need to confirm it himself.
+
+Opening the door to the back of the restaurant, Armstrong was met with something he never expected to see...
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-CA1F6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="778405813428420609" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 02:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="814568825855934505" id="message-814568825855934505">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After a period of arduous struggling with the costume, Saber finally managed to get it on. It was... small, far too small for her frame. After all, it was probably meant for some petite five foot girl, not an eight foot tall giantess with eight foot tall proportions. Still, at the very least, it seemed to be made of durable material, so at least she didn&#39;t have to worry about ripping or tearing.
+
+The whole scenario was horribly embarrassing, but she was at the home stretch now. She just had to slip out through the front door, reach the nearest mana battery store, and she would be home free!
+
+Sinmara went to open the front door, but before she could grip it, it swing open, striking her in the chest.
+
+<em>BONK.</em>
+
+<strong>&quot;Ow! Hey, what do you think you&#39;re doing, jackass?&quot;</strong> Saber hissed, glaring at Armstrong with complete and absolute malice. An intimidating thing on its own, though slightly degraded by the fact she was wearing such absurd dragon accessories.
+
+Or perhaps it was accentuated? Who could say...
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 03:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="814585189308170240" id="message-814585189308170240">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;A bit slow? My good sir, please take care to wipe the inch thick dust off the corner seats before making such a claim in the future. Your staff have been shirking their duties.&#39; Ada was in no mood to keep up with Pascal&#39;s blatant excuses. Has this man no sense of pride? Has he no ambition? The worst thing that could happen to a functional restaurant was to see it empty, and Ada was having none of it.
+
+&#39;Step aside then,&#39; He brushed past Pascal and headed for the back kitchen as well. &#39;Clearly your men lack drive, and you as the owner are lacking a spine. A simple checking in will not do. Sometimes it pays off to be a bit more demanding-&#39;
+
+He stopped a few feet away from Rider and stared at the loud...thing, tail and all, blocking the kitchen&#39;s entrance. <em>That</em> was the army of chefs Pascal so lovingly referred to?
+
+There were no dots to connect. Nothing added up.
+
+&#39;I believe I have made it abundantly clear, Saber. I am already engaged.&#39; 
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-96C9A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778405813428420609" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 04:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="814591392839892993" id="message-814591392839892993">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yeah, yeah, going through that whole routine a third time would be a real pain. Really drive me to drink, you know?&quot;  Kari said with a wink as she made light of her own vices. &quot;And I&#39;m lucky you&#39;re still ticking after fighting that . . . <em>one servant.</em>&quot; She shuddered at the thought of that woman and her absolutely pitiful sense of intuition. 
+
+&quot;Oh yes, how careless of me not to specify, I&#39;ll have a red wine and make sure it&#39;s not one of those dry types. Those are absolutely miserable,&quot; She said, leaning back in one of the chairs, waving her hand around as if she was sloshing a wine glass. She would keep up that kind of pretentious air until she heard <em>that</em> screeching voice. She immediately froze and looked over at Ada with concern in her eye. &quot;Waiter, wine. NOW!&quot; 
+
+Marie was halfway between Ada and Kari at the time and looked very much confused as she tried to process the sight but could not come to any proper conclusion. &quot;Archer, if that is Saber, it is our obligation to return her as soon as possible to her master. She is clearly compromised in function and returning her could gain us favor. Ms. Tovesky, do you have any mana batteries to help stabilize her? &quot;
+
+&quot;Absolutely not. You two can try to carry her back if you want but I&#39;ve got nothing to do with that bitch, none at all,&quot; Kari said indignantly before Marie&#39;s words struck an idea in her head.  She only regreted saying it after the fact. &quot;Though you do have a point about helping Sandro. He still is a fellow aristocrat after all. His help may be useful in the future...&quot;
+
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 04:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="814593871983280188" id="message-814593871983280188">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;Good going, Armstrong. At least you&#39;re good for something.&quot;</em> Pascal thought, before being confronted by Ada. Such a nosy four-eyes, why couldn&#39;t this Servant just mind their own business? Archers really were the worst, especially the ones with glasses or twin blades.
+
+&quot;Dust is just normal in this weather! Clearly, you haven&#39;t been summoned for long if you expect the restaurant district to look shiny like your chrome legs.&quot; Pascal rebutted, before Ada walked past him in order to take a peek at the staff room.
+
+&quot;Hey! That area is off lim--&quot;
+
+Kari&#39;s shriek interrupted him, as the impatient lady kept asking for wine.
+
+&quot;Of course! But do you mind recalling your Servant before I can--&quot;
+
+Then things got worse: Not only did Ada find out that Pascal had been lying through his teeth, but Rider and Archer had come across a third Servant hiding in the staff room. One dressed in rather...eccentric clothing. Pascal had no idea that such perverse attire was lying around in their closet, but he knew that the gramps who owned this place had a few screws loose.
+
+What surprised him more, however, was how huge the woman was. She could flick him away with one hand!
+
+&quot;Saber?!&quot; Pascal exclaimed in shock, as Marie so graciously provided him with the Servant&#39;s identity. He approached Armstrong and covertly whispered in his ear.
+
+&quot;Rider, we are in <em>deep shit</em> right now. Two Knight class Servants. TWO OF THEM! I knew it. They are trying to gang up on his. We seriously need to get away!&quot; He was panicking, envisioning Szrac approaching the Crab &amp; Lettuce at any moment now. It seemed like Armstrong had underestimated just how scarring the last battle had been. <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-CA1F6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="778405813428420609" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="814598505611919390" id="message-814598505611919390">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Shit! Not only was the restaurant filled to the brim with people, it was full of people who knew her! That stupid bitch and her dumbass Archer... how rotten was her luck?
+
+But maybe, just maybe, she could salvage this situation. After all, she wasn&#39;t in her regular attire, so there was NO WAY anyone could recognize her! That meant that all that she needed right now was a little bit of finesse...
+
+<strong>&quot;&#202;h? Nō, th&#228;ērē&#39;s nō S&#228;bērs hērē.&quot;</strong> Sinmara spoke, forcing an accent like that of her homeland. Granted, she&#39;d only heard such an accent one or twice in her time, but how hard could it be? You just put in a bunch of weird noises and over-enunciated things. 
+
+Completely unaware of how everything about this situation was awful, and only getting worse, Sinmara continued on with her flawless impression.
+
+<strong>&quot;J&#228;ē&#252;st mē, &#246;lē&#39; Svēēpd&#228;g, w&#246;rkēēng in thē kēētchēns, j&#228;? N&#246;thēēng s&#252;spēēcē&#246;&#252;s, j&#228;?&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 07:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="814636489408774147" id="message-814636489408774147">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Dragons weren&#39;t scientific.
+
+Armstrong had gone to places where no man had gone before. He had touched stars, fought in wars, and flown in aircraft basically guaranteed to explode. He had been many places, and he had seen many things. The back of a failing restaurant with a Servant dressed in fetish bait was new. Very new.
+
+He turned away from her. Nothing mechanically interesting or scientific about the opposing Servant. The dragon outfit was interesting, but only a complete degenerate would be entranced by it. Armstrong snuck a second look before getting pulled into conversation with his Master.
+
+&quot;Master. If you would look with your eyes and listen with your ears, or <em>think</em>, you&#39;d realize that Archer&#39;s Master seems to... <em>Hate her guts</em>. If you think it&#39;s a a danger, I suppose this is as good of a place as anywhere to summon Opportunity.&quot; Rider squinted at the restaurant. The calculation was wrapped up quickly. &quot;Yeah, I can fit it.&quot;
+
+Summoning Opportunity into the restaurant was an excellent way to crush both Pascal and Kari in rubble. Were they in danger?
+
+Just before Armstrong could prepare to manifest his Noble Phantasm, Sinmara&#39;s terrible accent was so bad that it caused him to lose his train of thought. &quot;Master. I believe that our chef is speaking in <s>N</s>Morse Code. Allow me to translate: T... H... Z... L... E... 6... N... I...&quot;
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-96C9A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778405813428420609" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-21 07:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="814647559091650572" id="message-814647559091650572">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">How could this situation deteriorate so quickly just with the appearance of Saber? Was there some element of chaos that just followed her around wherever she went or was she purposefully doing this to get revenge on her and Ada? Kari could not decide and and the waiter trying to refuse to serve her booze was annoying. She could already start to feel something pound against her temples and she pinched the bridge of her nose to cope with it.
+
+&quot;No, Ada can do what he please. There&#39;s nothing wrong. Just get me the wine now, actually just bring me the whole damn bottle. I&#39;ll pay for it, but I need it now or I will come over and raid the bar myself,&quot; Kari said, slamming a fist against the table for emphasis. She couldn&#39;t help but stare at the bizarre state Sinmara had put herself in, it was both so like and unlike her to pull this stunt. There was only one conclusion she could reach from it.
+
+&quot;Oh my god, Ada. I think you whipped her so hard, she&#39;s drank herself stupid! No wonder she can&#39;t speak. Go help her get out of here with Marie since Saber clearly doesn&#39;t know what she&#39;s doing at the moment,&quot; She was totally not projecting her own past mistakes onto the servant but rather just using common sense that she obviously had from being raised by a family of inventors and homunculi. &quot;Maybe that way she can stop embarrassing us all. God, i&#39;m not looking forward to returning her to her master.&quot;
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Feb-21 02:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="814927270086967369" id="message-814927270086967369">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Finding Saber at the back of a dingy restaurant was far from the weirdest thing that could happen. The giant woman had every right to be wherever she pleased, it wasn&#39;t like her Master could keep her on a leash. What Ada failed to comprehend, however, was why she had felt the need to drastically change her appearance. It wasn&#39;t like one could easily find a second woman of her size and build on the island!
+
+Could she be stalling for time?
+
+The thought that Saber could be capable of intrigue didn&#39;t even linger for more than a second before he dismissed it. Even though they had only exchanged a few blows, Sinmara didn&#39;t peg him as someone who could think further than half a step ahead of whatever she was doing. Which could only mean one thing. Something had gone terribly wrong during their fight.
+
+&#39;With all due respect, Spaceman, I don&#39;t think Saber is capable of using morse code. The language of machines is a lot more elegant than her accent, which I believe occurred due to an inconsistency in her system locale.&#39; 
+
+Ada calmly assessed the situation. Not just her speech pattern, but Saber had defaulted to a slightly...accented outfit as well. Ada tried to picture fighting Saber in her current state. He almost lost the will the fight Sabers ever again.
+
+For once, Kari spoke his language.
+
+&#39;I can do more than that, because this is plain unacceptable.&#39; He said with finality, pulling out a bunch of cables out of his sleeve. &#39;You are good with a wrench, yes?&#39; He addressed Rider. &#39;Between you and me, we can fix her up real quick. Just need to rewire a few things and send her away with a new patch.&#39;
+<span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Feb-21 02:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="814932579857334313" id="message-814932579857334313">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;They hate each other? Really?&quot;</em> Pascal thought for a second, casting a few glances at Kari, then back to Sinny, then back to Ada. There were glares all around, with the chef wondering whether they were gawking at the ridiculous outfit or whether they despised Saber that much.
+
+What he knew, however, was that he wanted nothing to do with all of this.
+
+&quot;Rider, speak English!&quot; He slapped his Servant around, before relaying a message in their ear. &quot;I&#39;ll give the Master the wine, you just handle things here. If Saber and Archer start something, just summon Opportunity and let&#39;s get the hell out of here.&quot;
+
+He confided before returning to Kari. &quot;But of course, mademoiselle! Here, an entire bottle of red wine. Fresh and juicy, as you demanded. Pray tell me why you have a Servant hidden in the back of my restaurant though? One with rather...extravagant clothes too.&quot; <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Feb-21 03:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="814943479330635808" id="message-814943479330635808">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Armstrong nodded to himself thoughtfully. &quot;That&#39;s an excellent idea. I&#39;m more used to tinkering with vehicles and hard machinery, but how different can these frames be? I&#39;ll get my equipment.&quot; He said. Instead of getting a tool box like any self respecting handyman, Armstrong simply turned around and began manifesting various tools.
+
+&quot;This? No. This? Too large. Hmm... How about... this?&quot; Armstrong muttered, flinging various tools across the room as he searched through his reserves. One almost hit Kari flat in the forehead, missing her by inches. &quot;Yeah, here we go. A wicked omni-tool appeared in his hand. He and Adam turned towards Sinmara. A wicked gleam appeared in Armstrong&#39;s eyes.
+
+&quot;Yeah, sure, got it. My mana reserves are fairly haphazard, but I should be able to do that.&quot; Armstrong said haphazardly, obviously preoccupied by the Ada&#39;s proposal. &quot;Come now, fellow practitioner of science. Progress! Science! Engineering!&quot; He cheered.
+
+Together, the two of them ganged up on Sinmara. Armstrong began slowly approaching her, as one would with a wild animal. He was clearly taking no chances. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-CA1F6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="778405813428420609" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Feb-21 04:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="814960109352255539" id="message-814960109352255539">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It didn&#39;t appear that Sinmara&#39;s disguise worked. Drat! How could they have seen through her lie about being Svipdag? She even had the dragon parts and everything! Never mind the fact that Svipdag wasn&#39;t a maid, nor were his dragon parts so obviously fake, nor was he accent so catastrophic... no, it just wasn&#39;t possible! Someone here must have had some kind of Presence Detection of True Sight or some other bullshit ability!
+
+Maybe she just needed to sell it harder?
+
+<strong>&quot;&#202;h? Nō, ēh, y&#246;u m&#228;&#246;&#252;st be c&#228;nf&#252;zē- HEY! WHAT THE FUCK!? GET THAT THING AWAY FROM ME!&quot;</strong> Sinmara&#39;s facade immediately crumbled when Rider revealed that horrendous looking omnitool. Just because she <em>happened</em> to be <em>forced</em> by <em>circumstance</em> to wear fetish gear, that didn&#39;t mean he&#39;d let that spaceman play out his grotesque fetishes! Not on her life!
+
+<strong>&quot;Don&#39;t touch me with that thing, you twinks! I&#39;ll burn you! Don&#39;t think I won&#39;t!&quot;</strong>
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/68149d74d475ba19dc6015b22c8c9e1e-96C9A.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kari Tovesky#0000" data-user-id="778405813428420609" style="">Kari Tovesky</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Feb-21 01:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="815270317483491368" id="message-815270317483491368">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah finally, my drink,&quot; Kari said, taking the bottle eagerly from Pascal before producing a tool from her pocket to open the bottle. She swirl it around a bit before taking a deep swallow of the red liquid within. Bringing it down, her anger seemed to diffuse somewhat. &quot;Ehh not bad for a place like this, here this should be enough right?&quot; She took out a wad of money that would more than pay for the bottle.
+
+With her needs taken care of, Kari turned back to the chaos ensuing near the back of the restaurant. Ada, Armstrong and Marie were cornering the poor drunken Saber like she was some wild animal. In her mind, it was a fitting comparison and made her chuckle a bit as the distress on Sinmara&#39;s face played itself out comically. Though she knew it could get messy quick so somebody had to at least calm her down in some way or another.
+
+&quot;Hey Saber, you know there&#39;s a way out of this where these naughty men don&#39;t have to poke and prod you with their nasty tools. Why don&#39;t you just come over here by me, I&#39;ll pour you a glass of wine and then we can just walk back to your master&#39;s house . I&#39;m sure the bartender will even thank you with a keg or something like that on the way out for not trashing his place,&quot; Kari said, trying her best not to condescend or laugh at Saber and her ridiculous appearance, looking over at Pascal and and nodding towards the saber as if to give him a way out. &quot;Isn&#39;t that right?&quot;
+
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Feb-21 05:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="815336032786186240" id="message-815336032786186240">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Saber was having quite the reaction towards the menacing looking tool in Rider&#39;s hand. She tore down her own disguise and reverted back to spewing insults with every other word, hoping to scare the others off. Unfortunately, the three individuals she was dealing with just had to be the most resilient against verbal insults. One of them barely passed as a human, while the other two barely considered Sinmara as one, as opposed to a lab rat.
+
+&#39;Do you even have mana to spare?&#39; Ada asked the million dollar question. &#39;You don&#39;t even know the first thing there is about saving mana, otherwise you would have at least taken aim before unleashing your noble phantasm on me.&#39; He dissected the situation calmly, but the smirk on his face suggested otherwise. Sinmara could practically hear him say &#39;<em>Too bad you missed~</em>&#39; on repeat.
+
+&#39;The good news is that you still seem to retain memories of normal speech. It&#39;s quite unfortunate that it took my fellow engineer&#39;s omnitool to jolt those memories. Chances of relapse is quite high. May I suggest a quick fix? It wouldn&#39;t be the most elegant, but it would be quite cost effective.&#39; Ada brandished the cables in his hand. &#39;My fellow science aficionado, what would it take for you to fix your omnitool to Saber, permanently? If not her person, perhaps the outfit would suffice. I will perform a quick scan in the meantime to make sure everything is running smoothly.&#39;
+
+The cables shot out of Ada&#39;s hand. They surrounded Saber, trying to look for good places to plug themselves in. 
+
+&#39;Saber, while you can still understand my words, can you lift that tail of yours for me? It is quite...plump, and it&#39;s getting in the way of these cords.&#39;
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-CA1F6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="778405813428420609" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Mar-21 01:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="815636503942135831" id="message-815636503942135831">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;GAH! N-no, stop this!&quot;</strong>
+
+Sinmara&#39;s protests were either rejected or ignored, and Archer&#39;s horrid little wiry tendrils plugged themselves into her body. It was a terrible thing to do, but Ada had come from a different time. One where sexual harassment was a wisp of a dream, and men could plug themselves in wherever they pleased.
+
+Not that Archer cared. After all, he was getting all sorts of interesting data, probing deeper into the mysteries of her body, chasing the same wisps of potential he had glimpsed earlier...
+
+And after enough digging, he saw it again. It flickered into his sight for the briefest moment, and disappeared just as quickly.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/5ecd29841523ddbd4f25114507d9cef5-84F5D.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="778405813428420609" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Mar-21 01:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="815636674620424244" id="message-815636674620424244">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/220-E0407.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/220-E0407.jpg" alt="Image attachment" title="Image: 220.jpg (87.11 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/eacfd70ada65da9a15fd2c380753cbcf-CA1F6.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Sinmara#0000" data-user-id="778405813428420609" style="">Sinmara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Mar-21 01:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="815637245751066674" id="message-815637245751066674">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">However, a glance would all he would receive. 
+
+<em>SMACK.</em>
+
+Ada would his face introduced to Sinmara&#39;s fist, sending him and his tendrils down to the floor. Scowling, the giantess took her chance, sprinting out of the entrance doors and away from this mistake of a restaurant.
+<span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Mar-21 03:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="815668472637947964" id="message-815668472637947964">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ha! As expected of NASA! Our equipment is so good that it jolts memories in and out of you.&quot; Armstrong said smugly, brandishing his tool around as though it were a magic wand. In actuality, he barely knew how it was affecting Sinmara. His knowledge on the workings of SERVANT suits was lacking. Luckily, it seemed like the Archer knew more about this sort of stuff, so he&#39;d just sit back and act like he was in on it.
+
+&quot;We could just strap some industrial tape to her. Nothing&#39;s gonna last forever, given the fact that she&#39;s...&quot; Hot? &quot;...burning at a very high temperature.&quot; Armstrong said, crossing his arms. While Ada started plugging her cables into very personal locations, Armstrong turned around and began fiddling with the tool. Some tape here, some superglue there...
+
+He&#39;d never get the chance to use either of them, though.
+
+While his back was turned, Sinmara made a book for the door, overpowering Ada&#39;s cables. It had taken a few seconds for Armstrong to realize. He quickly got up and ran to the door. &quot;HEY, GET BACK HERE! YOU DIDN&#39;T PURCHASE ANYTHINGGGGG!&quot; He yelled, shaking his fist, ignoring how ridiculous Sinmara looked in that costume as she ran.
+
+He grumbled, knowing Pascal would kill him if he ran off. Maybe he was more rational with the fishbowl off...
+
+&quot;Get any good data, Archer? He grumbled, reaching over the counter and taking a beer without permission. He popped it, and took a swig.
+<span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/8dc2de91d7204180a7e798ccd67ac709-D49DA.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ada Lovelace#0000" data-user-id="778405813428420609" style="">Ada Lovelace</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 02:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="816010543072542751" id="message-816010543072542751">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Archer lay on the floor, unmoving. He could&#39;ve passed for a statue were it not for the tendrils rippling about. They were evidently sad to have been forced to part with their test subject, who had stormed out of the restaurant after slapping him in the face like an overgrown highschool girl.
+
+Rider&#39;s question seemed to have fallen on deaf ears at first, but then he saw Archer&#39;s mouth move. Ada was mumbling something intelligible, though now that the loudest person in the room was gone, anyone with a keen ear was able to pick up on some of the words.
+
+&#39;...not hit a man with glasses, at least have the decency to take them off first...&#39;
+
+&#39;...circumference of the tail is too large to be functional and aesthetically pleasing to the eye...&#39;
+
+&#39;...yet another fatal flaw in her programming...&#39;
+
+&#39;...yes, Rider. I have managed to gather data. Whether it&#39;s good data remains to be seen.&#39;
+
+So he didn&#39;t forget about Armstrong, after all!
+
+Ada sat up and manifested his trusty companion, the Chicago Typewriter in its laptop form. He turned it to share its screen.
+
+&#39;As expected of a Saber class Servant, her parameters are off the charts.&#39; Ada pointed out various data sets to Rider, but they seemed to be written in a language that was entirely different from the major ones spoken throughout the world. &#39;Despite her abnormally large size, her proportions leave nothing to be desired.&#39;
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816010600975040552" id="message-816010600975040552">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...Hold on? What kind of parameter was he talking about?
+
+&#39;That said, I was able to sufficiently dent her armor with nothing but a straightforward mana burst...in a bullet.&#39; Ada continued as if nothing happened. He directed Rider to a bunch of graphs that simulated Saber&#39;s mysterious mana fluctuation during their fight and made sure to criticize her aplenty when it came to her wasteful mana management. Then, at the bottom of the report was a chunk of garbled data with question marks sprinkled throughout. 
+
+Ada sighed in disappointment. Oh to be denied access twice in the same day...
+
+&#39;I lost connection before I could probe further.&#39; He admitted to the bitch slap in a roundabout way. &#39;I saw something in Saber. It was...&#39; He paused to look for the right words. &#39;Different.&#39; He clicked his tongue in annoyance. &#39;I wish to know what it is.&#39; <span class="mention" title="Magnetic#0083">@Magneto</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 08:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="816103223718182912" id="message-816103223718182912">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It seemed like Kari had no interest in talking to the common rabble, since they were fixated on Saber and the other Servants. That was fine. Pascal was used to this sort of behaviour, and he didn&#39;t mind it at all. It was far easier to remain inconspicuous and just coast through life than to have an open target on your back and leave yourself exposed.
+
+Though, as an employee, he felt particularly worried when Archer started probing Saber with his numerous tendrils. He felt like he was witnessing something indecent, which could most likely put his business under fire in case anyone else entered the room.
+
+&quot;Uh, could you two not take it outside or something? Or at least buy something if you plan on having a couples&#39; nigh--&quot; Before he could finish, or perhaps because he was finishing that particular sentence, Sinmara reacted by slapping Ada away. It was hilarious. To see a Servant be bitchslapped several meters away by one of the strongest Classes. Pascal almost felt like laughing, but his trained experience as a chef allowed him to hide his emotions...poorly. Some audible snorting could be heard from his mouth.
+
+&quot;Ha! Looks like she was out of your league, Archer. You&#39;ll get her next time.&quot; Pascal gave a light clap, not finding Archer to be a threat anymore after that little spat. How could he? All signs were pointing at a lovers&#39; quarrel or a spat between Archer&#39;s Master and whoever Saber&#39;s Master was. It was none of his business, but he couldn&#39;t help but find it entertaining.
+
+&quot;You were right, Rider. Seems like we really did get a bunch of buffoons.&quot; Pascal covertly whispered next to Armstrong&#39;s ear. &quot;That being said, we&#39;re getting near to closing time. Since Saber left, I doubt they&#39;ll stay any longer.&quot;
+
+As he said that, he walked back to Archer. 
+
+&quot;Well, Saber ain&#39;t here, so.&quot; He interrupted Ada during his scientific rant. &quot;Go get her, cowboy! She&#39;s probably nearby.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="816103265984839762" id="message-816103265984839762">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 12:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="816158112376946718" id="message-816158112376946718">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Naturally. It&#39;s Saber, after all. If they&#39;re known for anything, it&#39;s waving around their parameters and magic swords.&quot; Armstrong scoffed, his disdain for Saber obvious. Was he just jealous that his stats weren&#39;t as high as Sinmara&#39;s? Possibly. Pascal had never seen Armstrong get jealous before. 
+
+He was learning a lot about Neil Armstrong today.
+
+Armstrong peered at the graphs that Ada was showing him. They were certainly thorough. Armstrong hadn&#39;t seen something this thorough since the first moon landing, or when he worked on Star Wars. The specifics required get a man in space was only compared by the vastness and sheer calculations of numbers and computations.
+
+&quot;Hm.&quot; Rider pointed at the graph with mana fluctuations. &quot;She&#39;s bound to self destruct eventually if she keeps haphazardly burning herself to cinders, pun intended.&quot; Armstrong put his fingers to his chin, beer forgotten on the counter. Sinmara was a risk to allow to remain active. Out of everyone besides Midas and the tin can, Sinmara was the most likely to go out and harm his Master, due to her sheer inability to understand the concept of &#39;collateral damage&#39;.
+
+&quot;Master!&quot; Armstrong turned to Pascal, who had been busy whispering into his ear, causing his Master to give him a bit of space. &quot;This Saber is a risk to the city, and to your survival. As a fellow practitioner of science, I would like to study her, and defeat her before she does anything dangerous. I am very confident in my ability to defeat her.&quot;
+
+Apollo 11. Armstrong&#39;s second Noble Phantasm. Was it strong enough to counter Sinmara&#39;s armor and destructive tendencies?  He was interested in finding out.
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/c6a0f3223f412dec22f2d265780de3d4-2B565.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pascal Poirot#0000" data-user-id="778405813428420609" style="">Pascal Poirot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Mar-21 05:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="816242154904354836" id="message-816242154904354836">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rider talked a lot. <em>A lot.</em> It was a given at this point, but it was incredibly hard to shut him up whenever he got into one of his usual rants. They usually involved ranting about some defunct space organisation that Pascal had never heard of, along with Armstrong praising himself for the efforts of him and his team. The chef didn&#39;t care for those long, egotistical diatribes. They just reminded him of his fledgling days of being an aristocrat...
+
+He <em>loathed</em> those days.
+
+Therefore, he paid almost no attention to Rider&#39;s rant, except for the last bit.
+
+<em>&quot;Eh?&quot;</em> He asked with a face filled with surprise.
+
+<strong>&quot;No way.&quot;</strong> Pascal replied. &quot;What&#39;s this city got to do with me, huh? I&#39;m not risking my neck for a place that I can barely call home. You know nothing of how I live.&quot; He narrowed his eyes, staring Armstrong down as he sighed.
+
+&quot;...I&#39;ve already booked a boat for Monday anyway. Next week, we leave Persepolis. Forever. I have no interest in Grail Wars, and if some tin can is going to be after me during my stay here, then it makes the most sense for me to leave, right?&quot; Pascal pointed out.
+
+&quot;You&#39;re welcome to come if you want. But if you want to stay to fight some Servant you barely know anything of, be my guest!&quot; He raised his arm in an agitated manner, as if saying Armstrong would be dead to him if he decided to stay. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span> <span class="mention" title="Magnetic#0083">@Magneto</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 02:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="816383776623689798" id="message-816383776623689798">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Armstrong narrowed his eyes. After everything that had happened, Pascal still didn&#39;t understand what was at stake. He wanted to slap his Master, but doing so would probably twist his neck like a pretzel.
+
+&quot;Why are you so reluctant to empathize with others, or do anything for that matter?&quot; Armstrong asked in obvious disgust. &quot;Do you have a few wires loose? Should I drill into your head and see what&#39;s broken in there?&quot; Armstrong&#39;s voice made it sound like no idle threat, and the lack of static cemented that point home. In his space suit, he&#39;d probably just ramble on about the sake of progress, but suitless was a different story.
+
+&quot;If that Saber continues to walk free, she&#39;ll eventually tear the city apart. People will lose their families and friends. Their parents, their <strong>brothers and sisters</strong>.&quot; Armstrong poked Pascal in the chest, eyes gleaming. &quot;Midas and his Master are small threats, bound by the confines that society places on them. Saber can tear this city apart at the seams, and that&#39;ll be the end of it.&quot;
+
+Could Saber really do something so dangerous? It was extremely likely, given the graphs. Pascal couldn&#39;t make as much sense of them as Rider or Archer, though. Would he really be fine with damning other people to death?
+
+&quot;However...&quot; Armstrong sighed, taking off his ID and cleaning it. &quot;Perhaps I&#39;m simply too empathetic. I&#39;ve got too many hearts and souls, after all. As your Servant, I will accompany you wherever you go. We leave Monday?&quot; Armstrong asked as he placed his ID back on his shirt. &quot;That&#39;s enough time. <strong>I can deal with Rider before we have to depart.</strong>&quot;
+
+Was he nuts? There wasn&#39;t nearly enough time to make a plan, find, and defeat Saber before Monday! &quot;Archer, do you know where Saber will appear next? You&#39;ve fought her before.&quot;
+<span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@The Attacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Entertainment%20District%20%28RP%29%20-%20crab-and-lettuce-restaurant%20%5B771796188982149210%5D.html_Files/533be664d81231e822e25379dde7cd7e-F29FF.jpg" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Neil Armstrong#0000" data-user-id="778405813428420609" style="">Neil Armstrong</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-21 03:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="816395161604718673" id="message-816395161604718673">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Magnote/edit: &quot;That&#39;s enough time. I can deal with Saber before we have to depart.&quot; is the actual line cuz I&#39;m too lazy to fix</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+
+</body>
+
+</html>
