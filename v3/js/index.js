@@ -93,13 +93,18 @@ function generateBaseHTML(e) {
           fullHtml += $(this)[0].outerHTML;
         });
 
+
+        // executor distribution chart
+        if (data_slide_section_tab == 7) {
+          fullHtml += '<div id="chartContainer"></div>';
+        }
+
         txt_content +=
           '<div class="subslide__content subslide--active" data-slide="' +
           data_slide_section.toString() +
           data_slide_section_tab.toString() +
           '">' +
           fullHtml +
-          '<div id="chartContainer"></div>' +
           "</div>";
 
         data_slide_section_tab++;
