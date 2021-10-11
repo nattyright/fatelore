@@ -3,8 +3,6 @@ function generateBaseHTML(e) {
     data_slide_section_tab = 1,
     html = "";
 
-  $("#testt").load('Fate_Starry%20Night%20Lore%20Site.html')
-
   var sections = $("h2");
   sections.each(function () {
     // get section title
@@ -168,8 +166,12 @@ function generateBaseHTML(e) {
   $("#slider__warpper").html(html);
 }
 
-generateBaseHTML();
-document.addEventListener("load", generateBaseHTML);
+
+$("#testt").load('Fate_Starry%20Night%20Lore%20Site.html', function() {
+  generateBaseHTML();
+  document.addEventListener("load", generateBaseHTML);
+})
+
 
 $(".slide-nav").on("click", function (e) {
   e.preventDefault();
