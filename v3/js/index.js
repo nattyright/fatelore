@@ -95,7 +95,7 @@ function generateBaseHTML(e) {
 
 
         // executor distribution chart
-        if (data_slide_section_tab == 7) {
+        if (data_slide_section_tab > 1) {
           fullHtml += '<div id="chartContainer"></div>';
         }
 
