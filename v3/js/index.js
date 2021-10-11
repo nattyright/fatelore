@@ -179,7 +179,35 @@ function generateBaseHTML(e) {
 
 $("#testt").load('Fate_Starry%20Night%20Lore%20Site.html', function() {
   generateBaseHTML();
-  document.addEventListener("load", generateBaseHTML);
+  //document.addEventListener("load", generateBaseHTML);
+  var chart = new CanvasJS.Chart("chartContainer",
+  {
+    backgroundColor: null,
+    width: 700,
+    title: {
+      text: "Distribution Overview"
+    },
+    animationEnabled: false,
+    data: [
+    {
+      type: "pyramid",
+      //valueRepresents: "area",
+      indexLabelFontSize: 12,
+      indexLabelFontFamily: "Arial",
+      dataPoints: [
+          { y: 600, indexLabel: "Law Enforcement", color: "#aaaaaa" },
+          { y: 200, indexLabel: "Instructors and Scouts for Promising Executor Candidates", color: "#bbbbbb" },
+          { y: 100, indexLabel: "Bodyguards for Distinguished Church Personnel", color: "#cccccc" },
+          { y: 90, indexLabel: "Executors", color: "#dddddd" }
+          /*{ y: 50, indexLabel: "Executors w/o Command Spells", color: "#dddddd" },
+          { y: 40, indexLabel: "Executors w/ Command Spells", color: "#ffffff" }*/
+      ]
+    }
+    ]
+  });
+  chart.render();
+
+
 
 
 
@@ -246,6 +274,10 @@ $("#testt").load('Fate_Starry%20Night%20Lore%20Site.html', function() {
 
 
 
+
+
+
+  
 
 
 })
