@@ -156,9 +156,14 @@ function generateBaseHTML(e) {
       html +=
         '<div class="flex__container animate--start" data-slide="';
     }
+
+    var subtitle = 'Fate/Starry Night';
+    if (data_slide_section == 5) {
+      subtitle = '<strong>S</strong>entient <strong>E</strong>mbedded <strong>R</strong>eal-time <strong>V</strong>erbose <strong>A</strong>pproximatio<strong>N</strong> <strong>T</strong>echnology';
+    }
     html +=
       data_slide_section.toString() +
-      '"><div class="flex__item flex__item--left"><div class="flex__content"><p class="text--sub">Fate/Starry Night</p><h1 class="text--big">' +
+      '"><div class="flex__item flex__item--left"><div class="flex__content"><p class="text--sub">' + subtitle + '</p><h1 class="text--big">' +
       txt_title +
       "</h1>" +
       txt_tab_titles +
