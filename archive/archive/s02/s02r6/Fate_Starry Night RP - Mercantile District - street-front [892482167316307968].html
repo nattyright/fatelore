@@ -1,0 +1,2952 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - street-front</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Mercantile District / street-front</div>
+
+            <div class="preamble__entry preamble__entry--small">One of the main through fares in the Mercantile District. Many smaller side streets branch off from this leading through the sprawling network that is Delphi. Feeding the district with life and commerce.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/c8cd5b207646487b31a9ed4361326105-CA51A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Magnetic#0081" data-user-id="291225855823446016" style="color: rgb(255,140,19)">Magnugget</span>
+
+
+        <span class="chatlog__timestamp">29-Sep-21 02:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="892482405372424212" id="message-892482405372424212" title="Message sent: 29-Sep-21 02:46 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/cyberpunk20207720screenshot-643C4.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/cyberpunk20207720screenshot-643C4.jpg" alt="Image attachment" title="Image: cyberpunk20207720screenshot.jpg (695.57 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3b3b2ebf8188379854861c27bdbd21e2-AB1F6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Narrator#0000" data-user-id="892519130866008105" style="">Narrator</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Sep-21 05:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="892519131650330666" id="message-892519131650330666" title="Message sent: 29-Sep-21 05:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(from <span class="mention">#the-clinic</span>)
+Gunshots ring out through the air in the previously calm evening of Delphi. Clashing of metal against concrete then flying rubble come shortly after each shot. These strange sounds filled the back alleys of Delphi before they moved on to the streets once again as another fight broke out. Were the reminding contestants of this grail war throwing caution to the wind and fighting out in unsanctioned arenas? 
+
+Just how bold would the last participants get? 
+
+Where would the final showdown occur? 
+
+None of the these questions had answers to suit them. There is one question that can be answered however!
+
+The participants of this battle in the streets? Why it is between the White Death himself, <strong>Assassin of Delphi</strong>, and his opponent the Holy Emperor in the flesh, <strong>Lancer of Delphi</strong>! A fight for the ages! One very few would be lucky enough to witness given how sudden this fight is! 
+
+The fight has been raging on for awhile now. Both masters aiding their servants as much as they could while the servants clash against each other. Neither side seem to have the upper hand over each other at the moment. Though it looks like all they need is a single mistake to take advantage of. Will they notice it when it appears though?
+
+Assassin was a smart fighter. They wouldn&#39;t have earned themselves the nickname of White Death if they weren&#39;t one. Nor the fear of those who sought to invade their homeland so brazenly. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892519239653658666" id="message-892519239653658666" title="Message sent: 29-Sep-21 05:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It is because of these smarts that Assassin is alive right now even when up against the frightening speeds of Red Hare as they rode by time and time again. Each time the blade missed their mark by mere inches! Having the knowledge of a servant&#39;s capabilities through the Throne is one thing, experiencing them firsthand is another thing! 
+
+The same can be said for Lancer&#39;s side as well. They recently endured the sting of modern firearms. This fight, however, introduced them to the might of servant-level firearms. The difference would have costed them an early defeat if they were just a bit more careless. Luckily, they have grown past underestimating the capabilities of their opponents by this point.
+
+With Assassin&#39;s agility, and use of their skill <strong>The Invisible Soldier</strong>, they made this fight into one of Cat and Mouse. Neither side currently can land a sufficient enough blow to either side at the moment. Just how will this fight play out? Who will grasp at the threads of victory first? Who&#39;s speed and maneuverability will come out on top over the other? The answer may be closer than one thinks...
+
+(<span class="mention" title="Hawaii117#8992">@Hawaii</span><span class="mention" title="Eagan#8440">@Eagan</span><span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Sep-21 06:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="892545263162499103" id="message-892545263162499103" title="Message sent: 29-Sep-21 06:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There was a brief moment of reunion between servant and master. The briefest of respites, and moments to breathe. Then chaos struck again. 
+
+Lancer and his master struck. Breaking through the front doors of the clinic and causing Margaret to rush to the back. Blanche was prepared to defend her castle, but Simo took the offensive. Making sure to lead the fight out into the streets. 
+
+Bullets rang out, as both the white death and The Jade lancer did a dance. Predator and prey, who was who would be determined when one gave the other an advantage. 
+
+In between Simo&#39;s gun fire he yelled out, from behind cover. &quot;Lancer. Before we get into this in earnest. Let&#39;s trade names.&quot; The SMG was reloaded, and the rifle kept slung over the shoulder. &quot;Mine is Simo Hayha, a soldier of Finland.&quot; 
+
+He then slung the SMG, now keeping the pistols which archer had left in his hands. Attempting to peak over from his cover, and get another clear line of sight. 
+
+When Guan Yu does finally come into view, the pistols would land on their target and fire another volley of shots. With the briefest of pauses to allow for a response from his opponent. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Sep-21 07:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="892560171014963231" id="message-892560171014963231" title="Message sent: 29-Sep-21 07:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The spark that ignited the conflict between both parties was as chaotic as expected. It was smart to strike while they were resting. After all, servants still had to recover despite being these figures of great power. A clever plan. One that almost mirrored Assassin&#39;s previous opponent. This must have been a planned attack. Another strategist was in the flay it seemed.
+
+Guan Yu was about to round a corner before he heard his opponent speak out. The offer caused a smirk to form. Even in the midst of combat, they sought to learn the names of their opponent. He couldn&#39;t help but respect that from them.
+
+&quot;A fine suggestion! Alright, I&#39;ll agree to that!&quot; The act of calling out in response revealed his location to Simo, but he couldn&#39;t resist. It was in his nature to be honourable. &quot;You may call me Guan Yu, a Chinese General from the Three Kingdoms era! It is an honour to clash against you, Simo Hayha. May our battle be one that will be remembered for years to come!&quot;
+
+Simo Hayha. His opponent is the feared White Death. The knowledge from the Throne allowed Guan Yu the gist of his legend so his name borne the gravitas his opponent deserved. What a honour to face off against such a noble warrior who fought for his homeland so valiantly! It was almost enough to bring a tear to his eye.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892560182272458784" id="message-892560182272458784" title="Message sent: 29-Sep-21 07:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After the brief exchange, he rode around the corner towards Simo&#39;s cover, braving the barrage of pistol shots that came his way. In an attempt to evade some of them, Red Hare rode up along the side of the buildings.
+
+A few of them did land their mark while the rest were swatted away using his blade. Sparks flew from the ones that stuck against his armour. Blood coated his robes on his arm from the one that didn&#39;t. With enough shots, Simo could fell the legendary general! He simply needed to survive long enough to inflict that many wounds...
+
+As they rode the side of the buildings and gained the height advantage, Guan Yu reeled back and flung his weapon towards Simo and his cover. The blade rung through the air as it sheared a path through the wind towards its target. The initial strikes in the beginning told Simo that this blade was anything but light. It was a grand showing of his opponent&#39;s strength and mastery over his weapon to witness such a technique.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892560274815586305" id="message-892560274815586305" title="Message sent: 29-Sep-21 07:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Hawaii117#8992">@Hawaii</span><span class="mention" title="Eagan#8440">@Eagan</span><span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Sep-21 08:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="892575716590354462" id="message-892575716590354462" title="Message sent: 29-Sep-21 08:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well Guan Yu, it is a pleasure to make your acquaintance.&quot; The Chinese God of War, is Simo&#39;s newest opponent. One From the Three Kingdoms period of Chinese History. A rider of The Fearsome Red Hare. 
+
+The assassin released his barrage of bullets. Few pierced the respected general while others went wide or were cleaved by the heavy tipped blade he held. 
+
+It was an impressive sight to witness the man wield such a weapon in a way one would expect of a sword or some other smaller weapon. 
+
+But they were still effective.... It was a sign of hope that Simo could feasibly fell such a mighty foe! But That would have to wait, as Guan Yu held his guandao aloft. 
+
+Then was sent flying right at assassins location! A glorious display of both skill and strength. 
+
+Simo had little choice in how to avoid the blade. Dropping to the ground was his best option, the blade slicing the sniper&#39;s back as he went prone. A sharp inhale of pain was heard before he disappeared into a mix of blood and snow. 
+
+Quickly the Finn moved away from Guan Yu and Red Hare, ever thankful to the boost to his agility which Invisible Soldier granted. As he moved, he swapped weapons back to the SMG. 
+
+Taking a few shots behind him, not exactly looking where he was aiming. Making his movements erratic, and heading directly back to the main street portion. And ceasing his firing as soon as it was reached. 
+
+It was silent for a moment, as Simo reloaded from his invisble position. Before letting the skill drop again staying hidden behind a garbage can in the street. Hoping that Gustave would catch up to this fight. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Sep-21 09:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="892581106971463691" id="message-892581106971463691" title="Message sent: 29-Sep-21 09:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Guandao struck the ground with a mighty force! A cloud of dust erupted and rubble littered the impact spot. Swiftly, Guan Yu leapt with Red Hare off the ground towards where the blade landed to retrieve his weapon in one quick motion. No signs of their target. There was blood however. The blade found its mark. 
+
+There was no time to ponder for more shots came his way. This time the sounds came from a different weapon. A much more dangerous one.
+
+Red Hare retreated up the buildings to take cover from the haphazard spread of rounds. One of them struck the golden armour adorning Red Hare. A sizeable groove was made against it. No measly feat for a weapon to do. This came from a servant&#39;s arsenal.
+
+<em>&quot;Miss Hess. I have successfully wounded my opponent. Unfortunately, being an Assassin Class, they got away from me. See if you can find their location given their blood trail. Keep me updated.&quot;</em> 
+
+Guan Yu kept Laura up-to-date using their telepathic link they had from their bond. He would have to rely on her information gathering skills to find his opponent again.
+
+The majestic beast reared up and let out a mighty neigh before charging across the rooftops to keep an eye out for Simo to see if they could spot him themselves. Unlikely though given Simo&#39;s own mastery over the art of stealth.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892581172251607110" id="message-892581172251607110" title="Message sent: 29-Sep-21 09:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Sep-21 04:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="892693572665618472" id="message-892693572665618472" title="Message sent: 29-Sep-21 04:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As much as she would&#39;ve liked to spar with a reasonably strong opponent, Gustave was no such Master. His remarkable age and humble demeanour was deceptive—the old man could kick some serious ass. Given the opportunity, she had no doubts that he would take it and strike. There was a reason as to why he had survived this late into the war, after all.
+
+The young girl ran through the street, her slender figure covered in bugs from head to toes. She looked deceptively bigger, perhaps more intimidating, but surely harder to hit with conventional attacks or bullets. Unfortunately for her, Gustave didn&#39;t use conventional attacks. Marking the floor with endless crawlies, creating an inescapable and unified layer of bugs in order to keep track of the old man&#39;s movements—she was surely on the defensive, forced to react rather than act.
+
+&quot;I did my homework before coming here,&quot; The girl spoke, her words amplified by the buzzing of the swarm. &quot;The <em>Memorial park</em> shooting incident, the <em>Brobdingnagian</em>&#39;s explosive send-off... you&#39;ve been quite busy this entire time, haven&#39;t you?&quot;
+
+Judging from the girl&#39;s words and smug tone of voice, it seemed like she knew <em>a lot</em>. 
+
+&quot;But I have to admit,&quot; She kept talking, picking up speed as the insects beneath her feet helped carry her farther. &quot;It was the stuff you did <em>before</em> participating in this Holy Grail war that surprised me most!&quot; 
+
+Should the old man give chase to Laura, he would find his mobility reduced. His legs harder to move, his arms sticking to his body—<em>spider silk</em>. Layers upon layers of sticky threads, meant to reduce the painter&#39;s mobility as much as possible. If only she could buy time until her Servant was finished with his fight, they could swiftly take care of the painter as a pair.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892693678685040640" id="message-892693678685040640" title="Message sent: 29-Sep-21 04:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As she kept running, her swarm caught act of Guan Yu&#39;s and Simo&#39;s showdown. Sparks flew, bullets struck, blades passing through concrete—then came the warrior&#39;s request. 
+
+<em>&quot;I&#39;ll keep you updated,&quot;</em> The young girl answered her Servant through their link. <em>&quot;He can turn invisible all he wants, but he can&#39;t escape my <strong>swarm</strong>.</em>&quot;
+
+Spreading farther than ever, the crawlies stormed the streets adjacent to the street-front. While they couldn&#39;t see the Finn nor trace his blood, he couldn&#39;t change the fact that he took <em>physical space</em>. Some bugs came to a standstill as they found their way behind a certain garbage can, unable to proceed no matter what they tried. It was like they were blocked by some <em>invisible wall</em>.
+
+<em>&quot;Behind that garbage can!&quot;</em> The words sounded clear in the warrior&#39;s head, an image of said garbage can popping up in his mind at the same time.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-87680.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">29-Sep-21 04:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="892693760868253736" id="message-892693760868253736" title="Message sent: 29-Sep-21 04:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 04:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="892872803097915442" id="message-892872803097915442" title="Message sent: 30-Sep-21 04:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As expected, his scouting on top of the rooftops proved futile.
+
+If it were simply just the two of them against each other, Simo would have been able to dance circles around him.
+
+Luckily for Guan Yu, he wasn&#39;t alone.
+
+<em>&quot;Behind that garbage can!&quot;</em>
+
+Those words rung true in his head as his Master figured out Simo&#39;s location. Her words were also reassurance that she was doing fine on her end.
+
+<em>&quot;Wonderful work, Miss Hess!&quot;</em> Guan Yu sent back a response to applaud his Master.
+
+In an instant, Guan Yu sprung into action. Red Hare leapt off the rooftops back onto the street to charge straight for the garage can that Simo was using for cover. 
+
+&quot;Your skills can&#39;t keep you hidden forever, Simo!&quot; The mounted warrior shouted with a grin on his face as he descended upon Simo with swift speeds.
+
+This wasn&#39;t right. How was he able to keep figuring out his location? His steed was a horse, not a damn hound! This must be the work of his Master. It was a brilliant combo once you consider things. No Master would be able to keep up with Red Hare&#39;s speeds. So instead of trying to keep up, they must have a way to widely scan for information on the battlefield to direct Guan Yu like a chess piece against their opponents.
+
+He held out his blade, not to different compared to that of a blade on a chariot, to utilize the speed of Red Hare to cleave straight through the makeshift cover.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892872865970532352" id="message-892872865970532352" title="Message sent: 30-Sep-21 04:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span><span class="mention" title="Hawaii117#8992">@Hawaii</span><span class="mention" title="Eagan#8440">@Eagan</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 05:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="892878464544276511" id="message-892878464544276511" title="Message sent: 30-Sep-21 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The assassin was allowed to breathe. But noticed something peculiar. Bugs were congregating almost everywhere, and going closer and closer to Simo. A couple of them even ran right into his boot and began to crawl upon it. 
+
+The Sniper needed to keep that in his mind for later, for Red Hare and his Jade Rider have found his hiding spot. 
+
+Guan Yu confidently lunging right for Simo! 
+
+‘<em>Somethings not right, His master… Shit? Are the bugs connected to them, a vast intelligence network.</em>’ Internally there was a moment of panic as the Finn realized how deadly a combination of that sorts would be. A famed general and a magus with a skill most tacticians would only dream of acquiring.
+
+‘<em>you. You’re up.</em>’ The Sniper saw this as a good option in this scenario, loosening the leash on the White Death and letting it take its chance against the Buddhist God Of War. 
+
+“We will see about that.” Something about Guan Yu’s opponent’s voice had changed as the blade cleaved right through the garbage can. 
+
+The White Death’s muscles bulged. As it held its SMG up as a makeshift shield against the Guanado. The weapon was already crumbling in their hands but they held stead fast. “Brutal and Deadly, we enjoy you.” 
+
+The once clever Simo was now closer to a feral beast in appearance, their face scarf even being pulled down showing a demonic grin. It then used its strength to push the weapon away but only broke its SMG in half then being slashed upon the chest. At least dampening some of the damage. 
+
+But they were right where they wanted Guan Yu, as their Sniper rifle came into their hands and it’s bayonet went right for the Red Hare’s head and would pull the trigger. Aiming to take down the impressive stead and cripple the lancer!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892878527005851719" id="message-892878527005851719" title="Message sent: 30-Sep-21 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 05:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="892888827042078750" id="message-892888827042078750" title="Message sent: 30-Sep-21 05:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The suddent intrusion at the clinic was a terrible surprise on top of an already draining day. First he had been attacked within his own apartment and among his valued collection of his own artworks and now at the clinic where he was supposed to be safe? This was the kind of conflict meant for young people to fight, yet he was stuck in it nevertheless.
+
+&quot;Thorough in your research, eh? Excellent, I love a student who takes the extra time to create a quality project. A shame it has to be an assualt on an old man like me and his humble bodyguard...&quot; Gustave called out as he kept himself busy running through the spider silk, spinning it on his old cane though through his peculiar brand of magecraft it looked much more like a wooden whisk. Ridiculous in appearance, the design principle of form following function held firm was the dense layers of silk were spun up into bolts of fiber, leaving his legs free to carry the old man as fast as he could go.
+
+&quot;Admirable touch with the swarms of spiders to try and slow me down. Unfortunately I&#39;ve done similar tactics with strings. So please try something new if possible, your next test is coming up sooner than you think...&quot; Gustave&#39;s eyes seemed to glint in the sunlight before Laura made one large step closer to her servant only to fall through the street. And to crash arms first into a half filled dumpster in an alley to the left and behind Gustave.
+
+<em>Hold on just a bit longer, Simo. I&#39;ll be there to help this time.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/a6387953bce16ac93c2771772818c702-FFCBF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">30-Sep-21 05:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="892888870096613458" id="message-892888870096613458" title="Message sent: 30-Sep-21 05:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 06:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="892903153199108166" id="message-892903153199108166" title="Message sent: 30-Sep-21 06:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The blade cleaved the garbage can with ease! Without their cover, Simo would share the same fate. At least that&#39;s what he thought.
+
+&quot;Huh?&quot; A look of confusion was briefly seen as he put the pieces together. The blade was caught by Simo&#39;s weapon. The speed dragged him down the street for bit until both of them stopped once the slash connected. It wasn&#39;t a deep cut, due to Simo&#39;s quick thinking.
+
+&quot;So that&#39;s how it is. You really do live up to your reputation as a demon. Quite impressive indeed!&quot; The look of confusion faded into one of excitement! He was facing off against not one but two different servants!
+
+<em>The hunter and his hound</em>. A lethal combination.
+
+A twist of his blade and grip then, instead of facing the ground after the swing, it was facing upwards toward the evening sky. In a quick motion, the blade swung up to intercept the rifle and redirect its course to save his trusted friend.
+
+The shot rang throughout the air. A worrying sign for Lancer&#39;s Master. Though the backlash of losing her bonded servant never occurred.
+
+<em>&quot;Miss Hess. How goes it with Assassin&#39;s Master? Have you locked them down yet? Assassin doesn&#39;t seem like they&#39;re out of tricks just yet!&quot;</em> A comforting thing to hear in her head. Her stubborn servant was still in the fight.
+
+The bullet tore through Red Hare&#39;s immaculate mane. Silk-like hairs flew in the wind once they were cut from the rest. A close call. Too close.
+
+&quot;Red Hare, run!&quot; Guan Yu leapt into the air off of Red Hare as they took off down the street without their rider. They&#39;re in too much danger to remain close to Assassin.
+
+&quot;Unfortunately, I cannot allow you to harm Red Hare. I allowed too much harm to already befall them. Besides, your duel is with <strong>me</strong>!&quot; As he descended upon Simo, Guan Yu held his weapon with both hands over his head. This next strike was as simple as it was deadly. Like an emerald guillotine, the guandao came down in an attempt to cleave Simo in two.</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Sep-21 06:40 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="892903236334387240" id="message-892903236334387240" title="Message sent: 30-Sep-21 06:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Eagan#8440">@Eagan</span><span class="mention" title="Spiritssss#5397">@Spirits</span><span class="mention" title="Hawaii117#8992">@Hawaii</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 07:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="892920532880736306" id="message-892920532880736306" title="Message sent: 30-Sep-21 07:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://www.youtube.com/watch?v=1COe353Lq4M">https://www.youtube.com/watch?v=1COe353Lq4M</a>
+The White Death let out an excited growl as Lancer&#39;s deft movements saved the legendary horse. The Bullet just grazing its immaculate mane. While Its arm now contorted at a painful angle. 
+
+The noise of gunfire would at least bring some potential comfort to Gustave. Simo was still in this fight, but he&#39;d need to hurry as best as he could. 
+
+This opponent will be significantly more fun to have a show down with than the previous tactful archer. &quot;We are glad to live up to that reputation. That sentiment is appreciated by the other as well.&quot; A sickening pop was heard as Assassin fixed their arm&#39;s positioning. 
+
+Red Hare was sent running away from the fight, exactly what both Simo and The White Death had wanted. &#39;We have a potential advantage now, lets keep up the pressure.&#39; From their mind the Finn urged the demon forwards. Something it was all too happy to comply with. 
+
+It&#39;s excited growl only grew in noise as Guan Yu declared that their duel was meant to stay between them. &quot;You&#39;re right, we were let out just for you!&quot; 
+
+The Jade Lancer raised up fearsome weapon, before swinging it towards The White Death. A Guillotine ready to split their body evenly. 
+
+But the demon would not allow that to be the case. Dashing forwards as the Guandao fell, narrowly avoiding its sharp blade. Instead a heft crack was heard from Assassin, their non-dominant arm raised up pushing back against the force of the hefty blade. A fight they were going to lose in a moment, but it gave them an opening. 
+
+Whilst their other arm, still holding their rifle, raised itself and fired three consecutive point-blank shots at Guan Yu&#39;s chest. Before their temporary strength boost ceased, causing The White Death to disappear once again with invisible soldier. Barely avoiding a full crushing. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> @Spirits</span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCTpMqWP4s9_CJfVTu3wCJ4Q">ThaoGetStayDownVEVO</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=1COe353Lq4M">
+                                                        <div class="markdown preserve-whitespace">Thao &amp; The Get Down Stay Down - Meticulous Bird (Official Video)</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/1COe353Lq4M" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 03:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="893031654078181396" id="message-893031654078181396" title="Message sent: 30-Sep-21 03:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To think that his opponent would take the blow just to create an opening! It was brilliant! 
+
+The blade would have proved to be a fatal strike. However, the sheer weight of weapon is just as deadly of a tool in and of itself. It&#39;s a true wonder how the man manages to wield as dexterously as he does!
+
+The weight of strike shook The White Death&#39;s body to its core. If it wasn&#39;t for their strength, they would have surely crumbled. But, it was just enough to hold off the blade long enough to land three direct blows to Guan Yu&#39;s chest. 
+
+&quot;ARGH!&quot; Guan Yu&#39;s teeth was stained with blood as he gritted them tightly to endure the pain. The armour absorbed the main blunt of the damage but blood oozed from the trio of impact points. Three more blows was struck against the God of War. But..
+
+Guan Yu continued to move forward. 
+
+&quot;Where are you going, Simo?! The fun has just started!&quot; Just as Simo was escaping, Guan Yu lunged forward with his arm out. The tower of a man was attempting to grab hold of Simo and crush him with his strength! 
+
+Simo&#39;s superior agility, thanks to his skill, <strong>The Invisible Soldier</strong>, has saved his life once more as they narrowly avoided his grasp. 
+
+His fingertips brushed against Simo&#39;s snow white jacket just before he managed to escape. 
+
+This man was just as sturdy as Simo&#39;s first opponent! The fact he was a Lancer only added another parallel to the mix. 
+
+&quot;A fine trade.&quot; Guan Yu took a moment to catch his breath to recover from the air being knocked out from those shots. After wiping his mouth, he saw blood on his hand. The damage wasn&#39;t just on the surface it seemed. Despite that, he couldn&#39;t be mad after that exchange. Both of them can&#39;t take blows forever after all.
+
+<em>&quot;I landed a direct strike upon Assassin, Miss Hess. I&#39;m giving chase once again.&quot;</em> That was all he needed to say to give her an idea on what happened. Simo disappeared once more.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893031733660901438" id="message-893031733660901438" title="Message sent: 30-Sep-21 03:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Eagan#8440">@Eagan</span><span class="mention" title="Spiritssss#5397">@Spirits</span><span class="mention" title="Hawaii117#8992">@Hawaii</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 04:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="893059488121257994" id="message-893059488121257994" title="Message sent: 30-Sep-21 04:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wh—&quot;
+
+An unsuspecting force. Fractal patterns submerged the girl and her swarm&#39;s senses. Top became bottom, left became right, forwards became backwards. Or was it the other way around? 
+
+Trash-bags and foul smells surrounded the girl. Insects all around her sent images, many stimuli coming from many windows, some that made no sense by themselves but when coalesced together formed a coherent picture. Her high-computing brain didn&#39;t improve her reaction time, but having a thousand eyes that looked in every direction at all times surely helped when it came to <em>split-second decisions</em>.
+
+Laura gripped the borders of the dumpster, making full use of her momentum to hop over it and evade the trashy landing. Whether it was thanks to her skills or if it was luck, she didn&#39;t know for sure. She had thought Gustave&#39;s magic to be hindered when in contact with organic materials, but it seemed like that bit of intel was wrong. Or was shrouding herself in insects not enough to keep safe from his space shenanigans?
+
+&quot;I&#39;ve had one too many old farts tell me that my efforts were <em>good, but not good enough</em>,&quot; The insects surrounding Gustave <em>spoke</em>. &quot;So how about you <em>please</em> keep those shitty compliments to yourself, next time?&quot;
+
+Spider silk was no-go, the old man spun their webs much like a candy floss machine would with his whisk-cane abomination. Definitely on the stronger side of the Masters she had faced, and most definitely the trickiest to slow down.
+
+The young girl changed strategy. If he could teleport that which was aimed at him, then how about that which was already <em>onto him</em>?
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893060204093141022" id="message-893060204093141022" title="Message sent: 30-Sep-21 05:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The carpet of insects at his feet all turned in unison towards the painter. The insects further away swarming, climbing upon each other and scuttling his way, while the bugs already beneath his feet climbed up his body. Ants, cockroaches, fleas, centipedes—most had brownish hues, others were on the flashier side of the spectrum. Would those be <em>lethal</em>, the painter would come to ask himself if he dared to stop looking forward.
+
+The images which her insects provided as well as Guan Yu&#39;s words served to calm her fast pounding heart. As always, he did stellar work when it came to handling battles.
+
+<em>&quot;Gustave is a bitch to handle</em>&quot;, The young girl answered her Servant&#39;s inquiry, showing that she was mostly fine with her crude language. <em>&quot;He&#39;s not paying much attention to me, which is probably the reason why I&#39;m still standing right now, but he overtook me in our race. He&#39;ll reach you guys at any minute now, so please be careful and don&#39;t do anything reckl—</em>&quot;
+
+Simo&#39;s bullets hit Guan Yu&#39;s chest at the same time the words rang through his head, forcing a gasp out of Laura&#39;s mouth. It was naive to think that the fight would be one-sided. Only paying attention to Gustave was a mistake, it was thanks to both him <em>and his Assassin</em> that they held on until now.
+
+&quot;<em>I&#39;m sending in my swarm again, please stay on the look-out!</em>&quot; The words echoed in the warrior&#39;s head, cutting her last sentence short. 
+
+Her flying insects which were hidden in the twilight up until now <em>sprang</em> into action. They stormed Guan Yu, flying past him in the Finn&#39;s general direction, colliding with every surface and searching through every nook and cranny of the street.
+
+She had come to learn the hard way that asking the God of War not to be reckless was a grave mistake, one that threatened to put him in even more danger. If she truly wanted to help him, <em>she had to go his way and fully commit to his fight</em>, provide support so that he could give his full focus on the battle.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-87680.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">30-Sep-21 05:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="893060258451320832" id="message-893060258451320832" title="Message sent: 30-Sep-21 05:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Sep-21 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="893128486372397156" id="message-893128486372397156" title="Message sent: 30-Sep-21 09:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The beast in front of Guan Yu held a wicked smile as the three bullets struck true. But the General was not going to go down that easily. 
+
+The Goliath of a man continued forwards reaching right for their coat, thankfully Invisible Soldier gave them the slightest advantage in speed. Allowing them to narrowly slip out of the grasp.
+
+“We are not going to let you simply punish us…” They retorted while making a retreat. 
+
+Simo took control once again, taking to cover in an alley way. He cursed under his breath, while the arm used to hold back against the giant weapon hung limply at his side. “I agree, this has been an excellent battle.” The Sniper spoke calmly as he made the retreat before silencing himself completely
+
+Of course both lancers would be durable, this was discouraging to the sniper. But the bullets were at least showing effect, but that damned blade was whittling down Simo at a significantly faster pace. 
+
+He made a peak over the wall, knowing that the master would soon reveal his location again. So he would simply give himself some more time to breathe, crushing what insects came towards the sniper’s location.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893128550452957204" id="message-893128550452957204" title="Message sent: 30-Sep-21 09:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Oct-21 12:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="893179668025475092" id="message-893179668025475092" title="Message sent: 01-Oct-21 12:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;Is that worry I hear from you, Miss Hess?&quot;</em> Even if Laura didn&#39;t see it immediately, she could <em>feel</em> the smirk on his face from those words ringing in her head alone.
+
+The man has taken quite the beating. One that most servants wouldn&#39;t scoff at, but it wasn&#39;t enough to beat the smile off his smile. Hell, his arm was mangled and torn to shreds during his fight with Archer yet he remained smiling at them. It would take a hell of a lot more to even take a crack at his fighting spirit!
+
+<em>&quot;Worry not. The more I push them back, the further they are from their Master. Just keep doing what you&#39;re doing. You&#39;re doing well.&quot;</em> Guan Yu didn&#39;t need to watch her fight to give her compliments. The longer she kept Simo&#39;s master away, the better she was doing. That was all the confirmation he needed. 
+
+He placed his complete trust into her. Not a single doubt clouded his mind. She knew this. She <em>felt</em> this.
+
+Separation tactics. A bitch to deal with due to the loss of communication and cooperation from one&#39;s allies. Simo needed to find a way to meet up with their Master lest they continue this uphill battle of attrition against such a formidable foe.
+
+Once the bugs flew past him, he gave chase once again. This time on foot. 
+
+With his blade held behind him, he dashes alongside the insect swarm to track the sniper. The sounds of footsteps and buzzing got closer and closer to Simo. His opponent will be upon him shortly. The Taoist deity had his Master backing him up this time.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893179756248440903" id="message-893179756248440903" title="Message sent: 01-Oct-21 12:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span><span class="mention" title="Eagan#8440">@Eagan</span><span class="mention" title="Hawaii117#8992">@Hawaii</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Oct-21 06:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="893269032403365959" id="message-893269032403365959" title="Message sent: 01-Oct-21 06:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh my apologies if I did not make my intention more clear, Ms. Hess. I&#39;m not here to put you down, only to help bring out your potential. Your adaptability to any situation already earns high marks from me. Keep it up, I want to see more of what you can offer!&quot; Gustave chatted to the bugs around him as he continued his dash forward towards the dueling pair of servants. The tone of this fight despite the winnowing amount of servants left in the competition was noticably lighter and Gustave found his talks with Laura to be refreshing after debacles with Laurent and the fox master. It was almost like he was a professor again...
+
+The self-organization of the bugs was a concerning development, however, and the student&#39;s influence over them was rather uncanny. However, Gustave had faced more immediate threats before and simply pressed on, crushing the bugs that had the misfortune to be in the path of his stride or knocked aside from his large silky stick. Occassionally he&#39;d swipe it across his face when the bugs became too thick. Their inconvience was clearly a stalling trick, to give Lancer more of an advantage but Assassin&#39;s master&#39;s will could not be broken at the moment, rapidly shortening the distance to Simo with the occassional hop through space, shedding bugs and severing Laura&#39;s connection in the process yet there always seemed to be more.
+
+<span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Oct-21 07:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="893284252785987584" id="message-893284252785987584" title="Message sent: 01-Oct-21 07:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The bugs kept coming, it was almost a never ending stream of insects. Simo was only able to crush so many at once, but gave up the futile effort. Instead choosing to keep moving. 
+
+No matter where the sniper would attempt to hide, Guan Yu would be close behind. Guided on by their master and these creepy crawlies. 
+
+If another clash like the previous one occurs once again, the sniper was unsure if he would be able to survive it. He needed to find Gustave, stat. 
+
+&#39;<em>Perhaps we should lead Guan Yu to Gustave...</em>&#39; The White Death hissed from within their mind. A wicked suggestion, but if the masters were anywhere near one another... It could be an effective gamble, but still a gamble nonetheless. 
+
+Hefty footsteps were heard coming from behind, Guan Yu was now here. Rapidly Approaching the Finn. &quot;Ah, I was just beginning to miss your presence.&quot; Simo spoke dryly, reaching for the nearest fire escape and clamoring up back towards the rooftops. &quot;Let&#39;s get a better view I suppose.&quot; Firing a few shots in hopes of slowing the lancer&#39;s approach. 
+
+He needed to hold off on activating Invisible Soldier, there was a need for mana conservation.  
+
+Gustave would eventually come to the main portion of the streets and see his servant, now bloodied, being backed towards the edge. Attempting to keep as much distance as he could, from the seemingly unstoppable object that Guan Yu is. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Oct-21 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="893601597567930449" id="message-893601597567930449" title="Message sent: 02-Oct-21 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The moment of respite didn&#39;t last long as Guan Yu found Simo yet another time. The sniper saw as his time was getting shorter and shorter. Just how much longer does he have left before he&#39;s unable to prevent the killing blow from finally reaching him?
+
+&quot;Forgive me for not being as quick without Red Hare by my side.&quot; He retorted with a smirk before the shots fired caused him to take cover to avoid them. This gave Simo enough time to get into position.
+
+&quot;I&#39;m afraid even the rooftops won&#39;t be able to offer you any solace.&quot; A few leaps against the walls of the alleyways and Guan Yu just barely managed to reach the rooftops with Simo.
+
+&quot;I am proud to have faced off against someone of your caliber, Simo, but our time has come to an end. I promise to make the next strike painless for you. I do not intend to make a warrior like yourself suffer needlessly.&quot; Guan Yu finished with a quick flourish of his blade before approaching Simo with the blade held to the side. 
+
+The two of them were clear for anyone in the streets to see. The imposing figure neared their target with each heavy step. Things were looking quite dire for Simo.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893601695035187230" id="message-893601695035187230" title="Message sent: 02-Oct-21 04:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span><span class="mention" title="Eagan#8440">@Eagan</span><span class="mention" title="Hawaii117#8992">@Hawaii</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Oct-21 02:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="893924008398057503" id="message-893924008398057503" title="Message sent: 03-Oct-21 02:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The trip continued as a slog, a march through the streets inudated with a blackish-brown muddy stream all too glossy in the light. A never-ending deluge of chitin and hairs, all writhing on the ground and creeping into every crevice in Gustave&#39;s clothing. If this was a proper rainstorm, there would be no doubt he would have been drenched from head to toe. Yet why should that stop him? The life of his servant was on the line, he could not let himself be submerged and drown in the crawling tide.
+
+Yes it was quite the image to behold, a suitable inspiration for a new piece but notes could not be taken for now he could hear the din of combat, the grating chime of steel against stone, the heavy and rhythmic thuds that marked the run of a massive build and the staccato crack of gunfire.  
+
+Simo would see a man covered in a coat of bugs of all sizes and colors, only his face clear of their writhing miasma of parts trudge towards him, a steeled look in his face. His consistent, labored stride and unmoving facial expression complemented the insects in an oddly fitting way. If chiseled from granite, it would make for quite the compelling sculpture. 
+
+&quot;Simo, go behind me. It&#39;s time we put the finishing strokes to this piece!&quot; He barked before placing his palms together and then slamming them against the ground in front of him. The bugs on the street would recoil away from the sudden movement, at first from instinct but then from a compelling force that emerged from the ground in a chaotic, twisting and winding manner, seemingly at random. A second look would reveal a pattern as the disturbance expanded outward in a radial pattern that was otherworldly in beauty yet mathematical in design.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893924151075680257" id="message-893924151075680257" title="Message sent: 03-Oct-21 02:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://images.fineartamerica.com/images-medium-large-5/mandelbrot-set-square-format-art-matthias-hauser.jpg">https://images.fineartamerica.com/images-medium-large-5/mandelbrot-set-square-format-art-matthias-hauser.jpg</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                            <a href="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/mandelbrot-set-square-format-art-matthias--0392A.jpg">
+                                <img class="chatlog__embed-plainimage" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/mandelbrot-set-square-format-art-matthias--0392A.jpg" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="893925062233694278" id="message-893925062233694278" title="Message sent: 03-Oct-21 02:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave and Simo now stood in the center of its bounds, insects falling off him like running water though the concerted movement of all of them was much more nauseous to behold than a cascade of water. And as they fell, they disappeared for a second before being launched with great speed at all angles from the outer limits of the odd structure the pair stood in, like a snowplow discarding the accumulated brown slush in its way. 
+
+&quot;Terribly sorry for the intrusion, Lancer of Delphi but I have a debt to repay to my dear friend here and I can not let you void it with another swipe of your blade.&quot;
+
+<span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Oct-21 04:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="893960979585597461" id="message-893960979585597461" title="Message sent: 03-Oct-21 04:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Step by Step, the sniper&#39;s demise was approaching. The monster of a man that is Guan Yu had set him in check. &quot;Oh you&#39;re fast enough, without the horse.&quot; Another step backwards, another step closer to the edge of the rooftop. 
+
+&quot;I appreciate your compliments.... You to have been a good opponent, Guan Yu. You are a man that truly deserved rising to godhood.... If the positions were swapped, I&#39;d hope to make it painless for you as well.&quot; Simo was just a few paces away from the edge. So he ceased movement, allowing the Jade Lancer to come forwards blade held to his side. 
+
+&#39;<em>Sorry Gustave, this seems like it&#39;ll be our final work...</em>&#39; The soldier thought to himself, before a familiar voice was heard. Instinctually he took a step backwards, the insect clad Gustave coming into view. 
+
+Then the pattern opened up once again, and a chalice-like shape was given form once again. The Aritst had made the world his canvas, in an attempt to save Simo. 
+
+A flood of insects fell from the elderly artist, and relief swept over assassin. 
+
+In that moment, Simo knew his master was truly worthy to serve. Gustave had done what others might never do. Placed himself in danger for the sake of the solitary sniper. 
+
+Within the minds eye of Gustave a mental image would be burnt again, something he had experienced a handful of times over the course of the Grail War. It was different from the scenes of brutality he had seen before from his Servant&#39;s mind. This was a scene of peace. 
+
+An elderly gentleman, which could only be assumed to be Simo, was sat staring into the sunset. While sitting next to him was a shapeless mass, with two piercing red eyes. They spoke as one being. &quot;We think its time to give you this, Gustave Renoir. We are both soldiers who have placed their life on the line for the other. You are a good man, no matter what darkness you hide in the past.&quot; 
+
+The Scene then flashed brightly as the Servant&#39;s serial number appeared. 
+
+<strong>ASFN200230</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="893962166154199050" id="message-893962166154199050" title="Message sent: 03-Oct-21 04:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The key to the servant&#39;s very core was now in Gustave&#39;s possession. 
+
+&quot;Thank you for the safety, master. Perhaps luck was smiling on us...&quot; The assassin smiled towards his master. Straightening himself up, while the broken limb still hung limply at their side. &quot;I do agree, though. We should finish the piece. Your most dangerous brush, is ready.&quot; 
+
+Simo held his rifle over his shoulder, and was feeling more confident in this fight. Now that Artist and Sniper were reunited. 
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Oct-21 06:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="893988516877463572" id="message-893988516877463572" title="Message sent: 03-Oct-21 06:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Return to the Throne with honour, Simo.&quot; Simo saw a smile come from the man before a lunge towards the sniper was made. The deathblow was swung. Simo&#39;s final moment was coming to a close...
+
+<strong>SWOOSH</strong>
+
+The blade cut into Simo&#39;s snow-white jacket as they stepped off the building, completely avoiding death in the process.
+
+A papercut-thin mark could be felt on their neck. Not enough to draw blood, but enough to realize how lucky one can be. If they hesitated for a moment longer, they would not be looking up at the wounded deity alongside their Master right now.
+
+&quot;Master of Assassin.&quot; The immense presence that radiated from Guan Yu was made stronger as he stood over them. &quot;I apologize for resorting to such tactics, but it was the best course of action to take against you two. Though, it seemed that your cunning was far greater than we anticipated. Well done.&quot; A short nod was made towards Gustave once he came in the nick of time to save Simo.
+
+&quot;I was planning on saving this for when Rider and her Master finished their fight with Caster, but with only three other Masters left it seems I have no choice...&quot;
+
+The sounds of hooves striking the surface of the rooftops rang out through the air as they zoomed by Guan Yu. In a quick motion, he mounted and rode off the building and onto the street further down from Simo and Gustave.
+
+<strong>&quot;Your Magecraft may be strong, Master of Assassin, but I will like to see it try and withstand the full force of my Noble Phantasm!&quot;</strong>
+
+<a href="https://www.youtube.com/watch?v=tFjC5hW_nb0">https://www.youtube.com/watch?v=tFjC5hW_nb0</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCmElH5mbEnlqfEwFUEjzyiA">Leonhart</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=tFjC5hW_nb0">
+                                                        <div class="markdown preserve-whitespace">Fate/EXTRA: Last Encore OST - Wild Hunt ~Excalibur Galatine theme~</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/tFjC5hW_nb0" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="893988526960541786" id="message-893988526960541786" title="Message sent: 03-Oct-21 06:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A low rumbling could be heard as Guan Yu gathered the Mana required to activate the Noble Phantasm. His blade was held out to the side as it glowed a bright green colour. This time it wasn&#39;t being done as a performance. He sought to take both of them out in one single attack!
+
+Swirls of emerald began to form around the Deity General as they prepared to unleash their greatest attack. The swirls continued their path upwards, forming a brilliant green pillar of Mana with Guan Yu in the center. A glorious sight to behold, especially for an artist!
+
+The grand display of a God of War&#39;s strength was made clear. Guan Yu was placing everything he had into this next strike.</span>
+
+                                <span class="chatlog__edited-timestamp" title="03-Oct-21 06:33 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Oct-21 07:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="894005235746476073" id="message-894005235746476073" title="Message sent: 03-Oct-21 07:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The grazing of the Guandao was still felt upon Simo’s back. Not even Wounded Demon could have saved him from such a blow with how much damage was sustained through the course of this fight. 
+
+Guan Yu left Gustave alone for the moment. Reuniting with his valiant stead further down the street. News was broken to the pair, only <strong>2 Other Master/Servant Pairs Remained.</strong> 
+
+“Gustave… that can’t be right, right?” Simo was surprised by this announcement. And from the sounds of it Laurent and Caster and Kun Wu and Rider were the other two left.   
+
+Then a loud charge was heard, The God of War was about to show his true power. Mana began to gain density around Lancer and Red Hare. A beautiful pillar of green light shone from down the streets. It filled the sniper with a sense of both wonder and dread. 
+
+How Assassin and The artist would respond would determine their fate. Either crumble beneath the sheer might of this man turned god, or surpass it with an equally glorious display. 
+
+An idea then formed. It could prove futile, but nonetheless it needed to be tried. 
+
+“Master, your bounded field and my Noble phantasm. Do you think that would work?” The sniper asked while quickly detaching the bayonet from the rifle. 
+
+Then he tossed it to Gustave. Not awaiting a response as Guan Yu continued the approach. 
+
+Simo began the chant for his own Noble phantasm. If this were able to fell a god, with the combined efforts of himself and his master, then they truly had what it took to win this Grail War. 
+
+Mana began to form around Simo. What remained of his coat began to billow as the mana concentrated at the barrel.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Oct-21 02:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="894101939686604800" id="message-894101939686604800" title="Message sent: 03-Oct-21 02:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Casually brushing off her remarks, the painter kept advancing through the street, not even sparing a moment to look at the disgusting brown-ish hues that tainted his body. Running two steps for each step he took, Laura picked up the pace across the alley. But the exhaustion, god, <em>the exhaustion</em>. Mana pills did the trick for her magical energy, but there was nothing to be done to calm her fatigued and bruised body. It seemed like she was running on pure adrenaline and sheer will, threatening to collapse at any moment if she lost her focus. Adding to that, a low sizzle escaped her fore-arms, constantly reminding her of the limits she had crossed a while ago. Her body would surely be mad at her after the fight was over.
+
+Well behind Gustave, Laura half-ran half-slid through the stream of insects in the alleyway, picking up speed as she reached for the street below. Silk couldn&#39;t slow him down, and the insects that had gathered on him were swiftly taken care of. This was the difference between a Magus blessed with ready to be used Magic Crests and a Magus which had studied and based the biggest part of his life around the understanding and use of Magic. <em>Was there truly nothing she could&#39;ve done to stop his advance?</em>
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="894102018602446868" id="message-894102018602446868" title="Message sent: 03-Oct-21 02:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">From the rooftop down to the street, the Assassin pair stood by shoulder to shoulder. She had somewhat delayed the inevitable, but they still ended up reuniting. A shame that she couldn&#39;t hold Gustave off for a few more seconds, but this was no time for regrets.
+
+Standing at one edge of the street, only a few meters away from the assassin pair, Laura&#39;s ears rang. This particular sound was one she was familiar with, the very same that preceded Guan Yu&#39;s ultimate attack. He was decisive, looking to end the fight in one fell swoop. Laura couldn&#39;t help but grin at his audacity, one that she had initially rejected but eventually grown fond of in the few weeks they had passed together. In response to Guan Yu, Simo focused, reached for the surrounding Mana. This was looking to be the final blow struck by both Servants.
+
+Clenching both fists and jaw, Laura braced herself for the blow back of Guan Yu&#39;s Noble Phantasm.</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Oct-21 01:45 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-87680.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">03-Oct-21 02:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="894102080669773826" id="message-894102080669773826" title="Message sent: 03-Oct-21 02:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="894326481143103529" id="message-894326481143103529" title="Message sent: 04-Oct-21 04:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Before Gustave could properly respond to the chaos of battle, his servant intervened with a brief incursion of the most serene and natural landscape the painter had ever seen in his life time. Here was the land untouched by floods of mud and water, oceans of brown and black conifer trunks replaced that of the waves and were crested by dark greens that felt more true to their color than any of their surviving kin did. A glimpse into the Old World that only a servant could ever offer. And Gustave&#39;s next thoughts were confirmed when he saw Simo unbound by demon and cloth though the visage almost as pitiful.
+
+The old man found he could not speak but rather bowed his head. His hands wished to paint the beautiful scene ahead of him with the sun sinking into the pristine waters of a glacier-carved lake. All he could do was burn the image into his memory in the hopes of making a piece even just a quarter faithful to the untouched nature he found himself in along with the man and demon that sat before him. 
+
+He blinked and the mundane world came back in all its typical colors and steel and concrete spires. Perhaps only a fraction of a moment passed for Guan Yu was still nearby. 
+
+&quot;Perhaps luck or perhaps it was simply time to make a stand, no matter the odds of success. Some things just can&#39;t be quantified,&quot; the old man waxed, his mind still running on a poetic mindset from the touching scene
+
+&quot;Oh there is much I have learned about the nature of Magecraft but I do not believe I could stop a god&#39;s will with my skill alone. Luckily, that is why I have another member in my studio,&quot; the old man smiled wistfully and at the same time, defiantly. He knew Ching and Kun Wu were a potent team in their own right, even with the schemes of Laurent they could only bring the fight to a draw. Truly the war must be coming to an end if Lancer was willing to use such an attack on the two of them.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/a6387953bce16ac93c2771772818c702-FFCBF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(255,140,19)">Eagan</span>
+
+
+        <span class="chatlog__timestamp">04-Oct-21 05:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="894329526576889896" id="message-894329526576889896" title="Message sent: 04-Oct-21 05:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">art$ Yet even as mortal peril gathered itself, the old man could not help but wonder how the kid was improving his own craft. No longer a formal teacher but some habits were hard to break...
+
+&quot;I see no reason why a legend of Buddhist tradition would lie to us, if anything he&#39;s justifying the use of his NP to himself. That&#39;s our chance to make it ahead,&quot; Gustave would continue yet it seemed the Finn had his own plans in mind and had already tossed his master the means by which to enact it. &quot;Hah, finishing my thoughts now? Is this the power of a servant bond? I think you already know the answer to the question. We got one shot at this and one shot at settling the score with Laurent. I know you won&#39;t miss.&quot;
+
+With those final words, Gustave would flick the knife several times in his hands, observing the reflection of the street lamps flicker on while the sun dimmed. With another adjustment of the blade, Guan Yu would notice he could stare at his own eyes from the small sliver of steel that the opposing master now held. A curiosity to be sure, perhaps he was trying to throw off his aim with the glare of the sun? It was something Sun Tzu would do, after all.
+
+Yet Gustave&#39;s eyes were not focused on Lancer but rather the towering green pillar of mana and the trailing wisps of smoke that drifted up into the sky, their pattern infinitely erratic. The former would be a complication to the bounded field he was about to summon but the latter was a good sign, one that would compensate for the other. For it symbolized the most potent force at the former scientist&#39;s disposal and one of the world&#39;s most universal laws, one that Lancer would become very familiar with in the next minute. $</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Oct-21 05:17 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 05:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="894332384244277258" id="message-894332384244277258" title="Message sent: 04-Oct-21 05:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave&#39;s eyes sparked for an instant but nothing seemed to change other than the plume of smoke now danced more erratically. The pillar of flame still roared with promises of destruction, Red Hare still trotted with anticipation and Guan Yu still readied his lance for one last decisive strike. Yet to Laura she could only watch as her servant seemed to gradually fade away and the colors of his attire and skin shift to red before disappearing entirely. Only the plume of smoke seemed to remain, a vent on the oven below while Simo readied his own fatal attack.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 05:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="894334505077325825" id="message-894334505077325825" title="Message sent: 04-Oct-21 05:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was if both halves of the being known as the Assassin of Delphi were acting as one. Their chant was loud and clear. Emboldened by their bond forged to Gustave. 
+
+<strong>”May My Bullet Strike True. 500 Kills from a most trusted rifle. Transforming the man into a demon, only known to take life in the name of others. Let them see the result of my legend. Valkoinen Kuolema! Bullet Of The White Death!”</strong> 
+
+The White Death and Simo Hayha gave a look to Gustave, then pulled the trigger. 
+
+<em>Would this be the bullet which could fell a god? *
+
+A singular gunshot louder than all the previous ones fired in this battle rang through the streets. Going to be sent through the prism that is Mise En Abyme. Then multiplied into infinity. 
+
+*Their being was certain of it. This would strike down their honorable opponent.</em> 
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Spiritssss#5397">@Spirits</span> <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="894495762518507531" id="message-894495762518507531" title="Message sent: 04-Oct-21 04:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sight of Laura brought comfort to him. She was alive and well. Exhausted of course, but alive. Now he has an audience to witness his attack!
+
+<em>&quot;Good. Watch carefully, Miss Hess. Allow me to show you why our victory is assured...&quot;</em> Guan Yu thought to himself before setting his eyes upon the pair in the distance. His grip on his blade tightened with the reassurance that Laura was watching with her own eyes as he took a deep breath.
+
+A flash of light glinted on his eyes. Was Master of Assassin attempting to blind him? A cheap trick. One that would have no use here!
+
+<strong>&quot;O Beast of Old, Heed my words! I call upon your strength to summon you forth once again! Guide my blade and leave nothing left of my opponents in your destructive wake!&quot;</strong> An explosive surge of mana burst forth from Lancer as he rode towards Simo and Gustave. 
+
+<strong>&quot;Green Dragon Crescent Blade! Awaken!&quot;</strong> The Mana took form around Guan Yu and created a green translucent oriental dragon upheaving the street as it came near the pair. A powerful warcry came deep from Guan Yu&#39;s lungs as both Red Hare and him poured their very hearts into this attack! 
+
+Whatever they had planned, it better work!
+
+As he rode down the street at incredible speeds, he didn&#39;t notice fading away into Gustave&#39;s Magecraft. The immense power from Guan Yu&#39;s charge quickly began to crack Mise En Abyme the moment he entered. It would be foolish to think it could cage the burning might of a god within it. 
+
+The nail in the coffin however came not from Mise En Abyme itself, but it came in the form of a bullet. 
+
+One that came from a sniper who struck fear into the hearts of millions and inspired plenty more. The culmination of their legend given form in the shape of a single projectile. 
+<em> </em></span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Oct-21 04:10 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="894495918093635594" id="message-894495918093635594" title="Message sent: 04-Oct-21 04:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The mirrored projectile tore into the dragon chipping away at the form while the others that pierced its scales were burned up and reduced to ash inside. One bullet wasn&#39;t enough to bring him down. 
+
+They kept coming. 
+
+The rain of bullets never stopped.
+
+More and more of the Dragon was chewed away by the onslaught of bullets. 
+
+It was an unstoppable force striking against an unmovable object. 
+
+Guan Yu&#39;s Mana stores were limited though and couldn&#39;t keep up. So eventually the Dragon was chipped away enough to allow the bullets to pierce through and hit their targets. 
+
+First one struck cleanly through his body. 
+
+Then another.
+
+Then ten more.
+
+Followed by another twenty.
+
+Soon Mise En Abyme shattered and sent Guan Yu flying out of it. The Mirrored world spat out both Red Hare and the God of War as it collapsed. 
+
+A wave of bullets followed suit, riddling the landscape with them. It wasn&#39;t comparable to the amount inside Mise En Abyme, but it still covered a good portion of the street in front of Simo and Gustave. Did they do it?
+
+Red Hare landed off to the side motionless. Holes covering their body as they slowly were reduced into golden flakes of Mana. Guan Yu&#39;s second Noble Phantasm was no more. Red Hare departed first.
+
+Guan Yu&#39;s weapon flew in the air past him and impaled the ground. It stuck up from the ground as the blade steamed after the usage of his Noble Phantasm. 
+
+<a href="https://youtu.be/NRcmtPVxrBU">https://youtu.be/NRcmtPVxrBU</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCkrQLcsKkSM4K1-juQ46cdg">Agent Sambora</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=NRcmtPVxrBU">
+                                                        <div class="markdown preserve-whitespace">Mass Effect 3 - I&#39;m Proud Of You (Extended Version)</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/NRcmtPVxrBU" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="894495941539823648" id="message-894495941539823648" title="Message sent: 04-Oct-21 04:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Holy Deity himself laid in the path of destructive he craved out just mere moments after. His body was burned from the backlash of Mise En Abyme created by his own Noble Phantasm while within. Assassin’s final strike in combination with their Master was absolute. Blood was ebbing down his body, staining his green robes with a deep crimson tint. There were so many wounds that he didn’t know which one was his first nor his last. 
+
+Guan Yu had a feeling something like this would happen if they allowed them to join up. They tried their best to prevent it from happening. They really did. Fate simply had other plans it seemed though.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="894497919615504415" id="message-894497919615504415" title="Message sent: 04-Oct-21 04:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">One bullet struck. Two bullets. Four, seven. The shroud of insects was futile against the Finn’s fire weapons, she might as well have been naked. The swarm showered in the young girl’s blood, instinct overtaking her commands for a split second. The recoil was strong enough to propel her backwards, violently hitting the ground on her back as a result.
+
+The shock was the last straw. Her focus broke, the insects freed of her control. They rapidly scattered in every direction, revealing the girl’s weak and delicate frame, patches of crimson red staining her clothes. The second thing that broke was her facade, her pupils widening as she came to the conclusion that there was no going back. This was it. 
+
+Soon after, her tear ducts opened.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="894498138633674792" id="message-894498138633674792" title="Message sent: 04-Oct-21 04:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">One glance to his side and he saw that he wasn’t the only one caught in the hail of bullets. As unfortunate as it may be, Laura was struck by the same fate as well. 
+
+He failed her. He swore to protect her but here she is. Her blood pooled with his own on the street as they laid together. Their heads are at eye level with each other. He reached for her hand to comfort her. He can’t begin to imagine the pain she must be going through. This was the least he could do to be of comfort to her.
+
+“Well, Miss Hess. This seems to be as far as I am able to take you in this war. I am truly sorry that I wasn’t strong enough to take you further. To think we got so close despite it all though.” The proud warrior gave her a weak grin despite being on death’s door. There was a mixture of pride and shame in his grin. Pride from his Master and shame from being unable to protect her.
+
+“You have done well considering this was your first war though, I must say. It was truly a wonderful performance to behold.” Praise from a dying man. Was it his way of attempting to make it up to her?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="894498801329520680" id="message-894498801329520680" title="Message sent: 04-Oct-21 04:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A familiar voice sounded. It felt weird, not being able to rely on her insects for vision. With a few grunts and a bit of strength, Laura turned her head towards her dying Servant. Her watery eyes had trouble discerning his facial expression, but knowing him, he was surely grinning.
+
+“Eeuuughh...”
+
+A voice came out that didn’t sound like hers, then shortly after came blood, as if she had just vomited. Confused more than shocked, the young girl touched her face.
+
+Right below the maxilla, a stray bullet.
+
+A shame. She wished she could’ve spoken with her real voice at least one last time.
+
+<em>”I fucked up,”</em> The voice sounded in his head, so clear. <em>“From the very beginning against Saber all the way until now. I fucked up. Every step of the way, I tripped. And I was barely even able to get back up ...”</em>
+
+Quiet sobs punctuated the telepathic words, her two voices overlapping.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="894499005449515020" id="message-894499005449515020" title="Message sent: 04-Oct-21 04:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“No...No.” The man’s voice was soft and gentle. It wasn’t clear whether it was to conserve strength or to comfort her. It did the job regardless though. His other hand slowly reached her face so he could wipe the tears away with his thumb. 
+
+“You fought well. There isn’t anyone capable of saying otherwise. I am proud to have fought under your banner.” Even through the tears, the big oaf’s smile still shined through. ”<em>We</em> managed to make it this far because we had each other backing us up.” 
+
+“These last weeks were the most fun I can remember having in a long time. That was all because of you. I have you to thank for that. No other Master would have been able to come close to you. I was truly lucky to have been chosen as your Servant. Truly.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="894499594698903583" id="message-894499594698903583" title="Message sent: 04-Oct-21 04:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>”We …?”</em>
+
+The young girl shook her head from left to right, brushing against his hardened fist like a frightened animal, not even able to look directly at his face. His smile shone too bright, his words could barely be heard over her thumping heart. 
+
+He had pride in fighting under her. Despite her defiant and abrasive personality. Despite her forced snarkiness and her lack of self-awareness. Despite the absence of a cohesive plan throughout their endeavours. Never expecting anything in return other than the thrill of battle and games of chess, he had fought a battle that would’ve only benefited his Master <em>at the very best</em>.
+
+Being faced with such unilateral kindness, and being unable to pay it back. She had come to learn everything about frustration in the last five weeks, but this was at an entirely different level. Unfair. It was so unfair. Worse than a tragedy.
+
+<em>”You didn’t deserve me,”</em> Her tone sounded desperate, her internal voice ready to crack at any moment.  <em>”You didn’t—you deserved so much fucking better. You kept singing my praise with that big ol’ smile of yours but I’ve been clueless this entire time. I’ve never once stood shoulders to shoulders with you.”</em>
+
+She felt her throat closing up, struggling to breathe through the physical and emotional wounds.
+
+<em>“Even at my best, I was so fucking out of my depth.”</em>
+
+As the words reached him, she smiled. Sometimes, you couldn’t do anything else. 
+
+<em>”And yet ... you consider yourself lucky to have been chosen as my Servant. Lucky. To be stuck with me of all Masters.”</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="894499917442203689" id="message-894499917442203689" title="Message sent: 04-Oct-21 04:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“How could I not? I was lucky enough to be summoned by a Master who never gave up. No matter what walls Fate may have placed in her path. I can’t help but feel immensely proud to be your servant.”
+
+As time went on, his body began to glow a golden shine before fading away with the wind. It started at his feet and slowly crept up. This process however was halted. Whatever strength the General had left was being used to prolong his time in this world. 
+
+He may have failed in protecting her, but he would sooner sacrifice his own Spirit Origin before he left her alone in her final moments. If holding back the eventual door of death, despite his body crying out for him not to do so, was all he needed to do, then he will hold for as long as he can. He owed her that much.
+
+“Miss Hess, I am not leaving you. I am staying by your side until the bitter end like I promised you. Don&#39;t worry. You will never be alone as long as I can still draw breath. Not ever again.&quot; However weakly, she felt her hand being squeezed by his own. A physical confirmation that he intends to keep his promise. No matter the cost. Truly, his loyalty was his greatest flaw.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="894500845838823444" id="message-894500845838823444" title="Message sent: 04-Oct-21 04:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her blood descended from her wounds onto the street as a thin layer, endlessly spreading in all directions. Every bullet wound screamed in pain, joining together to form a loud chorus of agony. Her strength slowly fading out, she gripped Guan Yu’s hand with what little was left within her, pulling it closer to her chest. She felt his body getting colder, bits of flesh slowly starting to fade away leaving in their wake golden particles. A second hand came to meet his, an unspoken vow to never let go of him until the end. <em>She wasn’t alone anymore</em>.
+
+It hurt, but it also felt good. She was crying, yet she was smiling too. It was both scary and confusing, incredibly frustrating even, yet it was also liberating in a way she had never experienced before. It felt like the first time she could truly rest <em>ever</em>, the pent-up exhaustion slowly leaving her body along with her vital fluid.
+
+She had chastised the mad monk for his lack of coherence, for his incredibly dissonant persona, yet she was no better. A complete and utter mess of feelings, both good and bad. Some that clashed, some that united in harmony.
+
+Ironically, she had never felt more alive than now.
+
+No matter how short the time they’ve spent together, and no matter how sad and sudden of an end they had been cursed with. Even the bad moments, even the frustrating moments. Through all the wounds and the fights, regardless of the outcome—
+
+It was all worth it.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/03b655fee609d6b9ae9e83cc90549d78-35B5C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="892519130866008105" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="894501116493058059" id="message-894501116493058059" title="Message sent: 04-Oct-21 04:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The pair laid together as memories of their time together in this City Grail War flowed through their minds. All the fun times they had together were like fresh experiences as they went through  them together.
+
+“Miss He-No. Laura. I hope the Throne is merciful enough to allow you to accompany me upon the Throne of Heroes so we could continue our time together, even if it is just for a while. My brothers would love to meet you. Maybe you can become our fourth. I still have to teach you how to play Go after all...&quot;
+
+The seemingly indomitable warrior slowly closed his eyes. His eyelids felt so heavy. This was as long as he could hold out. A little rest couldn’t hurt. He felt so tired after all...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/b21c494be7874e31b42593ff8e3f58c1-BF563.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="892519130866008105" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="894501207203250246" id="message-894501207203250246" title="Message sent: 04-Oct-21 04:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>”I’d love to meet them if they’re anything like you …”</em>
+
+A silent prayer to the God of War was spoken as she looked up one last time, meeting his eyes. He was still there, right? He hasn’t gone away. He was still watching over her. She had nothing to fear.
+
+Relieved, Laura closed her eyes one last time, squeezing ever so slightly his hand.
+
+<em>Thank you, Guan Yu.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3b3b2ebf8188379854861c27bdbd21e2-AB1F6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Narrator#0000" data-user-id="892519130866008105" style="">Narrator</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Oct-21 04:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="894501810914623498" id="message-894501810914623498" title="Message sent: 04-Oct-21 04:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The rest of Guan Yu’s body faded away into the wind. The last bits to go were his head and the hand that held Laura’s. Once those were gone, all that remained was a battered and scarred S.E.R.V.A.N.T frame. A display of all the strikes he took head on to protect her. A testament to his unbreakable will.
+
+Despite returning to the Throne, Guan Yu’s frame still held onto her hand, providing comfort even beyond death.
+
+As they passed away together, they did so with a peaceful expression on their faces. Ones that held no regrets of their actions. A beautiful end for the two of them. 
+
+Simo and Gustave have done it. Together, they managed to make a bullet capable of felling even a god. Perhaps there was hope for victory yet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="894501862798147584" id="message-894501862798147584" title="Message sent: 04-Oct-21 04:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span><span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Oct-21 03:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="894672606517657710" id="message-894672606517657710" title="Message sent: 05-Oct-21 03:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A beautiful scene revealed itself before both Simo and Gustave. 
+
+Guan Yu&#39;s most powerful strike enveloped both he and The Red Hare. Then green flames erupted. Taking the form of a beautiful and powerful Green Dragon. Charging headlong through the mirrored reality the Artist had produced. 
+
+Just as this draconic visage appeared, The Bullet of The White Death crossed the threshold into Mise En Abyme. 
+
+ Blossoming into a deadly, yet beautiful flower, thanks to the infinitely reflecting interior of the bounded field. The Petals then began to tear into The Great Green Dragon. Whittling away its exterior and revealing the Man turned God beneath. 
+
+As each bullet struck, three more would follow. The Jade Lancer&#39;s Noble Phantasm would be defeated, by this most deadly combination. A crystallization of the many kills one sniper made and the magnum opus which the artist had almost lost his life to uncover. 
+
+Soon enough Guan Yu was spat out from the bounded field, it having finally shattered and crumpled inwards. Laura Hess having also been caught within this deadly crossfire. 
+
+There would be little time to save the girl as she and her lancer laid side by side. Both exiting the world together. 
+
+Simo and The White Death stared upon the scene before them. Letting a moment of silence pass for their penultimate foes. 
+
+Then the being known as The Assassin of Delphi separated again into its two component halves. With the shadow of Simo Hayha taking control. &quot;Gustave Renoir.... We did it.&quot; 
+
+The sniper let out a sigh of relief. &quot;This war... we&#39;re reaching the finish line. I&#39;m surprised we made it this far. And I&#39;m proud to have been contracted to you.&quot; He gave a smile towards his master, the sun setting upon the streets and upon the defeated pair. 
+
+&quot;What should we do about their bodies?&quot; The sniper asked, unsure of what would be best to respect their enemies. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Oct-21 11:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="896242413209780255" id="message-896242413209780255" title="Message sent: 09-Oct-21 11:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ignorant of Gustave&#39;s ultimate skill or perhaps locked out of any choice to abort, Guan Yu let the green pillar of flame burn with reckless abandon up into the mirrored world he was now stuck within. It would not take much for the illusion to shatter into hundreds of glass panes, revealing the fundamental nature of the bounded field. Behind all the reflected boundaries was a shapeless, mindless field of shifting colors clashing against one another in an endless battlefield like a hellish snowglobe. 
+
+The green flame shot up and was drowned out by the violent miasma, only agitating it into more loud colors and faster contortions. The crack of a distant firearm could be heard before the shards of glass became enveloped in a familiar flame and opened up with a fusillade that could only be described as the wrath of a hundred dragons. And it was then Guan Yu could hear Gustave&#39;s voice once more.
+
+&quot;You have proved a worthwhile challenge of our skill and a mentor to young Laura. It is only fitting I pay you back with a masterpiece of equal value. Behold! <strong>Mise en Abyme: Fire Lances of the Jade God!</strong>&quot; The mighty warrior would be surprised as he found himself battered by not only Simo&#39;s final round but also his own strength. Perhaps then it was not a surprise that his prized steed Red Hare would collapse from the abuse and send him flying out of the field.
+
+What the artist and assassin could not anticipate was that fate had guided not one but seven of their rounds to nestle themselves in the fragile yet brilliant Laura.
+
+Gustave had once been rendered blind by the betrayal of his closest companions a long time ago and thus he needed new eyes. Now he was rendered dumb by the tragedy before him as master and servant comforted each other, and he wished not to recover his faculties. For Laura needed not her tongue to speak to Guan Yu one last time, he could see her own eyes and face speak a language that pre-dated any made by man.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Oct-21 11:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="896244592041676840" id="message-896244592041676840" title="Message sent: 09-Oct-21 11:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The strongest art often encapsulated tragedy but always the unspoken primal language of the heart and soul, and while his hands ached to paint the scene before him and attempt to stabilize the poor girl in equal measure, the rest of the body was not willing. He was forced to watch the light drain from her eyes as his own welled up with frustration. Laura was someone&#39;s daughter and Gustave was failing to perserve that familial bond all because of his own actions to pursue a fragment of the artifact that had once deprived countless families of their relatives. And now it claimed one more life...
+
+Gustave could not bear to meet Simo&#39;s eyes, those hardened by countless death and infernal hate. He simply looked down at his wrinkled hands. 
+
+&quot;This war... has been worthless. Cities chase after the carcass from the ruins of the last and now we see the death of promise before us. It&#39;s a waste and we need to end it. At least end the bleeding...&quot;
+
+&quot;Their bodies? Ms. Hess must be returned to her family as soon as possible. It would be best, however, for us not to show our faces and I will see if the city can pay her funeral. And Guan? I leave up to you...&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Oct-21 09:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="896396253619945482" id="message-896396253619945482" title="Message sent: 09-Oct-21 09:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sniper stood for a moment longer. Staring down at the sober scene before him. “Guan Yu should be buried with her. “ He spoke heading over to gustave and placing an arm around his shoulder. 
+
+“They we’re close, they were family it looked like.” Simo’s voice was calm and respectful. “We should get leaving, headed for somewhere safe…” 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-8E837.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="892519130866008105" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Oct-21 03:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="896483756716736552" id="message-896483756716736552" title="Message sent: 10-Oct-21 03:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Perhaps that would be for the best, to honor their memory. We will take them as far as the morgue and then... then I think we should take a rest,&quot; The old man said, his voice softer and raspier than before, the energy evaporating from his voice. The arm around his shoulder made him look back up at Simo, the servant who he had just saved a moment ago.
+
+&quot;Thank you Simo,&quot; He reciprocated the action, leaning onto the soldier ever so slightly. &quot;They were not family by blood but hardship made them so all the same. That reminds me, I suppose we&#39;re not so different than them. Even if its only for a few days more Simo, I would call you a Renoir all the same. The loft is ruined so let me introduce you to my family for every soldier needs to return home once.&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20street-front%20%5B892482167316307968%5D.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-07D28.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="892519130866008105" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Oct-21 04:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="896489344494350446" id="message-896489344494350446" title="Message sent: 10-Oct-21 04:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sniper nodded to his master as he spoke. The painter was running low on energy from the day they had.  “Blanche and Toulouse could handle the bodies, they aren’t too far away.” Simo offered as an option. 
+
+Then Gustave spoke something else which made the Finn tear up slightly. “Gustave…. It… it prides me to be known as a Renoir…” 
+
+Memories came to the surface, of his own return home after the winter war. Face broken and forever changed. How his parents welcomed him, proud of their boy’s service. 
+
+“Well… I suppose it’s time to meet them all… a long time coming. They must be proud of your work in this war.” He smiled at the elderly gentleman before removing his arm from his shoulder. 
+
+Moving to pick up Laura and Guan Yu’s corpses. To take them to the closest morgue. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

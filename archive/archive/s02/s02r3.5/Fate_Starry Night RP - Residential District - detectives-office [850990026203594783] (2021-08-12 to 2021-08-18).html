@@ -1,0 +1,1420 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - detectives-office</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Residential District / detectives-office</div>
+
+            <div class="preamble__entry preamble__entry--small">A detective office repurposed into the workspace of a certain intelligence magnate. The dim lighting procured by the ancient incandescent bulbs coupled with the damp and dusty air serves to give an oldish feel to the office. The floor is in disarray: Various folders, binders and files are scattered everywhere and crumbled sheets of paper serve to punctuate every corner. Various shelves and drawers are placed across the walls, each so full of portfolios and papers that they threaten to collapse if touched the wrong way. A cork board stands on top of an expensive-looking desk, littered with photographs of famous faces and various places that are interconnected with red thread that looped on thumbtacks. Looking at the chaos and lack of organisation, one would have thought that this place has been stolen or ransacked by burglars.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 12-Aug-21 12:00 AM and 18-Aug-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-4E5B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Aug-21 07:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="876427272003932200" id="message-876427272003932200" title="Message sent: 15-Aug-21 07:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The air was more stagnant and the lights dim and weaker than usual, the paperwork piled on her desk and stood more imposing than ever. Even the colours seemed to fade into a bleak black and white as a heavy silence extended indefinitely, giving the illusion of time endlessly stretching and slowing down to a stop. 
+
+It truly felt like a wave of depression had washed upon the detective&#39;s office. 
+
+Some of it was probably due to her negligence as a landlord. Aerating the place and changing the buzzing light-bulbs did not fit well into her habits, after all. But the biggest factor was the peculiar situation and the accumulated fatigue that weighted on the young Master&#39;s shoulders.
+
+That fatigue didn&#39;t particularly result from the many fights that they had been part of ever since the start of the CGW. No, it was more akin to a migraine caused by the sheer amount of work that her one-man office had to go through in these particularly tough times. 
+
+News of the Brobdingnagian&#39;s explosion. The ever-increasing death-toll in the wake of the continuous Servant battles. The Holy Church&#39;s involvement in the many rule-breaking incidents that occurred between participating pairs. Rinne Kimura&#39;s murder.
+
+The increased rates of criminality, burglary and homicides due to the over-abundance of Servants and the lack of supervision that resulted from the CGW attracting both public eyes and the authorities. The countless fools that played &#39;Master&#39; and invoked Servants in order to quench their thirst for battle.
+
+And those were just the incidents directly related to the CGW.
+
+There was just so much to take in, to the point that each report read and classified would leave two newly written reports in his wake. She would&#39;ve easily given up on staying up to date if not for her vastly empowered brain and the many eyes that her insects provided. And even then, it was still a daunting task that required her attention at all times.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="876427307789746237" id="message-876427307789746237" title="Message sent: 15-Aug-21 07:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While her swarm was working through the mountain of papers, the young master had been sitting alongside her wounded Servant, her hands pressed tightly on his chest. 
+
+He had lost an arm during their fight inside the Kingsmade hotel. In a very dumb way, she might add. As their mission had concluded, he had over-extended his brutal fight with Alexander&#39;s Archer, resulting in a couple deadly hits struck to his upper body as well as well as a torn off limb from his torso.
+
+Needless to say that he was on the receiving end of a lengthy earful from his Master after their fight had concluded, only recently spared from her rants as she tended to his wounds with a stern look on her face.
+
+There was no telling what might happen in the next few days, hours even. Even with the security that her bugs brought as they watched over the office&#39;s surroundings, a fight could very well break out at any given moment. Forcing Magical energy upon her Servant rather than patiently waiting for the link to ease his injuries was therefore the safest option.
+
+A few beads of sweat had started to accumulate on her forehead as the minutes passed, but she showed no signs of stopping. Even as her arms started to shake from the strain, the energy kept flowing from her Magical circuits to his S.E.R.V.A.N.T frame. The only thing that had stayed consistent throughout was the apprehensive look that stood out from her pale eyes, her stare fixed on the gruesome state that his arm was left in.
+
+Maybe now would be a good time for him to speak, while she was still keeping silent...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-19CA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Aug-21 01:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="876510943935332393" id="message-876510943935332393" title="Message sent: 16-Aug-21 01:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The silence within the room was deafening. 
+
+To think he would prefer having his Master lecture him instead. At least with that they were talking. Well, she was talking. He was simply just listening. But it was a lot better than the silence that lingered around the room. 
+
+It didn&#39;t take a genius to notice the ever-increasing weight placed upon his Master&#39;s shoulders due to this City Grail War. Her job was an informant and as a participant in said City Grail War only made things more complicated. She placed so much onto her plate despite being so young herself. 
+
+With so many participants in this City Grail War compared to a standard one, it wasn&#39;t going to end anytime soon. Just how much more will she be able to take before she reached her breaking point? 
+ 
+Perhaps he should speak. Even if it was just small talk, it would do wonders to alleviate the mood. Now came the problem of what to speak about..
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="876510977556906044" id="message-876510977556906044" title="Message sent: 16-Aug-21 01:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After more continued existence within the loud silence, Guan Yu finally spoke. &quot;You should get some rest, Miss Hess. You have done enough to help speed along my healing. I can assure you that I only need one good arm to use my weapon effectively. I was quite well-known for that in fact!&quot; Guan Yu said with a confident smile on his face. He would laugh to help with the mood even further, but it still pains him to do so. He needn&#39;t make her worry about internal damage on top of everything else.
+
+&quot;Besides, you have your own health to worry about. Healing me would mean nothing if you yourself is taken out due to poor health maintenance. We can&#39;t allow our campaign against our foes to end in such a way, now can we?&quot; This time, he placed his hand on top of hers while she was pouring Mana into his frame. No attempt was made to pry off her hands from his chest. It was merely a gesture of comfort. Maybe his parental side was showing through.
+
+&quot;After all, I am simply your blade. You shouldn&#39;t worry so much about me. If I die, then I can simply be summoned back another time! You don&#39;t have that same luxury. I&#39;ll commend you for proper weapon maintenance though!&quot; With a wide grin, he gave her hands a soft pat before he placed his hand back on his lap.
+
+(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-4E5B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Aug-21 02:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="876535149968375908" id="message-876535149968375908" title="Message sent: 16-Aug-21 02:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The atmosphere inside the office went back to an oppressive silence as soon as the warrior had finished talking. As eager as he was to alleviate the mood, she had no desire to reciprocate favourably. Utterly unresponsive and grave—it seemed like her current predicament couldn&#39;t simply be glossed over with a few laughs and some comforting words.
+
+No less than a full minute passed with no words exchanged between the two, with each second of silence only serving to underline her ever-growing disapproval.
+
+Just as he started to regret speaking up, her previously sealed lips started to move.
+
+&quot;You couldn&#39;t win against an Archer with two arms,&quot; The young girl spoke with a tired, faintly coarse voice. &quot;And you expect me to believe that you only need one arm to be effective?&quot;
+
+&quot;Don&#39;t mess around,&quot; She snorted. &quot;I&#39;m not in the mood for jokes.&quot;
+
+If Guan Yu wanted to alleviate the silence, his wish had now been granted. Her venomous, razor-like words cut through the silence with impeccable malice. 
+
+For a while now, Guan Yu had been acquainted with her verbal offensives. She would take any excuse available to deliver jabs at him, taking care to give them with the right delivery and to punctuate them with a smirk to make her humorous intentions (painfully) obvious. 
+<em> </em></span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Aug-21 02:40 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="876535306919243806" id="message-876535306919243806" title="Message sent: 16-Aug-21 02:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">But as it stood now, her tone was deadpan and her lips formed a tight frown. Her comment was clearly meant to be taken with a pinch more seriousness.
+
+His unexpected touch almost managed to draw a flinch out of her, succeeding in making the stream of Magical energy momentarily flicker. 
+
+Truth be told, <em>he was right</em>. 
+
+She knew that deep down, Guan Yu was <em>far</em> from being weak. He would probably have no problem facing off with the remaining Servants with one arm. Hell, she was confident that he would kick her ass even if all four of his limbs were torn off from his torso.
+
+But even then, the feeling of his sole bruised hand brushing against hers—she couldn&#39;t put her finger on exactly <em>why</em>, but something about this simple gesture filled her heart with sorrow.
+
+&quot;If you&#39;re so worried about my health, why don&#39;t you try taking <em>yours</em> a bit more seriously.&quot; She whispered to herself, tightly clenching her hands in frustration. &quot;Might make my job less of a pain if I don&#39;t have to worry about my blade shattering with every little encounter...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-87680.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">16-Aug-21 02:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="876535333615972384" id="message-876535333615972384" title="Message sent: 16-Aug-21 02:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-19CA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Aug-21 03:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="876545854863990835" id="message-876545854863990835" title="Message sent: 16-Aug-21 03:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After the long minute of silence without a response from her, he was received to hear from her. Sure, it came in the form of cutting words towards him, but it was enough to cause a wave of relief to wash over him. To him, that the sign of his plan working. Even if it was only a single step, it was one towards the right direction in his eyes.
+
+&quot;I was only getting started, Miss Hess! Archer flung me towards Red Hare; a fatal mistake on their part might I add! Why, they were about to witness my full strength before the call to fall back was made!&quot; Another showing of reckless behavior. Just how often is he going to make light of situations that could have ended in his demise? Was he like this while he was alive? The ServantPedia™️ page only told so much after all. Hardly enough to cover every single moment of a servant&#39;s life.
+
+It was that very same habit that made each banquet an enjoyable one in his time. They all made light and jokes towards the many times Death attempted to clamp its jaws around them after a battle. It was just who they were as warriors. The habit was difficult to break out of, especially after someone who probably wasn&#39;t even use to behavior like that. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="876545967351017513" id="message-876545967351017513" title="Message sent: 16-Aug-21 03:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her next words placed a downcast aura around them. 
+
+His smile faded. He rested his head against the wall as his mind was placed in deep thought. He was being careless about himself. And that in and of itself, caused more weight to be placed onto her shoulders. 
+
+To think she cared this much towards him. At the end of the day, he was simply just a Servant. Something she could easily replace. And yet she worried about him.
+
+A hand soon fell onto her head to comfort her and help her through her frustrations. &quot;It warms my heart to hear that my Master cares so much for an old relic like me.&quot; His words show genuine appreciation towards her as his hand messed up her hair a little.  
+
+&quot;Allow me to ask a question, if you don&#39;t mind, of course. Why do you care so much? As a servant, especially with this <em>frame</em>, I am more replaceable than ever. Once my time is over, my spirit will return to the Throne for the next time I am called. Thus is the nature of being a Servant, Miss Hess.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/d575e6df716c674942a533ddc1b7ca7b-114BE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Diddles#9442" data-user-id="484219843034349586" style="color: rgb(255,140,19)">Mr.Diddles</span>
+
+
+        <span class="chatlog__timestamp">16-Aug-21 03:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="876547501681963020" id="message-876547501681963020" title="Message sent: 16-Aug-21 03:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiritssss#5397">@Spirits</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-4E5B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Aug-21 10:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="876833135915073597" id="message-876833135915073597" title="Message sent: 16-Aug-21 10:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As the warrior messed the young Master&#39;s hair, her short bangs covering a chunk of her face, she couldn&#39;t help but let a nervous chuckle escape her tightly closed lips.
+
+<em>&quot;Why do you care so much?&quot;</em>
+
+&quot;I...&quot; She started, taking a breath as she prepared to respond.
+
+But no words came to mind.
+
+His was a great question, but one that she didn&#39;t have an immediate answer to. Her tired, continuously overworked brain hadn&#39;t had the time to go over the <em>reasons</em> quite yet. All she knew was that being near him felt reassuring and put her mind at ease, while seeing him struggle and suffer from their battles carved a pit in her stomach.
+
+When doing something that required no special attention, her mind wandered on its own. She became a machine without feeling, carrying out a pre-determined task with relative ease. Going over the same motions over and over again without raising so much as a question, akin to a glorified auto-pilot. 
+
+That habit was useful when dealing with tremendous amounts of work, with tremendous amounts of <em>insects</em>. But when dealing with her personal feelings? Not so much. It was proving to be a thorn in situations that required to question what came naturally to her. 
+
+<em>&quot;I am more replaceable than ever.&quot;</em>
+
+Her eyes drifted from his wound to the ground, not quite contemplative but not detached either. She took one more breath, clearing her voice with a <em>hum</em> before speaking.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="876834049820352613" id="message-876834049820352613" title="Message sent: 16-Aug-21 10:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I&#39;ve... Throughout my upbringing up, all the way to my current situation—I&#39;ve always made it an important point to keep up with appearances. Couldn&#39;t allow myself to be looked down upon, had to keep a strong character throughout. Had to make big impressions. Had to look assertive and confident. It was the only way for a young and frail girl like me to thrive in her environment.&quot;
+
+Her tone was touched with uncertainty, not quite knowing where she was going with her words. But nonetheless, she continued.
+
+&quot;And as such, I&#39;ve decided never to rely on the help of anyone to get where I am today. As you&#39;ve already seen, I&#39;m pretty much a one-woman agency. I guess it was... sort of a policy to get everything done by myself. It gave me the illusion of control, made me feel like I actually knew what I was doing. Made me feel <em>strong</em>.&quot;
+
+&quot;But <em>now</em>,&quot; She spoke, her eyes raising to meet her Servant&#39;s. &quot;I&#39;ve had the opportunity to drop the facade for a bit. I&#39;ve came to rely on someone for the first time in forever.&quot;
+
+&quot;And I&#39;ve came to realise how <em>daunting</em> being alone was.&quot;
+
+Barely visible beneath her messy bangs, the pale blue dots had somehow gotten watery.
+
+&quot;It&#39;s... sorry, I&#39;m floundering quite a bit there.&quot; She buried her face in her shoulder as soon as she felt the waterworks turning on, wiping her face clean before speaking again. &quot;M&#39;not really someone who&#39;s in touch with her feelings, so it&#39;s all a bit confusing for me...&quot;
+
+A brusque and awkwardly timed giggle found its place between her words. Faced with the dumbness of her words, she couldn&#39;t help but sheepishly smile. An expression Guan Yu had yet to see found its way to her face.
+
+&quot;But the point is—I need you on my side if I want to get through this. It&#39;s not just about having company or someone to talk to, it&#39;s... something else. Any random Servant just wouldn&#39;t cut it. Right now, it&#39;s <em>you</em> that I need.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-87680.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">16-Aug-21 10:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="876834244364734506" id="message-876834244364734506" title="Message sent: 16-Aug-21 10:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-19CA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Aug-21 02:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="876888467374743624" id="message-876888467374743624" title="Message sent: 17-Aug-21 02:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His question struck her hard. It gave her pause but he didn&#39;t press her to rush. They had the time to take it easy. If all he needed to do was wait until she got her words together, then he doesn&#39;t mind waiting at all.
+
+As she spoke her piece, Guan Yu listened. There were little words he could speak right now so he chose to simply offer an ear instead. It was interesting to see what was finally underneath that confident exterior she held up all this time. She trusted him enough to show this more vulnerable side of her. He could tell that she never opened up this way towards anyone else, mainly because she had no one else. In her words, she was always alone.
+
+&quot;It&#39;s fine, Miss Hess. I will not judge you for showing emotions. I could tell that it had been quite the stressful few weeks for you. A few tears is more than justified.&quot; He spoke softly when he noticed the tears in her eyes and her apologize for them afterwards. 
+
+The cost that came with the loss of his arm was made most painfully apparent in this moment when he couldn&#39;t offer her a full embrace to comfort her. Instead, all he could do was hold her with one and pat her back until she pulled away.  
+
+If only he had been just a bit more careful.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="876888867649769492" id="message-876888867649769492" title="Message sent: 17-Aug-21 02:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;Right now, it&#39;s you I need.&quot;</em>
+
+The blow that came from those words struck him the hardest so far in this war. After his fight with Archer, that was saying something. 
+
+This girl saw him as someone who she needed to stand by her side until the end of this War. How could he have been so reckless when someone needed him so desperately as she did? He gave her his word in the beginning and yet he hasn&#39;t treated it seriously up to this point. 
+
+She was right. 
+
+He wasn&#39;t replaceable. Who else could he trust to play the role of Protector to her? No one. It <strong>had</strong> to be him.
+
+&quot;Then stand by your side I shall, Miss Hess!&quot; Even with the pain of raising his voice and puffing out his chest, he made sure to give her as confident of a tone as he could muster up in his wounded state. 
+
+&quot;Even if the end has us falling to an enemy&#39;s blade, I would be glad to do so alongside someone I could call a <em>brother-in-arms</em>. Your warrior spirit is strong. I&#39;m sure my brothers would have gotten along with you quite easily in fact! Just don&#39;t say yes to Zhang Fei if he challenges you in a drinking game! That man could drink the entirety of the Three Kingdoms under the table if he tried!&quot; This time, he let out another boisterous laugh despite the pain it caused him. Even in a situation as serious as this, he still found a way to made light of the situation.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-12%20to%202021-08-18%29.html_Files/d575e6df716c674942a533ddc1b7ca7b-114BE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Mr.Diddles#9442" data-user-id="484219843034349586" style="color: rgb(255,140,19)">Mr.Diddles</span>
+
+
+        <span class="chatlog__timestamp">17-Aug-21 02:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="876888972150861834" id="message-876888972150861834" title="Message sent: 17-Aug-21 02:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-19%20to%202021-09-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-19CA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Aug-21 02:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="877619933054377984" id="message-877619933054377984" title="Message sent: 19-Aug-21 02:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The silence was comforting to sit in. It made the dim and dour mood in the room to a much more brighter one. One that felt relaxed to be in. One that made one feel safe. This is what he wanted to achieve. This peace and serenity was perfect.
+
+It even made her continued lectures feel more comforting than they would have if the mood was kept low. The smile on his face couldn&#39;t be shook off even with the harshest of words at this point. Besides, he did kind of deserve it if he is being honest with himself. Boy, did this bring up some memories from before...
+
+<em>&quot;To think it would be me being lectured after a battle instead...&quot;</em> He pondered to himself as he took the onslaught of Laura&#39;s words straight on! Even his brothers would be in disbelief if they saw.
+
+&quot;If you thought that was the reason why I fought as hard as I did with Black Knight, Miss Hess, then you are sorely mistaken.&quot; The gall of this man to say such a thing when he was suppose to be the one being lectured! Is he trying to get himself in more trouble than he already was? 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="877620071390924872" id="message-877620071390924872" title="Message sent: 19-Aug-21 02:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You see, my brothers and I found each other upon the fields of battle. During the Yellow Turban Rebellions, Liu Bei assembled a militia that, as fate would have it, included Zhang Fei and myself. The blazing passion within our hearts resonated as we fought alongside each other. Our bond grew stronger with each battle that came after the last. It didn&#39;t take long until we knew that we were destined to be brothers!&quot; Guan Yu finished that last part with a wide grin on his and slammed his fist against his chest. His eye winced slightly in pain, but he pushed onwards! If he didn&#39;t, she would surely lecture him about that as well!
+
+&quot;It wasn&#39;t only them that I held great respect for. I encountered countless warriors during my time alive that I deeply respected, as one warrior to another. Even the ones I slew and cut down without so much a second glance. Even those warriors I had great respect for. For they fought to the very end for the virtues they believed in.&quot;
+
+&quot;That respect between warriors on the battlefield is what gives us the strength to fight at our best!&quot; His smile faded once he got to the next topic. &quot;It was what I wanted to experience with Saber. As a servant, I am blessed to be able to encounter other warriors from distant times far from my own and engage in honourable combat with. To be declined such a thing when I thought my time would be cut short was a greater insult than I care to admit.&quot;
+
+&quot;So, that&#39;s why I got a bit overzealous with Archer!&quot; His smile returned as he admitted to why he overextended the way he did with Archer. &quot;He gave me what I sought from this Grail War and I was pulled in immediately. It wasn&#39;t because I wanted to win. It was because of the bonds I wanted to create is what I truly care about, Miss Hess.&quot;
+
+(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-19%20to%202021-09-01%29.html_Files/b21c494be7874e31b42593ff8e3f58c1-4E5B7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laura Hess#0000" data-user-id="855147156620312576" style="">Laura Hess</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Aug-21 05:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="877660672064913478" id="message-877660672064913478" title="Message sent: 19-Aug-21 05:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">So he <em>did</em> only care about swinging his big ol&#39; blade of his.
+
+When it mattered, the old warrior had came around to understand her feelings. When it came to understand his life-long passion, though—
+
+&quot;...I swear to god, you guys are <em>fighting junkies</em>.&quot; 
+
+—she didn&#39;t get it one bit.
+
+So she was wrong about his lashing out with Brandin&#39;s black knight. The reason she had brought that thing up was simply to illustrate her point, but it seemed like it went a bit over his head. Up until this point, all her attempts at lecturing him had been fruitless. Hell, the guy seemed to <em>enjoy</em> himself as her reprimands kept flowing. Was he some kinda masochist? Did he enjoy getting scolded by a young girl?
+
+&quot;And by the way, &#39;a bit overzealous&#39; doesn&#39;t even come <em>close</em> to cutting it! Did you even see yourself out there? You looked like a beaten doll that had been dragged through the mud for <em>miles</em>!&quot;
+
+A lengthy sigh escaped her lips. She knew him well enough to recognise that, even if she was to tell him to keep his enjoyment of battle to a bare minimum, he wouldn&#39;t answer favourably. That&#39;s just the kinda guy he is. Fighting was his <em>everything</em>, after all. To tell him to stay strictly professional about that which his entire life has been built upon would be very counter-productive.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="877661184952766464" id="message-877661184952766464" title="Message sent: 19-Aug-21 05:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Honestly, I don&#39;t see what kinda respect you guys find in slashing each other to death, but please refrain from getting your arm mangled in the future...&quot;
+
+The young Master got up from her seat, facing the one-armed Servant with an unsatisfied frown. Exhausted as she was, she still managed to give off that no-nonsense vibe that usually permeated her.
+
+&quot;Now that we&#39;ve fought this much and gotten this far, I can safely say that we went past the <em>trust</em> stage. One might even say that I&#39;ve gotten a little... confident in you. Yes, despite all the times you&#39;ve gotten your ass handed to you.&quot;
+
+She smirked. The way she stood, brimming with confidence and self-assurance, mirrored their very first meeting as Master and Servant. Only this time, her confidence wasn&#39;t limited to <em>herself</em>.
+
+&quot;It&#39;s all but a formality at this point, but I&#39;d like to ask you, just to make sure...&quot;
+
+A frail yet firm hand, delicate in its build yet assertive in its approach, was presented to the old warrior. It&#39;s owner, a slender girl that swim in loose clothes, was staring with tired yet sharp eyes that threatened to impale the warrior through and through. 
+
+&quot;Will you fight alongside me, Guan Yu?&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Aug-21 06:16 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-19%20to%202021-09-01%29.html_Files/2f5eb316fd7660cfe49cd10664a73d7b-87680.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(255,140,19)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">19-Aug-21 05:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="877661202048757790" id="message-877661202048757790" title="Message sent: 19-Aug-21 05:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Residential%20District%20-%20detectives-office%20%5B850990026203594783%5D%20%282021-08-19%20to%202021-09-01%29.html_Files/03b655fee609d6b9ae9e83cc90549d78-19CA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guan Yu#0000" data-user-id="855147156620312576" style="">Guan Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Aug-21 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="877754315551416320" id="message-877754315551416320" title="Message sent: 19-Aug-21 11:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;...I swear to god, you guys are fighting junkies.&quot;</em>
+
+Upon having heard those words, Guan Yu couldn&#39;t stop himself from laughing. Now that was a fine descriptor! He doubted that he could do a better job than that even if he had the time! Just how long did his Master have that waiting in their bag?
+
+&quot;Well, when your entire life has been seeped with war and conflict through and through I suppose you do develop a certain taste!&quot; Guan Yu wiped a lone tear from his eye after that surge of laughter was over. He could almost barely notice the pain that came from it. Almost.
+
+Fighting Junkie, huh? He was called much worse before. Besides, it was rather fitting, isn&#39;t?
+
+&quot;Perhaps one day you will see, Miss Hess. Then you will understand how we Warriors feel.&quot; With that, he nodded as if he just gave her some sagely advice. &quot;But yes, I understand. I will refrain from losing any more limbs in the coming battles.&quot; Shouldn&#39;t be that hard of a thing to accomplish, right?
+
+He watched as his Master stood up from her seated position then faced him. There he was greeted with the sight of his Master with her confidence regained! Nay. This was different. This was a new level of confidence for her. One where she wasn&#39;t just confident in her abilities, but their abilities as a whole! 
+
+He saw just how much she grew in that short time that they knew each other. Now he can say for certainty that this version of Laura would definitely have kicked the ass of the old version when they first met.
+
+Then a hand was extended towards him. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="877755008093929482" id="message-877755008093929482" title="Message sent: 19-Aug-21 11:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&quot;Will you fight alongside me, Guan Yu?&quot;</em>
+
+A request. One simple request to fight under his Master&#39;s Banner. To think she would request such a thing so early. But then again, that is how she played her cards after all. His past experiences playing against her taught him that much.
+
+Now came his answer. Will he accept to fight under another foreign commander&#39;s banner? Of course not! This banner however, was the banner of a friend; a fellow brother-in-arms! How could he deny such a request from her? She has proven herself well enough to deserve it!
+
+<strong>&quot;To the very end, Miss Hess.&quot;</strong>
+
+Those were the only words that left his lips before he grasped onto her outreached hand. A smirk, matching that of Laura&#39;s own, came from her servant. His hand nearly enveloped her own completely.
+
+With both the physical and vocal act of acceptance from both of them complete, a subtle pulse of Mana surged in the air around them. The source came from their joined hands. A rush of energy rode up their arms as they soon began connected to one another. 
+
+A connection was formed between them. They were linked. 
+
+<div class="quote"><strong>Bond Successful. Core Accessed.</strong> 
+</div>&gt; 
+<div class="quote"><strong>Receiving Serial Number of S.E.R.V.A.N.T Frame - LCCN021937</strong>
+</div>
+A sudden rush of information ran through Laura&#39;s mind. It was unnerving to say the least, but the bond was formed between them. It was done. Guan Yu was to remain under her service until the day he&#39;s fated to fall once more. Then the price for the bond would be paid in full. Would it be worth it in the end?
+
+The best either of them could do to prevent such a fate was to fight with all of their might and conviction! With the flames of war having been fanned within both of their hearts, that was something the pair was prepared to do.
+<em> </em></span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Aug-21 02:42 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="877755259651489793" id="message-877755259651489793" title="Message sent: 19-Aug-21 11:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">However! That will have to wait until their next fight. For now, it seemed that a celebration was in order! They managed to swipe the weapon from the hands of Mr. Kingsmade after all! That alone was deserving of a banquet! 
+
+Food was ordered in generous amounts. There were countless items that Guan Yu wanted to try since his arrival to this new world and now he was given the opportunity to partake in every single one of them, much to the dismay of Laura&#39;s ever-shrinking bank account, of course!
+
+They may have lost the battle against Alexander Kingsmade, but they also may have saved the War from tipping in their favour by acquiring this weapon. Who&#39;s secrets are still kept hidden from them due to heavy encryption, but in due time they will be revealed.
+
+(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

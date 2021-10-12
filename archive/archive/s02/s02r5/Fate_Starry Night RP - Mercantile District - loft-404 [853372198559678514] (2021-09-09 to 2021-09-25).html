@@ -1,0 +1,2595 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - loft-404</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Mercantile District / loft-404</div>
+
+            <div class="preamble__entry preamble__entry--small">Gustave Renoir&#39;s own personal art studio/apartment tucked away on top of a repurposed warehouse , offering a generous view of the sprawling marketplaces and performances below. The perfect place for one to get in touch with their creative side with no distractions.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 09-Sep-21 12:00 AM and 25-Sep-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Sep-21 04:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="885989087473987585" id="message-885989087473987585" title="Message sent: 11-Sep-21 04:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Their attempt on Laurent was unsuccessful. Of course it was, there were variables that neither servant or master had accounted for. Specifically, Caster being in the possession of Laurent Mackenzie and running perfect interference. 
+
+Though, caster did provide something of benefit to the sniper. A leash to hold back the white death. Mental control over the demon he was made to be. A small victory for certain, but a victory nonetheless. He was proud of the control. 
+
+Now the Finn sat in the windowsill, stripping down his rifle with the single functioning hand, and cleaning each portion. It was most likely the 3rd or 4th time today that Simo has performed this action. But he continued to do so while humming a tune from his homeland. 
+
+Occasional breaks within the music would be heard as The Finn took nibbles from his bread. Before the humming ceased entirely. “Gustave. What are our plans moving forwards?” Simo had been ruminating on that idea since their previous encounter, but didn’t feel the timing was right to ever say it. So why not just blurt it out now. 
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 04:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="886707473136902234" id="message-886707473136902234" title="Message sent: 13-Sep-21 04:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The fight at the Rooftop Gardens was suppposed to have been a decisive battle that would knock the tyrant of greed, the wannabe Caesar of Olympia, off his throne and into the refuse of history. That was what Gustave had attempted to do but the intervention of the previously unaccounted Caster had paralyzed one half of the plan. So even with his best efforts, the most the Assassin team of Delphi could do was rattle Laurent around and peel back the curtain to reveal the deranged man inside. 
+
+A disappointing result tactically to be sure but perhaps there were some strategic benefits to be taken from the skirmish. Whatever Caster had done to Simo left the assassin more at ease with himself. He had heard rumors that Caster was a philosopher in life but perhaps a potent therapist too? 
+
+His own fight had yielded some ease to his struggles as well and quieted those inner demons of greed and secrecy. It would not be far off to suggest the fight with Laurent had prompted him to reveal his servant to his family. It was nice to escape the tension and stress of the war if but for a night and Simo seemed to enjoy the respite too.
+
+As in regards for the present, Gustave was back in his loft, painting away at a canvas as usual though the subject matter this time was more playful and less severe than before. He peaked up from his canvas as the servant broke the silence.
+
+&quot;Hmm, it is a very good question to be honest. In terms of traditional victories, we don&#39;t have much to show and much of our fights have followed the same pattern. We need to do something to break the cycle,&quot; He absentmindedly dashed a few more strokes of blue and yellow on the canvas as he pondered. &quot;Perhaps we should try to find an opponent and lure them nearby to give us an advantage, but who...&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 04:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="886711122550480926" id="message-886711122550480926" title="Message sent: 13-Sep-21 04:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There was obviously much thinking to be done by Master and Servant alike. Not only self-reflection, but also strategizing. The was was beginning to reach its crescendo, pieces being knocked off the board, gambits both winning and losing being set into motion. Would they prove victorious in this contest of contests? Or would they be just another pawn in somebody else&#39;s master plan?
+
+<em>DING-DONG.</em>
+
+Any discussion of tactics between Simo and Gustave would have to wait, for it appeared that there was someone at the door. A very impatient guest. Just as soon as the last echo of the doorbell faded, it was replaced by a ceaseless rapping upon the door, a series of knocks that quelled any chance of silence.
+
+<strong>&quot;Hello? Delivery? Anyone home?&quot;</strong>
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 06:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="886735939202871327" id="message-886735939202871327" title="Message sent: 13-Sep-21 06:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Sniper finished this final round of stripping and cleaning the rifle, listening intently to his master’s words. It was true, for whatever reason they have found themselves in a vicious cycle. From the beginning of the war it has been this way. “I’m sure the church’s bounty will-“ 
+
+Simo began his response before the chime of the doorbell and the incessant knocking was heard from the door. 
+
+The Finn made a look towards his master, signaled that he’d answer, while Gustave should find a hiding place. He wasn’t exactly sure if the signal would go through but, His master was a smart gentleman and should be able to figure it out. 
+
+The Finn approached the door, turning his rifle’s safety off. The false hand fumbling slightly with the door handle, before turning it. The real hand keeping the rifle close in the chance a shot needed to be fired. 
+
+“A delivery… we weren’t expecting something of the sort.” The Scarfed face of the white death peered through the crack in the door he made.  Giving whoever this was a quick glancing over.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886736003455397888" id="message-886736003455397888" title="Message sent: 13-Sep-21 06:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 01:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="886839743730565191" id="message-886839743730565191" title="Message sent: 13-Sep-21 01:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Huh I didn&#39;t order anything...&quot; Gustave muttered before standing up and walking over to the nearby kitchen counter with a stiff stutter to his leg and picking up a list to check over. &quot;Hmm, Simo go check on the door and see if that&#39;s what they really are here for. I don&#39;t want that fool Laurent getting the last laugh on us so be careful.&quot;
+
+As Simo made his way over to the door, Gustave took one of his knifes from a wooden block and rubbed it against a spare piece of twine he had from a previous project. Satisfied with the results, Gustave began to slide the blade between his palms and channel mana into the metal, humming along as it grew longer and thinner. He stopped when he could only see the glint of light reflect off the narrow thread. If there was an attacker at the door, not only would they have to contend with an armed servant but also a blade they could not see and feel until too late. 
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="886926900763721759" id="message-886926900763721759" title="Message sent: 13-Sep-21 06:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Both were immediately suspicious of this &quot;delivery&quot;, given that neither of them had actually made any orders. So, what was this? Was this an act of aid, given by one of their allies? A trap set by one of their enemies? Or something else entirely?
+
+Cautiously, Assassin would pull open the door just a crack, to get a look at whomever awaited them on the other side...
+
+It was a trap. Unsurprisingly. 
+
+<em><strong>BOOM</strong></em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Archer of Ming#0000" data-user-id="855672195615686687" style="">Archer of Ming</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 06:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="886928474793734164" id="message-886928474793734164" title="Message sent: 13-Sep-21 06:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Simo was forced back by a powerful explosion, crashing against the floor. His once-white uniform was now stained black, singed and charred by the heat from the explosion. His injuries weren&#39;t lethal, thankfully, but they would take time to heal. Time that he wasn&#39;t being afforded.
+
+<strong>&quot;Oh, I love you modern types. You make it all so easy!&quot;</strong> Came the cackling laughter, a high-pitched assault upon the ears. <strong>&quot;I tell you, winning is hardly a challenge!&quot;</strong>
+
+The source of this mockery would step out past the smouldering wreck of an entryway, through the black smoke and floating cinders. They were simultaneously scruffy and refined, an aristocrat and a common bum. They held themselves as though they were the highest of nobility, yet their manner was not dissimilar to a common delinquent. A paradox of a man.
+
+<strong>&quot;I can scarcely believe anyone struggled to defeat you, Simo Hayha. Now, be a good little soldier and tell me where your Master is. I have business with him.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886928504824942612" id="message-886928504824942612" title="Message sent: 13-Sep-21 06:57 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/latest-3DEBA.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/latest-3DEBA.jpg" alt="Image attachment" title="Image: latest.jpg (724.32 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886928551968923668" id="message-886928551968923668" title="Message sent: 13-Sep-21 06:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Sep-21 08:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="886949014069739621" id="message-886949014069739621" title="Message sent: 13-Sep-21 08:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was a trap, it was obvious that this would be a trap. The explosion sending the sniper backwards and into the floor, the rifle being sent flying from his hands. Face scarf now revealing the demonic visage underneath. 
+
+The enemy knew of his identity, yet he didn’t care all that much. But they were a threat to Gustave. 
+
+“You have rather bad manners, Archer? I would guess… Maybe if you asked nicely I’d speak.” Simo responded back to the Delinquent Nobleman, lifting himself up off the floor. 
+
+A SMG then appeared within assassin’s hands, it’s barrel trained right on Archer of Ming.  Simo then fired off a barrage of bullets towards the enemy. 
+<span class="mention" title="RaptorAttacks#0350">@Deleted User</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Sep-21 12:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="887015988577570867" id="message-887015988577570867" title="Message sent: 14-Sep-21 12:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>BOOM</strong>
+
+The roar of the bomb or whatever the explosive truly was rattled the apartment from roof to ceiling . Everything for a few seconds after was a blurry haze that sounded like he was trying to hear from under the water. Their suspicions were proved correct. An assassin decided to knock them out of the competition early and perhaps noticed their earlier fights. The loft was not a suitable stadium however and an exit had to be made. 
+
+There was no doubt that whoever at the door would inevitably go after the weaker target of the pair and so Gustave whipped and weaved the stringlike sword he had made from himself into a web of biting wire positioned so that their opponet would have to walk through the doorway. He would then make a second one, this time blending a razor with a paintbrush coated in blue paint so their opponent would not be able to hide afterwards. Finally he made his way over to the window at the end of his studio, primed a portal entrance at his feet and looked far down at the road below. Simo could take it from there. Now all he had to do was hide behind some of his paintings and wait for Simo to come. 
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Archer of Ming#0000" data-user-id="855672195615686687" style="">Archer of Ming</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Sep-21 01:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="887027756305616907" id="message-887027756305616907" title="Message sent: 14-Sep-21 01:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Tisk, tisk! Wriggle that chilly little tongue all you want, Simmyboy, but it won&#39;t do you any good!&quot;</strong> Archer taunted, a wicked grin spreading across his face as he spoke. Evidently, he had studied up on his opponent. There was no guarantee the same old tricks the Sniper normally used would work.
+
+As Assassin conjured his SMG, Archer narrowed his eyes. In a flash of golden energy, his hands were also suddenly occupied with a weapon of their own - a flamethrower! A primitive one, mind, but one that roared with scorching flames nonetheless.
+
+The spray of bullets were reduced to harmless molten slag, falling to the ground inert. However, now Simo had to contend with the gout of fire surging towards him!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Sep-21 01:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="887028429181046844" id="message-887028429181046844" title="Message sent: 14-Sep-21 01:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave, meanwhile, was preparing for their retreat. After all, it was clear that this fight would be an unfavourable one. They needed to get some distance, think of a plan, and-
+
+<strong>FWOOSH!</strong>
+
+Once again, any chance to take a breath and formulate a plan was prematurely killed, this time by a surging stream of azure flame. It shot up through the floorboards, incinerating the very ground on which both Gustave and the portal stood upon. This flame was far different than the ones created by the explosion, though. This was more malicious, fuelled by mana, inexplicably hungry, looking to feast.
+
+Archer wasn&#39;t working alone.
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Sep-21 02:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="887038863984451605" id="message-887038863984451605" title="Message sent: 14-Sep-21 02:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The deranged archer held a unique device in his hands now, a flame thrower… primitive, but still unmistakably a flame thrower.  Who was this archer? How did they know so much about Simo’s tactics? Both of the questions lingered longer than they should have. 
+
+“Fire to melt the ice, well aren’t you <em>clever</em>. Gustave, get the hell out of here if you haven’t.” The Finn’s eyes narrowed, yelling a command towards his master wherever he may be. A gout of flame was still headed right for assassin. 
+
+Reflexively he activated Invisible Soldier, the snow flakes melting into pitiful drops of water from the intense heat, as he moved out of the flames encroaching path. Simo didn’t avoid it completely unscathed, more flames are  through his clothes and dances upon his skin. Thankfully the damages done were minimal with his enhanced agility while in this state. 
+
+As he moved more bullets were fired off towards the archer, all showing his approach. But they ceased momentarily. 
+
+The Sniper had gotten his rifle back, as a quick bayonet jab was sent right for the pyromaniacs kidney! Invisible Soldier showing Simo to the world again as he is positioned right behind Archer of Ming. 
+
+<span class="mention" title="RaptorAttacks#0350">@Deleted User</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Sep-21 06:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="887106851282497576" id="message-887106851282497576" title="Message sent: 14-Sep-21 06:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave nodded to himself as Simo signalled for him to escape, catching himself from revealing his location. Yet his efforts would not matter as the floorboards underneath him erupted in eerie blue flame. The assailant had an accomplice it seems and a fiery one at that. He cared not if the flames nipped away at the portal, he simply opened up the gate to the Bridge and the wormhole simply did what it was designed to do. To the poor pedestrians below, it seemed that was to simulate a gas leak as the fire billowed out. 
+
+It gave the professor a bit of leeway to charge through the flames and dash back the kitchen, bending his second trap to the side while he grabbed the fire extinguisher to arm himself. It was an unconventional approach for a practiced mage but he had his reasons. Ripping the pin off and holding a few fingers just over the lip of the nozzle like a pilot light, Gustave let the foam shoot out and become intertwined with his magic, creating an expansive and ever growing network of mana-latticed foam that would work to not only suffocate the fire of oxygen but also mana. 
+
+With the fires dimming for now, Gustave could see the hole from which the flames originally emerged. Remembering the razor/paint trap from earlier, he tapped its edge and brought it contracting back to the shape of a razor blade before tossing it into the hole and letting it expand into a cutting web of near-invisible wire and drops of pigment that would mark any that made a step. 
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Archer of Ming#0000" data-user-id="855672195615686687" style="">Archer of Ming</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Sep-21 01:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="887386925940502578" id="message-887386925940502578" title="Message sent: 15-Sep-21 01:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was quickly becoming evident that Archer&#39;s firepower greatly overwhelmed that of Assassin. Whoever he was, the quality of his gear was on a completely different level. Steel and lead were well and good, but they could offer little resistance against flames that burnt as hot as dragon fire.
+
+Luckily, Assassin had the advantage of stealth. Through the use of his Invisible Soldier, he vanished amid the air, as though he had just disappeared. Soon enough, he was able to shake the hungering flames and free himself of the heat.
+
+And then, the counterattack from behind, a single piercing strike towards the back of his unsuspecting opponent-
+
+<strong>&quot;Oh, Simo Simo Simo... Do you think I&#39;m an idiot?&quot;</strong>
+
+<strong>BAM!</strong> Another explosion, this one not an incendiary inferno, but a blinding, searing light. A flashbang! The sniper&#39;s eyes were scorched by the flash of light, leaving him momentarily disoriented. A disorientation he couldn&#39;t afford to feel. He needed to fight back, before this dastardly Archer could get the better of him!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 01:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="887387158493687808" id="message-887387158493687808" title="Message sent: 15-Sep-21 01:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ming? Who&#39;s Ming?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/04857a0b1dc55b794f41846280b5c04a-5CBF0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(255,140,19)">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 01:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="887387330434977813" id="message-887387330434977813" title="Message sent: 15-Sep-21 01:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ming Daal from Chowder</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Sep-21 01:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="887388432958119966" id="message-887388432958119966" title="Message sent: 15-Sep-21 01:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Meanwhile, Gustave continued working on his plan of escape, fighting against flames both natural and unnatural. Luckily, he was no slouch when it came to strategy. One spell was all it took to begin extinguishing the fires, and another to trap the hole from which the azure flames emerged.
+
+Below was dealt with, and around him was only a matter of time, but he had failed to consider what might come from above. A mistake that would prove costly.
+
+<strong>FWOOSH!</strong>
+
+Another gout of azure flame flew through the ceiling, sending melted roof tiles and molten debris tumbled down along with it. It was a direct attack, aiming to hit Gustave head-on and reduce him to a puddle of blood and bones on the floor! But it was also this method of attack that would allow him to get the briefest of glimpses of his attack, which was...
+
+...A Fox?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="887388462767030312" id="message-887388462767030312" title="Message sent: 15-Sep-21 01:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 01:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="887388538411311164" id="message-887388538411311164" title="Message sent: 15-Sep-21 01:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://tenor.com/view/jerk-what-does-the-fox-say-tongue-fox-bleh-gif-4486853">https://tenor.com/view/jerk-what-does-the-fox-say-tongue-fox-bleh-gif-4486853</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://tenor.com/view/jerk-what-does-the-fox-say-tongue-fox-bleh-gif-4486853">
+                                                        <div class="markdown preserve-whitespace">Fox</div>
+                                                    </a>
+                                            </div>
+
+
+                                    </div>
+
+                                        <div class="chatlog__embed-thumbnail-container">
+                                            <a class="chatlog__embed-thumbnail-link" href="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/raw-60904">
+                                                <img class="chatlog__embed-thumbnail" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/raw-60904" alt="Thumbnail" loading="lazy">
+                                            </a>
+                                        </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Sep-21 04:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="887431448435515432" id="message-887431448435515432" title="Message sent: 15-Sep-21 04:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sensation of flesh being pierced should have been felt. That was all but certain, yet Archer was 3 steps ahead. In all aspects of this fight. 
+
+Before the bayonet even reached the opponent’s flank, a flash bang went off. Temporarily blinding the Finn. 
+
+“No… rather I think you’re a Smart-Ass with too much time on their hands.” The Sniper retorted as his world spun and his eyes were blinded. 
+
+<em>’You’re up. We just need to get right on top of him.’</em> Internally he loosened the leash of the White Death. Their Posture and demeanor changing, the rifle and SMG disappearing temporarily. 
+
+The White Death continued the lunge at the opponent, going to tackle and entangle him. While their sharpened teeth attempted to bite right into the delinquents neck and take what flesh they could get.
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Archer of Ming#0000" data-user-id="855672195615686687" style="">Archer of Ming</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Sep-21 06:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="887821877542805586" id="message-887821877542805586" title="Message sent: 16-Sep-21 06:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Still fighting? He had expected this to be much easier. He was in the middle of priming his next weapon, a rather brutal looking cannon, when the White Death fell upon him like the feral beast it was. What was that statement, about snipers being lone wolves? From where Archer was stood, it appeared that he was closer to a mangy mutt, a feral dog that needed to be put down.
+
+Swinging their whole body, Archer of Ming re-positioned their hefty piece of artillery. Their stance of the weapon was entirely change, no longer that of aiming and preparing, but instead like that of a primitive shield, trying to keep the claws and teeth of this fiend at a distance.
+
+<strong>&quot;How inconsiderate! Do I have to show you your place once more, Assassin? So be it!&quot;</strong>
+
+Dropping the cannon and dashing backwards, Archer outstretched their arms once more, and within them manifested two hand cannons. It seemed that with every second that passed, his assailant pulled out some new manner of firearm and explosive. It was as though he had an endless armoury of gunpowder weapons!
+
+<strong>&quot;Be a good little dog and get hit by my bullets!&quot;</strong> Archer snarled. The twin pistols barked once more, and ere long, the White Death would find himself contending with two more projectiles! It seemed that there truly was no rest for the wicked.
+<span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Sep-21 08:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="887859326692241498" id="message-887859326692241498" title="Message sent: 16-Sep-21 08:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The White Death wasn’t allowed to simply run free as it had been against <strong>That Opulent Rider</strong>. No, it wanted to. It wanted to rip and tear right through this archer, but it’s leash was simply too tight now. Simo Hayha had too tight of a hold upon it now. 
+
+There was still an aspect of Feralness. It’s movements showed that, the wolf making a mad dash right for the Archer. Clawing as best as it could to tear the cannon away from its quarry.
+
+The enemy’s Canon being dropped, then replaced by two smaller side arms… “Why don’t we show you your place… All are equal when it comes to the end.” Harshly the creature that was assassin responded.  
+
+‘<em>Take the shots.</em>’ Simo issued his order from within their shared mind. So it did,  one blowing the false limb from its attachment point and the other striking somewhere within their chest. But it continued forwards. 
+
+“<strong>Our Turn</strong>”. It simply responded it’s muscles bulged slightly, showing a change that Archer of Ming might not have accounted for. Simo Hayha and The White Death have become unified. 
+
+Quickly it closed the distance and went right for Archer’s throat again. Going to grip it tightly before bringing its jaws down onto the Deliquent’s arm, aiming to dislocate the limb. 
+
+<span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Sep-21 04:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="888163370379903006" id="message-888163370379903006" title="Message sent: 17-Sep-21 04:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A brief triumph was the artist&#39;s as he stood over the doused flames and saved works of art. The rumbling and flashes of light at the other end of the apartment must have been Simo engaging the servant. Perhaps now he could escape?
+
+The trial was not yet over, unfortunately for Gustave as the cieling gave in and a molten mass bore down on him with increasing speed. He had only a fraction of a second to act and the best thing to do was fall and tumble out of the way. He could feel part of his chest collide and give way to the fire extinguisher as he did so but it was better than melting. With his breath sapped, he took the caninster and imbued it with his magic from before but made the walls of the canister prone to fragment under pressure. 
+
+With the nozzle forced open and the best toss he could muster, Gustave launched the fire extingusher up into the hole were the roof once was and hoped the glorified foamy grenade would snag his assailant and at the very least prevent any more aerial surprises.
+
+<span class="mention" title="RaptorAttacks#0350">@Deleted User</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Archer of Ming#0000" data-user-id="855672195615686687" style="">Archer of Ming</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Sep-21 11:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="888265643684675634" id="message-888265643684675634" title="Message sent: 17-Sep-21 11:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;What is this? You&#39;re nothing more than a pitiful little sniper dog! You&#39;re supposed to lay down and die! Stay down! Stay!&quot;</strong>
+
+For the first time since the beginning of their conflict, a glimmer of fear entered into Archer&#39;s voice. From underneath his tinted glasses, his eyes went wide, as though he was realising that the situation was quickly spiralling beyond his control. His perfectly laid plan had been completely disrupted by this rogue element. 
+
+The White Death caught him by the throat, and despise his efforts to wriggle free, physical parameters were not their strong suit. That meant there was little they could do but brace themselves as the teeth bit down into flesh of the arm.
+
+<strong>&quot;GAAAH! Son of a- WHAT DID I JUST TELL YOU?&quot;</strong>
+
+The arm would be torn out of its socket, but that would not stop Archer&#39;s effort to escape. A shimmer of magical energy would appear in front of Assassin&#39;s face, a bright gold light that softly glowed with potential. That light proceeded to mould itself, taking shape, filling in the small details, before becoming solid and revealing its true form - that of a primed bomb.
+
+<em><strong>BANG!</strong></em> Another explosion, this one more ferocious than the last, sent Simo and the Archer flying in opposite directions. That was a problem, because while his opponent had been sent flying out the window, the sniper had been sent flying toward the rising inferno!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Sep-21 11:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="888267080082804766" id="message-888267080082804766" title="Message sent: 17-Sep-21 11:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Alas, while Simo had managed to force his foe into a corner, the opposite was true of Gustave. All of his exits were being closed off, his ability to fight back being denied, his chances of survival dropped. If this kept up, it wouldn&#39;t be long before he found himself on the losing end, not only of this fight, but of the whole Grail War!
+
+So, he took decisive action, jury rigging his fire extinguisher with a combination of quick wit and magical energy. With it ready, he flung it upwards towards the opening in the roof, hoping to catch his opponent by surprise.
+
+He succeeded.
+
+<strong>FWOOMPH!</strong> The foam would surge outward as though it were a tsunami in a storm, drenching the mysterious attacker in the foam. Though he couldn&#39;t see the end result, the magus could only imagine that they had been drenched in the stuff. However, his ears would hear something more unexpected...
+
+<strong>&quot;Aah, my my, trying to act out, are we? Heehee~&quot;</strong>
+
+A fox, casting fire magecraft and speaking human English? There was something strange going on here. Something not quite right...
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Sep-21 09:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="888420597170847814" id="message-888420597170847814" title="Message sent: 17-Sep-21 09:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The White Death was pleased to hear the screams coming from their opponent. The archer was finally caught off guard, yelling insults that fell upon deaf ears. 
+
+It was even more pleased having the sensation of an arm being pulled from its socket, grace it’s hungering maw. The White Death would’ve continued if not for something glowing into existence right in front of their eyes. With the flesh of Archer still in their mouth all they could muster saying was “Bastard.”
+
+<strong>A Bomb</strong>
+
+The explosion hit sending Assassin and Archer in opposite directions. The heat was felt upon their back, it was felt upon their face, it was an all consuming sensation in the moment. 
+
+Flames again licked across their body, tearing their clothes apart. Digging deep enough to leave burns upon the skin, in painful deep strokes. Yet, Simo needed to still stand up. Even with the pain, this fight was not yet over.  
+
+“Gustave… If you’re alive, say something.” Simo’s voice spoke as their body rose up from the ground. The Rifle materializing within their good hand once again. “We’re going to end that servant, get out of here if you still can.”
+
+They took a shaky step forwards, before finally getting their footing and breaking off into a sprint to the window. Scouring the streets below for archer, while invisible soldier activated hiding them from the world. The snowflakes tinted black by the ash billowing from the apartment.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="888420647447965706" id="message-888420647447965706" title="Message sent: 17-Sep-21 09:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@Deleted User</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Sep-21 03:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="888507373424095352" id="message-888507373424095352" title="Message sent: 18-Sep-21 03:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A parabola mirrors the most likely path of a ballistic object and while an explosive fire extinguisher lobbed by a man was not quite perfect, the trajectory and nature of the projectile were still within the margin of error, resulting in a compromised target. The squeal of the fox thing only confirmed it. 
+
+Still while it was a success, the whole thing felt off, he had no records of a fox being able to speak English and practice magecraft. While this could indeed be a unique case, it would be better to first assume a more rational and common explanation. 
+
+&quot;Its only necessary to defend one&#39;s home against an intruder. This mustn&#39;t be your first time doing so if you resort to acting through a familiar. Quite a potent one at that. My compliments to your craft,&quot; Gustave said after staggering back to his feet and making his way back over to where the portal had once been.  &quot;And if you had planned this out ahead of time, I assume you know my capabilities. So, I will see you soon.&quot;
+
+With a snap, the portal reopened and Gustave let himself fall in and walk out onto the street below. The portal would close behind him. It was an open space and during such a time where there was minimal traffic. Time to see if his opponent would follow.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Sep-21 11:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="888634189694529606" id="message-888634189694529606" title="Message sent: 18-Sep-21 11:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There was a break in the fighting, the briefest of pauses amid the brewing conflict. Both sides had exchanged blows, and both sides were looking to be worse for wear. Which one would break under the pressure first? That remained to be seen.
+
+But one thing was for certain - the apartment was no longer a suitable battlefield. The flames had consumed far too much, and even now, they showed no signs of stopping. How much of his home base could be salvaged? Gustave would not have time to answer that question, only time to flee. 
+
+Both Master and Servant would eventually end up outside. A small crowd had already gathered, watching the fire as it happened. Upon seeing the two arrive outside, they would take a few steps back. 
+
+Notably absent from the crowd were both Archer and the fox. Yet, they were undoubtedly still here. The moment either Simo or Gustave let their guard down, they would be victim of another ambition. There was nowhere to run. Nowhere to hide. If they were to survive this day, they would have to take the initiative and land a decisive blow. They didn&#39;t need to kill their opponent. They only needed to push them back, at least for now.
+
+Were they up to task?
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Sep-21 12:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="888648641600954409" id="message-888648641600954409" title="Message sent: 18-Sep-21 12:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Sniper had taken back control of his body. The White Death left to sit in the passenger seat for now. The brief pause in conflict was tense for Simo, anything could happen in these next few moments. The pain of the taken shot is still felt within his bones, and his entire form ached and stabbed from the various burns inflicted upon it. 
+
+Gustave had made it out safely it seems. Which was good to see at the very least. Methodically assassin made his way to his master, under the cover of presence concealment. 
+
+“<em>Master.</em>” The Finn Whispered while taking position at the artist’s side. “<em>We did well… but the apartment being burnt down was less than, desirable….</em>” There was a pause as Simo cautiously surveyed their surroundings. “<em>I need you to trust me… let your guard down, and be bait…</em>” He whispered there was a hint of guilt present in his voice. After all if this gambit went wrong, it would be the end of their duo… 
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Sep-21 04:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="888888497878999040" id="message-888888497878999040" title="Message sent: 19-Sep-21 04:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was a close call but not only had Gustave successfully escaped his initial skirmish with the fox but so had Simo with the servant. Both were a bit worse off than when they started but at least they were alive. That unfortunately could not be said his apartment and the art inside.
+
+Once again his life&#39;s work had gone up in flame. His collection of artistics treasures and triumphs gone in one fiery assualt. But now was not the time to mourn their loss. Instead he thought how his family could have possibly caught in the fire and got hurt or worse. That lit a certain kind of spark in the old man and Simo could see his eyes burn as brightly as the flames engulfing the building in front of them.
+
+&quot;<em>So we did and so it happened. But we can not let this be our next loss. We take from this that we have to do any- oh you&#39;re ahead of the curve. Excellent,&quot; Gustave said as Simo suggested his plan. He blinked a few times as he processed what his servant said. &quot;Hmmm, if this is what it takes, I am more than willing to put my life on the line.</em>&quot;
+
+He turned around and walked toward the gathering crowd gawking up at the flames. His back was exposed to the building. &quot;No need to worry folks. Firefighters are on the way and everyone got out safely. Please go back to what you&#39;re doing. It will be just fine,&quot; His arms were up and open palms facing the people to reassure them. With the more stubborn ones, he moved further away from Simo.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Sep-21 01:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="889013394454237194" id="message-889013394454237194" title="Message sent: 19-Sep-21 01:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Their plan was set into motion. One of them would be bait, prey in a trap, and the other serve to strike the eager predator. Needless to say, the plan carried great risk with it. After all, even the slightest folly could lead to death. However, it was time to put their foot down. They had the audacity to attack them within their base, reducing it to ash. It was time to get even.
+
+So, Gustave made himself a target, playing ignorant while Simo lurked unseen, ready to attack or defend if needs be. The first sign of that arrogant Archer or the wily fox, they would be as good as dead.
+
+Unfortunately, neither of them showed. In fact, what did arrive to fight them was far, far worse than any single person.
+
+<strong>BANG! BANG! BANG!</strong> Three hefty blasts from far in the distance, like controlled explosions. Shortly after, three burning lights could be seen in the sky, flying through the air like drakes made of fire. But these were no simply familiars. Rather, they were blasts from artillery, and they were heading right towards their destination! The crowds began to scream and panic, those that had not yet left turning on their heels and breaking into a wild sprint. If they hadn&#39;t attracted undue attention before, they had now.
+
+Was there no limit to the firepower that smug bastard had access to?
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Sep-21 04:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="889240286939717712" id="message-889240286939717712" title="Message sent: 20-Sep-21 04:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The pair had made the plan, Gustave offering himself as bait while Simo stuck to what he does best... Waiting for the right moment to shoot. 
+
+The moment was excruciatingly long... Longer than any he had experienced while in the Winter War. Perhaps the snow being a natural weighted blanket helped with this sensation, helped to ease the tension of waiting. That Archer had to show himself, or perhaps the master will.... 
+
+Yet something worse came, 3 blasts rang out from a distance. A tell-tale sign of Heavy Artillery. The blasts soon crested into view, and they were headed right for this location. 
+
+&quot;<em>How much firepower does this asshole have...</em>&quot; The Sniper whispered to himself, scrounging up enough magical energy to activate invisible soldier one final time. Keeping enough for himself to use his noble phantasm. 
+
+ Those Civilians who have yet to flee began a sprinting away from the apartment block. In the Panic, Simo lost sight of Gustave. This was of some worry, but the artist had his ways of escape. 
+
+The Finn let three shots loose, aiming to strike each of the falling Artillery Shells. Presence Concealment dropped, but Simo kept moving with the cover of Invisible Soldier. The Trail of Snow gently fell behind assassin, trying to make it to the location of where the artillery was released from. 
+<span class="mention" title="RaptorAttacks#0350">@Deleted User</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Sep-21 02:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="889394352483352586" id="message-889394352483352586" title="Message sent: 20-Sep-21 02:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The soldier and the artist set their plan into motion, putting the vulnerable one out into the open as bait while the strong one waited for his target. Yet with the rumble of three cannons, the whole plan was tossed onto its head and the roles reversed. Simo was exposed while Gustave found himself swept into the crowd, hidden for the time being. 
+
+Gustave found himself calling for Simo to protect the crowd, only for the soldier to let off three pops of his own to counter the incoming fire. He could not see Simo through the crowd but the crack of his rifle could be heard over the din well enough. Clearly the two of them were less cold blooded than they originally thought.
+
+On his end, it did him little good to be drawn further and further away. Hooking his arm around a drain pipe, Gustave let the momentum of the crowd push him into a nearby alleyway. He stumbled and almost fell as his chest contracted from his earlier wound. Taking a breath, he let his hands do the rest of the work, priming another portal, this time on a wall beside him. In thirty seconds, the concave opening materialized before him. With a glance up to the top story of the building, a similar hole formed.
+
+With a few steps forward, Gustave was now on top of the building opposite his apartment and the market below. It was an older building with a flat roof cluttered with seating, plants and tables. A quaint rooftop cafe and a prime lookout spot to observe the chaos ongoing. Plus while it might strain his powers, he could feasibly teleport back over to the burning remains of his house. An act he was already getting the chalk circles to improve his chances and drop in at a moment’s notice
+
+<span class="mention" title="RaptorAttacks#0350">@Deleted User</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 04:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="889604118186971147" id="message-889604118186971147" title="Message sent: 21-Sep-21 04:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>BANG! BANG! BANG!</strong> 
+
+As they had been fired, so they were shot out of the air. The sky was set on fire by the three explosions, raining down a storm of ash and embers upon the city streets. Their ambush had been ambushed in kind, but in doing so, both attempts had been thwarted, with neither side worse for wear.
+
+The crowds scampered away, and amidst them, Gustave managed to slip away, using his portals to hide upon a rooftop cafe. Meanwhile, Simo remained invisible on the streets below.
+
+Back to square one.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Archer of Ming#0000" data-user-id="855672195615686687" style="">Archer of Ming</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 04:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="889604856766165003" id="message-889604856766165003" title="Message sent: 21-Sep-21 04:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;You know, our little game is starting to become tiring, Simo Hayha. I don&#39;t like boring games.&quot;</strong>
+
+That familiar voice returned, this time hidden in one of the many nooks and crannies between the different buildings. The sounds of footsteps further signified their presence, and when they stepped out of an alley with a disdainful look upon his face, it was all but confirmed. It was clear he was no longer intending to play nice.
+
+Why? Because he was not alone.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/aa9db61c723634a3080f3d763a1028c9-41690.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Li&#232; H&#250;#0000" data-user-id="855672195615686687" style="">Li&#232; H&#250;</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 04:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="889605631475081257" id="message-889605631475081257" title="Message sent: 21-Sep-21 04:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Come now, Jiao. I&#39;m sure our little friends mean no harm. They&#39;re simply lashing out against that which they can&#39;t understand~&quot;</strong> 
+
+The voice, warm like honey and dense with a teasing tone, belonged to a woman. Her garb was traditionally Chinese, an intricate and luxurious dress, no doubt an expensive article of clothing. Custom-made, too, as there was a hole in the back - a hole for a gigantic set of three fluffy blonde tails, swaying back and forth.
+
+This was Archer&#39;s master! They were the fox that Gustave had encountered earlier. But more than that, something would click in Gustave&#39;s mind, a detail that would click with Simo soon after.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Archer of Ming#0000" data-user-id="855672195615686687" style="">Archer of Ming</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 04:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="889606087681146950" id="message-889606087681146950" title="Message sent: 21-Sep-21 04:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jiao. She called him Jiao. 
+
+A Jiao who made use of firearms that went far beyond the modern age. A Jiao from China, with a key eye for strategy. There was only one person that this Archer could be.
+
+<strong>The Great Strategist of the Ming Dynasty, Author of the Huolongjing, General Jiao Yu!</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jiao Yu#0000" data-user-id="855672195615686687" style="">Jiao Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 04:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="889606821562712115" id="message-889606821562712115" title="Message sent: 21-Sep-21 04:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 05:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="889617131635884073" id="message-889617131635884073" title="Message sent: 21-Sep-21 05:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Assassin remained still as Archer called out towards his opponent. His rifle at the ready, unsure of where exactly the voice was calling from. The snow was beginning to form a nice pile beneath where Simo stood. 
+
+Then visual confirmation was made. The Delinquent showing himself, accompanied by... A woman, lavishly dressed, with 3 extraordinarily fluffy tails swaying behind her? Whoever the vixen was, it was clear they had to be Archer&#39;s master. After-all, she did reveal his true name <strong>Jiao</strong>. Silently however Simo repositioned, thinking over who this could be. 
+
+It took a moment for The Finn to connect any dots. But one thing did strike him, <em>Archer&#39;s use of Firearms</em>. This Jiao, had to be Jiao Yu, the very one who wrote a treatise that dealt with the use of early gunpowder weaponry. 
+
+Simo couldn&#39;t remain invisible any longer, he had been left in thought and not action. Invisible Soldier faded and the Finn was left in the open, rifle aimed right for his master. &quot;Nice to finally meet you, Jiao Yu.&quot; Magical energy began to form around the barrel of the rifle, the last of the reserves he could muster. 
+
+&quot;Too bad, our official acquaintance won&#39;t be for long. If you viewed me as prey, you really should not have waited so long.&quot; The Sniper shook his head, the magical energy finishing its charge. 
+
+&quot;<strong>Bullet of The White Death</strong>&quot; Simo spoke, a coldness in his voice that could freeze one&#39;s blood, while pulling the trigger. 
+
+The shot rang out. The Bullet having its course set to strike and kill Archer&#39;s Master! 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-271DE.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="855672195615686687" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="889758248788443157" id="message-889758248788443157" title="Message sent: 21-Sep-21 02:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was difficult to admit it but Simo and Gustave were running blind, scrambling to find their opponents while they viewed the pair as a couple of mice to toy with and ultimately devour once the fun was up. All Gustave and Simo could do was wait until the fox and Archer wandered out again and tempted their prey.
+
+And come out they did, as a pair, no effort to hide their voices, preferring Gustave and Simo to come to them. That would be their mistake however. To walk out of cover into an assassin’s sights was tantamount to suicide. The old man reckoned he had about ten or twenty seconds until Simo’s NP was fully charged and ready to piece master and servant with one bullet, one push of the finger, a stroke of the firing pin. Its odds of landing? High but ensured? No, that is what he would have to do himself. 
+
+He swung the target of his primed portal gateway over to a building beside the Ming Dynasty Duo and covered the distance between the rooftop cafe and a penthouse balcony in a single step. From there, he stretched out his hand and with each word under his breath, a portal lay dormant, primed to go off should the target dodge or the bullet stray to ensure a clean kill. They would be inlayed on such innocuous things such as a clothesline, a dumpster or a wall. All that could be noticed is the implanted area seeming to flicker and roll as if under the effects of heated air. A mirror lay beside him in case that alone wasn’t enough.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span> (The portals will activate if the bullet misses its mark and will then be redirected through them as needed. Imagine their function like the mystery pipes on a mini-golf course)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 02:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="889766652143628300" id="message-889766652143628300" title="Message sent: 21-Sep-21 02:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Their arrogance had gotten the better of them. They had allowed themselves to believe that victory was assured, and that all was left was to claim it. They thought that loss was impossible, that it would take a miracle for them to lose.
+
+But, what was a Noble Phantasm, if not a crystallisation of the impossible made possible?
+
+Simo Hayha left his hiding, took aim, and released his true power. Valkoinen Kuolema, the Bullet of the White Death, the mythos of hundreds of kills loaded into one. It zoomed towards their opponents, not toward Jiao, but instead, towards Li&#232;. Killing the serpent by severing their head. A lethal blow.
+
+Or at least, it should be.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jiao Yu#0000" data-user-id="855672195615686687" style="">Jiao Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 02:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="889766996202356756" id="message-889766996202356756" title="Message sent: 21-Sep-21 02:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Bump</em>.
+
+Perhaps it was foolish, to assume that a great tactician would not have a contingency for their foe&#39;s trump card. Although, one would not have expected it to take such a primitive, nay, such an exceedingly simple form.
+
+Jiao Yu had just shoved their master with the side of their arm. A split second reaction, nearly instinctual, moving their head to the side by a few inches.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/aa9db61c723634a3080f3d763a1028c9-41690.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Li&#232; H&#250;#0000" data-user-id="855672195615686687" style="">Li&#232; H&#250;</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 02:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="889767723733766175" id="message-889767723733766175" title="Message sent: 21-Sep-21 02:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;AUGH!&quot;</strong>
+
+Her brains were splattered across the wall behind them, where the dormant portal would lay devoid of their purpose. With a piercing scream of pure agony, Li&#232; would double over, collapsing to the ground as they clutched desperately at their wounded skull.
+
+<strong>&quot;J... J... JIAO! Y... Y... YOU, GUH...&quot;</strong> She sputtered, trying to conjure up some coherent sentence. Alas, she had suffered too much damage. She was in no condition to continue.
+
+But she might survive. If this fight had been ended quick, there might be enough time to get her to a healer. That was the gambit.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jiao Yu#0000" data-user-id="855672195615686687" style="">Jiao Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-21 03:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="889768568097484860" id="message-889768568097484860" title="Message sent: 21-Sep-21 03:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Shhhh. Be silent now, Master. Allow me to finish my fight, and then your pups may tend to your wounds.&quot;</strong> Jiao murmured, eyes locked upon Assassin. As soon as the last of his words left his mouth, his body would suddenly begin to overflow with mana, every fold of his coat rippling, every strand of his hair forced back by invisible winds.
+
+<em>I shall become the next Sun Tzu. I shall become greater than any other. What other generals know, I shall know tenfold. What other philosophers think, I shall think tenfold. What a dragon breathes, I shall breathe tenfold...</em>
+
+A Noble Phantasm release, and a powerful one at that. This wasn&#39;t good. If he was allowed to make full use of it, there was no telling if either Simo or Gustave would survive it!
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Sep-21 12:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="889910289519235132" id="message-889910289519235132" title="Message sent: 22-Sep-21 12:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Both The White Death and Simo Hayha were satisfied. The bullet would kill the vixen, as if she were a fox being hunted for sport. Her death being added to the multitudes already taken by this man’s hand. 
+
+But it didn’t hit where it was intended too. Jiao Yu moved Li&#232; ever so slightly, a simple tactic which wouldn’t cause the bullet to out right kill the woman. Instead making the kill sloppy, and inhumane. An agonizing death as blood would weep from the wound, and her conscious would slowly deteriorate. 
+
+Her blood sprayed over the wall, creating a disturbingly beautiful pattern not too dissimilar to Gustave’s art. Speaking of the Artist, Simo noticed the portal’s existence. He was close by. 
+
+Which was bad news as Jiao Yu took his turn, beginning the chant of a Noble Phantasm. Simo had no energy left for a second firing of his own Noble Phantasm, and no energy left to activate Invisible Soldier. This was Check. 
+
+Simo went through the calculus for this situation. Either he or Gustave would perish, in almost every scenario. Some they both met an untimely end. So he came to his decision. 
+
+“Gustave, Thank you.” The Sniper spoke aloud, unsure if his master would hear his thanks. He handed control over to The White Death, and they leaped towards archer bayonet first. Ready to take the brunt of this Noble phantasm even if it spelt their end.
+
+ “<strong>Now then Archer, let’s finish this</strong>” The creature roared mid-lunge.
+<span class="mention" title="RaptorAttacks#0350">@Deleted User</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jiao Yu#0000" data-user-id="855672195615686687" style="">Jiao Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Sep-21 01:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="890107000925593670" id="message-890107000925593670" title="Message sent: 22-Sep-21 01:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This was it. A sacrifice to protect that which needed protection. The pawn moved in the path of the bishop to shield the king. He would soak the brunt of this attack, and Gustave would survive. He would not win, but he would survive, and that would be enough.
+
+<strong>&quot;Foolishness.&quot;</strong>
+
+Archer&#39;s eyes narrowed, and his mouth twisted into a sadistic smile. Suddenly, his right arm would combust into flames, clothes and flesh alike melting away, revealing the metal and wiring underneath. Jiao was a cyborg?! An odd revelation, but one that the sniper could not dwell on.
+
+<strong>&quot;Foolishness, foolishness, foolishness! You are a FOOL, Simo Hayha! You might be able to play scapegoat for an Anti-Unit Noble Phantasm, BUT NOT AN ANTI-ARMY ONE!&quot;</strong>
+
+A critical error. An assumption that this attack would be precise and targeted, as befit a tactician. No, this Noble Phantasm would be a spectacle of sheer explosive power, like a volcano of gunpowder surging forth into a screaming blast of infinite inferno. He wasn&#39;t just planning to exterminate a single servant. <em>He was planning to wipe out the servant, the master, and the whole city block behind them.</em>
+
+<strong>&quot;LET&#39;S FINISH THIS INDEED!&quot;</strong> Jiao cackled a manic grin upon his face as Assassin leapt towards him, angling his crackling arm towards Simo. <strong>&quot;MY NOBLE PHANTASM, ACTIVATE! BECOMING THE FIRE DRAKE; HUOLONGJI-&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Sep-21 01:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="890107933457784853" id="message-890107933457784853" title="Message sent: 22-Sep-21 01:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">An arrow lodged itself into the outstretched arm. Well, to call it an &quot;arrow&quot; was correct only in technicality. Rather, it was closer to a spear, as long as one and as sharp as one. The only sign that it was an arrow was that, judging by its intense velocity matched with its eagle-eyed accuracy, it had been fired from a bow.
+
+Jiao blinked. The attack would not stop his Noble Phantasm&#39;s release, but it had forced the arm out of position. It was flung backwards, now aiming at the empty street. If it was released now, it would do nothing but cause property damage. Ngh, a trifle! He could recover from this simpleton&#39;s idea of an ambush! All he needed to angle his arm into position, and-
+
+-and get pierced through the throat by the White Death&#39;s bayonet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5ec5d28be69e1c557b24c572b9e4f55-7CA24.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jiao Yu#0000" data-user-id="855672195615686687" style="">Jiao Yu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Sep-21 01:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="890109701918949416" id="message-890109701918949416" title="Message sent: 22-Sep-21 01:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;...Haah, this is annoying! How am I supposed to plan for things I don&#39;t know about! It&#39;s not fair!&quot;</strong>
+
+Blood gushed forth from the gaping wound inflicted upon Archer&#39;s throat. Soon, that flowing blood would begin to shimmer and turn gold, floating upward. Jiao Yu, Archer of Ming, was dying. Victory was attained not with the Bullet of the White Death, nor with the Huolongjing. Nay, it had been won by simple weapons, arrows and knives. It ended not with a glorious bang, but with a quiet whimper.
+
+Literally. With his eyes wide, watering slightly as he fought back tears, Jiao let out a whimper. A mind full of plans, stratagems, and gambits had all been rendered null and void.
+
+<strong>&quot;I could have done so much more.&quot;</strong>
+
+A shaky arm, the one that had been wounded by the White Death, reached up and grabbed the brim of his hat, pulling it over his eyes. Water began to leak down his cheeks, and his mouth forced itself into a shaky smile.
+
+<strong>&quot;Checkmate for me, Simo Hayha. Do me a favour, and make sure the girl gets to a hospital, would you? Soldiers shouldn&#39;t die for the folly of their generals.&quot;</strong>
+
+With those choice words, Jiao vanished, his body crumbling apart into fading mana. All that remained of him was his pair of pistols, which clattered to the floor by Assassin&#39;s boots. A last gift, perhaps? Or just another lucky coincidence?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/aa9db61c723634a3080f3d763a1028c9-41690.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Li&#232; H&#250;#0000" data-user-id="855672195615686687" style="">Li&#232; H&#250;</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Sep-21 01:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="890110140827721728" id="message-890110140827721728" title="Message sent: 22-Sep-21 01:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Ar... cher...&quot;</strong>
+
+A hand reached out, trying to grasp the last fading of Archer&#39;s embers as they floated away into the sky. And then, the hand fell limp, as the magus lost consciousness.
+
+The fires of the Loft continued to burn. It appeared there was much left for them to do before this war was done.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-D4C69.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="855672195615686687" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Sep-21 01:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="890110488963330088" id="message-890110488963330088" title="Message sent: 22-Sep-21 01:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Jiao Yu: Vanquished</strong>
+<strong>Li&#232; H&#250;: Defeated</strong>
+<em><strong>Gustave Renoir and Simo Hayha: Victorious</strong></em>
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20loft-404%20%5B853372198559678514%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-38133.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="855672195615686687" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Sep-21 12:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="890280682608295977" id="message-890280682608295977" title="Message sent: 23-Sep-21 12:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://m.youtube.com/watch?v=OkF8enhN5wk">https://m.youtube.com/watch?v=OkF8enhN5wk</a>
+This would be a glorious final moment. Sacrifice in the name of something he had devoted himself too.
+
+But Archer cut through their idealistic thinking, along with a small piece of metal beneath their flesh? But now was not the time to think about that. <strong>This was an Anti-Army level Noble phantasm</strong>.  Simo himself began to panic, but The White Death still carried forwards. It was on a mission, and it will see it through. 
+
+The entire block would be destroyed, Gustave, the Apartment, any civilians who had foolishly remained in the area. But if they kept their pace and struck now, then Jiao Yu would be destroyed. 
+
+Then from above, intervention occurred. Call it Simo’s uncanny luck, or another hunter striking down their prey. But a spear pierced through Archer, disrupting the Noble phantasm’s release. Allowing their bayonet to satisfyingly pierce the enemy’s throat. 
+
+Simo regained control, straightening himself out. His arm still contorted from jabbing Jiao in the throat. The opposing servant backing away, blood flowing from the wound. 
+
+“You fought well, strategist. I appreciate that we had this opportunity, Jiao…. We know of an excellent clinic which will treat her wounds.” Solemnly Simo nodded towards the delinquent. “Rest now, perhaps we’ll fight again some day, and the outcome will be different.” 
+
+A bittersweet taste was left from this victory, as Simo took the gifts left for him. A pair of Pistols. 
+
+He was still weak, and was struggling to stand. But the sniper had a duty to fulfill. It was a struggle to move towards the wounded woman, but he still did. And so Simo hoisted her into a fireman’s carry, heading towards <span class="mention">#the-clinic</span>  without another word. 
+
+Gustave could easily guess where the servant was headed. Especially if he had heard what was spoken between the assassin and archer in the final moments of the confrontation. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="RaptorAttacks#0350">@Deleted User</span></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UC7uzRsCewFJw_L806z9PzGA">Bits &amp; Pieces</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=OkF8enhN5wk">
+                                                        <div class="markdown preserve-whitespace">Arctic Monkeys - R U Mine? (Official Instrumental)</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/OkF8enhN5wk" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

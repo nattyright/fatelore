@@ -1,0 +1,3302 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - rooftop-park</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Central Business District / rooftop-park</div>
+
+            <div class="preamble__entry preamble__entry--small">What better way to show off one&#39;s wealth than by using one of the most expensive areas as a battleground for the City Grail War? The rooftop park that was designated as a battleground is one of Delphi&#39;s largest. Spanning the rooftops of 3 adjacent skyscrapers, the park is lush with vegetation. It&#39;s practically a mini forest in the heart of the city. Cameras have been installed at key locations for the duration of the War.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 19-Aug-21 12:00 AM and 03-Sep-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Aug-21 11:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="880648265429831680" id="message-880648265429831680" title="Message sent: 27-Aug-21 11:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Where is Rat Markiplier?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Aug-21 11:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="880654878622490654" id="message-880654878622490654" title="Message sent: 27-Aug-21 11:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This would be the second time in a few weeks that Gustave had travelled to make a deal with the devil. Though perhaps this time it was more apt to consider that now was the time to make good of the deal. Compared to the dog like loyalty of Simo and the safety he guaranteed back at the Loft, just walking into tower, the presence of Laurent was like a gun pressed against back of Gustave&#39;s neck.
+
+ He had no illusions that the magnate would just give up his company and all that he worked for in just a stroke of the pen. He hadnt become one of the most influential men on an island of tyrants without being creative in how to carry through a deal, then again so had Gustave. 
+
+Perhaps because it was anyone&#39;s game and the stakes so high that the artist felt a hint of reckless glee run underneath the apprehension of gambling one&#39;s own life. That self-destructiveness, the draw of the end, a spiral towards a singularity at the end of one&#39;s vision, his muse since the very beginning and now he came to court with it again.
+
+As the elevator shot upwards at great speed yet with not a sound, his mind drifted back to the musician he had spared with and the reckless abandon with which he played. He must have purposefully been putting himself at risk for there was thrill in it, the fight for survival, no matter how contrived, still made the body respond the same way and pump the same chemicals.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="880654931609124874" id="message-880654931609124874" title="Message sent: 27-Aug-21 11:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And like any potent behavior altering drug, one could get addicted to it. He was loath to admit in mixed company, but Gustave couldn&#39;t help but draw parallels to the inherent danger in Lemuria, its scheming and intrigue but also the progress and glory it promised and delivered. The Engine of Progress had its own rhythm to it and what a hypnotic one it was...
+
+The elevator chimed and Gustave automatically stepped out into the same luscious space as before, yet this time a deathly shadow observed from afar.
+
+&quot;Mr. MacKenzie. I&#39;m glad to see you still in one piece and just as spirited as before. Where should we begin?&quot;
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Aug-21 11:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="880659440360120390" id="message-880659440360120390" title="Message sent: 27-Aug-21 11:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was beginning to darken. Sunlight filtered through the branches and leaves of Delphi&#39;s Rooftop Garden. It was beginning to simulate the effects of autumn, with leaves beginning to fall onto the floor below, which Gustave stepped over.
+
+It was not a natural seasonal change, of course, but changing the season at a whim was a show of authority for the floating city.
+
+The air was clean, too. However, the smog constantly polluting Olympia&#39;s sky was beginning to seep into Delphi as a result of their continuous contest. Like a parasite, it kept burrowing deeper and deeper. 
+
+The same could be said for the man at the end of the rose garden. 
+
+A black suit and tie, the glint of glasses, the click of finely shined shoes came together to form Gustave&#39;s foe and former &quot;ally&quot;.
+
+&quot;Ah, welcome, Gustave.  You&#39;ve left Assassin behind, I see.&quot; Laurent said, looking through the foliage around him, eyes suspicious. He seemed almost... fearful? Was this a mask, or the genuine emotion?
+
+&quot;Take a seat, I have the contract prepared.&quot; Laurent said, brandishing a piece of paper from his pocket, before placing it on the stone table that sat between both men. Laurent took a seat, and gestured for Gustave to do the same.
+
+The contract was fairly simple: Should Laurent MacKenzie die, Gustave Renoir would take control of MacKenzie Industries and all subcompanies until his daughter&#39;s 18th birthday. Gustave Renoir was to act as a private instructor, should this be the case.
+
+If Gustave died, the contract would be void. If both died, the contract would be void.
+
+Should Gustave or his Servant personally kill Laurent, the contract will be void.
+
+It was as Laurent said before, with the addition of a new clause: a safety net that solely benefited him. There was also no mentions of the alliance, or mentions of not targeting one another.
+
+&quot;How is this?&quot; Laurent said, motionless.
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Aug-21 12:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="880676797606420540" id="message-880676797606420540" title="Message sent: 27-Aug-21 12:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A step forward and a leaf underneath Gustave&#39;s shoe gave way with a soft crunch and the dimming of the day made itself apparent with a reprieve of the industrial heat that was beginning to ooze over into the city that he been raised by and the city he now raised his own family and so on.
+
+A quick look to the sky would only confirm this in more dramatic fashion as a hazy smog blurred the outline of Olympia and extended its tendrils out towards the city. A look landward would see one of its architects perched neatly at the same table as before. 
+
+&quot;Just like last time, Laurent. It will be like we never left the first time,&quot; the painter&#39;s eyes and voice as steady as the treasured hands he used to make such work of canvas and pigment. An outline of a smile graced his lips, the same paternal expression as he typically did. 
+
+&quot;Excellent, just allow me to look over it one last time before we agree... they say a modicum of caution can save a whole day&#39;s worth of work... hard to visualize but... sloppiness can and does end in ruin... &quot; he muttered, stealing occasional glances up at Laurent as he combed over the document, eyes cresting the rims of his glasses due to the angle of his head. He scrunched his brow and laid a finger on a space between the end clauses.
+
+&quot;There is one thing missing here. A clause that covers for my untimely demise. I&#39;m sure you know I&#39;m just as much a family man as you yet there are a great deal more family and nothing here to insure their care.  I am not calling for you to directly oversee them, but a direct financial compensation for them in the case of my demise along with scholarships and industry connections would be greatly appreciated for my children and grandchildren. After all, would I not be caring for and mentoring your own daughter should something go wrong the other way around, hmmm?
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Aug-21 01:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="880680974785064971" id="message-880680974785064971" title="Message sent: 27-Aug-21 01:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Shrewd old man, though admittedly greedy. The contract was already heavily skewed in Gustave&#39;s favor, and it was likely that both men knew that. Any lawyer would agree that Laurent lost the most in this exchange.
+
+If Laurent died, Gustave would get his company, which would directly satisfy his request.
+
+It was likely that Gustave would take revenge on Laurent. The businessman had anticipated that, having abandoned the fight in Olympia with that in mind. He had known from the moment that Assassin had attacked him that this alliance had collapsed.
+
+If that were the case, then Assassin was likely here. Where? Laurent&#39;s eyes flitted to the foliage behind Gustave. Nothing. Behind him? Would it even matter? Laurent&#39;s magic circuits fed a spell to deflect Simo&#39;s bullets—he had started running it since he had appeared here, but if Assassin went berserk...
+
+He would die, unless Caster could pull through. He had to have faith in his Servant, even if Caster was a just a tool.
+
+He was getting sentimental. Think!
+
+&quot;It&#39;s impressive how clever you think you are. Your greed is admirable.&quot; Laurent said, checking his watch. In actuality, he was checking the reflection behind him. No Assassin. Good. 
+
+&quot;I will offer your grandchildren internships with MacKenzie Industries&#39; Delphi Branch. As a result, they will be looked after with satisfactory financial aid for as long as they are employed. Of course, leaving the company will result in the end of financial aid.&quot;
+
+In other words, step out of line, and no more money. This was an attempt to hold an entire generation of the Renoir family hostage.
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Aug-21 10:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="881366480653004800" id="message-881366480653004800" title="Message sent: 29-Aug-21 10:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;There is no greed involved in this, just a father looking out for his family. That is all,&quot; the man waved dismissively at Laurent&#39;s remarks. He found it hard to believe the CEO was much of a father if he thought Gustave&#39;s request was something of personal greed. Perhaps it was his own reflection he was seeing in Gustave&#39;s glasses rather than the man wearing them? 
+
+&quot;It&#39;s not a bad deal per se but there is an element of control to it that perhaps is predatory. The scholarships and aid should not be predicated on serving the company. I&#39;m sure there is plenty of funds within the family foundation to aid mine without making a dent in the checkbook. We already amended the contract once, we can amend it again.&quot;
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Aug-21 11:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="881373453230436353" id="message-881373453230436353" title="Message sent: 29-Aug-21 11:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Don&#39;t be daft, Gustave. It&#39;s always about greed.&quot; Laurent said, waving his hand nonchalantly, as if swatting away the older man&#39;s remarks. &quot;People want things. You might want them for other people, but you still want. Want too much, and that emotion becomes greed.&quot;
+
+&quot;Not that greed is a bad thing. It&#39;s when you ask a greedy man for his belongings that it becomes an issue.&quot; Laurent smiled and shook his head. An honest statement. Laurent was extremely greedy. One did not become a business tycoon by settling for what they had.
+
+After taking a moment to let Gustave consider the statement, Laurent continued. &quot;Your grandchildren, all of them, are receiving substantially higher amounts of financial aid than other grail war relief programs. Work for me for a month, and they&#39;ll be able to quit work to job-hunt at their leisure. This deal is skewed in your favor.
+
+Tapping the contract with a pen, Laurent raised an eyebrow. &quot;What part is predatory? I&#39;m not forcing your grandchildren to work. There is no binding contract of legality forcing them to my side.&quot;
+
+&quot;Even if you don&#39;t trust me, this contract is binding. No gilded words will let me slip out of it. This—&quot; Laurent spread his hands out over the sheet that played with the Renoir family&#39;s future— &quot;is absolute.&quot;
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 10:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="881725040989732934" id="message-881725040989732934" title="Message sent: 30-Aug-21 10:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;And so I made the mistake of asking more from the greediest man on two cities, eh? I suppose I should know better though I haven&#39;t forgotten what you mentioned last time about those I owe in a faraway city,&quot; Gustave shugged off the younger man&#39;s dismissals. He had heard many more over his past years and he wasn&#39;t going to let another stand in his way. &quot;It would be valuable to erase that contract...&quot;
+
+He listened to Laurent go on to further elaborate the details of the arrangement and the contract they had worked to make in light of the realities of the competition that both found themselves in. He heard the words the CEO used to describe the contract and for a moment he considered the potential wealth and promising student he could have at its end guaranteed for him and if he lost, his kids and their kids would end up alright, wouldn&#39;t they? They just had to work for the company and the man it was named after.
+
+He took out a pen from his pocket and moved to sign the sheet of paper that would lock him in until death. Yet he found himself unable to write his signature. He would put it off to his advancing age or hesitancy any other time but despire their genial tones to each other, Laurent rubbed Gustave in all the wrong ways.
+
+If he wanted his freedom from the Salon and Lemuria, why should he sign with their equivalent from another city and now trap his family into his own affairs, had he not wanted to separate them from his mistakes all this time? And Laurent was already a man who had betrayed Gustave once. He could not trust a man like him, not after he had done so with Nathaniel. He could not allow himself to be blinded again.
+
+&quot;I&#39;m sorry Laurent but this time there will be no deal. What will happen ultimately will happen regardless of any document. We tried once and that didn&#39;t fare well for either of us.&quot;
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 10:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="881728355022536756" id="message-881728355022536756" title="Message sent: 30-Aug-21 10:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Simo sat in his hiding spot. While Laurent did direct Gustave to not bring his servant, The assassin and artist both agreed this would be a wonderful time to disrespect his wishes. 
+
+<em>’We have one goal. Something will be signed in ink or blood. And we’d prefer it to be blood’</em> The sniper was left to his thoughts, while sitting in his perch. Presence Concealment keeping passerby’s blissfully unaware of the danger lurking above. 
+
+The Finn had become more focused on his jaw than he had previously. In moments of deep concentration, he’d catch himself touching it and scratching it, as if it were some foreign body now deeply intertwined with his being. 
+
+At some point they would have to admit that they are not truly Simo Hayha… that thought terrified the rational half who’s identity was built upon that pretense. The other more bloodied half could care less about who they really were. All it wished for was more bloodshed, more things to consume. 
+
+After all, one thing it desperately wanted dead had escaped its grasp with the help of <em>cheap tricks</em>. This time would not be different. 
+
+Moment passed and finally the appointed time of meeting came around. Gustave Renoir and Laurent Mackenzie had opted for this place for a few reasons from what Simo understood.
+
+1. It was where their initial deal was made
+2. It stood as an official battleground for the CGW
+3. It was also in the view of the public
+
+None of them really mattered to the White Death. They would have blood by the end of this.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="881728403206733884" id="message-881728403206733884" title="Message sent: 30-Aug-21 10:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And as soon as Laurent Mackenzie came into their line of sight, the lust could not be contained any more. Simply pushing the rational half out of control. 
+
+It was a bone chilling presence, a devil who wanted its dues.  
+
+It’s icy finger wrapped around the trigger, presence concealment dropped. There was no interference for this, it would be a perfect kill.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/16201c791e7b91af3014f6d829814a86-21896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">30-Aug-21 10:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="881728449549586432" id="message-881728449549586432" title="Message sent: 30-Aug-21 10:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 10:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="881731493016256554" id="message-881731493016256554" title="Message sent: 30-Aug-21 10:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nietzsche had been given the task of accompanying his new Master to a meeting. It seemed Laurent&#39;s idea of getting involved was sitting to have an idle chat. Caster wouldn&#39;t complain about this. In fact he much preferred the idea of peace talks as opposed to combat.
+
+Unfortunately for Nietzsche the civil conversation he craved would not last long. Caster&#39;s eye twitched and he pulled at his mustache as he picked up on a trail. There was another servant nearby and their presence was coming off rather strong.
+
+Caster instinctually flicked his eyes towards the direction of Assassin. An odd sensation would come over the enemy servant as a voice echoed in his head. &quot;It&#39;d be in your best interest to pull your finger away from that trigger.&quot; 
+
+What was this sudden voice in Simo&#39;s head? Was it his own conscience? These were questions he&#39;d have to ask.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 10:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="881731747040084039" id="message-881731747040084039" title="Message sent: 30-Aug-21 10:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Another presence made itself know within the sniper’s mind. Of course, there’d be someone else up there. Another piece to cause turbulence. 
+
+This interruption made The White Death to remove its finger from the trigger. And begin to look around for whoever it was that was speaking. Not exactly recognizing that the voice came from within.  
+
+“<em>where… are… you…</em>” it could only hiss as its aim went back towards Laurent. <em>IT WILL KILL HIM</em> 
+
+The finger wrapped itself around the trigger once more and prepared to pull. 
+
+Internally the rational half of Simo could only wonder if this was where caster had gone. Now under the service of Laurent Mackenzie.  So he responded, not sure if they could have an actual conversation? 
+
+‘Are you… the caster? Did that rat of a man figure out how to steal you from another?’</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/16201c791e7b91af3014f6d829814a86-21896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">30-Aug-21 10:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="881731842301132806" id="message-881731842301132806" title="Message sent: 30-Aug-21 10:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="881735310575304745" id="message-881735310575304745" title="Message sent: 30-Aug-21 11:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;To find me, you need not look anywhere but yourself.&quot; As the voice once again echoed in Simo&#39;s head, he would suddenly be engulfed by a pitch black darkness. 
+
+The sounds and sights of reality would disappear as the ground beneath his feet began to feel new. The weapon in his hand would cease to exist, his body would feel strange as if it weren&#39;t his own. It was almost as if he were being pulled away from his body, somewhere far away, deep into the confines of his mind.
+
+&quot;Before the show starts I&#39;d like it if you could introduce yourself. &quot; The voice said, once again coming from inside Assassin&#39;s conscience.
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="881735596454871050" id="message-881735596454871050" title="Message sent: 30-Aug-21 11:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Everything slipped away, as Assassin spoke mentally to whoever was causing the extra voice. 
+
+It felt as if it were a free fall, before being shunted to the very depths of the sniper’s mind. Both the white death and Simo Hayha existed as one within this space. 
+
+The voice came around again, cordial, and genteel. Fitting for a caster, and an ability fitting for one as well. Definitely the work of magecraft leagues and bounds ahead of what any human could accomplish. 
+
+“My name isn’t that important…. but since you asked nicely. Simo Hayha, The White Death.”  The man responded in a calm tone, it was nauseating to be within this blank space within his own mind. And weird to have both himself and the white death be unified as a being again. 
+
+“Might I ask your name…. Oh great and mysterious… mind manipulator?”
+( <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Eagan#8440">@Eagan</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="881735863283888139" id="message-881735863283888139" title="Message sent: 30-Aug-21 11:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nietzsche would remain silent for a moment after hearing Simo&#39;s name. He thought on it trying to think if Simo or White Death sounded familiar. Perhaps Assassin was from a time after Nietzsche. A servant more modern than himself was definitely a rarity.
+
+&quot;I will reveal my name when necessary, first I need to know more about you.&quot; Nietzsche had no qualms about giving his real name. However, he wanted to feel out Simo first in order to build a world suitable for holding him. 
+
+&quot;Tell me, Simo, why do they call you the White Death? It is a rather grisly title&quot; Caster&#39;s curiosity was taking center stage. He was sure to be delighted if he had a chance to learn of Simos origins.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="881736753726246912" id="message-881736753726246912" title="Message sent: 30-Aug-21 11:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Of course, the attacker did not reveal his name as readily as the soldier. It would simply not be that easy, and for all he could know.... Gustave was left out in the open by himself. Left to deal with Laurent Mackenzie. 
+
+&quot;So... Elevator pitch? I believe thats the proper.... term? For this time.&quot; The Sniper kept looking around the blank space that was his mind, and that same nausea swept over him. Being within one&#39;s self.... it was a new experience. An absolutely awful sensation. 
+
+They let out a slight growl. &quot;We did... What was needed of us. Killed 500 or more persons. For the sake of keeping our country safe from <strong>The Soviets</strong>&quot; The White Death spoke in a hiss, and emphasized the name of their enemy. &quot;The Winter War, stuck in the interim between the Two World Wars... That is why we fought to defend the homeland.&quot; Its fists balled and their movements became more jerky, there was something peculiar about this specimen.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="881736999617302608" id="message-881736999617302608" title="Message sent: 30-Aug-21 11:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Two world wars?&quot; Nietzsche instantly got stuck up on this terminology. If Simo did in fact come from a time after Nietzsche, and the world wars were exactly how it sounded, he would give himself a large pat on the back. Long ago Nietzsche had made a prediction that the next era of man would be overtaken by war and a need for conquest. The idea that he may have been correct scratched his ego in the best way possible. 
+
+&quot;Us? You refer to yourself as multiple people… how odd.&quot; Nietzsche spoke in Assassin&#39;s mind picking at his verbiage. &quot;Is there more than one person locked inside of your head? What a treacherous fate, something must be hard on your mind to cause something of the sort&quot; 
+
+One thing was clear. Assassin was a soldier with a heavy conscience, one with a name that superseded himself. Perhaps he was resurrected as both person and legend. Similar to how Nietzsche was revived as an amalgam of his works.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="881740000427933766" id="message-881740000427933766" title="Message sent: 30-Aug-21 11:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Laurent sighed, before shrugging. He took the geass scroll, pulled a lighter from his pocket, and put the contract to the torch.
+
+&quot;A pity. I didn&#39;t expect you to back out. You&#39;ve surprised me, Gustave.&quot; If there was disappointment, the man didn&#39;t show it. Perhaps he didn&#39;t need to. A skewed contract in Gustave&#39;s favor didn&#39;t matter much. The only benefit to come from it for Laurent was a haphazard protection and the ability to strangle Gustave&#39;s grandchildren. The ultimate kick to the old man after he passed.
+
+Not a single thought was spared for what would happen to his daughter.
+
+If that had failed, then...
+
+Still, why didn&#39;t Gustave sign the contract. It was fairly open. It didn&#39;t take Laurent long to ponder that, given his prior thoughts on Gustave failing to sign the dotted line.
+
+The protection in the contract, that which favored Laurent. The businessman was too cold and uncaring to even consider Gustave&#39;s emotional reaction to those of Lemuria and the Salon. Gustave&#39;s emotions mattered little. As such, they were not accounted for. It was a human mistake.
+
+&quot;However, something is bothering me, Gustave.&quot; Laurent said, watching the ashes of the geass scroll float away in an artificial wind. &quot;Your words make no sense. This is a contract that is binding in every sense in the word. It is ingrained into our beings. &#39;What will happen will happen&#39;? Gustave...&quot; 
+
+The businessman leaned forward, glasses gleaming.
+
+&quot;What are you hiding from me?&quot;
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="881740578109403167" id="message-881740578109403167" title="Message sent: 30-Aug-21 11:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Whoever this was that had trapped them within their mind, was most certainly from an age before. Most if not all Servants would be from some time before Either World War. 
+
+&quot;Yes.... There were two...&quot; Their eyes narrowed, and teeth bared. Even if while within this mental domain their facial scarf remained. &quot;And &#39;two&#39; of us exist within... We were only awakened thanks to <em>Laurent Mackenzie</em>.&quot; The voice again spoke in a harsh hiss, and almost spat out the name of Caster&#39;s new master. 
+
+A change in Simo&#39;s body language changed once more as his fist loosened up. &quot;I&#39;m new to this as well... That... That was the killer I was made out to be... A monster.&quot; The voice was more natural and less animalistic, and spoke in a hushed tone. 
+
+&quot;But I would prefer to not have a guest, overstay his welcome.... Two is Company, Three is a crowd.&quot; 
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="881740724884889652" id="message-881740724884889652" title="Message sent: 30-Aug-21 11:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;hmm yes three bullets is a lot to shove into my cranium&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="881740954153943101" id="message-881740954153943101" title="Message sent: 30-Aug-21 11:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;for one with a head as empty as yours.... We might need dozens, to actually hit something vital.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Aug-21 11:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="881741373454291014" id="message-881741373454291014" title="Message sent: 30-Aug-21 11:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I&#39;ve got it! Simo, thats how he generates his gravitronic powers! Its his massively thick skull&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 06:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="882027752247681085" id="message-882027752247681085" title="Message sent: 31-Aug-21 06:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh yes it would appear I was correct! How magnificent!&quot; In an instant Nietzsche&#39;s tone had gone from that of seriousness to one of delight. &quot;A world full of conquest, driven by man&#39;s anguish from old world values? Oh sweet validation!&quot; Nietzsche was rarely one to toot his own horn, however the realization that he had made a prophetic judgement of mankind&#39;s fate was a joyous moment for him.
+
+&quot;Well I shouldn&#39;t get ahead of myself. You see I&#39;m just rather intrigued in these &#39;world wars.&#39;... now Simo and the White death. Tell me, who instigated these wars? Surely they were fought with world conquest in mind? What actions could drive a man to kill 500 people with his own hands?&quot;
+
+Nietzsche&#39;s head was running rampant with curiosity. He had almost forgot about his goal of mentally tormenting Assassin. 
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 06:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="882031544838008853" id="message-882031544838008853" title="Message sent: 31-Aug-21 06:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The assailant was rather intrigued by the World Wars, and made it sound as if he had predicted them. Then asked another set of questions, one in particular that made Simo shudder. 
+
+Their eyes closed, and brief mental images of those he had killed flittered through his mind. Each and every face, blurred, except for one. The first man the sniper killed. 
+
+The Finn let out a breathe. Tension loosening. &quot;I really, really wish you didn&#39;t have to ask.... so many... questions...&quot; Another breath was taken. &quot;The first world war, I know little of... but The Second was.... Caused by a group known as The Nazis.... Radical Germans who corrupted their nation.... Men.... women.... Children.... All abused by their love for their country.... All driven to commit terrible acts as if they were normal...&quot; A pause was taken and that change in posture occurred once more.
+
+&quot;<strong>That same love of their country is what drove me to protect Finnland.</strong>&quot; The White Death spoke boldly, its hand removing the facial scarf. Showing the maw of a demon. &quot;We could have easily been driven to commit worse. But The Soviets wanted to conquer our homeland, so we did what any citizen defending their home would.&quot; 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 07:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="882039288634675280" id="message-882039288634675280" title="Message sent: 31-Aug-21 07:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nietzsche took a moment of silence as he heard of the Nazis. His own people, the instigators of a torturous war. At the same time this did not surprise him. Nietzsche&#39;s philosophy was heavily influenced by his aversion to the growing nationalism and antisemitism in Germany. 
+
+&quot;I see the pain and death… Simo these things are etched into your mind. The white death, a personification of the horrors you both created and endured.&quot; Nietzsche began to get back on track peeking into Assassin&#39;s mental state.
+
+&quot;Death is now part of who you are, how you are remembered. The pain is part of your fate… your destiny. Yet, there are two of you. You run from destiny, Simo , that is your pain.&quot;
+
+Caster offered his words of wisdom to Simo, trying to get an emotional rise from him. If he got what he wanted from Simo&#39;s response, he would control the rest of the battle. Simo was soon to be in the palm of his hand.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 07:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="882042957333692416" id="message-882042957333692416" title="Message sent: 31-Aug-21 07:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The White Death stood there, and simply growled in response. It seemed as if Caster had finally struck a cord. 
+
+Their blood boiled. Simo knew they were playing into their enemy’s hand, but The White Death wrestled control. And maintained it. 
+
+“We still accept who we were in the war.” It responded in a harsh whisper. 
+
+The images of each dead body flashing through their mind, over and over. Faster and faster. 
+
+“Stop… Stop talking down upon us. You would have done the same. Anyone would have done <em>the same</em>” Its whisper raised to a roar, more and more human aspects fading from their posture and over all mannerisms. This was now a feral beast, in control.
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 07:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="882049737694531594" id="message-882049737694531594" title="Message sent: 31-Aug-21 07:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I&#39;d kill 500 people if they didn&#39;t use MacKamazon Prime shipping</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3318b2a800306941522cef41d919362f-9CEB9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Blanche Calloway#0000" data-user-id="869809915458379776" style="">Blanche Calloway</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 07:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="882051619120885820" id="message-882051619120885820" title="Message sent: 31-Aug-21 07:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">your predatory marketing practices are an illness that need to be excised</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b054c0dad974d11e16839fcc27d345f3-D034D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Guillotine#0000" data-user-id="869809915458379776" style="">Guillotine</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 08:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="882052096369786911" id="message-882052096369786911" title="Message sent: 31-Aug-21 08:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">where&#39;s my MacKamazon prime meats, Laurent</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 09:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="882071009782534176" id="message-882071009782534176" title="Message sent: 31-Aug-21 09:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">art$ &quot;Sometimes there are deals you just shouldn&#39;t take... You already should have already known that of me if you truly did your research thoroughly,&quot; the old man shook his head as Laurent scrambled for the answer as to why Gustave would refuse the deal. It was rather sad to see the supposed father grasp at straws when the correct choice was right at home in Olympia.
+
+To Gustave, the hardest thing about it was ultimately choosing not to, the pull of owning an entire company and becoming fabulously wealthy was great, like the gravitational field of the mighty gas giant Jupiter. Nearly inescapable for anyone who had ambitions. Yet Gustave had walked away from his ambitions before and while it was an agonizing process that time, each time afterwards became less and less difficult. To throw away the chance to own a company that he had only joked about possessing so that his family may walk free of his sins was as easy as taking a breath, especially with a cleared head.
+
+The more he thought about it, the more comical it became. They had been gifted the possibility only because the man before him was much more tin than flesh, not only lacking heart but humor as well. Here was his earlier ambition and ruthless personality that Lemuria had shaped him into previously and now was the best chance to rebuke it all and walk away free. What treasures he actually desired were not those a company could give.
+
+&quot;Hide something from you? I&#39;m afraid I don&#39;t know what you mean. The document was meaningless from the beginning and your actions recently made it clearer. I&#39;ve gotten to the stage where I dont desire material wealth and you only wanted this as a chance to increase your own influence over the cities one way or the other. Neither of us really needed it from the start. So what&#39;s the point of it all? 
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 09:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="882075532408262677" id="message-882075532408262677" title="Message sent: 31-Aug-21 09:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“What I would have done in your situation does not matter. Your actions as an individual define you. Your past is an undeniable part of you, destined to repeat over and over again. Your pain is your fate; it is eternal.” As Caster’s lecture finished, his voice would grow quiet, his presence seeming to disappear entirely. 
+
+Once again, Simo would feel the strange sensation of moving around his mind. The ground would tremble as it hardened beneath his feet. The floor felt uneven and hard as a rock. The scent of the ocean would hit his nostrils, and he would be consumed by the sticky feeling of an ocean breeze. The air would then become cool and stagnant as he heard a loud crash followed by the ramblings of a dozen men. The ground would shake beneath him as giant footsteps flattened the earth around him. The cries of animals could be heard only a few feet away.
+
+Only a moment after Simo’s senses were assaulted, his vision would come back. He was no longer in darkness. As Assassin looked around, he would see a cave lit by a rather large campfire. Besides the campfire was a pen of sheep and a large vase. If Simo took a moment to look down, he would see that he was no longer in his own skin. He wore the garb of a Greek soldier and did not possess his rife.
+  
+Unfortunately for Assassin, his chance to observe his surroundings was cut short as he would hear men screaming from behind him. “Help me please!” They cried out, their voices becoming strained from how loud they yelled. If Simo looked their way, he would see only tragedy.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882075657847316551" id="message-882075657847316551" title="Message sent: 31-Aug-21 09:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A large man of monstrous proportions held the two screaming men by their heads. The monster stood around twenty feet tall and was built like a renaissance statue. Most notably, he possessed only one eye in the center of his face. A large boulder sat behind the beast, covering the exit to the cave. The monster would turn to look at Simo as he popped the men’s heads between his fingers before slipping them into his mouth and crunching on their bones.
+
+“I am glad to have some variance in my diet for once,” The monster said as he walked past Simo and took a seat by his campfire. 
+
+Where was Assassin, and most importantly, what was going on?  Before him stood an enemy of giant proportions, an oppressive force far stronger than himself. If Simo did not act accordingly, perhaps this mysterious force could prove too much to handle.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/16201c791e7b91af3014f6d829814a86-21896.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(255,140,19)">Hawaii</span>
+
+
+        <span class="chatlog__timestamp">31-Aug-21 10:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="882085701095677952" id="message-882085701095677952" title="Message sent: 31-Aug-21 10:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The White Death was practically foaming at it&#39;s mouth. The Enemy finishing his lecture, and all he was getting in response was what could be considered a war cry. 
+
+But it would fail to carry as that intense nausea struck again. Enough to disorient and allow Simo to resume control. The movement brought him to an entirely unfamiliar situation. He was no longer himself. Nor, was this one of his memories. 
+
+Voices called out in fear, familiar voices... But it was all for naught, for what ever they were afraid of was coming. But what was it.... 
+
+As soon as the question came to The Finn&#39;s mind, it was answered by a boulder being rolled aside. A colossal cyclops stepped through the precipice. Deciding to feast upon two of the fellow soldiers. Then taking a seat next to the camp fire.
+
+Simo&#39;s heart palpitated. They needed to survive this, they needed to fight this. How... A force so overwhelming... This could be a futile battle, but they needed to act. 
+
+Not too dissimilar to what he and his fellow soldiers saw in The Winter War. A singular giant enemy. 
+
+So the soldier steeled himself. 
+
+Began to search for stones, specifically an especially sharp one. This large monster had one weakness if he were to wager.... That singular eyeball. 
+
+He allowed the White Death to take control, holding the knife-like stone. 
+
+And They pounced, going right for the eye of this creature. Aiming to Blind and maim it! 
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="882092085363245138" id="message-882092085363245138" title="Message sent: 31-Aug-21 10:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Cyclops sat picking the bones from his teeth as Simo planned his attack. Just as Nietzsche had wanted to see, Assassin&#39;s killer instinct took over. The Cyclops&#39;s eye would dart towards Simo as he went in for his attack.
+
+The monster had counted the number of humans he captured carefully planning out how he would eat them and in what order. He was aware of Simo missing and was on high alert. 
+
+His hand quickly darted out grabbing the soldier by the waist. His grip was hard and ignored any idea of comfort for Simo. He raised Assassin up to his face staring at Simo&#39;s face with his one large eye.
+
+&quot;So eager to be eaten are you?&quot; The Cyclops declared. Simo would then feel the monster&#39;s grip tighten. The large fingers squeezed tighter around Simo&#39;s ribs causing his bones to crack as blood rushed to his head. The pain he experienced would feel real however the events were just an illusion. 
+
+Within a moment all of the pain was gone and Simo was once again standing at the cave entrance. The screams of the men played out again as he was forced to watch them be eaten a second time. It seemed that upon Assassin&#39;s death the hellish dream reset.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 10:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="882094859253612585" id="message-882094859253612585" title="Message sent: 31-Aug-21 10:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A crucial mistake was made, The monster was significantly smarter than he had expected. <strong>It had counted those it took captive.</strong> 
+
+As if the man were a toy, it simply picked him up. A crushing grip on the verge of snapping their bones. The White Death could only spit into the monster&#39;s eye before their fate took them. 
+
+A sickening series of snaps were heard as the assassin died, within their own mind. 
+
+That Nausea came back as Simo was settled within the cave again. In Control without The White Death&#39;s fighting against it. So straight aggression would not work. Perhaps there was another solution. Maybe Speaking to the creature. 
+
+&quot;What... What are you?&quot; The Sniper felt naked, approaching a hostile so openly. &quot;Why are you eating us?&quot; He had to keep up his confidence, and keep focus to not let his other half go for full aggression. 
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/24924232a354ee474b8e3eead28a23e1-53753.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Polyphemus#0000" data-user-id="869809915458379776" style="">Polyphemus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 11:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="882101421229609000" id="message-882101421229609000" title="Message sent: 31-Aug-21 11:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Cyclops moved it&#39;s eye down looking straight at Simo. &quot;My name is Polyphemus… I am a one eyed giant just as you can easily see.&quot; As the monster spoke his voice would vibrate through the cave. He had a deep spoken voice suitable for his size.
+
+&quot;It is very rare to have humans stumble into my home. A diet of sheep alone is rather boring. Humans are a nice change of diet!&quot; Polyphemus exclaimed with a brutish laugh. &quot;Would you not be bored eating the same meal day after day?&quot; 
+
+The giant leaned on his knees getting his head closer to Simo so he could hear him. It was a clear sign that the giant was open to discussion.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 11:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="882102661023936523" id="message-882102661023936523" title="Message sent: 31-Aug-21 11:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;My actions? Which? As far as this alliance has existed, I&#39;ve been perfectly reasonable. I have provided assets, information, and even my own body to a cause. Only to be betrayed by <em>you</em>.&quot;
+
+Laurent pointed his finger towards his former ally.
+
+&quot;Your Assassin, which opted to attack me over Rider. Your Assassin, which chased after me as I tried to flee with my life. Your actions speak louder than mine, Gustave.&quot; Laurent said, dusting a few ashes off his suit, along with interlacing his fingers. He looked genuinely hurt. 
+
+The contract was a bust, but it was more of a courtesy. The protection, while nice, was not required. However, without the contract, this conversation had no meaning.
+
+&quot;I guess that&#39;s it, Gustave. It was a pleasure doing business with you. Best of luck with your family and future endeavors.&quot; Laurent said, straightening his tie. He offered a hand to Gustave. A handshake. It was just as they had started this alliance.
+
+Now, it would end it.
+
+<span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 11:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="882103821298458634" id="message-882103821298458634" title="Message sent: 31-Aug-21 11:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If the man had been more into reading the classics in life, this situation would be extremely familiar to him. But little did old stories interest Simo, instead the more modern tellings of war interested him. The tactics and tales of battle fields. 
+
+&quot;Excellent to meet you.... Polyphemus.&quot; The Sniper spoke, keeping his confidence. &quot;Well I can see the monotony of eating the same thing.... But would not gorging yourself on us lead to boredom?&quot; Simo spoke a lie, he had no qualms with repetitive meals, it made things stable when having to deal with the chaos of a battlefield. 
+
+The Cyclops&#39;s singular eye bore its full attention to him. If there was a knife in their hand, this would&#39;ve been a perfect moment... Maybe another moment could provide a good distraction to strike, perhaps a meal of sheep with the cyclops?
+
+&quot;Polyphemus, Let us go... Perhaps we can have a feast before this occurs? Use your sheep which you have plenty of?&quot; The man offered as a potential option for the giant. The White Death, however, wanted to take the eye from the monster, desperately. His fist became balled. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/24924232a354ee474b8e3eead28a23e1-53753.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Polyphemus#0000" data-user-id="869809915458379776" style="">Polyphemus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 11:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="882108950412165142" id="message-882108950412165142" title="Message sent: 31-Aug-21 11:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Polyphemus laughed as Simo suggested the idea of a feast. The audacity of this human to come into his home and then ask for food. &quot;Puny man, what right do you have to eat my livestock. I take care of these sheep, take them out to feed and graze every morning. What makes you think that you, a human deserve the fruits of my work?!&quot; The giants voice was loud as he scalded Simo for suggesting a feast. If one thing was clear, it was that Polyphemus had food in high regard.
+
+&quot;I shall not let you go human. You will be eaten there is no way around this. However, keep me good company and I may eat you last&quot; The giants deep laugh slipped out once again. He enjoyed having food that he could toy with.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 01:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="882128554068967485" id="message-882128554068967485" title="Message sent: 31-Aug-21 01:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I am afraid we will never see eye to eye then. My role was simply to support my servant and increase their lethality on the battlefield. I do not know what more you could ask of a scientist-turned-artist. I am not the combative type after all. &quot; Gustave could not believe there was much humanity behind the face of Laurent MacKenzie, clearly what little there was must be nothing more than a mask to use in social occasions and to manipulate others. The businessman would only receive a nonchalant statement and neutral expression
+
+&quot;Hmm and to you as well. The best of luck...&quot; He nodded before picking up his hat and pen again and began walking away from the table. Only for him to turn around and fiddle with something in his pocket for a moment. He seemed stumped for a second before glancing at the glasses half-filled at the nearby table and mumbled something. 
+
+&quot;Yes perhaps I can give you the satisfaction of a parting gift. A shake seems appropriate.&quot; He brings his own, paint-stained palm up to Laurent&#39;s to clasp.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 04:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="882179090625482753" id="message-882179090625482753" title="Message sent: 31-Aug-21 04:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Being turned away at a handshake was an unthinkable idea in the business world. You only did it when you stormed out of a room in a huff, or were keenly aware of the other person, and them of you.
+
+Gustave was neither, and as such, his leaving of Laurent was irritable, but expected. Still, the businessman couldn&#39;t help but feel shunned and insulted? Truly, the old man knew how to be tactful. As he turned around, Laurent felt a smidge of genuine surprise. 
+
+&quot;Very well, allow me to—&quot; Laurent held out his hand, and then stopped. Paranoia and suspicion made him nervous. Nervous of Assassin, nervous of Gustave, nervous of his life. The lack of contractual protection enforced this. His eyes flitted to Gustave&#39;s lips, then to his hand. Realization dawned in Laurent&#39;s eyes. Not the realization of understanding Gustave&#39;s plan, but that his suspicion had been correct from the word go.
+
+&quot;<strong>You really are a snake, Gustave.</strong>&quot; Laurent said, the familiar click of a revolver&#39;s safety being released acutely pounding in Gustave&#39;s eardrums.
+
+<strong>BANG!</strong>
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Aug-21 06:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="882206974597550110" id="message-882206974597550110" title="Message sent: 31-Aug-21 06:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The monster laughed in his face, especially at the thought of simply letting he and these other imaginary persons eat of his livestock. “You intend to torment…” 
+
+The White Death reached its limit, going to claw the eye out with their bare hands. It might be a fruitless endeavor, but nonetheless needed to be attempted. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 03:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="882349133866868776" id="message-882349133866868776" title="Message sent: 01-Sep-21 03:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Simo&#39;s attempt to claw at the Cyclops&#39;s eye would result in pain. The monster recoiled back yelling out as his eye was scratched. &quot;Filthy man!&quot; Polyphemus screamed, shaking the entire cave. The monster&#39;s large hand swung across the ground smacking against Assassin. The smack was strong enough to send Simo towards the cave wall, killing him on impact.
+
+Once again the soldier would wake up too see the two men being eaten, and once again the Cyclops took a seat across from Simo at his campfire.
+
+Nietzsche&#39;s voice would return to Simo&#39;s head &quot;Violence is a part of you. I have no doubts about that. There is no control over yourself, Simo. You lack self mastery. Your weakness will be your end here, dying from it over and over again. Destined to rot in your own mind till your master is defeated.&quot; 
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 05:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="882374691296256020" id="message-882374691296256020" title="Message sent: 01-Sep-21 05:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pain. Nothingness. Then nausea, once again filtered through the sniper’s senses. 
+
+Then once again, he awoke to the situation he was to be trapped within. Simo Hayha was settling this as if he were the brute he was pitted against. Something that the enemy made them painfully aware of. 
+
+“I will… I will <em>kill you…</em>.”  The White Death wished to show its ugly head once more, and kill the cyclops. 
+
+Yet something held it back. ‘<strong>No</strong>’ Simo’s voice was stern. ‘We will not play into this childish game.’ This was as if he was trying to discipline a wild animal, finally putting a foot down since it awoke within. ‘You will listen. You <em>will kill</em> when told too.’ 
+
+Their posture and mannerisms became that of Simo Hayha. He would do what he did best during the war, hide and strike when least expected. So the soldier slid into the sheep, aiming to become one of the mass. 
+
+Caster would not have this glory of slowly whittling Simo away, leaving only that beast within. 
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 05:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="882377356432515072" id="message-882377356432515072" title="Message sent: 01-Sep-21 05:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Unfortunately that bullet would never reach its target and carve a gory path through Gustave&#39;s skull. Indeed, it felt like time itself had frozen for Laurent. The environment around the businessman was static, the landscape the same as he had seen before. Yet his senses told him he was falling fast even as he stood on solid ground. 
+
+Gustave still stared him down, hand extended, yet no crimson splash spurted from the side of his head. The heated gases from the barrel slowly bloomed outward, radiating outward in a perfectly symmetrical pattern like a flower opening its petals on a misty morning.
+
+The painter&#39;s eyes shifted for a second and the bullet rammed straight through him. There would be no scream, no grimace, no fear, just his entire body shattering into little shards, fragments of pottery destined for the rubbish bin. They would stay for but a moment before being blown away into dust. 
+
+The sound of the blowing wind would be replaced by a familiar tutting.
+
+&quot;I&#39;m sorry Mr. MacKenzie, but it takes far more than a bullet to put down a &#39;snake&#39; like me. You should know that what you may wish upon me may come back onto yourself...&quot; the voice danced on the lofty breezes of the rooftop gardens yet not a body could be seen, not in the clouds that seemed to repeat every 60 degrees, not in the flowers perfectly shaped to be in bloom, not in the doorways that lead to the vista. 
+
+The crack of the pistol echoed uncomfortably in the silence that followed. And like the reliable hunting instruments of the aboriginals, the bullet came flying back towards Laurent, now multiplied six times, each bearing down on him from a different direction.
+
+Seemed the old man knew Laurent better than he thought, but why that was hovered in the businessman&#39;s mind.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 05:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="882384241109897216" id="message-882384241109897216" title="Message sent: 01-Sep-21 05:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While the bullet marked the beginning of Gustave and Laurent&#39;s scuffle, it would unfortunately not end it. Any hope of ending this quickly and cleanly were abandoned with Gustave&#39;s vanishing act. Cute, but annoying. 
+
+If Caster hadn&#39;t intercepted this attack, then that meant he <em>was</em> busy with Assassin. It was wise to bring him along. Gustave was just as treacherous as Laurent was.
+
+&quot;Naturally. If Rider and her toy didn&#39;t kill you, then you must be skilled at worming away from fights, Laurent said. He looked around. Where was Gustave? 
+
+With but a snap of Gustave&#39;s proverbial fingers, bullets came flying. Trivial and insignificant. Projectiles couldn&#39;t harm Laurent, but this ability was still noteworthy. Multiplying bullets...
+
+It dawned on Laurent that he didn&#39;t know what Gustave was capable of. His report gave little to work with, and he and Gustave didn&#39;t fight side by side during their scuffle with Rider. Hopefully that worked both ways, and Gustave didn&#39;t know what he was capable of, either.
+
+Unless, of course, Assassin had squealed.
+
+The bullets posed to piece Laurent&#39;s skull, before twisting away, as if hitting a curve or an exceptionally strong gust of wind. All six bullets flew off in random directions, shattering glass, striking walls, or disappearing into the underbrush. 
+
+&quot;Magecraft.&quot; Laurent sneered as he started running for the exit. Fighting Gustave was pointless. Learning how his Magecraft worked was impossible in this setting, and as such, wasn&#39;t worth the hassle. Things Laurent couldn&#39;t just shoot away were infuriating to deal with. 
+
+He desperately needed Caster&#39;s help, but if he was fighting Assassin...
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/24924232a354ee474b8e3eead28a23e1-53753.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Polyphemus#0000" data-user-id="869809915458379776" style="">Polyphemus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 07:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="882410208129847386" id="message-882410208129847386" title="Message sent: 01-Sep-21 07:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Polyphemus sat at his campfire picking bones from his teeth. He looked around with his eyes noticing that the number of people had decreased. The men huddled against the boulder, keeping quiet waiting to see what Simo would do amongst the sheep. It was clear the men viewed him as a leader.
+
+&quot;A human hides from my view&quot; the giant announced while leaning against the cave wall. He seemed unconcerned with the situation, he was not afraid of being hurt by humans. &quot;You only make me want to eat you more! Do not worry though I am full for now.&quot; 
+
+The Cyclops shuffled around getting comfortable as he let himself digest his human snack from just a moment before. &quot;I am truly grateful that you men have sailed to my island! Letting yourselves become my snack.&quot; Polyphemus let out a large laugh as he tried to play with the sailors emotions. However, by doing so he let out an important piece of information. Simo had come here on a boat.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 07:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="882410338358804522" id="message-882410338358804522" title="Message sent: 01-Sep-21 07:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">BOATED</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/04857a0b1dc55b794f41846280b5c04a-5CBF0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RaptorAttacks#0350" data-user-id="152118564155817984" style="color: rgb(255,140,19)">Deleted User</span>
+
+
+        <span class="chatlog__timestamp">01-Sep-21 07:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="882411403628118016" id="message-882411403628118016" title="Message sent: 01-Sep-21 07:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">homagod, it polyphemus from binding of isaac</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">01-Sep-21 08:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="882415651606659072" id="message-882415651606659072" title="Message sent: 01-Sep-21 08:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">yo is that bophades?????</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 09:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="882434089137864734" id="message-882434089137864734" title="Message sent: 01-Sep-21 09:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">These men respected whoever he was... They looked to him as if he were their commander. Their fake lives depended upon him for survival, and the sniper had some suspicion that whoever he was pretending to be had lead them into this. 
+
+Another great hint came to assassin... There was a boat, these men and he had sailed to this island. The Cyclops had relaxed slightly, going to digest his next meal.... 
+
+&quot;We have been at sea, for many a moon. The men that you have ate must be terribly salty. Perhaps you might need something to quench your thirst.&quot; Simo spoke up from where he nestled, maybe this could hasten the giant to sleep. Maybe he only had alcohol within the cave or needed to leave and find freshwaters... 
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 09:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="882437843895607296" id="message-882437843895607296" title="Message sent: 01-Sep-21 09:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave only chuckled in response to Laurent&#39;s derivsive comments on their previous opponent. It seemed much like he was laughing at him than with him. Perhaps during the later stages of the fight, he had gained some insight into the fiery boy of Delphia
+
+But that was neither here nor there, just something that crossed his disembodied voice&#39;s fancy. Laurent was confident and rational as ever though there was that tinge of fear that was slowly seeping into his manners. The rat was concerned about being boxed in, the unknown terrifying to its little mind. Of course it could not tell from its surroundings that it was already trapped. 
+
+There was nothing to stop Laurent from fleeing to the exit. He would not notice it at first but the more steps he took towards the shaded doorway, the less progress he seemed to make. The exit sign temping him like the fruit tree did so to Tantalus down in Hades. Antagonizingly close, he could almost touch it but no matter what avenue of transport he may try, he could not escape.
+
+Maybe then he would recognize how the sky repeated itself with radial symmetry and a weird greenish distortion seemed to cloud the horizon.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 09:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="882442060345524244" id="message-882442060345524244" title="Message sent: 01-Sep-21 09:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hah... Hah...&quot; Laurent gasped for breath as he continued running towards the exit. It was foolish to do so. A complete waste of time and energy, but it was clear that Gustave was messing with the area. Weren&#39;t there spells that could recreate this within a set area? How to break it?
+
+There was only one way to find out. Laurent stopped, taking a few gasping breaths as he looked around. He tried to lash himself to the end of the hallway. He began to fall, but to his dismay, he wasn&#39;t getting closer. Stopping the lashing, Laurent rolled on the floor to a stop. 
+
+Looking up at the sky, it all became clear. He was encompassing a set area. Reality wasn&#39;t physically stretching, this was just an illusion, a farce. Give enough time, Laurent would crack it.
+
+&quot;Tell me, Gustave!&quot; Laurent shouted at the sky. &quot;Where is your Servant? This was always your plan, was it not? A Bounded Field like this must take a lot of magical energy. Don&#39;t tell me you seriously didn&#39;t bring Assassin.&quot; 
+
+Meanwhile, Laurent&#39;s eyes darted from side to side. There had to be <em>some</em> inconsistency. A way for Laurent to break out of this cage and wring Gustave like a towel left to dry. 
+
+<em>Think</em>. <em>Where is he. He must be close.</em> Laurent thought, licking his dried lips and wiping sweat from his brow.
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/24924232a354ee474b8e3eead28a23e1-53753.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Polyphemus#0000" data-user-id="869809915458379776" style="">Polyphemus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 12:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="882477874836279306" id="message-882477874836279306" title="Message sent: 01-Sep-21 12:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Cyclops shifted his head towards the direction of Simos voice. He laughed rather hard as Simo revealed his general area to strike up conversation.
+
+&quot;I have plenty of milk from my animals. It is not hard to satisfy my thirst.&quot; As Simo and the Cyclops spoke of drink, Assassin may have become more aware of his own possessions. He possessed not one but two water skins. If Simo took the time to investigate he would be able to tell that one held an extremely potent alcohol.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 12:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="882479585927778334" id="message-882479585927778334" title="Message sent: 01-Sep-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Upon speaking of alcohol, he became acutely aware of one fact. The Smell itself started to overwhelm him as he opened the flask. 
+
+&quot;Well... Perhaps I was too quick to suggest something.&quot; He sighed, removing himself from the mass of sheep. &quot;A gift then, the least we can give. Even if you might find more enjoyment from our capture. We still appreciate protection from the elements upon the open sea.&quot; 
+
+The sniper approached, holding the flask of alcohol towards the giant. While keeping the other flask on his side. This will give them the opening, that could incapacitate the monster. 
+
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 01:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="882504215073783858" id="message-882504215073783858" title="Message sent: 01-Sep-21 01:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Laurent’s call echoed out over the rooftops though no one would ever hear his words besides one man. And he would respond with no worry, no fear in his voice.
+
+“And I would ask you where Caster is though it seems you do not know either. It shall just be the two of us for now. Alone with our memories and there is much you remind me of, Laurent,” the image of Gustave would flicker in the corners of Laurent’s eyes, just out of reach. From what he could notice, it was always near something else shiny, like a projection  dancing on a glass pane.
+
+“There were many ways I thought this last meeting to go but I surprised myself with the pen. Though my plans always revolved around your paranoia, your arrogance and your <strong>greed.</strong> They are addictive emotions, ones that guide you, ones that bind you. They keep you closed to the world, focused only on that you want to collect. I was the very same way myself.”
+
+There! He was on the other side of a mirror! If he drove another bullet or rock through, clearly the whole thing might show another weakness?
+
+“In a way, meeting with you havs been rather therapeutic, you could say.”
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Sep-21 10:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="882638489517191238" id="message-882638489517191238" title="Message sent: 01-Sep-21 10:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>Caster?</strong> What does he have to do with this? Answer the question, Gustave.&quot; <em>Deflecting doesn&#39;t suit you</em>, Laurent quietly thought to himself. 
+
+Was he under scrutiny? Even if Gustave suspected Laurent, there was nothing the older man could do about it. Zero evidence. None. He was safe. Even if Assassin made an appearance now, it would not matter. Nonetheless, being in this world offered no advantage, so stalling was pointless.
+
+Caster was good, though. Stalling Assassin deserved utmost praise.
+
+Laurent&#39;s eyes flitted to Gustave&#39;s reflection. Without a second to waste, <strong>bang</strong>! The mirror disappeared into a thousand fragments, several of which disappeared under Laurent&#39;s boot. &quot;Hah!&quot; Laurent shouted triumphantly.
+
+&quot;There is nothing wrong with greed. Why must you define it so narrowly, Gustave? It&#39;s one of the most fueling emotions. The most human.&quot; Laurent scoffed, looking around
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/24924232a354ee474b8e3eead28a23e1-53753.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Polyphemus#0000" data-user-id="869809915458379776" style="">Polyphemus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 01:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="882674639623569438" id="message-882674639623569438" title="Message sent: 02-Sep-21 01:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The giant reached his hand towards the waterskin pinching it between his fingers. It looked like a toy in his hand. Would this gift be enough to satisfy him? 
+
+Polyphemus held it to his nose sniffing and observing the gift. There was a silence in the cave as he pondered what the alcohol was worth. &quot;For this I will eat you last.&quot; Polyphemus then dumped the entire flask into his mouth at once. 
+
+The giant&#39;s lips puckered together as he squinted his eye. Such a small amount of alcohol had garnered such a big reaction from the monster. His stomach began to rumble within an instant as the monster bent to his side and vomited out the pieces of Simos comrades.
+
+&quot;Y-you have brought meh a very s-strange drink huuuman.&quot; The Cyclops spoke in a slurred speech clearly intoxicated from the wine. He then laid down and closed his large eye. Has the drink put him in a drunken coma?
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 01:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="882682282681458728" id="message-882682282681458728" title="Message sent: 02-Sep-21 01:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Finn smiled as the gift was taken, the Giant imbibed the beverage.    
+
+Assassin won this. The cyclops had fallen asleep, and now it was simply time to end this how he had wanted sooner. 
+
+‘<em>now. You’re allowed to indulge.</em>’ Simo spoke to the White Death. 
+
+It was given slight control, taking a sharp rock from the ground and approaching the cyclops. 
+
+Their grip tightened around the stone, to the point where they would begin to bleed. Raising it up high into the air then driving it straight downwards into the singular eye socket of the beast. 
+
+It had been satisfied with this singular act of violence. And restraint was brought back in by Simo, ripping the little control The White Death had back into his own hands. “Well Caster! Have I performed adequately.” Simo spoke loudly awaiting a response. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Magnetic#0081">@Magnugget</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 05:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="882734407591551006" id="message-882734407591551006" title="Message sent: 02-Sep-21 05:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It seemed that Simo had overcome the task just as Nietzsche had set up. However, Caster couldn&#39;t help but feel a bit displeased. He was enjoying the struggle of man in his little story. Simo overcoming his weaknesses would have to be enough to satisfy him. 
+
+&quot;You have put on a show that the Greeks would have been proud of&quot; Nietzsche replied. &quot;Do not let my lesson go to waste, Assassin. I am excited to continue watching this era&#39;s story unfold.&quot; As Nietzsche got in his last few words the illusion that held Simo would begin to dissipate. The unpleasant feeling of falling through his mind would strike Simo once more as he was pulled back into reality. 
+
+Caster now back in the place he started looked towards his Master and the enemy. He had been able to stay away from their battle and keep Simo under his control for a decent amount of time. Hopefully his master was not failing him. 
+
+Nietzsche would take his time to watch his Master. He did not fear Assassin&#39;s intervention. It would probably take a moment for him to recuperate. Caster would simply sit on the sideline and wait for an opportune time to intervene.
+
+<span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/fc3f4f10bd159a1012c1fbffbcfb98c3-045FA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Simo Hayha#0000" data-user-id="869809915458379776" style="">Simo Hayha</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 05:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="882739989723635752" id="message-882739989723635752" title="Message sent: 02-Sep-21 05:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Caster congratulated the assassin, Simo had finally overcome both this mental world. And reigned in the beast that coexisted within his psyche. 
+
+“Oh I’ll stay intimately familiar with your lesson…” The Finn responded before the world within his own mind began to dissipate. 
+
+The feeling was worse than the nausea that brought him within his own mind. It was utterly disorienting to be given a physical form once again.  His head spun, and Simo could only do the bare minimum to be sent falling from his perch. The trigger finally being pulled, a shot fired into the sky. Potentially causing public panic. 
+
+The rifle fumbled out of his hand, and extremely uncoordinated hands reached for the weapon. But would fail as it fell and it’s owner fell from the tree. 
+
+If the servant had anything on his stomach, he would have been throwing it up. But, was just left there for a moment. Wretching up what did not exist. The world was still spinning and he could do little to protect Gustave, if the artist even needed the protection. 
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 06:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="882746674974425098" id="message-882746674974425098" title="Message sent: 02-Sep-21 06:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You say more than you let on, Laurent. I simply wanted to confirm a suspicion of mine,&quot; the wind rustled again, whispering into the CEO&#39;s ear. The painter may not have been able to look outside at the current time but the presence of Caster would explain why Simo had not cast down Laurent and assigned his name to the logbook of Death. 
+
+The mirror shattered and pieces of Gustave&#39;s body could be seen moving among the glass shards as the mirror collasped. He would then catch yet another glimpe of him, this time in the gentle and refined finish of a wine glass resting on a table and again in the bubbling pool of the fountain.
+
+&quot;Hehe, you got me, Mr. MacKenzie. Congratulations. A good shot, I might add. But do you have as many bullets as there are reflective surfaces in this simulation? I suppose we will soon enough.&quot;
+
+&quot;And to your question, greed could be good but you know, it will always leave wanting more and more. It is a both a disease of the soul and a symptom of a greater rot within. It makes me wonder, Laurent, what rot lies within you, is it the loss of a family member or perhaps their actions that drove you to covet so much? I have heard that your grandfather was a hard man. A bastard even. A coincidence perhaps?&quot;
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span>  <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 11:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="882828451080454154" id="message-882828451080454154" title="Message sent: 02-Sep-21 11:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>SILENCE</strong>!&quot; Laurent bellowed as his reflection was distorted among thousands of glass fragments. &quot;Do you think this prison can keep me locked up forever? Do you—&quot;
+
+Laurent stumbled, then fell to his knees, hands scraping as they met glass. Was it a moment of weakness? No, Gustave had gotten a low blow against the business tycoon, whether by luck or by prior research. Laurent&#39;s grandfather was around Gustave&#39;s time, maybe the older man had known about his dealings through newspapers and internet gossip.
+
+&quot;<strong>Ha.</strong>&quot; Laurent shook.
+
+&quot;<strong>HAHAHAHAHA!</strong>&quot; Laurent burst out laughing, dripping with malice and amusement. True madness, born from anger. It was disappointing, but amusing. Laurent had always been cool and calm since meeting Gustave, but he had finally snapped. 
+
+&quot;I can&#39;t stop laughing! Who are you to accuse <strong>me</strong>, Gustave?&quot; Laurent questioned the sky. &quot;You, a sellout? You&#39;re greedier than I!&quot; 
+
+The businessman struggled to his feet, before looking at the sky, his pupils slitting as they looked up. This world was a charade, a farce. One created by Gustave. Why not let loose a little? He&#39;d never get to break composure like this again for as long as he&#39;d live.
+
+&quot;<strong>My grandfather was mad.</strong>&quot;Laurent confessed. &quot;<strong>An ugly man, lost to spite and rage as his livelihood was dragged through the mud. One who hated the world because of what it had ruined.</strong>&quot;
+
+&quot;<strong>My father, the same. He was incapable of staying rooted in reality. He would&#39;ve driven my family to extinction.</strong>&quot;
+
+&quot;I coveted their affection, their praise. It was something I needed. It was greed.&quot; Laurent tried to use them, but they had used him right back. Outlets for their own failings and desires. His grandfather wanted someone who would control and ruin the world. His father wanted a mage. They had both gotten what they wanted in a way.
+
+They had used him.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882828505455423550" id="message-882828505455423550" title="Message sent: 02-Sep-21 11:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;However, I&#39;m going to turn their desires inside out. Their desires will become mine. I shall use them.&quot; Laurent hissed as he wiped his hands with his handkerchief. He turned towards the reflections of Gustave&#39;s false world.
+
+&quot;Your work, Gustave. How long did you put into it? I will tear it apart with zero effort, instead using my family&#39;s hard work. I make my own future. The Root? Nonsense. Trivial. I will drag us both back to reality.&quot;
+
+Laurent&#39;s Magic Crest glowed and sparked as a dark void began to form in his palm, shifting space around it. A singularity, like the one used against Kun Wu. This time, it would be used differently.
+
+The world contracted inward, shadows stretching and lights thinning out as they spun towards the maw. This included Laurent and his reflection. Gustave&#39;s world was Magecraft, and Laurent&#39;s singularity consumed Magecraft.
+
+His family had once desired to cheat the laws of the world, dictating that they would reach the Root through manipulation of gravity and black holes. In some sick, twisted way, Laurent was achieving that for his own selfish reason.
+
+Meanwhile, Caster was watching the fight take place inside a wine glass. Light wavered and reflections danced, before suddenly a sound like metal grinding on glass was heard, and a hand shot out.
+
+<strong>CRACK!</strong> A bloodshot eye emerged. The wine glass shattered, and Laurent appeared, disheveled, bloody, and enraged. He looked deranged and almost monstrous. 
+
+&quot;GUSTAVE!&quot; Laurent bellowed as his singularity swapped from black to white. What would a destroyed bounded field spit out. What had it absorbed?  Was it a good idea to find out?
+<span class="mention" title="Eagan#8440">@Eagan</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 12:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="882843198219759616" id="message-882843198219759616" title="Message sent: 02-Sep-21 12:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And so it went, the clash between paragon of greed and the man repentant of his sin. The verbal knife twisted, a weapon well sharped among the snake-tongued people that stalked the halls of Lemuria, each seeking an advantage over the other in an eternal conspiracy of ambition, glory and greed. 
+
+First a drop of insanity seeped out from the target&#39;s mind, then a trickle of hate and disbelief, then a stream of full, unshackled madness. The fatal beast of sin bound within man had reared its ugly head  and sought to bring its cage to ruin. 
+
+For the man everywhere and nowhere, he could not help but shiver when confronted with his sin made manifest and amplified. Yes it was also the being that claimed dominion over the soul of the twin cities intertwined, greed of material and greed of power. 
+
+Here was the spark that had also given him his dreams and ambitions to become the man he was today. He could not craft better art than the moment he found himself in now, even the magnum opus that served as the stage paled in contrast. Indeed the simulation round them seemed to have its color slowly fade away, sucked away by the desires and legacy of the two families that came to a head, greed faced greed. He felt compelled to share.
+
+&quot;So it goes, our families run parallel. Your family had amassed as much wealth as mine once did before the Flood. The Renoir-Wagners claimed themselves the descendents of Oberon, their wealth upon the mountains amassed over generations. They were prideful and competent, yet always desired more, coveting that which was their neighbors. In a great many ways, they are the same as you. Yet their outcome was grim&quot;
+
+&quot;In the aftermath of the flood, they grew ever more insular and came to desire that of their own family and nearly drove the family extinct in their own mad war over the legacy and treasure. My own parents taught me that I should reclaim that was once ours and you know, I almost got there...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882843363626328074" id="message-882843363626328074" title="Message sent: 02-Sep-21 12:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The simulation around Laurent drew its boundaries ever closer and the outside world became ever more blurry. Cracks in the world began to snap into existence as the scion of MacKenzie summoned the universe&#39;s own symbol of greed,  a void that sought to consume all others and impose its oppressive, crushing order on the world. It was a structure that would outlive the brilliance of stars, the stony resilience of planets and the ethereal majestic of galaxies. It was the closest thing the universe had to eternity in its creation.
+
+Gustave had to admit they fascinated him far more than any other celestial body, perhaps because they were like the self-destructive past of his family but also a call similar to him, one that beckoned from any deep, dark hole. The call to throw everything away and let the abyss claim them. Maybe then the harm could be isolated. 
+
+The cracks grew into a spiral web that repeated onto themselves forever inward and inward. And on each, just for an instant, memories of Gustave&#39;s could be seen playing themselves like little TV screens, a whirlpool of sequestered thoughts and suppressed events. This was the way his greed manifested, a pocket separate from real space. 
+
+Would Gustave fight to hold onto them or cast them away forever? There was no thought needed as the world folded in on itself, a sweeping tide of glass panes that were pulled into the abyss of nothingness, leaving their crimson marks on Laurent as they passed by. Each one another lash on the old man repenting his mortal sin before finally . . . letting go.
+
+And that was when was was left was not the real world but the hidden desires and Gustave&#39;s truth.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882843449773146182" id="message-882843449773146182" title="Message sent: 02-Sep-21 12:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You will put an end to it, yes but have you ever considered if that is perhaps what I wanted? The black hole is an amazing thing, but in physics, we learned that there was one inescapble truth, even for the greed immortal. It all comes to an end, dissolved into nothing and made equal in its worthiness. <strong>Entropy</strong> is its name and it comes for all. Your greed will mean nothing then, it can not save you, it did not save my family. <strong>It will consume yours.</strong>
+
+A sea of blackness but also of infinite colors surrounded them and sought to drown them in its cosmic miasma of everything and nothing at the end of all time. It pushed and pulled again the black hole, sending ripples that shook through both men and would bounce off their souls, leaving a different stain on the unknowable refuse around them. It danced in a hypnotic pattern, ever increasing in speed. The memories of the two men seemed to leak from their pores and intertwined
+
+&quot;I know what Greed has done to me and see what it has done to others. I can no longer allow that greed to control me no longer. Therefore there is only one foregone conclusion.&quot; Gustave said yet his eyes were not his own for a brief glance, perhaps someone else&#39;s, impossible to know for sure in a sea of uncertainty.  &quot;This is the last of it, take it and perhaps you will come to see what I do before you can no longer get out...&quot;
+
+Gustave was there before him, tossing a seal that bore the crest of Lemuria and its mysterious Salon into the black hole. There was nothing more to see, nothing more to experience there as the whole simulation shut itself off and all contained within would find its way out...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="882843548540604447" id="message-882843548540604447" title="Message sent: 02-Sep-21 12:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Laurent would be the first out of the glass, bedecked by the sins of both men and his eye marked for his avarice. Gustave in turn would find himself apparated on the other side of the garden, emerging from an identical wine glass, seeming unscathed and collected as a saint upon ascension. Compared to the monstrous gaze of the CEO, the painter would seem to have an inner peace that only moments of clarity and self-truth would provide.
+
+They would stare at each other before the white hole brought out the show from within. But nothinng would emerge, the sphere&#39;s roiling and ejecting parts of itself before casting them back inside. For under a second, the white whole would relive its past as a shining star unrivaled in the sky, gleaming, blinding in its brilliance. Then it did not exist, gone if it had never existed in the first place. This would be accompanied by an omnimous wave that only the servants could feel, a sickening pulse that shattered their own illusions of self for a moment and reminded them of the harsh metal shells they inhabitted, a wave of weakness and immobility. 
+
+The light would return like an afterimage only to be replaced by a black void that shot outwards in all directions, light channeled out at its north and south poles. Everyone&#39;s senses would be dominated by an all-encompassing roar as chaos and order fought each other until all that they encountered, including each other were annihilated in primal fury.
+
+Now only a gulf of recursive patterns remained of the space that once was the rooftop gardens, the monster MacKenzie and his philosopher on one bank. and the painter free of the ancestral curse and societal chains that bound him and a soldier who found peace in war on the other distant shore, silence filling the void between.
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span> $</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 01:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="882859383149694986" id="message-882859383149694986" title="Message sent: 02-Sep-21 01:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The businessman took several deep breaths to compose himself. This was reality, not some fake little pocket world formed from Magecraft. Here, he was Laurent MacKenzie, CEO of MacKenzie Industries, one of the most powerful men in Olympia. Nothing could faze him.
+
+Breathe in, breathe out. In. Out. In. Out.
+
+&quot;Caster.&quot; Laurent said, turning to the philosopher with familiarity. Gustave&#39;s gut was correct, and Laurent had found a new Servant. What it implied was even darker. What had happened to Caster&#39;s former Master? Shot in an alleyway by Laurent? Only Laurent knew.
+
+The rooftop gardens had been torn apart, and Laurent looked around, pleasantly surprised. <em>He</em> had done this? Gustave was forgotten as Laurent was in awe of his awesome power, despite Gustave doing most of the work.
+
+&quot;Is Assassin incapacitated? If so, we&#39;ve won. There is no trick I cannot deflect, and us against a feeble old man is one battle we are certain to win. Emotions will not win him the day.&quot; Laurent sighed, wiping his forehead as he glared towards Gustave.
+
+<span class="mention" title="nebby#3980">@Nubby</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3b1ff94c9d073e17535e01cda7ca6030-2C135.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nietzsche#0000" data-user-id="869809915458379776" style="">Nietzsche</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 01:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="882863359735783435" id="message-882863359735783435" title="Message sent: 02-Sep-21 01:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As Laurent turned towards Caster he would see that the philosopher had his nose stuck in his book. He was gleefully slumped over a desk that he had summoned, all while sitting in his chair and writing. The working philosopher looked up realizing the destruction. He had been so focused on writing that he almost forgot about his master. Not that Nietzsche would have let his master die, he just had faith in Laurents abilities to handle himself. 
+
+&quot;Oh yes, he is currently recovering from a deep mental awakening.&quot; Nietzsche replied looking up from his notebook. Caster would take the pen and paper pocketing them in his coat. He would then step forward towards Laurent, his workspace vanishing into thin air.
+
+&quot;It was a rather wonderful story, Master. A misunderstood soul fighting to maintain his own sanity. A struggle of mind and matter… Your friend there has summoned a very interesting Servant.&quot; It was clear from the ecstatic tone in Caster&#39;s voice that he had thoroughly enjoyed the battle. 
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="Eagan#8440">@Eagan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/3cd4eab4eefe3f48dcd04b61a41d8704-3DACF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gustave Renoir#0000" data-user-id="869809915458379776" style="">Gustave Renoir</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 02:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="882878120930185236" id="message-882878120930185236" title="Message sent: 02-Sep-21 02:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Gustave stood opposite of Laurent and Caster, a peaceful look in his eye despite the violence that just transpired. He tilted his head in response to the servant’s appearance and frowned as he realized Simo was still nowhere to be seen. Caster must have done something.
+
+The concern turned his face to a frown as Laurent composed himself and seemingly reverted back to his normal self. Perhaps there was sosmething that shifted on the inside but that would have to be determined at a later date. There was no use in standing around any longer. The battle concluded with a moral victory and a symbolic triumph in other ways for Gustave,
+
+All that would have to do for now.
+
+He simply bowed to the pair before stepping into a portal and vanishing from the gardens all together. He needed to find Simo and make sure he was alright. After that, he had a family to see again…
+
+<span class="mention" title="Magnetic#0081">@Magnugget</span> <span class="mention" title="Hawaii117#8992">@Hawaii</span> <span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Central%20Business%20District%20-%20rooftop-park%20%5B848244565861335081%5D%20%282021-08-19%20to%202021-09-03%29.html_Files/b1417b7493ee8dd18f2c0b9022f46b16-2E3AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Laurent MacKenzie#0000" data-user-id="869809915458379776" style="">Laurent MacKenzie</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Sep-21 02:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="882881185557119006" id="message-882881185557119006" title="Message sent: 02-Sep-21 02:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Excellent.&quot; Laurent said curtly, scratching his head, before plucking a bit of glass out of his hair. Gustave&#39;s moral victory meant nothing in the grand scheme of things. This was a City Grail War, morals were abandoned from the word go, as long as the Church declared it so.
+
+&quot;Let&#39;s finish off that sniper. Lead the way.&quot; As Gustave disappeared, Laurent turned to walk towards Caster, hoping to find Assassin. Caster quickly lead the way, leading Laurent to where Assassin had been left. The closest approximation, given the time the gardens were completely annihilated by Gustave&#39;s masterpiece of a final hurrah.
+
+Kicking aside some dust, Laurent snorted. Assassin was no where to be found, having slunk off to lick his wounds. A few footsteps and the faintest trace of cold said all that needed to be said.
+
+Looking around, Laurent furiously kicked at a pile of ash and rubble, smarting his foot. &quot;Every time, he slinks away! Couldn&#39;t he just stay still? We were <em>this</em> close, Caster!&quot; Laurent said, holding his fingers a milometer apart. &quot;<em>This</em> close to kicking that self-righteous snake out of the running! DANG IT!&quot; 
+
+Laurent kicked another pile of rubble in a fit of rage. It didn&#39;t matter if Laurent had clawed his way out of Gustave&#39;s world, or if Caster had defeated Assassin. They were still alive. This whole thing was a waste of time, and Laurent felt more mentally naked than ever.
+
+He should&#39;ve expected this. Assassins were slippery. Should he have ordered Caster to kill Assassin at the first opportunity? Would he have been able to, if his intent was to kill Assassin? No, the answer was simple.
+
+<em>Laurent never expected Caster to succeed.</em>
+
+&quot;Come on. I don&#39;t want to be here when the Church or the Bureau shows up.&quot; Laurent grumbled to his Servant, before touching Caster, and sending the duo falling off into the sunset.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

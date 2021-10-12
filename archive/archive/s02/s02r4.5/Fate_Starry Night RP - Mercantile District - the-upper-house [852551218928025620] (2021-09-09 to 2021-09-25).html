@@ -1,0 +1,1503 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-upper-house</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Mercantile District / the-upper-house</div>
+
+            <div class="preamble__entry preamble__entry--small">A luxury suite on one of the upper floors of a hotel, near the border between the Mercantile and the Residential Districts. It has a great view of the market square, one of the places Kun Wu frequents to perform. The suite itself costs an arm and a leg to rent; it is the biggest reason why Kun Wu never has more than 3 digits in his bank account.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 09-Sep-21 12:00 AM and 25-Sep-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">12-Sep-21 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347171371319357" id="message-886347171371319357" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Late that night...</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347237330931722" id="message-886347237330931722" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The feast lasted well into the night. Kun Wu&#39;s head spun with all the wine he&#39;d consumed. And despite the entertainment and the stimuli from all the food, sights and sounds, he eventually found that he couldn&#39;t feel the tips of his fingers. The numbness spread as alcohol started affecting him in earnest, and when he finally slammed his glass onto the table without an ounce of restraint and shattered the drinkware into a few dozen pieces, Rider decided that it was time to put her foot down. The entire day had been one surprise after another; she did not need her Master, or <em>anyone</em> at the table for that matter, to end the night by tearing a hole in the suite.
+
+With combined effort she and Laura dragged their thoroughly inebriated companions off the table. After plenty of coercion and sobering tea, the party was finally over. It took Rider monumental effort to peel Kun Wu off Guan Yu&#39;s leg - &#39;So long, my sworn brother!&#39; He shouted with tears streaming down his face - as if they weren&#39;t going to meet up again in a few days&#39; time! Rider could only facepalm. Had she known that Kun Wu was such a chaotic drunk, she would have confiscated  all their bottles from the get-go.
+
+The living room was a royal mess. And so was Kun Wu, who sat pouting in a corner after being told off for being childish. With a plastic mug - he&#39;d been banned from handling glassware for the rest of the night - in one hand and the newspaper - he&#39;d been banned from handling electronics as well - in the other, he begrudging sipped tea while flipping through the headlines.
+
+He wasn&#39;t actually reading, but more so just going through the motions so that he felt like he had something to do. Something to keep his hands busy. The newfound silence of the living room was more sobering than the tea he had been consuming, and he found himself missing the boisterous company of the Lancer pair already. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347250022903808" id="message-886347250022903808" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The noise had done such a great job of drowning out his worries. Now that it was just him and Rider again, he found his worries hammering through him with twice the force. He flipped the newspaper to a new page, only coming to halt when he finally found the black and white photo of an European castle in the middle of Olympia&#39;s dour streets. 
+
+Dolorous Gard. He traced over the castle&#39;s silhouette. A Saber with a territory creation skill on par with a Caster; now <em>that</em> was something he&#39;d never expected to see. 
+
+&#39;Looks can be deceiving after all~&#39; He stretched his arms and hummed, coming dangerously close to spilling his tea.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347267043377152" id="message-886347267043377152" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347293693980712" id="message-886347293693980712" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To say that Rider had wished for peace and quiet was an understatement. After the brusque proposal of a partnership by Laura, she had been assaulted by all sides from the inebriated chuckles of Guan Yu and Kun Wu, who acted like a pair of drunkards who would drink till no tomorrow.
+
+Once things got hectic and tableware started flying, Ching felt the need to remind her Master about how terrifying she could be. A few pinches, forcible restraints and Laura&#39;s assistance later, and the apartment was finally devoid of any alcohol. Yet, the smell of booze was still pungent in the air, emanating entirely from Kun Wu. Rider had given him tea to soothe his nerves, but he was still quite visibly drunk. She had no doubt that he would have a massive hangover for the next few days.
+
+Not that she cared about that at the moment, since she was busy sweeping any traces of glass and shards that were stuck to the floor. Goodness, to see herself do menial house chores. She couldn&#39;t remember the last time she had performed such a mundane task, but it seemed like her experience in managing a household hadn&#39;t waned at all.
+
+Eventually, she was done. All that was left was silence, and the rustling of Kun Wu&#39;s newspaper as he giggled incoherently through drunken babbling. He was so relaxed, that he even started stretching like a cat...to the point he was about to spill his tea!
+
+Ching immediately intercepted the cup, gently grabbing it with her hand as she prevented even a single drop from being spilled. Her head stood next to Kun Wu&#39;s knees as she glared at him from below.
+
+&quot;Would you rather retire, milord?&quot; Ching asked with a grunt, standing up and placing the cup back in his hand. 
+
+&quot;I went ahead and tidied the bed for you too, since I was cleaning nearby. Considering your current condition, I would definitely recommend at least 12 hours of sleep.&quot; She suggested. &quot;Goodness. You should have warned me in advance if you could not hold your liquor. You&#39;re acting worse than a sailor.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347304225878047" id="message-886347304225878047" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347326766071809" id="message-886347326766071809" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kun Wu expertly dodged Rider&#39;s question by sticking out his tongue like a brat. 
+
+&#39;No, no.&#39; He waved her offer away. &#39;The night is young, and so am I! I&#39;m going to do some <em>research</em>,&#39; he said, bringing the plastic cup to his mouth and taking a big gulp of tea. &#39;This Lord Brandin fellow is quite troublesome, with his castle and knights and all. So I&#39;m going to draft a plan. I&#39;m going to calculate how many familiars I need to summon to completely stuff that castle of his. It&#39;s going to look like a giant shumai by the time I&#39;m done with it, and then...&#39; 
+
+He made an exploding gesture with his hand.
+
+&#39;Poof,&#39; he said lazily, letting his hand rest on top of the newspaper and scrunching it up without a care. &#39;It&#39;ll be spectacular. I&#39;ve never blown up a castle before.&#39; He chuckled like he already had this fight in the bag. For someone who sounded surprisingly composed, his rationality was easily off by a mile...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347340976373760" id="message-886347340976373760" title="Message sent: 12-Sep-21 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347371250851911" id="message-886347371250851911" title="Message sent: 12-Sep-21 04:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ching seemed visibly unimpressed by Kun Wu&#39;s childish antics, staring with complete nonchalance at him blowing a raspberry.
+
+&quot;Such a magnificent plan, milord. Why, I&#39;m quite sure Lord Brandin is quivering with fear at the thought of facing you.&quot; She said with a groan, watching as he chucked the newspaper away as a tiny ball. He proceeded to make more ridiculous hand gestures as he sipped on his tea more.
+
+Yep. Clearly drunk.
+
+&quot;Can I assume that research is done, then?&quot; She inched closer, circling around him in his chair, before stopping right behind him and placing her arms on his shoulders.
+
+A pleasurable sensation jolted Kun Wu&#39;s nerves, as his back felt weightless and relaxed. &quot;Let&#39;s get you to bed, milord. If you really plan on defeating Saber, shouldn&#39;t you be at your peak? I certainly wouldn&#39;t want to see you make an embarassment out of yourself. Both for your pride, and mine.&quot; She whispered honeyed words while delicately massaging Kun Wu&#39;s back. Ching knew exactly how to relax a man, and Kun Wu was no stranger to her tricks.
+
+Granted, wasn&#39;t she right? He needed to be at his peak if he wanted to defeat Saber while simultaneously looking good in Laura&#39;s cameras. His Servant was quite wise, yet something felt amiss. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347393325486101" id="message-886347393325486101" title="Message sent: 12-Sep-21 04:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I&#39;m <em>always</em> at my peak.&#39; Kun Wu corrected Rider, relaxing into the chair as he received a premium back massage. &#39;For some reason, I&#39;m feeling even better today! This must be a sign from the Heavens telling me I can afford to be a little extravagent...&#39; 
+
+A lightbulb sparked in his head.
+
+&#39;Why, I can even storm Brandin&#39;s castle right now!&#39; He set the plastic cup down in a fervor, startling Rider as he got out of his chair. &#39;He won&#39;t <em>ever</em> see it coming.&#39; 
+
+Kun Wu chuckled dangerously to himself as if he&#39;d just cooked up the ultimate ambush. He snatched his iron fan as he made his way to the front door - Rider was amazed that he even remembered to grab it, must be muscle memory at this point - but right before turning the doornob, he spun a full 180 on the spot and made a beeline for Rider.
+
+&#39;Almost forgot,&#39; grinning widely, he charged into Rider and wrapped his arms around her waist, hauling her up like a sack of weightless cotton. &#39;You&#39;re coming with!&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347434786172939" id="message-886347434786172939" title="Message sent: 12-Sep-21 04:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ching wondered if back massages truly worked. Instead of relaxing her Master and easing his nerves, she seemed to have pumped him up even more. She stared agape, watching as Kun Wu stood up in a rush, grabbed his fan and prepared to leave...until he forgot his most prized possession.
+
+&quot;Huuuh?!&quot; Ching grunted, feeling a tight grip on her waist as she was now soaring in the sky. More accurately, she had been lifted above the floor, held by Kun Wu&#39;s arms as he hugged her and lifted her up like the excited drunkard he was.
+
+&quot;Milord, cease this foolishness!&quot; She shouted, pulling at his ears from above. &quot;Fight Saber now? At night? Without Lancer around? If even Guan Yu was worried about Saber, what makes <em>you</em> think that we stand a chance right now?&quot;
+
+Kun Wu may be drunk, but he could clearly tell that Rider&#39;s patience was running out. She seemed quite angry and was now shifting her weight on purpose to get Kun Wu to let her down, lest he stumble and fall. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347463840124969" id="message-886347463840124969" title="Message sent: 12-Sep-21 04:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Hmm, you make a great point!&#39; Kun Wu shrank his neck deeper inside his collar as he tried to evade Rider&#39;s merciless ear pulling. When that failed, he had no choice but to set her down. But that didn&#39;t bother him. In fact, having both arms free was what allowed him to snap out his iron fan and go for a bonk on Rider&#39;s forehead!
+
+&#39;Point, not taken.&#39; He said with that same shit-eating grin. &#39;Because I feel great! And I&#39;m not talking about the drinks, I&#39;m talking about <em>this</em>!&#39;
+
+He pulled his sleeve back and held out his hand as a jolt of mana ran down his arms. It condensed in the center of his palm, and a ball of flame swelled up as if an invisible matchstick had been struck. Kun Wu flicked the ball of fire into a nearby bowl, only to miss it by a wide margin as it shot all the way into the sink... 
+
+&#39;...Ahem.&#39; He shrugged off the mishap as naturally as breathing. &#39;As I was saying! I am in tip-top shape. My mana has all but replenished, and I have more than enough mana batteries to feed you. What makes you think that we can&#39;t go take on a Saber or two, just between the two of us?&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347525165023242" id="message-886347525165023242" title="Message sent: 12-Sep-21 04:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Initially glad to see her Master understand, Rider was caught off guard as she received a painful bonk on her forehead. It seemed to be Kun Wu&#39;s trademark maneuver when it came to reprimanding her.
+
+&quot;Ow!&quot; She lamented, touching her head in pain as she stared Kun Wu down. She had several choice words for the boy, but those would wait, as he did his best to show off his newfound &#39;&#39;&#39;skills&#39;&#39;&#39;...which resulted in him simply missing the mark as his fireball drowned in a sink of bottomless despair.
+
+Of course, if Kun Wu were the type to crumble after a singular mishap, then Ching Shih would have never respected him as a person. She admired that trait of his, even if it made him more thick than a donkey at times. In this case, it was definitely the latter.
+
+&quot;I agree. Your body is at its peak.&quot; The boy would be surprised by her praise, before feeling her long nails poke at his forehead. &quot;But your strongest aspect isn&#39;t. Your mind is clouded and your judgment is hazy at best. Tell me, milord. If we couldn&#39;t cleanly defeat Lancer on our own, then how do you expect us to defeat Saber? You know very well that mana batteries take time to digest fully, which would leave me a sitting duck.&quot; She pointed out.
+
+&quot;...Besides, it&#39;s fairly obvious that I cannot keep up with both Lancer and Saber in my current state. I know that Guan Yu probably thinks that too. The only reason his Master asked us for help is probably because she thinks that we are the least likely to doublecross her. After all, even if we tried, we wouldn&#39;t get too far.&quot; Ching Shih lamented. Kun Wu would initially be confused, before realizing that Ching was implying that she was dragging the team down with her presence alone. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347555506638899" id="message-886347555506638899" title="Message sent: 12-Sep-21 04:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kun Wu was all ready for Rider to drown him in praises...before she stopped short after a single utterance. What followed next made him feel like some reject student as Rider shredded his arguments and handed him a big fat F in the brain department.
+
+&#39;We <em>could&#39;ve</em>,&#39; he mumbled under his breath. Then he folded his arms and repeated it, louder this time. &#39;We could&#39;ve beaten him.&#39; He shifted his gaze as he took turns to look at everything <em>but</em> Rider, as the latter continued to rain on his parade with facts and logic. 
+
+Someone chose to be not very fun at parties...
+
+As Rider finished up her self-deprecating speech by bringing up their temporary alliance, so did Kun Wu finish touring his apartment with his gaze.
+
+&#39;...All finished?&#39; He asked Rider through squinting eyes, as if he were trying to scrutinize her under a microscope. &#39;You sure have a lot to say about yourself lately. Do you mind publishing a book next? Maybe we can make another fortune from it! Seeing how you are so good with words and all.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347631318687784" id="message-886347631318687784" title="Message sent: 12-Sep-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Perhaps Ching was not as astute as she thought she was. While she droned on and on about the team&#39;s lack of strength, Kun Wu made sure to subtly mock her with his body language and careful choice of words. It was so clever, so subtle, that Ching Shih didn&#39;t notice until she was done ranting. Once she was done, she realized that something was off, as she stared in bewilderment at Kun Wu&#39;s drunk, yet annoyed, glare.
+
+&quot;...M-Milord, I,&quot; She stammered as Kun Wu drove the knife even deeper, mocking her long-winded diatribes with his usual eloquence, except much ruder due to his inebriated state.
+
+&quot;I meant no offense, of course! I&#39;m just being a realist! The evidence is there, that we are incapable of defeating Lancer and Saber in our current state! I am merely looking out for you!&quot; Ching repeated quite loudly, to the point she was basically shouting. While she sounded like she was trying to reinforce her point, there was something else to it.
+
+<em>&quot;...What else do you want me to say?&quot;</em> She thought to herself, albeit she already knew the answer to that question. After tensing up for a bit while awaiting Kun Wu&#39;s reply to her question, she sighed as she realized that she was getting worked up over nothing. Why even bother hiding her insecurities from her Master? There was no point, considering how shrewd the brat could be.
+
+In the end, she came clean.
+
+<strong>&quot;...I&#39;m sorry for letting us both down.&quot;</strong> She did a light nod, with a displeased face as she closed her eyes. The shame and embarrassment was quite palpable. &quot;It is entirely my own fault that we lost to Lancer. Had I been stronger, that would have not happened. Had my mana reserves been higher, that would have not happened. Had you summoned a better Servant than me...&quot;
+
+Her mouth stopped for a bit.
+
+&quot;...You would have clearly won already, milord.&quot; Her expression looked solemn. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347700650528868" id="message-886347700650528868" title="Message sent: 12-Sep-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A part of Rider, the part that was tired of keeping up her facade, finally crumbled as she swallowed what remained of her pride and came clean. This was not the Ching Shih that had taken over the stage by storm on that fateful summoning day. The once haughty pirate queen of the sea was in shambles, her worst fears made manifest as words came pouring out like mud. She lambasted herself, her decisions, her <em>existence</em>, leaving no stone unturned as she finally laid her heart bare for Kun Wu to see.
+
+With every word Ching Shih uttered, Kun Wu&#39;s frown deepened. He continued to stare at Ching Shih as she apologized in more ways than he could count, until her words ran dry and she simply stood there, wringing her hands and waiting for her Master to deliver his final verdict. 
+
+&#39;Hrmmmmmmm.&#39;
+
+Kun Wu rubbed his chin as he inched closer and started <em>inspecting</em> Ching Shih. Like a tailor taking measurements of a model, he went around the woman and started sizing her up from every angle. He combed through her hair, pinched her waist, studied the ornate nail guards on her fingers as he stretched her fingers apart and inspected them one by one. He took measurements of her legs too, using his arms and hands like a crude tape measure as he judged their proportions and circumferences.
+
+Despite his numerous attempts (conscious or not) at mooching Rider&#39;s assets before, this was the first time Kun Wu had so thoroughly <em>studied</em> Rider&#39;s body. The act would no doubt confuse, and worse, embarrass the Servant: was she being treated like a commodity, or did Kun Wu take her words at face value and gone on to determine for himself whether she was strong enough or not? If only she could take a gander of how his brain had been wired...
+
+&#39;Do Servants gain weight?&#39;
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347721445888060" id="message-886347721445888060" title="Message sent: 12-Sep-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With a slap to her posterior, Kun Wu concluded his inspection. Before Ching Shi could object further,  he wrapped his arms around her legs and hefted her up once again, slinging her over his shoulder.
+
+&#39;And up!&#39; He exclaimed with much satisfaction, then brought Rider over to the sofa and proceeded to plop her down like a sandbag. So unromantic. 
+
+&#39;If you are feeling down, then lie down!&#39; He sat next to her. &#39;Don&#39;t just <em>stand</em> there. Are you a masochist? Here! Have some tea.&#39; He fetched his own cup and pushed it against her hands. Then he leaned into the sofa as he crossed his arms and stretched his legs, crushing Rider in the process as he used her body like a cushion of sorts.
+
+&#39;You make me jealous, you know that?&#39; He said abruptly. &#39;All that food and mana batteries, and you are still the same as when I first summoned you! Where does all that extra energy go? Into the ether? Under the carpet? You gotta teach me your secrets.&#39;
+
+He turned to look at her, then reached over and flicked her across the forehead.
+
+&#39;And <em>that</em> is your problem. You have all these secrets, but you never get to the crux of them! And here I thought you were only jealous of Guan Yu because he&#39;s, well, the best! <em>Of course</em> you can only <em>aspire</em> to beat the best! But then you went up against him and Red Hare with nothing but a whip, and I thought to myself, &quot;I am so proud of her! She finally conquered her worst fear!&quot;&#39;
+
+<strong>&#39;But then you went ahead and told me that <em>that</em> was only the tip of the ice berg.&#39;</strong>
+
+He slumped further into the sofa (and Rider) as he let out a puff of air in frustration. He took one look at Rider, then reached over and started rustling her hair, pinching her cheeks, delivering payback to all the times Rider had had her way with him. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347758477389904" id="message-886347758477389904" title="Message sent: 12-Sep-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I don&#39;t get it.&#39; He said flatly. &#39;All this time, you&#39;ve been setback by your own mana output. And you&#39;ve clearly been aware of it. Telling me to gather riches, making me focus on the War. You were clearly aware of your problem,&#39; his eyes narrowed, &#39;<strong>But everything you did, you didn&#39;t do them to fix it. </strong>They were just bandaids at best. You chose to disregard this mana problem of yours because, <em>because</em>...&#39;
+
+He threw up his hands as he made an exasperated expression.
+ 
+<strong>&#39;</strong>—<strong>Because I don&#39;t know, you are secretly the biggest masochist in history and you are allergic to mana!&#39;</strong>
+
+With one hand on the back of the sofa he climbed on top of Rider, digging one knee into her side as he cornered her under his ire. 
+
+&#39;Well what do you know, Ms. I&#39;m-too-proud-to-admit-my-problems,&#39; He bore down on her like a lion stalking deer. &#39;I&#39;ve got a fix for you right here. And <em>you</em>,&#39; he tapped her on the nose, &#39;You are going to accept it whether you like it or not.&#39;
+
+With nothing between them aside from the tea cup, he inched closer to Rider...until their foreheads touched. Dark hair rolled down behind him, mingling with her light and silky strands. For a moment, she thought she could hear the wild beating of Kun Wu&#39;s heart. But then she realized that her own heart was pounding, and Kun Wu had somehow shrugged off his leather glove with only one hand and was now caressing her face with his bare fingers.
+
+Without the fine leather protecting them and without an abundance of hot bathing water to soften the skin, Kun Wu&#39;s fingers had a surprising roughness that belied his young age. Contrary to his baby face, they felt coarse to the touch, something Rider had found in seasoned sailors who had subjected themselves to much hardship on the seas. Kun Wu hadn&#39;t bluffed when he told her that he used to train with the monks; she could only imagine how much he had put himself through to acquire the skills that he had today.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347804199485471" id="message-886347804199485471" title="Message sent: 12-Sep-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...
+
+&#39;...So how does this work?&#39; Kun Wu asked abruptly. &#39;I&#39;m touching you with my skin.&#39; He cast a side glance at Rider&#39;s hand, then pulled her gloves off as well. He wrapped his bare hands with hers.
+
+&#39;Now we&#39;re touching fingers, but I still don&#39;t feel anything.&#39; He said, dumbfounded. &#39;Is this normal? The instructions manual said bonding takes many forms. I thought being direct would certainly work.&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347817407369296" id="message-886347817407369296" title="Message sent: 12-Sep-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="886347864660410419" id="message-886347864660410419" title="Message sent: 12-Sep-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There was no denying that Rider was the weakest link of the team. While the Servant was usually the centerpiece of a Master-Servant alliance, she was the exact opposite due to her mana issues. She wouldn&#39;t blame Kun Wu at all if he decided to declare the contract null and void because of her own weakness. That is why she awaited his reply, fully expecting him to sever the connection between the two.
+
+Instead, he started gawking at her from all sides, casually touching and feeling his way around her as he measured her in her entirety. &quot;Wait, what are you-&quot; She was interrupted by a slap to her rear, before being carried like a sack of rice and dropped on a sofa. Was she too light, or was Kun Wu simply stronger than he looked?
+
+&quot;Milord! Why are you-&quot; She grunted, being interrupted yet again as Kun Wu landed on top, mounting her as he sat near her waist. She was being cornered, as the boy leaned closer and delivered his own dose of verbal lashings. Calling out her idiocy. Calling out her foolishness. Calling out her hypocrisy.
+
+What followed was Kun Wu venting, playing with Rider&#39;s face as he pinched and stretched her cheeks while she stared at him in disbelief. She knew for a fact that she could effortlessly push him away in this instant, but she relented. Something far stronger than an anchor was tying her down to the sofa. Was it Kun Wu&#39;s words speaking to her, or a sensation of guilt?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886347886584004638" id="message-886347886584004638" title="Message sent: 12-Sep-21 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Stop it. I&#39;m just-&quot; She wanted to speak, but Kun Wu kept talking over her, flicking her nose as his mind was set. The moment he proposed a &#39;fix&#39;, Ching&#39;s body shuddered in fear. A sense of deja vu coursed through her mind.
+
+Indeed, Kun Wu inched even closer. Her fears were gradually gaining traction. Their foreheads touched, as their hairs tangled each other until the sofa was a mixture of black and white. Her heart palpitated, loud enough for her to wonder whether Kun Wu was anxious as well.
+
+She was deathly afraid, but also excited. Despite having sworn off from bonding, she could feel the warmth around her, encouraging her to dive in. She could have stopped this all right now if she wanted, yet her body refused.
+
+The decision had been made, as she closed her eyes and awaited his embrace.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886348023989407766" id="message-886348023989407766" title="Message sent: 12-Sep-21 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+...
+
+She felt his rough hands on her smooth skin, a sign that he had practicing his craft for a long time. She had her suspicions ever since the fight at the boat, but now they were basically confirmed. She would have to ask him about that once they were finish-
+
+<em>&#39;...So how does this work?&#39;</em>
+
+&quot;Eh?&quot;
+
+Rider opened her eyes, wondering if she had misheard him. But no. Kun Wu had stopped, losing all momentum as he instead ungloved Rider&#39;s hand and gripped at it, to no reaction. He then asked a few questions about bonding.
+
+...
+
+Ching felt embarrassed. Furious. Ashamed. He had acted with so much confidence before, only to drop it all at the end.
+
+She couldn&#39;t tell whether she was fortunate or unlucky. Her Master could be so smart, yet so foolish at the same time.
+
+&quot;...You complete buffoon.&quot; Ching ground her teeth, gripping at Kun Wu&#39;s hand tightly as he felt a tingle run down his spine. Despite the lack of nails, her strength was still far above his. 
+
+&quot;If it were just a matter of shaking hands and pinching cheeks, don&#39;t you think I would have bonded with you already? Imbecile.&quot; She spouted with a blush as she knocked her forehead into his, causing both of them to grunt in pain. 
+
+ &quot;Unfortunately for you, milord, you summoned an incredibly greedy Servant. The type that could never be satisfied with caresses alone.&quot; Ching explained. The embarrassment was palpable in her voice, but she felt like she owed her Master a proper explanation at this point. She took a deep breath and let the truth come out.
+
+ &quot;We would need to <em>make love</em>. You understand?&quot; She revealed, looking away in shame.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886348042268184616" id="message-886348042268184616" title="Message sent: 12-Sep-21 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="886348068176420925" id="message-886348068176420925" title="Message sent: 12-Sep-21 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">For a while, Kun Wu did nothing but blink at her blankly. Then everything clicked, and he let out a soft, &#39;<em>Oh.</em>&#39; He didn&#39;t even mind the red spot on his forehead where Rider had bumped it and just stayed like that, frozen in place while Rider averted her eyes and silently processed her inner shame.
+
+A minute passed, then two. The silence between them stretching on for what had felt like an eternity...
+
+&#39;So this has nothing to do with compatibility?&#39; Kun Wu said bluntly. He looked at his hands.
+
+&#39;I thought it was like Laura said. You had to have forged a connection, with trust. I didn&#39;t think I earned your trust.&#39; He lowered his eyelids. &#39;That&#39;s why it didn&#39;t work. I didn&#39;t know it had to be physical. Well, <em>this</em> physical. With a whole ritual attached.&#39; 
+
+Kun Wu reflected on himself, and straightened his body just a little. Then came a rustle, and he grabbed Ching Shih by the arm, pulling her up the sofa so she was looking at him not from a prone position, but as an equal. 
+
+<strong>&#39;But I do love you.&#39;</strong> He told her seriously, hand tangled with hers as a blush began to seep into his complexion. Contrary to Ching Shih&#39;s frazzled array of emotions, Kun Wu&#39;s own was straightforward and simple. He was brimming with confidence, and now a tender happiness had crept into the soft features of his face. Rider hadn&#39;t denied him. It was <em>him</em> who had failed to be more daring! He was such a coward!
+
+No more.
+
+&#39;I love you. I <em>adore</em> you,&#39; he repeated. &#39;And I wouldn&#39;t trade you for the world. I don&#39;t want you to suffer. I want you to be happy. Will making love to you give you that happiness?&#39; 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886348084186062929" id="message-886348084186062929" title="Message sent: 12-Sep-21 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Being with you makes me happy.&#39; He proclaimed loudly. &#39;I still want you to win the War for me, that much hasn&#39;t changed. But I also want you all for myself. When you told me that you wanted to contract with a better Master, I found myself thinking for the first time just how easy it is to snuff out the light in another magus. I mean, mages are inherently <em>weak</em>, aren&#39;t they?&#39; He said it so matter-of-factly that it didn&#39;t even seem like a bluff. But then the smile crept back, and the tension in his body dispersed.
+
+&#39;But now I know.&#39; He grinned wildly, as if he had just been handed a bag of sweets. &#39;I finally know why, and I want <strong>more</strong>.&#39;
+
+He leaned closer until there was barely any space between them. If Rider wanted to run, she had better do so right now.
+
+&#39;If you call that greed, then please allow me to play right into your hand.&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886348099109396551" id="message-886348099109396551" title="Message sent: 12-Sep-21 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-09%20to%202021-09-25%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Sep-21 04:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="886348156672049232" id="message-886348156672049232" title="Message sent: 12-Sep-21 04:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The silence felt like an eternity indeed. Enough for Ching to think on the last few minutes. It was apparent that they would be unable to defeat future opponents if they never bonded, but the act of bonding itself was rather complicated for her. Due to her skill, Pirate Gentleman, she was unable to fully bond to a Master unless she took them as her husband or wife. Much like how she manipulated her two husbands through marriage in life.
+
+The Throne had never forgotten that aspect of her, and had so kindly engraved it on her Spirit Origin. She cursed that skill every day, a sign of her constant weakness that reminded her of her past life.
+
+The constant need to manipulate others to be successful. The fact that her own skills rendered her incapable of fighting on her own. It made her sick to the stomach. To be such a liability.
+
+But she was no longer alone. She simply needed a reminder.
+
+<em>&quot;But I do love you.&quot;</em>
+
+Those words shook her to the core, as she felt Kun Wu&#39;s grip grow tighter. He pulled her up, raising her so that they were standing as equals. Their eyes met as her Master faced her head on, knowing that if he ran away now, he would regret it for the rest of his life.
+
+He went ahead and released his entire soul for Ching to see. His deep passion for her. His undying love and his grand plans for the future. He could already envision various timelines beyond this point, but in none of them was Ching absent. His mind had already accepted her as essential.
+
+Ching stared at him in silence. There was no need for words, even, as Kun Wu conveyed his emotions perfectly through his gaze alone. His thoughts were reflected on his pupils, and she would need to be a fool to deny that.
+
+They weren&#39;t lecherous like those of her first husband, nor obsessive like those of her second husband. They were those of someone who had just experienced love. Innocent, pure love.
+
+When was the last time she had felt that?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="886348219515306044" id="message-886348219515306044" title="Message sent: 12-Sep-21 04:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+
+...
+
+He leaned closer, brusque enough to force a reply and gentle enough to let Rider take her time. She was cornered, yet also held the power to turn this conversation in an instant. He was giving her the privilege of choice.
+
+Her slender fingers slid through his as they increased their grip. Despite their firmness, Kun Wu could notice that Ching&#39;s legs were shaking. She was as tense and frazzled as ever, but trying to appear confident in front of him. Her decision had been made. Her mind was already sending alarms, begging for her to stop, but she shoved those thoughts aside.
+
+She had found her one true Master.
+
+Without warning, Kun Wu felt a shift in strength as Ching Shih pushed him forward, causing him to land on his back on top of the sofa&#39;s soft surface. Rider lied on top of him, pinning his arms down by holding at his wrists and palms. He felt vulnerable, yet also at ease. His Servant&#39;s face was just a hair&#39;s breadth away from his. He could feel her breath on him.
+
+&quot;I warned you. I warned you that I was a selfish woman, yet you never listened. I told you about my greed, but it felt like talking to a brick wall. Have you even read my stories? Do you know what ended up happening to me? Or did they add a bunch of bullshit to my tales as is the norm?&quot; She spouted angrily, causing Kun Wu to feel confused. He thought he was about to be rejected, until...
+
+&quot;Fact is, I&#39;ve given you plenty of warnings.&quot; Ching added. &quot;So, remember, <strong>this is what you asked for.</strong>&quot;
+
+Her face lunged at his, as he felt her lips pushed down on his. Her tongue wormed down his throat.
+
+&quot;I love you.&quot; She uttered mid-kiss before resuming, keeping him pinned down as they continued... <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

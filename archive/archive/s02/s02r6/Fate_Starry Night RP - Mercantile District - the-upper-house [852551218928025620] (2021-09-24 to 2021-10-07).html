@@ -1,0 +1,1169 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-upper-house</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Mercantile District / the-upper-house</div>
+
+            <div class="preamble__entry preamble__entry--small">A luxury suite on one of the upper floors of a hotel, near the border between the Mercantile and the Residential Districts. It has a great view of the market square, one of the places Kun Wu frequents to perform. The suite itself costs an arm and a leg to rent; it is the biggest reason why Kun Wu never has more than 3 digits in his bank account.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 24-Sep-21 12:00 AM and 07-Oct-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">27-Sep-21 05:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="891973466037833729" id="message-891973466037833729" title="Message sent: 27-Sep-21 05:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">A few hours after the fight at Dolorous Gard...</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="891973528134516796" id="message-891973528134516796" title="Message sent: 27-Sep-21 05:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The train ride home had been uneventful. Kun Wu quietly meditated away in his seat, leaving Rider to her own devices. After getting off the train, they stopped by his favorite noodle bar for a quick bite, then went back home to wait for Laura&#39;s messengers.
+
+Rider had a thousand questions for her Master, but Kun Wu kept himself occupied. After uploading footages of Saber&#39;s fight to his channel under obnoxious titles, he once again claimed a spot on the sofa and meditated to recover his mana. 
+
+It was a necessary gesture, but one that left Rider no room to pry: now that Kun Wu was responsible for both of their mana expenditure, it was vital that he got all the rest he needed. Of course she was more than happy to give him that space...but recovery didn&#39;t seem to be the only thing on his mind. 
+
+To wake her Master or not? Rider was stuck in quite the conundrum.
+
+Thankfully, their brief respite would soon be punctuated by a faint buzzing outside the suite. A small envelope slid beneath the front door and dropped onto the floor. Was that the memory card Laura had promised?
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974187055476736" id="message-891974187055476736" title="Message sent: 27-Sep-21 05:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Seeing Kun Wu be silent was strange, to say the least. There was a period in Rider&#39;s second life where she thought that silencing her Master&#39;s lips would bring her the greatest joy, yet here she was, expectantly waiting for him to crack a joke or annoy her with a sneaky compliment. All of his conversation topics were instead directed towards the Grail War and his plans to win it.
+
+She was getting a sense of deja vu, one that made her feel sick to the stomach. <em>&quot;Did I choose poorly?&quot;</em> She thought to herself, watching her Master from afar as they meditated (snoozed) on the sofa.
+
+This moment of silence would be broken by an obnoxious and familiar buzzing. Ching could already make a guess on who was lurking behind the door. An envelope slid underneath it, causing the woman to stand up and pick it from the floor.
+
+&quot;Milord, your mail.&quot; She muttered nonchalantly, dropping it into his lap. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974292089229343" id="message-891974292089229343" title="Message sent: 27-Sep-21 05:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I know.&#39;
+
+When Rider returned, Kun Wu was wide awake. He grabbed the envelope and turned it over, pouring out a single memory stick. 
+
+&#39;That was fast,&#39; he commented, reaching across the coffee table for his laptop. &#39;Had I known what a joy it is work with an informant, I should have allied with her right from the start.&#39;
+
+He slid the memory stick in. A few clicks and drags later, his screen was glowing with documents and images, neatly sorted by name and date. 
+
+&#39;This is...quite different from the leaderboard.&#39;
+
+Kun Wu brought out his phone and pulled up the fanmade website, which still had Saber of Olympia&#39;s name on it even though he had been defeated a few hours ago. If a battle on such a grand scale took so long to update, he could only imagine how many other names on the list had been falsely reported. 
+
+Compared to the leaderboard, Laura&#39;s files contained just a handful of names. A few Delphian Masters, one of which lived suspiciously close to his own suite, and a single Olympian-
+
+He stopped scrolling, his eyes glued to the screen as he compared the name of the Olympian Master to the one he had memorized off the CWW. Briefly, his eyes flitted to Rider, before he looked back down again and started typing fervently on his laptop.
+
+&#39;Do you remember the businessman who tried to kill us on the ship?&#39; He asked Rider as he typed the name Laurent Mackenzie into the search bar. &#39;Turns out that he is a Master too, and he&#39;s still in the running for the CGW.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974582444118056" id="message-891974582444118056" title="Message sent: 27-Sep-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was almost as if her Master had a sixth sense. One warning him when it was time to rest and time to work. She had always wanted Kun Wu to be more proactive, since she valued hard work and expediency, but something about the current state of events bugged her.
+
+As Kun Wu talked about leaderboards and future targets, he eventually dwelled on a singular photo. It was a familiar face, one that he had not only seen up close, but witnessed in various videos and articles as well. Laurent Mackenzie. Doing a search on him would be fairly easy. Better to tell Rider about it.
+
+&quot;That spineless ingrate? I&#39;m appalled that there is such a lowbar when it comes to Masters in this Grail War.&quot; Ching expressed discontent. Laurent was no threat to her, but just like an annoying pest, she would rather not interact with people like him.
+
+&quot;They teamed up with Assassin, didn&#39;t they? Yet they weren&#39;t the shooter&#39;s Master.&quot; She was of course referring to Gustave, who had attempted to single out Kun Wu only to fail. &quot;Do they even have a Servant? I see no reason for them to attack us without one, yet the only Servant at the Brobdingna-&quot; She bit her tongue by accident while attempting to say the name.
+
+&quot;...The big ship. There was only one Servant there.&quot; Ching explained. &quot;Regardless, why do you ask? Surely, you don&#39;t plan on fighting another opponent so soon? There is a thin line between being expedient and foolish, milord.&quot; She wrapped her arms around his shoulders, towering above him as she gently placed one of her knees on his lap.
+
+While seeming seductive, she was actually coercing him. No, <em>imploring</em> him to stay at home. Something was off with Kun Wu today and she would rather see him cool his head off. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974616032100393" id="message-891974616032100393" title="Message sent: 27-Sep-21 05:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;<em>Delphi&#39;s</em> Assassin.&#39; Kun Wu corrected Rider, pointing to a document in the background titled <em>Gustave Renoir</em>. &#39;Thought he could turn us against each other early on-&#39; 
+
+He paused, recalling how he had done nothing to help with the situation on the Brob. In hindsight, maybe he should have asked first. But once the businessman started dragging Rider&#39;s name through the mud, all bets were off the table. 
+
+&#39;Ahem.&#39; He cleared his throat awkwardly. Looks like he still needed plenty of training!
+
+Though it seemed that Rider was more concerned with <em>him</em> than what had transpired on the ship. She slid into his lap, not so subtly blocking his laptop with her frame and demanding that he pay attention to her. 
+
+It was a sly move, but an effective one as well: her proximity - smelling her fragrance and feeling her warmth and softness - distracted him. Memories of that fateful night came rushing back. It was here, in this very room and on top of the same cushions that they had forged their first bond. 
+
+Rider&#39;s action implied many things. As young and impulsive as he was, Kun Wu instinctively wrapped an arm around her and pulled her closer, leaning into her touch. 
+
+He missed the intimacy.
+
+&#39;Mmmmmmm.&#39; He nuzzled against Rider like a cub. &#39;You are distracting me.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974720684187658" id="message-891974720684187658" title="Message sent: 27-Sep-21 05:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Me? Distract you? Why, I&#39;d never.&quot; Ching Shih giggled, as her hand reached down to his back while she put more of her own weight on top of him. He was ensnared. Trapped, inside of a spider&#39;s web.
+
+But it was a gentle prison. Rider allowed him free reign, letting him wrap his arm around her waist and pull her close, nuzzling against her bosom with his playful attitude. At last, he was acting more like himself.
+
+She delicately shoved the laptop away from his lap, making room for her other thigh as she now sat completely on top of him.
+
+&quot;Perhaps I&#39;m merely removing the distractions around you. Or would you say that I am not worthy of your attention?&quot; She carefully worded, sliding her hand towards his groin. Her fingers curled towards his pants, as if seeking to unbutton them. Her other hand crawled to his head, gradually dragging him closer. Their faces were inches apart. Her silky hair tickled at his nose.
+
+&quot;I think it is time we get reacquainted. Because clearly, you seem to have forgotten a few things about me.&quot; She whispered cheekily, both to tease and out of affection. She leaned in and let her lips brush over his. 
+
+A jolt coursed through Kun Wu&#39;s body. His heart leapt into his throat, almost out of his control. It was the same, electrifying sensation that he had felt on their first night.
+
+Ching Shih continued, kissing him as their tongues wrestled each other. It seemed like she had already made plans of her own on how Kun Wu should spend his night... <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974764132958218" id="message-891974764132958218" title="Message sent: 27-Sep-21 05:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I did <em>not</em>. Are you comparing me to a goldfish?&#39; Kun Wu pouted, but he was clearly enjoying Rider&#39;s attention, and vied to give her back twice as much.
+
+Their lips touched, bodies pressing against each other. Rider was a tease, and Kun Wu matched her in passion. He flipped her onto the cushions, face red, eyes dark with desire.
+
+He would give <em>anything</em> to make her happy.
+
+&#39;You are the last thing I&#39;d forget.&#39; He leaned down for another kiss. &#39;I&#39;d give anything for you. Anything to hold you close. Today. Tomorrow. <em>Forever</em>.&#39;
+
+<strong>&#39;Four other Masters remain. Once they are all removed from the War, we will have the futre I desire for the both of us.&#39;</strong>
+
+With monumental effort he pushed himself off of her. Rider had nudged his laptop away, but he had already memorized everything he needed.
+
+&#39;Laurent Mackenzie is currently in Delphi.&#39; He relayed CityNet gossip from his socials to Rider without missing a beat. &#39;Word has it that he has contracted with a new Servant, and that they fled Olympia after getting into trouble with their Lancer. His office is just a block away from the nearest subway station.&#39;
+
+The stars have aligned. A preemptive strike on his home turf. Is that not the perfect setup for him?
+
+&#39;I know the CBD like the back of my hand.&#39; He said urgently. &#39;It won&#39;t take long.&#39;
+<span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974877203009556" id="message-891974877203009556" title="Message sent: 27-Sep-21 05:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Am I? Not even I am <em>that</em> cruel, milord.&quot; Ching laughed at Kun Wu&#39;s remarks, before following his lead and snuggling up to him. She let him push her down to the sofa, land on her chest with hungry eyes as he kissed her all over. She felt like he wanted to devour her whole.
+
+&quot;So greedy.&quot; She chuckled, kissing him back with affection. &quot;The night is still young, you know? There is no need to rush.&quot; She caressed his head, massaging it in an attempt to calm him.
+
+&quot;What did I teach you last time? Do it slowly. Want me to show you the ropes agai-&quot; Before she could continue with her lures, Kun Wu immediately broke off their kiss and backed off. By the time Rider had noticed, he was already standing away from the sofa and tightening his pants.
+
+Once again, he had returned to talking about the war. His eyes were blazing with passion. Passion directed towards Rider, but dangerously so. He was so in love with her that he was truly determined to make sure that she would win the war and rule as the queen she deserved to be.
+
+A noble gesture, albeit one that Ching Shih didn&#39;t particularly care for in this instant. She didn&#39;t disagree with Kun Wu&#39;s plans, but the way he was handling it, coupled with him repudiating her affections...It ticked her off. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="891974887864946720" id="message-891974887864946720" title="Message sent: 27-Sep-21 05:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kun Wu took Rider’s silence as approval. As a pirate queen, as well as a fleet commander well-versed in warfare, it was a given that Rider knew how to set her priorities straight. While it took Kun Wu a couple glasses of ice cold water to calm down, Rider seemed ready for action from the moment he had disclosed Laurent’s whereabouts. A dark cloud seemed to hang over her head. Was she still holding a grudge, after all this time?
+
+Kun Wu couldn’t blame her. Had another Olympian Master remained, he would have still set Laurent as his first target. The businessman’s presence in Delphi was only the icing on the cake.
+
+He sat down next to Rider.
+
+‘Don’t let your distaste for him cloud your judgement. Treat him like you would any other Master. The CGW is a tournament where anything goes. If I’m allowed to ally with another Master, then so is he, and everyone else.’
+
+His advice, while candid, had completely missed the mark. But Kun Wu was too preoccupied to notice. Too preoccupied with his opponent, with the prospect of winning the war, and securing a future for Rider.
+
+Unlike before, this wish of his felt tangible. Almost as if he could grasp it if he just pushed himself a little bit harder. He flexed his fingers, feeling the warmth penetrate the skin of his gloves. His artificial circuits were working just fine. Running a little warmer than usual, but his mana had replenished a respectful amount thanks to the multiple meditation sessions on the subway and back at home. 
+
+Perhaps, more importantly, his mind felt surprisingly clear. His thoughts were scattered, though they honed into a common theme:
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891974899726426112" id="message-891974899726426112" title="Message sent: 27-Sep-21 05:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">‘Ching Shih.’ He called Rider by her True Name, taking her hand in his. ‘We are almost at the finish line. I know I’m foolish and impulsive. But just this once, I ask you to indulge me in this gamble. I want to know what it feels like to carve out a path to happiness with my own two hands. With you by my side, I have a feeling that I won’t lose. Lend me your strength, and I will give you the world.’</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="891974916256202783" id="message-891974916256202783" title="Message sent: 27-Sep-21 05:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/61761d56820e69dc40763a82087b6522-0CF7C.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ching Shih#0000" data-user-id="855721264785260544" style="">Ching Shih</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="891975015434706975" id="message-891975015434706975" title="Message sent: 27-Sep-21 05:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh, I assure you. He is the least of my worries right now.&quot; Ching replied, raising an eyebrow at Kun Wu&#39;s advice. How could someone be so shrewd, yet so dense at the same time? She chalked it up to his age and sighed. It would take a while to raise him into a man...
+
+Though, Kun Wu still had his ways of convincing her. He grabbed her hand and stared into her eyes, letting his determination shine through as he admitted he was going for broke. His only promise was a gamble, not a victory. Yet Ching Shih found it hard to refuse.
+
+&quot;Stop staring at me like that.&quot; She scoffed, feeling weak at the sight of his longing gaze. How could she deny her partner&#39;s dream? If Kun Wu&#39;s dream involved placing her at the top of the world, then so be it. Opposing him would simply result in him doubling down even harder.
+
+&quot;Just promise me you will be safe and I will.&quot; She grabbed his hand and kissed it. &quot;I can&#39;t be bothered to reach for the top on my own, milord.&quot; She laughed, before standing up and heading towards the door. <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Mercantile%20District%20-%20the-upper-house%20%5B852551218928025620%5D%20%282021-09-24%20to%202021-10-07%29.html_Files/d5b52f57387ff8247efc8badd76eb03b-75472.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kun Wu#0000" data-user-id="855721264785260544" style="">Kun Wu</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Sep-21 05:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="891975123287031809" id="message-891975123287031809" title="Message sent: 27-Sep-21 05:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention">#mackenzie-delphi-offices</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
