@@ -1,0 +1,1305 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - current-season</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">ROLEPLAY INFO - LORE / current-season</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(255,140,19)">Nat</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 05:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="839247252924792842" id="message-839247252924792842" title="Message sent: 05-May-21 05:08 AM">
+
+                        <div class="chatlog__embed">
+                            <a href="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/s2-509A7.png">
+                                <img class="chatlog__embed-plainimage" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/s2-509A7.png" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">05-May-21 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="839248437097660436" id="message-839248437097660436" title="Message sent: 05-May-21 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The waters of the new world had grown indescribably hot in recent times. A sign that summer was coming. 
+
+Of course, this meant that most of the posh elite was sitting comfortably inside of their cool homes, powered by wind leylines and mystical fans. For them, the volatile impact of the weather might as well be a blot in the ocean.
+
+But with the change of seasons came new opportunities. Even in the apocalypse, the value of business never truly died. This particularly warm day further reinforced that, as businessmen, aristocrats, mages and entrepreneurs visited a Dhruva located in some small corner in the Earth. It was a resort for the rich. A place for them to engage in side activities befitting men of such caliber.
+
+Today, it was auctions.
+
+A dozen or so men sat inside a building clearly designed to resemble a chapel. The sponsor for this bidding session was none other than the Neo Holy Empire, a remnant of the Holy Church that has been making strides in the last few decades. As such, their name was now commonplace among the elite, with some aristocrats even being part of the Holy Order.
+
+The offer for today? An entire city. Or the remnants of one, at the very least. It was once called Persepolis, but now it&#39;s nothing more than a wandering wreck waiting to be pillaged. The Church has cordoned off the area around it to prevent scavengers from intruding and is now offering it to the highest bidder.</span>
+
+                                <span class="chatlog__edited-timestamp" title="05-May-21 04:31 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839248512407437342" id="message-839248512407437342" title="Message sent: 05-May-21 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Three thousand.&quot;
+
+&quot;Five thousand.&quot;
+
+&quot;One million.&quot;
+
+Numbers were tossed around faster than a calculator. Who knew what currencies they were using. Whether they matched the actual value of the city or not.
+
+What mattered was that all men fell silent after a few minutes, save for two men who were still raising their voices to each other.
+
+&quot;Two billion.&quot;
+
+&quot;Three billion.&quot;
+
+&quot;Three point five billion.&quot;
+
+&quot;Three point six-&quot;
+
+&quot;You don&#39;t have that much. Stop bluffing.&quot; A man in a pure white getup said as they slicked back their blond hair. It was none other than Olympia&#39;s president, a famous aristocrat by the name of Mr. Irons. As his namesake implied, he owned quite the sizable ironworks factory. A whole bunch of them, to be precise.
+
+&quot;I don&#39;t think this bid said anything against <em>loans</em> now, did it?&quot; A slightly shorter man replied with a visible babyface, made even more uncanny by their elegant and refined suit that would fit most businessmen. Just what you would expect from Gill Bates, a famous billionaire and entrepreneur that controls numerous shares in Delphi&#39;s businesses.
+
+The two of them were clearly vying for the prize.
+
+Knowing that they would go on for ages, a wise member of the Church intervened.
+
+&quot;Ahem, gentlemen. It is clear that these bids have gone far beyond monetary terms. At this rate, both of you might go bankrupt, which defeats the purpose of this auction. Instead, the Church proposes another alternative.&quot; The nun said with such grace that she immediately put the two bidders at ease, if only for a moment.
+
+&quot;You two are major sponsors of two different cities, correct? Then the solution is simple.&quot;
+
+<strong>&quot;A City Grail War.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839248585438265414" id="message-839248585438265414" title="Message sent: 05-May-21 05:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<div class="pre pre--multiline nohighlight">Fate/Starry Night</div>
+<strong>- Season 2 -</strong>
+
+Autumn 2104. Several months since Persepolis had fallen.
+
+Olympia&#39;s fumes were obnoxious.
+
+While the factories were prolific and led to the city&#39;s overall growth in terms of wealth and size, the amount of pollution caused in return was disastrous. There was no way for it to sustain itself or grow bigger, unless enough scrap could be gathered to create a new portion of the city specifically dedicated to filter waste.
+
+Likewise, Delphi had enough of being called &#39;the little guy&#39;. A city thriving on businesses and stocks was considered laughable in this post-apocalyptic age. Numbers and money only held value if there was no need for blood to be spilled. The only way people would take Delphi seriously was if it increased its size and presence around the globe.
+
+Of course these two cities would fight over the same prize.
+
+It was on the news. It was on papers. It was on the City Wide Net. Visitors from all around the globe were flocking to these two cities that would normally be miles apart. This time, however, they shared a single location.
+
+After all, they had temporarily docked with one another. It was in preparation for the most ambitious event of the current year.
+
+<em><strong>Olympia v Delphi: City Grail War</strong></em>
+
+<strong>Who will win? Who will fall? Place your bets now!</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="839248640602275851" id="message-839248640602275851" title="Message sent: 05-May-21 05:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Clearly, someone was taking advantage of the rampant advertising going on. Apparently, the two cities were fighting over the wreckage of a Dhruva. They decided to settle it through a Holy Grail War, with participants divided into two factions: Olympia and Delphi.
+
+However, this would not be a normal Holy Grail War: It would be a <strong>tournament.</strong> A televised event. One where both Olympia and Delphi&#39;s might would shine. It was both in the aristocracy and stakeholders&#39; interests, after all.
+
+The rules were still being ironed out. The arenas were still being developed. The contestants were still being gathered. But a lot of gossip had already formed around the grand prize...
+
+<strong>A wish.</strong>
+
+Not from a Holy Grail, but a material wish that could be obtained through resources and money.
+
+Any magus would fall for that bait. No matter their rank.
+
+In just a few weeks, these mages would gather. All of them from different cities and backgrounds as they fought to grasp their own destiny...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-21 01:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="854407323501330452" id="message-854407323501330452" title="Message sent: 16-Jun-21 01:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">-Season 2-</div>
+The preparations have been set.
+
+Within the last few months, Olympia and Delphi&#39;s citizens have been gradually evacuated from their homes in order to set the stage for the City Grail War. While cramming an entire populace into residential districts alone is a tough task, the compensation offered by the two cities to the citizens that have complied is nothing but high.
+
+Yes, an arena would be far too biased for a tournament of this caliber. A plain, flat battleground would do nothing but favor brute strength over tactics and connivery. That is not the essence of a Holy Grail War. In order for a battle to truly embody that concept, the arena must be as versatile as the participants themselves.
+
+Not to mention, it was simply cheaper to use districts in need of renovation as battlegrounds for the war. It was basically the same as hiring a demolition crew, except that Masters and Servants didn&#39;t need to be <strong>paid.</strong>
+
+Olympia and Delphi were as frugal as ever.
+
+With the arenas ready and the date of the first matches drawing nearer, all that was left was for the participants to arrive to the cities. Some had already arrived in advance even, in order to scout the battlegrounds with months of preparation to work with. They were here to win, after all, even if it meant drawing blood.
+
+The first pairs for the upcoming tournament have yet to be revealed, but both Olympia and Delphi have told their respective contestants to rest easy and be patient. However, they also gave them a fair warning to have their Servants be ready in time for the tournament. Apparently, they were looking for at least <strong>7 different Classes for each city.</strong>
+
+With nothing else to do and plenty of time to kill, it wasn&#39;t surprising in the least to see several contestants make preparations for their upcoming Servants...</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Jun-21 01:09 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="854407459127689298" id="message-854407459127689298" title="Message sent: 16-Jun-21 01:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://media.discordapp.net/attachments/464005386085728256/852555150764802069/chrome_2021-06-10_22-29-44.jpg">https://media.discordapp.net/attachments/464005386085728256/852555150764802069/chrome_2021-06-10_22-29-44.jpg</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                            <a href="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/chrome_2021-06-10_22-29-44-48C50.jpg">
+                                <img class="chatlog__embed-plainimage" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/chrome_2021-06-10_22-29-44-48C50.jpg" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">02-Jul-21 02:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="860224123845345320" id="message-860224123845345320" title="Message sent: 02-Jul-21 02:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Each Round (Fight + Intermission) lasts a total of 1 week IRP. The day of the week is up to the participants and can be picked from the Seven Day Forecast displayed below. Please be mindful of the timeline in your posting rounds.</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">07-Jul-21 02:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="862041712993763331" id="message-862041712993763331" title="Message sent: 07-Jul-21 02:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">-Season 2 - Round 2-</div>
+Eventually, all Masters managed to successfully summon their Servants. Not all of them reacted positively to the summons, but the vast majority of the participants managed to forge a connection to their Servants, guaranteeing their place in the upcoming City Grail War.
+
+With only a short timeframe before the start of the actual war, there wasn&#39;t much left to do for the Masters besides to wait and hope.
+
+...But was that really true?
+
+In reality, the battle had already begun. Why wait until the toll of the bell to declare one&#39;s death? Indeed, it made more sense for the Masters to start to do research on their opponents and their Servants. It would give them an enormous advantage in the actual war, which could even cement their victory as a whole.
+
+Olympia and Delphi were ready for some hectic weeks, now being a hotspot for Servants designed to be used in battles. The side effects were already starting to show, with a sudden scuffle being reported at the <span class="mention">#mackenzie-weapons-factory</span>.
+
+Both Olympia and Delphi officials have denied any involvement in these &#39;rogue battles&#39;. Hopefully, the participants keep things quick and quiet...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="862041720798576640" id="message-862041720798576640" title="Message sent: 07-Jul-21 02:46 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/chrome_2021-07-07_02-41-32-A3DE1.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/chrome_2021-07-07_02-41-32-A3DE1.jpg" alt="Image attachment" title="Image: chrome_2021-07-07_02-41-32.jpg (25.59 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">29-Jul-21 05:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="870056570036297758" id="message-870056570036297758" title="Message sent: 29-Jul-21 05:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">-Season 2 - Round 3-</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="870056619982086245" id="message-870056619982086245" title="Message sent: 29-Jul-21 05:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Despite the tournament having sanctioned areas, it is incredibly common to see participants in the City Grail War engage in combat outside of these arenas. Both Olympia and Delphi heavily condone these unsanctioned matches with the highest degrees of severity. Participants who routinely engage opponents in this manner receive penalties or are even disqualified from the tournament altogether. On the Olympia side, the Church even gets involved due to the importance of Holy Grail Wars to their research and religions.
+
+In particular, a fight has recently broken out in an unsanctioned area, prompting an investigation from the Church into the matter. Not much else has been said by them, but the higher ranking officials of the sect have claimed that whoever participated in the fight shall be punished accordingly by the Church&#39;s own officials.
+
+Times are turbulent for Olympia, since the city&#39;s eternal summer has been thwarted by sudden bouts of rain. Apparently, a malfunction has occurred with the city&#39;s weather dome, causing it to generate a rainy atmosphere. The temperatures still remain high and citizens have already complained about the scorching heat being accompanied by a heavy rain. Technicians are currently working on the dome in order to reset it to its original values, but they estimate that it will take around a week to fully repair its functions.
+
+Delphi is also facing an unprecedented crisis of school children refusing to pay attention in class because of the disastrous showing of two Servants that failed to show up in one of the designed battle arenas. Morale for kids is an all time low as Delphi&#39;s own governors are puzzled on how to regain the faith of the children after this tragic event.
+
+The ongoing chaos between the two cities was the perfect time for more participants to look for their next, potential prey. With only a week left until the tournament advanced to the elimination rounds, it was the time to strike and get rid of any problematic opponents.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="870056680958873681" id="message-870056680958873681" title="Message sent: 29-Jul-21 05:34 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/chrome_2021-07-29_00-01-33-0488F.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/chrome_2021-07-29_00-01-33-0488F.jpg" alt="Image attachment" title="Image: chrome_2021-07-29_00-01-33.jpg (25.29 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="870057973022621757" id="message-870057973022621757" title="Message sent: 29-Jul-21 05:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Each Round (Fight + Intermission) lasts a total of 1 week IRP. The day of the week is up to the participants and can be picked from the Seven Day Forecast displayed below. Please be mindful of the timeline in your posting rounds.</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">20-Aug-21 02:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="877978420640903218" id="message-877978420640903218" title="Message sent: 20-Aug-21 02:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">-Season 2 - Round 4-</div>
+The tournament has been progressing smoothly. The participants involved in the City Grail War have been slowly testing each other. Encounters, skirmishes and fights to the death had become commonplace, which was ideal. This was the essence of a Holy Grail War. Something that appeased the Church quite nicely.
+
+Like all wars, it also had a turbulent set of events. A fight broke out at the Brobdingnagian, reported by nearby ferrymen and Olympia&#39;s CCTV systems. The participants: Assassin and Rider, along with an unknown third party. The victor remains unknown, but the Church was kind enough to confirm that both teams are still in the tournament.
+
+Speaking of the Church, there have been reports of &#39;Church officials&#39; stalking some of the teams participating in the tournament. Civilians in Olympia have reported these sightings, with some even claiming to have seen an Executor fight a Servant, but the Olympia police paid these reports no mind.
+
+Even more surprising is the apparent defeat of Caster team. There have been rumors of an assassination on an enemy Master, whose name has yet to be confirmed. However, both Delphi and Olympia claim that Caster is still participating in the war, despite the lack of a Master.
+
+On an unrelated note, people in Olympia are currently living the dream: Engineers who attempted to repair the weather dome accidentally set some settings too high, causing the next weather forecast to feature, incredibly, <strong>snow.</strong> While the citizens are rejoicing, the aristocracy are already seething at the extra computational power required to generate artificial snow.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="877978444758143066" id="message-877978444758143066" title="Message sent: 20-Aug-21 02:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Last, but not least, a mysterious castle has covered a sizable portion of Olympia, resting on what was formerly known as the city&#39;s temple district. The Church has taken offense to this and temporarily allowed tournament matches to be held at the castle, almost as if inciting other tournament teams to explore the mysterious locale and take care of the issue for them.
+
+The tournament is headed towards its final stages. Who knows what lurks beyond the castle and what sort of schemes the rest of the teams have prepared?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="877978498646564904" id="message-877978498646564904" title="Message sent: 20-Aug-21 02:13 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/unknown-A8E9B.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/unknown-A8E9B.jpg" alt="Image attachment" title="Image: unknown.jpg (27.48 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="877978562488066068" id="message-877978562488066068" title="Message sent: 20-Aug-21 02:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Each Round (Fight + Intermission) lasts a total of 1 week IRP. The day of the week is up to the participants and can be picked from the Seven Day Forecast displayed below. Please be mindful of the timeline in your posting rounds.</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 03:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="885246443479236658" id="message-885246443479236658" title="Message sent: 09-Sep-21 03:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">-Season 2 - Round 5-</div>
+The City Grail War had been progressing smoothly, with participants dropping left and right as the war gradually started to reach its climax.
+
+Or so it would be, were it not for the sudden appearance of an enormous castle surrounding a sizable portion of Olympia. It has occupied several areas in the downtown district and seems to be continuously spreading at a terrifying pace. Such a spell could not be the efforts of a single human, and research from the Church&#39;s operatives have revealed that it is none other than Saber of Olympia&#39;s Noble Phantasm.
+
+Attempts by the Church have been made to communicate with Saber and demand the retreat of their Noble Phantasm. They have been met under deaf ears and none of the messengers have returned. In fact, the bloodshed spawned by Saber&#39;s assimilation of Olympia had escalated, with several deaths reported around the castle areas. Citizens have also reported sightings of mysterious, copper colored knights that have pillaged shops, kidnapped citizens and mercilessly slaughtered Servants.
+
+As such, the Church had no choice but to take drastic measures.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885246584558862436" id="message-885246584558862436" title="Message sent: 09-Sep-21 03:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">Holy Orders: From this moment onward, Saber of Olympia is disqualified from the City Grail War. Participants who defeat him and his Master will be compensated with a reward after Saber&#39;s death has been confirmed.</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885246616532058182" id="message-885246616532058182" title="Message sent: 09-Sep-21 03:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While a bounty has been placed on Saber, the presence of his castle keeps growing ever stronger. Who knows if someone will even dare approach them...
+
+Regardless, the pressure exerted by the recent complications has certainly taken its toll on the war. With the knowledge of the impending doom that awaits them, it seems as if several contestants have grown reckless or bloodthirsty. Various teams have fallen in battle. Even renown names such as Berserker of Avarice have been told to have perished, as <strong>sus</strong>picious as it sounds.
+
+Only a few participants remain. The war is at its final stages, with Saber tugging at its heartstrings with his overwhelming presence. Will he succeed in his quest for power?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885246700548132934" id="message-885246700548132934" title="Message sent: 09-Sep-21 03:34 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/unknown-456FD.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/unknown-456FD.jpg" alt="Image attachment" title="Image: unknown.jpg (26.93 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="885246724292091944" id="message-885246724292091944" title="Message sent: 09-Sep-21 03:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Each Round (Fight + Intermission) lasts a total of 1 week IRP. The day of the week is up to the participants and can be picked from the Seven Day Forecast displayed below. Please be mindful of the timeline in your posting rounds.</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(255,140,19)">Dad</span>
+
+
+        <span class="chatlog__timestamp">17-Oct-21 09:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="899286774617092117" id="message-899286774617092117" title="Message sent: 17-Oct-21 09:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The long and bloody war came to an end. One of many of the various wars that had occurred in the past, present and future. There were victors, losers and casualties, yet both Olympia and Delphi&#39;s citizens felt ecstatic at the thought of it being over. Olympians being glad that their torment had come to an end, while Delphians salivating at the highs and lows of stocks and exports that had been drastically affected by the presence of a Grail War. Chaos was good for business, and so was publicity: The amount of fame the two cities received for televising the war more than made up for the discontent of civilians affected by it. The statistics did not lie.
+
+Of course, the winner was publicly televised as well. Gustave Renoir had come out victorious, thanks to the aid of Assassin of Delphi. After defeating Laurent MacKenzie in a heated battle, he would be surprised to hear the entirety of Delphi cheering in the distance, their screams so loud and numerous that he could sense them from the distance of an entire city. The words were unintelligible, but the feelings behind them were honest.
+ 
+Those were his five minutes of fame, before the crowd went silent and directed their attention towards the grand prize instead. Olympia reluctantly signed a contract which had promised assistance in towing Persepolis&#39; remains to the city of the rightful victor. A contract was an unshakable promise to a Delphian, hence why a massive crowd slowly started marching towards Olympia, patiently waiting for their rival city to uphold their end of the bargain.
+
+Not that Gustave would care.
+
+He had won, yet fame was the least of his concerns. His wish had yet to be fulfilled, after all. What could it possibly be? What sort of monetary wish could ever motivate the professor? Was his reason to participate in the war purely for financial gain?
+
+That was for <strong>him</strong> to reveal.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="899286900790149131" id="message-899286900790149131" title="Message sent: 17-Oct-21 09:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+...
+
+At the top of the tower, right above Gustave&#39;s nose, a gaze peered into Olympia&#39;s innards. It observed the city with utmost curiosity, staring at what was once the downtown, which had now been reduced to a destroyed battlefield thanks to Saber of Olympia. It eventually grew tired of such boorish d&#233;cor, and took flight. Reaching Delphi was a matter of greatest ease to this peculiar creature, since it was none other than the king of falcons.
+
+<em>Gyrfalcon (Falco rusticolus)</em> 
+
+It perched on top of a Delphi skyscraper, observing the Delphi skylines as it smelled the aroma of delectable meat. Without further ado, it flew towards the source: A street vendor selling gyozas out in the open. The perfect prey.
+
+While the vendor was distracted and cooking in the back, the falcon moved with its talons, snatching away a gyoza and disappearing like the wind.
+
+<em>thwack</em> 
+
+Of course, they were far too reckless, and had accidentally bumped into a portable radio during their rush. The vendor turned around, shocked at the presence of the bird, which gave the latter enough time to fly off, leaving behind a weather in their wake.
+
+The gyoza was delicious.
+
+&quot;You little-And I thought seagulls were bad! Bleh! Next time I see one of these birds, I&#39;m plucking their feathers and roasting them over an open fire!&quot; The disgruntled chef snarled, going back to work while not noticing the tilted radio. The slight bump caused it to turn on, as it started to play a news report from a distant news station.
+
+<em>&quot;...It&#39;s been a while since the announcement of the third Nirvana investigation team, but we seem to have finally obtained info about their departure today.&quot;</em>
+
+<em>&quot;bzzz...After almost a year of planning, the investigation team is currently headed towards the &#39;ghost&#39; nomadic city, following a route designed to pick up the remaining investigators at neighboring cities. We shall continue to update you on...&quot;</em>
+
+&quot;Oh, goddamnit. Who left this thing on?!&quot;
+
+<em>bzzz</em>--<em>click</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="899286926887100427" id="message-899286926887100427" title="Message sent: 17-Oct-21 09:25 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/season_2_endtag-900C1.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20ROLEPLAY%20INFO%20-%20LORE%20-%20current-season%20%5B838041691331887134%5D.html_Files/season_2_endtag-900C1.jpg" alt="Image attachment" title="Image: season_2_endtag.jpg (185.52 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="899286967517339678" id="message-899286967517339678" title="Message sent: 17-Oct-21 09:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" style="color: rgb(255, 140, 19); background-color: rgba(255, 140, 19, 0.1);">@S2</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
