@@ -23,6 +23,32 @@ $screen-mobile: 500px
 $screen-small: 1000px
 $screen-medium: 1300px
 $screen-large: 1800px
+
+
+@mixin scrollbars($color-highlight, $color-background: mix($color-highlight, white,  50%))
+  @media only screen and (min-width: $screen-mobile)
+    // For Google Chrome
+    &::-webkit-scrollbar
+      width: 18px
+
+    &::-webkit-scrollbar-thumb
+      background: rgba($color-highlight-dark, 0.8)
+      border-radius: 25px
+      border: 7px solid rgba(0, 0, 0, 0)
+      background-clip: padding-box
+
+    &::-webkit-scrollbar-track
+      background: rgba(0,0,0,0)
+
+    // For Internet Explorer
+    &
+      scrollbar-face-color: $color-highlight-dark
+      scrollbar-track-color: rgba(0,0,0,0)
+
+  @media only screen and (max-width: $screen-mobile)
+    &::-webkit-scrollbar
+      display: none
+
   
 html
   background: $color-background
@@ -113,8 +139,14 @@ a
 .district2
   color: cornflowerblue
 .district3
-  color: palegreen
-  
+  color: springgreen
+.district4
+  color: aquamarine
+.district5
+  color: sandybrown
+.district6
+  color: seashell
+
 .centered
   position: absolute
   top: 50%
@@ -146,10 +178,13 @@ a
       top: 55%
       left: auto
       .sidebar-content
-        width: 75%
-        padding-right: 0
+        width: 78%
+        padding-right: 10px
+        height: auto
+        overflow-y: none
+        display: block
       .sidebar-nav
-        width: 25%
+        width: 22%
         left: 75%
         //padding: 0
 
@@ -172,14 +207,14 @@ a
   left: 0%
   top: 0%
   width: 420px
-  height: 550px
-  margin: 20px auto
+  height: 100vh
+  padding-top: 20px
   z-index: 999
   text-align: left
   .sidebar-nav
     position: absolute
     margin-left: 20px
-    padding-top: 30px
+    padding: 30px 5px 0 5px
     left: 400px
     line-height: 2
     background: transparentize($color-background, 0.15)
@@ -191,6 +226,9 @@ a
     padding: 30px
     opacity: 0
     display: none
+    height: calc(100% - 40px)
+    overflow-y: scroll
+    @include scrollbars(.5em, slategray)
   .flex--active
     opacity: 1
     width: 100%
