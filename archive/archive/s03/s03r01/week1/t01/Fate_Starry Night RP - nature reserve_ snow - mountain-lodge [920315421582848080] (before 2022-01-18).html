@@ -1,0 +1,1413 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - mountain-lodge</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: snow / mountain-lodge</div>
+
+            <div class="preamble__entry preamble__entry--small">Tucked away in the snowy mountains, the Mountain Lodge is one of the better vacation homes scattered throughout this wintry resort. Cozy, quiet, and surprisingly well-heated thanks to being in close proximity to the main research lab&#39;s power grids, it looks very lived-in compared to the other houses in the area.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Before 18-Jan-22 05:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">14-Dec-21 10:09 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="920316561313648731" id="message-920316561313648731" title="Message sent: 14-Dec-21 10:09 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/chrome_2021-12-14_16-26-45-565CB.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/chrome_2021-12-14_16-26-45-565CB.jpg" alt="Image attachment" title="Image: chrome_2021-12-14_16-26-45.jpg (279.43 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Dec-21 05:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="920790126467088395" id="message-920790126467088395" title="Message sent: 16-Dec-21 05:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As with most mornings, Koji woke up cold.
+
+It was supposed to be early spring now, and for as long as Koji had lived, he&#39;d always enjoyed a temperate climate, with the gentle sun and the warm rains pleasant even in the colder seasons. The temperature had been the first thing he&#39;d noticed when he&#39;d first stepped into Nirvana&#39;s <span class="mention">#city-docks</span>, the immaculately calibrated comfort of the lakeside&#39;s weather dome, the soft sea breeze combing through his hair and brushing against his skin in a touch far kinder than the biting winds of his old post. 
+
+He wanted to stay here forever, he had thought, if only because the lakeside days were always warm.
+
+The nights, though, were always another story. He&#39;d open his eyes as soon as he dragged himself out of his nightmares, turning his head to the side, only to be met with the faint glow of the lamp beside his bed. Shadows dancing beyond his vision. Whispers haunting his mind, mingling with the droning of insects and chirping of night birds outside his window. A cacophony of sounds making his throat constrict with an uncomfortable tightness, lingering regret wrapping itself ever so delicately around his neck.
+
+Temperate climates and him do not mix, Koji had come to realize. They were far too forgiving. Far too indulgent. He needed something to keep his subconscious occupied... and what better way to do it than to saddle it with a constant, mild discomfort?
+
+Needless to say, it had been almost a decade since he&#39;d dared to spend another night at the lakeside. 
+
+Bare feet touched icy wood, chasing Koji&#39;s sleepiness away with the wintry chill. Cold and lethargic, it took him a good struggle to make his way into the kitchen, then some more to open the electric panel and flip the house&#39;s power back on so that he wouldn&#39;t freeze to an early death.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="920790143093317643" id="message-920790143093317643" title="Message sent: 16-Dec-21 05:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Warmth seeped back into the floorboards as Koji went through his morning routine in an orderly fashion. Within minutes, the house felt, no, <em>smelled</em> lived-in again. Toast, coffee and - Koji pulled open the fridge and was greeted with a glorious sight of nothing.
+
+<em><strong>Ding!</strong></em> Two pieces of crispy bread popped out of the toaster. With a sigh, Koji hot-fingered the toasts onto a plate, then dragged his body to the other end of the kitchen, where a large mug of instant coffee sat cooling on a table. 
+
+Breakfast was slightly less enjoyable than usual without the usual sweet spreads on his perfectly toasted bread. He&#39;d emptied out his stock of jam the previous morning in anticipation of his next delivery, but had forgotten to take into account the breakfast on the morning <em>of</em> - the trek to his house wasn&#39;t that bad, honestly, but who in their right mind would want to take a dip into the freezing wonderland of Nirvana just to deliver some groceries?
+
+But, ah, suppose that wasn&#39;t any of his concern. After all, <em>they</em> had a deal, and those lackeys of <em>hers</em> were all too ready to bend over backwards to fulfill their queen&#39;s will. Surely their legs could carry them just a bit faster up the snowy trail?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="920790168435294240" id="message-920790168435294240" title="Message sent: 16-Dec-21 05:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-505A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="920790125363998720" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Dec-21 05:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="920796373551566858" id="message-920796373551566858" title="Message sent: 16-Dec-21 05:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was starting to get into the early evening, this typically never occured with his deliveries. The Worker bees were always punctual. <em>Always.</em> So this could only mean one thing to Koji, the queen bee herself was taking her sweet time. 
+
+Ruth however, took this meeting and arriving to it at her own self indulgent pace. It was a rare occurrence for the doctor and her to talk one on one. If it usually happened they’d communicate via other means. 
+
+She had forgotten that the mountains would be cold compared to her temperate home in the lake, so of course she had to round back and obtain one of her jackets. A beautiful piece of clothing, or gaudy depending on who you asked, it was an elegant fur coat of some variety. Once she settled on the coat, Ruth was finally setting off with the groceries in tow. 
+
+Only the finest of goods for her personal Doctor. With a special bottle of wine for them to share over their <em>conversation</em>. After all, she must treat her bird with the utmost of care. 
+
+When a knock finally did come to the door, it was nearing sunset. “<em>Koji, my dear little birdie~</em> your delivery has arrived.” The Saccharine voice of Ruth Naomi sang, as another knock came upon the door.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="920796483018694686" id="message-920796483018694686" title="Message sent: 16-Dec-21 05:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Dec-21 10:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="921047374464417814" id="message-921047374464417814" title="Message sent: 16-Dec-21 10:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The door did not budge. Of course it didn&#39;t. This wouldn&#39;t be the first time Ruth had personally visited the seclusive doctor. It always did take him some time to get the door, but that was to be expected. After all, it wasn&#39;t as if he had manservants around to take care of menial chores for him. 
+
+So Ruth waited. Then waited some more.
+
+...wasn&#39;t he taking a tad too long? The house wasn&#39;t <em>that</em> big, and Ruth was an important guest - even if she hadn&#39;t informed him about her visit, surely her honeyed voice would have done the job. Yet there she was, wrapped in lovely furs and watching her breath come out in small puffs of smoke, her hat gradually growing heavier as snow blossoms collected on its brim...
+
+&#39;<em>Chirp!</em>&#39; A little bird fluttered into view above her. It circled her a few times, then landed on the doorknob. It turned its head and looked at the woman, bright eyes shining in the twilight. 
+
+It was beckoning Ruth to the door, as if...as if it had been unlocked all this time.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921047398355202118" id="message-921047398355202118" title="Message sent: 16-Dec-21 10:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-505A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="920790125363998720" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Dec-21 10:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="921051613018333214" id="message-921051613018333214" title="Message sent: 16-Dec-21 10:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth knocked at the door. Then waited a few seconds. The cultist knocked again, this time with more force. She again waited for a few more moments. Then knocked once more, with more force. 
+
+<em>’He should know to answer his god damned door. This bird brained doctor, being impolite. Doesn’t HE know to not do this to me.’</em> Internally Ruth fumed, while she kept a demure face. All except for the forehead vein which tended to make an appearance when she was upset. 
+
+The woman was then brought out of her mind when a bird chirped. And landed upon the doorknob. <em>the door had been unlocked this whole time.</em> 
+
+Ozone was smelt as Ruth walked through the door. The bird now being nothing more than a dark stain upon the door frame. “Koji, my <em>little birdie</em>. How has your day been.” She set the groceries down upon his table, and immediately took the bottle of wine from the bag. “This will be coming home with me~.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921051660460105808" id="message-921051660460105808" title="Message sent: 16-Dec-21 10:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 01:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="921088434200793109" id="message-921088434200793109" title="Message sent: 17-Dec-21 01:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tiny shadows stirred as Ruth made her way into the kitchen. Birds, dozens of them, perched atop any surface they could grab and followed her movements with their beady little eyes. Then, back turned and standing in front of the kitchen counter was the doctor himself, surrounded by paint tubes, threads and needles, all lying haphazardly over the countertop.
+
+The doctor seemed rather absorbed in his work. &#39;My day could be better,&#39; he acknowledged her, all without turning around to face her. <em>Rude.</em> But then Ruth delivered the ultimatum and took the prized drink into her custody. 
+
+The tension dissipated almost immediately.
+
+&#39;My day <em>will</em> be better if you can pour me a glass.&#39; Koji added pointedly, as if he could see Ruth sliding that bottle of wine out of the grocery bag. &#39;Chilled wine is excellent after a long trek, won&#39;t you agree, my <em>old friend</em>?&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921088461103050763" id="message-921088461103050763" title="Message sent: 17-Dec-21 01:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-505A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="920790125363998720" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 01:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="921093135407415337" id="message-921093135407415337" title="Message sent: 17-Dec-21 01:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth always was unsettled by the multitude of birds which called this little cabin home. But they had a charm to them, as did the Doctor himself. 
+
+“Well you seem so <em>grumpy</em>. Someone indulge themselves too soon?” Ruth let out a small giggle, her annoyance disappearing along with that forehead vein. 
+
+“Ah, this wine is for good boys only. Where are your manners, little birdie?” The woman waltzed with the bottle of wine, helping herself to finding a pair of glasses. Along with the corkscrew. 
+
+Laying it out at the table and opening the bottle. Pouring only herself a glass to start. “i believe this deliver has some wonderful meats and cheeses. We could have a charcuterie board, whilst discussing <strong>business</strong>.” Her eyes showed a hunger as she started towards Koji, her hand lazily picking up the full wine glass and taking it to her lips.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921093180290633768" id="message-921093180290633768" title="Message sent: 17-Dec-21 01:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 02:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="921109839218872330" id="message-921109839218872330" title="Message sent: 17-Dec-21 02:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;<strong>I wonder why.</strong>&#39; Koji said dryly. He was forced to put his work on hold and step out of the way as Ruth invited herself through the kitchen in search of glassware. &#39;Try visiting during office hours. You&#39;ll receive some superb manners then.&#39;
+
+He followed Ruth to the table, hand clasped around a small, disfigured bird in dark iridescent colors - not unlike the one that Ruth had zapped into a meat puddle a moment prior. A single needle poked through a gash in its belly; Koji had been diligently sewing it shut before Ruth demanded his attention. 
+
+He dodged her gaze, hand reaching across the table towards her - only to hook a finger around the filled wine glass that was inches away from her delightful figure. He slid the glass back to him, then raised it as she raised the bottle, peering long and hard over the rim before taking a long sip.
+
+He sighed, content with the delicious flavor. How many hours had it been since he took the time to relax? He couldn&#39;t say, but it felt good to do so now.
+
+&#39;How <em>has</em> business been lately?&#39; He handed the question back to Ruth. &#39;I don&#39;t suppose you&#39;ve secured yourself a new trade route? One that deals with S.E.R.V.A.N.T. frames in particular?&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921109857615106099" id="message-921109857615106099" title="Message sent: 17-Dec-21 02:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-505A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="920790125363998720" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 03:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="921120659617235004" id="message-921120659617235004" title="Message sent: 17-Dec-21 03:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The good doctor’s deft hands made their move and acquired the wine glass from Ruth’s lazy grasp. Her eyes rolled as he did so. “Such a rebellious little birdie.” The hunger within her eyes intensified as he slipped the glass up to his lips and drank of it. It was as if she were a cat ready to play with a bird it had eyes to prey upon. 
+
+But she wouldn’t let that get the best of her yet. Ruth simply poured herself a glass from the bottle, and kept the bottle on her side of the table. Paying little mind to the science experiment within his clutches. 
+
+“Office hours for a good doctor, such as yourself are always <em>soooo</em> bothersome, darling.” The laziness then seemed to fade as Koji began to speak of business. “The business of acquiring a S.E.R.V.A.N.T Frame has been… less than fruitful. Extremely infuriating, honestly.” That telltale vein appeared once again, as she thought back to the flakey new supplier she almost secured. “The route is there, but that <em>bastard</em> had quite the audacity to fuck me.” Ruth almost spat, before taking another sip from her wine. “Don’t tell me <em>you’ve</em> secured a route for frames.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921120695654699069" id="message-921120695654699069" title="Message sent: 17-Dec-21 03:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="921403931937095691" id="message-921403931937095691" title="Message sent: 17-Dec-21 10:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;I have not.&#39; 
+
+Ruth&#39;s claim was met with stern rejection. But contrary to those words, the faintest hint of a smile began to curve at the corner of Koji&#39;s mouth. Oh, he was <em>definitely</em> up to something.
+
+But he sure took his sweet time getting there. If Ruth was a master of playing hard to get, then Koji was simply a man who had all the patience in the world. He matched pace with the cultist, steadily draining his wine glass until it was almost empty... in complete silence.
+
+Then he placed the glass back on the table and pushed it forward. &#39;Why don&#39;t you pour me another,&#39; He suggested, &#39;For old time&#39;s sake.&#39;
+
+Now that was a blatant lie. Since when did he and Ruth go way back? There was nothing in their relationship worth reminiscing about. Unless he was talking about <strong>that incident</strong>. But, oh, it happened <em>so long ago</em>. Why bring it up today of all days?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921403948861120513" id="message-921403948861120513" title="Message sent: 17-Dec-21 10:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-505A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="920790125363998720" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 12:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="921435145104404550" id="message-921435145104404550" title="Message sent: 18-Dec-21 12:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“What is your game, <em>little birdie</em>” Ruth responded while awaiting his continuation. 
+
+In the time they both had emptied the wine glasses. A heavy silence covered their conversation. Then it was broken. 
+
+The Doctor had pushed his wine glass forwards, and spoke. in particular of <strong>that incident</strong>. The cultist raised the bottle up, and poured into her own glass first. “What about, old time’s sake… are there going to be more <em>fools</em> who are poking their noses where they don’t belong?” She spoke only pouring a half glass for the doctor, greedily keeping what remained to her side of the table.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921435183998181416" id="message-921435183998181416" title="Message sent: 18-Dec-21 12:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 01:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="921456572251639808" id="message-921456572251639808" title="Message sent: 18-Dec-21 01:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;The seagulls are getting restless.&#39; Koji replied cryptically. &#39;They&#39;ve been <em>traveling</em>. Bringing back all kinds of junk that hasn&#39;t been seen on Nirvana since... I&#39;d avoid frolicking at the <span class="mention">#beachside</span> for a while if I were you.&#39; 
+
+Seeing that half a glass of wine was all that Ruth had intended to spare him for the moment, Koji shrugged, then picked it up. 
+
+&#39;I will consider this a down payment.&#39; He said, wondering whether he&#39;d be able to get the woman to properly refill his drink after what he was about to say next. &#39;Coincidentally, I&#39;ve been informed by a few little birds that a very nice old lady all the way down at the Tropics has been priming a S.E.R.V.A.N.T. frame in her gardens. I thought she&#39;d received it as a <em>gift</em> at first, but seeing that you have had no luck in securing your trade routes, now I am not so sure.&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921456587007213578" id="message-921456587007213578" title="Message sent: 18-Dec-21 01:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-505A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="920790125363998720" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 02:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="921470771379961907" id="message-921470771379961907" title="Message sent: 18-Dec-21 02:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth listened intently as Koji spoke of the seagulls. Especially with their curious finds being brought back to the island. “Interesting, to know…” She mused to herself. 
+
+Koji then continued. Hopeful to get the rest of that glass of wine poured out for him. A woman in the tropics, one who loved plants and was of an older age. ‘<em>Could this be Rose… It must be…</em>’ The cult leader thought to herself. She had caught wind a few years prior of an older woman and a young man renovating the O’Connell estate. 
+
+But Ruth had never bothered to send someone to actually investigate. If Rosemary had something Ruth rightfully deserved, she must take it then. 
+
+As if caught in a haze of nostalgia. “Ah you must be speaking of the Elder O’Connell. <em>Rosemary</em>.” Ruth spoke with a fondness in her voice, but a sinister undertone was laced in. What had the good doctor done to the Druid. 
+
+For compensation of this information she topped off Kiki’s glass, subsequently killing the bottle of wine. “Thank you for singing your beautiful birdsong for me, my <em>little birdie</em>. Was there other information that’s for <strong>my ears only</strong> or should I be seeing myself out into the cold dark night~.” As is usual, Ruth had switched from business to a more flirtatious attitude. A futile effort considering Koji’s own obsession, but nonetheless a fun one to pull out and bother him with.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921470813440458772" id="message-921470813440458772" title="Message sent: 18-Dec-21 02:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 03:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="921487365405548626" id="message-921487365405548626" title="Message sent: 18-Dec-21 03:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Rosemary.&#39; Koji rolled the word across his tongue, studying Ruth. &#39;She&#39;s been good to me. And my darlings.&#39;
+
+There it was again. The softness of her manner in which she spoke of the older woman, the telltale signs that this Rosemary was more to Ruth than just a name. &#39;Looks like I&#39;ve earned the right to a second drink,&#39; he said, extending his glass to catch the ruby red liquid streaming from the bottle in Ruth&#39;s hand.
+
+Ruth&#39;s sinister undertone went unnoticed. His conscience was clean. It wasn&#39;t as if he&#39;d made a habit out of people-watching. It just so happened that Ruth had spoken of Rosemary a few times too many, and his curiosity had gotten the better of him. After all, it wasn&#39;t everyday that the cultist displayed her affection in someone. <em>Genuine</em> affection, mind you, none of that - 
+
+He pushed himself away from the table in a gesture so subtle it could have meant anything or nothing, dodging Ruth&#39;s advance by a hair&#39;s breadth. &#39;Another time, Ruth.&#39; His eyes flitted to the empty wine bottle. &#39;I don&#39;t speak for free.&#39;</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Dec-21 01:31 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921487390999183401" id="message-921487390999183401" title="Message sent: 18-Dec-21 03:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%28before%202022-01-18%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-505A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="920790125363998720" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 04:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="921492491688099881" id="message-921492491688099881" title="Message sent: 18-Dec-21 04:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I’m glad that she has kept her kind demeanor after all these years… and has been treating you well.” Ruth spoke, again with that fondness. But this time the more nefarious undertones did not mark it. 
+
+The cultist smiled, not even minding the failed advances she made towards the doctor. It was clear that their time for conversation was over. 
+
+The empty wine bottle typically signaled so. “Well, I’ll bring another special gift when we have our little rendezvous again. Perhaps something we won’t drink all in one sitting.” Ruth sighed, finishing the glass she had before her. “Oh and my darling <em>little birdie</em> please do attend a service sometime, you would be such a welcome face to see amongst my <em>family</em>.” 
+
+With that the woman picked up the empty bottle of wine, and waltzed to the door. Placing her hat back upon her head, and wrapping herself tightly into the fur coat again.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921492564861931590" id="message-921492564861931590" title="Message sent: 18-Dec-21 04:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,1039 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - hidden-sheet-discussion2</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20getting%20started%20-%20hidden-sheet-discussion2%20%5B919586775184330782%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">getting started / hidden-sheet-discussion2</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20getting%20started%20-%20hidden-sheet-discussion2%20%5B919586775184330782%5D.html_Files/f536e140548023904625d7200ce4368e-12903.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(238,94,134)">Dad</span>
+
+
+        <span class="chatlog__timestamp">12-Dec-21 11:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="919616053313671168" id="message-919616053313671168" title="Message sent: 12-Dec-21 11:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#120450;&#120468;&#120478;&#120469;&#120461;#9148">@&#120450;&#120468;&#120478;&#120469;&#120461;</span> Hi Skuld. Finally got around to reading your sheet and there is a lot to unpack here, so do be noted that it is a rather long read.
+
+<strong>Stats/Parameters:</strong> We do not use +/- modifiers in this RP, so take them out from your sheet. Refer to <span class="mention">#servant-parameters-and-you</span> for additional info.
+
+<strong>Backstory:</strong> Your backstory is incredibly short and says only the barest of details about the figure of Skuld. No, the link to her Wikipedia page and Norse witches do not count. Fate Servants are usually historical figures with the writer&#39;s personal spin on their personality and events. Your backstory accomplishes neither, since you merely link a Wikipedia page and expect the moderation team to read it, even though Wikipedia as a source lists various depictions and conflicting views on ancient figures in the past. Are you just expecting us to pick one and stick to it? Because that is simply not how it works.
+
+We have had several sheets submitted in the past year and all of them, even the ones that were 1:1 adaptations of a Servant&#39;s life, were still written out with no need for external links. We expect everyone else to follow suit. You need to rewrite your backstory from scratch, since this also affects the justification behind your Noble Phantasms and Skills since they are based on your Servant&#39;s history.
+
+So by default, this sheet is automatically rejected for lack of backstory = lack of justification behind NP and Skills. However, I will still give feedback on your NP and Skills since there is a lot to unpack there as well.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616066454429777" id="message-919616066454429777" title="Message sent: 12-Dec-21 11:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<strong>Army of the Elf Queen:</strong> This is a Noble Phantasm that might as well be separated into 3 Noble Phantasms with how dense it is. 2000 familiars is far too high of a number, especially in this RP setting where Servants are weakened due to being summoned in S.E.R.V.A.N.T. frames. The mana costs and mana drain aspects of the ability are also left incredibly vague and inconsistent, because you imply that the army persists so long as Skuld has enough mana to work with, yet also state that she would be capable of spending additional mana to revive them as zombies. All that is being said here is that Skuld is capable of summoning an army of 2000 familiars and can even revive them in case they are destroyed. You keep writing that it costs mana but never list just how much mana Skuld has at her disposal, so it might as well be unlimited mana to me at that point.
+
+Then let&#39;s not forget the unique familiars, which are Pesta and Igris. Pesta being a diet Skuld is already big no in my book, since it not only sounds redundant but it also having a familiar capable of matching the Caster&#39;s Magecraft is already an overpowered concept for our setting. 
+
+Igris&#39; stats are a mess. &quot;All around A-D(+)-B Servant stat warrior&quot; tells me nothing. If you plan on listing out stats, could you please be more organized about it? Also, if you need to list an entirely <strong>SEPERATE</strong> sheet just to explain Igris, then that is already a good sign that your Noble Phantasm is incredibly bloated. Pesta and Igris both feel like they could be Noble Phantasms in their own right with their capabilities, yet you jam them in a single Noble Phantasm. It shouldn&#39;t be surprising why I have an issue with it.
+
+Last but not least, these familiars continue the whole problem I have with your depiction of mana drain that you described in the first part of the NP.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616125304733796" id="message-919616125304733796" title="Message sent: 12-Dec-21 11:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<div class="quote">&quot;Though these two also drain a decent amount of mana, with Skuld&#39;s A+ it can be sustained for an indefinite amount of time with those two specifically; but all 2,000 of her troops being deployed at the same time will be draining.&quot;
+</div>
+So basically, I was right. Skuld really has <strong>no mana limitations whatsoever.</strong> You keep insisting that her abilities are taxing, yet then refer to your Mana stat as a good reason on why your familiars would be able to be used indefinitely. Skuld with Pesta and Igris in tow is basically like roleplaying 3 Servants, a concept that is already ridiculous on its own especially with Igris having his own external sheet. And somehow, controlling two familiars that are almost Servant level is less taxing than controlling an army of 2000 zombie lackeys that have weak parameters in comparison.
+
+This Noble Phantasm is lacking in balance and also incredibly bloated. It would require being split into 3 Noble Phantasms in order to be preserved, and even then I would reject it. Because being able to constantly have 2 familiars active at all times with Servant level abilities and strength is a big no.
+
+And it&#39;s not like I don&#39;t have a basis for that, since we have depictions of that in Fate too. Medea was an incredibly talented Caster, but she still needed quite a bit of time in order to amass Mana to summon a Servant (read: external mana not belonging to her). And even then, said Servant was limited to the Ryudou Temple and could not leave otherwise.
+
+Your Caster goes far, far beyond that, even though in the RP setting Servants are weaker than properly summoned Servants from the Holy Grail. If you want a reference on Servants with familiars from this server, I recommend looking at the sheet of Caster from Season 1 and Saber from Season 2. They were both far weaker than Skuld, yet capable of standing toe to toe with most of the Servants on the server.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616166471819264" id="message-919616166471819264" title="Message sent: 12-Dec-21 11:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+So basically, I am not approving this Noble Phantasm because of the various reasons listed above. It is too overpowered. Its limitations are vague and it basically sounds like an excuse to have your cake and eat it too since you get to roleplay as 3 different Servants.
+
+Now on to Class Skills and Personal Skills.
+
+<strong>Item Construction:</strong> Creating Mystic Codes is fine in theory, but will be reliant on your Master since we still limit Masters to a limited number of Mystic Codes per person. An issue with the way you described this Class Skill, however, is any limitations in what Skuld can make. She has a personal preference for certain weapons, but is there anything she would be incapable of making? There are various branches of Magecraft in the Fate universe, so simply saying she can manufacture magical artifacts is incredibly vague and we would need to know more about what exactly she makes besides weapons and Mystic Codes. Also, the materials required for said items need to be listed as well.
+
+Let&#39;s also not forget that this ability lacks any backing or justification at all, since you didn&#39;t post a backstory. Unless I am given a valid reason in the backstory for why and how she would be capable of constructing so many magical artifacts, I shall ask you to tone this Skill down.
+
+<strong>Territory Creation:</strong> This looks fine, though I have no idea what you mean by boss battle. Please keep concepts you utilized in other servers away from here, thanks.
+
+<strong>Mastered Necromancy:</strong> This skills looks fine, but I would like to add that if the subject&#39;s body is destroyed or their artificial circuits are destroyed, then they would be incapable of casting magic. Skuld would have to supply them with her own mana, so this skill would effectively only work on mages who were killed in a way that did not destroy their artificial circuits.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616218321809420" id="message-919616218321809420" title="Message sent: 12-Dec-21 11:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<strong>Seidr:</strong> This is a Skill that is once again, really vague and could be split into multiple. Being a varied practice does not excuse having multiple unrelated abilities jumbled up in one skill. Illusions, curses, summoning of spirits/dead and the ability to change fate itself? There&#39;s too much in this package and various aspects of it feel unrelated to Skuld&#39;s overall kit. So far most of her spells have been dedicated towards curses and necromancy, so what point is there in dedicating yourself to illusions and fate changing as well? Not to mention, fate changing wouldn&#39;t be approved at all no matter how many limitations you attach to it.
+
+Also, this Skill also embodies one of the underlying issues with this sheet: <strong>The complete lack of justification and backing.</strong> You lack a backstory to justify your sheet and you also lack any form of reasonable limitations/explanations on why a Servant summoned in our depowered universe would be capable of boasting of such feats.
+
+Your only justifications for Skuld&#39;s current magical prowess are usually just:
+1. She&#39;s a master of the craft.
+2. She&#39;s a famous spellcaster.
+3. She&#39;s in the Caster class.
+4. She&#39;s knowledgeable in Magecraft.
+
+Your entire sheet is just &#39;She is a Caster Servant because she is good at Magecraft + she is really old.&#39; Is that really all you have to offer? Do you know how many Caster Class Servants exist that are fairly old yet do not have as much of a bloated kit as Skuld? Your justifications for Seidr and the rest of Skuld&#39;s skills are frankly nonsensical. There have been several famous spellcasters in history. Skuld is neither the first nor the last. This doesn&#39;t give you a free pass to call her an expert on all forms of Magecraft just because of her age + self-proclaimed mastery (that you haven&#39;t backed up at all).</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616256162799646" id="message-919616256162799646" title="Message sent: 12-Dec-21 11:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<div class="quote">Everything that Modern Magi can do but better.
+</div>And I disagree with this statement completely. Unless Skuld is supposed to be omnipotent (in which case, instant rejection), then she should have some areas of Magecraft where she is less experienced than specialists who have dedicated their own lives and time to one specific branch of Magecraft. Medea was an incredibly talented mage, yet a lesser magus like Rin was capable of catching her off guard simply because Rin took martial arts enhancement training while Medea did not.
+
+Unless you can prove that Skuld is an expert on all forms of Magecraft known and back it with relevant facts from the character&#39;s backstory and history, then this Skill is never getting past approval.
+
+<strong>High-Speed Elven Tongue:</strong> I&#39;ll make this quick: This Skill is getting rejected on principle of having 9 Skills in one Skill, several of which could be Noble Phantasms in their own right. That alone should tell you to cut out the bloat and stick to a few essentials, but I&#39;ll go ahead and review all the problematic aspects individually so that you know why exactly this Skill is not getting approved.
+
+The most important fact is that all of these Spells are instant cast. Normally, that is not an issue since in practice that is what often happens in RP, but several of these spells are so broken that the instant cast on them feels unnecessary and just an additional thing to gloat about Skuld&#39;s superiority over the average Caster. The need to separate between Divine and non-Divine also already clues me in on which spells need to be toned down by a lot.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616304007245944" id="message-919616304007245944" title="Message sent: 12-Dec-21 11:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<div class="quote">2. Foerr 
+</div>Teleportation that is almost on the level of True Magic seems like a get-out-of-jail free card even with the cooldown limit (You only need to use it once to gtfo). The limitation to the territory is unexplained since I have no idea whether you mean she can only use it within her territory or teleport targets to her territory. It also lacks any form of range or maximum distance limitation.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616340409606164" id="message-919616340409606164" title="Message sent: 12-Dec-21 11:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<div class="quote">3. Seidr
+</div>A+ Rank does not apply here because of what I said regarding parameters at the very top of this review. Either way, spammable beams that destroy a Servant&#39;s body requires a bit more details on its effectiveness. How does it interact with Magic Resistance and how effective is the tracking? You seem to have a tendency to mention random facts in your skills with no backing nor thought put into it. If you plan to add a detail to your skill, please make sure explain that detail to its fullest before immediately moving on to something else.
+
+<div class="quote">4. Stefn
+</div>This Skill is a perfect embodiment of another part of your sheet where it fails to meet standards: Buzzwords. Your descriptions feel inconsistent and it feels like you rely on TYPE-MOON&#39;s own words instead of trying to phrase things on your own.
+
+<div class="quote">This is a healing incantation that restores one&#39;s vitality from severe wounds.
+</div>
+So far so good, until,
+
+<div class="quote">To use this is to heal the actual soul over the body.
+</div>
+So, what is it going to be? Does it heal the body or the soul? How do you heal severe wounds by only healing the soul and vice versa? It all feels like a thinly veiled attempt to cross into the completely different realm of soul absorption and preservation. You constantly move from point A to B with thin explanations that have no backing nor justification behind them.
+
+<div class="quote">5. Gel
+</div>I like how you mentioned her corpse even though you failed to address that completely in her backstory. If you plan on utilizing your backstory in skills, then perhaps you should actually bother writing out your character&#39;s history...
+
+<div class="quote">6. Thurisaz
+</div>The concept itself isn&#39;t bad but how exactly do you plan to adapt double damage in a roleplay format? This isn&#39;t a game where you can attach damage multipliers to an object and do some number crunching. How do you describe &#39;double damage&#39; to an actual fight? Sounds like you didn&#39;t put much thought into it.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616382608502824" id="message-919616382608502824" title="Message sent: 12-Dec-21 11:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<div class="quote">7. Skelduz Barrier
+</div>Her Mana stat is A, meaning that according to your own words, you would be incapable of breaking it unless you were attacking her with EX attacks.
+
+The shield has no time limits, nor any form of range or mana limitations.
+
+You should be able to understand why this ability would not be approved at all. Requiring Servants to have EX attacks to even touch you is a big no-no.
+
+<div class="quote">8. Gandr
+</div>This Skill is fine, but one thing I always wondered about while reading this sheet is your obsession with demonstrating how much better Skuld is compared to a human Magus.
+
+Isn&#39;t that...the whole point of Servants? They are legendary figures with several feats attached to them. It is not surprising for a Caster to be superior to a Magus in terms of magical prowess, so what is the point in mentioning it several times in the sheet?
+
+You are listing a fact that isn&#39;t unique to Skuld, but to the Caster Class in general. I learn nothing about Skuld from this besides &#39;she&#39;s good at Magecraft!&#39; If that is the only justification behind the character&#39;s kit, then I guess Skuld must be particularly average if her only claim to fame is doing something other Casters were already doing.
+
+<div class="quote">9. Skof Sevok
+</div>So basically you just copied Kiritsugu&#39;s Origin Bullet and tried to pass it off as your own. Okay.
+
+That alone isn&#39;t something that would get your sheet rejected. No, what makes this rejected is, once again, the same problems that have plagued the rest of your sheet:
+
+Lack of backing.
+Lack of restrictions or limitations.
+General inconsistency.
+
+This is an instant cast Spell that fires a projectile at a target and then immediately cripples them. Your attempt to limit the Spell involves having the target resist through &#39;willpower&#39;, even though that is an incredibly vague metric to work with.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616416804651048" id="message-919616416804651048" title="Message sent: 12-Dec-21 11:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+What counts as willpower? Do you think it would be satisfying if I were fighting you and just shrugged your bullets off because my &#39;willpower&#39; was way higher than you had expected? I can literally write my character however I want, so I could write that they have a huge urge to win that makes them resist your bullet&#39;s effects.
+
+Do you see how unsatisfying that would be to face? If yes, then maybe you&#39;ll agree that it would also be incredibly unsatisfying for the other party to be crippled by an instant cast spell.
+
+Kiritsugu&#39;s Origin Bullets were powerful, but they weren&#39;t flawless. He needed to goad his targets into receiving them like in his fight against Kayneth, plus he only had a limited supply of bullets at his disposal. Kirei was also capable of countering them, and his counter made a lot more sense than whatever you planned with &#39;willpower&#39;.
+
+All I read in this skill is an instant cripple ability that has the chance of becoming permanent if my character is denied healing access. Do you realize how unfun that would be for the other party? Do you realize that it would imply result in people playing up the &#39;willpower&#39; aspect in order to rightfully avoid getting kicked out a fight? Do you realize that having a skill this strong as instant cast is ridiculous? With how much it does, it might as well be a Noble Phantasm.
+
+And of course, the only other way to counter it is just a stat check. Basically, do not bother even roleplaying if your Magic Resistance isn&#39;t B or higher.
+
+There should be no more questions on why I am denying this ability altogether.
+
+Overall, Skill 3 does way too much and could only realistically be adapted by splitting it up into various Skills. However, we have a maximum limit of 3 Skills per category, so you will have to cut several aspects out. Some aspects of Skill 3 are also incredibly overpowered and I would not accept them unless they received several changes.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616447012036628" id="message-919616447012036628" title="Message sent: 12-Dec-21 11:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<strong>Verdict:</strong> The sheet as a whole needs a major rewrite from scratch. Starting from the backstory, because the character of Skuld lacks any justification for her origins, her claims to the Throne and her entire kit.
+
+Your skills have shown me that you are a person who describes abilities in a very inconsistent way, using a combination of buzzwords and wiki excerpts that aren&#39;t your own. This extends even further to you just copying abilities from Fate canon instead of making your own own. It is completely fine to use existing sources and abilities from Fate canon, but it definitely feels rather lazy to see someone use others&#39; words for their own sheet.
+
+You also lack a clear view on what counts as a good limitation. You constantly dance around proper limitations by mentioning buzzwords such as mana drain or mana consumption yet not specifying how these limitations affect your Caster.
+
+Speaking of Casters, the fact that your only justification for Skuld&#39;s kit is simply &#39;she do Magic good&#39; is downright nonsensical. How many Casters have existed in Fate that were considered talented Mages? Skuld is not an exception and will never be, since we have several Fate Servants in the Caster Class that are from her same time period and still have a less bloated kit than hers.
+
+Overall, if you really plan on getting approved, then work on all the issues I&#39;ve described. At this point, you might as well rewrite your sheet from the very beginning because of the number of issues I have with it. I also recommend giving the server lore a thorough read, because this sheet doesn&#39;t feel like it was balanced for the setting at all.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919616471280259102" id="message-919616471280259102" title="Message sent: 12-Dec-21 11:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Also, if you are going to mock the template&#39;s design for being plain and drab, then maybe you should take full advantage of it before doing so. You could have split your Noble Phantasm into 3 separate ones, yet you chose not to. You could have used the Example of Power(s) sections more often, yet you chose not to. You could have written your backstory, yet you simply posted a Wikipedia link with no further elaboration.
+
+It&#39;s almost as if you prefer &#39;aesthetically pleasing&#39; sheets because it lets you write less due to the pretty visuals occupying all of the space. Well, change that mindset for this server because we value easy to read sheets, actual content and justification on the character and detailed skill descriptions that aren&#39;t just &#39;My character can do x, y and z because I said so&#39;.
+
+Feel free to reply to the feedback whenever possible and I hope the various criticisms helped.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20getting%20started%20-%20hidden-sheet-discussion2%20%5B919586775184330782%5D.html_Files/7a7317efce59258443c3f9817cdf2fe4-EAD61.png" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#120450;&#120468;&#120478;&#120469;&#120461;#9148" data-user-id="584566077690740784" style="color: rgb(84,110,122)">&#120450;&#120468;&#120478;&#120469;&#120461;</span>
+
+
+        <span class="chatlog__timestamp">13-Dec-21 12:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="919621355480154162" id="message-919621355480154162" title="Message sent: 13-Dec-21 12:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I&#39;ll make my own take on this, just a moment...  Though I will respond to the bottom half now.  
+This sheet is much older than I would like to admit, I copied and pasted everything written by a me that lacked the proper Fate knowledge and comprehension to write a decent servant sheet.  I mock the template for being plain because it is just that.  But from what I can tell it does have its advantages.  I retract my claims of simplicity being awful and agree with you that it is, in fact, a good template for specific settings.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919621360748204042" id="message-919621360748204042" title="Message sent: 13-Dec-21 12:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="919621391869968434" id="message-919621391869968434" title="Message sent: 13-Dec-21 12:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hand me a moment...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 15 message(s)</div>
+</div>
+
+</body>
+
+</html>

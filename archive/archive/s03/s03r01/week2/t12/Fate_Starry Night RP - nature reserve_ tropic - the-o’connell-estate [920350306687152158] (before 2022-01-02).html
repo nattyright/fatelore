@@ -1,0 +1,2340 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-o’connell-estate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: tropic / the-o’connell-estate</div>
+
+            <div class="preamble__entry preamble__entry--small">Located within the jungles, this beautiful estate is now mostly overrun by the surrounding vegetation. It is solely maintained by one Rosemary O’Connell, whose focus lies on the green house more than any other piece of her family’s property.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Before 02-Jan-22 03:00 PM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">15-Dec-21 12:23 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="920350406746439730" id="message-920350406746439730" title="Message sent: 15-Dec-21 12:23 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/4a4b4687f3642187856e4e85a171bcfb-1EE02.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/4a4b4687f3642187856e4e85a171bcfb-1EE02.jpg" alt="Image attachment" title="Image: 4a4b4687f3642187856e4e85a171bcfb.jpg (460.77 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/7f87804e6c9b1d19760acb67b0095ef7-662F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rosemary O&#39;Connell#0000" data-user-id="923066436035952650" style="">Rosemary O&#39;Connell</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Dec-21 12:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="923066436858028072" id="message-923066436858028072" title="Message sent: 22-Dec-21 12:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://m.youtube.com/watch?v=dkmIMOh67IE">https://m.youtube.com/watch?v=dkmIMOh67IE</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCoaTCrGfCNAvjBp_Zy1Jkig">Haley Heynderickx - Topic</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=dkmIMOh67IE">
+                                                        <div class="markdown preserve-whitespace">Oom Sha La La</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/dkmIMOh67IE" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="923066969337524224" id="message-923066969337524224" title="Message sent: 22-Dec-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rosemary O’Connell had lived happily for 60 years of her life. An accomplished magus having recultivated their dwindling magic crest,  a respected Horticulturist, and most importantly a proud mother of 3 and grandmother of 12. The O’Connell family had regrown its strong roots thanks to her efforts as its matriarch. It was only fitting that she would end it with one final accomplishment. 
+
+<strong>Obtaining a Servant to defend Nirvana.</strong>
+
+She had procured a most valuable s.e.r.v.a.n.t frame. Planning to use it to summon an assistant to the gods of old which her family had worshipped since the age of gods, or so she had been told by her grandmother. The Banshee. A tool of fate, an assistant to The Morrigan. The one who wails for the passing of others. 
+
+Their summoning would be almost certain, thanks to the assistance of a catalyst. 
+
+Rosemary would have many questions for such a being, once she had built up the nerve for actually summoning them. 
+
+What was she actually getting herself into with this, committing an act that could be tantamount to heresy. Summoning a spirit who could be considered a goddess in her own rights, back into the mortal plane. How could a mere human be worthy of doing such an act. Not to mention, having some long term company since her grandson left.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923067368878526474" id="message-923067368878526474" title="Message sent: 22-Dec-21 12:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">One of the other residents of the island, Koji was his name, had become friendly with Rosemary but he never stayed long enough. For anything aside from tea, and the occasional slice of cake. Thankfully his warnings of the seagulls gave her good reason to summon her servant. 
+
+“Will this be worth it, Rose…You aren’t just any mere human.” The woman spoke to herself, bolstering some of her confidence. Staring at the metal frame which sat at the head of her garden. An Eyesore when compared to the many different vines, flowers, and fruits growing through the area. But it held the promise of beauty, of information, of a life spent in service to god&#39;s thought long dead to be given a small piece of satisfaction. 
+
+The Druid sat for a moment. Reaching for her flask of water, and taking a drink. Making eye contact with non-existent eyes. As if she were awaiting their judgement to befall her. “This will be worth it….” 
+
+The woman stood slowly, her hand casting a spell as a yew branch slowly reached its way down and became a walking stick for her. “I’ll be back, my soon to be friend. It is getting late, and today was already too full of excitement.” Rosemary sighed, looking backwards towards the frame, exiting her greenhouse and locking the door behind her.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/7f87804e6c9b1d19760acb67b0095ef7-662F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rosemary O&#39;Connell#0000" data-user-id="923066436035952650" style="">Rosemary O&#39;Connell</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Dec-21 11:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="923413406088855562" id="message-923413406088855562" title="Message sent: 23-Dec-21 11:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hours passed. The plants began to form themselves around the lifeless frame, giving it comfort or threatening to wholly consume its presence in the garden. 
+
+Either way, Rosemary came as the sun rose again. The light of the sun shining into her workshop. Her s.e.r.v.a.n.t frame had become swallowed by her plants, and all the druid could do was sigh. 
+
+“You children do not play nice…” The woman rolled her sleeves up as another spell was cast, again the yew tree providing a branch which became as sharp as a razor. “Now, will you all be kind and release the metal? Or do we have to do some pruning?” Rosemary pointed the natural razor towards the growth encompassing the puppet, awaiting a response as she always does when it comes to her plants. 
+
+The elderly lady could only shake her head as the vines remained stalwart against her threat. “I can’t believe you’re going to make an old woman actually do this.” Her appearance became significantly more sinister. 
+
+As if she were sacrificing a lamb to the gods as an offering, The Druid brought down her wooden dagger. Carving into the plant growth and struggling to peel the metallic frame free.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/7f87804e6c9b1d19760acb67b0095ef7-662F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rosemary O&#39;Connell#0000" data-user-id="923066436035952650" style="">Rosemary O&#39;Connell</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Dec-21 05:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="923510924101423105" id="message-923510924101423105" title="Message sent: 23-Dec-21 05:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After an hour of work, and multiple yew daggers, the skeleton was now freed. Seated on the ground next to Rosemary, who was taking another sip from her water flask and breathing heavily. “That…. That was a bad look on their part. I promise when you’re more alive, than well… this…. They will come to adore you.” 
+
+The Druid gave a kind smile to the lifeless husk sat next to her. “Afterall, we’re going to do this to make this world a better place. There will be good brought about by our actions.” A small tear formed in Rosemary’s eyes and she brushed it away.
+
+Her hands moved but stopped, deciding against the casting of another spell. Considering how the plants have already shown their dislike of the mystic code. “I’ll be back soon. Next time you see me… We’ll be able to acquaint ourselves more formally. Perhaps over tea and lunch! My Hibiscus has been exceptional this season.” The Elderly woman’s smile widened before turning away from the frame, left lifeless sitting upon the stone floor of the Green house. 
+
+Rosemary left once more. Again performing the ritual of locking the door behind her. A pep was in her step. The druid was finally ready. 
+
+Her final and greatest undertaking will finally begin upon her return. Just a few things needed to be collected from the markets.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/7f87804e6c9b1d19760acb67b0095ef7-662F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rosemary O&#39;Connell#0000" data-user-id="923066436035952650" style="">Rosemary O&#39;Connell</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Dec-21 07:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="923716827836715068" id="message-923716827836715068" title="Message sent: 24-Dec-21 07:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://m.youtube.com/watch?v=4gfwG9NEitA">https://m.youtube.com/watch?v=4gfwG9NEitA</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCcVvOMvAmIaZlYVWC-X_qIw">am l</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=4gfwG9NEitA">
+                                                        <div class="markdown preserve-whitespace">Neko Case - That Teenage Feeling</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/4gfwG9NEitA" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="923717493527302205" id="message-923717493527302205" title="Message sent: 24-Dec-21 07:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A knock came from the front door. Something that shouldn’t interrupt her typical day. Perhaps it is the good doctor coming for tea. 
+
+But what came was… something Rose never expected. <em>She</em> was standing in the door way. 
+
+Feelings of teenage and young adulthood nights flooded Rosemary’s memory. “<em>Ruth….</em>” Was all the druid could gasp. The woman before her had barely changed from those memories. As if forever stuck in a photograph. 
+
+Hair evergreen, and immaculately kept. A magnolia meticulously placed within the green. Eyes as discerning and hungry as ever. Even her clothes looked the same as their final day together. A simple flowy white sundress, adorned with a belt… Rosemary’s old belt. The belt itself was meticulously cared for, and cherished. “Hello, Rose~” Even her voice was exactly as it had been, as sweet as honey. 
+
+“Y-you haven’t aged a day…. Ruth…. Come in, please come in!” Rosemary’s face lit up as she ushered the other woman into her abode. “I apologize for the mess, most of my time has been spent upstairs in the garden….” 
+
+Compared to the neatly trimmed garden, the house was very much overgrowing. Two persons occupying it’s space made it feel suffocating. Yet, that did not stop either woman from making their way through the home. A few glances were made between the two.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923719056610172978" id="message-923719056610172978" title="Message sent: 24-Dec-21 07:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rosemary was a little hesitant to engage in further conversation, or attempt engaging in more conversation. Ruth held that look on her face, the one which usually meant business. Something the woman failed to notice with her initial excitement. 
+
+They eventually found their way into the kitchen, Ruth gliding behind the slightly manic woman ahead of her. Rosemary quickly busied herself at the stove top, bringing water to boil. Turning back towards the other. “I’ll gladly take whatever you have most readily available.” The guest broke the silence, offering an opinion on the tea they would be sharing. 
+
+“Ah wonderful, I had excellent hibiscus this year! Or mint… i know how you loved a nice mint tea. Now…. I know that look on your face, unless you’ve only changed how you express yourself after so many years.” The druid cocked her head towards Ruth. 
+
+“Mint would be lovely to have, darling. I’ve missed seeing you.” Ruth responded sweetly. 
+
+“You have business to be attended to, and somehow…. Some way…. It brought you to me.” Rosemary spoke while trying to find any hint of something else upon Ruth’s face. 
+
+Ruth’s facial expression remained inscrutable, but soon enough cocked into a slight grin. Rosemary could only muster a slight giggle in response, allowing herself to relax now. “I’ve been back here for…. Well 10 years. Always too cowardly to go see if you were still here… But I should’ve realized you never would’ve left this place.” 
+
+The Elderly woman’s face lost part of its light, as her old friend….  No, her old lover approached and rested a hand upon her now wrinkled and leathery skin. Brushing away portions of Rosemary’s greying hairs away from her face. Showing the druid’s dark jade eyes, tears about to well out from their corners. “I’m sorry… for not trying to say hello sooner…”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/7f87804e6c9b1d19760acb67b0095ef7-662F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rosemary O&#39;Connell#0000" data-user-id="923066436035952650" style="">Rosemary O&#39;Connell</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Dec-21 09:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="923752997190774804" id="message-923752997190774804" title="Message sent: 24-Dec-21 09:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The harsh hiss of the kettle finally coming to a boil cut through their tender moment. Rosemary pulled away, going to collect a few leaves and mugs from her cupboards. While Ruth collected the boiling water’s container. 
+
+“May we enjoy this…. In a less cramped environment?” Ruth spoke again, while trying to make space for the kettle. She was finding little luck in that endeavor. 
+Rosemary nodded, arms full of supplies for tea time, and began to lead the way upstairs and towards the green house. “I have an excellent garden, meant just for this sort of occasion!” Soon enough the two were now situated within the green house, The s.e.r.v.a.n.t frame lying lifeless with a view of the pair. 
+
+Rosemary began to cast a spell, but nothing happened. Not even her most loyal yew tree would bend a branch… “Ruth…. Is someth-“</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Dec-21 09:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="923753095144554516" id="message-923753095144554516" title="Message sent: 24-Dec-21 09:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://m.youtube.com/watch?v=kFzViYkZAz4">https://m.youtube.com/watch?v=kFzViYkZAz4</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UC8HegZImdtCXLIrIdNtIPlQ">winkytwinky CLASSICAL MUSIC</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=kFzViYkZAz4">
+                                                        <div class="markdown preserve-whitespace">Edith Piaf - La Vie En Rose</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/kFzViYkZAz4" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="923753249679487026" id="message-923753249679487026" title="Message sent: 24-Dec-21 09:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rosemary’s necklace began to turn crimson. As Ruth pulled away the now bloodied dagger she had used to end the Druid’s life. 
+
+Tears began to fall from Rosemary’s face, but The Ageless woman could only chuckle. “I knew you’d be rather easy.” The druid fell to her knees, gasping for air and still attempting another spell. But no words came from her mouth. 
+
+“Rosemary…. Our time obviously meant so much more to you than it ever would to me.” She lowered herself to the other woman’s level, her face now turned into a sadistic expression. Excited and hungry at viewing another human suffering. “Thank you for giving me what is mine. I’ll make the most of it.” 
+
+Ever so slightly Ruth grazed Rosemary’s cheek once again. Not as a kind gesture but as a well rehearsed maneuver. There was a slight increase to the surrounding atmospheric mana as this act was performed. Wasteful, but it was to be expected when one was this drained of mana from Ruth. 
+
+Ruth admired the crimson now staining her dagger. The life slowly left Rosemary, as blood pooled underneath her body. Before fully sinking into it and ceasing her struggle. “Hmmm… Shame…. I was hoping to have kept you alive long enough to see the servant summoned.” 
+
+The Ageless woman then dropped her dagger, as if it were no longer of any significance to her. Stepping over the fresh corpse before her, paying it no mind as she glided towards the prized frame.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923753924681420830" id="message-923753924681420830" title="Message sent: 24-Dec-21 09:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">‘<em>Months of planning had finally paid off, Ruth. We are about to reach something great.</em>’ Her hands laid upon the cold metal. Staring into her own reflection set into the face of the mechanical puppet. ‘<em>Nirvana was going to have to defend itself, and this S.E.R.V.A.N.T will be such a lovely tool to spread my influence.</em>’ The thought was still exhilarating to her, now what lie would she need to make up about Rosemary’s untimely demise. 
+
+“An assassin class servant obviously~....” Ruth’s sardonic smile appeared again, even beginning to laugh, but this was cut short as tree branches from above came downwards. 
+Sharp spikes of the Yew began a powerful torrent downwards, going to slice her into pieces. A few managed to make superficial cuts, but were soon stopped short as 7 heated motes appeared. They looked as if they were a crown seated upon a queen’s head. While vines began to slowly grow attempting to wrap her feet and strangle Ruth. 
+
+One mote was fired upwards to the tree, connecting with it and beginning to immolate the blasted thing. Ceasing the rain of spines.  Whilst the smell of ozone was accompanied by a bright flash as those vines around her feet began to sear away. A warning to the garden of what she was capable of.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/7f87804e6c9b1d19760acb67b0095ef7-662F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rosemary O&#39;Connell#0000" data-user-id="923066436035952650" style="">Rosemary O&#39;Connell</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Dec-21 09:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="923754230131601408" id="message-923754230131601408" title="Message sent: 24-Dec-21 09:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rosemary had found the slightest amount of mana. Scraping the bottom of a barrel. But she thought it would be enough to get some revenge against Ruth, and stop her from taking the frame. 
+
+It was ultimately fruitless, as the tree began to burn… Controlled and contained to itself, but still burning. The druid’s one and only attempt had failed, and the garden more concerned with its own safety now. 
+
+Darkness crept into her vision, as a now bloodied Ruth stood before the burning tree. Six points of intensely burning light sitting upon her forehead. A look of pleasure placed upon it, as she shook her head.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Dec-21 09:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="923754406011371541" id="message-923754406011371541" title="Message sent: 24-Dec-21 09:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I did not expect you to have any ounce of fight left… Rose. You always were impressive. It was a disservice of me to neglect your… natural skills.” Ruth’s hand then wrapped itself around what it could get a hold of. “Perhaps it is only fitting… for you to have a front row seat to my ascendance.” Her words were venomous. 
+
+The fire now no longer had anything to feed from dwindled within the tree, before going out completely. 
+
+Roughly dragging the barely conscious woman behind her before tossing her next to the servant frame. The ageless woman began to take of Rosemary’s blood, drawing an elegant pattern encompassing the frame. 
+
+A pattern used for a summoning ritual.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 01:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="923986813071269939" id="message-923986813071269939" title="Message sent: 25-Dec-21 01:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth stared intently towards her handiwork. Now ready to perform the deed she had come here for. 
+
+“Let silver and gold be the essence. The Archduke of contracts presides over our foundation. Wealth and worldly desires shall fill his troves. With them a wall shall rise for the wind to fall upon.” Her voice began softly. Mana spiraling outwards from the summoning circle. 
+
+Before raising its volume, calling more forcefully now. “Open the four cardial gates, and from them unfurl the winding three forked road.” Now light was beginning to emanate from the circle, surrounding the frame and giving it an other worldly appearance. 
+
+“By their paths reach the crown of the Kingdom, witness it rotate. Filling, cracking, then falling asunder. Allow it to reform and repeat the cycle. Until it can reform no more. And now it must rest with greatness upon my head. Now answer the beckoning, and return once more to glory.” Ruth had finished her summoning ritual, a blinding light encompassing the greenhouse. 
+
+But there was one thing that Ruth was not aware of, the presence of a catalyst. Specifically Rosemary’s necklace, a piece of rock from the homeland.. Furthermore, how would such a servant react upon knowing what had been done to their intended master during the act of their summoning.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 01:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="923987608206446694" id="message-923987608206446694" title="Message sent: 25-Dec-21 01:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The summoning circle like the great shore-side beacons of yore glew with a blinding light, a heavenly radiance that murderer and victim alike could bathe in and let their final moments together wander in what spirit would answer the call. Both magi felt the tug as the light-obscured frame fed upon their mana readily, rolling high and low in terms of intensity and gifting both with intermittent waves of nausea.
+
+As both witnessed the spectacular sight before them, the dying embers of the Yew Tree lept from the bowels of its trunk into the summoning circle and ignited the mana-rich air with blue flame that consumed the blessed glow of promise from before. White flames ate blue flames, yellow flames ate white flames, red flames ate yellow flames and smoke swallowed them all in a black veil. So thick was the smoke that none of the radiant light shed off by the servant frame could penetrate, leaving Ruth and Rosemary with only their doubts in darkness.
+
+A second pull at the two’s mana stores came as the smoke seemed to fade for a second or rather that the light seemed to shine bright again after a moment of silence. The frame within appeared as if its edges had been gnawed at by the flames and light emanated no longer had that warmth and comfort from before yet the womanly figure within still seemed captivating because of those darkened tips. Imperfections that told many stories and no stories at the same time yet it would be those cracked ridges that would ignite in flame again and shroud her in smoke once more.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923987864541356052" id="message-923987864541356052" title="Message sent: 25-Dec-21 01:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Doubts and fears would creep back stronger in the mind of the one still conscious, had Rosemary done one last act of defiance that had damned her months of effort and her best shot at advancing her aims? She would be answered with one more glimpse into the haze. 
+
+Only a dim light shone from the frame, and only from within the cracks, abscesses and skinned areas for the rest was now covered in a brittle shell of ash and burnt flesh. What barely stood before her was the spent remains of a great bonfire, now barely able to light the room. What little of the mysterious figure’s hair was not blanketed in ash still glew orange defiantly, like the last embers of a fire. Its lips peeled themselves apart to speak only for one last tongue of fire to leap forth and cloud her in smoke for the last time.
+
+It was during this last few seconds that Ruth may glance down and see a ruddy brown liquid seep from the smoke towards the boundaries of the ring, flecks of orange and red boiling to the surface before bursting in noxious fumes. It seemed to pull at Ruth and beckon her closer. Yet its hypnotic motions would be in vain as something clattered to the floor with a metallic clang.
+
+Gauntlets of dirty iron splayed out in front of a woman doubled over, her hair devoid of color, her skin the color of wood ash and her body covered in a heavy white dress that shed the burnt shell like old scales with every heaving breath she took.Those breaths soon turned into a sound Ruth had heard many times before: crying. A deep pitiful sob that seemed to shake her whole body even as she brought herself up to stand revealing eyes already reddened with tears.
+
+Her sorrowful eyes scanned the room, gazing through Ruth and fixating on the prone body of Rosemary. The servant murmured a few words between her tears before picking up the druid’s body and walking outside, not a word said to her prospective master.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923987982954921984" id="message-923987982954921984" title="Message sent: 25-Dec-21 01:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 01:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="923998440550178816" id="message-923998440550178816" title="Message sent: 25-Dec-21 01:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The summoning was a success, it seemed. As the light bathed the greenhouse of The O’Connell Estate. The Cult Leader’s face lighting up with the same energy and ferveor of the light which blinded her. 
+
+To then be burnt away, as the yew’s final ashes leapt into the summoning circle. Fueling an ungodly flame, which burnt away the form of what Ruth had assumed to be her future servant… What did Rosemary do… How did her influence corrupt this perfect summoning… Rage boiled up to the surface, a rage which had no feasible outlet as its target was nothing more than a corpse. 
+
+“Beating dead horses, Ruth…. Beating dead horses…” She repeated to herself while clenching then unclenching her fists. A forehead vein still made itself known as she stared down towards the corpse of the druid and the burnt effigy that was the servant. It was then that she noticed the rudy liquid making itself known, something that seemed familiar... Something that in the back of her mind she wanted. 
+
+Before a resounding <strong>CLANG</strong> echoed through the space, as two heavy iron gauntlets collided with the stone work of the floor. The frame was no longer that of a burnt human, but now a woman… Dead, or perhaps undead, sobbing. Momentarily Ruth and the figure locked eyes, before she made an approach to Rosemary’s lifeless form and took her outside. 
+
+Curiously Ruth followed behind, speaking aloud. “My Dear servant, I believe now is not the time to bury a body. Now is the time for us to become acquainted. Speak your name and class container as is customary.” Her words were direct and forceful, the cult leader had no time for the tending of the corpse she had created.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923998475983654912" id="message-923998475983654912" title="Message sent: 25-Dec-21 02:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="923999791980109885" id="message-923999791980109885" title="Message sent: 25-Dec-21 02:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The pale woman’s cries only increased in volume as she walked out into the surrounding garden, tears beginning to roll down her ashen face. Her gait was long and heavy, yet no footfalls could be heard nor new bends in her dress could be seen. She never glanced back at the woman with the evergreen hair, focused instead on the evergreen trees around her as she wandered amidst the grounds.
+
+
+The servant’s cries bore no fiery anger or forced strain, only a pure sorrow that came with the tragic snuffing of a dutiful flame for which fuel had still been stored. Sometimes it sounded like the caterwauling of the feline beasts of the jungle at night and other times it was staccato sobs that threatened to choke on the previous cry. However her voice never seemed to tire or grow hoarse despite the veritable inferno it had endured only a minute ago.
+
+
+Only when she came upon a tree-lined hollow did the lady in green and white stop her funerary March and her keening. She turned to face Ruth, revealing her cheeks and chin caked in a mix of saline and ash, her eyes redder and slightly puffy.
+
+
+“Tell me, one who summoned me, did the deceased have a particular spot of theirs that they requested to be interned upon death?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="924000280226459659" id="message-924000280226459659" title="Message sent: 25-Dec-21 02:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The woman stood before the servant, if the ashen crying mess before her could be called such. As this thing was more focused on the mourning of Rosemary. 
+
+While less well kept when compared to the Greenhouse, the yard at wide was still a beautiful sight to behold. Green overflowing, and threatening to encompass or reclaim what remained untouched of the O’Connell estate. 
+
+Instead of speaking of the contract between master and servant, the being before Ruth spoke of tending to the dead. Focused on the corpse of the elderly druid, instead of her living and beautiful form. 
+
+This angered the cult leader slightly but, not all servants will be easy to work with. Each one has their quirks, just like each person upon this island. So Ruth complied with an answer. “Here. She would want to be buried around the green she tended to.” Her reply was terse, and her impatience showed with a tapping of her foot. “Now, will you speak your <strong>name</strong> and <strong>class container</strong>.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="924001835948331030" id="message-924001835948331030" title="Message sent: 25-Dec-21 02:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;But is that the truth? You hide not the bloodied blade and this one’s body mourns betrayal. Perhaps the event of my summoning was not to mourn the passing of a loved one but rather to make a quick disposal? I will ask again … Did the one I so mourn for <em>truly</em> seek to have her body buried here?”
+
+The servant’s voice became hardened like stone, the sadness within her eyes dried up leaving behind empty hollows that would not comfort the living. Though she bore Rosemary’s body in both arms, she still loomed over Ruth and there was no doubt those gauntlets could create fresh dead as easily as they could bury the old.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924002052651225170" id="message-924002052651225170" title="Message sent: 25-Dec-21 02:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="924002169823305759" id="message-924002169823305759" title="Message sent: 25-Dec-21 02:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The woman stared down the servant before her, who still refused to speak the information Ruth required. But then a shift occurred in the dead woman… It was scary to see her in this way, less pathetic, almost brought to madness. 
+
+Those iron gauntlets had the potentiality to create another corpse in The O’Connell estate today… 
+
+So the cult leader brought old memories up in her mind, those of her and Rosemary being young and in love. Pushing away her impatience, this is how she needed to communicate with this servant for the time being. 
+
+“In all sincerity… yes. She would love nothing more than to be buried amongst her plants. Her life’s work was dedicated to them.” Some tears began to well in the corner of Ruth’s eyes. As if some guilt was now starting to show. “The act of your summoning was a selfish one, one to help <em>me</em> pursue <em>my own goals</em>. Now, is that a sufficient answer?” 
+
+As soon as the grief appeared, it left. Ruth wiping away the tears forming on her eyes.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="924002581943029770" id="message-924002581943029770" title="Message sent: 25-Dec-21 02:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The servant tilted her head to the side, her cold, hollow eyes peering deep into those of Ruth before tracing the path of her tears. The woman’s face was otherwise impeccably still, frozen with hints of curiosity and remnants of 
+
+“So be it. Your words are… sufficient,” the servant nodded with the last word and turned around to face the hollow. “Hear me, ye spirits of the Earth and those of the Garden. One who had devoted her life to thy realm has sprinkled thine flesh with her blissful rain for the final time. Open the ground before me and make a suitable bed for her to rest within thine tender caress and give way to new growth forevermore. So sayeth the One Who Mourns the Dead.”
+
+The ground answered with a row of granite columns sprouting violently from the earth before moving outward to form a ring of nine. Readjusting Rosemary to lay over her shoulder, the servant waved her free hand away from her body and the ring expanded out, digging a pit six feet deep and revealing a bed of soil and roots already awaiting. 
+
+“So too will this body of yours now come to rest, Rosemary O’Connell. Your devotion and service acknowledged, you now will lay in trust of those you tended,” the servant spoke the druid’s eulogy as she descended into the tomb and laid her upon the raised platform, the roots sprouting flowers once the body came to rest. The servant moved to return to her would-be master but something resting upon Rosemary’s chest caught her eye and pulled her back. A singular piece of weathered stone, pierced at the top and strung with fine leather. She knew not its name or origin but it reminded her of home, the one before the grail. And so the one who honored the dead took one of their possessions and put it around her own neck.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924002727187603506" id="message-924002727187603506" title="Message sent: 25-Dec-21 02:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Out of the pit with a single leap, the woman faced the solemn pillars, pitched her iron-clad fingertips together like a tent and the granite responded in kind. In a moment, the pillars, once upright, had all slid down to a singular point above Ruth’s chest yet their height only just peaked above the ground. With the clanging peal of her palms and a mournful yet high note of her voice, the columns began to pour dirt out of every crevice while the plants within the soil extended their network of roots to entirely cover up Rosemary’s tomb in a matter of moments.
+
+“Now lies Rosemary O’Connell, may her plants take solace that she will never forsake their needs, even in death,” One last tear rolled off the servant’s cheek as she turned away from the tomb. “My service is done, we may return to the house if that is your wish or one can linger here if they seek the slain’s company for a final time. The choice is yours.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="924003008684101674" id="message-924003008684101674" title="Message sent: 25-Dec-21 02:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth had complied with what her servant demanded… No, it is not <em>hers</em> yet, but it will be soon. The Body of one Rosemary O’Connell had now been interred within the grounds she had kept. 
+
+This was not how the woman had expected today to go. A corpse was expected to be made, but a servant who cared for the corpse… was peculiar. Along with the burial rite itself. It was as if this servant was using it to be a show of force, or at least that’s how the cult leader interpreted it. 
+
+Either way, Ruth was enamored by the movements of the pillars of earth. Smooth and effortlessly, the grave was dug then the body put to rest. 
+
+“Allow us to remain out here for the time being… Servant.” Ruth’s eyes met the being which stood before her. “You cared for her corpse, ever so lovingly. Why?” She took a step forwards closing the distance between the two. “For one who looks so dead… there must be something alive still inside.” A hunger began to grow within the Cultist’s eyes. “I ask you again, what is your name. And what is your class container. O Great Mourner of the Dead.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="924003755765157888" id="message-924003755765157888" title="Message sent: 25-Dec-21 02:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Her corpse must be cared for as it is my duty to mourn for and bury the dead. It is all I know, all I remember. Do not assign it any other motive,” the servant said as it stood in front of Ruth, bent slightly over as her eyes fixed on the human, her face as emotionless as before. “As for the other question, now that my duty upon this plane has been discharged, I will indulge you the answer before I leave. I do not remember my name but I do recall where I have came from, T&#237;r Tairngire, the Promised Land. My container... I can not place its designation but perhaps Berserker would be a suitable description...”
+
+She drew her head closer and bared her neck to her would-be master. She threw the hood of her cloak back and tied her hair. If Ruth did not know better, perhaps the servant was preparing for an execution. “I am done, send me back to T&#237;r Tairngire. There is nothing more for me to do on this ‘island’ nor live within this casket of magic and metal for a moment more.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="924004038616440863" id="message-924004038616440863" title="Message sent: 25-Dec-21 02:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth had finally received her answer. <em>Berserker of Tairngire</em>. A peculiar title, but fitting if she had lost memory of who she is meant to embody. But the more peculiar portion followed. 
+
+The servant had requested death. Her ‘duty’ being fulfilled upon burying Rosemary’s corpse within the yard of the O’Connell Estate. “Berserker.” 
+
+The cult leader paused for a moment, before speaking again. “I cannot simply just kill one such as yourself. There is a great mystery behind you, one that <em>we</em> could uncover together. And, I am afraid that we may require more use of your skills.” Something about this spirit captivated Ruth. Was it the challenge of rekindling the spark of life within something? Or was it the possibility of that immense power being hers to wield as she felt fit. Either way, the woman had to be charming to convince this servant against taking its life. 
+
+“A great enemy will be appearing in this land within 24 hours. One’s who seek to destroy Nirvana, to turn our people into more corpses. Stay and tend to them, or help me <strong>prevent</strong> more corpses being made than necessary.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="924004837526495272" id="message-924004837526495272" title="Message sent: 25-Dec-21 02:25 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Berserker tilted her head again as Ruth pleaded for the servant to go on living. Being so close, Ruth could pick up her scent, freshly dug yet damp soil, a hint of wood smoke and expired flowers. The servant&#39;s skin was as pale and immaculate as alabaster, her hair was bundles of raw silk, frayed yet rolling. The hems of her dress were not muddied by the soil even as her feet were. Even as she called for her own end, Berserker and the beauty of an untouched ruin that she possessed must be preserved, Ruth knew as soon as she laid eyes upon the curious spectre before her.
+
+&quot;I see not the merit of your reasoning, mysteries should be preserved or they would lose their power. I will see it remain unsolved even if you wish not.&quot;
+
+A single gauntlet of iron seized the dagger at Ruth&#39;s waist before the cult leader could notice. She brought it towards her neck as Ruth continued with her ploy and for once Ruth swore she could see a flash of emotion appear on that unexpressive face. Anger, a deep visceral spark of fury flickered in the depths of her eyes, the last vengeful spark of the yew.
+
+&quot;You have murdered once before, you will have no problems repeating the act as needed. I will grant you a chance at a better servant, one more suited for war than its aftermath. My body should serve as an excellent catalyst. Goodbye, Ruth,&quot; She said, the anger draining from her eyes and leaving by her lips as she steeled herself for the grim task at hand. With a deep breath, she cut open her neck and let the blood run like a river of warm crimson water. Her reddened eyes began to lose their color and flutter as her legs gave way and fell to the waiting ground below. So then did the Berserker fall back through the earth to T&#237;r Tairngire, she thought as her mind faded at last, her duty discharged and her misuse at the hands of a murderer avoided.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="924005533764177950" id="message-924005533764177950" title="Message sent: 25-Dec-21 02:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her attempts at pleading to the berserker failed. The beauty of this seemingly dead figure was all Ruth could hold her attention to. The grace, yet power this Berserker of Tir Tairngire held. Whilst held by the charm of her servant, it seized her other dagger. 
+
+“No! Berserker <em>do not</em>!” 
+
+But it was far too late. The being was committed to its own end. 
+
+And so the beautiful figure fell, red staining the ground she stood upon. All that Ruth felt was <em>rage</em>… a small feeling compared to her typical loud emotions. But it soon grew and grew. Fueled by the want to <strong>consume</strong>. 
+
+The six motes of light appeared once again above her head. As the scent of ozone began to surround the clearing. 
+
+“<strong>ROSEMARY.</strong>” A demonic voice rang out in the clearing, lightning striking down as two of the motes flew forwards. Combining then exploding in a very green portion. Ruth was going to burn this place to the ground. <strong>CONSUME THAT WHICH SHE LOVED MOST. LEAVE NOTHING BEHIND BUT SCORCHED DESOLATE EARTH.</strong>  
+
+Ruth… no, this is not Ruth… This was a monster, approached the body of Berserker, and grabbed the being. Lightning then coursed through it as another two motes flew in a separate direction. Again exploding and setting another portion of this clearing on fire. 
+
+The grip then increased in force, as it pressed its face closer to that of Berserkers. And attempted to bite down upon what remained of her face.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="924006029774176336" id="message-924006029774176336" title="Message sent: 25-Dec-21 02:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She was falling, falling below the earth, falling faster every second. Yet there was no bottom in sight, nor was there a light from above she could see. An endless darkness devoid of senses was what the Berserker found herself in. She moved to scream but any sound was absorbed by the nothingness and everytime she did so, that nothingness seemed to fill her hollow. 
+
+If there was a color in that inky oblivion, perhaps it was a shade of red so dark it might as well been the same of black. Even as her spirit continued to tumble, her body was laying in peaceful repose upon a bed of earth and sheets of blood. Even the spark of Ruth’s wrathful lightning could not force her muscles to revolt against the stillness of the dead. The monster that came to caress the corpse could feel no warmth shedding off the body she so came to be charmed by. Even the dark crimson stream springing from her open neck was as cold as the icy waters that surrounded Nirvana.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924006092550328380" id="message-924006092550328380" title="Message sent: 25-Dec-21 02:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Eventually that sensation of falling ceased for the Berserker and was replaced by one of submersion, sinking into the icy depths of some unknown sea, weighed down by some oily mass on her chest that roiled and bubbled with an anger she could physically feel. It whispered doubts, jealousy and other selfish thoughts she had once discarded, all promising to make those wishes that had once died come to life once more, only if she gave in. It talked in the voices of the fairy ladies that had once inhabited her court and wailed in the voices of the fellow banshees she had mentored and then finally in <em>his</em> voice. 
+
+The one to be known as Berserker began to breathe faster and faster, not caring as water poured into her lungs, all she knew was that thing had to die. She would take silence and eternal death than to give in to its promises wrapped in that silken voice. She clawed at the mass with her hands, her frantic motions causing it to dissolve in the seawater but staining her hands all horrid shades of red, yellow, ochre, and violet. On the material plane, the talons of her gauntlet twitched twice before freezing again. 
+
+The monster in its crazed state then began to feast upon the very being it worked so hard to summon and now it sought to claim back the mana Berserker had stolen from it. And so it bit and tore away the unblemished white flesh from the servant&#39;s face. In it&#39;s delusion, the texture and taste was not unlike cold cuts yet every bit only left it more ravenous and so it ate more and more. Now the texture and taste began to fade, replaced by the coarseness of sand and the earthiness of soil. The iron gauntlets twitched again.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 02:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="924006750301093949" id="message-924006750301093949" title="Message sent: 25-Dec-21 02:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The hunger continued biting, ripping, and chewing. An attempt to regain what it had lost to this foolish servant. 
+
+<strong>CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME. PARTAKE OF THEIR FLESH, LEAVE NOTHING BEHIND. EAT OUR FILL AND THEN MORE. LEAVE NOTHING BEHIND</strong> 
+
+These were the only thoughts occurring within this beast’s mind. Not even paying mind to the taste, as it was <strong>solely focused</strong> on the thought of <strong>consuming</strong>. 
+
+It let out another blood curdling cry. Surrounded by the fires begun of its own volition, the woman who was typically a model for proper behavior. Had lost herself in the moment. Nothing more than her Origin. 
+
+This was not Ruth Naomi’s first time giving into her <em>hunger</em>. This had occurred many times. In particular the first and second investigation teams arrival upon Nirvana.  Oh how the <em>hunger</em> fed upon them. The taste of new flesh always <strong>thrilled</strong> both her and the origin. 
+
+This servant was no exception.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 07:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="924077075625811989" id="message-924077075625811989" title="Message sent: 25-Dec-21 07:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Berserker could hear the oily mass of curses levy all sorts of horrid, spiteful remarks at her as it was absorbed by the sea, leaving her alone again at the bottom of the sea. She had thrown away that chance to escape but why should she neglect the duty she had so faithfully executed for hundreds of years? She was a mechanism of fate, no one could tamper with her mission or they would curse the destiny of the many. She knew not why it had tempted her so, she had already expunged her wishes so long ago…
+
+
+She sank onto the sea floor and did not struggle as she was slowly sucked into the sandy bed. She had accomplished all she could and now that fate had disposed of her, perhaps she could finally rest. Already she could feel the bottom feeders start to nibble away at her flesh only for that feeling to become more again to being devoured. Berserker did not know such monsters lurked at the bottom of the sea…
+
+
+The servant’s respite would be cut short and her eyes shot open as the chilling water suddenly began to boil and glow in the presence of a ring of flame. There in the center stood the figure she had sworn to serve so long ago, clothed in a dress of crow feathers, bloodstained garments and an aura of a terror so pure, its mere presence could route the most fearless armies. An ethereal strand of string unwound and wound itself again as it coiled and twisted in the deity’s palm. The horrors of war and the skein of fate could only be wielded together by one figure the Berserker knew and she trembled in its divine presence.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924077212695658496" id="message-924077212695658496" title="Message sent: 25-Dec-21 07:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Rise, ▄▄▅▅! Your work upon this world is not yet finished, for its people have great need of you. A great host of those who stride far across the dark blue plain and men of deep, undisturbed roots alike seek to unravel fate and disturb the dead. You must seek to undo their transgressions and then you may fall into the slumber you deserve, my most faithful servant…” the goddess reached down with her other hand and lightly traced a symbol on the servant’s forehead, causing the servant to wake up and see a similar tableau before her.
+
+Yet the woman in the foreground was not giving a benediction but rather committing one of the most sacrilegious acts of all, consumption of <s>in</s>human flesh. She could not see her face as it hid in the shadows of roaring flame but she could feel its hands and teeth, no its talons and fangs rip and tear away at her flesh. Out of instinct, Berserker smashed its head into the face of the devourer and sent it stumbling back.
+&#160;
+
+The servant shot to her feet and moved to strike the monster in one fluid motion. The back of her cold iron gauntlet caught Ruth in the side and sent her careening towards the edge of the hollow. Seeing the monster that had claimed Ruth crash against one of the few trees not ablaze, Berserker was now free to absorb what had happened to her. Despite her attempt at self termination, she still stood. There was no pain from the gash across her throat nor from the deep flesh wounds across her face and torso. The green hair of her assailant, her matter of dress and the flames around both magus and servant concerned the spirit deeply.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924077355155226645" id="message-924077355155226645" title="Message sent: 25-Dec-21 07:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A mass then made itself known within the servant’s stomach, one that threatened to melt her from the inside, one that began crawling upwards. Her head started to spin with notions of a existential, unplacable terror chased by feelings of isolating and morose depression. Voices of those long dead began sing tales of woe and past regrets while the ones who Fate would soon assign to the afterlife pleaded desperately for mercy or a quick death. It was all too much for the servant and she knew it all needed to come out. She opened her mouth as if to heave and that was when Ruth ceased to hear.
+
+All of that pent up emotion erupted with a terrible wail that instantly pierced Ruth&#39;s eardrums and shook her body down to her lungs. It became hard for the cultist to breathe, almost as if the spirit before her compressed her chest with a weight. Nirvana would hear the cry of the Banshee for the first time and tremble, drowning underneath the waves of anger and depression, fear and desperation. Death would soon arrive to the island and no one would be safe from the great loss it brought in its wake.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Dec-21 07:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="924080584345661490" id="message-924080584345661490" title="Message sent: 25-Dec-21 07:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The monster in the shape of a woman, continued its ravenous feast. Caring little for the flesh that seemingly giving way to ash. 
+
+Then something struck their body. Knocking them back to their senses as Ruth was flung away from the body of berserker. Cries of hunger now switch to cries of pain and anguish. “Berserker…” She managed to mutter, while her eyes laid upon the figure before her. Ribs split and broken along with organs damaged by the strike. 
+
+This is not only a berserker. This being… is a banshee. “Banshee, cease your beautiful wail!” Ruth attempted to scream but her voice was drowned out by the anger and ferocity of the choir before her. 
+
+Blood began to slowly come out of the cult leader’s ears as she held her bleeding nose. It was a beautiful display of power before her own very eyes. A display which made her hunger recede into itself. The mournful wail of this creature had brought Ruth upon the brink of unconsciousness. Yet she still attempted to reason with it, blood now oozing faster and faster. This could be it for her.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Dec-21 03:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="924745921814728754" id="message-924745921814728754" title="Message sent: 27-Dec-21 03:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://youtu.be/HhgvMSYFu0g">https://youtu.be/HhgvMSYFu0g</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCq2-YS92kRURomhlw2fj7_g">11 bit studios</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=HhgvMSYFu0g">
+                                                        <div class="markdown preserve-whitespace">06. The Inevitable - Frostpunk Expansions Original Soundtrack</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/HhgvMSYFu0g" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="924746247334666270" id="message-924746247334666270" title="Message sent: 27-Dec-21 03:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The beauty that Ruth saw in the Banshee’s sorrow and power was unrelenting and suffocating with how close the cultist was to it. The wail seemed to stretch on for minutes for the magus beset by many pains, even as the city could only hear it for a few seconds. The ringing in her ears lasted even longer.
+
+When the choir within Banshee’s voice had ceased their chorus, the hood of her cloak fell over her head as she bowed in supplication to the lost. The trees still mourned with their flaming embers while the earthen mound caressed the freshly dead. She could still sense the pull of the dying, those who she must care for, and the restless stirring of the spirits who wished to overextend their stay. Both she could feel emanating from her would-be master. <em>The dying must be tended, the dead must be interred, the undying must be damned, the dying must be…</em> and so her internal mantra went, drowning out all other thoughts.
+
+And so the hooded spirit stood up to her full height, towering above all but the burning trees, her mauled face hidden in the shadows of fire and cloth alike. She stood still, silent, glaring at the wounded, cursed woman with eyes felt but not seen. No words could be heard or read yet a single pillar of basalt rose from the ground before the Banshee, as if she was already raising a monument to Ruth’s fleeting conscious. However, a gauntlet was thrust into the column and pulled out a full length spear of black stone, any fine details conspicuously erased.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924746343283576893" id="message-924746343283576893" title="Message sent: 27-Dec-21 03:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The specter of stone and sorrow began lurching towards Ruth, each step deliberate in length and speed. *The dying must be tended, the dead must be interred, *the undying must be damned,** so thought the herald of death came ever closer to the cultist and her origin. Ruth blinked and it moved two paces closer, her blood poured from her face. She blinked again and now it was four paces closer, the blood ran faster.
+
+She would blink again in recoil as a cold sliver of stone pierced her dress and pinned her to the earth. Try as she might, Ruth was trapped, stuck to the earth she had condemned her first love to rot within. A second of stillness followed, Ruth spending it attempting to peer into that dark abyss that now held her fate in its hands, pleading for mercy she knew she did not deserve. By luck, she pushed back the veil and revealed that which preyed on her mind in the long hours of isolated nights.
+
+ Perched half way between life and death, flesh and bone, Berserker’s face peered back at Ruth, its emotionless yet intense stare hungered for something within the victim. Ruth swore she was about to be ripped limb from limb and that the Banshee would drink deeply of her gushing red ichor to wet its charred throat, that finally she would be the one consumed. And perhaps, she was right.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924746645374124082" id="message-924746645374124082" title="Message sent: 27-Dec-21 03:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Dec-21 05:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="924771406078677064" id="message-924771406078677064" title="Message sent: 27-Dec-21 05:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The ear splitting wail laid an unrelenting assault upon Ruth’s ears. The woman was on the brink of unconsciousness, but Banshee had ceased its mournful cry. A sense of pain and a loud ringing remaining within her ears. 
+
+Tears now streaming down from Ruth’s face. As she stared upon a being of death. 
+
+The cultist needed to run. To flee. But her legs would not answer her calls, as she tried to shuffle backwards the best she could. The being she summoned approached, seemingly ready to claim her life. 
+
+“B-berserker… please… please do not… berserker…” Her eyes then held themselves shut as the spear pierced… cloth… leaving The cultist pinned to her location now. 
+
+Terror flooded her brain. As the servant before her was perched, seemingly ready to consume the woman. All she could do was mumble pleas of saving her, pleas of striking a bargain. To somehow survive this fate she had avoided until today.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="924771446289489941" id="message-924771446289489941" title="Message sent: 27-Dec-21 05:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 01:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="926890896698515486" id="message-926890896698515486" title="Message sent: 02-Jan-22 01:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Banshee’s eyes were locked with Ruth’s, reflecting the woman’s fears in those empty spheres. Up and down the ghoul’s head bobbed with every breath it took but did not need. Cold, moist air brushed against the cultist’s flushed cheeks, seeking to rob them of their heat and end her struggle against entropy internal and external. 
+
+Ruth could not read what the gnawed face of her servant born in the blood of an innocent projected. Instead it served a mirror for her most existential fears, recirculating them in a cruel loop like a greenhouse of terror. And now the temperature approached boiling. 
+
+The berserker above her held still, had she finally heard Ruth’s panicked pleas and reconsidered? Or was she plotting the best way to snuff out Ruth? The silence would not hold…
+
+Ruth’s neck felt cold in an instant and something was beginning to press against her windpipe. Her hands would instinctively try to remove the source of her discomfort only to be met with cold, dirt-encrusted iron. Banshee’s face betrayed no internal fire of hatred nor twisted light of elation, only a damp frown of melancholy.
+
+Every heartbeat, the claws tightened their grip and Ruth’s breaths grew more panicked, so her heart beat faster. She could try to still her mind and limit her breaths but even discipline would fall apart when cornered. Any pretensions of humanity would crumble, leaving only a primitive desperation behind, one that would gnaw and spite the predator at its throat. Nails screeched against metal and dug into flesh. Her feet kicked and jabbed into Banshee’s abdomen. Only each attempt left her thoughts more fuzzy, her breaths more shallow and her attempts more weak than the last.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926890985135439944" id="message-926890985135439944" title="Message sent: 02-Jan-22 01:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The merciless being before her showed no indication of pain, only that abiding sorrow and a hint of frustration. The dying and the undying still resided within the woman with evergreen hair and neither refused to fade away. So the talons clamped down tightly on vein and trachea alike, feeding further into Ruth’s desperation. Any breath she took would yield no air for her lungs below. Berserker was cutting off her consumption of air, it was <em>starving</em> her…
+
+That demonic beast within her forced its way back to the surface, its hunger far more ravenous than before, fear consuming it just as it wished to consume the being that dared fight back against it and push it to the brink of starvation. And that was when Banshee spoke again.
+
+<em><strong>”DROWN”</strong></em>
+
+The word came both from her mouth and her hands, not one voice saying it but a whole choir in unison. Even with her eardrums ruptured, Ruth could hear her in perfect clarity. For her speech reverberated through bodies and souls just as easily as it could the air. All at once, the terrible claustrophobic embrace of suffocation doubled and her sweat multiplied infinitely into an endless ocean. Body and origin became exhausted to the degree neither could move for they had swum the length and deep of nine seas and thus sunk deep into an abyss where no light could penetrate. The pressure was crushing down on their neck, drowning out the last mote of light left in the cursed woman. A cold nothingness was all that remained… 
+
+<span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 02:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="926904883385352252" id="message-926904883385352252" title="Message sent: 02-Jan-22 02:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The horror of what was before her, the cursed servant ready to snuff out Ruth’s light. As a cold gauntlet wrapped itself around her delicate throat. 
+
+And began to starve her of her breath. It began to boil up to the surface. 
+
+The Hunger. <strong>WOULD NOT BE KILLED AS A DOG.</strong> It kept attempting to claw and kick and scramble for any ounce of advantage. To free itself from this <strong>WRETCHED GRASP.</strong> 
+
+But try as it might. Any strength it could call upon was no match for the mourner of the dead. The light began to fade, and fade, and fade… eventually becoming nothing but black. Still, cold, and calm black. 
+
+Ruth floated in the nothingness of the abyss, pressure still placed upon her neck as a reminder of her sins. 
+
+The woman was now Face to face with a deranged wolf-like creature, her <em>hunger</em>. 
+
+<strong>HAVE YOU GIVEN UP, HUMAN? WEAK PITIFUL HUMAN. UNFIT TO CONSUME THE WORLD.</strong> it’s voice sounded as if dozens of knives have been drug across a chalk board, cutting through the calm of the silent black. 
+
+“I have not yet… but perhaps this will be a good end for us both. Instead of a more… macabre fate we could have.” Ruth’s voice strained from the pressure having been placed upon it. It was rare sight that she would be able to see the creature which was her origin. “Would you rather become an ouroboros destined to consume itself ad nauseam.” But it was not her first time, she knew to have a sharp tongue with such a beast. As that keeps it in its place. 
+
+<strong>WHORE OF BABYLON. WE ARE NOT DESERVING OF SUCH FATE. WE MUST CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME CONSUME</strong> The beast screamed as it engulfed the woman. 
+
+Light then peaked through. 
+
+Ruth was alive, and within the greenhouse. The specter that was her servant stood somberly watching the burnt Yew tree. As well there was another figure… another presence next to the banshee. But as soon as Ruth noticed it, it was no longer there. 
+
+“Berserker…” She weakly spoke as she sat up and looked upon the servant.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926904918521040967" id="message-926904918521040967" title="Message sent: 02-Jan-22 02:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 05:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="926947853312606248" id="message-926947853312606248" title="Message sent: 02-Jan-22 05:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Ruth…”  the servant called back, her voice as soft as her supposed master’s, her body knelt in supplication before the burnt corpse of the Yew. “Do not move around a lot. Your body is still damaged. Rest is what it needs. As for your soul…”
+
+The Banshee sighed, her shoulders sinking into her heavy cloak, before she took a cursory glance up at the tree’s highest branches and the stars above. She could no longer sense that <em>thing.</em> It was true but such faults can not be cured with a single salve or surgery. Humanity was never that simple…
+
+“I do not know what it needs yet. A deep rot, it likely is. Your life its cause, perhaps. But I can not speak in absolutes on the living. All I can do is watch, my mission here unfinished despite my initial assumptions.”
+
+<span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 05:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="926950513805783080" id="message-926950513805783080" title="Message sent: 02-Jan-22 05:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The berserker was correct. Ruth’s body was deeply wounded. It would require healing, in one form or another. Then Banshee spoke of something more… peculiar. 
+
+“My… soul you say. You are quite peculiar. I do appreciate that you did not end my life prematurely.” The cultist gave a pained smile from her seated position. “If this is your mission, to watch, allow us to formally establish the contract of master and servant.” 
+<span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 01:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="927068501527625758" id="message-927068501527625758" title="Message sent: 02-Jan-22 01:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I do not end lives, Ruth. My duty is to mourn the dead and to banish the undead,&quot; Banshee said, rising to her feet and turned to face Ruth. Her face was scarred but free of gaping holes or exposed muscle while her iron hands were trailing loose soil. Each speck of dirt joined with the earth below much in the same way a raindrop does with a puddle. She loomed over the human like a tidal wave of earth, each word stated with unquestioning purpose.
+
+&quot;And I serve no one but the guiding hand of fate. I will accompany you until my watch is done. For that being within you, whatever it may be, seeks to upturn the fate of others. I can not allow that, do you understand?&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E781F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="923066436035952650" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 01:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="927078485544017961" id="message-927078485544017961" title="Message sent: 02-Jan-22 01:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth couldn’t help but giggle to herself as Banahee spoke. “Then so be it. I would love a beautiful soul such as yourself to be the end of my fate.” 
+
+The cultist stared upon the being of stone and sorrow. Seemingly in a somewhat tense understanding with one another. “Now will you assist me home?”
+<span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20the-o%E2%80%99connell-estate%20%5B920350306687152158%5D%20%28before%202022-01-02%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-A69D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="923066436035952650" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 02:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="927080714481045564" id="message-927080714481045564" title="Message sent: 02-Jan-22 02:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Banshee tilted her head as Ruth laughed at her convictions, her brow upturned and eyes inquisitive. &quot;Did I make myself unclear? I will not kill you, Ruth. My watch is to keep your hunger at bay and scare it away if I must. I will otherwise protect you from harm.&quot;
+
+Her hands kept to the folds of her dress, fidgeting slightly as she took in Ruth&#39;s order. The berserker nodded before doing what she knew how to do. The wounded woman would find herself scooped up by those cold gloves and carried in her servant&#39;s arms in a similar manner as Rosemary was in her final moments. 
+
+&quot;Guide me to your home and I will let you rest. My sense of direction on this &#39;island&#39; is... off...&quot;
+
+<span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

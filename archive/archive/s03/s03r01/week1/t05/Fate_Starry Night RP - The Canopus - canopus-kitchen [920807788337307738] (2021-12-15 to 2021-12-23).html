@@ -1,0 +1,1872 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - canopus-kitchen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">The Canopus / canopus-kitchen</div>
+
+            <div class="preamble__entry preamble__entry--small">A relative old kitchen used to feed the staff of the ship, while its a few years old it doesn&#39;t look like it due the staff keeping it spotless to an almost insane degree. The kitchen if fully equipped although most of the equipment is for cooking in large quantities, there are 2 walk ins in the back of the kitchen, one for vegetables and the other for meats with a freezer connected to the meat walk in.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 15-Dec-21 12:00 AM and 23-Dec-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(238,94,134)">Dad</span>
+
+
+        <span class="chatlog__timestamp">16-Dec-21 06:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="920807863440535633" id="message-920807863440535633" title="Message sent: 16-Dec-21 06:41 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/kitchen-38647.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/kitchen-38647.jpg" alt="Image attachment" title="Image: kitchen.jpg (298.33 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 09:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="921212692625256528" id="message-921212692625256528" title="Message sent: 17-Dec-21 09:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It&#39;s been 5 days. 5 days since the Canopus made its last pick up stop. 5 days since it left land. 5 days since it set sail to Nirvana... and most pressingly... 5 days since Ryn Nuello has eaten a proper meal. 
+
+See, it hadn&#39;t exactly occurred to the young man-- Ryn that is-- that he should pack very much food for his little voyage. Just a slip of his mind really; honestly, clueless as to how long ship-travel took, he imagined the ride would be rather short. So, he&#39;d only brought the amount one would need for a car-trip: about two sandwiches and a bottle of water. A quaint snack. Oh, how he was paying for such a decision now. 
+
+Naive to the longevity of the ride to Nirvana, Ryn had quickly exhausted himself of his lacking food supply; in quite possibly the worst way possible, too. His first sandwich was devoured before he&#39;d even stepped foot onto the Canopus, and the second, nibbled on happily in celebration of sneaking on. &quot;Hooray, hooray!&quot;, he had cheered in whispers... just as he&#39;d finished his last bite of sandwich.&#160; It&#39;d seemed like a good idea at the time, and certainly felt wonderful to take that last mouthful in, all the while peeking out from a hole punctured below deck, and watching the harbor turn into the endless sea. The whole scene had felt a little magical, like the beginning of a story about some vagrant stowaway, making his way to a land of mystery and answers...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921212727899349063" id="message-921212727899349063" title="Message sent: 17-Dec-21 09:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">-
+Alas, it only took 5 days for reality to set in. Come day two Ryn was lucky to only get a bit hungry-- by the time the fifth day came? Along with the most unbearable aches of his stomach, he was getting downright <em>delirious</em>. All reason had departed his mind, and in its place had come a vehement, half-witted urge to find food. Though... his body wasn&#39;t quite agreeing. Ryn&#39;s legs were dizzy as they carried him up from below deck, where he&#39;d stayed hidden just incase the crew members could tell <em>he didn&#39;t belong here</em>, and only got wobblier the farther he walked. Luckily, it was the wee hours of the morning-- right about 2 am to be exact-- so no one should&#39;ve been up... and even if someone was? Ryn didn&#39;t care anymore. Catch him, call him out, and throw him overboard for all he cared, he could swim. Just give him a bite to eat first... 
+
+Eventually, by some miracle, Ryn stumbled his way into the kitchen. He instantly recognized where he was, and invigorated by such, he quickly went to shuffling through the shelves, cupboards, and closets. Pots... pans... knifes... sporks... bowls... plates... but no food. He let out a groan. As much as he would if he could, Ryn couldn&#39;t eat <em>any</em> of those things; metal probably wouldn&#39;t digest very well. Damnit! The lad continued to shuffle through the kitchen with desperation, not bothering to close the things he opened, and leaving shelves ajar like some wild animal. Not like that was terribly inaccurate. He&#39;d been called a runt all the time back home, what difference did it make here? None! That was what, none at--</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921212764830199838" id="message-921212764830199838" title="Message sent: 17-Dec-21 09:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">-
+Suddenly, Ryn gasped. Before him, almost radiating with the sterile kitchen light shining on it from above, was a shelf full of canned food. Ryn could feel his heart pace as his hand reached up to grab one, and when he shakily brought it down to read the label, his eyes glistened.
+He never thought the word &quot;BEANS&quot; could make him so happy. 
+
+The lad didn&#39;t bother with fetching a proper place to sit. He just sat where he was, can of delicious beans in hand, and excitedly muttered to himself as he began prying the lid off.
+<strong>&quot;Finally-- <em>h-hrk...&quot;</em></strong>
+A grunt of strain escaped him, just as his hand flicked away from the can. Without a lid within his grasp. Ryn blinked a few times, before wrapping his hand back around the can...
+<strong>&quot;M-mmph... mmmmgh...!!&quot;</strong>
+His eyes were srewed shut, and his eyebrows knit in strain. The sounds that&#39;d squeaked out of his tightly pressed lips were testaments to his efforts-- but alas, they were futile. His hands slipped away yet again, hurting a little this time, and the can was still perfectly intact. 
+
+He tried opening it again. And again. And again, and again and again... but every time, Ryn failed. And with every slip of his hands, fingers stinging from grating against that blasted metal shell, he felt incrementally more defeated. 
+He was so tired. 
+He tried again. 
+So hungry. 
+Again. 
+<em>Sooo</em> damn hungry...
+And again.
+Heat suddenly spread across his face. With utter contempt in his eyes for whatever evil bastard decided to make food so hard to eat, Ryn suddenly shoved the thing into his mouth, and bit down as hard as he could, trying to open it with his teeth. He was on the verge of tears.
+<strong>&quot;Gk... pleeaasshk...!&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/fef2801345f924fcee3101bf3a9ea19f-58B41.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">&#198;nkidou</span>
+
+
+        <span class="chatlog__timestamp">17-Dec-21 09:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="921212921961390101" id="message-921212921961390101" title="Message sent: 17-Dec-21 09:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiderrock#5389">@Spiderrock</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 01:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="921633471166840842" id="message-921633471166840842" title="Message sent: 18-Dec-21 01:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After leaving the doctor, well more like the doctor left him, Allen&#39;s day had progressed like normal, they had been blasted by people demanding food for lunch and then dinner. To a degree is was understandable, people do need to eat after all, even if the food of the ship wasnt the best it was basically their only choice unless they rather just go without eating for days. 
+
+The head chef was a very passionate man, he tried his best with what they had always aiming to make the crew enjoy their meals. But at the same time he had a really short temper, he would demand strict discipline for both the crew and the staff. While he was well aware it was impossible for everyone to like the food he at least expected  people to keep their opinions for themselves. He would kick out of the kitchen and the cafeteria those who complain even if those people were part of his own staff.
+
+That was the kind of person Allen had come to work under, no it was exactly he was that kind of person that he was capable of grabbing a random guy and told him he needed his help without any sort of shame. While the whole situation was bizarre for the young man, Allen liked the head chef, while he was a bit weird he was reasonable enough and the feeling seemed to be mutual as even though he had just been working there for a couple of weeks he was the one in charged to check things up and make sure everything was locked down as they leaved. Then again it could also be just the chef taking advantage of him but Allen naivety keep him from even considering that as a possibility. So like many other days he was just checking that everything was in order before he locked the walk ins and go rest.
+
+It was at that moment he actually heard a noise, that was unusual as he was supposed to be only one there.
+
+&quot;What the...&quot; he said aloud as he he followed the noise.</span>
+
+                                <span class="chatlog__edited-timestamp" title="18-Dec-21 01:42 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 01:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="921639659686211634" id="message-921639659686211634" title="Message sent: 18-Dec-21 01:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What he would find was something he would have never expected. In front of him was a boy desperately trying to open a sealed can of beans with his mouth. While he had many questions he could clearly see the boy was in a pickle and his desperation was more than obvious.
+
+He let out a sigh and reached for the can opener that was near the stall, it was tied to one of the edges to save time finding it but it was also a bit easy to miss if you didnt knew it was there. He untie the thing as he moved closer to the boy, kneeling in front of him as he tried to call for his attention.
+
+&quot;Hey give me that, I will open it for ya.&quot; he said in a calm manner.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/f55dbb06d3b6952b9c6d2e181e64d93e-E0AB0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gilan#1083" data-user-id="418155771918811136" style="color: rgb(238,94,134)">Gilan</span>
+
+
+        <span class="chatlog__timestamp">18-Dec-21 09:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="921750823896244285" id="message-921750823896244285" title="Message sent: 18-Dec-21 09:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 11:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="921781024017506364" id="message-921781024017506364" title="Message sent: 18-Dec-21 11:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As soon as Ryn heard the &quot;what the&quot; from the kitchen entrance, he looked up. For a moment, reason returned to his gaze... only to then quickly turn into shock, as he realized something terrifying: he&#39;d been caught. Eyes bugged out at Allen like coins and jaw suddenly slack against the can, Ryn froze ice cold at the sight of the crew member. He could just barely manage to pry the can out of his teeth, before speaking as if it was a ghost greeting him, and not some random dude.
+<strong>&quot;H-Hi...&quot;</strong>
+
+While his body was stiff and trying to figure out how to function again, Ryn&#39;s mind was running races around his head. He was panicking. He&#39;d been found. He knew he would be, he knew coming out before the ship docked would be a bad idea-- hunger had clouded his better judgement. Why&#39;d he have to be so stupid? Shivering a little as Allen got closer, the lad gulped. What happened now? Ryn was going to be tied up, wasn&#39;t he? Shipped right back to the harbor, back to his family... back home. No, no no no, he couldn&#39;t let that happen... gripping the can with indignation, Ryn&#39;s eyes steeled defiantly at Allen. Just as the older man kneeled before him, strange, weird metal tool in his hand, Ryn prepared to strike a mean one right in his jaw, the young lad ready to fight his way onto Nirvana if thats what it took-- that is, until Allen spoke. Ryn blinked, baffled.
+
+<strong>&quot;...&quot;</strong>
+His vermillion eyes squinted at Allen, panic turning into vague suspicion. What... what was this? A test? You find a ratty-looking runt raiding the kitchen at 2 am, and you offer him help? Ryn wasn&#39;t buying it. But his stomach, upon hearing the word &quot;open&quot;, had other plans. It growled, loud enough that even Allen could hear, and the lad winced. Without another word, he tentatively held the can towards the crewman, whilst his free arm hugged his stomach in pain.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/fef2801345f924fcee3101bf3a9ea19f-58B41.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">&#198;nkidou</span>
+
+
+        <span class="chatlog__timestamp">18-Dec-21 11:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="921781088827891763" id="message-921781088827891763" title="Message sent: 18-Dec-21 11:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiderrock#5389">@Spiderrock</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Dec-21 07:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="921902369070006322" id="message-921902369070006322" title="Message sent: 19-Dec-21 07:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Many thoughs raced through Allen mind as he saw tge young boy hand over the can. Allen could be really naive but he was by no ways stupid in any way. The circumtances provided him with enough information to make a decent guess at what was happening. 
+
+The boy had obviously sneaked inside the ship, he didnt knew how or why but that was the most likely answer after all why else would he be so desperate for food that ge was willing to bite a can of beans.
+
+His hands moved fast he easily open the can and pour its contents in a bowl. The beans looked cold and not that appetizing but he doubted the boy would care at this point. Still even if he was only a temp he had his pride as a cook.
+
+&quot;Give me moment&quot; he said as ge stood up and moved to the kitchen turning the lights up. &quot;Have the feeling you need more than just this&quot;
+
+It was a good thing he hadnt locked the walk in, he moved fast and using some leftovers from dinner prepared a simple meal for the boy. Sautee chicken with veggies over a heated up bean and rice mix. 
+
+&quot;Is nothing fancy but should work.&quot; He said as he walked back to him and give him the plate and a spoon to eat with. 
+
+He had lots of questions but there was no point to ask him while he was still farmished and weak, he can do that in a bit. 
+
+&quot;So...why did ya sneak in?&quot;
+
+@&#198;nkidou</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Dec-21 10:21 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">19-Dec-21 10:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="921950523429638174" id="message-921950523429638174" title="Message sent: 19-Dec-21 10:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 12:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="922159904976949258" id="message-922159904976949258" title="Message sent: 20-Dec-21 12:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The young man nodded at Allen&#39;s first words, not seeing anything else he could do. He&#39;d watched the chef make quick work of the can, eyes widening a bit, but said nothing of it. He was still wary of the stranger, after all; who knew if the investigator before him didn&#39;t plan to throw him out right after feeding him. Though, Ryn supposed he had considered that earlier... and also hadnt minded it as long as he had food... 
+
+Time seemed to speed as his thoughts drifted the lad weakly through the minutes, and before he knew it, Allen was back with a plate in his hands. Immediately recognizing the scent of not only beans, but hot meat and veggies, Ryn&#39;s mouth began to water. By the time the investigator kneeled down, giving him the spoon and plate together... the lad had to swallow before he could speak his eagerness.
+<strong>&quot;T-Thank you!&quot;</strong>
+
+Already it looked as if some energy had been restored in him, and as Ryn took his first bite, his eyes seemed to light up. He took another scoop. And another. And then a bigger scoop, and another bigger than the last-- until he was practically shoveling the whole thing, plate and all, into his mouth. One had to wonder if he was even chewing... though, Allen mightve been able to guess. When the investigator proceeded to ask him that first question, Ryn&#39;s face contorted in surprise. With food still filling his mouth, a retort came out on reflex.
+<strong>&quot;Wuuh-- uhy duhnn--&quot;</strong>
+
+Ryn paused, swallowed hard, and continued, clearing his throat.
+<strong>&quot;<em>ahem.</em> I didn&#39;t.&quot;</strong></span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Dec-21 12:16 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="922159936224510052" id="message-922159936224510052" title="Message sent: 20-Dec-21 12:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">-
+The lad&#39;s gaze was directed to the side of Allen as he said that, and a little flush came to his cheeks. The topic appeared to make Ryn uncomfortable, as it should. Did Allen really think the lad would just tell him? Please, it&#39;d take more than dinner to swoon a lad like Ryn, and it wasn&#39;t easy to explain in the first place. Though... the investigator had a good start. Allen could clearly see the lad was enjoying himself, not bothering at all to hide how hungry he&#39;d been. And with every bite, slowly, the energy in Ryn was rekindling. Perhaps that meant he&#39;d be more talkative soon.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 10:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="922317682882281523" id="message-922317682882281523" title="Message sent: 20-Dec-21 10:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Allen expression changed as soon as he heard him speak, his carefree smile was suddenly replaced by a serious one. His crimson eyes were staring daggers at the boy and his silence only make the atmosphere around here more heavy,
+
+Allen hated lies, it was something beyond his control it was something which his whole being denied with everything he had. He would believe in anyone once, but if that trust was broken he would never believe in that person again as the way he saw other people worth was due their ability to tell the truth and keep to the word. 
+
+&quot;That is a lie&quot; he said in a serious tone, although  as soon as those words escaped his lips he shook himself as he tried to regain some sort of control. After all while it was very likely it wasn&#39;t 100% sure the boy was lying at least not yet. 
+
+&quot;Alright... please elaborate.&quot; he began as he tried to go back to his calm demeanor. &quot;But let me warn you that I really hate lies and liars.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">20-Dec-21 10:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="922317712682782720" id="message-922317712682782720" title="Message sent: 20-Dec-21 10:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 02:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="922375036495601674" id="message-922375036495601674" title="Message sent: 20-Dec-21 02:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What&#39;s this? Had Ryn struck a nerve? He leaned forward, challenging Allen&#39;s red gaze with his own vermillion, before drawing back with a slight smile. Oh, yup. He&#39;d struck a nerve. It took all the lad could to stop his eyes from rolling all the way to the back of his skull. Gosh, people like this man, thinking they deserved absolute truth from people they&#39;d just met. Be it because of his upbringing or not... such a notion was ridiculous to the lad. Some of the greatest things he&#39;d ever been told were <em>lies</em>, while the truth, at times, was awfully boring.
+<strong>&quot;Why should I elaborate?&quot;</strong> 
+
+Ryn retorted, lips quirked into a daring smirk. He wasn&#39;t very intimidated by Allen anymore, especially after his little show of seriousness-- more just a little amused. Alas, as any civil man would, he explained as clearly as he could, leaning forward against the table to really look Allen in the eye. The hunger had most subsided, and there was brightness in his gaze.
+<strong>&quot;Far as I&#39;m concerned, that&#39;s personal information. Personal information I&#39;d rather not share to every missus and mister I meet.&quot;</strong> 
+
+The lad flicked his wrist, spoon then pointing at Allen whilst dangling upon Ryn&#39;s fingers.
+<strong>&quot;You want truth? Then earn &#39;yerself some trust first. While the food&#39;s nice, I &#39;dun even know your name, mister... and I ain&#39;t ever gonna put my trust in someone I dunno. No offense.&quot;</strong> 
+
+He really didn&#39;t mean to offend-- but that did not make his point falter in the slightest. Despite Allen&#39;s generosity, Ryn knew squat about him. There was no way in hell or Nirvana he was just going to regurgitate his reason for being here so easily, much less, to someone he couldn&#39;t so much as call by a name.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/fef2801345f924fcee3101bf3a9ea19f-58B41.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">&#198;nkidou</span>
+
+
+        <span class="chatlog__timestamp">20-Dec-21 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="922375347465490433" id="message-922375347465490433" title="Message sent: 20-Dec-21 02:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiderrock#5389">@Spiderrock</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 02:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="922378402059657286" id="message-922378402059657286" title="Message sent: 20-Dec-21 02:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Uh? Why should I?&quot; Allen said completely confused by the young man words.
+
+Like Ryn had noticed he had struck a nerve but he seemed to misunderstand which one he had struck. Allen was just asking due curiosity and didn&#39;t really care why he was there nor he was doing. He felt bad due seeing him so desperate for food but that was all he really though about. He was bothered by the obvious lie he had said, he was offended and annoyed by the act of lying. 
+
+&quot;I don&#39;t really care if you wanna tell me, your business are your own&quot; he said standing up assuming their conversation was over. &quot;Just telling ya to not lie to my face, if you have issues you don&#39;t wanna talk that is okay.&quot; 
+
+Half truths or just hiding something were things he still count as truth, that is how he managed to keep going as realistically speaking going around always telling the truth was something close to impossible. So he managed to balance his own issue in this messed up world he had been traveling for the past 5 years. 
+
+&quot;Oh my name is Allen by the way.&quot; he said as he realized the boy had made a fair point about names. &quot;What is your name boy?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">20-Dec-21 02:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="922378438327799828" id="message-922378438327799828" title="Message sent: 20-Dec-21 02:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 03:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="922385540316270603" id="message-922385540316270603" title="Message sent: 20-Dec-21 03:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ryn was fairly sure Allen had gotten all serious-like due to his lie-- but, he was a tad surprised to hear that he didn&#39;t care about his business here. Strange, as that was the first thing he asked about, as well as the very thing he told Ryn to elaborate on. But, if such was true, then perhaps this investigator wasn&#39;t as annoying as he&#39;d thought he, and the rest of the crew, would be. That is, until Allen called him a boy. Ryn&#39;s eyebrows furrowed fleetingly.
+<strong>&quot;First-- &#39;dun call me boy. I&#39;m 19. Second, it&#39;s Ryn.&quot;</strong>
+
+At least getting their names out there seemed to please the lad. His face relaxed, and with a name to plaster onto this lie-hating fellow before him, Ryn smiled genuinely. Now, he couldn&#39;t say it was exactly &quot;nice&quot; meeting the investigator... after all, if it was possible, he&#39;d much rather have met none of them. Too much risk involved and all that. But, it was something. And as he&#39;d learnt long ago, you made the best out of cards you&#39;re dealt. Ryn outstretched a hand towards Allen as the man stood, beckoning for a shake.
+<strong>&quot;It&#39;s fine enuff&#39; meeting you, Allen. Yer&#39; certainly better than the folk I was imagining on this ship. &#39;Dun cook too bad either, hah!&quot;</strong>
+
+The lad laughed a giggle or two. By now, his plate was wiped clean-- Ryn had really wolved the whole thing down! Clearly he&#39;d enjoyed Allen&#39;s cooking, despite how quick and simple it&#39;d been. Seemed to know his way around the kitchen too... he had to wonder if the man was the chef of the ship.</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Dec-21 03:14 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/fef2801345f924fcee3101bf3a9ea19f-58B41.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">&#198;nkidou</span>
+
+
+        <span class="chatlog__timestamp">20-Dec-21 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="922385614781943838" id="message-922385614781943838" title="Message sent: 20-Dec-21 03:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiderrock#5389">@Spiderrock</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 03:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="922391497846964234" id="message-922391497846964234" title="Message sent: 20-Dec-21 03:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Im good enough to manage to work in this kitchen that much is true&quot; Allen said as he kneel again and picked up the plate Ryn had just finished. 
+
+He let out a yawn as he walked to the sink and put the dish there, he would make the dishwasher take care of it tomorrow. It was already too late and he was already missing enough sleep due this little boy. Seeing him get upset at being called boy almost make him chuckle. Even with Ryn not telling him much Allen could still piece some stuff together, like this was probably the first time he was in a ship as if he was used to sneaking up he would had been more prepared. There was also the possibility of Ryn just losing his supplies but he would need the boy to speak in order to confirm that.
+
+&quot;Just what were you imagining was gonna happen?&quot; Allen add as he walked back to Ryn. &quot;I don&#39;t know about others but I already have enough on my plate to worry about more stuff. As long as you don&#39;t cause trouble I don&#39;t mind you being here regardless of you sneaking in or not.&quot;
+
+But as he continue talking he realized an issue that was bound to become a headache. While he personally didn&#39;t care, he felt other members of the staff wouldn&#39;t be so understanding and as he was the one who found him he was bound to share some responsibility. Specially if this nightly raids were gonna be a constant thing.
+
+&quot;But what are you gonna do about food from now on though?  I work here so I really cant have ya stealing food whenever you want&quot; he asked as he wonder what to do with this boy.</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Dec-21 03:35 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">20-Dec-21 03:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="922391536107393035" id="message-922391536107393035" title="Message sent: 20-Dec-21 03:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Dec-21 04:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="922586372416630824" id="message-922586372416630824" title="Message sent: 21-Dec-21 04:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What did Ryn expect? Well, obviously not this. He thought a bunch of magi on a ship like this would be more wary-- people like his folk back home. The sort who, because their plates, hands, and lives were so utterly full, would rather dispose of their immediate problems than look the other way. That&#39;s all Ryn knew, save for one person in particular. That man was something different... alas, it seemed like this investigator, Allen, at least would rather his new &quot;problem&quot; fester. What luck for the lad! 
+
+As lucky as he could get, anyways. While glad Allen wasn&#39;t the pitch-perfect rendition of Ryn&#39;s imagined investigator, and also feeling quite good after eating, there was still the problem of what happened next. Posed with this issue, Ryn&#39;s gaze flicked to his shoes.
+<strong>&quot;A-Ah... well...&quot;</strong>
+
+The lad hadn&#39;t come up with much of a plan beforehand, and even if he had, it&#39;d be ruined by now after this encounter. He really didn&#39;t know <em>what</em> he&#39;d do... so, after thinking on it upon his twiddling thumbs, Ryn looked up at Allen.
+
+<strong>&quot;... Could I, um, possibly have <em>scheduled</em> food runs here then? Please?&quot;</strong>
+It wasn&#39;t a small request to ask for, after all, they hadn&#39;t exactly gotten off on the best foot here. But it wasn&#39;t exactly a very big request either. One person, his size and build? Ryn could probably eat like normal down here, and no one would notice the food supply running a can thin everyday. In the end, the decision was in Allen&#39;s hands.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/fef2801345f924fcee3101bf3a9ea19f-58B41.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">&#198;nkidou</span>
+
+
+        <span class="chatlog__timestamp">21-Dec-21 04:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="922586455275081819" id="message-922586455275081819" title="Message sent: 21-Dec-21 04:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiderrock#5389">@Spiderrock</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Dec-21 11:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="922686180909252618" id="message-922686180909252618" title="Message sent: 21-Dec-21 11:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The situation had turned a bit tricky, while the request itself wasn&#39;t big or difficult per se there were other issues to consider. Like keeping this a secret from the head chef and the rest of the staff to begin with was gonna become a pain. But on the other side he couldn&#39;t just deny the young man right away as if he did Ryn would just go hungry and try to sneak in the kitchen again and someone else could find him. 
+
+He stood still as he put his hand on his chin as he continue to ponder what to do as he wasnt comfortable with either option he began to look for a sort of compromise or sorts. Then an idea appear in his head as a smile began to appear on his face, he wanted to slap himself due not realizing it sooner. 
+
+&quot;Well I would have to say no to that.&quot; he began as he looked at Ryn. &quot;It could lead to other issues so I rather avoid that, but I dont really plan on leaving ya to die of hunger either.&quot; 
+
+Yes, there was only one possible solution for Ryn situation. &quot;Im gonna have you work here and earn your meals&quot; he said with a smile as he pointed at him with his index finger.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">21-Dec-21 11:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="922686303575879742" id="message-922686303575879742" title="Message sent: 21-Dec-21 11:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Dec-21 11:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="922692078742429756" id="message-922692078742429756" title="Message sent: 21-Dec-21 11:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ryn sighed at first, head beginning to hang at his shoulders. Of course, Allen would say no. Not that the lad didn&#39;t understand. Perhaps the meal tonight would get him through the rest of the ship. Though, it seemed as if that wouldn&#39;t be necessary. Head perking up after the investigator&#39;s last words, Ryn stared the length of Allen&#39;s pointed finger, looking absolutely baffled.
+<strong>&quot;What?&quot;</strong>
+
+He couldn&#39;t quite register what Allen had said, not until he&#39;d had a few seconds to process it at least. When finally his mind made sense of it all, Ryn inhaled sharply, pressed his lips tight, and shook his head quickly. No, he couldn&#39;t. As if to further exemplify that this idea of Allen&#39;s was absolutely, most definitely a bad idea, Ryn began shaking his hands vigorously infront of him too.
+<strong>&quot;But-- but I &#39;dun know the first thing &#39;bout cooking! I&#39;ll end up causing more of a mess than anythin&#39; else, put the wrong thing in the wrong pot and give everyone belly-aches, and, and... uhm.&quot;</strong>
+
+For a moment, the lad paused. What was he saying? This was his only chance to get food for the next several days, and he was denying it? He ceased his shaking, and stopped to think. In the end, he&#39;d awkwardly let himself stay idle on the floor, waiting silently for Allen to say something. The investigator had his fair warning, what would he say now?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/fef2801345f924fcee3101bf3a9ea19f-58B41.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">&#198;nkidou</span>
+
+
+        <span class="chatlog__timestamp">21-Dec-21 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="922692322578268230" id="message-922692322578268230" title="Message sent: 21-Dec-21 11:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiderrock#5389">@Spiderrock</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Dec-21 11:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="922695692391174144" id="message-922695692391174144" title="Message sent: 21-Dec-21 11:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Calm down kid.&quot; Allen said as he raised an eyebrow at the kid sudden outburst. On one side it was a bit of a relief to see Ryn admit his own shortcomings instead of just saying yes to get a meal. 
+
+&quot;Look I know you dont know anything about cooking, seeing ya trying to open the can with your mouth was quite the proof.&quot; he said with a chuckle. &quot;We need a dishwasher, that much should be easy for you to do and you get 2 meals a day, I will talk with the boss and get it ready.&quot;
+
+Allen was well aware this wasnt a perfect solution but it seemed to deal with the issues well enough. The head chef wouldnt care who he got to help as long as they got extra hands and people wouldnt come looking for him due how crazy the head chef was. 
+
+&quot;That is all I can offer, if you still dont wanna is up to you but I wont be giving ya any more free food.&quot; Allen knew he was being a bit harsh but he needed to be so the kid could decide properly if he showed any sort of doubt he was sure he would he him again begging for more food.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">21-Dec-21 11:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="922696143014617088" id="message-922696143014617088" title="Message sent: 21-Dec-21 11:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Dec-21 01:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="922898948790841395" id="message-922898948790841395" title="Message sent: 22-Dec-21 01:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Dishwashing-- that&#39;s all!?&quot;</strong>
+Ryn was almost shouting at this point, but he couldn&#39;t help it. Two hot meals a day, just for something as simple as washing dishes? He could do that-- he could do that a thousand times over, even! As if the fact that he could, in fact, wash dishes was incredibly moving to him, Ryn repeated it aloud excitedly.
+<strong>&quot;I can do that, I can do that!&quot;</strong>
+
+He stood suddenly, almost immediately regretting it as the food in his stomach got upset at him for moving so fast. But alas, he could not accept such a kind offer without shaking on it. Ryn grasped Allen&#39;s hand with both of his own, and shook it like there was no tomorrow.
+<strong>&quot;Izz&#39;a deal then! I&#39;ll be the damn best dishwasher the likes&#39;a this ship&#39;s ever seen!&quot;</strong>
+
+With a big dumb grin on his face, the lad somehow felt even better than after eating the food! No more did he have to play his guitar hungrily below deck, letting the notes twist his own mind and trick himself into thinking he wasn&#39;t hungry. Gone were the days of chiding himself for eating his sandwiches so quickly... now? Now, came <em>food!</em> And perhaps... something more? Perhaps. Perhaps indeed.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/fef2801345f924fcee3101bf3a9ea19f-58B41.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">&#198;nkidou</span>
+
+
+        <span class="chatlog__timestamp">22-Dec-21 01:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="922899140176932944" id="message-922899140176932944" title="Message sent: 22-Dec-21 01:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Spiderrock#5389">@Spiderrock</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-6F4B3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="921212690989457429" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Dec-21 03:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="922937379843616779" id="message-922937379843616779" title="Message sent: 22-Dec-21 03:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His eyebrows arched at the sudden reaction of the kid. Then again the kid problems had been dealt with in a somewhat fair manner. Still seeing the kid refer to it as &#39;just dish washing&#39; make him chuckle at to him it looked like he was understimating the work a bit but he liked his enthusiasm. 
+
+&quot;Very well go to sleep and come back at 10 wait for me as I will introduce ya to the boss and have ya start.&quot; He said with a smile. &quot;But remember what i told ya, dont cause any trouble&quot;.
+
+And with that he pulled his hand away from Ryn&#39;s grasp as he began to walk away. He still needed to lock the walk ins before leaving though.
+
+&quot;Goodnight kid&quot; he said as he waved at him as he showed him back.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">22-Dec-21 03:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="922937860892532787" id="message-922937860892532787" title="Message sent: 22-Dec-21 03:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-kitchen%20%5B920807788337307738%5D%20%282021-12-15%20to%202021-12-23%29.html_Files/68a8f77e9e852ebee3fb69c0b3679134-4EAF5.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="921212690989457429" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Dec-21 08:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="923011260331728937" id="message-923011260331728937" title="Message sent: 22-Dec-21 08:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ryn nodded quickly, before letting his hands fall to his side again. Food for the rest of the trip, all starting just tomorrow? The lad could feel himself getting hungry again just thinking about it! Though he shook the thought away as best he could, the excitement still lingered, and he left the kitchen with a certain pep to his step that he&#39;d sorely lacked since his first day aboard.
+
+<strong>&quot;10 it is! See ya later Al&#39;!&quot;</strong>
+With a last wave, Ryn disappeared into the dimly lit halls, Allen losing sight of him in a matter of seconds. Wherever that lad hid, he was hidden well. Guess you could give him credit for that, if not his self-sustaining skills. In anycase, he was happy he&#39;d come up tonight. Not only because of the free meal, but because he&#39;d finally met an investigator. An interesting one at that: a man who despised lies... hah!
+Oh, Ryn imagined that would be fun.
+
+ He wondered, descending the stairs of the ship, if Allen had a S.E.R.V.A.N.T. card on him... though, just a thought was all it was. Just a thought.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+</div>
+
+</body>
+
+</html>

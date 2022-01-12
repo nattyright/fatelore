@@ -1,0 +1,1209 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - proust-train-station</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">Rest of the world / proust-train-station</div>
+
+            <div class="preamble__entry preamble__entry--small">An open train station located at the heart of Polyvalent Battalion&#39;s district, not far from headquarters. Containers of all shapes and sized are stored nearby, ready to be carried deeper inside the PB district or to be shipped somewhere else in the city. Two benches are sitting across either sides of the main platform, a testimony to how few people actually board those trains.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">16-Dec-21 05:44 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="920974675427881000" id="message-920974675427881000" title="Message sent: 16-Dec-21 05:44 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/atna-joy-final5-48794.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/atna-joy-final5-48794.jpg" alt="Image attachment" title="Image: atna-joy-final5.jpg (277.52 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/bbebbf70439aba94b435765b03725afb-E88F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="921115871731138591" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 03:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="921115872880373801" id="message-921115872880373801" title="Message sent: 17-Dec-21 03:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sounds of Geneva littered the air with an atmosphere that only it’s strict and spartan-like society could produce in this new age. This Dhruva city was more akin to that of a military academy than an actual city and it showed that aspect in more ways than one. Uniforms were worn by everyone. Routes were taken as they went to their next destination or assignment in perfect harmony with the evermoving traffic. Schedules were followed to the second. Not a single moment was to be wasted after all. Not in Geneva. 
+
+Thus, it was strange to see one of the many cogs and gears of the city remaining still. A strange sight indeed but, it was still one that not a single person gave any amount of attention to. For they still had a purpose to serve for the betterment of Geneva.
+
+ A sleek black suitcase rested on their lap. The person in question was Emeilia Lewis. A rookie within the ranks of the Scholar Company. Recently, she was assigned her first real assignment a few days prior. She appeared to be waiting for the train to arrive to take her to the docks. It was there that a ship would take her to where her mission took place. 
+
+It was strange then for her to be waiting since the next train isn’t due for another twenty minutes. Even stranger that it appeared that she was sitting there for longer still. How early did they arrive to catch the train? 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921116040526708836" id="message-921116040526708836" title="Message sent: 17-Dec-21 03:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Emeilia appeared motionless. The only thing that set her apart from the metallic bench she sat on was the subtle movement of her chest from her breathing. The gentle wind flowed through the environment and moved her straight hair ever so slightly. It was enough, however, to reveal a confident smirk on her face. It was one that showed a level of smugness that was nigh impossible to attain.
+
+What caused this aura of confidence to emit from her one may ask? It was because she arrived here earlier than her partner on this assignment! That’s why! To think a Veteran would simply allow a rookie to get the upper hand on them like this! 
+
+She could envision it now. A stern look upon her face as she, a mere rookie, looks down on the veteran not arriving early! A slight chuckle left her. She needed to recompose herself by clearing her throat if she wanted to maintain that dignified appearance about her. The last thing she needed was to be caught laughing to herself. Her image would be ruined before she even had a chance to establish it with her partner!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-0B1EF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="921115871731138591" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 04:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="921139862822850600" id="message-921139862822850600" title="Message sent: 17-Dec-21 04:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hurried footsteps echoed around. Young recruits, boys and girls hurrying to their destination, carrying their superior’s orders with drive and energy. Their focus was sublime, they had eyes and ears for naught but their duty and not a single thing in the whole world could take away from that. They were Geneva&#39;s pride and blood, the moving pieces that allowed for the city to exist. It was a sight to behold, that of humans orderly scrambling like worker bees.
+
+The marching soldiers quickly thinned out as the man reached the district’s outskirts, the only thing greeting his ears being the distant steps of military marches and a slight breeze of wind. In this silence, Ace was given a chance to breathe. In the distance stood Geneva’s immense radio tower, the one that was erected right in the center of headquarters. Although not as glorious as the old world’s monuments, it still portrayed an image of strength and hope to the genevi. 
+
+Truthfully, he paid it no mind when he was but a young recruit. It was just part of the landscape, something that you could see from anywhere on the island, so inconsequential to his life. But when things were rough, and the delay between his trips back home increased more and more, he couldn’t help but smile a little when seeing it. 
+
+It felt good to be home again, even if it was for as little as half a day.
+
+He didn’t have the luxury to gaze upon the tower much longer, though. Checking the clock on his wrist, he resumed his walk through the PB district’s immaculate streets. He was set to meet a certain someone at the PB district’s train station. HQ didn’t give him the details on his mission, but said that the person he would meet there would gladly fill him in and answer any of his questions regarding his task.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921139972176740352" id="message-921139972176740352" title="Message sent: 17-Dec-21 04:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was an uncharacteristic move from HQ. The brainiacs working there valued efficiency and precision before anything else, to the point where he rarely had to question them further on his tasks after getting filled in. Yet for this assignment, they left that important task to a ‘certain someone’? He completely trusted in their judgement, but it still left him with much to ponder, mainly about the identity of that certain someone. Was the background of the assignment confidential, with only a handful of people allowed to be filled in? Would he meet one of Geneva’s upper commanders, most of which he had never even seen yet?
+
+The veteran&#39;s mind kept wandering as he finally arrived at the train station. The clock on his wrist told him that he was fifteen minutes early. Could’ve been worse, but could’ve definitely been better. In Geneva, the appointed time for a meeting was a trap. If you arrived on time or a mere five minutes early, you were considered unpunctual. It was common practice to arrive twenty minutes, even half an hour early as a testament of your dedication. By those standards, he was cutting it close to arriving late. His brief stop to gaze at the radio tower took more time than expected...
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921140029877809192" id="message-921140029877809192" title="Message sent: 17-Dec-21 04:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Looking around him, he saw a woman readily sitting on one of the platform’s benches. She looked like she was waiting for someone or something to happen. Judging from her nerdy glasses and her less than remarkable physique, she was most definitely a brainiac, a member of the Scholar Company. Must’ve recently finished her training too, taking her young age into consideration. It was rare for lower-ranked soldiers to board onto Geneva’s trains; they were mostly reserved for quick transportation of goods across the city or for a handful of high command members to swiftly move across districts.
+
+Sitting at the other side of the bench, Ace lazily looked at the empty train tracks. He glanced once more at her; it seemed like she was quite distracted, not even noticing his arrival. Rookies, he thought, always in their silly little worlds, uncaring as to what’s happening around them.
+
+“What you smiling for,” The veteran spoke, his gruff voice abruptly cutting through the silence. “Something funny happen?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/bbebbf70439aba94b435765b03725afb-E88F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="921115871731138591" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="921140409743323157" id="message-921140409743323157" title="Message sent: 17-Dec-21 04:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”Eep!” Emeilia jumped slightly at the sudden voice directed at her. The sudden surprise almost made the suitcase fall out of her lap and onto the ground. That would have been the case if it wasn’t for her securing it by grabbing hold of it before it fell. A sigh of relief came from her after she realized that she caught the suitcase quick enough. 
+
+After that, she turned to see who it was that spoke to her. She could recognize that face from anywhere. It was none other than Ace Colin himself. A legend within the Occult Corps. Her new partner.
+
+Her composure was steadied and her hand was brought up to fix her glasses. A gleam shined from the lens after the adjustment was made. “Mr. Colin, I presume? It is nice to finally meet you.” Her voice carried with it a level of professionalism and a dignified aura around it. As expected from the Brainiacs at this point. “I had hoped to get to know you and speak to you in regards to our mission but, it appears that you ran late.” Late? The train wasn’t set to arrive until another fifteen minutes or so. How early did she get here and how early did she expect Ace to arrive?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-0B1EF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="921115871731138591" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 05:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="921152942483054612" id="message-921152942483054612" title="Message sent: 17-Dec-21 05:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...What now?&quot; The words slipped out of his mouth, in a tone that presumed he was less than happy about his current situation.
+
+The young woman that sit across the bench, startled by little more than his presence, had just blurted out with the faintest of smirks that he was <em>late</em>? Late for what, to speak about their <em>mission</em>?
+
+&quot;You&#39;re the person HQ mentioned,&quot; The veteran said as he sat himself closer to the young woman, perhaps a little to close for comfort, glaring at her from beneath his shades. &quot;A rookie has been assigned to me—and a damn <em>brainiac</em> to boot?&quot;
+
+This had never happened before. Headquarters knew all there was to know about <em>Ace Colin</em>, they knew about his unrivalled efficiency on the field. They knew him as a man that worked better undisturbed, <em>solo</em>. Even in the instances that <em>absolutely required</em> him to pair with one or multiple individuals, he had always been assigned competent corps—veterans with at least half a dozen years on their belt. Professionals, tested and trusted. Even then, he saw them as little more than eyesores.
+
+And yet here he was, hardly knowing how to react to the current situation. He knew HQ to be mindful, <em>extremely mindful</em> of their directives. Their job was to essentially take the best decisions all the time, and they were <em>good</em> at their job. This begged the following question: Why? Why assign him a rookie out of the blue? In what context would that be helpful to him? To anyone? Was this a way of <em>disciplining</em> him? And in that case, what did he do wrong? His last few contractors didn&#39;t report any complaints, HQ issue any warnings either. He was very close to being a <em>perfect soldier</em>, both inside and outside the field. <em>What then, what was the reason? Why did this happen?!</em> 
+
+As soon as he was finished talking, the veteran&#39;s next move was to silently stare at the young girl. If looks could kill, rookie Emeilia Lewis would&#39;ve died at least a dozen times by now.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/bbebbf70439aba94b435765b03725afb-E88F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="921115871731138591" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="921298581971935232" id="message-921298581971935232" title="Message sent: 17-Dec-21 03:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A shiver travelled down Emeilia&#39;s spine upon looking at Ace&#39;s death glare. His large and imposing figure didn&#39;t make things easier for her either. The mere pressure from him alone would be enough to cause her to crumble. She did her best to weather it all in order to maintain her image towards him. If she broke now, she would never hear the end of it from anyone.
+
+&quot;Well, I may be a rookie, Mr. Colin, but you will find that I am more than qualified to be on this mission despite my lack of experience. The fact that HQ assigned me to be your partner should be reassurance enough!&quot; Despite the slight trembling, Emeilia stood strong without falling over her words even once. However, while all of that may be true, she spoke as if she deserved respect based on that feat alone. 
+
+Emeilia took a deep breath before continuing. &quot;HQ would <em>never</em> make a mistake. If they think someone like me could be of use to even someone like you, who are we to speak against their decisions?&quot; She spoke as if she needed to justified her place on this bench with him. No matter how much he agreed or disagreed with the current situation, that doesn&#39;t change the fact that he&#39;s stuck with a rookie for this mission. 
+
+A rookie. Out of all the people to be assigned with. They had to choose a rookie. No amount of words could make sense of their decision. It was so out of left field, even for them. Perhaps that was the whole point of the mission?
+
+Could this be a test from HQ? If so, who was the test for?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-0B1EF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="921115871731138591" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Dec-21 06:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="921349993347031093" id="message-921349993347031093" title="Message sent: 17-Dec-21 06:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Of course HQ would never make a mistake,&quot; Ace repeated, a tang of annoyance in his voice. &quot;Which is <em>exactly</em> why I&#39;m trying so hard to find out why you&#39;re here.&quot;
+
+Ace&#39;s huge frame cast a shadow that almost completely engulfed the rookie. His face was now inches away from hers, as if looking at the problem from a closer distance would reveal the answers to his questions. The rookie had such soft-looking features, such immaculate skin. Brainiacs weren&#39;t supposed to take part in military operations, their place was <em>not</em> on the field, but even then. For a proud genevi to be this... soft. It irked him, <em>unbelievably so</em>.
+
+&quot;Tell me, do you think you&#39;ll be of help just because you&#39;re <em>smart?</em> Huh?&quot; He asked. &quot;Do you think you&#39;re better suited than your peers because your marks are higher?&quot;
+
+Closer still, he was now a mere two inches away from her face. At this distance, she could start spotting the numerous, <em>countless</em> scars on his face. Scars that would no longer heal. Marks left by shrapnel, bullet wounds, knife marks and god-knows-what else. If those were the wounds the veteran harboured on his face, who knew what sort of atrocities hid beneath his suit.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="921350448923934750" id="message-921350448923934750" title="Message sent: 17-Dec-21 06:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A rookie&#39;s ignorance. Having survived the hellish training and the innumerable obstacles that Geneva threw at you every day, it was natural for a rookie to feel like they could do anything. Confidence in a soldier&#39;s life usually reached an all-time high right after he was out of the academy. But, <em>if</em> he survived his first few assignments, it would also usually hit an all-time low. You can train a soldier to shoot a gun all you want, but you can never predict how he would act in a real life situation. <em>Expectations and reality often clashed in this line of work.</em>
+
+&quot;I&#39;ll spell it out for you: grades are close to meaningless outside of the academy,&quot; He said, putting a big emphasis on the word &#39;meaningless&#39;. &quot;Even if your grades are high, you won&#39;t necessarily carry out your duty. Even if you&#39;re top of the class, you won&#39;t necessarily thrive on the field.&quot;
+
+<em>&quot;Even if HQ personally sends you out on a mission, you won&#39;t necessarily survive.&quot;</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/bbebbf70439aba94b435765b03725afb-E88F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="921115871731138591" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Dec-21 08:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="921553993128362035" id="message-921553993128362035" title="Message sent: 18-Dec-21 08:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">An audible gulp was heard as Ace closed the distance between the two. The distance was so thin between them that Emeilia could see Ace&#39;s eyes through his shades. It made his stare all the more intense. All she had to do was hold her ground. She couldn&#39;t back up away from him even if she wanted to either. No. Surely he must just be testing her. 
+
+Why would he be? What he said was true after all. There was no guarantee that would make it back from her assignment. However, she knew this and still wanted to prove that she could handle assignments like these. No one else was going to prove that for her. The only one who could was going to be her and her alone.
+
+&quot;Thus is the life of a Genevi.&quot; Those few words were spoken by someone who truly believed in them. &quot;Geneva wouldn&#39;t have became what it is now if we were given easy, or simple, jobs to do. Nor would its glorious name hold the gravitas it deserves were it not for the people who serve Geneva!&quot; In the heat of the moment, Emeilia stood up with her fingers holding onto her glasses. This marked the only time where she would be looking down upon Ace due to sitting down. 
+
+&quot;Even if my immaculate grades mean nothing on the fields, I am more than prepared to prove my worth to Geneva and her people. It is the least I could do to give back to the place I love.&quot; Despite the heartfelt speech about her devotion to Geneva, Emeilia was shaking inside. <em>&#39;You&#39;re such an idiot! Why did you stand up? Get the feeling back in your legs and sit down already! You&#39;re blowing it!&#39;</em> In her mind, she was ridiculing herself for making such a move towards someone like Ace. For someone who prized themselves for being smart, this wasn&#39;t her brightest moment.
+
+(<span class="mention" title="Spiritssss#5397">@Spirits</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-0B1EF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="921115871731138591" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Dec-21 04:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="921862756855058483" id="message-921862756855058483" title="Message sent: 19-Dec-21 04:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The rookie he underestimated stepped up from her seat. Their roles effectively reversed, now <em>he</em> was the one being looked down onto. His words didn&#39;t go unnoticed, for they were very much acknowledged—completely accepted, even. The rookie retorted so matter-of-factly, as if what he had said was obvious... It reminded him of a simpler time, a time when he too was but a green horn fresh out of the academy. This want to prove one&#39;s worth... no, to <em>give</em> back to one&#39;s country. It was a noble objective, one that he deeply resonated with.
+
+The veteran&#39;s stare followed Emeilia&#39;s stand, yet his expression didn&#39;t change in the slightest. A silence, so very heavy and awkward, stretched as soon as she finished talking. Was he not impressed by her sudden show of resolve? Was he not moved by her words? <em>Did it backfire somehow?</em> Right as a need to fill the silence was felt, the veteran spoke up.
+
+&quot;<em>A textbook answer</em>,&quot; The words finally came, in a tone that was the gentlest yet. &quot;Ditch the &#39;I want to prove my worth&#39; part and I would&#39;ve cried on the spot. Really, those were some pretty words, rookie.&quot;
+
+The monotony of his tone made it ambiguous as to if he was sarcastic or not. Nonetheless, this marked the first positive thing he had said about her since their encounter, so surely she must&#39;ve done something right! His stare quickly fell back on the empty train tracks, another silence stretching before he resumed talking.
+
+&quot;...but words are just that, words. Saying that you want to give back and <em>actually giving back to the place your love</em> are two entirely different things. Do you understand?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/bbebbf70439aba94b435765b03725afb-E88F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="921115871731138591" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Dec-21 04:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="922042584451387402" id="message-922042584451387402" title="Message sent: 19-Dec-21 04:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The answer that came out of Ace&#39;s mouth was one that made a wave of relief wash over Emeilia. A huge weight was lifted off of her shoulders. She couldn&#39;t believe that she didn&#39;t manage to mess up on her first encounter with her superior. Though, that didn&#39;t mean she was in the clear yet. She still had a whole mission to deal with. One slip-up could ruin her image for good. 
+
+&quot;I understand. A train station isn&#39;t the best place to showcase what I am able to provide for you. That will have to wait until later. I assure you that you won&#39;t disappointed though.&quot; A smirk was visible for the slightest of moments before she turned to face the direction she faced while on the bench. It felt too awkward to sit back down after all of that so she opted to simply continue standing instead. 
+
+The train would be arriving shortly for the two of them. Whatever calm and solace they could find in the meantime is something to be savored. There is no telling what awaited them passed the rails of the station.
+
+This time, it was Emeilia who broke the next silence between the two. &quot;I read your file and heard plenty of stories regarding you, Mr. Colin. I can&#39;t wait to see you in action myself. Like you said, words are just that; words.&quot; Hearing about the things he did is much different than actually seeing them personally. The smug smile could be felt even without looking at her face.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-0B1EF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="921115871731138591" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 03:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="922214250099929109" id="message-922214250099929109" title="Message sent: 20-Dec-21 03:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Do <em>not</em> push your luck,&quot; Authority in the form of words escaped the veteran&#39;s mouth, a few decibels louder than previously. &quot;Know that I have absolutely <em>zero tolerance</em> towards disrespect, and know that I will hammer the concept of hierarchy <em>into your bones</em> with any means I deem necessary if I find that you don&#39;t uphold it well enough.&quot;
+
+Emeilia Lewis had somehow made it past the struggle of first encounters with veteran Ace Colin, but that was just the first step. Things could only get harder and more complicated from now on, proving herself to both him and Geneva wasn&#39;t gonna be easy.
+
+&quot;...not to mention that the words you speak hold <em>meaning</em>,&quot; He went on, just as firmly as before. &quot;Going into this mission, I didn&#39;t look forward to any help. When I got the news that you would accompany me, I thought, oh, another rookie that can&#39;t even piss right unless you teach him to. Great. To summarise my thoughts, I didn&#39;t expect any help coming from you...&quot;
+
+&quot;Or that was the case right until you said that you would, and I quote, prove your worth to Geneva and give back to the place you love.&quot;
+
+A low rumbling could be heard in the distance. Clickity-clacks, hissing from the tracks. It was as if the platform itself shook, patiently waiting for the train to arrive. At the same time, a hand gripped Emeilia&#39;s shoulder. It didn&#39;t hurt, but it was strong enough to be uncomfortable. When had he had gotten up from his seat?
+
+<em>&quot;There are few things I appreciate less than people who don&#39;t keep their word.&quot;</em>
+
+Finally, the brakes hissed and screeched as the train slowed down to a stop.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20Rest%20of%20the%20world%20-%20proust-train-station%20%5B920974195435905074%5D.html_Files/bbebbf70439aba94b435765b03725afb-E88F8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="921115871731138591" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Dec-21 03:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="922214395126366208" id="message-922214395126366208" title="Message sent: 20-Dec-21 03:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Out of the frying pan into the fire. Ace didn&#39;t anything out of her from the start. Now there was a level of performance that was expected out of her because of her words. To anyone else, it would seem like she bit off more than she could chew. That wasn&#39;t the case however. To her, this was the perfect situation to be in. Now she could prove to even the venerable veteran Ace Colin that her words held truth in them. 
+
+The sudden grasp on her shoulder still tensed her entire body despite that though. For someone so large, he knew how to move silently. Emeilia felt the shiver travel back down her spine yet again.
+
+<em>&quot;There are few things I appreciate less than people who don&#39;t keep their word.&quot;</em>
+
+Those words rang deeply within her. It was a warning. The hissing of the train overtook the noise in the air around them. 
+
+Can she really succeed in this mission? Can she really provide any sort of support for someone like Ace? Will she be more than just a nuisance to him? Why of course! The one person who knew this better than anyone else was her. This was her moment to prove to everyone else that she could! That&#39;s the kind of confidence she carried with her.
+
+The doors of the train opened up for them. This was it. Next stop would be the docks where the ship to Nirvana would be waiting. 
+
+&quot;Emeilia Lewis.&quot; She spoke once more before they got onto the train. &quot;My name is Emelia Lewis. I&#39;m glad to be of service to you, Ace Colin.&quot; 
+
+Introductions were made and first impressions were given. All that was left was to complete the assignment they were given. An easy task indeed.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

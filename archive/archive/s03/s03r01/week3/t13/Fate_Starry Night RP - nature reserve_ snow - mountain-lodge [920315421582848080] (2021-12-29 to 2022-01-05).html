@@ -1,0 +1,1859 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - mountain-lodge</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: snow / mountain-lodge</div>
+
+            <div class="preamble__entry preamble__entry--small">Tucked away in the snowy mountains, the Mountain Lodge is one of the better vacation homes scattered throughout this wintry resort. Cozy, quiet, and surprisingly well-heated thanks to being in close proximity to the main research lab&#39;s power grids, it looks very lived-in compared to the other houses in the area.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 29-Dec-21 12:00 AM and 05-Jan-22 04:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Dec-21 03:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="925828288503509082" id="message-925828288503509082" title="Message sent: 30-Dec-21 03:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">A few days later</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="925828321852399647" id="message-925828321852399647" title="Message sent: 30-Dec-21 03:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After a solid 20-something hours&#39; of dreamless sleep, Koji finally opened his eyes. This time, he did not wake up cold.
+
+In fact, the entire cabin was warm and cozy and felt like late spring. And the bed was warm, too. It was so comfortable that he decided then that he was not going to get up again, not even to turn off the light, which had been near blinding him along with the morning sun ever since he opened his eyes.
+
+Instead, he did the next best thing and reached a hand from under his sheets, feeling down beside the bed, where he&#39;d usually kept his watch...but found nothing aside from a few pieces of dirty clothing. He then realized that the watch was still on his wrist, and that it was cracked and caked with blood and stopped functioning at a quarter to six, whichever day it was supposed to be. 
+
+With a disgruntled sigh, the doctor flipped onto his side and pulled the sheets over his head, ushering himself back to sleep instead of dwelling on matters that would no doubt make his head throb. Every good doctor deserved a good sleep once in a while. So long as he was within the confines of his bed, not even an apocalypse could move him.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="925828356493176942" id="message-925828356493176942" title="Message sent: 30-Dec-21 03:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Dec-21 03:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="925831133579595846" id="message-925831133579595846" title="Message sent: 30-Dec-21 03:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In some ways, mountains and oceans could be considered opposites. The obvious comparison would be height, one being so low and the other so high, but it went further than that. 
+
+Take, for instance, noise. A mountain, far from the hustle and bustle of the world, was a rather quiet place. Few animals made such a harsh place their habitat, and even fewer humans chose to make trips to such treacherous places. As of such, they tended to be rather calm, bordering on serene. Meanwhile, an ocean was a loud place, filled with crashing waves, screeching gulls, rowdy sailors and overeager tourists.
+
+So, if it can be said that Scylla were to represent the ocean...
+
+<strong>SPLASH. SPLASH. SPLASH.</strong> Constant sounds of splashing from the nearby lake, driven by the aimless swimming of a monster with little else to occupy them. Without rhythm, without cadence, no semblance of a pattern driving it. In other words, the sort of background noise that was <em>very difficult</em> to fall asleep to.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="925831158229508156" id="message-925831158229508156" title="Message sent: 30-Dec-21 03:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-5310A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="920790125363998720" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Dec-21 03:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="925835507328483389" id="message-925835507328483389" title="Message sent: 30-Dec-21 03:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While the Rider was enjoying her newfound freedom, swimming in a nearby lake to ignore the insufferable climate of a mountain, one wondered if she was being deliberately noisy on purpose, considering she knew all too well where her Master was currently sleeping at...
+
+The splashes kept Koji awake, making him unable to fall into the sleep induced REM cycle that he so desperately craved. He could sleep for 30, no, 40 more hours if left undisturbed, but it seemed as if his Servant had forgotten that basic human need of his.
+
+Well, two could play at that game. If Scylla insisted on swimming, then he would dedicate more effort to ignoring he-
+
+<em>SLAM!</em>
+
+He heard the door to his house slam open, loud enough to scare some of the birds he had been tending to. They flew to his bed, chirping in fear as they expected their caretaker to protect them. Did he forget to lock his door last night? Or did someone just force themselves inside without a care in the world?
+
+&quot;Yoohoo! Anybody here? What&#39;s up, doc?&quot;
+
+That voice was enough to make Koji realize who it was. An all too familiar tone, one that made him shrivel up as his brow grew more furrowed. It was <em>him</em>, the pesky Servant who had nothing to do with their time except pester others, it seemed.
+
+&quot;Squawk squawk to you too, little birdies. Say, mind telling me where your daddy is? Don&#39;t tell me I just missed him...&quot; The voice asked out loud, trying to converse with any birds brave enough to remain in his presence. It went about as well as it hoped.
+
+&quot;Hey, why are y-OW! OW OW OW! Stop! I&#39;m not a seed nor a fruit! Doesn&#39;t the doc feed you aplenty?! HEY! Beaks off the hat!&quot;
+
+Koji would feel frustrated. While he was more than happy at his birds standing up for him, he knew that the idiot who invaded his home was incompetent enough to do more harm than good. It was better for him to intervene, lest a member of his flock be hurt.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="925835568405946389" id="message-925835568405946389" title="Message sent: 30-Dec-21 03:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+It was in this moment that Scylla, perceptive of a beast that she was, overheard some loud shuffling coming from the cabin. Had her Master woken up? <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Dec-21 11:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="926309511298437200" id="message-926309511298437200" title="Message sent: 31-Dec-21 11:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A commotion. Birds squawking, a voice that evidently did not belong to her &quot;master&quot;. Even from here, she could hear it. Was he being attacked? No, not chaotic enough for that. Then, a robbery? Hah, no, nothing worth robbing in this lousy shack.
+
+But, then what? That was the question, wasn&#39;t it? Did she care enough to drag herself onto land an answer it?
+
+Yes, she supposed she did. As much as she preferred her little lake to dry land, it WAS a <em>little lake</em>. Were she as she was in the Age of Gods, this puddle would not even have sufficed to fit her gargantuan body, let alone house it comfortably. While it was fine for her servant vessel, it was still limited, constricting, like she were a goldfish stuck in a bowl. 
+
+Begrudgingly, Rider exited the water, lurking low to the ground, skulking closer to the cabin to get a better glimpse of what was occurring...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926309537915473950" id="message-926309537915473950" title="Message sent: 31-Dec-21 11:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jan-22 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="926851565925580820" id="message-926851565925580820" title="Message sent: 01-Jan-22 10:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ever since Nirvana&#39;s shutdown, visitors to the snowy mountains have been few and far between. Even animal sightings had become increasingly rare due to the lack of maintenance to the local resorts. Sometimes, it really did feel as if time had frozen still. The mountain was so peaceful, so quiet, so <em>serene</em>... <strong>that even a pin drop could be considered noise</strong>. 
+
+So, it was only a given that in the dead silence of his cabin, Koji could hear <em>everything</em>. Including that constant splish-splashing outside of his window. His head was filled with the sound. Like clockwork, worse than clockwork, the noise came at irregular intervals, making it impossible for him to anticipate and thus, impossible to ignore. It was the worst type of alarm clock to wake up to. He couldn&#39;t even turn it off-
+
+Then, as if to make matters worse, the front door exploded.
+
+Well, technically, it hadn&#39;t exploded, but the tremor it produced reached all the way to his bed, accompanied by a whole lot of frantic chirping as his beloved birds flocked his bedroom and landed on him to seek protection. Some of them even snuggled in under his blankets for comfort, as if they had been deeply traumatized by their intruder. An intruder who was unabashedly trying to make nice with his birds...and dramatically failing.
+
+A sense of pride welled up in him. He had taught his birds well. 
+
+But even that pride wasn&#39;t enough to save the intruder&#39;s bacon. Between them, his birds, and his Servant, it was evident that all hopes of him having a good sleep was ruined. Koji wasn&#39;t the vengeful type, but he was definitely angry about it.
+
+&#39;<em>Get him out of my house.</em>&#39;
+
+For the first time in days, Scylla heard the doctor&#39;s voice. Not with her ears, but in her mind. As if someone had left a radio in her head and forgot to turn it off.
+
+&#39;<em>No need to be gentle. He owes me 15 credits for pen and ink.</em>&#39;
+
+With that, the doctor threw open his blankets and started, with immense difficulty, to get out of his bird-infested bed.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926851597718405131" id="message-926851597718405131" title="Message sent: 01-Jan-22 10:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-5310A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="920790125363998720" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jan-22 11:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="926859900225716305" id="message-926859900225716305" title="Message sent: 01-Jan-22 11:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If Scylla were to peek at the window, she would see a rather multicolored figure, dressed in a tacky looking outfit. An outfit that was currently being demolished by the vicious beaks of a flock of birds. Their serrated teeth might as well be a chainsaw when it came to tearing down clothing, be it clothes made out of mana or not.
+
+&quot;Doc, you should really put a restraining order on your fat, feathery birds! That, or start an all poultry diet. I heard it&#39;s a popular fad nowadays!&quot; The man shouted in a disgruntled fashion, trying his best to slap the birds away as they started to direct their attention towards a collection of parchment in his hand instead.
+
+&quot;Hands off the merch! Unless you want me to pluck your feathers, one by one!&quot; He snarled, before turning his head towards the direction of Koji&#39;s bedroom. He couldn&#39;t see the doctor, of course, but he knew his room layout. With the full power of his throat, he shouted.
+
+&quot;I HAVE REALLY,<strong>REALLY</strong> IMPORTANT STUFF TO TELL YOU!&quot; He made sure to sound as loud as possible, rapturing the eardrums of Koji and several other birds.
+
+That was when Scylla received her Master&#39;s mental message. After witnessing the man&#39;s tantrum, she couldn&#39;t fault them for wanting to kick that person out. They seemed like the obnoxious type. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jan-22 11:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="926862316060950629" id="message-926862316060950629" title="Message sent: 01-Jan-22 11:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Peering through the foggy glass wasn&#39;t the clearest image, but it still gave her a clear picture of what was going on. A big bright shape - the intruder - being mauled by a variety of birds, crows and pigeons and ravens, all of which currently bore a closer resemblance to the Stymphalian birds than their mundane counterparts.
+
+She watched for a moment, trying to gauge whether or not her intervention would prove necessary. However, any doubts she might have on the matter were dispelled by the intrusion of Koji&#39;s voice in her mind, one that caused her to physically flinch.
+
+She did not like having him in her head. Why could he not simply scream if he wanted her help? Ngh...
+
+Nevertheless, she would stand up straight, tossing away any pretence of stealth as she marched in through the door, grabbing this intruder by the collar of their shirt and hoisting them up off the floor with ease.
+
+<strong>&quot;You talk too much.&quot;</strong> Scylla growled, allowing this stranger to hang as she chided him. <strong>&quot;You should talk less.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926862339888791593" id="message-926862339888791593" title="Message sent: 01-Jan-22 11:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 01:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="926885340558553149" id="message-926885340558553149" title="Message sent: 02-Jan-22 01:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The cabin had never housed this much energy before. With the intruder screaming at the top of his lungs, birds pecking and screeching, as well as Scylla shutting the intruder up with her own predatorial instincts, it was easy to miss the sound of a body tumbling to the floor and the cussing and grunting that immediately followed. It was just another string of sounds lost amidst the cacophony. 
+
+Moments later, the door to the bedroom was yanked open. Not by the doctor, but by a willow branch that had jammed its way between the door and frame and forced it open much like the intruder himself had done. A lone shadow appeared in the doorway, its giant silhouette punctuated by the bright fluorescent lights from the ceiling. Malice radiated from its barely human form, causing even the birds to shake slightly as they stopped their screeching and focused more on the pecking.
+
+A monster in the closet...?
+
+<strong>&#39;Shut...up.&#39;</strong> A raspy voice growled. The monstrous shadow stirred, feathers fluttering as it finally squeezed through the door.
+
+It was the doctor himself. Supported by his cane and a flock of birds who each held some parts of his shirt in their talons and beaks and softly pulled him up with flapping wings. He half walked, half floated towards Scylla and the intruder, but even with the support of his birds, the act seemed to take a lot out of him. By the time he made it to the front of the room, he looked about ready to keel again.
+
+But that didn&#39;t stop him from jabbing the intruder in the small of his back.
+
+&#39;You do not break into my house... first thing in the morning... and tell me what to do.&#39; Koji continued to chastise the intruder with his barely functioning vocal cords, sounding like a man who had been stranded in a desert for days. It almost made Scylla wish he could go back to use that mind voice of his, though she had a feeling that it was reserved for her only.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926885367343366184" id="message-926885367343366184" title="Message sent: 02-Jan-22 01:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-5310A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="920790125363998720" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 02:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="926909161999065169" id="message-926909161999065169" title="Message sent: 02-Jan-22 02:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Birds were one thing, but nothing would prepare someone for being grabbed by one of Greece&#39;s oldest known monstrosities, especially one known for devouring ships and men alike.
+
+Granted, it&#39;s not like the person Scylla held in her hands could even recognize that. All he saw was a feminine figure, perhaps a bit too well endowed as they hoisted him up and prevented his feet from touching the ground.
+
+&quot;Who the--Doc, you got a new patient, and it isn&#39;t me! Are you sure you turned them off right? Please don&#39;t tell me he actually kicked the bucke-&quot; Before the man could finish, a raspy <em>&#39;shut up&#39;</em> relieved them of their worries as the esteemed doctor left their nest. Their flock carried them, hoisting them up with talons and claws as they could barely move with their own motory functions.
+
+&quot;Sheesh, you look like crap. Had too much to drink last night?&quot; The man asked with a cherubic smile, before remembering that they were being strangled by a womanly beast. &quot;Also, do you know each other? I thought you didn&#39;t keep any company, specifically the Servant kind. How come she isn&#39;t, you know, <em>off?</em>&quot;
+
+Those words most likely infuriated Scylla. Naoharu Koji was truly a despicable man if what this midget said was true.
+
+Of course, the doctor would rather focus on the intruder in his house first. The multicolored individual flashed a grin in response.
+
+&quot;Hey now, you know me, doctor. I don&#39;t come unannounced for no good reason! I&#39;m just here to ask about your birds. Haven&#39;t you seen them hang around the beach lately?&quot; He asked while towering above the doctor, thanks to Scylla&#39;s assistance. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 04:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="926933347605807175" id="message-926933347605807175" title="Message sent: 02-Jan-22 04:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The intruder received the highest honor he could ever have wished for: a stink eye. Koji kept glaring at the man; he stopped in front of a couch and allowed the birds to lower him onto it as best as they could. Then he opened his mouth-
+
+And barely uttered a full syllable before he began to cough.
+
+&#39;Why don&#39;t I—&#39; He coughed again for about ten seconds, feeling as if his throat was about to die. He was parched dry and the mystery man wasn&#39;t doing him any favors with his incessant probing. He felt compelled to answer, for he was a good doctor and answering insipid questions had become hard-wired into him...yes, even if he had to put up with a gaudy, pompous man as the one before him. 
+
+Suffice to say, being unable to speak at the moment was driving him nuts. It physically hurt him. Made him open his mouth again to channel his annoyance at the intruder. Two words came out, &#39;it&#39; and &#39;is&#39;, but then his throat tickled and his found himself reduced to a coughing fit again.
+
+Third time&#39;s the charm. The doctor gave up on talking for time being... but the &#39;radio&#39; at the back of Scylla&#39;s mind switched back on, and Koji&#39;s words poured into her head like waves around an isle. 
+
+<em>&#39;Tell him to mind his own business.&#39;</em> He dodged the intruder&#39;s loaded question. Did he think Scylla wouldn&#39;t notice, or simply didn&#39;t care whether she did? <em>&#39;And lay off the birds. Anyone could tell that they&#39;ve been travelling if they so much as</em> <em><strong>look</strong></em> <em>in the right direction. If this if all he has to say, then you have my permission to tie him up and toss him into the nearest lake. He&#39;ll survive.&#39;</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926933372876492850" id="message-926933372876492850" title="Message sent: 02-Jan-22 04:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="927176759823200286" id="message-927176759823200286" title="Message sent: 02-Jan-22 08:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Like a spirit forever trapped in the depths of the underworld, Koji drifted out from his bedroom. He was like a spectre, in appearance in addition to manner. Then again, there were few in existence who could have a kidney torn out and be no worse for wear. No point being snippy about it.
+
+No, any sense of snippiness should be wholly reserved for the nuisance currently in her grip. Such an annoying little small fry. Even after she had told him to such up, he hadn&#39;t shut his gob. How tempting it was, to reach up and dislocate his jaw...
+
+She didn&#39;t, of course. Not yet. He had a message to deliver first. No point polluting valuable information with gurgles and scr-
+
+<strong>&quot;Don&#39;t tell me what to do!&quot;</strong> Scylla snarled, baring her fangs at Koji as she spoke. Even now, flecks of sanguine clung to her incisors, no doubt that which had come from her kidney. <strong>&quot;I will tell him whatever I want to tell him, witch!&quot;</strong>
+
+Speaking of which, Rider would drag the mysterious servant&#39;s face close to her own, tightening her grip by the slightest amount. Not enough to cause harm, but enough to imply that, were she to be displeased, then harm would surely follow.
+
+<strong>&quot;Enough nonsense. Speak plainly, or I&#39;ll drown you in the lake while the birds watch.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927176785462984734" id="message-927176785462984734" title="Message sent: 02-Jan-22 08:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@Dad</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-5310A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="920790125363998720" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 10:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="927207917692813332" id="message-927207917692813332" title="Message sent: 02-Jan-22 10:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The moment Koji spoke was also the moment he remained silent. Guttural groans could be heard from his throat, yet no meaningful words emerged from them. It had been a day or two since he slept, yet his body was still in a shoddy condition. Even the impertinent Servant in front of him could tell, and so could Scylla. Perhaps that is why she replied to him with a domineering tone, as if knowing that her Master was in no shape to oppose her.
+
+&quot;Wait, <em>tell you?</em> I mean, I&#39;m pretty sure he didn&#39;t even mutter a word, unless--&quot; Before the uninvited guest could speak one more word, Scylla dragged them closer to her and snarled at their face.
+
+&quot;Ahem. Point taken. I shall leave pleasantries for later, madam...uh.&quot; He turned back to Koji, as if he were asking <em>&quot;Doc, what&#39;s her name even?&quot;</em>. Once he realized that Koji had no intention of speaking up (not that he could) he gave in and conceded.
+
+&quot;So, I have no idea what you two lovebirds are up to, but you might want to take a look at the beach. And by might, I mean should. And by take a look, I mean go stare at it <em>right now.</em>&quot; Despite sounding cheeky, Koji could discern a sense of urgency from those words. He had met this Servant several times in the past, and that tone of voice was fairly obvious.
+
+First, they had mentioned Koji&#39;s birds. Now, they were talking about the beach. A shiver ran down the doctor&#39;s spine as he slowly started to put two and two together in his mind.
+
+&quot;Can you put me down now? I think my feet are getting restless.&quot; The Servant then asked, waving his legs in the air as Scylla hoisted him up. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="927240617359188059" id="message-927240617359188059" title="Message sent: 03-Jan-22 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It seemed that Scylla hadn&#39;t fully grasped the essence of telepathic communication between them. Or perhaps she was simply short-tempered, opting to assert her dominance with her impressive lung capacity instead. 
+
+But Koji remained unfazed. <em>&#39;I paid you,&#39;</em> he deadpanned. <em>&#39;So start earning your keep. You can get yourself some peace of mind if you take out this pile of pink trash without me having to remind you one more time.&#39;</em>
+
+<em>&#39;And brush your teeth.&#39;</em> He added, eyes narrowing at the bits of <em>his</em> flesh stuck between Scylla&#39;s teeth, a grim reminder of how much he&#39;d already sunk into this Servant without learning a single useful thing from her. <em>&#39;Twice a day. I have spare toothbrushes. Learn to use them.&#39;</em>
+
+He wasn&#39;t in the mood for negotiation.
+
+Unfortunately, their little back and forth hadn&#39;t slipped past the intruder&#39;s innate gossip detector, as he immediately started letting his imagination run wild. After all, the existence of a telepathic link between a Master and Servant could only mean one thing. But...between <em>him</em>? And <em>her</em>? 
+
+The realization shocked the intruder so much that he even forgot to be cryptic. Was this the key to stop him from derailing all the time? Make him uncomfortable? Awkward? As if he had just become the metaphorical third wheel in his favorite trashy romance novel?
+
+Once again, Koji left the intruder to his own devices, choosing to ponder the news he had brought instead. It was <em>old</em> news, mind you, because the birds had been circulating the beach for a while now. The last time he had observed them - the day prior to Ruth&#39;s visit, he had already deduced that Nirvana was due for some visitors soon. But that was only yesterday, so why-?
+
+He flicked his gaze to the papers in the intruder&#39;s hand. A pigeon swooped down and tore them out of his grasp, then dropped them into their keeper&#39;s lap.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927240635218542652" id="message-927240635218542652" title="Message sent: 03-Jan-22 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Koji flipped through the papers until he found what he had been looking for. Newspaper. Freshly printed, judging by the mint condition of the paper, and on the front page, under the title and printed in bold letters, read the date <em><strong>February 2, 2105</strong></em>. 
+
+<em>No.</em>
+
+His grip tightened, leaving ugly creases in the newspaper that he hadn&#39;t paid for. The date was wrong...no, it was his perception of time that had been skewed. He&#39;d been out for longer than he had expected, no wonder he felt like dying the moment he got up. When was the last time he had eaten?
+
+And here he thought that it was the bond that had backfired on him. That he had come down with some rare case of post-summoning sickness.
+
+He suddenly felt silly.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927240654919200899" id="message-927240654919200899" title="Message sent: 03-Jan-22 12:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-5310A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="920790125363998720" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 01:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="927246761754525717" id="message-927246761754525717" title="Message sent: 03-Jan-22 01:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Naoharu Koji had no intention of breaking the silence. Not when he had grown so accustomed to his telepathic link, using it to berate Scylla as he analyzed the intruder&#39;s words and refused to partake in conversation. This type of information had no use to him. No purpose. Did they really think that Koji was oblivious to the findings of their own birds? Either they were <em>that</em> arrogant, or there was something else besides that curtain of urgency.
+
+&quot;Hey! Confiscation of art is a crime against humanity! At least pay for those!&quot; The man shouted as Koji&#39;s pigeons yoinked papers straight out of their grasp. It was more issues of that dreaded newspaper, as to be expected. Of course, Koji didn&#39;t care about island gossip. He simply stared at the most important part of that waste of paper: The date.
+
+The pain inside him swirled deeper, accompanied by the frustration and confusion that followed suit. How did he not notice? His own body betrayed him, preventing him from realizing that he had just slept for days. No wonder he felt like garbage. What good was a doctor if they kept being fooled by their own brain?
+
+&quot;My God, your fingers are ruthless!&quot; The annoying voice returned, snapping Koji back to reality as he realized that had curled the paper in his rage. &quot;I&#39;m keeping track, you know? That&#39;s one extra paper on your tab.&quot; He flailed his legs around to convey his annoyance.
+
+&quot;I&#39;m just here, trying to be a good neighbor and warn you of things to come, and you mock not only me, but my prized work! Oh, the humanity...&quot; They sighed, adjusting their hat.
+
+&quot;What do I find instead? You, with someone I&#39;ve never met! And here I thought that your love for Juliet was genuine...&quot; They wiped fake tears from their eyes. &quot;Truly, this is an episode that shall mark the ages. Do you...mind if I write down in the next paper? I can already see it: <em>Coldhearted Naoharu Koji Unthawed By Monstrous Lady.</em> I&#39;d rather have that then yet another article on how good and benevolent Miss Naomi is.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927246824010563694" id="message-927246824010563694" title="Message sent: 03-Jan-22 01:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+The proposition likely angered them both. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 01:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="927253560176050216" id="message-927253560176050216" title="Message sent: 03-Jan-22 01:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Paid? What a curious idea of payment, to stick a searing spear into their flesh and brand yourself upon them. Despite her obvious contempt, she managed to restrain her showing of the gesture to a bitter glare and a scowl. The encore of their last match of insult slinging and threat exchanging could wait.
+
+So, her attention focused on the words coming out of the stranger&#39;s mouth. Look at the beach? Why on earth would they ever want to do such a mundane thing as that? True, the prospect an open sea was an appealing one, but she doubted this courier would make a visit over such a meagre recommendation. So, then, why? Trying to think about it only made her feel dumber. Hadn&#39;t she told this idiot to speak plainly? Did he need to clean out his ears?
+
+Once again, she spared a glance to her master. That told her more than any of the hundreds of words that poured from the visitor&#39;s mouth like blood from a wound. The clenched fists, the ugly expression - Whatever it was, it wasn&#39;t good. 
+
+In such a tense atmosphere, what better to lighten the mood than a comedic quip? But, unfortunately for the stranger, he had made a poor choice of topic - Love.
+
+<strong>&quot;Shut. Up.&quot;</strong>
+
+Scylla&#39;s grasp made good on its promise and tightened further, to a suffocating degree. Her arm grew so tense that it began to tremble, the sheer pressure of her rage beginning to bubble over.
+
+<strong>&quot;I keep telling you to shut up. But you keep speaking these unnecessary words. All this pointless drivel! JUST SHUT UP! SHUT UP SHUT UP SHUT UP SHUT UP SHUT UP SHUT UP SHUT UP!&quot;</strong>
+
+The stranger would find himself released from Scylla&#39;s grip. Released as her arm launched itself forward, towards the window of the cabin, momentum transferring from individual muscles and joints into this idiot. Needless to say, the resulting <em>CRASH</em> as he flew through glass and wood alike was quite unpleasant.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927253590978986004" id="message-927253590978986004" title="Message sent: 03-Jan-22 01:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 04:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="927291559223894027" id="message-927291559223894027" title="Message sent: 03-Jan-22 04:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Koji was way past the age of getting worked up over mere insults. Words could not hurt him, especially words from an unsolicited house guest wrapped in pink frills and laden with feathers, kicking and squirming like a kid on a temper tantrum. So, he treated them like background noise, the type you&#39;d hear at a bustling cafe on a sunny day. 
+
+<em><strong>Clink!</strong></em> A bird dropped an empty mug into his lap as the intruder went on a tirade about the importance of art. A tea kettle fell next, followed by a toaster. Then a plate, utensils, and bread. By the time the intruder got to lament his poor treatment, Koji had finished setting up his humble breakfast spread on the coffee table with the help of his birds. 
+
+Water boiled. The doctor popped bread into the toaster and instant coffee powder into the mug ready for the boiling water. The room not only sounded like a cafe, but started smelling like one too. The atmosphere was <em>almost</em> inviting, if one can ignore the fact that only a single plate and mug had been set on the table.
+
+There was a pause, then, as the intruder brainstormed the title of his next hit article under the wrathful gaze of his Servant, Koji reached over and grabbed the intruder&#39;s precious newspaper he had just been bashed for scrunching.
+
+Then he looked the intruder in the eye and carefully, painstakingly slowly, tore it into shreds. 
+
+A slow torture enacted with relish before the eyes of a Servant who was weak to it the most. Koji was way past the age of getting worked up over mere insults, but just because he shouldn&#39;t, didn&#39;t mean he couldn&#39;t do it in his own creative way. 
+
+Some grudges run deep.
+
+As Scylla unleashed her rage on the intruder, Koji blew on his coffee and started taking careful sips, letting the hot liquid burn pleasantly in his throat. For once, their objectives aligned.
+
+&#39;You could have aimed for the door. It&#39;s wide open.&#39; He criticized his Servant after finding his voice. &#39;Glass isn&#39;t cheap.&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927291590182055986" id="message-927291590182055986" title="Message sent: 03-Jan-22 04:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span> <span class="mention" title="ResIsBestStat#5104">@Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-5310A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="920790125363998720" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="927303719480074342" id="message-927303719480074342" title="Message sent: 03-Jan-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Few things got the intruder more riled up than Koji&#39;s mishandling of their art. Despite the doctor&#39;s calm behavior, he was perhaps being more obnoxious than Scylla herself. At least the sea beast was acknowledging the intruder&#39;s existence. Naoharu Koji had already moved past entertaining such worthless characters. He made himself a nice, relaxing breakfast, all while tuning out the whinging of the pink disaster.
+
+That&#39;s when Scylla stepped in, shutting up the other Servant with a growl. Despite her insistence on being above Koji, she was doing exactly as her Master had wanted: Taking care of the trash. She choked the man&#39;s neck, enough to make them stop as they grasped at their throat and begged for air.
+
+&quot;None...of my...words...are pointless.&quot; The pink menace whispered while keeping a finger raised, feeling the need to be extra and correct the sea beast. While this all happened, Koji finally decided to acknowledge the two, albeit it would have been much better if he hand.
+
+<em>rustle rustle rrrriiiiiip</em>
+
+A blanket of snow littered the kitchen. Not the kind that littered the mountainside.
+
+The Servant stared at the pile of paper in horror as their arms attempted to reach for it. Unfortunately for them, Scylla had enough, as they released the grip and punted them out of the window. Glass panels flew by as the birds chirped in fright, avoiding any stray shards while Koji felt lucky that he didn&#39;t get any glass in his breakfast.
+
+<strong>&quot;MY 6,900 WORDS WORTH OF CONTENT!&quot;</strong>
+
+An ear rupturing shriek could be heard, before the voice grew dimmer as a resounding <em>SPLASH</em> could be heard. Seemed like they had landed in the lake and just like Koji said, they would live.
+
+Unfortunate.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927303781396406282" id="message-927303781396406282" title="Message sent: 03-Jan-22 04:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+The figure emerged from the icy abyss, shivering as their pink clothing was now almost chilly white. Despite injuries on their forehead and hands, they seemed to be more focused on the destroyed newspaper.
+
+&quot;Grrrr,&quot; They snarled, kicking snow around in frustration. &quot;I hope they choke on <strong>the massive ship once it&#39;s arrived here!</strong>&quot; They shouted out loud. Loud enough for Koji and Scylla to both hear.
+
+&quot;...Though, they never said no to my question, did they? Heh. <em>Heheheheheh.</em>&quot; They greedily rubbed their hands together. &quot;Looks like this trip wasn&#39;t so bad after all. Next article is going to be a blast. Verga will be furious...and that&#39;s all good! Bahahaha!&quot;
+
+They descended down the mountain path, laughing merrily on the way there. Their laughter haunted the skies, causing Koji&#39;s birds to retreat back to the cabin for comfort. While some had evolved to endure the cold, no sane bird could endure the unnerving presence of a pink weirdo ranting about newspapers and poetry. <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="927549413142962237" id="message-927549413142962237" title="Message sent: 03-Jan-22 09:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Watching the body ragdoll through confetti of shards and splinters was cathartic. A release of pressure, the stress of listening to such a persistently whiny little morsel fading away. Finally, peace... or, what could pass for peace in her presence, anyway.
+
+<strong>&quot;How unfortunate for you. I&#39;m sure the loss of that window was so very tragic.&quot;</strong> Rider tossed aside Koji&#39;s critiques, peering through the gaping hole left behind as the loud-mouthed buffoon scurried off. <strong>&quot;I suppose you will simply have to get a new one fitted. Just be glad I did not throw him at a load bearing wall.&quot;</strong>
+
+Good. Their unwelcome guest was leaving, back down the mountainside. With him gone, Scylla turned around, looking over at her master as he idly dined on toast and coffee.
+
+Time to answer the obvious question.
+
+<strong>&quot;What was that moron wasting his breath about? A ship due to visit? It appeared you knew more about it than he did.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927549440863109171" id="message-927549440863109171" title="Message sent: 03-Jan-22 09:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 12:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="927593534373126165" id="message-927593534373126165" title="Message sent: 04-Jan-22 12:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">‘Yes, you are right. This is quite tragic.’ Koji affirmed, flashing Scylla a look of disapproval, as if she had just stated something painfully obvious. He started buttering his toast, before loading it up with more jam than one would think was physically possible on top of the perfectly toasted square.
+
+‘I’m aware that Riders are all high maintenance creatures, but one would think it refers to their high mana consumption. I didn’t expect to have to pay out of pocket for everything else too. What are you, a Berserker in disguise?’ He continued his lecture as he spread the mountain of jam around, making sure that every inch of the toast’s surface was covered in the sweet sticky mass. 
+
+The proportion was all wrong. There was more jam on that toast than the toast itself. The jam jar on the table looked suspiciously…empty. How was he going to eat that without making a total mess-?
+
+Scylla’s curiosity would not be satiated, as Koji simply teased her by holding onto his disaster breakfast…without taking a bite. The jam wobbled ever so slightly as he breathed, getting dangerously close to spilling, but just barely held its shape. Oh, the agony of suspense…
+
+And the suspense continued to hang, as Koji moved on to more urgent matters. ‘<strong>Outsiders</strong>,’ he informed his Servant, and the loathing in his voice was startling. ‘They come once in a while and ruin everything.’
+
+His eyes flitted to the broken window the mystery Servant had exited. ‘We are running short on time. If even that pink buffoon could spot the ship, then chances are high that it will touch land before…’ 
+
+His eyes lost focus for a moment, his lips pursing in dismay as if he had just witnessed mayhem somewhere far away.
+
+‘They’ll be here within the hour.’ He blinked, and his gaze was trained back on Scylla with renewed interest. ‘I have use for you after all,’ he concluded.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927593569768841216" id="message-927593569768841216" title="Message sent: 04-Jan-22 12:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 12:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="927599507875692554" id="message-927599507875692554" title="Message sent: 04-Jan-22 12:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Did Koji think that smearing all of that jam onto his toast would taunt her, somehow? Did he think the token resemblance to gore would somehow set her off? How silly. Though then again, she should not have expected any better from him...
+
+...
+
+...After all, how was she even supposed to get worked up over such a pale imitation? One that bore only a token visual resemblance, but failed to match up in any other regard? It did not bear the tantalising rusty stench, it was not accompanied by the screams of those it rushed forth from, nor was the taste even remotely comparable. How dull, of both it and him. All he would get in terms of reaction was a grunt of disinterest.
+
+In this instance, his words would be more interesting than he details? Outsiders, on a boat? How clinical a term to refer to them. No, from the sound of it, they were invaders, coming to pillage the lands for all they were worth. A most common sight.
+
+To sink her teeth into the flesh of sailors once more. Her hands curled up into fists. It was as though she had never left the bygone days of Ancient Greece.
+
+<strong>&quot;So be it.&quot;</strong> Scylla declared, looking over to Koji with a newfound purpose in her eyes. Even then, it was hardly a glowing look, but at least the frown on her face was not because of him. <strong>&quot;I&#39;ll tear their vessel to shreds and let them drown in the muck... That is, if you are willing to let your precious hound off her chain?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927599526032859236" id="message-927599526032859236" title="Message sent: 04-Jan-22 12:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/c20cea1431265d0f6c25f9415f828dea-CB8E0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="920790125363998720" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 05:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="927679498722357278" id="message-927679498722357278" title="Message sent: 04-Jan-22 05:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Scylla&#39;s response took Koji by surprise. Her fists curled and uncurled, her eyes so fiercely focused on the tantalizing image of shipwreck. It was a look that he was all too familiar with, that same ravenous look in her eyes when she tore his kidney out of him and brought it to her lips. Hunger, bloodlust, like a dog that had been trained to respond to a bell as a stimulus for food.
+
+All at the mention of a <em>ship</em>.
+
+There was more canine in her than he had thought. But whether that was a good thing still remained to be seen. While dogs could be trained, with some of them, the hunting instinct was so strong that they could never be allowed to walk off the lead. 
+
+Could he afford to grant Scylla total freedom in her method of destruction? What if he needed her to pull back? What if those outsiders brought with them knowledge...summoned a <em>necromancer</em> who could fulfill his needs? If anything were to happen to them...
+
+He would never forgive himself.
+
+&#39;...The chain stays,&#39; the doctor corrected Scylla finally. &#39;Because I will come with. Take us down to the docks.&#39;
+
+He made no effort to rise from his seat.
+
+What, did he expect Scylla to carry him there-
+
+&#39;Time is ticking,&#39; he hooked his fingers around the handle of his coffee mug.
+
+-judging by his lax posture, yes, that was precisely what he had in mind.
+
+And he was not open to negotiation.
+
+(To <span class="mention">#city-docks</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927679532704616459" id="message-927679532704616459" title="Message sent: 04-Jan-22 05:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20snow%20-%20mountain-lodge%20%5B920315421582848080%5D%20%282021-12-29%20to%202022-01-05%29.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-EDEA3.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="920790125363998720" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 07:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="927890692242542612" id="message-927890692242542612" title="Message sent: 04-Jan-22 07:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her Master intended to come along? Scylla raised an eyebrow, as though she had just heard a questionable joke. Him, accompanying her on a raid? When he needed a whole flock of birds to drag him out of bed in the morning? She would get better assistance from a barnacle clinging to her scaly hide.
+
+Still, she could tell that disobeying would only be bothersome for her in the long term. At best, he&#39;d fill her mind with more of his inane castigations, persistent prodding and poking without end. At worst, another attempt to exterminate her, to stab her in the back and send her back to the Throne of Heroes.
+
+Placed into that frame of mind, the choice was obvious, though that did not mean she liked it.
+
+<strong>&quot;Fine.&quot;</strong> She grunted, playing along with the doctor&#39;s whims. Well, it did not matter. In the end, she would still have her chance to let loose the beast within. <strong>&quot;But do not come whining to me when you get caught in the crossfire.&quot;</strong>
+
+So, she waited for Koji to finish his breakfast and get a move on. Except, it seemed her expectations of this glorified sack of meat were still too high.
+
+<strong>&quot;...You are hopeless.&quot;</strong> Scylla scowled, rolling her eyes. Reaching out, she would grab the man as one would grab a hefty sack, carrying her underneath her arms. <strong>&quot;I am a Rider, not a ride. If you wanted free lifts, you should have summoned a Horse.&quot;</strong>
+
+Either way, their destination was clear. The docks, and the boat that had docked their. With that in mind, the monster set off, master in tow, to meet this new foe head-on.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927890710827515944" id="message-927890710827515944" title="Message sent: 04-Jan-22 07:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

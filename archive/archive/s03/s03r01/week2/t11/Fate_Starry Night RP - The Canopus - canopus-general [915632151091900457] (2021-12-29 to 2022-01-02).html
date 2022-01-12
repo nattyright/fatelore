@@ -1,0 +1,945 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - canopus-general</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">The Canopus / canopus-general</div>
+
+            <div class="preamble__entry preamble__entry--small">An ocean liner commissioned to pick up investigators for the third expedition into Nirvana. Fitted with amenities and supplies for upwards of a hundred people. It has been sailing around the world for the past three months, and is currently en route to Nirvana.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 29-Dec-21 12:00 AM and 02-Jan-22 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/1ebad7ad85c36ca496574529618951e2-DF3A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="920792658031566859" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Dec-21 06:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="926234409630310461" id="message-926234409630310461" title="Message sent: 31-Dec-21 06:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I’ll be fine. . . It’ll be fine. We will be fine.”
+
+<em>Even his words seemed to be lies, as if they’d reveal their planned deception had the man taken any more concern for him. Dante could feel Saber’s hand pushing against his back, with his skepticism on his face about the cook’s choice of wordings on the mission they’d been sent on. He himself tried to not drop then and there, steeling his legs to not go and become like his arm. Weak. Useless. He tuned his ears toward the Saber’s nice words, thanking them for the time, but once again he didn’t goodbye. He simply gave his bow before letting solemnly nodding to Gaius’ forced impromptu counsel meeting with plans and such, even without knowing what he said in his native tongue, he knew he’d be dragged along with him.</em>
+
+“I do not . . . I do not like him or his servant. . . They do not seem to have much care for the lives on this mission.”
+
+<em>He couldn’t help but whisper it, fearful that she could have heard him say it aloud, but it could have been easily heard by his saber. He took a gulp, trying to wonder what she was. A servant that could hold armory like that. The ever so defensive attitude. It was mystifying, but the doctor couldn’t help but shake his head nervously at the idea of how she so quickly had shot at them. After a few turns and  minutes of traveling, they’d been back at his room, the mess of the haphazard summoning greeting the two before Dante went and picked up what he could. For a moment, he let the silence consume them, let the quiet sound of shifting shoes and the carpet crumpling under height cradle his senses before he spoke.</em>
+
+“Do you think this could be a suicide mission? The man. . . Allen, he said this is a suicide mission for us all. I do— I do not want to die.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926234465376796773" id="message-926234465376796773" title="Message sent: 31-Dec-21 06:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>His voice cracked a bit, fear clawed at his throat, but yet, surprisingly, he didn’t sound like he was going to cry. Simply the stoic and yet hushed voice simply reinforced itself. Demanding to be regulated once again for him. Refusing to be given into another tone that was not his natural reclusive sound. But he put his book back onto his bed and sat down, his eyes drawn to the title page. Even when he wasn’t looking at the Emperor his ears perked up on whatever sound they could hear. Be it assurance or the silence that continued after it.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/6cf64bd9c247558245a6d458a704284c-50F38.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="920792658031566859" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Dec-21 06:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="926240949624000532" id="message-926240949624000532" title="Message sent: 31-Dec-21 06:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Octavius when he entered Dante&#39;s room, stood away from his master, looking at part of the wall that he had turned into marble at his summoning. He ran his hand across it as he listened to his master&#39;s words and grievances. He listened to the truth in his words and his honest feelings. The Emperor could feel the will and everything that Octavius had wanted to see previously when he first laid eyes on the doctor. He looked at his gauntlet that brushed the marble-coated wall and then turned around to face Dante. He still didn&#39;t look much to Octavius, more noodle than man, no bark or bite, and a spine made of water. That was fine, however, for Octavius knew that those who judged only on what they could see of a frame were fools. He didn&#39;t care that he wasn&#39;t bold, at least not yet. He had said his piece and said it without room for remorse. Good. He wanted to live, even beyond the only other option being death. Good. He was not resigned to someone else&#39;s fate. Good. He simply needed to watch this seed grow.
+
+&quot;Dante,&quot; He started in a sympathetic tone. &quot;If you do not wish to die, then this isn&#39;t a suicide mission, nor do I intend to make it one. If you are not subscribed to the same notion as the rest of these fools&#39; suicide mission, then <em>what is your mission?</em> They are eager to die for their cause. You aren&#39;t that eager. Out of personally convinced cowardice or hidden bravery, I do not know, but I know one thing. The fact that you wish for a second option other than conceding to death, means that you are a better master and a better leader than that other pair. It means that you have more potential than most. It means I was right.&quot; 
+
+He wanted that last statement to linger in Dante&#39;s mind before he finished what he had to say he wanted to see in Dante&#39;s own eyes what Caesar&#39;s words meant. He wanted to see the master, doctor, Caesar, or whatever was hiding behind those eyes before he concluded his speech.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">31-Dec-21 06:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="926240980569579581" id="message-926240980569579581" title="Message sent: 31-Dec-21 06:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/1ebad7ad85c36ca496574529618951e2-DF3A7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="920792658031566859" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jan-22 08:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="926630161011572836" id="message-926630161011572836" title="Message sent: 01-Jan-22 08:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He had said it, be it if he believed it or not, he had said it. The feeling was almost as powerful as he expected it to be, the fear in him sizzled but with a repulsion for the idea of him dying so early as well. No, no no. He had to live somehow. Dante’s heard flew towards Octavius when he heard the gentle tone, part of the reason being the surprise that he was even capable of doing such a thing. But regardless, he listened intensely.</em>
+
+<em>Once the speech turned into a question for the Doctor, something within him crystallized, just like the marble that had been created on the floor. The plaguing feeling of that his goals were minimal, that those in itself weren’t supposed to happen. He could feel his actions freezing up, the cold numbness caressing his senses to lull his wishes to sleep for now. He wasn’t going to speak on it. He’d stomach it, even if he had so easily stated his will to live. He wasn’t going to give reason as why he chose to live.</em>
+
+“It is not that you are correct, no one wants to die an abrupt death. It isn’t what anyone goes to do. You’d be insane to. But, thank you BFF or considering me a better master, even when I do not see it.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/3b6c64dfae125ae6dc76876509c8c3b2-97E78.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">01-Jan-22 08:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="926630187863515156" id="message-926630187863515156" title="Message sent: 01-Jan-22 08:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/6cf64bd9c247558245a6d458a704284c-50F38.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="920792658031566859" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Jan-22 09:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="926643963178401872" id="message-926643963178401872" title="Message sent: 01-Jan-22 09:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Octavius gave a low rumbling laugh at Dante&#39;s words, not out of mock or of scorn, but genuine affection. Dante was humble, that&#39;s for sure. Although he did deflect a bit of his credit away from his words, Octavius was fine with his outlook all the same. It was leagues better than being confident to the point of foolishness in Octavius&#39;s book. While there was still a bit of a way to go for Dante to be was Octavius had envisioned, at least Caesar could still see the potential in his master. There was no doubt in the emperor&#39;s mind that Dante would be a spectacular master, he had the headspace for it. Octavius wasn&#39;t blind, he knew that Dante wasn&#39;t some coward or someone to run away in the face of danger. Dante wasn&#39;t even there at the start of the conflict with Archer, yet he came to his side regardless, from one side of the boat to the other. While he didn&#39;t know what his master&#39;s reason for living was and why it dwarfed the ease of death, it mattered not to Octavius. Especially since it was something that he did in his time. He never told a soul why he strives for greatness, nor did he need to. So he&#39;ll hold Dante in the same regard. If he wanted to tell the emperor, then he would, if he didn&#39;t, it mattered not. 
+
+&quot;Do you remember when I said that you don&#39;t deserve the title of Master? I still don&#39;t think you do.&quot;
+
+After the statement, Octavius then made his way over to Dante before kneeling before him. He had made his decision regarding Dante. He&#39;d put his faith in him like his father put faith in himself.
+
+&quot;Dante Jeanne Colt. I, Gaius Octavius Caesar, First Citizen of Rome, the Greatest Emperor known to the History of the Roman Empire, name you Imperator over me and all of Rome until the current campaign is complete. My word is my bond, your word is my order. You now speak for Rome and Rome will act for you. I will stand beside you as your Servant, Advisor, and General. I am at your command, Imperator.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-general%20%5B915632151091900457%5D%20%282021-12-29%20to%202022-01-02%29.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">01-Jan-22 09:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="926643999018721350" id="message-926643999018721350" title="Message sent: 01-Jan-22 09:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

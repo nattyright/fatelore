@@ -1,0 +1,1328 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - loading-bay</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">The Canopus / loading-bay</div>
+
+            <div class="preamble__entry preamble__entry--small">The area where supplies for the long journey to Nirvana are stocked and stored. Both supplies and people can enter and exit the ship from a hatch located on the side, which can be opened from within.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Before 28-Dec-21 06:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/f0ac24020853f51dc0129f0d8b9df96f-1EC99.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Magnetic#4437" data-user-id="291225855823446016" style="color: rgb(238,94,134)">Magnister Prominence</span>
+
+
+        <span class="chatlog__timestamp">22-Dec-21 03:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="922931539451469824" id="message-922931539451469824" title="Message sent: 22-Dec-21 03:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://media.moddb.com/images/games/1/28/27250/HighresScreenshot00009SMALLISH.jpg">https://media.moddb.com/images/games/1/28/27250/HighresScreenshot00009SMALLISH.jpg</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                            <a href="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/HighresScreenshot00009SMALLISH-E21DB.jpg">
+                                <img class="chatlog__embed-plainimage" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/HighresScreenshot00009SMALLISH-E21DB.jpg" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-211F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="923129060031340564" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Dec-21 04:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="923129061084106812" id="message-923129061084106812" title="Message sent: 22-Dec-21 04:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...What the hell is this,&quot; The words escaped Ace&#39;s mouth as he gazed upon the ship&#39;s food storehouse. &quot;Not enough food to last us after we set foot. What am I to make of this?&quot;
+
+&quot;It&#39;s, uh...&quot; The small cabin-boy managed, apologetic. &quot;I&#39;ll explain, the limited funds we received from our sponsors didn&#39;t allow us to pack as much food as we wanted...  and picking up the numerous investigators along our way made for a longer trip than expected. And, erm... flocks of <em>seagulls</em> have also been raiding our stocks ever since we departed from...&quot;
+
+&quot;Seagulls?&quot; He repeated, cutting the cabin-boy. &quot;You&#39;re telling me <em>seagulls</em> are slowly starving us to death? <em>Seagulls?!</em>&quot;
+
+&quot;I, uh... I don&#39;t know, sir...&quot;
+
+&quot;The hell you mean, you don&#39;t know?&quot; He yelled, a vein on his forehead bulging. &quot;You can&#39;t even secure our <em>food</em>, for fuck&#39;s sake! What sorta shabby, good-for-nothing crew is this?!&quot;
+
+Rage slowly built up in Ace&#39;s guts. This ship had, to say the least, exceeded his wildest expectations, but not in a good way. 
+
+A search party, competent Magi and survivalists, scientists and explorers what whatnot, set to travel to a nomadic city to find out what exactly was happening there. They were the third investigation crew. The two before them had failed in their task. In fact, they had failed so hard that not a single one of them managed to come back from the island. The only salvageable piece of information they had gotten their hands on was an old, waterlogged journal. 
+
+Suffice to say that this wasn&#39;t gonna be easy, not even for Ace.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923129154097020979" id="message-923129154097020979" title="Message sent: 22-Dec-21 04:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A measly two hours after setting foot on the Canopus, he was already confronted with a few problems. His two biggest issues: The relatively young age of the investigators and their apparent lack of experience, and the inefficiency of the ship&#39;s crewmates coupled with their lack of resolve. They managed to look understaffed even with fifteen-something crew members. He was already having head-aches just thinking of working together with these idiots, both with his fellow investigators and the Canopus folks. He had a feeling that his first impressions were biased, that his standards were perhaps too high, but he didn&#39;t care. He couldn&#39;t forgive unprofessionalism.
+
+&quot;I-I&#39;m sorry, sir!&quot; The words of the cabin-boy suddenly brought him back to reality. Right, he was chewing this boy out for not properly securing the ship&#39;s food rations. Not the smartest move in hindsight, he wasn&#39;t exactly responsible nor did he have authority over this matter. Even though he was fuming, Ace still had the presence of mind to lock away his emotions with Adfectus Missus. Reaching for the inner pocket of his suit, he took out a single round. A .5 Magnum revolver round marked with two letters: MK. 
+
+Shutting off any distractions, he closed his eyes and focused solely on the round. He could feel the shapes, the volumes, how the many parts that came into the manufacturing process assembled together in harmony. The metal rim, the cartridge case, the primer, the bullet. At the same time, he felt his guts aching slightly. His artificial circuits working in tandem with his natural circuits to mix his Od with his emotions. Apathy started hitting him, a feeling he had grown accustomed to. <em>Imbuing it</em> with anger, the bullet flashed in red for a split second. He could immediately feel the weight of the bullet shifting, much like his own emotions shifted.
+ <em> </em></span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Dec-21 02:36 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923129213505138710" id="message-923129213505138710" title="Message sent: 22-Dec-21 04:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">At the same time, the cabin-boy asked the weird man who snapped, suddenly held onto a bullet and stopped for a while. &quot;Erm... sir?&quot; 
+
+&quot;Do something about the seagulls,&quot; Ace quietly answered, his tone way more relaxed than previously. &quot;Notify the captain, the first mate, the cook—anyone qualified.&quot;
+
+Confused about this sudden show of bipolarism, the boy slowly nodded his head before running off. Playing with the bullet in his hand, Ace stood against the wall of the loading bey, sighing audibly.
+
+&quot;I have a sinking feeling this ship&#39;s gonna sink before we get on land...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/d5a841d9ede5502bd09313faea7f001a-A0BB6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="923129060031340564" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Dec-21 04:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="923135368684011572" id="message-923135368684011572" title="Message sent: 22-Dec-21 04:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>Perhaps, if I don&#39;t throw you off myself.</strong>&quot;
+
+A voice rumbled behind Ace as a shadow eclipsed. A deep voice, oozing quiet power and authority that caused Ace&#39;s bones to rattle slightly, as if the voice belonged to a mountain instead of a man.
+
+To be clear, it was a man. A man with a white suit, muscles bulging, threatening to tear the shirt apart at any moment. What was a club bouncer doing on an expedition ship? Was there some secret night club that Ace had failed to notice?
+
+No, that was absurd.
+
+Then who was this man?
+
+—
+
+Security was a thankless job.
+
+Granel thought simply as he sized up Ace, eyes trained on the soldier&#39;s gun. A MacKenzie? It was a popular choice. Unlikely to jam. Fairly accurate, deadly. Yet Granel wasn&#39;t concerned about being shot. On the contrary, he was worried about someone else getting pumped with lead produced in some Olympian sweatshop. Who was this guy, swinging a gun around, threatening the ship&#39;s crew?
+
+&quot;<strong>Put that thing away before you shoot someone&#39;s eye out.</strong>&quot; Granel scoffed as he lifted his eyebrows. &quot;<strong>Who are you to wave that at the ones generously giving us a ride to Nirvana, to payback! Name. Room number. Hired duty. Why are you here? Falsification of information is an obstruction to the Canopus&#39;s security. Don&#39;t lie. This isn&#39;t my first rodeo, MacKenzie.</strong>&quot;
+
+He elected to ignore Ace&#39;s strange behavior, at least for now.
+<span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-211F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="923129060031340564" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Dec-21 05:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="923152147355402270" id="message-923152147355402270" title="Message sent: 22-Dec-21 05:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Looking at the source of the low-sounding voice, Ace had to do something unusual: <em>He raised his head to meet that of the mountain of a man who called out to him</em>. You&#39;d think that a guy as big as this suited fellow would stand out more, yet he hadn&#39;t seen his face on the ship yet.
+
+&quot;MacKenzie...?&quot; He repeated, his eyes following the big fellas&#39;. Seems like he was looking at the Magnum round he held between his fingers. Right. The round was pretty big, pretty heavy too, but it took a keen eye to spot it out from afar. As if the thunderous voice, the &#39;not my first rodeo&#39; line and the bigger-than-big size of the fella didn&#39;t make it obvious enough, his subtle comment confirmed that he wasn&#39;t your typical big guy. Perhaps had he finally found someone decent amongst the softies of the boat?
+
+&quot;My bad,&quot; Ace spoke calmly, a stark contrast to the boisterous man&#39;s tone. &quot;I didn&#39;t mean to impress or threaten anyone with that bullet, but I understand that it might be unsettling or alarming to look at for <em>someone who&#39;s not used to &#39;em.</em>&quot;
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923152302821486593" id="message-923152302821486593" title="Message sent: 22-Dec-21 05:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Swiftly pocketing the round in his immaculate white suit, he took out an ID that he immediately flashed to the security guard. &#39;Name.&#39; the statement echoed in his head. That&#39;s right. He was a highly respect solider in Geneva&#39;s army. The rookies knew of him, the high-ranks saluted him as he passed them by. He <em>rarely</em> needed to present himself.
+
+But this was not Geneva. One of the welcome changes he went through during his assignments was the fresh feeling of starting a-new, where no one knew who you were. It felt good to be treated like a regular person. On the Canopus, he was just one more investigator amongst a whole crowd of investigators.
+
+&quot;Ace Colin. Room 107. <em>Investigator</em>. Thought I&#39;d take a look at the ship while I still had the chance, get a feel of how organised the crew and the journey is. Can&#39;t say I&#39;m pleased with what I&#39;ve seen &#39;til now.&quot;
+
+Unpleased might&#39;ve been an understatement, but he didn&#39;t feel the need to elaborate on his feelings. If the security guy had seen him up until now, he must&#39;ve heard his outburst too. If he was as perceptive and professional as Ace was, he might&#39;ve shared his sentiment too.
+<span class="mention" title="Magnetic#4437">@Magnister Prominence</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/d5a841d9ede5502bd09313faea7f001a-A0BB6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="923129060031340564" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Dec-21 05:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="923321017118650388" id="message-923321017118650388" title="Message sent: 23-Dec-21 05:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>Hm.</strong>&quot; Granel rumbled, rubbing his recently shaved chin. An investigator made for an excellent alibi. Granel hadn&#39;t met every single one face to face, despite the long journey. He knew everyone on the security team, but investigators? Most were intimidated by his size and voice.
+
+Not this one, though. Maybe he was made of sterner stuff. Maybe he was an imposter. A spy. It wouldn&#39;t be hard. As much as he hated to admit it, Ace was correct. This crew wasn&#39;t the most competent in the world. Perhaps they did need an extra kick of motivation.
+
+Besides, why would a spy start screeching out in the middle of a storeroom? That would get the word out, for sure. He&#39;d check the crew roster when he got the chance. 
+
+Granel eyed the ID without taking it to verify. Knowing him he&#39;d crush it on accident. It looked real enough, but that wouldn&#39;t stop him from digging into this on a later time.
+
+Security was such a thankless job.
+
+There was only thing left to do, then:
+
+&quot;<strong>It&#39;s pretty bad, I&#39;m sad to say.</strong>&quot; Granel sighed as he slumped his shoulders. This was one of the most important jobs of his career, and he had been saddled with...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923321073804644404" id="message-923321073804644404" title="Message sent: 23-Dec-21 05:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A bunch of clowns.</strong> Nonetheless, the crew and the investigators they carried were <strong>his</strong> clowns. He wouldn&#39;t tolerate them getting smacked around by some soldier, if that was what Ace was, anyways. Guns were flexible. He had protected a man from a gardener with a gun once. For all he knew, this man could&#39;ve been a baker.
+
+&quot;<strong>We&#39;re getting closer to Nirvana with each passing day, and our food supply dwindles. My job is security, and that includes food. I cannot protect people from incompetence.</strong>&quot;
+
+&quot;<strong>We can, however, teach them to be less so. You probably made that kid cry. Do it again, and I&#39;ll throw you overboard.</strong>&quot; He would do it, too. Even if this was a small infraction. Security is pivotal.
+
+&quot;<strong>A pleasure, Colin. Call me Mason, I&#39;m part of the Investigator&#39;s Security Team.</strong>&quot; He offered a massive hand towards the soldier.
+
+&quot;<strong>Did you only bring a bullet with you, or is there something you shoot it with?</strong>&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923321110018285589" id="message-923321110018285589" title="Message sent: 23-Dec-21 05:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-211F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="923129060031340564" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Dec-21 06:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="923338198879457381" id="message-923338198879457381" title="Message sent: 23-Dec-21 06:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Member of the investigators&#39; security team, <em>a colleague</em>.
+
+&quot;...the pleasure is shared, Mason.&quot; He greeted the massive hand with his. God, never did he think he would meet someone with larger hands than him. How did the guy even wipe his ass with hands that big. Hell, how did he pluck toilet paper without shredding it to bits? ...no, did he even fit on top the ship&#39;s toilets in the first place?
+
+&#39;Do it again, and I&#39;ll throw you overboard.&#39; 
+
+Not only did he not mince his words, but this Mason guy had the physique to actually back-up his threats. Ace was no stranger to authority. He was, and still is, subjected to it pretty much daily. There quickly came a point where he stopped fighting it, when he realized the futility of going against orders. As a soldier, you weren&#39;t meant to question authority. You just obeyed.
+
+<em>But that only applied to his superiors.</em>
+
+If not for his magecraft-induced apathy, he would&#39;ve picked up on the guard&#39;s words. In his current relaxed state, he knew better than to cause ruckus mere hours after his arrival on the boat. He wouldn&#39;t, <em>couldn&#39;t</em> get his task done if he started picking fights left and right before reaching land.
+
+But really, he had no sympathy for people who didn&#39;t do their job correctly. This was the reason why he didn&#39;t like working with others. More often than not, he was sent on assignments that could feasibly be done by a single person. Even if it was tricky at times, he was completely fine with it. Increased risks were a price he was more than willing to pay if it meant that he was free in his approach, free of the reigns and obstacles that incompetence brought him.
+<em> </em></span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Dec-21 02:46 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923338451946991696" id="message-923338451946991696" title="Message sent: 23-Dec-21 06:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">But unfortunately, this was no solo task. The exploration of a nomadic city as big and dangerous as Nirvana surely couldn&#39;t be done by a single individual, and that&#39;s without mentioning the <em>investigating</em> part. If this operation was to go smoothly, people needed to <em>cooperate</em> amongst each-other, and he was people too.
+
+&quot;Let the kid cry,&quot; The veteran spoke as he pushed up his glasses. &quot;With a little chance, this exchange will stick to him and he might grow as a result. I agree that we should teach people to be less inept, but there&#39;s only so much you can teach by gently telling them not to be inept. Can&#39;t exactly sharpen a blade without grinding it against stone, can you.&quot;
+
+A very army-like mentality. The roots of this bullet-holding, suspicious-looking man were slowly but surely starting to show.
+
+&quot;As for the thing that shoots the bullet, I&#39;ve got it holstered on my shoulder.&quot;
+
+ Barely noticeable under his suit, there was indeed a <em>slight bulge</em> on his left pectoral.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/d5a841d9ede5502bd09313faea7f001a-A0BB6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="923129060031340564" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Dec-21 01:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="923440778938822706" id="message-923440778938822706" title="Message sent: 23-Dec-21 01:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With little chance, that kid would resign and find a new crew, if he could. Ace was unfortunately correct, despite his attitude. Nonetheless, yelling at your subordinates never went well. You taught them fear instead of respect.
+
+Or so Mason thought. With resignation, he let it go. There were more important things to deal with.
+
+&quot;<strong>Whatever. Is that a MacKenzie? Hopefully not an antique. There was a brief stint where they decided to use a wooden stock. Warped like hell. They should&#39;ve figured that out before they sent them out onto the damn ocean.</strong>&quot;
+
+Granel nodded to the bulge as he finished his handshake with Ace, though it was ginger. Granel was wary to crush the man&#39;s hand. His strength was easy to underestimate, and by the time he realized, he was paying for someone&#39;s hospital bill.
+
+He had worked jointly with a few police forces in the past, beyond his hometown. Their armory was pathetic, and he had gotten the luxury of viewing the folly of early weapon designers in a flooded world. Clowns.
+
+&quot;<strong>Though, in the end, a gun is a gun. If you squeeze the trigger, someone else dies. Simple as. I always had trouble with guns though, because, well...</strong>&quot;
+
+The security guard made a gun with his fingers. Ace was experienced enough to know they would barely fit around the trigger. Forget wiping his ass. How did this man <em>live</em>?
+
+&quot;<strong>Fists work. They&#39;ll crush Nirvanan bones all the same. I&#39;ll leave the shooting to the pros. You, by the looks of things. If you ever want a job as a quartermaster, I&#39;ll talk to the captain. Maybe you can figure out a way to stretch these supplies. We&#39;ll probably have to hunt or scrounge when we reach Nirvana, anyways.</strong>&quot;
+
+The less, the better. Granel sneaking around in the foliage trying to catch a rabbit was amusing, but hardly practical. 
+<span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-211F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="923129060031340564" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Dec-21 04:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="923488793749778442" id="message-923488793749778442" title="Message sent: 23-Dec-21 04:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...yeah, I see the problem,&quot; Ace said with a half smirk, eyeing the guard&#39;s humongous hand. &quot;It&#39;s a shame, but I don&#39;t think you would&#39;ve made it far in the military. Ain&#39;t never heard of a proper soldier who couldn&#39;t shoot a gun and had to rely on his fists instead.&quot;
+
+&quot;As for the gun, not a MacKenzie, definitely an antique. Ever heard of a company called <em>Smith &amp; Wesson</em>?&quot;
+
+An old-world brand, extremely retro. Unless you were an aficionado, the name would probably not ring a bell. Ace had heard about the few... unconventional approaches that the MacKenzie company had taken with some of its products, but unless they were tried-and-true, they wouldn&#39;t have been picked up by the military. Not in Geneva, anyway.
+
+Reaching for his inner pockets, a click was heard as the strap on his holster disconnected. Ace took his hand out, and with it came a large handgun with a comically long barrel. It almost looked like the guns you&#39;d see in cartoons, the kind that would shoot flags with a huge <em>Bang!</em> drawn on them. Stretching out his arm while aiming on an empty spot, he checked the cylinder. Empty chambers, five of them.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="923488984640942142" id="message-923488984640942142" title="Message sent: 23-Dec-21 04:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Model 500 magnum, five shot. 10.5 inch barrel, stainless steel with compensator. Weights almost 4 pounds by itself, shoots half-inch bullets. Closer to a rifle than an actual handgun, hasn&#39;t given me a reason to drop it yet. We&#39;ve been best buds for a few years now.&quot;
+
+He pocketed the magnum back in its holster, briefly spinning it on his index  finger. It was definitely on the stronger side in terms of handguns, but definitely <em>not a standardized piece of military equipment</em>. Granel might&#39;ve been compelled to think of this shady guy as a soldier, perhaps even a high-rank, but what kinda soldier brought oversized magnums on missions with them?
+
+&quot;And I appreciate the offer of the position of quartermaster, Mason,&quot; He started. &quot;But I&#39;ll have to pass. We have a day... maybe less until we arrive at Nirvana? I&#39;m ashamed to admit it, but not even I can reform a whole crew in half a day. We won&#39;t be seeing them much once we get on land, anyway&quot;
+
+And that might be for the better, he was compelled to add but ultimately restrained. After all, if they couldn’t be bothered to catch fish on their boat trip, who’s to say they could hunt? Or be useful at all?</span>
+
+                                <span class="chatlog__edited-timestamp" title="25-Dec-21 06:14 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/d5a841d9ede5502bd09313faea7f001a-A0BB6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="923129060031340564" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Dec-21 04:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="923849315053608971" id="message-923849315053608971" title="Message sent: 24-Dec-21 04:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Good point.</em> Granel thought to himself as he pondered Ace&#39;s words. It didn&#39;t matter how high up the totem pole the soldier was—there was no way to reform a crew in under a day. It was fundamentally impossible to change someone in such a short amount of time. Same with the quartermaster offer. It was a joke, and nothing more.
+
+To be fair, Granel didn&#39;t look like the person to crack a joke, and Ace seemed far too duty-bound for it to click. The joke was dead on arrival, like their food supplies.
+
+Oh, and the military thing. He tended to stay far away from those individuals, with their personalities beaten out of them. A funhouse mirror of what Granel could have been was not something he needed. Period.
+
+&quot;<strong>I can shoot a gun. Not easily, especially if it&#39;s a pistol, but I&#39;ve been trained, if you can believe it.</strong>&quot; Granel smirked, waving a finger as Ace procured the gun. An old-world brand? Granel had never heard of it, despite his constant stream of jobs. It wasn&#39;t that he didn&#39;t care for the old world, he had a whole stash of <em>those</em> in his room, but guns? Most were either lost or phased out as newer suppliers took the helm.
+
+Therefore, what Ace had was something special indeed.
+
+&quot;<strong>Too much gun.</strong>&quot; Granel replied simply. &quot;<strong>What&#39;re you piercing, elephant hide? A Berserker&#39;s skin? It&#39;s impressive, but not for me. If someone gets close enough that I can whip out a pistol, their bones should be shattered like wafer cookies. Once we get to Nirvana, I&#39;ll give you a live demonstration, yeah?</strong>&quot;
+
+With that ominous statement, Granel checked his watch. He sighed, slumping his massive shoulders in relief. &quot;<strong>Shift&#39;s almost over, thank god.</strong>&quot;
+
+&quot;<strong>Once we reach Nirvana, that&#39;ll be that. No more breaks. Instead, we&#39;ll be breaking those Nirvanans apart for what they&#39;ve done.</strong>&quot;
+
+Granel turned towards Ace. &quot;<strong>Monsters that should be purged for what they&#39;ve done to our predecessors. What say you?</strong>&quot;
+<span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-211F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="923129060031340564" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Dec-21 03:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="924389705842311239" id="message-924389705842311239" title="Message sent: 26-Dec-21 03:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What says I,&quot; He repeated.
+
+&quot;I&#39;m a soldier. What I think <em>doesn&#39;t matter</em>,&quot; He spoke plainly. &quot;I&#39;ve been ordered to find out what happened to our predecessors and maybe snatch a few blueprints along the way, and that&#39;s exactly what I&#39;m going to do. I didn&#39;t come here to waste my time picking fights with those secluded pricks.&quot;
+
+&quot;But of course,&quot; He added. &quot;If someone were to interfere, be it a Nirvanan or a <em>Berserker</em>, then I&#39;ll have to act accordingly. But that&#39;s an if, I&#39;m not going there with the intention to fight.&quot;
+
+Fists work. They&#39;ll crush Nirvanan bones. We&#39;ll be breaking those Nirvanans apart for what they&#39;ve done. <em>Monsters that should be purged.</em>
+
+The resentful words of the guard didn&#39;t go unnoticed. Ace shifted, taking a better look at the man in front of him. It was like there no end for that man&#39;s hatred towards the Nirvanan, each of his allegations more bloodthirsty and violent than the other. This brutal, Punisher-like mentality felt strange, especially coming from the man who threatened to throw him overboard for making a cabin-boy cry. <em>Did Mason know something he did not about the two previous expeditions?</em>
+
+&quot;Tell me, do you believe in an eye for an eye?&quot; He asked. &quot;You told me that you preferred using fists, but it seems to me like you&#39;re more inclined to jump the gun. <em>We don&#39;t know what happened to the last two investigation teams</em>, they could&#39;ve went and fell to their deaths at the bottom of a ravine for all we know.&quot;
+
+&quot;Which begs the question,&quot; He asked once more, his tone grave. &quot;What makes you think that that they&#39;ve done it, and why do you care so much?&quot;
+<span class="mention" title="Magnetic#4437">@Magnister Prominence</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/d5a841d9ede5502bd09313faea7f001a-A0BB6.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="923129060031340564" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Dec-21 04:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="925123563223146556" id="message-925123563223146556" title="Message sent: 28-Dec-21 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Granel looked at the soldier with disbelief. Was this man serious? The past two investigation teams just happened to take a holiday and fall into some chasm somewhere? All of them, without exceptions?
+
+Nonsense. Absurd. That was wishful thinking. Assuming, of course, that this man <em>did</em> think, and wasn&#39;t just a mindless drone, following orders.
+
+What did that make Granel? He and Ace were similar, but Granel believed in the completion of the job. He was paid to investigate and protect his fellow companions. He would fulfill that job to the fullest. Those of Nirvana would definitely come after them, and so Granel would crush them underfoot.
+
+Revenge for the dead, peace for the living.
+
+&quot;<strong>Eye for an eye</strong>?&quot; Granel scoffed, shaking his head. &quot;<strong>It was them. Every single member of the team just happened to disappear, with little no no trace? It was them! It had to be. If we walk out of there without making amends for the those who sold their lives for nothing out on that nature preserve, what world is that where that is anything but a spit in the face of what they were trying to accomplish?</strong>
+
+&quot;<strong>In what world is that anything but the deepest betrayal?</strong>&quot;
+
+Granel&#39;s watch beeped as he finished his rant, before sighing. &quot;<strong>I apologize. Soldiers have different perspectives than others. I understand.</strong>
+
+With heavy footsteps, the security guard walked past Ace. &quot;<strong>You&#39;re nice enough. It&#39;d be nice to work with a fellow fighter. If we&#39;re seeing seagulls, we&#39;re almost to land. I&#39;d like to take my last break in peace.</strong>&quot;
+
+With that, Granel left the hanger, leaving Ace alone to his thoughts...
+<span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20loading-bay%20%5B922931028664914000%5D%20%28before%202021-12-28%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-211F0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="923129060031340564" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Dec-21 05:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="925138430994808853" id="message-925138430994808853" title="Message sent: 28-Dec-21 05:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Blazing with passion and hatred, Granel left the hangar as abruptly as he first entered it, not even giving Ace room to retort. To call him vindictive would be an understatement.
+
+<em>It was them!</em> The words kept echoing in his head, little more than ramblings of a mad man to his eyes.
+
+In the end, Granel was right. Soldiers <em>did</em> have different perspectives over these matters. They did not worry about revenge nor about betrayals, or at least the good ones didn&#39;t. They had one and only one oath: <em>absolute obedience to military orders</em>.
+
+Ace wasn&#39;t left alone in his thoughts, for he had cast them aside a long time ago. Given a task, his duty was to commit to it until the end, not letting it go until it&#39;s been done.
+
+<em>Everything else was irrelevant.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
