@@ -1,0 +1,3187 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - city-docks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: lake / city-docks</div>
+
+            <div class="preamble__entry preamble__entry--small">Right next to Nirvana’s beach are the city docks, which are the only docking station that it has at its disposal. Tourists will usually reach the natural paradise here, albeit it seems like the docks haven’t been looked after for quite a while. The docks are littered with abandoned ships that have traces of rust to them. Flora has started to inhabit the surface as well, with algae covering the various ship vessels that surround Nirvana. Seems like the city hasn’t received any proper tourists in a while.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">01-Dec-21 11:28 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="915625393036337202" id="message-915625393036337202" title="Message sent: 01-Dec-21 11:28 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/3Aas9Jkh-55302.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/3Aas9Jkh-55302.jpg" alt="Image attachment" title="Image: 3Aas9Jkh.jpg (95.13 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 03:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="927094445751545907" id="message-927094445751545907" title="Message sent: 02-Jan-22 03:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It had been… a week already. And it was no where near being finished. 
+
+Ruth had caught wind of one Rosemary O’Connell. Subsequently plotted her death. Killed the Druid. Summoned A servant. Proceeded to be beaten to the brink of death by said servant. And now, gingerly held some form of… alliance with said servant. 
+
+A beautiful specimen really, that servant, even if Ruth had eaten of her forbidden fruits. And faced the consequences, at the hands of an angered berserker.
+
+Now they both stand upon the City Docks. Ruth having over indulged herself upon some followers to heal those scars left by her Servant. Whom the cult leader had decided to refer to as an ‘Angel of Death’ sent to help spread their holy mother’s influence. 
+
+“Berserker. Dearest. Isn’t that ship, such an ugly thing? It is an <strong>eyesore</strong> just to witness.” The woman mused to herself as she stared upon the vessel, now being overcome by the wrath of nature. “I am oh so very glad that my little <em>poppet</em> has put her caster to work. Now we wait for the stragglers to swim ashore. Then you can send them to a watery <em>grave</em>.” 
+
+Hungrily Ruth eyed the vessel, keeping a close watch for those who have decided to abandon ship. 
+<span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 06:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="927321458122850304" id="message-927321458122850304" title="Message sent: 03-Jan-22 06:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Banshee had found herself ripped from her long slumber and thrown into a world she no longer recognized, even the soil beneath her feet was different, its origin partially artificial while the landmass it rested on was entirely manmade. She could not help but wonder if mankind was already closing in on the powers and mystery that the gods of yore once commanded...
+
+True, she had been summoned as a servant of a human just as she had once served the mighty Morr&#237;gan. But the woman before her was nothing like the vaunted deity of war and fate. Already she had committed murder off the field of battle, sought to consume her servant&#39;s flesh and desecrated a tomb. Even after she had sought to stifle the curse that resided within her master, the Banshee could only watch in disgust as she drank deep from her congregation&#39;s bodies like a drunkard from a brewery&#39;s stock.
+
+And she decided to embellish the domains over which her servant controlled in an attempt to gain even more fame. Ruth could never have been farther from the ideals of her servant and so Berserker stood a distance to the side of her at the docks. Her cloak hung well over her head, giving ample shade to shelter her skin.
+
+&quot;Ships like those only bring invaders and desolation for us. They can not be allowed dominion, that much I will agree,&quot; the servant gazed out over to the metal ark and the seaweed binding it. She thought back to her vision on the edge of death. Those who came from afar would bring with them the restless spirits and thus must be damned, yet they were not the whole problem she was assigned to manage. The island had summoned its own and already Banshee could feel a dark, sadistic cloud submerge the ship in its haze.
+
+&quot;Your... friend brings much death with her. It is a shame their bodies will know only a metal tomb hidden by that endless water. Any that make it to shore deserve to live for fate has spared them from an undignified end.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927321522543136829" id="message-927321522543136829" title="Message sent: 03-Jan-22 06:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 06:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="927334695975395448" id="message-927334695975395448" title="Message sent: 03-Jan-22 06:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I agree as much. You think that <em>two previous</em> failed attempts would have taught them <strong>anything</strong> about not coming to this island.” Ruth sighed as 7 Points of bright burning light sat themselves upon her head. “But I suppose this show will get the idea across. Show the foolish outsiders that this attempt is futile.” 
+
+The cultist then smiled towards her servant. “Oh little Ashley was raised just right. She knows that this is the fate for those who dare enter Nirvana. For those who Dare not <em>assimilate</em> into our little community.” Her eyes now showing an intensified hunger, as the woman raised a hand. “Time to  rock the ship even more~” 
+
+Four of the Motes of light began to float up. As Ruth raised her hand. Before lazily flicking her hand towards the Canopus. 
+
+They then began to accelerate at a heightened speed, before collapsing into a single intensely burning point. 
+
+Upon contact with the ship a flash, occurred. Followed shortly by a thunderous <strong>BOOM</strong>.  As the small star found purchase in the ships hull. Exploding out wards with a significant amount of force, but not large enough to sink the ship. Those weeds that Caster has control of near the explosion would begin to wither as the flames licked across them, consuming up their mana. 
+
+But she could easily replace them as the mystical fire began to consume itself. If Caster so chose too.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927334790930239548" id="message-927334790930239548" title="Message sent: 03-Jan-22 06:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 09:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="927367525539393576" id="message-927367525539393576" title="Message sent: 03-Jan-22 09:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Allen had heard some stories, well not really stories they were some gossip the crewmembers had shared. It wasn&#39;t a surprise, they were going to a place in which two other crews had go before only to never return. Some of the crew members talked about the place being somewhat hunted or cursed and to be fair seeing the kind of world they lived Allen couldn&#39;t completely disregard their words. But when they arrived, he began to think those rumors weren&#39;t all that wrong. The place felt desolated, and it looked like it as well as he looked at the abandoned ships Allen couldn&#39;t help but feel curious about what could had happened to this place. 
+
+&quot;I wonder Graf&quot; he said as he moved to the edge to have a better look. &quot;How could a tourist island turn into this?&quot;
+
+As soon as he spoke he realized something, this were abandoned ships. If what he had understood from his servant was right she had been one as well once. He couldn&#39;t help but think that for her all of that was no different from seeing a bunch of dead people just laying around and forgotten.
+
+&quot;sorry...&quot; he said as he looked away.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 09:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="927372222505578517" id="message-927372222505578517" title="Message sent: 03-Jan-22 09:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Up on the deck of the Canopus Graf had been looking out towards the island as they drifted ever closer. She had seen ships in the docks all alone and abandoned. nature slowly claiming the mighty emperors of the waves. She understandably was not a fan of harbors like this as she felt much better on the open seas. &quot;Collapse of civilization can happen due to many factors. it can happen overnight or over decades.&quot; She had no clue what might have been the cause of this particular seeming collapse but she was certain that it wasn&#39;t safe there.
+
+Picking up the tiny plane once more she threw it into the air and used it to scout ahead. Watching the beaches from the eyes of the Heinkel HE-60 floatplane she spotted something odd. a few lights floating in the air but then suddenly four of them moved like shells towards the Canopus. &quot;Brace!&quot; Instinctively she grabbed Allen and jumped overboard with him in her hands and skated away from the vessel just seconds before a miniature sun detonated upon the deck and doused the ship in arcane fires. Her ship half manifested from crimson motes of light and several of her guns aimed at the shore.
+
+Now with him sitting on one of her triple barreled guns she lobbed several miniaturized naval shells at the beach and the location of the three remaining motes of light she could still see from her scout plane. Each shot that was taken was accompanied by a loud BOOM! as a shockwave rippled across the waters. The enemy would see a bright flash followed by black smoke then the shell impact. a split second later the boom of her guns followed and another split second later the shells detonated in the sand.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 09:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="927380556696658012" id="message-927380556696658012" title="Message sent: 03-Jan-22 09:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Que mierda?!&quot; Allen said as he was carried to by Graf over the sea.
+
+His expression turned from shock into seriousness as he began to think about the best approach. It was obvious that the ship was attacked and seeing Graf return fire means they were in range. All of this was to be expected to a degree, after all they had been given Servants frames for this very reason. 
+
+&quot;Graf how many enemies?&quot; he asked as he decided he needed more information. Number may provide a clue of who or what was attacking them. The attack was powerful although not as precise, he could deduce that either whatever spell that had been used couldn&#39;t snipe from great distance apart or that the shooter didn&#39;t bother to aim that well due the immense power of the miniature sun.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">03-Jan-22 09:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="927380600422285362" id="message-927380600422285362" title="Message sent: 03-Jan-22 09:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 01:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="927437614557069393" id="message-927437614557069393" title="Message sent: 03-Jan-22 01:45 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A third invasion?&quot; the berserker&#39;s fist clenched as Ruth&#39;s remarks conjured up an inexplicable anger that wished to spread to every part of her body. She did not know if the Island, Ruth or even the body she had inherited had summoned it but it burned a fire of visceral hate within her heart. The only word that came up from that fiery flame was <em>Milesian</em>. 
+
+But this did not make sense to her, the Milesians were the ones who had come to venerate the Aos Si. THe people who always knew they existed despite the bias of the world and their later faith. Why did she feel this anger? The fact she could not quench it or find an answer  deeply concerned Banshee and thus distanced herself further from Ruth. 
+
+&quot;You will have to tell me at a later time as to why they return despite the losses. Likewise if your whole city raises naught but assassins and witches...&quot; she said, a bit of that internal fire seeping into her words as she watched Ruth contribute to the onslaught against the boat. As it smashed into the hull and exploded, Banshee could feel four blunt needles jam into her head and push further in. The sudden sensation caused her to shriek and hold her cloaked head between her hands. Her duty was insistent, her duty was merciless.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927437638363926538" id="message-927437638363926538" title="Message sent: 03-Jan-22 01:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Four sailors you have cast into the stars they so rely on and made them one with their brilliance. Their memory honored by my tears and the hearts of their families. Will you proceed to snuff out the rest before you even lay eyes upon them and discern their purpose?&quot; Banshee intoned sorrowfully, motes of dust forming at her feet as tears fell into the earth. 
+
+She would continue her song but the flash of distant cannon drew her focus to the beach before her. It seemed despite the murderess and her machinations, the sailors could still lash out against their aggressors. As much as Banshee would wish fate would strike down her master with one terrible strike, it could not be so. And as its tool, Banshee raised an earthern wall of interlocking stone pillars against the steel rain and shield her master from the investigator&#39;s vindicated strikes.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927437702708756500" id="message-927437702708756500" title="Message sent: 03-Jan-22 01:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 02:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="927447038461886545" id="message-927447038461886545" title="Message sent: 03-Jan-22 02:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth stared upon her handiwork, with pride. Only to be further bolstered by Banshee’s claim of 4 sailors perishing. 
+
+Shame that it caused such a lovely face to shed tears in such an unfitting manner, but there was a heat noticed in the mournful servant . “Dearest berserker. I would love to regale you of the two previous incursions. But I do agree, another time would be more apt. The city of <em>assassins</em> and <em>witches</em> as you so call us. Prefer our solitary existence. Away from prying eyes of the rest of this drowned world.” The cult leader mused as strikes from Graf began their descent upon her location. 
+
+Only to be blocked by stone pillars called up by Berserker. Protecting Ruth from the grave. 
+
+“It seems as if they have teeth. Good. I shall show them who’s are <strong>sharper.</strong>” Banshee would see that monster rise up ever so slightly from below the surface. Who ever had chosen to fire back would not be leaving the beach unharmed.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927447108062175302" id="message-927447108062175302" title="Message sent: 03-Jan-22 02:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 05:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="927672901858115614" id="message-927672901858115614" title="Message sent: 04-Jan-22 05:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">From high up through the eyes of her small plane like a drone that circled overhead the pair of assailants on the beach she watched her shells sail across the water and then impact with a stone wall. Each shell that hit exploded and sent rubble flying everywhere but no cigar. The culprits were still around. &quot;Two targets. Servant detected... other contact unidentified.&quot;
+
+As Ruth prepared for her own attack Graf began so skim across the water as full speed. &quot;Attack incoming it will get rough.&quot; She said while noises from within the part that represented what she was as a ship indicated that some of the guns had already reloaded. Still she had a few more that had yet to fire so she adjusted her target and fired once more. a bright flash followed by a BOOM and then three more shells were sent flying at them. While concealed by the smoke of her firing she also launched a pair of torpedoes from her right rack towards the beach. Being underwater she was hoping they would not notice them until it was too late.
+
+During this entire time Allen would still be sitting upon the left side of her hull where there was a flat enough space for him to be at safely. &quot;What are your orders?&quot; She asked him as she now skated away from the Canopus to distance herself and allen from the inferno on the ship.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 06:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="927694164907397121" id="message-927694164907397121" title="Message sent: 04-Jan-22 06:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As soon as he heard Graf that there were 2 enemies one servant included Allen mind began to work. Right now the situation was unfavorable for them, the enemy was on land while they were on the sea but unlike them only Graf was capable of doing long range attacks. Allen was well aware he was to a degree holding Graf back as while she could manuver with easy a direct hit could basically mean instant defeat as Allen lacked the defense to withstand that which leaved such a big dent on the ship. 
+
+So when Graf asked for order he had only managed to come up with a single plan. Well it was less of a plan and more than a gamble, that unknown could probably be the master in that case Allen could fight but if it was a beast or something different his odds could be really be worse. Yet more than anything the though in his mind was to stop their enemies from destroying the ship. 
+
+&quot;Throw me towards them.&quot; he ordered as he looked at Graf &quot;We will separate them, keep the servant busy and I will deal with the Master whoever finish first will support the other.&quot;
+
+The first thing  was to stop both enemies to bombard them and so this was the only way he could think of, Graf couldn&#39;t get too close without losing her advantage and they wouldnt come close unless it was needed. 
+
+&quot;We will use the smoke of your next barrage of attacks as a cover and as soon as you fire, throw me as well. If one of them are busy you will have an easier time dealing with the other&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-22 06:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="927694257156935720" id="message-927694257156935720" title="Message sent: 04-Jan-22 06:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 12:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="927783120722346084" id="message-927783120722346084" title="Message sent: 04-Jan-22 12:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Banshee remained silent as Ruth illuminated her on the perspective of the Islanders.  Despite the wretched methods they employed, she could not find a meaningful argument  to bear against her master. Her homeland of Eire had seen more than its share of outsiders intervene in the affairs of its natives, often for the worse. She had cried for many of the land&#39;s sons and daughters&#39; untimely demise. While she had no sympathy for the city, she could at least understand their logic. 
+
+&quot;Hmm, that will do for now. We will make sure they will not return for their fate lies on Nirvana&#39;s soil...&quot; Banshee nodded, her reddened eyes focused on the point from which the cannons once roared to see the flash replaced by a growing white tuft of seafoam. This would require more than just a passive defense. The Berserker rose her gauntlets towards the sun and two pillars of white granite sprouted from the earth in response. 
+
+From the left, she pulled out a bow seemingly fashioned out of gnarled yew branches while the right yielded a single shaft of ivory stone, its tip a spade meant for digging into flesh and armor. The granite string yielded form into taut roots as the arrow was nocked and pulled back. She may have been no archer but this form and the memories of the hunters she mourned would suffice in marking her prey, a servant she believed.
+
+All it took was for her fingers to slip and the stone arrow launched with surprising speed and plummeted towards her foe, two more quickly chasing its plume. 
+
+Her target glistened in flame again and so Banshee slammed her heel into the ground to thicken the redoubt she had formed, shoring up those areas battered from the last salvo and creating a second lower layer to stick out like sharpened logs. One thing Graf&#39;s scout plane would notice was the presumed servant stayed further up on the shore than its master. A curious fact but one it could not help but report.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/a6387953bce16ac93c2771772818c702-FFCBF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(238,94,134)">Eagan, Corpse Bride</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-22 12:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="927783156873056316" id="message-927783156873056316" title="Message sent: 04-Jan-22 12:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 02:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="927810895701237770" id="message-927810895701237770" title="Message sent: 04-Jan-22 02:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The scent of ozone began to fill the air near Ruth. “I’m glad that we could come to a <em>mutual</em> understanding of this situation. Dearest berserker.” 
+
+The servant created another set of pillars and pulled from it a bow, and an arrow. The cultist was not entirely certain of where to aim so she followed the lead of her servant. Almost emboldened by the protection of the barricade formed by Banshee. As she gracefully strode further down the beach. 
+
+Ruth was seemingly… salivating now. Releasing 3 arcs of lighting out towards Graf and Allen, adding to the arrows raining upon them. The Points of light snuffing themselves for the time being, as Ruth deemed more use of her mystic code not necessary.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927810963422445579" id="message-927810963422445579" title="Message sent: 04-Jan-22 02:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 01:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="927978220421283851" id="message-927978220421283851" title="Message sent: 05-Jan-22 01:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Understood.&quot; She responded with a singular word while changing her course once again to avoid retaliation fire. She knew they were capable of ranged attacks so she was doing her best to remain evasive and damn hard to hit. From her little plane she saw how emboldened by the successful defense the unidentified target suspected as the servants master was making their way up closer. Watching them like a hawk she saw the berserker pull out a bow and then fire at her not just once but three separate times. 
+
+In response to this threat she fired up her radar system and woke it from passive to active. Aiming one of her freshly reloaded smaller guns she fired as soon as she got a bead on the lead arrow. On a timed fuse the shell exploded midair and destroyed the first arrow and threw the second one off course enough that it would hit into the water besides her but the third one scored a direct hit in her thigh. &quot;Ah!&quot; She let out a squeak of pain but her floatplane was now showing another development on the shore. The unidentified target was charging up lightning.
+-</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927978275442155571" id="message-927978275442155571" title="Message sent: 05-Jan-22 01:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Without much choice she fired in their direction once again and taking cover in the smoke of her own shells she turned directly towards the shore. Then there was a pair of explosion on the shore as sand water seaweed and rubble was sent scattering across the beach. The torpedoes had finally reached their target and detonated upon their stone barricades. Just as soon as those explosions occurred she grabbed Allen and threw him up into the air just a split second before she was hit by trio of lightning bolts. Each one going for her rather than Allen as she acted like a lightning rod with all of the metal that she had on her. Catching Allen again Once those attacks had ceased she kept on moving towards the shore where she would throw him again, this time over to where Ruth was out of the dust cloud before emerging from it herself with all fourteen of her guns aimed at Berserker.
+
+Whenever she would emerge from the cloud of dust and debris the berserker would easily be able to see that she had scored a hit and her master also had gotten in a hit of her own as her hair were all frizzly and stil standing on their ends. Something though had changed with the girl after being hit by lightning like that. she looked angry. And in her left clawed hand she held one of her own torpedoes as a bat.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 01:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="927981167293136937" id="message-927981167293136937" title="Message sent: 05-Jan-22 01:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Graf!!&quot; he yelled as he felt himself be throw into the air.  
+As he saw lighting strike his servant Allen felt angry, it was not the place for such emotion but the young man couldn&#39;t help it. So far that girl had done everything in her power to protect him from any harm and now it had go to the point she was willing to allow herself to be hurt for that. While part of his mind understood that was the smart thing to do as he would probably not be able to survive it unscathed, but even so that didn&#39;t make it any better.
+
+He clenched his teeth as she caught him again, he began to channel his anger towards the one target he could unleash it towards it. He remain silent, as even though he wanted thank her he didn&#39;t wanted to distract Graf not even for a second. As he was thrown he couldn&#39;t see anything due the cloud of smoke but he trusted Graf has pointed him in the right direction. 
+
+&quot;Blaze!!!&quot; as he yell the word flames from from his arms. The crimson flames began to come together, bounded by Allen will they formed a claymore, the design of such weapons was simple. The flames hardened as he fly forward. Were Ruth able to see him she would see a crimson light coming at him. As he pointed the sword forward it smashed into the wall Banshee had created burying itself deep into it and stopping his movement but as the sword penetrated the wall more cracks began to appear, his clash alongside Graf attack had weaken the wall it only needed one more push. 
+
+&quot;Abaddon!!&quot;
+
+Flames expanded through the cracks as the wall began to crumble in front of him Allen stood with his sword resting over his shoulder as he looked at Ruth. 
+
+&quot;You wanted a fight right?&quot; he said his voice sounding angry. &quot;Well here you have me&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">05-Jan-22 01:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="927981282099621889" id="message-927981282099621889" title="Message sent: 05-Jan-22 01:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/c20cea1431265d0f6c25f9415f828dea-D9389.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="927094444346470451" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 02:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="927997141308309565" id="message-927997141308309565" title="Message sent: 05-Jan-22 02:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(from <span class="mention">#mountain-lodge</span>)
+
+The lakeside was beautiful. 
+
+Though Koji had made it a point to avoid spending the night here, he had nothing against visiting its sprawling landscape during the day. It was wonderful to walk along the rambling paths of the lakeside woods, or watch the waterbirds dive in and out of the lake&#39;s surface to hunt their favorite prey. 
+
+Koji was often mesmerized by the hunt. He could watch them for hours. The way their bodies moved to the rhythm of the water and air, before swooping down to pluck fish out of the water with surgical precision. 
+
+He sometimes wondered what it felt like to hunt. What it felt like, to experience the euphoria of cornering his prey. He saw a flicker of that madness in Scylla. He saw it in his colleagues, in the outsiders who wished to trample all over their land. It seemed all so lovely, so addictive. So <em>easy</em>. A feeling that he had yet to partake. 
+
+Could all of that change today?
+
+<strong>&#39;You have a set of perfectly functional eyes. Can you please keep them on the road?&#39;</strong>
+
+Koji nearly choked on his coffee as scraps of metal flew past, inches away from grazing his head. The path to the docks was simple, but his ride was quite bumpy and erratic. Scooped up in Scylla&#39;s arms, mug in one hand and half-eaten toast in the other, there was little he could do to protect himself as Rider made a beeline for the ship...and charged right into enemy fire.
+
+&#39;Need I remind you,&#39; he continued in a stern voice, &#39;that my body is quite a bit more fragile than yours?&#39; He took a huge bite of his toast, somehow managing to balance all that jam and keep both him and Scylla stain-free. He took a gulp of coffee next, washing down the sweetness and draining his mug. 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927997158865666068" id="message-927997158865666068" title="Message sent: 05-Jan-22 02:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;In case you haven&#39;t noticed, flying debris can and will kill me. Deal with them, or get out of that Archer&#39;s line of fire&#39;—bits of stone and flame whizzed past them, coming from the raised pillars near the shore—&#39;and please, for the love of god, stay away from my dear colleague&#39;s new Servant!&#39; 
+
+(to <span class="mention">#canopus-general</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/a3fb14efd8e98e5554e3d6e7eb1e5516-62C46.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Scylla#0000" data-user-id="927094444346470451" style="">Scylla</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 02:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="927997314386251786" id="message-927997314386251786" title="Message sent: 05-Jan-22 02:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A thrilling game of life and death, where victory meant a full stomach, and defeat meant starvation. One that made the heart pound with adrenaline, flooded the brain with dopamine, both of them boiling over, turning the body into a feverish cocktail. To drink deep of it was exhilarating in a way that could not be easily described. 
+
+The only way to understand it was to taste it for yourself, guzzle it down until your lungs begged for breath and forced you to stop. On this day, Naoharu Koji would have the privilege of imbibing that rare concoction for the first time.
+
+It would put the child&#39;s play of his birds to shame.
+
+<em>BANG!</em> Projectiles whizzed past her face as she sprinted forward, a few of the bullets even shaving off stray hairs. They were a far cry from the slings and arrows she usually had fired at her. Still, she couldn&#39;t care less if a stray shell happened to clip her. She would be able to shrug off even a direct hit. But of course, that luxury did not extend to the good doctor, as he was quick to remind her.
+
+<strong>&quot;I am quite aware of how frail you are.&quot;</strong> Scylla snapped back, a tendril lashing out of her flesh to slap away a haphazard spray of stone chunks. <strong>&quot;Or have you already forgotten that? Do not micromanage me. It is in my interests to keep you alive. Now hold your breath.&quot;</strong>
+
+Without much warning, Rider would leap forth, off of the pier, and sending both herself and her master plunging into the sea. Faster this way, and less detritus to worry about.
+
+And, it would provide her the opportunity to ambush.
+
+(to <span class="mention">#canopus-general</span>)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 06:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="928055416880001095" id="message-928055416880001095" title="Message sent: 05-Jan-22 06:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth stood stalwart upon the beach as banshee’s barrier was beset by artillery and torpedos. “Persistent little <em>bugs</em>.” The woman spoke with disdain, as the smoke cleared and the enemy master had appeared upon shore. 
+
+A speeding thing then fluttered by, and the cult leader could vaguely make out the form of her good doctor. On top of what could be assumed to be a servant. That Filthy flying rat had one secured. This would be a conversation for later. 
+
+The arcs of electricity struck the servant, who had acted as quite the wonderful lightning Rod. But unlike those bolts of nature these held a more mystical capability. What sparks that were not dispersed collecting together from Graf and being sent right towards Allen. As another bolt shot itself in the direction of Koji and Scylla. 
+
+“Listen here, boy. I will say this once and only once. The fire is cute. This barring of your fangs, also cute.” The woman with her dirtied evergreen hair stood, as tall as she could for her stature, eyes hungrily looking down Allen. As if she were a wolf put to the brink of starvation. “But this. This place is no place for <em>little boys</em> this place will be your slaughter house. This place will be where you join the others who have tried invading before in the <em>grave</em>. Or, behave like a <em>good little boy</em> and assimilate so your transgressions can be reconciled. These are the only options for such <em>prying</em> eyes.” 
+
+As if on cue, the loose bolt of lightning had finished its course towards Allen. Going to strike the man right in the center of his back.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928055589605621783" id="message-928055589605621783" title="Message sent: 05-Jan-22 06:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Nat#6572">@Nat</span> <span class="mention" title="RaptorAttacks#0350">@RaptorAttacks</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jan-22 05:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="928402477789892640" id="message-928402477789892640" title="Message sent: 06-Jan-22 05:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Chaos swarmed around the hooded figure. Shot and shell rained down, scattering fragments of sand and stone across the beach. Yet she gave them no heed, even as they pelted her dress and bruised her skin, nor did she pay attention to the man with the flaming sword. It was his life to risk and hers not to take. Her walls were falling quickly to the enemy&#39;s barrage and it would be futile to keep raising the beaten earth.
+
+No, what she felt herself fixated on was the little soul charging up the bank and the leviathan that rushed by, thirsty for the open sea. Both were alive but she knew they should not be. One shaped by gods and one shaped entirely by man. The rage she had barely managed to supress earlier threatened to overflow mind and body. Her mantra began to constrict her thoughts. They were the undying, damned to come back beyond their time, to defy fate and interfere in the realm of the living. There could only be one solution...
+
+Banshee found her legs pulling her away from her bow, her arms firing one last ivory rod of hardened stone at the charging servant before they too felt the compulsion and her whole body now calmly walking towards the edge of the water, every step leaving behind a raised stone surface. Ruth and Allen would feel a cool breeze blow past them, the air piercing clothing and skin to chill their very bones.
+
+Banshee would meet Graf where water met earth and her iron gauntlets would halt the girl&#39;s explosive bat and began to clamp down, making the metal of the weapon groan with stress. The hooded figure towered over the ship girl and she would only see two red eyes gleam down upon her.
+
+&quot;What are you, construct? For I can grant you peace if your existence of flesh and metal is agony. Stop your advance and tell me,&quot; the words coming from the spectre at odds with her aggressive posture and potent strength that threatened to overwhelm Archer.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928402588783763456" id="message-928402588783763456" title="Message sent: 06-Jan-22 05:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jan-22 10:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="928472773611900988" id="message-928472773611900988" title="Message sent: 06-Jan-22 10:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pain.... That was all he could feel right now. It was funny specially considering how moments ago he was ready to make that woman pay for this &#39;welcome party&#39; she had given both him and his servant. But it wasn&#39;t just that, to a degree he could understand why she would react that way. They were after all stranger suddenly coming to their island. But even so, this didn&#39;t mean he agree with her actions, far from it , to Allen all of this was a big overreaction to say the least. 
+
+But if he had to add something else it would be how her confident and arrogant tone actually annoyed him to no end. He had met many people with the same tone when speaking with others, people who consider themselves above others and looked down on people. Her words prove him right as even when he had managed to reach her she was most annoyed and not even taking him seriously. Calling his actions &#39;cute&#39; was bothersome he was ready to teach her how &#39;cute&#39; he was when he felt thunder pass through his body.
+
+&quot;Damn... it&quot; was all he managed he say, not even a cry of pain was able to escape his lips afterwards as he felt to his knees. 
+
+He couldn&#39;t move not even breath as he felt his body convulsing due the static and the pain. The only reason he was still conscious and alive was due his coat and his desire to not give that woman the satisfaction of beating him in one blow. But even thinking was becoming hard, yet thinking was he could do besides staring at Ruth on defiance.
+
+&quot;Is this....&quot; he managed to say as he smiled at her &quot;...all you got?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">06-Jan-22 10:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="928472872400339014" id="message-928472872400339014" title="Message sent: 06-Jan-22 10:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jan-22 10:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="928475798862704641" id="message-928475798862704641" title="Message sent: 06-Jan-22 10:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Standing on the waters surface just a little bit off of the shore Graf watched as the berserker shot another arrow and she responded in kind with a countercharge like before. Blowing the ivory arrow to dust. From the cloud of black smoke of her gun fire banshee showed up right in front of her. Instinctively she went to slam the torpedo across the berserkers midriff but was stopped by her. The metal of her torpedo was creaking as the woman began to crush it.
+
+Letting go of the thing Graf jumped back to get a few feet of distance. &quot;I am a warship. My ownly purpose in life is to kill.&quot; She responded to the question of berserker. &quot;And i feel better than i had ever felt before. This freedom. This form. This power... It is everything i want.&quot; She said and aimed a small gun at the torpedo in banshees hand and fired at it. her goal? Rather simple one. Detonate the thing with a shell of her own even if the fuse was inactive a direct explosive hit would still trigger the explosive payload within the object. She was relying on the fact that this servant was more of the ancient times and wouldnt know what a torpedo was by simply looking at it.
+
+Another pair of guns turned turned towards ruth as she fired one in that direction but with the intent to miss like she had done with the saber a day before. That shot was a warning to stay the hell away from Allen and that even if she was busy with berserker... she was still watching.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jan-22 11:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="928484031442591744" id="message-928484031442591744" title="Message sent: 06-Jan-22 11:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth shook her head as Allen crumpled to the ground. The only sign of any pain at all being a quite curse, which didn’t even grace the woman’s ears. “Not even giving me the slightest bit of pleasure. I suppose I’ll have to <em>tease</em> it out of you.” 
+
+Then the man before her spoke once more. Goading the cultist into indulging more. The hunger intensifying. “Oh so he does have a voice. Does he have a name as well. I would have you know, that is in fact not all I <em>got</em>.” She mused as she took another step forwards, her deep v cut dress with midriff showing gracefully moving with her form. As the Greek style sandals stepped into the sand. 
+
+But this beauty was ruined for a moment as a shot went wide. Obviously a warning shot from the servant paired to this man. “An interloper… what a spoil sport.” Ruth still approached, her servant would take care of the other obviously, and she bent downwards. The scent of ozone filling the air as electricity crackled across her finger tips. 
+
+“So young. So vibrant. You will make an excellent <strong>meal.</strong>” As her hand made the motion to wrap itself around Allen’s throat and lighting again was going to be sent through his body. But before that occurred a strange squirming sensation as if a worm had found itself underneath his skin, happened. 
+
+This much was clear, he could at least get free before the lighting struck again.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/ff83f1d340da1a9471f99977cf239103-2BCB4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(238,94,134)">Hawaii(Fairy(Derogatory))</span>
+
+
+        <span class="chatlog__timestamp">06-Jan-22 11:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="928484094692691969" id="message-928484094692691969" title="Message sent: 06-Jan-22 11:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Jan-22 11:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="928849410031509554" id="message-928849410031509554" title="Message sent: 07-Jan-22 11:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“You admit you are a weapon of war and yet claim to have freedom? This is nonsense…”  Banshee shook her head as the Archer/Rider? before her spouted words it likely only just learned. “A tool is to be used only when its master demands or when fate deems a new master worthy. There is no freedom for your kind, only usage and disposal…” 
+
+Banshee wished to speak more yet the little brat moved to shoot the hollow Lance she had wrestled away from the girl. It was a curious thing, much like one of those blasted fishes yet sloshed with an internal liquid. A human creation for sure, and one wielded by a warship nonetheless. The servant must be aiming to fulfill its purpose by any means thus Banshee had to act.
+
+The most she could do in that instant was toss it in the empty space between them, begin raising her own walls and brace for impact.
+
+<strong>Ba—BOOM</strong>
+
+The silver fish exploded in a cloud of sand and water, metal and flame. Servants and masters alike would be deafened and stunned by the blast, the water receding from the intense pressure waves. Ruth and Allen would loose sight of their allies in the cloud and could only hope for their survival.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928849475596845168" id="message-928849475596845168" title="Message sent: 07-Jan-22 11:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Banshee felt no pain from the blast, the stone wall sacrificing itself to protect her from the worst, yet there was discomfort, a long metal shard had impaled her stomach. A glance over her form revealed she had lost skin on both her arms, revealing the muscles underneath, her gauntlets slightly dented. 
+
+A brief respite was welcome as her bow was gone and she could not break such a well armed machine with only her hands and voice. A sword would not be enough… a club neither… a shield irrelevant with such explosive powers… a spear perhaps… but would one be enough and what hero of old should she honor?… oh, of course, <em>him</em>..
+
+With a tap of her foot against the sand, a long row of it hardened into rock and shaped itself into two spears, long and of dark red granite while the other was short and of sickly yellow quartzite. 
+
+With these in hand, she jumped forward and struck out at Graf. The red one was thrust down on the roof of Main Turret A while the yellow one sought to dig into the girl’s right torpedo tubes. All the while, a sharp wail sought to drown out her sense of hearing.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/a6387953bce16ac93c2771772818c702-FFCBF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(238,94,134)">Eagan, Corpse Bride</span>
+
+
+        <span class="chatlog__timestamp">07-Jan-22 11:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="928849533960605786" id="message-928849533960605786" title="Message sent: 07-Jan-22 11:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Jan-22 11:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="928859150824398918" id="message-928859150824398918" title="Message sent: 07-Jan-22 11:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That woman was annoying, all about her annoyed Allen; her aspect, her voice and specially how strong she was. Even a novice like could tell she was a better magus than him, although to be honest the same could be said about most of the magi alive. Still the situation wasn&#39;t getting better, she was coming closer and Allen was still unable to move and if she was telling the truth something worse than the last lighting was gonna struck him again. 
+ 
+As a warning shoot momentarily stopped her Allen eyes widened as he smiled as he looked down. He had been very lucky to have someone as Graf, even know she was looking after him. She was keeping her word when it came to that simple promise that they made when they met. 
+ 
+<em>So I will promise ya this, as long as you don&#39;t betray nor lie to me I will fight with ya till the very end Graf</em>
+ 
+As his mind went back to that moment he felt something entering his body, it was under his skin and honestly he didn&#39;t had any way of taking care of it right now. The situation keep getting worse and worse, while he didn&#39;t knew what she had done to him he assumed it was something to slowly kill him or something. Normal people would normally accept that this was probably their end and that there was nothing to be done about it. They would blame their end on the difference in talent or whatever and just accept death in this circumstances, after all there was nothing to be done. 
+ 
+&quot;I&#39;ll let my passion burn...&quot; but Allen wasn&#39;t what you would call normal. 
+ 
+The lighting came down on him as he remained still but instead of hitting him flames stood in the thunder way. Fire and thunder clashed  as steam began to come out of Allen&#39;s body, as his  body began to be engulfed by crimson flames. The thunder would find itself stopped by a magical energy of its same caliber. The two powers cancel each other as another crimson pillar reached into the sky.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928859219468365867" id="message-928859219468365867" title="Message sent: 07-Jan-22 11:54 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As the steam and flames began to dissipate Ruth would see for a fraction of a second a being whose whole body seemed made of flames. Greeting her was not the face of a man but a crimson mask with bended fangs and a creepy smile with big crimson eyes staring at her. She was now looking at the face of the devil, the elemental and the god the Ignis family had worshiped for generations, Supay. 
+
+“...and crush you” Allen said as his voice came from behind the mask as he stood on his feet. His body was covered in a crimson armor made of flames and in the blink of an eye Ruth would find a blade hovering over her shoulder ready to bury itself into her flesh and cut her in half. 
+
+“Cute enough for ya?!!!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">07-Jan-22 11:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="928859287697117254" id="message-928859287697117254" title="Message sent: 07-Jan-22 11:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Jan-22 04:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="929116119959232532" id="message-929116119959232532" title="Message sent: 08-Jan-22 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Not a peep. <strong>Not A Bloody, God Damned Peep.</strong> Even in the noise of the explosion She should have felt something, <strong>ANYTHING</strong> out of this fucking Brat’s mouth. 
+
+The Hunger fed into this fury. Into this <strong>RAGE</strong> that she lost herself to it. Those wild and hungry eyes seemed to lose the last drop of sanity.  As one thought <strong>CONSUMED HER MIND CONSUME CONSUME CONSUME CONSUME</strong> 
+
+“<strong>YOU BORE US SO, WE WILL LEAVE NOTHING FOR THE CROWS. NOTHING FOR THE VULTURES. NOTHING FOR THOSE WHO CAME HERE WITH YOU.</strong>” This new beast stared into the fiery mask. Unshaken by the display of magecraft. If anything it only made the thing that was Ruth Naomi more <strong>HUNGRY.</strong>
+
+The scent of ozone mixed into the sent of burning flesh. Allen’s blade found purchase within this things shoulder, a look of pain showed upon the face. But was quickly replaced by that crazed <strong>STARVED</strong> look. 
+
+Before the inferno before her could drag the blade across her body. Those three remaining motes of light made an appearance. One shot forth looking to push the man backwards, and consume his fiery armor , while three arcs of lighting closely followed. 
+
+A slight numbness along with a small amount of pressure also began to be felt across his neck. Whatever this meant, most likely was the result of whatever that strange sensation was…</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/ff83f1d340da1a9471f99977cf239103-2BCB4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(238,94,134)">Hawaii(Fairy(Derogatory))</span>
+
+
+        <span class="chatlog__timestamp">08-Jan-22 04:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="929116189748264960" id="message-929116189748264960" title="Message sent: 08-Jan-22 04:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/fe15d67c37b4ce3484bfa134caff1534-581AD.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="927094444346470451" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 10:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="929569277604954182" id="message-929569277604954182" title="Message sent: 09-Jan-22 10:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">By all means, Ruth and Banshee had the upper hand in this confrontation. They had been wise to limit themselves to the docks, pelting at the ship from afar instead of heading directly inside. They had no idea how many visitors could be there after all, anywhere from fifty to a hundred.
+
+Wouldn&#39;t it be so incredibly satisfying to watch it all sink beneath the depths?
+
+Yet these pestilent fools insisted in surviving. Like rats that you couldn&#39;t get rid of. Allen and Graf were putting up a valiant effort, the Archer being one of the few Servants who could attack a ranged enemy such as Ruth. Unfortunately, Ruth had brought a little friend for a test run: The enigmatic Banshee, which was more than capable of keeping Graf occupied. If anything, she was cornering her.
+
+Which left Allen alone to face off a frenzied Ruth. And judging by her expression of utter contempt and thirst, he was looking to be her next meal.
+
+It was a hopeless situation. Allen had bitten off more than he could chew while Graf was gradually losing her ranged advantage against Banshee. Since when had a warship faced off against spirits of old? Even worse, the ship was gradually breaking at the seems, apparently the doing of another Nirvana citizen that had assaulted the ship.
+
+Things were <em>bad</em>.
+
+...
+
+Ruth had finally overpowered Allen, reducing his valiant defense to shreds as his armor completely dissipated. He felt his mana reserves lower as he saw the woman get closer. He needed to act now or--!
+
+<em>&quot;The passion of King Lear!&quot;</em>
+
+Something shoved him aside, preventing Ruth from dealing a finishing blow and sinking her fangs into the boy. She stared in the air at awe, sensing a mana signature in the distance as she glanced at Allen, who was now several feet away of her.
+
+Despite him dodging, it was clear that the signature did not belong to him.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929569325264830474" id="message-929569325264830474" title="Message sent: 09-Jan-22 10:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+<em>clap clap clap clap</em>
+
+&quot;Oh, such a wonderful show you two have wrought! I&#39;ll say, I quite enjoyed it. Passion. Anger. Sadness. Rage. Ambition. Oh, we humans truly are the stuff dreams are made of!&quot;
+
+An oddly familiar tone echoed in Ruth&#39;s ears. One that filled her with shock and disgust. She remembered this person all too well. The one from the Nirvana papers. Unfortunately, it wasn&#39;t the one that had so graciously advertised her cult, but the more incompetent and indecent fellow.
+
+She felt tempted to grind her teeth on a tree stump. The frustration she felt was immeasurable. If that person was around, it could only bring misfortune.
+
+&quot;...But aren&#39;t you getting ahead of yourself now, dear Ruth? It is a characteristic of a poor work to end things before they have a chance to bloom. Rushed arcs. Dropped plotlines. Forgotten characters. You name it!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929569350342541332" id="message-929569350342541332" title="Message sent: 09-Jan-22 10:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://youtu.be/yprW-4ie-gk">https://youtu.be/yprW-4ie-gk</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UC1eEGe48zhT7sKte2gO6KcQ">Zona Random (revista)</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=yprW-4ie-gk">
+                                                        <div class="markdown preserve-whitespace">13 - The knight of rebelion ~ Fate/Apocrypha (OST I) - [ZR]</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/yprW-4ie-gk" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="929569664554639420" id="message-929569664554639420" title="Message sent: 09-Jan-22 10:57 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Graf felt two spears pierce her body. Hull integrity was compromised. It was akin to receiving a bombardment by an enemy fleet. She wondered if she could at least blast Banshee&#39;s body off before succumbing to her injuries...
+
+<em>&quot;Oh, Juliet&#39;s burning love!&quot;</em>
+
+...Then, a boost of energy nourished her soul. Was it confidence? A positive mindset? No. She felt as if she had just received a boost of mana, one powerful enough to make her parameters slightly better than they would be normally. It even applied to her resilience, allowing her to endure the pain of the spears and keep going, much to Banshee&#39;s surprise. It was time for the ship to fire back.
+
+Was it Allen who had supported her? Or...
+
+A pink figure revealed themselves, standing on the sinking ship with arms crossed and a smug grin on their face. Even if they weren&#39;t dressed in the most flamboyant of colors, their gigantically huge hat would have given their position away. Judging from their attire, which wasn&#39;t befitting of the time period at all, they were either a hardcore cosplayer or a person not from this world.
+
+&quot;Imagine if the Count of Monte Cristo ended early, with our good friend Edmond Dantes dying in prison. What if Captain Ahab never found his Moby Dick? Hercules quitting right after the first labor? Oh, please!&quot; The man laughed, sounding young in tone as they spun a feather pen in their hand, scribbling on parchment before promptly tossing it out in the open sea.
+
+&quot;...Such worthless stories could never hope to inspire the hearts of men. Where&#39;s the twists? The turns? The upsets? It would be a shame to draw the curtains so soon, wouldn&#39;t you agree, Miss Ruth?&quot; His face contorted into a grin.
+
+&quot;But rejoice! Rejoice, oh wicked lady. Rejoice, oh Servant-that-I-have-never-heard-of.&quot; He glanced at Ruth and Banshee respectively. 
+
+&quot;And even <em>you</em>, my dear invader. Rejoice, for your journey does not end here! Do you really think that I would let such an unsatisfying climax befall upon you?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929569711757332510" id="message-929569711757332510" title="Message sent: 09-Jan-22 10:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+He stared at Graf and Allen from a distance with a wide smile.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-735BF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="927094444346470451" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 10:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="929569788945117224" id="message-929569788945117224" title="Message sent: 09-Jan-22 10:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;If that were the case, then my name wouldn&#39;t be <strong>William Shakespeare!</strong> Do not fear, my strange bedfellows: I shall adjust this affront to literature in an instant.&quot;
+
+As William said that, some of his papers took on a strange glow. One intense enough to inspire strong emotions in the hearts of men. To Allen, it felt as if he had suddenly been given the tools to fight back.
+
+&quot;Rejoice, young hero, for you have been given the power to <strong>slay the witch!</strong>&quot; William boasted, raising his arms as Allen felt his circuits heat up. Something had happened, causing him to feel boosted. An enchantment that supported allies? His mana circulation felt smoother than ever.
+
+Yes, with this power, he felt like he was on top of the world! Not even Ruth seemed like a threat anymore.
+
+Graf sensed a similar feeling. Her weapons felt restocked and she had full control over her body&#39;s systems. She knew exactly how much additional firepower she had acquired, and the pain she had received from Banshee&#39;s attacks had numbed. She could barely hear William through Banshee&#39;s wails, but she didn&#39;t need to: All she could tell was that she had gotten stronger. Be it via enchantment or something else, it was still a boon that she could not waste. She had to abide by her oath and keep her Master safe, after all.
+
+Even if that meant burning Banshee to the ground.
+
+As Ruth witnessed Shakespeare&#39;s tomfoolery, she realized that the tide had turned. That impertinent fool, what was he thinking, supporting their enemies?! If only she could choke the little prick with her own two arms...
+
+Yet they had astutely decided to make their great reveal on the ship. The one place that Ruth could not reach.
+
+Not unless she <em>let</em> them dock. His plan was obvious: To give their enemies a fighting chance. To add <em>drama</em> to this scuffle.
+
+What a farce. <span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 11:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="929575863484309504" id="message-929575863484309504" title="Message sent: 09-Jan-22 11:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In that split second instant between the explosion of her torpedo and the raising of a stone wall she saw that Ruth had not heeded her warning shot... what is it with people these days... Next time she will shoot to kill. Then a moment of silence before the storm. All sound from the world had vanished. The rumble or rocks just head... the sloshing ow waves at her feet and the crackling of Ruths lightning... It had all just fallen silent.
+
+<strong>BOOM!</strong>
+
+A thunderous crack that could be heard for miles echoed as a torpedo detonated midair between her and Banshee. Blown back by the force of the explosion her armor allowed her to endure the explosion for the most part but there were still some burns. While blinded from the ground by the smoke from the explosion she saw from the sky that banshee had not gotten away scot free either. But something far more concerning had made itself apparent. The berseker was angry and was about to charge her with her spears. calculating the trajectories she skated back and to Banshees right while taking a shot at Ruth with the intent to kill this time around. She could still see where that pest was at after all. The first spear found purchase in her primary gun and disabled the central gun but two more were still funtional... The other spear...
+
+She had calculated its patch and deduced that it was going for her torpedoes she she did the only safe thing she could and ejected them before the spear landed and broke through the catapult. Sliding through the thin metal and into the superstructure on her back the spear would find itself well and truly stuck... Not even the might of banshee would be enough to pull it out.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 11:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="929578307391991920" id="message-929578307391991920" title="Message sent: 09-Jan-22 11:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If only this was the end of her problems... From far above she was seeing the Canopus being assaulted and she could not do a thing and now some preposterous figure had made its appearance on the bow of that ship. She was about to take a shot at him when his action had saved Allen. She did not know if that was an ally or an enemy but airing on the safe side she didnt fire, just in case. She couldnt hear him at all but she felt something...
+
+A great power was welling up inside of her. Her engines were heating up and mounting pressure. Circuits brimmed with power and even her radar was getting a clearer picture. But this was not all... &quot;Im sorry captain...&quot; She said in a low voice as all of her guns aimed at Banshee now. &quot;Where ever i go war follows... i can never escape it... So feel my resolve! Experience my all out assault!&quot; She now shouted as all 13 functional guns opened fire all at once. Every single shell was aimed to deal as much damage it could towards the berserker. even if she dodged and deflected the first volley her small guns were already reloading and getting ready to fire.
+
+Every single system she had was on overdrive... Even her tiny plane burned with a crimson power giving it speed unseen before. This boost was far more than she had ever expected but it was a welcome one. With such power she could do the one thing she had sworn an oath to. Protect her captain and fight to the very end. with this power she found herself in front of Allen before she even realized it herself while all of her guns were still working as hard as they could to bombard banshee.
+
+A plastering of naval shells that could sink ships twice her own size... This was the kind of power she was subjecting the berserkers defenses to. She had cornered her and an injured beast was far deadlier as she now had no way out. Graf didn&#39;t even say any words in this state as all she let out was a scream that couldnt be heard over the roar of her guns.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 11:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="929584978063392778" id="message-929584978063392778" title="Message sent: 09-Jan-22 11:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The flame shattered, Allen felt himself being blown away no matter how hard he tried to remain still. That blast was something else, well it was to be expected, one of those had leave a really big dent on the Canopus so no matter how hard were his reinforced flames it wouldn&#39;t be enough. The flames were blow away as fragments of the armor fell down slowly snuffing themselves into the air before even touching the rock he was standing. The mask he was wearing was almost gone from the impact, only the left eye remained by Allen eyes remained fixed in Ruth. The will to fight not leave him even in this situation, yet he was running out of options. 
+
+As he saw two more of those orbs he tried to react but his body was feeling heavy, the armor didnt make anything about the pain he felt, he was just basically using the flames to move his body beyond his limits but because of that now that the flames were his body was beginning to suffer the recoil. It was then he heard a voice, power course through him as the flames rapidly covered his body once again. The flames shine brightly as his mask once again became complete. Crimson arms appeared from Allen&#39;s back, they were bigger than his usual and as he put his arms in for of him the giants arm mimicked his actions and stood in the way of the two orbs. The flames and the orbs clashed momentarily as the claw like fingers of his extra appendages sink into the orbs and throw them into the sky. 
+
+&quot;Not yet.... We aren&#39;t done yet!!!&quot; he yelled as he glared at Ruth. As Graf moved in front of him to protect him, his flames were burning ever hotter than before or ever. The rock he was standing was beginning to melt but Allen didn&#39;t care at all as he was ready to use this break to the best of his ability no matter what kind of price he would need to pay afterwards.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 12:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="929591164686991360" id="message-929591164686991360" title="Message sent: 09-Jan-22 12:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://www.youtube.com/watch?v=xZ6aixXsImU&ab_channel=LazarusExMortis">https://www.youtube.com/watch?v=xZ6aixXsImU&amp;ab_channel=LazarusExMortis</a>
+
+As Graf&#39;s gun began to shoot he dashed forward, she couldn&#39;t hear him even if he were to yell and he could tell as much, right now even though it was at different level both Master and Servant shared a burning rage against this enemies. 
+
+&#39;She is mine Graf&#39; he told his servant through their mental link as he dashed forward. A crimson bullet flew as explosions covered the ground he had traveled just seconds after. Before Ruth could tell, a crimson claw was grabbing her head  before smashing her into the ground, as explosions and fire was around them Allen looked more and more like a demon than ever. In his remaining arm a crimson blade began to form once again.
+
+&quot;Abaddon!!!&quot; He yelled as he raised his arm and unleashed a crimson slash over the woman.</span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCTtYp7VuDlQezH32s4plSjQ">LazarusExMortis</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=xZ6aixXsImU">
+                                                        <div class="markdown preserve-whitespace">[AMV] Shin Getter Robot - Heats</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/xZ6aixXsImU" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">09-Jan-22 12:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="929595589266657300" id="message-929595589266657300" title="Message sent: 09-Jan-22 12:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 01:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="929606008563699722" id="message-929606008563699722" title="Message sent: 09-Jan-22 01:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Hunger had its next <strong>MEAL</strong>. Oh so tantalizingly <strong>CLOSE</strong>. Right there for its <strong>CONSUMPTION</strong>. 
+
+But before the strike which could have ended Allen&#39;s investigation early, it went wide. As if the boy was nothing more than a puppet upon a string. This confused the beast that was Ruth Naomi, enough to bring the woman back to her senses. 
+
+Sanity filled her hungry eyes once again. The voice of <em>Shakespeare</em> filled her ears. &#39;<em>That Dramatic Whore. Here. To Cause even more Drama. Of Course He&#39;d do something so... Infuriating.</em>&#39; The Woman thought to herself, eyes staring daggers upon the annoyingly dressed bard. 
+
+That <em>man</em> was going to make things more interesting. Of course, he had the knack for such a thing. This fool was going to <em>fuck everything up</em>. Allow for these outsiders to make their way onto the island. Allow for them to survive. Allow for their prying eyes to search through this place. Bring it back to the rest of the forsaken world at large. 
+
+In the next moment The Cult leader&#39;s eyes turn back towards Allen. As Shakespeare had enhanced the boy and his flames. Deflecting the last two motes of light from her beautiful crown. 
+
+Ruth was now at a severe disadvantage. 
+
+A clawed hand gripped the holy woman&#39;s face with excessive force, before shoving her right into the ground.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929606167188086794" id="message-929606167188086794" title="Message sent: 09-Jan-22 01:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://www.youtube.com/watch?v=bRzQ6QY8d4U">https://www.youtube.com/watch?v=bRzQ6QY8d4U</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCcekYs41vGIHlnnDoV2ZNYg">Thao &amp; The Get Down Stay Down</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=bRzQ6QY8d4U">
+                                                        <div class="markdown preserve-whitespace">Thao &amp; The Get Down Stay Down - Temple (Official Music Video)</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/bRzQ6QY8d4U" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 01:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="929608117543636992" id="message-929608117543636992" title="Message sent: 09-Jan-22 01:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Inky thick blackness. And a white hot burning sensation. 
+
+That is all Ruth Naomi felt in this moment. All she could perceive. 
+
+That is all her existence in this singular moment was. 
+
+Then a flash occurred. The Wolf of Consumption stood overtop. 
+
+Another flash. The Wolf of Consumption now barred its teeth upon her. 
+
+A third flash. The Wolf of Consumption now opened its gaping maw.
+
+A fourth then a fifth then a sixth. So on and so on. As The Wolf of Consumption began to tear through her. 
+
+No, not through Ruth. 
+
+It was... Consuming the light. Its Jaws opening and closing letting brief flashes of light flow through. 
+
+The next time the beast opened its maw. The cultist shot her hand forwards. Gripping the light as if her life depended upon it, then tearing it free from this monster.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 01:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="929612601258811432" id="message-929612601258811432" title="Message sent: 09-Jan-22 01:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The woman&#39;s eyes shot open once again. Its hunger focused solely upon Allen. Wanting <strong>MORE</strong>. 
+
+Before the man could draw his blade upon Ruth&#39;s chest. A fatigue was felt washing over him. But as soon as it was felt it passed, thanks to intervention from a 3rd party reinvigorating his mana. 
+
+So the scent of burning flesh again filled the air. But the slash was stopped short, right before gracing the woman&#39;s breasts. 
+
+Her petite hand holding onto the arm of Allen. With a crushing grip. Before the other hand again made its way towards his neck. Threatening to crush his windpipe. 
+
+But the pressure was relieved as he was sent flying away. Being forced off of his position on top of the cultist. Toppling towards the water of the ocean. 
+
+Ruth pulled herself from the sand. A hand outstretched, and bloodied. Before grasping it into a fist. Electricity was felt in the air, as the three bolts of lighting were converging upon Allen. 
+
+But one thing was now clear, this woman was becoming exhausted from this fight. If Allen could hold out for a while longer he and Graf could push this and cause their opponent&#39;s retreat.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/ff83f1d340da1a9471f99977cf239103-2BCB4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(238,94,134)">Hawaii(Fairy(Derogatory))</span>
+
+
+        <span class="chatlog__timestamp">09-Jan-22 01:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="929612671156899850" id="message-929612671156899850" title="Message sent: 09-Jan-22 01:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-735BF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="927094444346470451" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jan-22 01:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="929794842400276560" id="message-929794842400276560" title="Message sent: 10-Jan-22 01:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The famous bard couldn&#39;t help but snicker at the resulting chaos caused by his intervention. Allen had Ruth cornered, forcing her to unleash her bag of tricks to keep pace. Meanwhile, Graf was already taking advantage of the enchantment by blanketing the wicked Berserker with massive firepower.
+
+He couldn&#39;t have done a better job at causing an upset. Why, he looked positively thrilled!
+
+&quot;Quite impressive, this new batch. Why, if they keep this up, then I&#39;m sure we will be done by lunchtime!&quot; He chuckled as he gestured with his pen. &quot;Well, since you are already enjoying each other&#39;s company, allow me, the third wheel, to make their stage exit.&quot;
+
+They gently tipped their hat and scurried off, disappearing into the now damaged ship. It seemed like the enchantment would last, however. At least for a few more minutes. <span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jan-22 02:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="929979474760581160" id="message-929979474760581160" title="Message sent: 10-Jan-22 02:06 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The advance was going well for Banshee, Graf&#39;s modern tricks failing to decieve the old earthern spirit, putting the archer on a back foot and her range negated. If the battle kept up for much longer, she know she would be able to end this construct&#39;s misplaced dream of freedom and power. Yet perhaps she knew deep down that her luck would never hold
+
+The hairs on the back of her neck rose as she felt that twisted undying presence take hold of her master once more. Her mind felt pulled in opposite directions while the ship constantly gnawed at the back of her mind with the number of dead and servants constantly growing.
+
+ The dead needed to be interred, the servants needed to be returned to oblivion, Archer needed to be beaten and Ruth needed to be disciplined. Too much needed to be done at once. The pressure it put on the back of her skull only made her wail more yet her vocal outlet would not provide any relief.
+
+The curse of hers spiked in intensity as a third servant made itself known and blessed Graf with newfound power. Banshee lashed out with her voice, spewing curses in her ancient tongue as the Caster outed himself as a member the Prime Conqueror. Here he was to deny yet another one of Eire&#39;s victories and curse its people to more suffering. But as since he was so far away, there was little she could do but curse him. Graf on the other hand was about to receive all of the Berserker&#39;s swelling wrath...&gt;
+
+A second detonation deafened even Banshee&#39;s undying senses, her spear just a meter away from piercing Graf&#39;s chest before it was enveloped in a fire that only the modern era could create. She had not thought about raising the earth to protect her, not that it would shield her from the fury of a miniature battleship condensed solely on her being.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929979832278851626" id="message-929979832278851626" title="Message sent: 10-Jan-22 02:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In an instant she could feel her being ripped apart into piecemeal, armored hands thrown aside as pressure, steel and flame shattered her body. It was tossed into the air just as easily as the tons of sand blanketing the sky. She could only let out one mournful cry before her tongue was incinerated into ash. She knew she would die upon being summoned but so soon? It was an insult to the service she had given to the dead of her home for centuries to be snuffed out in one stroke.
+
+She could feel her soul slipping again, falling again, into the deep earth below. The earth that had no end even as it slumbered beneath an endless sea. As the scenery became familiar again, the burning ocean where she had her last dying vision did not wreath the head of the imperious Morr&#237;gan or any other god. The seas were empty, just orangish murky water as far as she could see. 
+
+“Master, I have failed. My mission cut short not by my hand. Is this my fate? To suffer indignity and shame? I cannot end my mission here. Please, give me a sign that my duty has not ceased,”
+
+She wished to air her grievances about the intrusion of the Englishman but her duty, her purpose was not to complain, it was to mourn those who could no longer speak themselves. There was no answer from the sea or the skies above as she waited. 
+
+Instead there was a longing that tugged at body and soul alike that drew her gaze down and there she saw the largest corpse she could ever see lie in repose upon the sea floor. An odd hole marked its chest, she could not make out what it was but that longing intensified as she gazed upon it. Her fixation blinded her from seeing the giant’s fingers twitch…</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929979981055012904" id="message-929979981055012904" title="Message sent: 10-Jan-22 02:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">When the cloud cleared, Graf’s radar could no longer detect a clear signature of the berserker but her eyes could see her dismembered corpse dressing the crater in earthy viscera. She had actually done it, her first kill against an enemy servant. If her old captain could only see her now gleaming in her conquest.
+
+All she had to do now was provide fire support for Allen against the green-haired witch and they could begin their investigation in earnest! She just had to march forward a few meters to have an ideal firing solution. However, she could not move, her legs would not budge from where they stood, poking into the sand. 
+
+When Graf struggled and shifted the sand away from her legs, there lay Banshee’s gauntlets clamped down on them with a dead man’s grip. She could not see if there were arms attached, instead it seemed they simply merged with the sand. Berserker may have perished in that moment but her body persevered in its mission.
+
+Graf struggled again and found herself being arrested by hands of earth and sand erupting from the shore around her and grasping onto to whatever edge they could find. They were pulling against her and pulling down into the sand. If she did not act soon, she would find herself interred in a sandy shoal with her victim...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929980049011134484" id="message-929980049011134484" title="Message sent: 10-Jan-22 02:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jan-22 05:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="930205125304283156" id="message-930205125304283156" title="Message sent: 11-Jan-22 05:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Everything began to move upside down,  it was hard to see or even understand what was happening. One second he was ready to end that woman life and the next she was stopping his blade and trying to choke the life out of him. Everything moved so fast he didn&#39;t had any chance to even try and understand what was happening, how was this woman able to stop his strike with such a grip or be able to throw him away. Those would be questions he would look back once this was over, if he was still alive by then of course.
+
+Hi vision shifted between dark and smoke as his fire armor evaporate the water around him as he began to sink. As fell deeper into the sea his vision began to get clearer once more. A white flame began to wrap itself around his left arm as he move it down as if trying to reach the bottom of the ocean but that was by far his intention. Ruth would see him rise once again, holding to a spike of ice he was now using a his foothold as he finally let out a deep breath  as Allen tried to process what was happening. But he wasnt facing her like before, he was now showing her his back as he had just tried to get himself out of the water in the fastest way possible, no matter how sloppy  or open it may leave him.
+
+&quot;ah....ah....&quot; his breath felt ragged, he began to wonder if he had stopped breathing even before he fell into the water. He was still looking down, using this few second he had available to think what to do next and once he lift his face his eyes behind the  mask went wide.
+
+As the mask he wore began to crack and fall into pieces Allen saw what remained of the Canopus still in the ocean. The ship had been split in half, he couldn&#39;t really till the how but the damage was apparent enough. His mind began to try and make any sense out of it but he couldn&#39;t, logic had no place in his mind right.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jan-22 05:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="930210593707810816" id="message-930210593707810816" title="Message sent: 11-Jan-22 05:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As he saw the broken ship he could only think about those he had met inside of it, the hardworking staff who only did his best no matter how horrible the conditions. The other investigators who just like him wanted to try their best and had all accepted this mission knowing the dangers. At that moment before he could even turn around lighting strike him once move. 
+
+The ice spike melt almost instantly, it went from a spike to a small platform that was ready to give up at any moment. Blood began to drip from Allen mouth and head as he remained still for a few more moments. 
+
+&quot;I....&quot; he began to turn around. &quot;...I will never forgive you!!!&quot; 
+
+The mask he wore was once again almost gone except for the left eye, but more than being a sing of Allen defeat it allowed Ruth to see his rage in his bloody face. While he hadn&#39;t planned for it the ice had absorbed part of the impact of Ruth thunder, being such a poor conductor it had moved it toward the water below them through the spike.  That had been enough to let Allen tank the magical attack. 
+
+Allen glared at the woman, his body was battered but unlike last time he could move and Ruth was still withing his range. He put his hands together as his flames came together one last time, this was probably gonna be his last attack and he was ready to put everything he had left into it. The shaped themselves into a gigantic sword, it shine brightly as he hold it over his head. 
+
+&quot;Hellhound!!!&quot;
+
+He took a step forward, he swing the gigantic sword as it released a crimson slash towards Ruth, as it moved across the coast the shape began to change resembling a beast with it fangs open ready to devour Ruth. The woman had called his fangs cute, but those same fangs were now bigger and sharp coming at him aiming engulf her into flames.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">11-Jan-22 05:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="930210975334953050" id="message-930210975334953050" title="Message sent: 11-Jan-22 05:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span>  <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-E442E.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="927094444346470451" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Jan-22 01:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="930515374171119616" id="message-930515374171119616" title="Message sent: 12-Jan-22 01:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth had pushed back the assailant. This Fire boy. Pulling himself from the ocean as the Canopus began to finally shatter. 
+
+The cult leader began to cackle. These visitors now were stuck upon this island. It was now just a matter of time before the hunt took them all. <strong>CONSUMED THEM ALL!</strong> 
+
+The beast showed itself once again. Whilst the body of Ruth Naomi was incredibly worn down at this point. The Hunger was not. 
+
+“<strong>Witness the folly of returning to this land. Witness why your predecessors failed. The people of Nirvana will CONSUME YOU. WE SHALL LEAVE NOTHING BEHIND.  SEND A MESSAGE TO THE REST OF THIS DROWNED WORLD TO NOT COME TO THIS LAND.</strong>” The voice began soft, then increased into a loud growl. 
+
+Eyes burrowing into Allen as he turned back towards this thing. It took another step forwards. 
+
+However, Allen was resolved to not let it win just yet. Releasing a large slash which morphed itself into a fanged beast. But it stood there confidently, arms wide open. Swallowed up by the flames. 
+
+Allen had done it. The first of many islanders to be defeated, to be killed… 
+
+Or so he thought. 
+
+There it still stood upon the sand as the flames still licked upon this beasts now burnt nude form. Electricity sparked off of its body as it used the last or the mana it had taken from Allen to heal itself and its electricity to keep itself from being outright fried. A shaky footstep was taken forwards, but after that their legs did not listen. 
+
+The beast fell. Yet it remained glaring towards the man. Fists balled, teeth barred. But now of little consequence, as it struggled to drag itself forwards. 
+
+This thing was a threat, but it needed rest to become that threat again.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/ff83f1d340da1a9471f99977cf239103-2BCB4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Hawaii117#8992" data-user-id="211367526616006656" style="color: rgb(238,94,134)">Hawaii(Fairy(Derogatory))</span>
+
+
+        <span class="chatlog__timestamp">12-Jan-22 01:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="930515425710723082" id="message-930515425710723082" title="Message sent: 12-Jan-22 01:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jan-22 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="931014684939788368" id="message-931014684939788368" title="Message sent: 13-Jan-22 10:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While Allen had his own battle of wills occur just off to the side of Graf the pocket battleship had an entirely different thing to deal with. The shelling had absolutely shattered her opposition which now lay in the sands as a pulped lump of flash, yet the feeling... the sensation that banshee was still around never left her. She quickly came to the conclusion that she had failed to kill her. The plane still circling overhead couldn&#39;t see a damned thing either, only the occasional glimpse as a ship suffering a death that she had been denied herself. Sun in valiant battle against the enemy.
+
+Looking in Canopus&#39;s direction for just a moment she uttered an unheard phrase as the noise from the fighting by her side was still drowning it all out. When she moved to deal with Ruth she found herself stuck to the sand as a steely grip had gotten her feet and was now trying to drag her under the sand.
+
+The ship thought otherwise. this was not the place of her death... Not yet at least. she still hasn&#39;t done what she had wanted to do and her new captain was still fighting by her side. There was no way she would be quitting now! Aiming several of her guns at the sand below herself She let loose a volley of shells at the sand in an attempt of either digging her opponent out of the ground or blowing them up for the second time.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jan-22 11:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="931027782375456798" id="message-931027782375456798" title="Message sent: 13-Jan-22 11:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>pant pant pant</em>
+
+All hurt, his vision was getting blurry, he had used this form before and he knew it drain him fast but this time it felt different. Even with the boost he suffered he felt he was already on his limit and the proof of that was in his flames fading away, the armor that had been protecting him began to disappear showing his wounded body as he barely managed to remain standing. 
+
+There was a silver lining, as he saw how the woman he had been fighting was engulfed with fire he let out a sigh of relief, the fight was over or so he though. His widen as he saw the woman walk out of the flames still alive and Allen mouth say out loud his thoughs at the bizarre scene. 
+
+&quot;You got to be kidding me...&quot; Yet a few steps after the woman fall, while he had failed to kill her she was wounded or tired enough that one more attack would finish her. He just needed to launch one more attack he should have enough for it right?
+
+But his body remained still, he wanted to move but he find himself unable to do anything, without him wanting to his arm became limp as his sword also disappeared from his hand. He had used all he had and before he could even try and ask Graf for help or support he found himself falling backwards, the platform of ice he had been using to keep himself afloat cracking as let himself fall into the ocean slowly began dragged away by the current deeper into the sea.
+
+&quot;Sorry Graf...&quot; he said before all turned black and he finally passed out from exhaustion.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">13-Jan-22 11:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="931027843058651187" id="message-931027843058651187" title="Message sent: 13-Jan-22 11:32 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Eagan#8440">@Eagan, Corpse Bride</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                                <span class="chatlog__edited-timestamp" title="13-Jan-22 11:32 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jan-22 02:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="932348452778692699" id="message-932348452778692699" title="Message sent: 17-Jan-22 02:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The many arms of earth and sand sought to capsize the ship that had dared to intrude upon their stretch of the dunes, and their strength made Graf&#39;s metal parts groan and creak in protest. One hand alone would not be enough to condemn her to a grave beneath the dunes but the many had already buried her feet under the grains. Those metal gauntlets, the remainder of Banshee&#39;s visibe body kept practically climbed up their legs like rope as they gripped and pulled down on them. Even still, Archer could not glimpse the rest of her foe. Buried under the sand, the berserker must be.
+
+Graf&#39;s salvo obliterated all but one of the earthen hands, the last still firmly latched onto the yellow spear embedded in Archer&#39;s superstructure. Meanwhile Banshee&#39;s gauntlets still stubbornly held on, the iron now blackened by the blast.
+
+__
+
+Banshee could not pull her gaze away from the massive body and the odd hole within that lay before her on the ocean bed. Its ruined yet still beautiful features begged for recognition from the Berserker yet any attempt to recall its identity was met with foggy nothingness, a void in her memories or perhaps a patch obscured by her class. Worse, the visage of the one before her was obscured by the dim waters and alien foliage of the depths. She sunk deeper in the water, her own body unresponsive to her commands to move.
+
+She was closer to the hole in the giant and the rope of longing bound to her heart pulled tighter as she noticed the void was shaped like a person. It called to her, begged her to sink even closer. It pulled all water down towards it, sucking into its inky void.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/a6387953bce16ac93c2771772818c702-FFCBF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Eagan#8440" data-user-id="223175240828715009" style="color: rgb(238,94,134)">Eagan, Corpse Bride</span>
+
+
+        <span class="chatlog__timestamp">17-Jan-22 03:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="932358682212175914" id="message-932358682212175914" title="Message sent: 17-Jan-22 03:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A blur of movement in the corner of Banshee&#39;s eye made her gaze wander down and she gasped at what she saw. The hands on this person shaped hole were outsized, as if it were wearing armor. As if it knew Banshee&#39;s revelation, the longing pulled so hard that she felt her heart would be torn out of her chest. This hole was made for her. She was made of this dead god, a corpse made from a corpse. Death made from life made from death.
+
+She wanted to scream but all that would come out were bubbles of air and an indistinct murmur. Her existential cries would be silenced by a boom that rippled through the water with such force and speed that it would shatter a man in pieces. The last thing she saw was a hand of granite shoot towards her face before her mind faded...
+
+---
+
+Banshee’s eyes opened to blackness. The berserker could move her arms with effort, the grains of whatever she was buried in moved readily. Yet the pressure of it all was not suffocating to her like water was. This was a medium she understood and already she could sense the vibrations from before rattle through the earth. Reverberating through her skull, Banshee wished to silence this disturbance and thus willed herself up through the earth…
+
+---
+
+Amidst the cloud of sand Graf caused from her rounds, a shadow rose from behind her back. Her radar blared in her mind as to warn her of a large mass its waves bounced off. The next time it swept, no such blip appeared. In fact nothing appeared around her. Graf would know why as she felt scraps of metal bounce off her back and sparks singe grey spots into her hair. Coincidentally, she no longer felt the cold metal grasp on her legs.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-9DC8B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Berserker of Tairngire#0000" data-user-id="927094444346470451" style="">Berserker of Tairngire</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jan-22 03:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="932358786654556170" id="message-932358786654556170" title="Message sent: 17-Jan-22 03:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There stood before her in the sand a living corpse. Its face was mangled terribly, one eye socket was burned down to the bone, leaving only a pinprick of malicious crimson light burning from within. Its left cheek ripped away revealing two rows of ivory teeth and sand-coated desiccated flesh. Its or rather her dress was ripped and torn but still held itself together with unnatural force. A long sliver of black granite was held between its gauntlets.
+
+Banshee screamed from the bottom of her lungs at Graf before charging again, slamming the butt of her spear into the Archer’s stomach and forcing her to fall back onto the sand with force rivaling the strongest waves on the ocean. Berserker spun the spear’s tip around to point down towards the archer’s chest, her mantra screaming in her ear to damn the undying spirit before her to oblivion. Yet Graf would not feel the spear pierce her heart for Banshee had been called by another duty of hers.
+
+Ruth saw that terrible specter of mourning again, positioned firmly at the threshold between life and death, bone and flesh displayed in equal measure. There was no pain splayed across her face despite the condition of her reconstituted body and its makeshift foundation of sand that seemed to sprinkle out from every opening. 
+
+“Master, I have returned and yet you have failed in my absence,” the servant shook her head and sand poured from her empty socket. She was talking to her master with a hint of disapproval. “I will return you to home, rest and meditation are what you need, <em>again…</em>”
+
+The opposing pair blinked for a second to clear their eyes of the sand and dust clouding the field they fought on and when they looked again, that terrible woman and her undead servant were gone, no trail left behind to follow.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932358865683636255" id="message-932358865683636255" title="Message sent: 17-Jan-22 03:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">17-Jan-22 03:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="932360857424396288" id="message-932360857424396288" title="Message sent: 17-Jan-22 03:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Gilan#1083">@Gilan</span> <span class="mention" title="&#198;nkidou#4116">@&#198;nkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D.html_Files/3a2f14160f0ba158ed71dc45c0d12500-9CD11.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Boogeyman#0000" data-user-id="927094444346470451" style="">Boogeyman</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jan-22 04:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="932375238262530059" id="message-932375238262530059" title="Message sent: 17-Jan-22 04:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The depths of the ocean were cold, rough, and most certainly dark. The mixture of battle, explosions, and the slow sink of a ship filled the area above Allen as he continued to sink downwards. Although fighting valiantly was ultimately knocked back by the enemy. If left to his current predicament both he and his servant shall surely perish. Any hope of glory or success snuffed away. It was a frightening thought to be certain, to be engulfed by the abyss. Yet even in the darkest of places. When one has the generosity to go out of their way to help a starving child, that good nature can return in kind.
+
+As plummeted deeper and deeper into the dark fall of the ocean he soon felt gentle palms lay upon his shoulders and pull him along. The sensation of drowning and weightlessness soon faded as the man felt his entire body be swallowed by a mass of shadow. 
+
+On the surface of the beach, the massive cloud of dust swirled around Graf and blocking out a large portion of the sun. They barely would have the opportunity to discern the departure of Banshee before they would feel tendrils of black viscus entangle around their waist, arms, and legs. Slowly they sank into the earth, they too as their master swallowed by darkness. Both experienced pure vast nothingness, as if they were floating in a void. Yet at not point did they feel as if they were alone. A dreadful and anxious feeling that despite their sense being completely extinguished, they were not alone in the darkness. 
+
+Then almost as quickly as they were dragged both appeared in the inner workings of the <span class="mention">#abandoned-train-cabin</span>. First it was Allen fell through then less than a minute later Graf also appeared seeming to fall from a dark corner. They were upon the island and away from any present danger.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

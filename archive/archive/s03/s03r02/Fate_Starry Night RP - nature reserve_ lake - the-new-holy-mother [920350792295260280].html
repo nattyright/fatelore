@@ -1,0 +1,954 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-new-holy-mother</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: lake / the-new-holy-mother</div>
+
+            <div class="preamble__entry preamble__entry--small">The gathering place for the cult of Ruth Naomi, located in the Lake District. It’s opulent design taking inspiration from old world places of worship. It has great potential as a community gathering place, when not being used for worship.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">15-Dec-21 12:25 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="920350862356906085" id="message-920350862356906085" title="Message sent: 15-Dec-21 12:25 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/dfq1dy-9016bf8b-9a8c-4745-a462-ee10bafa2ae-5504F.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/dfq1dy-9016bf8b-9a8c-4745-a462-ee10bafa2ae-5504F.jpg" alt="Image attachment" title="Image: dfq1dy-9016bf8b-9a8c-4745-a462-ee10bafa2ae9.jpg (976.95 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-476F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="932411026878631936" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jan-22 07:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="932411027734282250" id="message-932411027734282250" title="Message sent: 17-Jan-22 07:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Canopus had sunk. Limiting those who survived in options on how to return to whence they came. Now all that needed to occur was a slaughter of those that remained. Perhaps 3 massacres. 3 massacres would be enough to finally send a message to the world beyond Nirvana. Wasn’t there a rule about comedy and threes? 
+
+Upon her dresser laid the most recent manuscript from Verga. Whilst Ruth inspected her naked form. She would need her Glamour today. Burn marks and scars still streaked her body. 
+
+A meeting would need to occur soon. A stratagem needed to be developed.  Two of the Islanders whom Ruth knew held servants, had to be a part of this meeting of minds. Along with the handling of <em>Shakespeare</em>. Perhaps his own coworker could be the one to handle that swine. 
+
+Ashley Drakin and her Caster.
+
+Naoharu Koji and his… Well she wasn’t quite sure of what servant he held. But a discussion needed to be had. For he withheld information. 
+
+These thoughts continued to dance within her mind as the woman prepared for this week’s service at <span class="mention">#the-new-holy-mother</span>. 
+
+Donning her holy garments. The woman was ready to meet her eager congregation</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932411085456298024" id="message-932411085456298024" title="Message sent: 17-Jan-22 07:08 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/image0-B9819.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/image0-B9819.jpg" alt="Image attachment" title="Image: image0.jpg (88.43 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932411404273729536" id="message-932411404273729536" title="Message sent: 17-Jan-22 07:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://www.youtube.com/watch?v=cyym68X9HCM">https://www.youtube.com/watch?v=cyym68X9HCM</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCmUdoXixFr4EffDIQkarfLg">Kevin Penkin - Topic</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=cyym68X9HCM">
+                                                        <div class="markdown preserve-whitespace">Alita</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/cyym68X9HCM" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="932411971008090164" id="message-932411971008090164" title="Message sent: 17-Jan-22 07:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The reverent scent of Frankincense and Myrrh filled the chapel.  As music began to play from the organist, seated above the congregation. All rose, turned, then bowed their heads towards their mother. 
+
+Ruth gilded from the doors leading into the chapel. Her face held a saintly quality. Gracing her flock with a smile, as their faces rose from their bowed position. 
+
+The holy woman arrived at the altar, and rose above her flock. The long tail of her outermost robe splayed out across the stairs. Before the woman knelt down, the congregation followed her movements. 
+
+Now they remained, knelt in supplication towards their Holy Mother. Eyes and Ears eagerly open to hear her words grace their ears, and for her form to fill their vision. 
+
+The woman stood and turned towards the followers. “My family.” Ruth finally spoke, a sorrow was felt in her voice.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-476F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="932411026878631936" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jan-22 07:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="932414230265757706" id="message-932414230265757706" title="Message sent: 17-Jan-22 07:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“There are… <em>Interlopers</em> once again. No doubt many of you have already heard the news. Even with their ship shattered, and interred in the depths of the ocean, they still remain persistent.” There was a collective gasp. This was not new news to her followers, yet they were still shocked hearing those words from their holy mother. 
+
+“But that is the <strong>folley</strong> of those from beyond Nirvana. They do not understand that coming to our island is a <em>death sentence</em>. As many of you know, I have come into contact with an angel of death. Who will help with dealing with these outsiders.” Ruth’s voice rose louder as she stood to her full height, enhanced by a pair of heels as well. 
+
+“These great fools, dare to observe our people. Observe our sacred lives. When we have made it <em>excessively clear! That we do not wish to be gazed upon by outsiders!</em>” A loud cheer went through her congregation. The Holy Woman awaited it to die down, noticing that seats were…. Empty. 
+
+The Investigators have touched her flock already. A rage bubbled up to the surface at this thought, but instead of feeding into it like she had so many times already this week… Ruth let the rot fester then dissipate, the cheers quieting down. “But, they are not hopelessly lost. As a good mother should, I see when children need guidance. When Children need to be <em>reprimanded for their transgressions.</em> For that is what the outside world sent to our Haven.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932414365188120619" id="message-932414365188120619" title="Message sent: 17-Jan-22 07:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">They will be killed, and should be <em>killed</em> if they do wish to continue their great sin. Yet, if they repent. Distance themselves from the rest of this forsaken, drowned world. These newcomers could yet be saved. By my divine hand, they can be healed. Such as you of my flock, afterall is it not fair to offer them the same graces that I offer unto you?” The Congregation began to whisper amongst themselves but then they came to a resounding agreement. 
+
+Yes while these foreigners dared to commit a cardinal sin upon these lands. There was still a chance for their redemption. A chance to offer them salvation, and absorption into their community. 
+
+Ruth however knew that this was myopic, if these fools were anything like the two previous incursions. There was going to be no chance of them being assimilated into Nirvana’s culture. Even her encounter with the flame magus, told her that they would not make the choice to assimilate. Which both her and her <strong>hunger</strong> were completely fine with. 
+
+“Now my family. Let us proceed with our service. Rise up and approach the altar. Allow me to cleanse you of your sins. Allow me to take your sins upon myself, then send them from this world.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20the-new-holy-mother%20%5B920350792295260280%5D.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-476F9.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth Naomi#0000" data-user-id="932411026878631936" style="">Ruth Naomi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Jan-22 08:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="932436786788057158" id="message-932436786788057158" title="Message sent: 17-Jan-22 08:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">One by one, her congregation approached the woman’s raised position. Their Holy Mother took their hand, and waited a moment. Saying a prayer to them. Before placing a kiss upon their forehead. Draining of their mana, or as her congregation knew of it their ‘sins’. 
+
+After Ruth’s communion, the service concluded. The many members of her flock began to disperse. Those rare unfamiliar faces were brought forwards by their friend or family member. Small talk was made, then they too scattered. More for her to feed upon. “Welcome to our family.” 
+
+Jayce Longbranch took his time. Staring down upon his watch, before finally approaching the holy mother. 
+
+“I’m sure you noticed, Ruth.” The gentleman bowed before raising back up. “Some have disappeared.” 
+
+Ruth curtsied, turning and walking towards the back rooms of her chapel. “Yes, I noticed some empty seats. No doubt the doing of the outsiders.” The woman sighed, before taking a seat within the back rooms. Staring into Jayce’s eyes. 
+
+He nodded in response. “That’s the working theory at least. Some have gone missing in The Forest sector. Reports of a beast existing there now also.” The man remained standing, making eye contact with the cult leader. “What are you going to do in response?” 
+
+“Kill them. Consume them. Leave nothing but a warning behind.” There was a sinister tone in her voice. “I must find my servant first. Prepare a handful of my congregation to accompany me. Prepare more to send word to My little <em>birdie and poppet</em>. We are to have a family meeting. As well, have them keep an eye out for our visitors.”
+
+Jayce was at first, at a loss for words. Then finally found them. “You are… going to trust that berserker? Ruth, that’s s-“
+
+Ruth’s eyes then showed an intense hunger, cutting off Jayce. “I. Said. What. I. Said. Now. Go and collect a handful to accompany <em>me</em>.” Without another word Jayce bowed again and left the room.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932436898700484609" id="message-932436898700484609" title="Message sent: 17-Jan-22 08:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The woman herself then stood up and was now ready to meet more of these visitors. Who have been taking of what <em>she</em> owns. And if there was death, her servant was bound to be nearby.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

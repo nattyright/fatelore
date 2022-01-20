@@ -1,0 +1,3031 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - canopus-lower-deck</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">The Canopus / canopus-lower-deck</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Dec-21 07:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="926248723040841760" id="message-926248723040841760" title="Message sent: 31-Dec-21 07:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Dawn. The early rays of orange sunlight peeking from behind the veils of the witching night, the blankets of her former Master, Hecate&#39;s influence waning. The moment ripe for Caster to begin her work...
+
+&quot;Slow and steady,&quot; she whispers, both she and her Master, Ashley, being carried along the lapping waves of the docks as they moorn away from the size of the Canopus. It&#39;s sheer size was a marvel for Caster to gaze upon, her eyes shining brilliantly at just how far human ingenuity has come since her own lifetime. Such desperation fueled such mammoth frameworks, with humans having fully conquered the sea...
+
+She and her Master were held afloat on the chill sea water by a damp float of kelp, water and foam lapping at the hems of their dresses and sending a chill along her Master&#39;s spine. Caster merely relished the sensation; after all, there was no better way to christen an outfit such as hers than with magecraft. Caster of the Vile Weeds, having previously been dressed in ragged robes, had been offered a dress and hat by her own Master, opting for the color that even made Ashley frown in disgust. Yellow...it was a personal favorite, its frills blossoming around her diminutive frame and clashing beautifully with the green matte of curls that adorns her scalp, along with the beautiful black cap that crested above her eyes. Adorned with a black rose...perhaps an accurate summation of Caster herself...
+
+They arrived at the towering wall making up the starboard side of the vast ship, Caster&#39;s eyes gleaming as she curled her fingers, whispering incantations under her breath. The platform of kelp shudders before rising beneath both, the leaves falling away to reveal a pair of soulless yellow eyes and a pair of malformed clubs that make up a facsimile of limbs. 
+
+&quot;I only hope my own soldiers don&#39;t insult the very breath of my lady, Ashley,&quot; Caster breathes while the foliage snakes along the sides, grasping for crevices with which to pull the golem up.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926248921032962129" id="message-926248921032962129" title="Message sent: 31-Dec-21 07:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;They are but a poor imitation of the perfection crafted by your own hands...oh, how embarrassed I am to foul the very fabrics of your dress.&quot; In spite of these words, Caster&#39;s smile threatened to split her face as she grazes her hand along what they need...a small flaw, almost imperceptible, but a thin sheet of plating curled out...perfect for her Golem. Kelp slides within, pooling into the opening as pressure mounts and tears sheet metal away. The sound of the sea covers their trek as soon a hole, just wide enough for them, opens, inviting both into the chasm of the lower decks. A perfect spot to begin her plan...
+
+~ ~ ~ 
+
+Her boots light on the steeled walkway, Caster&#39;s curls bobbing frantically as she walks around the lower decks. Above, the crew was likely beginning their day, prepping for departure for the intruders that would even dare to wipe the smile of her Master from her face. She wouldn&#39;t let that happen...
+
+&quot;Now Master,&quot; Caster begins, taking a seat on the floor and holding her hands out, sensing the foliage beneath and Nature&#39;s brilliance beneath the grinding metal of the Canopus. &quot;This will take much concentration...creating a territory from the surroundings will be my sole mission. You must protect me, your lowly servant...but fret not. Your art is important...your family precious. There will be plenty on board that can add to your children,&quot; she muses, smiling insidiously as her body glows and pulses with a deep violet light. The brilliance of Hecate making itself known. &quot;This is the beginning, my Master...we make our mark by showing these interlopers your true might...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="926249018638622810" id="message-926249018638622810" title="Message sent: 31-Dec-21 07:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Dec-21 07:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="926261011953119292" id="message-926261011953119292" title="Message sent: 31-Dec-21 07:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The young lady stepped into the large ship with little to no interest. Its very presences made her sick to her stomach. She could feel her head start to pound from the total lack of sleep to her brain, even with a good night sleep she was still more then tired, at this point she was ready to fight god and die trying for fun. Looking back at the few golems her servant had brought with her, she could only smile. Not one for direct confirmation this might be a nice change of pace. If this went well maybe she wouldn&#39;t need to rely so much on Ruth.
+
+She followed her small servant, her heels clicking along the metal floor. Small strings gently floating off her hand and around the different pipes as she set up some trip wires around the area that Caster had stopped at. &quot;If you are going to be alone I will leave you some traps so I can come back if I need too...&quot; she muttered quietly under her breath. She didn&#39;t pay much mind to what Caster told her, almost completely tuning her out due the pounding in her head.....
+
+<strong>Control, Beauty, Preserve it....</strong>
+
+Was all she could think about as she stumbled along, leaving her servant to her work. She gently took the sharp pair of inverted scissors from her belt as she shuffled around the maze of the lower deck looking for anyone unlucky enough to catch her eyes. Running into a young man in a sailor uniform, her smile only grew. hiding in the darkness and shadows, small shimmering strings slowly moved up her legs and before he could notice he was dragged into he shadows. A few moments later the same man walked out, her eyes now dull and a large cut in his chest as five other people walk out. No injuries to be seen but their eyes were just as dull as the man.
+
+<span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/fe15d67c37b4ce3484bfa134caff1534-89223.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="? ? ?#0000" data-user-id="926248722365562910" style="">? ? ?</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="926917503060414484" id="message-926917503060414484" title="Message sent: 02-Jan-22 03:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Canopus&#39; ebb and tide gently rocks the crew and investigation team within, lulling any that were just awakening back into a gentle slumber, and those that had already set about their morning tasks for docking found themselves lazing around the decks. The orange light was beginning to bleed across the water front and onto the shore of Nirvana, bringing a glow to the glittering sea foam lapping against the metal hulls. It was a moment of peace...tranquility...and the start to a new journey. 
+
+<strong>CREEEEEEEEEEAK</strong>
+
+The gentle ebb was halted, suddenly, the force throwing a few of the crew members into the wall and forcing a number of late day sleepers to roll from their beds. The cobwebs were shaken as several checked the upper decks to see what caused the delay. Was there a sand bank? But how could that be, it was the middle of the ocean...
+
+Several of the crew members gaze into the sparkling waters, looking for some signal as to what caused this sudden...sudden...
+
+&quot;...I...I...what is this?&quot; One sailor asks, eyes widening as the water around the starboard side begins to churn. Was it...a squid? Did they hit a squid? The water parts, the sailor&#39;s gasps drowned out by the reveal of a waving, green tentacle. Soon joined by another, and another, leafy appendages creeping along the hull, reaching steadily for the deck at a slow, but consistent pace. 
+
+&quot;This...this can&#39;t be happening...&quot;
+
+&quot;Huh? What do you see? What&#39;s going on?&quot;
+
+&quot;Someone...someone tell the captain...the sea...the kelp, seaweed, it...everything...it&#39;s rising...it&#39;s rising!&quot; 
+
+A sharp alarm sounds as more and more ship crew pay witness to the rising of the sea, crabs and coral lifting up along with the net of plant life, flopping fish gasping for air as they smack against the ship. Soon enough, the ship itself began to creak and moan, as the true danger made itself known...the keel could only take so much pressure...if it breaks...the whole ship would go down...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="926917574598479872" id="message-926917574598479872" title="Message sent: 02-Jan-22 03:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 06:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="926963564441391125" id="message-926963564441391125" title="Message sent: 02-Jan-22 06:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With a large smile on her face the young lady wandered through the dark. Only appearing in the red flashes that beautifully run over her skin with ever loud blaming scream. In all the panic the spider would catch one unlucky sailor after another. Watching them run around trying to keep the ship from sinking, one at a time them tripping into webs of strings and getting dragged back into the darkness. After a little while, she believed she had enough new toys. Slowly making her way back to Caster.
+
+&quot;Beautiful... all of you.... beautiful little pests...&quot;
+
+Speaking in an almost broken manor, repeating the same words over and over again under her breath she held her head. Hoping that any of this will stop the pain. But no matter how much blood pooled under her, the pain did not stop. Soon she came to a large opening. With a large smile on her face she knew just past this point was her beautiful servant, this would be a perfect place to set up everything. Spinning many strings around the room she pulled herself up to sit in the darkness of the ceiling, setting up her new dolls around the room, almost as if they were talking to each other while her others, her babies hung above, just out of site with her. With a wave of her hand she set up a few trip wires at the entrance to the large room. 
+
+&quot;Now wait... wait until she is done.... wait until she completes her mission.... my darlings....&quot;
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 07:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="926982213881442315" id="message-926982213881442315" title="Message sent: 02-Jan-22 07:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As Octavius made his way down the ladders of the Canopus decks he summoned his sword to his hand as he walked down to the end of a corridor to make sure the way was clear for his master. It was quiet, which definitely wasn&#39;t good since this was still a populated ship, which meant that they were most likely all either dead or worse. And most likely by stepping down here, they would likely be hunted next. It did also however make this easier as some of his suspicions were confirmed. They were either dealing with a talented mage or a sadistic servant, or worse, both.
+
+&quot;Dante, you can come down now, the way is safe. For now.&quot; He called back up to his master. He was going to call him by his name for the moment as if they were being stalked, he didn&#39;t want it to be entirely clear that whoever his opponent was knew that they were facing a servant. Although the trick would likely only work once if at all. He continued to brandish his sword, letting the glow from the blade light their way as well as his master&#39;s descent into the area.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">02-Jan-22 07:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="926982461609640018" id="message-926982461609640018" title="Message sent: 02-Jan-22 07:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 08:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="926999359697068053" id="message-926999359697068053" title="Message sent: 02-Jan-22 08:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Easily he followed, trying to keep as close as he could to Octavius as there could have. His senses weren’t much helpful though, the thoughts of whatever instructions he could give himself were consistently blurred by the bright red light the ship emergency lit, and the loud ear piercing whine the alarm sounded.  For the second, Octavius summoned his sword and went ahead to inspect the corridors, and while he didn’t know what there was to really protect himself, he clenched the book in his good hand with purpose.</em>
+
+“Okay!”
+
+<em>Once the corridors were deemed safe, Dante followed suit, looking around. But before he could do much to take notice of his servant, his nose was assaulted with the metallic and yet old scent of spilled blood. Dante had known the scent, but that didn’t make it more easy to stomach. His stomach churned at the thought of it. And he found himself inching closer to Saber, enough to where he would occasionally step on the Emperor’s heels. The light of the blade giving sight to the smears of whatever atrocity had gone through the lower decks.</em>
+
+“Do you sense a presence at all? All this blood. . . What could have happened to them?”
+
+<em>Yet even his question he knew the answer. Or so, he knew part of the answer. Of course they’d be dead.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">02-Jan-22 08:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="926999394744664104" id="message-926999394744664104" title="Message sent: 02-Jan-22 08:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 09:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="927196657823670283" id="message-927196657823670283" title="Message sent: 02-Jan-22 09:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sitting on a bunch of strings in the shadows, small drips and drops of blood hitting the ground underneath her boots started to pool. The metallic smell becoming only stronger as she turned all the sailors around so their backs were to the door. Small vibrations running up her strings, she could hear people talking in the distances and they were coming her way. I
+
+These voices weren&#39;t the same as the other ones, these people were moving a lot slower then the sailors did... and something in the air. A wicked grin covered her face as she started to move her hands around in a very complicated pattern. Her hands now covered in a very faint purple glow as more strings appeared around her creating small platforms in the dark ceiling above the dimly lit room. 
+
+Thoughts of who it could be consumed her head, she was excited to see them as the loud noises blared in her head. Her headache no longer bugging her as she was now too worried about who will stumble into her little trap. 
+
+As she sat up in the rafters she could only wonder if the others were also on their way. If she was stuck attacking this whole ship herself there might actually be problems. No way they wouldn&#39;t go after it though... right?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/400ec7424e000435138ce275c0460daa-16595.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie just vibin</span>
+
+
+        <span class="chatlog__timestamp">02-Jan-22 09:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="927196729416237076" id="message-927196729416237076" title="Message sent: 02-Jan-22 09:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Jan-22 11:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="927223745221910578" id="message-927223745221910578" title="Message sent: 02-Jan-22 11:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Caster. Yes...this class suits me fine. The power welling inside me...the returning shriek from the sea floor below as it stretches...can you feel it, Mistress? Hecate? Our power continues to rise...our will seeps into this new world...and myself...I have a new Emperor to follow...</em>
+
+Caster&#39;s eyes lay blank. Pupils contracted, head lolled to the side as her fingers writhe mechanically to the dark spell being mumbled incoherently. Each twitch and small spasm hints at the surge of mana circulating around the ship. A beacon, for sure, for any that would be looking for it. It&#39;s no surprise that they&#39;d already attracted attention; in part, Caster hoped for such a thing. Anything to revitalize her Master, to give Ashley the chance to see just who&#39;s power she was aligned with, and just what the young woman held within. Even in the haze of magecraft, a smile spreads across Caster&#39;s face, drool leaking from the corners and dropping in thin strands down to stain her new dress. She shall be...Emperor of this world...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927223813513572392" id="message-927223813513572392" title="Message sent: 02-Jan-22 11:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span> @Co</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/c349d64c71d2267a2f784684465eb315-30414.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Killer#6882" data-user-id="563088168467955743" style="color: rgb(238,94,134)">Killer</span>
+
+
+        <span class="chatlog__timestamp">02-Jan-22 11:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="927223832929005639" id="message-927223832929005639" title="Message sent: 02-Jan-22 11:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 03:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="927282112992780328" id="message-927282112992780328" title="Message sent: 03-Jan-22 03:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Octavius continued to inch forward through the corridors and rooms of the decks, keeping his sword extended far enough in front of him to shed light but close enough that if something ambushed them from one of these rooms or some other hidden compartment, he could at least block properly. He knew that the crew down here were all most likely dead, however, the only question on his mind was where were the bodies? Either there was some reason that whoever did this moved the bodies or perhaps something worse. Couldn&#39;t be consumption since there wasn&#39;t nearly enough blood and leftover material for it. Either way, the magical presence was growing nearer, and as well he started to get a bad feeling about what they were walking into.
+
+&quot;Keep sharp Dante, we&#39;re getting close.&quot; He whispered back to his master as he walked through another doorway and as he passed through it, stepping into a pool of blood on the ground. He looked down at the larger pool for a moment before his eyes locked with the rest of the room. The sailors? They had their backs to them and they seemed a bit more lively than Octavius would have guessed. What&#39;s more, there was a purple-haired woman on some platform of string. 
+
+&quot;Well, that solves those mysteries. Prepare yourself, we&#39;ve found our guest.&quot; He said casually as he put both of his hands on his sword and pointed it at the woman.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">03-Jan-22 03:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="927282179900309535" id="message-927282179900309535" title="Message sent: 03-Jan-22 03:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 05:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="927314493221003304" id="message-927314493221003304" title="Message sent: 03-Jan-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>What the doctor had found odd was that while they had sort of went through the corridors, there was yet a person to be found, but rather blood had stained the walls and floor. They couldnt have been so easily dispersed of, nor could they have just gotten them thrown off ship, so where were they? Dante tried to keep at the thought that they&#39;d still be around them. They were close by, if not around them. HIs reminder from Saber snapped him back to the present, or well, where he currently was. And in agreement he nodded his head. He was to remain vigilant.</em>
+
+<em>It took a moment for them to find the door, the permanent emergency light illuminating the space with its eerie red hue, but, it didnt take much to notice the presence of people. Something made Dante&#39;s skin crawl, the feeling of eyes that were watching them. Someone was here. Dante moved to get a glimpse of what it could be, finally finding the mass group of sailors with their backs turned to them while a woman sat aloft, her body delicately placed apart threads of thin string. It did not take much to feel an answer bubble to the surface, her posture, her nonchalant behavior, the pool of crimson that had been under her. This woman be it an islander or investigator. . . she was not good.</em>
+
+<em>Before, Dante had spoken about trying to reason with such an opponent, the hopes that they would not immediately result to violence being the first concern on his mind. But, with this. . . this feeling, he felt talking was too light. Instead, he gripped his book tighter, his eyes trying to adjust to sea the woman&#39;s face.</em>
+
+&quot;Y-Yes, but . . . why are the sailors around her? What of the blood in the corridors? Wouldn&#39;t they have run to try to inform us?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">03-Jan-22 05:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="927314927826399273" id="message-927314927826399273" title="Message sent: 03-Jan-22 05:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 09:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="927373495179051050" id="message-927373495179051050" title="Message sent: 03-Jan-22 09:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She looked down at the two with a large smile. She scanned them with her eyes as she pulled a single string, one to let her beautiful Caster down the hall know someone was there. Not that fighting them would be a problem at the moment. She stepped on the almost invisible single strings getting closer to the two of them. With a large grin she fell back off the platform, strings catching her just as she was at eye level with the Saber servant. 
+
+With her dark and barely lit purple eyes, she seemed almost lifeless, unsettling at the very least. pale and perfect face splattered with small drops of blood. She looked at them both now up close. Her beautiful purple hair framing her face as she pulled herself back up onto the platform. Thinking everything over, everything she would have to do. The one seemed strong but the other one, the one in the back seemed so frail, fragile, even beautiful. Maybe this would be a good new member of the family... But she didn&#39;t have time for that now.
+
+Sitting back down on the strings she let out a loud, bored yawn, &quot;Are you two done talking yet.....? You are starting to bore me... and I&#39;m.... so tired....&quot;
+
+The blood that stained her dress almost shining in the flashing red lights. She herself was beautiful, she made sure she was just as beautiful as any of her creations. She hoped others would notice but at this point, these two were in her way.
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Jan-22 11:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="927400676861034497" id="message-927400676861034497" title="Message sent: 03-Jan-22 11:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The vibrations rustling through her Master&#39;s strings perked Caster&#39;s attention, the diminutive woman nodding slightly in the direction of the strings, imperceptible to the naked eye but with enough presence to keep her attention. It seems as if a few had fallen into Ashley&#39;s trap, though she was curious why the crescendo of screams and spattering of blood didn&#39;t accompany it. Ashley usually was so thorough...
+
+Of course, this didn&#39;t stay on Caster&#39;s mind for too long. Not when searing hot flame and molten steel etched itself deep into her mind, a short but sharp gasp puffing from her chest and causing her to keel over. Strings bend against her, signaling to Ashley that something must have happened...was it possible that these two intruders stopped her spell?
+
+&quot;<strong>Gasp...huff...huff...</strong>Who...who would dare...&quot; 
+
+Her body shivers, eyes dilating as her teeth bare themselves against the darkened, metallic floor, Caster&#39;s hands shaking as she reaches up beneath her hat...and claws at her skin. Clawing turns to beating, and beating makes way for a frenetic tugging of her hair, roots pulling away with each tug as thin, green clumps fall in a heap around her...
+
+&quot;Who would dare...to embarass me in front of her...who is denying my plants?! You...despicable worms...you disgusting cretins...I&#39;ll kill you...I&#39;ll kill all of you for standing before her throne...&quot; 
+<em> </em> _ 
+
+The undergrowth halts, the plants scorched by Ruth&#39;s Mystic bolt shriveling and falling to the water below, the rest of the brambles faltering slightly in the wind. For those engaging with the Servant on the docks, or those just gazing over the side, the silence that followed was...splitting. The sea dripping from the foliage was like the percussion of a drum, signaling somethings bubbling surge...the arrival of some spring of energy...
+
+And it came, as one of the tentacles shoots forth and grabs one of the sailor&#39;s, wrapping around its neck and pulling them overboard.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927400773212590081" id="message-927400773212590081" title="Message sent: 03-Jan-22 11:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Panic swarms as the layer of sea flora begins shooting forth, crawling and inching its way to the deck and either choking sailor&#39;s or skewering their bodies, Caster&#39;s rage being inflicted on the crew and painting the ocean in a plume of red smoke...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927400846101217280" id="message-927400846101217280" title="Message sent: 03-Jan-22 11:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 02:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="927625156988379167" id="message-927625156988379167" title="Message sent: 04-Jan-22 02:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Saber studied every movement made by the purple-haired woman, she certainly was unsettling that was for sure, beyond that though, Octavius was trying to figure her out. Her lifeless eyes reminded him of a porcelain doll, so much so to the point that if she was a doll it wouldn&#39;t surprise him. The way she deftly moved between her strings was a testament to her potential skill was. Without prior knowledge about this woman, this first encounter might be an issue until he figures out how she operates, after that it would be simple. 
+
+&quot;Well, a host that doesn&#39;t greet their guest is considered a bad host no? A simple conversation could help mediate our <em>misunderstanding</em>. He stated as his crimson eyes glanced around the room, taking in where most of the strings that he could see were, albeit he knew there would be more than simply what he could see. 
+
+Her abilities from what he could see from the string and the sort of web dynamic that she had thrown him off. This certainly wasn&#39;t where he sensed the immense magical presence from, but she was from the area all the same. Was this woman human? If she was then we&#39;re all of the Islanders similar to her as well? That was a foreboding thought, which would make his job as a servant harder. As much potential as Caesar saw in the doctor, Octavius knew that Dante probably wasn&#39;t well suited to the explosive feelings of combat. Back to the woman, however, if she wasn&#39;t a simple magus and instead of a servant then this could be just as big of a problem.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927625170569551892" id="message-927625170569551892" title="Message sent: 04-Jan-22 02:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Simply put if this woman was a servant then that would mean that there were at least two servants down here and that did not bode well of they both sprung on himself and Dante. From the strings and the callous attitude towards life as well as the casual stringing up of these crewmates like a spider, Octavius wondered if this woman was some sort of version of Arachne from Greek Myth. Assassin class? Presumably. Either way, this was an issue for Octavius and Dante as she was guarding whatever was causing the attack on the Canopus in the first place. 
+
+It was only a matter of time before this woman became bored enough to try and do the same to them as she did to the sailors and as well Octavius knew that if the Canopus could be salvaged then he and Dante would need to drive this purple-haired freak and whatever she was guarding away or into a shallow grave. He prepped himself for an attack as he continued to speak to her. &quot;And if you&#39;re so tired madam then why don&#39;t you end this charade and leave, I&#39;m sure a bed would be more comfortable than a metal coffin such as this? Unless there&#39;s some other reason that you don&#39;t want this boat to reach land that you&#39;d rather have conflict?&quot; He questioned as he continued to banter. &quot;A beautiful young woman such as yourself deserves that much. It seems that you may have already worn yourself out as well <em>greeting</em> these sailors.&quot; Octavius said to the woman almost playfully, seemingly making light of her actions on the ship. His banter was more than mindless conversation, it was there to gauge reactions, to poke and prod for information. Any and all responses to his words would be valuable to figure out bother her disposition as well as the potential disposition of further islanders moving forward. He had strung his own web and was waiting for the spider to fall into another&#39;s trap of information.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927625239041556490" id="message-927625239041556490" title="Message sent: 04-Jan-22 02:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&#39;Imperator,&#39; He spoke inside of Dante&#39;s mind for the first time since his summon. &#39;I am going to press an attack against this woman in a moment, she is merely here to stall us from whatever is capsizing the Canopus. I require you to be ready for combat. Unless you have another course of action, this shall be the only course of action.&#39; He finished as he brandished his blade in front of him, preparing for an attack from the spider woman while tensing his body to prepare for his own strike.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-22 02:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="927625338014531584" id="message-927625338014531584" title="Message sent: 04-Jan-22 02:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Jan-22 07:04 AM</span>
+
+            <div class="chatlog__message " data-message-id="927699036197253130" id="message-927699036197253130" title="Message sent: 04-Jan-22 07:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She was . . . beautiful. No, this woman was bad. Bad. Bad bad bad! And she was coming closer to them?! Even when Saber had so easily brandished his blade in front of her? Dante could feel the hair on his skin raise. She had to be a servant, no person would have easily taken a challenge, either that or she had been insane. The way she easily stood and trapezed on the spider like threads towards them made him back away, fearful that if she gotten any closer he&#39;d had wandered into one of her traps.</em>
+
+&quot;W-we did not mean to bore you, but we cannot allow you to stop this ship! And we cannot let you rest now that you&#39;ve found yourself full of bl-blood that could not be yours!&quot;
+
+<em>While Octavius had gone and joked with his opponent, Dante chided them with his cowardly tone, even the words seemed to lose their &#39;rebuking&#39; intention the farther he spoke. His eyes went back to the sailors that kept their backs turned to him, the way they seemed to ignore the very strange woman that had been around them entire or even how they had not much reacted to the tone of two new &quot;intruders&quot;. Yes, they were somewhat standing, but they couldn&#39;t have been alive, they&#39;d have some sort of alertness to them, rather than their dull silence they gave back. The Doctor cringed at the ever so quiet atmosphere they had on them, until, something strange had happened. His head was filled with a familiar voice! Or well, it wasn&#39;t that it was familiar since it had been Octavius who spoke but he could hear him! But he had not known whether he had said it aloud or whether he had just thought of it himself. Either way, it was his regardless.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="927699053972713512" id="message-927699053972713512" title="Message sent: 04-Jan-22 07:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It had taken a moment to finally respond to this voice that had appeared in his head, his slow and unconfident &#39;yes&#39; being all he could utter as he stopped the shifting towards the exit. He. . . He was going to need to somehow provide some sort of combat against this woman, against this . . . this foe! In a small moment the Dante simply watched her, the distance between her and Octavius being his only saving grace as he tried to force himself to not just run back to his room. He was here to protect his servant,  not just as a person, but as the master of him!</em>
+
+&quot;I ask that y-you stand down, I do not wish to fight you!&quot;
+
+<em>He said as a plea for her, but mainly for himself!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">04-Jan-22 07:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="927699365345230928" id="message-927699365345230928" title="Message sent: 04-Jan-22 07:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 03:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="928002485086453780" id="message-928002485086453780" title="Message sent: 05-Jan-22 03:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The young lady only chuckled at the servants words. Compliments, no matter how backhanded they were, was still something she didn&#39;t not yet often. It was nice to hear the voices of someone new. &#39;He&#39;s so... pretty...&#39; playing on repeat in her brain as she looked right past the servant and at the small doctor. Even with his voice, full of terror it was still pretty and he didn&#39;t want to fight? Perfect neither did she truly want too, so many energy was already wasted and she just wanted to go to bed. As her creepy smile shifted to a much more normal one, her creepy and scary aura changed one of a normal person. If she wasn&#39;t covered in blood maybe she could even pass for one. Looking down at them both she waved her hand to them with a grin.
+
+&quot;Well if you two do not wish to fight... we won&#39;t.... just go back the way you came.... you are too beautiful... but what is your name..?&quot; 
+
+No longer looking maliciously, she only looked <em>interested</em>. Wanting nothing more then an answer from this stranger. Though he was an invader, someone she should destroy, someone that every bone in her body was telling her to kill, she wanted to see what he really looked like outside of the red flashing lights. 
+
+&quot;You even brought a servant with you... you must be important to bring someone that well dressed....&quot; 
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 05:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="928040047121412166" id="message-928040047121412166" title="Message sent: 05-Jan-22 05:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Saber was ready to leap at the enemy at a moment&#39;s notice, but now, he hesitated, the hostility that was there previously was missing, well not missing, more muted perhaps. Did she give them an out to leave? Unlikely. They needed to get rid of the source of the attack on the Canopus, unless... Octavius took a glance back at Dante and then another one back at the purple-haired woman. They were close enough to the island that he could likely pick up Dante and jump to shore, that would be the easiest option rather than fight. Octavius laughed at the notion of running away. He couldn&#39;t simply leave now and lose face with his Imperator. 
+
+&quot;You and I both know <em>spider</em> that we can&#39;t simply leave you alone to destroy this ship and we simply can&#39;t just leave either. Forgive me for the lack of trust, but I doubt you&#39;d just, let us go. Am I right?&quot; As he interrogated the woman he shifted over to stand more in front of Dante, covering Ashley&#39;s view of him. He could see that she was very interested in his master, for what reason he didn&#39;t know, but he didn&#39;t like what it could imply, especially within full view of what she did with those sailors. Perhaps they were even still out of direct conflict because of her interest in the doctor, which could be useful later. Octavius was now stuck between two decisions. He could attack now and gain an upper hand due to her perceived passiveness, although without knowing what else could lay in waiting in the room or he could stand down a little and try and further peace negotiations, perhaps even sway a truce to simplify their operations on this island.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928040066826244226" id="message-928040066826244226" title="Message sent: 05-Jan-22 05:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Apologies as well for my rudeness beautiful, but while cannot give you my true name per se, I can give you that I am a Saber Class servant, nothing more than that however, I don&#39;t even know if you are alone down here, if you could be considerate and give us information on your allies then we would gladly give you more of our information. A quid pro quo.&quot; Caesar would start with negotiations and if he didn&#39;t get anything useful then he would proceed with the other approach. &quot;In fact, if you would tell whatever or whoever is currently entangling the boat to cease their actions, all the better. If you really want us to leave that badly you&#39;d let the ship remain in working order surely.&quot; The Saber servant finished his side of the argument, never taking his eyes off from Ashley in case any of his words altered her reactions, from what he could tell, however, most of her demeanor switches were from Dante&#39;s words rather than his own which were pretty much dressing for his master&#39;s sheepish comments. Speaking of his own master, Octavius was amazed that the panicky doctor hadn&#39;t shut down from this encounter, he truly didn&#39;t give him as much credit as he deserved.
+
+&#39;Dante, she seems awfully interested in you, it&#39;s up to you to sweeten the deal further, although if you wish for me to slice her in half I am willing all the same. This is the game of diplomacy Imperator, and you hold the cards. I trust you.&#39; Octavius mentally said to Dante, he added the last line to hopefully help iron out Dante&#39;s resolve.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">05-Jan-22 05:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="928040126016270347" id="message-928040126016270347" title="Message sent: 05-Jan-22 05:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 01:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="928152951749505035" id="message-928152951749505035" title="Message sent: 05-Jan-22 01:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She didn’t want to fight? Great! That . . . That would mean that she could go away right? They’d be able to go away, and while he couldn’t do much to save the sailors, there would at least be a way to address the situation. All she had to do was go. However, what made him more nervous was that this woman, the enemy asked for his name. Why did she need it? What in the world could have gotten much interest out of it? And was she calling him beautiful? She couldn’t be. . . He looked average than best. But beautiful? He shook his head to keep him from panicking in front of Octavius. Especially after his suggestion through diplomacy.</em>
+
+“M-my name is Dante, but please d-don’t say such things about me. . . as for you saying you don’t want to fight, please cooperate then! That is all we ask for! I’ll have him stand down for that matter if you do.”
+
+<em>While he didn’t understand her, he most definitely didn’t want to fight her. Instead, he simply watched as Octavius tried to also convince the spider-esque enemy into at least giving out information, though he didn’t expect much to work. All while he spoke, Dante’s mind raced as to what could have made her want to stop the ship in the first place? The first two teams, had they made it to shore? Had they been encountered by the same pushback? A similar bloody introduction that this woman had displayed against them? Nirvana. . . The word of what sounded like paradise seemed more like hell at this point. Dante snapped his attention back towards the woman.</em>
+
+“A-As my saber has said. . . If you could tell us who could have capsized the ship, that would help us significantly, I know it may not look like much deal wise. . . but I would hope that maybe we can resolve this peacefully than with violence.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">05-Jan-22 01:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="928152979637407744" id="message-928152979637407744" title="Message sent: 05-Jan-22 01:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Jan-22 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="928302082853851216" id="message-928302082853851216" title="Message sent: 05-Jan-22 11:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She tilted her head slightly giving them a very confused look. Did they not understand what she meant? She was letting them run away and they are asking her to stop all of this? Outsiders were so strange, and honestly getting kind of annoying. Jumping backwards onto another platform she waved her hand as a large amount of strings and threads covered the door to escape. I guess she would have to actually try today huh? Even though he was so cute she couldn&#39;t let him get to the island, at least not like this. The malice slowly returning to her as she watched them with a small smile on her face.
+
+&quot;You all.... so stupid... even with hostages you try to make me surrender to you..? Well maybe its not even worth it..... but you are too pretty to be left to waste but the others.... Nathaniel wouldn&#39;t like it....&quot;
+
+With another wave of her hands the sailors turned around, all of them at the same time as the blood soaked fronts and dead eyes starred the pair down holding assorted items to use as weapons. Many disfigured but had a strange air of calm horror as the people Dante had travelled this whole time with prepared to kill him.
+
+&quot;You will die here... for face horrors you could never imagine.... You will never get past this point....&quot;
+
+Looking down at the two from her platform just above the door on the other side she laughed. She knew the others had already started, and that they, unlike her, will leave the poor boy destroyed. At least she would preserve his beauty though it didn&#39;t seem like he even saw it himself which made the girl rather sad.
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jan-22 06:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="928421474879041657" id="message-928421474879041657" title="Message sent: 06-Jan-22 06:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The blood dripping and staining the flora of the sea did wonders to calm Caster&#39;s nerves, the Servant&#39;s eerie smile repainting itself onto her visage as she stares blankly at the ground, hunched over and shivering with the last vestiges of rage and the giddy excitement of pleasure. Yes...this is what she needed. Whoever had dared to sully her handiwork was well below 20 leagues below sea level by now. She could concentrate on the matter at hand...except...
+
+Now that she had broken from her reverie, much had changed since her Master and she scurried their way inside the Canopus. So many flares of magecraft...and the sound of carnage above tickled the vines of sea flora as it sent a message to her own ears. Servants were aboard...around...some good...others bad...naughty things...
+
+And even now, she can hear her Master conversing with someone...oh dear, Ashley was defending her Caster...she was giving this lowly creature a chance at safety. Much too good...far too good she is to her...
+
+But still, the time for action was here. She couldn&#39;t dally much longer...
+
+With a flex of her fingers, she returned to work, her plants growing once more and crawling along the Canopus, a sharp creaking from below reasserting the dire truth: this ship wouldn&#39;t be able to take much more. Caster&#39;s vile weeds were exerting far too much pressure on the keel. If it broke...this ship would go down...the moans were enough to echo across all levels and decks of the ship, signaling that the Canopus was indeed on its last legs...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928421552096174161" id="message-928421552096174161" title="Message sent: 06-Jan-22 06:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">06-Jan-22 12:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="928511899811868672" id="message-928511899811868672" title="Message sent: 06-Jan-22 12:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Octavius held his blade out again and gritted his teeth. Seemed like combat was unavoidable. He stared at the sailors with a dispassionate look, from their eyes he could tell that there wasn&#39;t a singular thought behind their eyes, and while he couldn&#39;t confirm whether or not they were alive or dead at the moment, they surely weren&#39;t okay in any form. From the demeanor and the attitude that the woman gave, it was clear she was going to use these <em>men</em> for leverage. There was one thing that she hadn&#39;t considered. Octavius didn&#39;t care. Whether they were alive or did, it simply didn&#39;t matter to Octavius this woman of string would likely use them as human shields regardless of extra combatants. It was also clear that she was simply the door woman for whatever was behind the door, and they could not afford to be slowed or stopped now. He would simply have to put faith in Dante to deal with his light work. As he took a glance behind himself at the blocked door and then to Dante, he gave a light smirk to his master before turning back to Ashley, giving Dante one simple command. &quot;Deal with the sailors.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928511907432923166" id="message-928511907432923166" title="Message sent: 06-Jan-22 12:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;You should have taken the compromise lady,&quot; Caesar stated as his armor and sword glowed with light orange and red light. &quot; Because you misunderstand spider, the one who will die today-&quot; in the middle of the Emperor&#39;s sentence he rocketed from his spot in front of Dante, sending a gust of wind from his jump around the room, pushing both Dante and the sailors backward a few feet, making the sailors at least slam into the wall behind them and making the strings placed around the room vibrate as he became face to face with Ashley, swinging his sword toward her at a downwards angle from her right shoulder. &quot;Is you!&quot; His plan was simple, either he would cleave her in two and it would be over or she would dodge most of the attack but his swing would continue and slice apart her bed of strings, hopefully, to cause a distribution in her means of movement and leverage of her string set up.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">06-Jan-22 12:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="928511991352524861" id="message-928511991352524861" title="Message sent: 06-Jan-22 12:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Jan-22 02:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="928715167913623603" id="message-928715167913623603" title="Message sent: 07-Jan-22 02:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>She was quick, and for a second it did look like she was retreating until she landed only a few spaces behind them. With her swift hand motion, Dante turned to see that the exit was slowly being closed off, leaving them in the room with her. This wasn’t any sort of ideal that saber had planned, had he so miserably screwed up any sort of diplomacy? His face contorted into a sort of sickness, feeling a shameful pressure embrace him, almost encase him even, but soon that felt too like an Iron Maiden, simply trying to puncture him all around. However even amidst the animosity he could feel being stirred inside him, his eyes tried to focus on the task at hand. Negations had fallen through, it was time for action. Soon enough, he’d see the cohort of sailers that finally faced them, their bodies splashed and dashed in splotches of crimson that matched the lights, the lifeless eyes that Dante had seen countlessly within the hospitals. They weren’t alive, and yet . . . They moved as if so. He tried to ignore what she said, her actions meant more. 
+
+“O-Okay, I will have to fight then. . . Forgive me for this!”
+
+*Octavius’ command force Dante into action, much to his surprise he found himself ripping a page from the book he held so dearly, the crumpled paper glowing a dim gold and white, and soon he launched it into the crowd of puppet sailors, though to even the others it simply looked like a small ball of trash before it hit the floor. . . And soon, the tempting sound of metal hissing would begin. What was it? The ship? The alarm? The sound of Octavius’s blade? No, it was the paper! And that sound growing louder, a group of chains emerged from the crumpled ball, the chains a luminous white and gold as they snaked around a few sailor’s legs and arms, attempting to bind them from movement. She may have had tricks on those strings . . . But she was counting Dante out too early! He had tricks up his shaky and trembling sleeves too!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="928715188868358154" id="message-928715188868358154" title="Message sent: 07-Jan-22 02:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Too make matters better for the scared passenger, saber also sprang into action, forcing a bit of distance between them, as he went directly for the woman. Great! Now he simply had to follow directions and try to stop the sailors. . . Couldn’t be to difficult right?!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">07-Jan-22 02:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="928715262696513566" id="message-928715262696513566" title="Message sent: 07-Jan-22 02:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Jan-22 04:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="929105709214351420" id="message-929105709214351420" title="Message sent: 08-Jan-22 04:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tired, annoyed, she still refused to give the servant the time of day as she looked over at Dante fighting sailors with a strange, unsettling smile. He could fight too...? What else could he do..? She wanted to test him but this wasn&#39;t the place to do that. She looked up at the servant with the smug grin as she rose her hands above her head and jumped back, seemingly off the platform. The second the Saber&#39;s sword hit the bundle of strings and cut through them. She shot up into the air. 
+
+Flying up into the darkness of the rafters, she only laughed. The noises echoing off the many walls as five more people jumped down towards the servant. These people looking a whole lot more alive then the sailors. Not a single injurie on their perfect skin. All wearing gothic clothing and holding different knives, swords, and one even with an axe. 
+
+A small girl only about maybe in her early teens with long brown hair, a tall man seemingly his late twenties holding the large axe, a pair of blonde twins girl and a boy both holding matching swords, and a boy around Dante&#39;s height missing an eye with black hair.
+
+The tall man only smirked and started to swing at the servant with little to no restraint. Almost like his own life didn&#39;t matter as the others stood on the last platform their master was on all with the same creepy smile full of malice that the young lady above held.
+
+Meanwhile on the ground the few sailors grabbed by the chains started to rattle around, moving in strange and unhuman ways. Bending back limbs in ways no normal person could naturally do in hopes of escaping as the remaining ones turned at the doctor with a creepy grin. Running towards him with knives in hand.
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Jan-22 08:31 AM</span>
+
+            <div class="chatlog__message " data-message-id="929170323897741312" id="message-929170323897741312" title="Message sent: 08-Jan-22 08:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With the sea raging in turmoil from the battle of the docks, to the arrival of new Heroes to answer the call of their masters, this simple expedition was becoming anything but; and it all started with one little Caster...
+
+<em>My Master...you&#39;re engaging them, aren&#39;t you? You truly are a shining beacon for this world, a light like no other. I thank you...for giving me the time I needed...because now...our show of strength...</em>
+
+<em><strong>IS HERE</strong></em>
+
+<s>~
+
+A shuddering groan ripples through the decks, and a single shiver crawls across the massive hull of the Canopus as the ship gives one last cry of pain. Nature...has won. 
+
+<strong>CREEEEEEEEALLLLLLLAAAAAAAAASH</strong>
+
+With a final buckle of pressure, Caster&#39;s sea flora breaks the keel, and the lurch that follows is enough to tell all on board that the boat was sinking to its early grave. 
+
+&quot;Dammit...g-get the life boats ready! We&#39;re sinking!&quot; 
+
+Sailor&#39;s rush to grab their safety vessels, many abandoning their posts to escape from the weeds lapping lazily at their feet, as well as the collateral damage occurring between Servants on board. It was obvious enough now that the damage was caused by a Servant, and Nirvana was seeking to destroy them all...
+
+</s>~
+
+&quot;Heeheehehehehe...hahahahaAHAHAHHAHAHAHAHAHAHHAAH! Master...Master...you&#39;ve done well for me. However, it&#39;s almost time for us to make our way out...&quot; Caster says, her voice lilting with manic energy to rival Ashley&#39;s own as a burst of weeds shoots through the hole both had made, a pair of glowing yellow eyes peering out and towards its own master. It took the shape of a serpent, it&#39;s teeth humanoid and composed of shell fragments as it gave a rancid growl of contempt, malice, and fury swirled together. &quot;My lovely Dark Worm...we will aid Ashley. Now take me in.&quot; 
+
+Opening its maw wide, the Dark Worm swallow Caster of the Vile Weeds before slithering towards the battle, it&#39;s girth taking up most of the space within as it lunges to catch Octavius in a gnashing of teeth.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929170466894118922" id="message-929170466894118922" title="Message sent: 08-Jan-22 08:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Jan-22 11:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="929221942429499422" id="message-929221942429499422" title="Message sent: 08-Jan-22 11:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Octavius scowled after the woman dodged his attack, he hadn&#39;t expected her to match his speed. Albeit he wasn&#39;t going as fast as he could because if he did he would have probably slammed into her instead. Either way, as his slice cut through the bed of webs he noticed the five new figures enter his field of view from above and as he looked at the ground he could see that the sailors contorted themselves free and were rushing Dante. This situation went from manageable to bad. Although it wasn&#39;t too bad yet, just a bit more challenging.  As he continued using his swing into a flip he noticed the man with the ax swinging towards him, child&#39;s play for the emperor. As the swung came near him, Octavius completed the flip, bringing his gauntlet up to block the swing, making the strike scrape harmlessly off of his gauntlet as he brought Auram Pax forward, stabbing the blade through the man&#39;s throat before swinging his arm out, severing the head entirely from the body and sending both spiraling into a wall with a thud. He expected some sort of blood to coat his sword or spray onto him but, there was nothing. While that was a very unsettling thought, it did give him the impression that like the one that he beheaded, none of them were living. Even if they were, Octavius cared not for their lives. They chose to bear weapons against him which meant their lives were forfeited. 
+
+&quot;I&#39;d say this is cheating my dear but I suppose sneak attacks are hardly fair!&quot; He called out as he sailed back to the ground, specifically landing on top of two of the hostile sailors, their bodies crushed under Octavius&#39;s weight and the force from the landing. He then turns, swinging his sword around in a circle, slicing each one of the nearby sailors&#39; heads clean from their bodies. As he looked at the falling corpses, he noticed that their blood was very much intact as he was now covered in it. <em>Well there&#39;s the blood I suppose.</em> As he recomposed himself he noticed that he had missed a single sailo</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929221944807686204" id="message-929221944807686204" title="Message sent: 08-Jan-22 11:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">r that was still running for Dante, but before he could act to protect his maste-
+
+<em>Crash</em>
+
+That&#39;s when Octavius felt the Canopus start to sink. He was right, whatever was behind that door was the reason that the Canopus was currently experiencing technical difficulties. All he was hoping, for now, was that whatever it was that it wasn&#39;t able to do much more than- <em>is that a giant snake?</em> As the thought crossed his mind the creature lunged towards him from the hole made from presumably the same creature. Octavius was in a bind now. Above him was the spider woman with more of her minions, behind him was a sailor that was charging Dante and in front of him was a giant snake-like beast. As well he didn&#39;t have the nor was this the place for him to release his Noble Phantasm. He didn&#39;t have enough time to give a proper parry or counterattack, so he would simply have to try and dodge! Easier said than done...
+
+He leaned to his right and stepped off, swinging his arm as well around to try and smack the creature away, alas he didn&#39;t have the time and the creature had its mouth already around his arm, pulling the Caesar backward and taking him off of his feet. Octavius could feel the fangs of the creature press into the gauntlet of his arm, although it was unable to puncture into his flesh. Either way, Octavius wasn&#39;t going to take being grappled lightly though as he then immediately proceeds to stab Auram Pax straight into the neck of the snake. All the while Octavius was revaluating who he might be facing. If the purple-haired woman was a servant then what was this? Another of her puppets? A completely separate entity? Questions for another time. Right now he needed to get Dante away from here. Well before that, he needed to escape himself!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">08-Jan-22 11:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="929222048570548274" id="message-929222048570548274" title="Message sent: 08-Jan-22 11:56 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Jan-22 03:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="929456140964749322" id="message-929456140964749322" title="Message sent: 09-Jan-22 03:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>H-He had did it! The way the chains seemed to bound them to one another was perfect, it should have been harder to even move from them. The way the spell was known for freedom, was keeping them bound together. That should keep them down for a bit right? Just as Dante was to reassure himself the ship gave its final groan as the keel had been destroyed. Dante’s face contorted with horror. The ship. . . It wasn’t going to stay afloat much longer, and there we at the lowest parts of it. In the bowels of a ship while it slowly gave its final efforts to even buoy the currents of the sea.</em>
+
+<em>He couldn’t believe it, his stomach lurched with the threat up bringing whatever contents it had stored before, his eyes watered entirely. He was going to die here. Dying in the middle of nowhere. With a battle he didn’t want to commence. It felt constricting the world felt as if it were to swallow him whole. His eyes went to the door, the door that had been buried with strings and threads. He wanted out. He couldn’t breathe. Something within him crumpled like the paper before, he couldn’t move. Only stare around him as if he were watching something outside his own body. The way the girl so easily jumped about from from perch to perch, forcing Saber to try to catch up with his sword strikes, how the boat felt as if it were fallen out of the sky, the way the rafters clattered sounds with hands and finally birthed bodies around him, each with alarming alertness, the plethora of them wielding weapons to fight against the Roman Emperor. He could feel it. The constriction almost cutting off his breathing. His breath wasn’t much anymore, gasps? Pants? His mouth went dry. Why? Why. . . Why was he to die here?</em>
+
+<strong>*Crack!</strong> The sounds of bones breaking and shattering from the contorting, writhing bodies only made him drag his eyes to them. They. . . They would still move? Where was saber? The sound of a blade piercing flesh reminded him he had his own battles.*</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929456251820204073" id="message-929456251820204073" title="Message sent: 09-Jan-22 03:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He couldn’t take his eyes from the group of puppets however, they making their quick paced steps towards him as their bloodies limp hands carried weapons. He was to die here, amidst a group of zombies. He didn’t want to. But it felt impossible to resist it, the thought settling over his nerves as if they were a blanket.</em>
+“P-please stop. I-I don’t want to die. I don’t want to die. No.”
+
+*While it wasn’t extremely loud, he could feel it tear through his throat, his voice box felt scratchy from the first word, and soon, in a manic moment, he began trying to claw over at the door. His fingernails trying to grip onto whatever string it could as he tried to pull them away, even if they were too sharp, he’d try to pull at it, gaining the cuts and thin bloody slices of across his hands while he tried to do something. He wanted to leave. Leave. Leave. . . Leave. Leave leave leave leave leave. He could feel his head beginning to pound furiously, he didn’t want to die at all. Not now. Not here. Not yet. He hadn’t even gotten close to his goal. He would stay away from them all, the investigators, he wouldn’t do anything with the islanders that seemed to be furious with their intrusion, he just wanted to save himself. He . . . And, and. . . His eyes went to look at saber and the  beast, the way he tried to fend it off without as much effort as possible. He would try to save himself and saber at least. It wouldn’t be much than that, before he felt his effort was little, his hands a crimson mess and the strings coated in little bloody handprints, he couldn’t even open it. Finally the zombie like puppets had closed in on him, had they been human they’d have seen how dishelved the doctor looked, his eyes red and sainted with tears and smears of his own blood, as his soft features seemed to crack like sand. 
+
+“P-please don’t kill me! Don’t kill me! I don’t want to die!”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929456267565629470" id="message-929456267565629470" title="Message sent: 09-Jan-22 03:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>This time, his voice rose into almost a scream at the girl and her servant, the sounds felt as searing into his throat, branding him with the fear he was sitting in. In an final attempt to give himself a second to survive, he one again throw another page, even the action of having to ball the paper up was enough to make his nerves feel reverie at the fact that he still had not died yet, before the chains exploded from the page, locking onto whatever pipes and such they could, grabbing limbs be it broken or unbroken as it tried to keep them bound again. His final attempt at saving himself. If it hadn’t worked, god knew what would?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">09-Jan-22 03:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="929456420712231072" id="message-929456420712231072" title="Message sent: 09-Jan-22 03:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://youtu.be/3CX_dMrCbNA">https://youtu.be/3CX_dMrCbNA</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UC0JgzTVehyOFzILk7ppMxKQ">Ani_Where&#127477;&#127469;</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=3CX_dMrCbNA">
+                                                        <div class="markdown preserve-whitespace">Re:Zero Season 2 OST - &quot;Echidna&quot; by Kenichiro Suehiro</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/3CX_dMrCbNA" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="929456706528890951" id="message-929456706528890951" title="Message sent: 09-Jan-22 03:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-EDBB1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="926248722365562910" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jan-22 02:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="929802059417534475" id="message-929802059417534475" title="Message sent: 10-Jan-22 02:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Then die you shall not.&quot;</strong>
+
+A breeze hit Dante in the face, wiping away any droplets of fresh blood as he was temporarily blinded by his own tears. As he rubbed his eyelids and slowly regained his composure, he realized that the army of puppets had moved. Quite a few feet away too.
+
+Judging by their condition, which included several members who had stumbled on each other, some mysterious force had pushed them away. Even more odd was the fact that the floor was now littered in pages, all of them filled with indecipherable handwriting.
+
+If Ashley were to witness the scene, she would have noticed a gust of pages collide with her puppets, causing a domino effect as they were pushed back by the impact. This was a momentary solution at best, since she sensed no damage to her puppets&#39; structure. It was just an attempt at buying time, but for whom?
+
+It was then that the two of her noticed a new face on the ship. A man stood by the ship&#39;s edge, casually walking on the border despite the canopus cracking at its seams thanks to Locusta&#39;s weeds.
+
+&quot;You make for quite the opening act, if I say so myself. Such wonderous despair, so <em>supreme</em> that it made me <em>scream</em>. No, wait, that was you--&quot; William adjusted his hat, changing directions as he now inched closer to Dante while observing the puppets for any suspect motions.
+
+&quot;Your death would make for a wonderful tragedy.&quot; He laughed. &quot;But are you satisfied with that? Is this how you would like to be remembered? Someone who succumbed to their own fears? Personally, I got tired of that trope long ago.&quot;
+
+He stared in Dante&#39;s eyes, both judging him and egging him on. It caused for a moment of self-reflection. What was he doing just moments ago? Why did begging for his life come so easily? Was that really the way someone like him should act?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929802101910024272" id="message-929802101910024272" title="Message sent: 10-Jan-22 02:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+He was warned of the dangers. The entire investigation crew was told about the risks in the expedition. They were already ridiculed by most, being told by people back home that they wouldn&#39;t return alive.
+
+...Was he really going to prove them right by dying here?
+
+&quot;So, what shall it be? Will you fight like a hero or will you perish like a dog? That alone, is for you to decide, <em>and for me to document.</em>&quot; William twirled his pen around.
+
+&quot;But for now, in exchange for my pep talk, I shall take something from <em>you.</em>&quot; He smirked, which made Dante go cold. What sort of compensation could this person even ask for?
+
+He understood the moment William dragged a stack of papers from his seemingly bottomless pockets, causing them to fly in the air as they blanketed the sky.
+
+&quot;Those who do not love, do not show their love. So allow me to demonstrate mine!&quot;
+
+The papers flew with a conscience, heading towards William&#39;s target: Octavius. The Roman Emperor was currently struggling against Locusta&#39;s familiars, fending off a combination of poison, weeds and a giant snake to boot. To say that this was a bigger struggle than the numerous conquests he had achieved in life would be an understatement.
+
+And yet, his strength did not falter, for a buffet of papers hit him and the snake in the eyes. At first, he was annoyed, but then realized that the papers had vanished. It was almost as if they were merging into his skin, reaching into his Spirit Core, until...
+
+<strong>POWER.</strong> Overwhelming power filled every crevice in his body. This wasn&#39;t Dante supplying him with mana, nor was it the equivalent of eating a mana battery. He felt in tip top shape, no, even <em>beyond</em> that. If there were such a thing as a state beyond perfect, he certainly felt that way.
+
+Locusta sensed that something was off. Her opponent was no longer faltering, but instead, standing toe to toe with her worm. It was almost as if his strength had increased in the past few minutes.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929802177235533824" id="message-929802177235533824" title="Message sent: 10-Jan-22 02:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Dante witnessed the scene from afar, watching his Servant go from cornered to the one cornering the opponent. He then felt William&#39;s hand pat his shoulder.
+
+&quot;Ah, isn&#39;t it great? To see a valiant hero fight against the forces of darkness. Why, it makes me positively thrilled! Thank you for the opportunity, nameless Master. I haven&#39;t seen a proper hero in a while.&quot; William rubbed his own eyelids, as if faking tears before giving Dante a smile.
+
+&quot;...Will you disappoint them? They seem to be struggling really hard to protect you, you know? I&#39;d feel crushed if I were working my arse off, only to see my own Master perish. Like, can you imagine that?! It would be akin to a sick joke!&quot; He laughed, albeit his message was clear.
+
+The flying papers then started to land on Dante, wrapping themselves around his injuries and acting as makeshift bandages. Even better, he felt like they had improved his mana circulation. His circuits glowed bright and he felt like some of his body&#39;s natural limiters had been bypassed.
+
+&quot;Well, that being said, I shall let you do as you please. Be sure to not disappoint, young man!&quot; William&#39;s tone sounded mocking, as if he knew that he appeared quite young, even when compared to Dante. The bard then started to walk away, as if more interested in seeing what Dante would accomplish with his own free will instead of guiding him like a puppet.
+
+Ashley felt sickened. This worthless bard, Shakespeare, really dared to intrude upon their game of cat and mouse? Unforgiveable.
+
+Yet she couldn&#39;t waste any time pursuing the bastard. Not when Locusta was currently being cornered. Perhaps that was why the poet had intervened. Because they knew for a fact that they would be able to get off scot free. Spineless coward. <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Jan-22 12:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="929961913000026173" id="message-929961913000026173" title="Message sent: 10-Jan-22 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Getting pushed back, even shaking in her position on the rafters. Glaring and twitching from the sick feeling... traitor.... why....? How many others....? Will others stop her....? Who else who else who else.....? In her small fit on paranoia she grabbed her hair, forcing all her puppets to jolt up and away from Dante for a little bit. Her voice echoing around sounded a lot less spooking and a lot more scared, pathetic even as she looked towards the snake for a little bit of comfort. Shaking as she looked around the dark room knowing the ship was going down.
+
+&quot;No control.... There is no control here.... stop stop stop stop.....&quot;
+
+She knew she had to get out soon, they were outsiders but where they worth her life? No way she has her whole family back home waiting for her to get back. She turned to Caster. Pulling on a small string attached to the servants wrist lightly to remind her that they also need to get out of this place. As this happened she looked down at Dante, the boy shaking and panicking. It was still so beautiful; comforting even to see another person like her. Not even close to as perfect as her dolls, he showed fear, despair, horror, it fascinated her. In a way that she had not seen in a long time. As she began to calm down after learning off this her puppets returned to their places but looked a little less violent then before as the little girl looked towards Dante and spoke:</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="929961925129945189" id="message-929961925129945189" title="Message sent: 10-Jan-22 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You, you interest me, I would love to see what else you can show me. What emotions you feel so fiercely. You interest me more then anything in a long time Dante, and I guess it would only be right to give you my name as well.... call me Ashley...&quot; Though not from the same sounding voice as Ashley, it coming out of this little girl, that same mix of sleep depravity and mania laced it. He could tell that it was the purple haired lady.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/400ec7424e000435138ce275c0460daa-16595.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie just vibin</span>
+
+
+        <span class="chatlog__timestamp">10-Jan-22 12:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="929961965827285053" id="message-929961965827285053" title="Message sent: 10-Jan-22 12:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Jan-22 03:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="930180755093618688" id="message-930180755093618688" title="Message sent: 11-Jan-22 03:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The creature roars in muffled pain as the benefactor of the Roman Empire plunges his blade into its neck, a spray of seawater bursting forth and sending a plume of salted mist into the eyes of the Emperor. Mixed in were fine droplets of blood, laced with magic as the Caster&#39;s forearm was sliced, she herself grinning wildly within her writhing cocoon of seaweed and flora. 
+
+The diminutive Caster licks at the wound, cherishing the taste as she looks through the eyes of her beast, noting the Aura of this Servant. Such lavish strength, overwhelming confidence...what a joy it might be to break him...were it not for that IDIOT.
+
+<em>I knew you&#39;d be nothing but trouble, you worthless bard. Damn you...if we stay any longer, we&#39;re likely to go down with the ship. My beasts can hold enough oxygen to get us to the docks, but I doubt we&#39;d survive the ship twisting and mangling in on itself...</em>
+
+The Dark Worm&#39;s body flails about, dragging Octavius with it as it shrank away from the battle. Separating the two...this seemed like a noble idea, at least if she was to stand a chance against this new overwhelming power. Just what did that Bard do...? Well, it mattered very little. She could at least try to have fun with this one until then...provided he didn&#39;t kill her outright. 
+
+&quot;It must be nice having an angel to swoop in when you need it most, especially for that child on your shoulder; I&#39;ve never had such luxuries, even before my time on the Throne. I suppose by that blade you are a Saber, which would make us diametrically opposed! If you so wish to pierce me, then why not come closer to do it...&quot; 
+
+Slowly, the beast&#39;s ragged breath blows in Octavius face as it moves up the emperor&#39;s arm, aiming to restrict his movements more and swallow him deeper. A little more...she just had to take that gauntlet off...she had to feel his bare skin...
+
+<span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Jan-22 06:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="930594292219662356" id="message-930594292219662356" title="Message sent: 12-Jan-22 06:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>There is no other way, there&#39;s nothing else I can do and still protect Dante, I have to unleash the power of Auram Pax!</em> This was what Octavius was thinking as he was being pushed back by Locosta&#39;s magical machinations. Just before he was going to chant the incantation for his Noble Phantasm he heard the voice of the pink-haired bard. Although he wasn&#39;t paying enough attention to hear what he was saying he soon felt himself covered in papers as he felt the new wellspring of power circulate through his system. As his body was being boosted by the new power he was taken away from the current battlefield to a separate one by the serpent. This was a change of date, not necessarily a game-changer as he still needed to get Dante out of the ship from the fighting but he could at least now deal with this monstrosity. As he was starting to feel the power swell inside of his body the creature&#39;s blood covered his eyes, making it sting from the magical energy as well as just being blood in his eyes. He winced and grimaced, but the magical effects of the blood were diminished greatly because of his Magical Resistance. At the moment the blood felt nothing more than if someone threw any similar liquid into a person&#39;s eyes. He heard a voice from the snake, but the beast didn&#39;t say the words itself. What was that about being naturally opposite opponents? At first, he suspected Rider from the snake but Riders usually didn&#39;t have this much power to take down a ship. Meaning that this could only be...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930594342438043759" id="message-930594342438043759" title="Message sent: 12-Jan-22 06:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Caster! Surely if I am correct then you must know how much of a disadvantage you are at,&quot; Octavius taunted despite the creature threatening to break through his armor and the fact that he was currently blind. He wanted to instill doubt and fear into the creature, he wanted to counter the foolish thoughts behind this servant that accosted him that they could honestly defeat him in physical combat! &quot; I don&#39;t need an angel on my shoulder or any kind of power up to beat you! While I sympathize Caster, I know not your name or where you come from, but you have made a mistake challenging me. Prepare yourself!&quot; Octavius called out to the beast.&#160;
+
+Octavius then immediately afterward held Auram Pax in a tighter grip. He needed to get unlatched from this beast and thankfully he still held his blade or else this would be no easy feat. Using his strength mixed with the power boost he gained from the third party benefactor, Caesar used his entire body to turn and slam the creature into the ship&#39;s ground, using the arm that was inside of the mouth of the creature to pin it as he swung his other hand downward with all of his might to cleave open the neck of the beast before swinging his arm up and cleaving the rest of the snake&#39;s head from its body, raising his sword in front him in the direction of the body of the beheaded snake.&#160;
+
+&quot;While I might not be able to see you, Caster, I have enough power to use my Noble Phantasm to blow you away. Accuracy isn&#39;t needed if I can hear what direction you hail monster!&quot; He called out to the enemy servant. He could feel his left gauntlet caved inwards from how close the beast was to puncture it. From just how the blood stung, he didn&#39;t want to find out if that creature or this servant for that matter had poison. To continue his point Auram Pax began to glow as he started to chant. &quot;Wars, both civil and foreign, I undertook throughout the world, on sea and land, and when victorious I spare-&quot; He paused his chant as he felt an immense chi</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930594344753311804" id="message-930594344753311804" title="Message sent: 12-Jan-22 06:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">ll crawl through his body. What was causing this phenomenon Caesar wondered? Whatever it was, it made him stop his chant and return his blade to a defensive posture.&#160;
+
+&quot;Is this cold your doing, Caster?&quot; He questioned as he took a few steps away to make the distance between his bate partner. As well at that moment he could hear the boat groan and shake as if the forces accosting the ship were at a standstill at the presence of this new entity. The ship had stopped its sinking! At this revelation, Octavius grinned despite the circumstances. &quot;Or is that cold your undoing?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">12-Jan-22 06:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="930594451460612127" id="message-930594451460612127" title="Message sent: 12-Jan-22 06:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Jan-22 08:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="930614925527752774" id="message-930614925527752774" title="Message sent: 12-Jan-22 08:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She grits her teeth against the offhand comments against her, Caster instead focusing all of her attention on simply grazing the man&#39;s skin. Just one touch...a small one...
+
+But of course, this was to be short-lived. Even with the vast gap of power between them both, exacerbated in no small due part to that idiot bard, Caster was left defenseless as the Saber cleaves his way through her Dark Worm, the creature gifted life through her mana gurgling its death rattle as water leaks from its head wound, Caster&#39;s own fuming face, drenched from sea water, glaring back at Saber. 
+
+&quot;You brute...my death worm...well, it doesn&#39;t matter. Even if our power is far different, I suspect even you can&#39;t stand before the might of modern machinery crumbling on itself. Your strength only delays the inevitable, Saber, for I have sunk-&quot; 
+
+A chill grazing her cheek stops her maniacal (if slightly generic) ranting, the Caster softly touching at the pale flesh as she feels the slight sting that comes with winter...wait...
+
+She turns back, looking to the hole she made, earnestly hoping to see the sea yawning before her, only to see a plain of ice...
+
+&quot;...What...what is...what the....
+
+&quot;<strong>WHAT THE F@!$?!</strong>&quot; She blurts, her own fury breaking through her elegance and casting a crude surprise on her opponent, the small woman pulling at her hair roughly as her eyes space out in manic fury. It would be frightening...were Caster not so small, but it was also worth remembering her part to play in this fiasco to begin with...
+
+&quot;Oh don&#39;t give me that smug look...you did this, didn&#39;t you?!&quot; She spits at Saber, eyes glaring venomously into his own, glowing bright emerald as her face contorts into a demonic furrow. It obviously wasn&#39;t him, but it was clear this was some Servant&#39;s work...and it certainly wouldn&#39;t have been from Nirvana, if what Ashley had told her was true. 
+
+&quot;Well, it looks like I can&#39;t really afford to stay then...Gods dammit...I suppose this is a rare moment of truce...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930615028212699206" id="message-930615028212699206" title="Message sent: 12-Jan-22 08:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Caster flexes her fingers once more, as another round of creaking echoes through the decks, the Caster never once tearing her glare from Saber. Partly out of vehemence...but...there was something to him...a strange familiarity...it clearly wasn&#39;t someone she would have met in her lifetime, but he almost had the same stature about him...the pride that accompanies those that could have rivaled...well, her. Curiosity gets the better of her, Caster blushing slightly and turning away at the mere thought of how that regalness befit him. It was almost...handsome...
+
+&quot;...You&#39;re Roman, aren&#39;t you...&quot; she says softly, the words coming out in a fitful stutter as the line between hatred and admiration only continues to blur in her agitated mind. The creaking grows near, almost seeming to aim for where Ashley and Dante were...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930615091529928774" id="message-930615091529928774" title="Message sent: 12-Jan-22 08:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Jan-22 01:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="930700320512835644" id="message-930700320512835644" title="Message sent: 12-Jan-22 01:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>As if his manic cries were heard, he could hear someone reply to him. An Angel? A deity? It could have been either. . . But the breeze easily would have wiped his tears, as if the wind cradled him itself. It would taken a moment to register the mysterious voice’s actions, the fact that the pages covered his wounds, the way the puppets seemed to be further away from him, even the newly found panic in the master. But even now, he found himself standing again. He didn’t know why. He didn’t know when, but he could feel his panic displace for the bit. This being. . . Deity, Angel, or member clearly had done this for a reason, with his scolding of his death being a joke something that buried deep within his skin. It was true, had he chosen to die here, it’d do little but be proven that his life was nothing but a comedic sick joke. A joke whose punchline would have gone out like a candle’s light in rain.</em>
+
+<em>Before the doctor could even utter any sort of word towards the man, he walked away, the final words simply sitting on his mind. He had to not disappoint? How could he have done such a thing? What could he have done against her? He turned back to the woman, gauging her expression from the one confused and frenzied state to a more calm look, but Dante wouldn’t fall for such a thing. At her movement towards him, he reeled back, grabbing a page that was on him and crumbling it in his hand. He’d guard himself, he’d protect himself if he could. He didn’t know how to not disappoint, but he’d struggle to live somehow. The way his good arm gripped the page was as if he kept it long enough it’d set ablaze. . . He may not be able to kill her, but if she tried anything, she’d have her body hanging from these same rafter she once kept as hers. His body tensed in a fear that felt similar with a foreign idea of anger from how much he had suffered in such little time.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930700333267709962" id="message-930700333267709962" title="Message sent: 12-Jan-22 01:50 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I have nothing to show you. S-Stay back and do not come any closer, this i-is a warning I will only give once, Ashley.”
+
+<em>His voice came more as a command than his expected fear, he took the name as something register. This woman, Ashley, clearly was something he feared, but he had been cornered, forced to near face death in which he’d been only saved by the grace of another servant. He would suffer if she were any closer. He moved back, backing up towards the door before he had heard the clanging of Saber in his own battle with the beastly worm. His eyes went back to the woman, and for that another surprising command came from his lips.</em>
+
+“Call of your servant. We did not want to fight you, and I am offering you once more an option to leave us alone. Go back where you were, if not, then so be it. I’m sure you’ll kill me here, but I will not allow you to corner me. . .”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">12-Jan-22 01:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="930700416163913760" id="message-930700416163913760" title="Message sent: 12-Jan-22 01:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jan-22 12:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="930855295306047488" id="message-930855295306047488" title="Message sent: 13-Jan-22 12:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His words tripping over each other, how brave his voice started to sound. She honestly liked the sound of his voice, it was calming to her in a strange way. He was not speaking of her use to him, he was only looking out for himself, something the young lady respected and needed more off. As much as he drove her insane just be being on this island she didn&#39;t really want to kill him. She wondered just what the others would think of him as a bit of panic crossed her mind. She knew if Ruth found him what she would do, or worse Koji might feed him to the birds. Ignoring her better judgement she swung down from the rafters, landing gracefully on the ground as the many puppets backed away. Now for the first time Dante could see her clearly. 
+
+A woman with long dyed purple hair that even though pretty seemed a little messed, she was very very pale almost sick looking with bags under her eyes but her skin looked also like a dolls. Unnatural would be the best word to describe it. Her eyes with a beautiful purple yet only a little light was left in them as the doctor could tell this girl had no slept properly in weeks. Her clothing was delicate, hand made and the amour looking more like plastic then metal. Walking right up to him. Her threating aura gone as she looked at him like a curious child before a bit of worry crossed her face. 
+
+&quot;You plan to go explore this island Dante.....? Well... if thats what you want.... just know I called dibs first... the others.... the others <strong>will</strong> go after you.... I don&#39;t want someone do pretty.... dying like that.....&quot;
+
+With those words she gently grabbed Dante&#39;s hand and a small string wrapped around it, cutting off at the end once tied around him. It didn&#39;t hurt and he could barely even feel it as she backed away behind her dolls.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930855564899147866" id="message-930855564899147866" title="Message sent: 13-Jan-22 12:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;To make sure you don&#39;t end up destroyed.... I will try to leave but my servant will only listen to herself..... have fun on the island though....&quot;
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jan-22 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="930932647356670012" id="message-930932647356670012" title="Message sent: 13-Jan-22 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Saber followed Caster with his blade, while he was still blinded from her blood in his eyes, he dared not wipe away the gunk from his eyes yet to not provoke a sharp counter-attack. For the moment he would hide his time and use his other senses to react. He still was perfectly able to use his Noble Phantasm at any time, there was no way for the Caster to get a jump on- 
+
+Octavius flinched from her outburst after the revelation that her hard work had gone to waste. He certainly didn&#39;t expect the facade to crack so quickly but he could understand why. Everything was pretty well stacked in her and her master&#39;s favor, the location, the ambush, they had even succeeded with their goal of putting a hole through the ship. The Roman Emperor could sympathize with that disappointment. He would be just as upset as the opposing Servant. Although he didn&#39;t trust most of the words she said as Dante and himself were still in the belly of the beast as it were, he did slightly lower Auram Pax as her tone of voice changed, as if her entire demeanor changed in mere moments. And she was asking for a truce. While it was a good, reasonable thought to say that she was likely to retreat given the chance, Octavius still had to make the option clear.
+
+&quot;Yes indeed. A truce would be wise. You are outmatched in here with me and my master is stalling out there at best against yours. At least I assume that is your master anyway. We call this a draw and go our separate ways without hostility. Any attempt to harm my master or me will be met with the full forth of my fury. The same goes both ways. I promise to you honorable Caster that there shall be no hostilities exiting this ship. Take your master and go,&quot; Octavius&#39;s mind went to the other area of the lower decks that contained Dante and Ashley, he could somewhat hear what was happening including Dante&#39;s spine growing in a little bit of thickness as he stood for himself. But his mind was also on that purple-haired woman. He had to finish this</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930932649189572609" id="message-930932649189572609" title="Message sent: 13-Jan-22 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">interaction quickly so he could grab Dante and get out of here. As he began to think of a plan out of the Canopus, Caesar heard Caster&#39;s last question. While divulging any information would be troublesome later, Octavius could answer that question as a give and take of trust. A bit of leverage for their escape perhaps, or damnation of future relations. It was a gamble, but a gamble that he would take.
+
+&quot;Yes, I am Roman, although you surely understand that I cannot divulge more than that,&quot; After he answered he took a moment to quickly rub the blood and fire from his face and eyes with his left hand, still aiming his right arm with his sword at Locusta. &quot;I ask you this then, where do you hail. Should I also hazard a guess to Rome?&quot; He asked in return as he was able to take an actual look at Locusta in the low light of the lower decks. A small spooky woman for sure, but with immense power able to tear a boat in half. It would be a lie if Octavius said that he wasn&#39;t even slightly interested. Anyone aware of his track record with wives would tell you that Octavius&#39;s standards were nonexistent. He still had a job to do, however, but that faint moment made Octavius ignore the creaking of the ship, mistaking it for the ship simply settling after its ordeal.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/776430cfcf8f6fff512c06811b230cc9-5D375.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Draco#5000" data-user-id="413083055930998784" style="color: rgb(238,94,134)">Draco, Official Lore Gremlin</span>
+
+
+        <span class="chatlog__timestamp">13-Jan-22 05:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="930932716327796806" id="message-930932716327796806" title="Message sent: 13-Jan-22 05:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/8d1a78d39f7eefa73cb155a85a549b22-DAF49.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="926248722365562910" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jan-22 06:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="930955898191491122" id="message-930955898191491122" title="Message sent: 13-Jan-22 06:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I wonder,&quot; she replies, cryptically, a sinister smile returning to her face as she closes her fist. Tearing metal and crackling ice fills the air between them, as another flurry of flora bursts forth from the floor of the deck, surprising Ashley and Dante as the beast opens its mouth wide, both Masters glimpsing into the damp, chasm of its maw...
+
+&quot;My Master, Ashley, we must leave. There&#39;s more than these two fools here, and I suspect that Bard has been busy stacking odds against us. Climb into my Dark Worm...I know it pales in comparison to your own family, and I shall eagerly accept punishment later, but for now, we must make our exit...&quot; 
+
+She begins walking from Saber, not even considering him worthy of a farewell as she approaches her familiar, but pauses for a brief moment. Even if she could act cool...even if she could stave off his eyes...she couldn&#39;t deny the kinship she felt...
+
+&quot;...Farewell, Saber.&quot; She whispers, before glancing to Dante, flashing a manic grin at the boy who dared to even speak so callously to her Master. &quot;My, my, aren&#39;t you a shrimpy one. But I suppose even crustaceans have a shell, and that&#39;s the closest you&#39;ll have to a backbone. Talk to my Master that way again, however, and I can&#39;t guarantee she&#39;ll be able to pull me away...&quot; She leaves on a single promise of violence, giggling profusely as she climbs into the creature&#39;s mouth, awaiting Ashley to join her. <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/1ebad7ad85c36ca496574529618951e2-2F351.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Dante Colt#0000" data-user-id="926248722365562910" style="">Dante Colt</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">13-Jan-22 08:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="930983437580501023" id="message-930983437580501023" title="Message sent: 13-Jan-22 08:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The way she came close enough to be seen in plain sight was a testament to how weak his will had been before. The hand that clenched the page trembled. Four feet. . . Three feet. . . his chest pounded, he just needed to drop it. Drop it and he could restrain her and he could leave. The human dolls she had slumped from their lack of use. Two feet . . . He could see her entirely now, the way she looked as if she had missed many nights of sleep, how she had clothing had no sort of branding from what he could have thought as home, even how her hair was unkempt. One foot. . . He was ready to drop it, his brain willed it, but the hand held onto the page that could have easily been the difference between life and death. He just had to enact it. Drop it, and this would not longer be an issue. Drop it. <strong>Drop it.</strong> It didn&#39;t matter had her homicidal look was masked away behind such a normal curious girl. It didn&#39;t matter if she so easily cared for him . . . within the span of meeting her, she made his life on this boat a nightmare that couldnt even be redeemed into any sort of peace. He needed to move from her.</em>
+
+<em>How she so easily deciphered the plans of the investigators was almost a cruel joke. Had she been expecting them? Had everyone in Nirvana been expecting them to come once again? She knew that they were sent to go about the island, but how much had she known about the other investigators? But to hear her say she had dibs on him, as if he were but a toy or an object almost made him shudder. He was a person, and yet someone had said it so casually that he was almost not one. He shook his head in protest, quick to disagree as his rebuttal formed at his tongue. No no, she was mistaken, she was not going to  &quot;dibs&quot; anything about him.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930983600311132210" id="message-930983600311132210" title="Message sent: 13-Jan-22 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Even if he was to die, he would die a man who were not claimed to anything. Not to these investigators or to this . . . this psychopath. Her hand was almost like poison to him, he tried to pull it away from his touch in a moment of fear, which luckily the paper finally fell, and with it the chains sputtered out as if they had been stuck inside them. She may had left, but the chains found themselves around the dolls she so quickly tried to take with her. The sailors. They snaked around their bodies, each one carefully weaving around their skin as if they were to be knit together before they stilled entirely, locking them in place. She wouldn&#39;t take the deceased with her at all. These sailors. . . they would stay on the ship, under his care. Yet, even doing such a thing didnt stop the fact that on his hand would be a string wrapped around it, a cursed symbol of their encounter to him, even if she saw it as something that would help him.</em>
+
+&quot;Take your servant with you, t-this is no suggestion but a demand. Unless you wish to lose your servant, I suggest taking her back where you were and to not show your face on this boat or to me again. Leave me and saber alone.&quot;
+
+*The harsh words spilled from him like acid, each one meaning to keep himself guarded as much as possible from the woman so if she were to even attempt to remedy it at the moment, they&#39;d only boil over and burn her. He looked towards the door, hoping the string would be gone from it and hoping that&#39;d be her exit. He wanted her from his sight immediately. He wanted the entire island from his mind.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="930983631130882108" id="message-930983631130882108" title="Message sent: 13-Jan-22 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>But, little could be done about such the situation. He&#39;d be stuck here. Though, he didnt have much to do other than complete it. Even if he had to hate it, he came here under oath and a reason. . .He simply needed to continue through with it. He could hear a thump go about the the lower decks, the sound of something tearing. The battle for Octavius must have been intense. . . But even then, he knew little could be done to help. Instead, he focused on the woman before him, feeling a chill rise in his spine as he returned his attention to her. Waiting for her to leave.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/468275d411e35df972ce896c7136ce7d-73964.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="nimbus#4116" data-user-id="292080440146395146" style="color: rgb(238,94,134)">nimbus</span>
+
+
+        <span class="chatlog__timestamp">13-Jan-22 08:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="930983707374915624" id="message-930983707374915624" title="Message sent: 13-Jan-22 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie just vibin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/4f4108cf822ba84cf78d3753be4932e9-C344F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="926248722365562910" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">14-Jan-22 11:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="931566196887806002" id="message-931566196887806002" title="Message sent: 14-Jan-22 11:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Walking away from the boy, not even letting his words reach her ears. It was truly sad, she knew what would happen to this poor boy if he couldn&#39;t even handle her. I mean she is one of the weakest on the island at the moment too... no way he would survive the others. But she truly didn&#39;t wish to waste his beauty. Now at least when they kill him they will keep his body in tact for her or better hold him alive for her. She walked over to Caster as she stepped onto the plant monster with not much of a glance. 
+
+Waving her hand all the strings dispelled around the two men and the sailors all fell to the ground into the pools of blood below. Though the other people just vanished completely. Looking back only for a moment at the two, she looked at the Saber with a small smile. She knew then nightmares he would have to protect his master from, she pitted that poor servant even as she debated if she should tell them or not. With a small smile she completely turned around just before leaving with a bright and friendly smile that reeked of darkness and malice.
+
+&quot;Oh you poor boy, what you will find here.... is far worse then anything I can do.... I don&#39;t stand next to the other nightmares, at least my beauty nightmare is peaceful..... my nightmare could have protected you... against people... like her..... now Caster... lets go home I need to fix Maximums head....&quot;
+
+With those last words that sounded a lot sadder then her whole speech before she walked into the dark worm. The only thing she left behind here were the bodies of the sailors, the single purple string around Dante&#39;s working arm, and her final warning to the men.
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Draco#5000">@Draco, Official Lore Gremlin</span> <span class="mention" title="nimbus#4116">@nimbus</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20The%20Canopus%20-%20canopus-lower-deck%20%5B923334745427947520%5D.html_Files/6cf64bd9c247558245a6d458a704284c-AD61D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gaius Octavius Caesar#0000" data-user-id="926248722365562910" style="">Gaius Octavius Caesar</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Jan-22 03:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="931634778669715516" id="message-931634778669715516" title="Message sent: 15-Jan-22 03:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Saber swung his blade at the Caster as she passed him, bit stopped right before contact with her neck. There wasn&#39;t an attack, just another one of those giant creatures. There to ferry the servant and her master away. Although he didn&#39;t follow through with the attack, he did glare at the Caster and watched her climb into the mouth of the beast. While the safest option would be to take her down here and now, unleashing his Noble Phantasm to eradicate her and her master to make one less problem on the island, he simply couldn&#39;t. Was it his sense of honor? Morality? Or something else? Whatever the case, Octavius rocketed from his spot soon after Caster jumped into the mouth of her creature, soon appearing right behind Dante. 
+
+&quot;Time to go, Dante, while the ship is fixed, it would be best to get out of here regardless,&quot; Octavius said quietly to his master as he then proceeds to pick up Dante under his arm and back away towards the door that they came from, slashing it with Auram Pax a few times making a nice hole for him to walk through. Right before he left the lower decks he turned back around at Ashley and Locusta. &quot;This was an interesting meeting spider woman and Caster. I hope we meet again sometime for an actual battle,&quot; he turned his head away for a moment before looking back at the pair again. &quot;Or perhaps just a nice conversation instead. Wouldn&#39;t want to harm such pretty faces~&quot; He said with a wink, dispelling his blade and giving a two-finger salute and a smirk. &quot;Farewell Caster. Next time the dance hopefully won&#39;t be interrupted by another bard.&quot; With that Octavius ran down the still darkened corridors of the Canopus, the only illumination continuing to be the alarm lights.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="931634838623100948" id="message-931634838623100948" title="Message sent: 15-Jan-22 03:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="nimbus#4116">@nimbus</span> <span class="mention" title="CookieOmega#1777">@Cookie just vibin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
