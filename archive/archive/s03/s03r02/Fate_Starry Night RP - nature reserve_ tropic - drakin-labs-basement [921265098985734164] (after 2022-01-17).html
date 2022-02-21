@@ -1,0 +1,1246 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - drakin-labs-basement</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: tropic / drakin-labs-basement</div>
+
+            <div class="preamble__entry preamble__entry--small">Under the labs is a second section, filled with old, still functional technology though some of it is too strange to use. The long, dark hallways that seemingly go on forever as many metal tables line the rooms branching off of it. It reeks and the smell once down the stairs is more than enough to return to the surface. The fridgid and dense air can be felt chilling all who enter down to the bone.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 17-Jan-22 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-68F80.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="? ? ?#0000" data-user-id="923941502328119346" style="">? ? ?</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Jan-22 03:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="932719964668956762" id="message-932719964668956762" title="Message sent: 18-Jan-22 03:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">The Day After Canopus</div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-BE587.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="923941502328119346" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Jan-22 03:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="932719987783786536" id="message-932719987783786536" title="Message sent: 18-Jan-22 03:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">24 hours. A mere blink in the passage of time between the attack on the Investigator&#39;s ship. It was a show of strength, a chance to demonstrate the sheer power of the island and, more importantly, a chance for Ashley&#39;s spirit and resolve to shine through. It was all planned so perfectly...only a fool could have fouled up a plan so simple...
+
+A fool such as Caster. 
+
+The Servant immediately shut down upon returning to the Drakin Labs, not even bothering to acknowledge her dampened clothes, but instead feeling as if they were a form of penance for her as she slinks deep within the bowels of the research lab. She was furious, not merely at herself, but the string of curses being muttered under her breath cast blame at the feet of a number of figures, those that she would someday rend to pieces at the mercy of her weeds. 
+
+<em>That blasted bard...William Shakespeare, he made a fool of me in front of my darling Master...oh what she must think of me, that I&#39;m useless useless uselessuselessuselessuselessuselessuselessUSELESS! I&#39;ll tear him to pieces if it&#39;s the last thing I do...not to mention whoever froze that boat. That can&#39;t have been the Bard...and I doubt that muscleheaded lunk Roman did it...</em> 
+
+Stuck in an endless cycle of self-doubt and depreciation, Caster turned to the only thing that could give her some form of solace: alchemy. In particular, the drafting of poisons, as the bitter and acrid smell emanating from the wide assortment of tubes and bottles gave her a small camaraderie among the bounties of nature and what they could provide. Her bloodshot eyes trail the viscous drips from a particular beaker as it swells with toxin, her head resting against the counter top along with her matted hair swirling around and framing her face. She had fallen completely inward, unable to cope with failure so profound...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="932720083602636801" id="message-932720083602636801" title="Message sent: 18-Jan-22 03:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-1B870.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="923941502328119346" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Jan-22 10:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="932820755320832040" id="message-932820755320832040" title="Message sent: 18-Jan-22 10:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Unlike her servant, Ashley herself seemed perfectly normal. She did what she set out to do and she even found a beautiful new person she might be able to add to the family. For once the crazy girl seemed calmed, quiet, normal even for just a moment as her worry for her servant only grew. She didn&#39;t understand why Caster was taking it so hard. She had done a great job in her eyes as she poked her head into Caster&#39;s little room.
+
+&quot;Caster? What&#39;s wrong....? You know you can come out.... I&#39;m not mad.... you did great....&quot;
+
+Though she&#39;s not the best with words she tried to comfort the poor girl. Normally she would use one of her dolls to talk for her in situations like this, she always found it easier to talk through someone else. On that topic she looked over at her single doll with his head clean off with a sad look. She needed to fix the poor boy, she couldn&#39;t just leave him like that. She waved her hand and had Nathaniel and Ally take the man away to another room as she leaned farther into Caster&#39;s room.
+
+&quot;Caster please talk to me....&quot;
+
+<span class="mention" title="Killer#6882">@Killer</span> (Sorry its so short)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-BE587.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="923941502328119346" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jan-22 12:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="933033588612562964" id="message-933033588612562964" title="Message sent: 19-Jan-22 12:22 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her Master&#39;s calls drift through the crack in the door, the Servant barely registering as she simply sinks even further into disrepair. Her Master was truly doing this out of simple pity...that has to be the case. How tender and beautiful of her, and yet unbecoming of a true Emperor. <em>She should flog me for such failure,</em> she thinks meekly, her eyes shining with a fresh coat of tears as she places her head in her arms once more. <em>How can someone like me be her Servant...</em> 
+
+~ ~ ~
+
+The door creaks open, slightly, as Caster&#39;s eyes peer through to gaze into Ashley&#39;s deep violet ones, each pooling in each other and reflecting the other to create a haphazard mix of emerald and lilac. &quot;Oh my Master, Ashley, even if you say such courteous words...it doesn&#39;t change the fact that I&#39;ve failed you...the sinking of that blasphemous ship was meant to be a show of force for you, to demonstrate your true power...and yet...and yet...&quot; At the mere thought of the Roman and the Bard, her eyes filled once more with hot and bitter tears, Caster letting the door open wider and giving Ashley a glimpse at the utter chaos in her domicile. The Servant had completely destroyed the room, with papers lying about in a scattered heap and covered completely by maddened scrawls, furniture toppled over in what must have been truly impressive for someone of her size, and finally bits of her own dress torn and scattered throughout, leaving Caster herself dressed in bright, sickly yellow rags as she beats on her own head in depressive rage. 
+
+&quot;I failed you, Master, and you don&#39;t even have the decency to punish this lowly worm of a Servant, especially after how uselessuselessuselessUSELESS I WAS!&quot; With each proclaim being pounded against her skull by small, balled up fists. &quot;If I find that Bard I&#39;m going to make Mushrooms sprout from his insides, if I find that Roman I&#39;m going to pierce him on the blade of my dear mistress Hecate&#39;s wood...but none of it matters...because I&#39;m a worthless Servant...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="933033846281211914" id="message-933033846281211914" title="Message sent: 19-Jan-22 12:23 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Caster fully breaks down as she collapses, her ruined dress blossoming out around her as she weeps openly against Ashley&#39;s shoes, prostrating herself for some form of forgiveness.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="933034056164208710" id="message-933034056164208710" title="Message sent: 19-Jan-22 12:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-1B870.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="923941502328119346" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Jan-22 10:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="933363310873686036" id="message-933363310873686036" title="Message sent: 19-Jan-22 10:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Looking over the poor girl with a sad smile. She honestly didn&#39;t understand. Though she didn&#39;t understand most human emotion, she knew what a breakdown felt like. I mean it could always be worse, she could have disappointed Ruth... she shivered at the thought. Bending down to the small lady she gently started to run her fingers through the girls hair, hoping to calm her down. She was gentle, caring even. She could feel a tear slowly make its way down her face, something she hadn&#39;t felt in a long time. Leaning in she hugged the manic girl tightly, the same way that she had when they first met. Staying like that in silence for a moment, it was different for her to get affection from someone that wasn&#39;t one of her dolls... it was a nice feeling, one she wanted to keep.
+
+&quot;You are not useless Caster.... we can get them back.... I&#39;m sorry for not being able to help you.... now do you want me to make you a new dress....?&quot;
+
+All Ashley really wanted was to protect what she had created, as much as it pained her not to destroy them for what they had done to her, for trespassing on this island her mind only seemed to really care once they get to close to her. She was struggling to understand Caster yet truly she was trying. Maybe she could take Caster out around the island to set up some traps? Show her some of the wildlife? Maybe that will make her happier, cheer her up even? The young lady wasn&#39;t sure and she knew she could ask Ruth. She didn&#39;t know how Ruth would look at this failure... she was a lot more scared of that then any real failure, as she struggled to hide it, hide the fear from the servant. 
+
+&quot;You are not worthless.... just being able to talk to someone else is worth it all for me.... and we found a new person to join the family... maybe a person who I don&#39;t need to silence. A real person that Ruth didn&#39;t just hand off to me already destroyed... thats more then enough for me Caster...&quot; 
+
+<span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-BE587.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="923941502328119346" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jan-22 01:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="933416514248384583" id="message-933416514248384583" title="Message sent: 20-Jan-22 01:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...Do you truly mean such words, Ma...Ashley,&quot; the Caster replies, seeming to curl and snuggle up closer to her Master at the soft petting. Even when she was in the midst of a breakdown...she couldn&#39;t deny the pleasure that came from praise like that...it was always what she looked forward to...
+
+&quot;...No, I deserve only rags,&quot; Caster says, sniffling as she lifts herself up, the bags under her eyes reflecting the ones her Master had had previously upon the initial attack on the Canopus. Of course, one thing did catch her attention...
+
+&quot;Ashley...you keep mentioning this Ruth...does she hand scraps to my Master? Give her the peels and rinds while she feasts decadently?&quot; 
+
+Caster slowly rises, keeping her eyes locked on Ashley&#39;s while gripping the hem of her Master&#39;s dress, eyes widening and glowing fiercely with a subdued rage that was not at all well hidden behind the wide, Cheshire like grin on her face, her spirits brought back to bubble beneath the surface. &quot;Who is she to my Master, and why is it that only a wormly, low, vile being such as this Servant is able to talk and lift your spirits? Tell me, Ashley. Who is Ruth Naomi? <strong>I&#39;d very much like to speak with them myself...</strong>&quot; Somehow, from the way she said it, this didn&#39;t seem like the best idea... <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-1B870.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="923941502328119346" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-22 08:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="934794088048390214" id="message-934794088048390214" title="Message sent: 23-Jan-22 08:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The tall girl leaned back on the wall and slowly slid down until she was sitting were her servant had sat. Who really was that woman to her? The lady who took the young girl in when everything vanished? The woman who promised her a beautiful future? Or was she the woman who locked her in this hateful place. The beautiful woman she wanted to promise the world too, and yet. She didn&#39;t know how to answer her servant so she just said the truth. &quot;Shes my adopted mother...&quot;
+
+Those words hurt it, she never really felt like a mother to her. I mean not like she would really know those words. Like her sleep deprived brain could prosses emotions properly. Looking down at her hands, she flinched a few times. Twitching was the better words as she starred at her extremely pale skin. How long had she looked like this? She hadn&#39;t really thought about it in a long time. Was her hair always this colour? She didn&#39;t know anymore. But her servants words snapped her back from her down-spiral. 
+
+&quot;If you think you can fight her you would be more then wrong Caster... that&#39;s suicided.... I&#39;ve seen it before... what she did.....&quot;
+
+<span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-BE587.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="923941502328119346" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Jan-22 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="935081146658746418" id="message-935081146658746418" title="Message sent: 24-Jan-22 03:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The trepidation in Ashley&#39;s voice was all she needed to know, Caster herself tossing a sly grin to her Master while rubbing the tear stains from her face. Indeed...it was just as she feared...or perhaps expected was a better word. However, such things were to be expected. Fear is a powerful tool, one that this Ruth figure seemed to wield quite effectively to harbor fear in subjects. No doubt, Ashley was held under the thumb of this figure; the signs of servitude were all there, under the guise of a mother figure. Ahh, parental affection is a notable and age old means of creating subjugation.
+
+But fear has another purpose, one that Caster can use effectively as well. Fear creates the innate drive to form kings and queens, as it is the force by which several wish to escape servitude. She need only to instill such fear in her Master...
+
+&quot;I wouldn&#39;t dream of such, Ashley...no, I merely wish to speak with her. If it&#39;s as you say, would I not be a member of this family...? Would she not like to meet the Servant of her dear daughter? It would be odd if she were to snub the opportunity to be involved further in your developments...
+
+&quot;Of course, I&#39;m also curious by what you mean...are you worried about this worthless Servant? Why should I be afraid of your mother? What has she done, Ashley? Hmm, ah but perhaps it&#39;s too much for my Master to share...I can see already that just thinking of that incident must really shake you, and far be it from your Servant to weaken your resolve.&quot; 
+
+If she was a true queen, a true Emperor, Ashley would rebuke at such notions of frailty. Indeed, Caster need only to plant the seed; the soil of her grace and power would bear fruit in due time. Besides, it would definitely be interesting to hear about this Ruth&#39;s capabilities, and perhaps more of Ashley&#39;s...&#39;family&#39;...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="935081190350802994" id="message-935081190350802994" title="Message sent: 24-Jan-22 03:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-1B870.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="923941502328119346" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jan-22 11:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="935732026638749716" id="message-935732026638749716" title="Message sent: 26-Jan-22 11:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Covering her head with her arms and sinking into herself as much as she can, trying to avoid thinking about it, about that day, as much as possible. Don&#39;t worry... she wouldn&#39;t... don&#39;t worry... calm down calm down.... control... control....
+
+After a few moments her breathing finally returned to normal. She slowly pushed herself to her feet, stumbling around as she walked towards the door. The sound of her high heel shoes dragging on the ground as she shuffled. Her face and expression hidden from the view of her servant yet she knew with all the pests running around it will only be a matter of time before Ruth expected her to help. Might as well go set up some traps around. Maybe she could catch another pretty person... maybe she could find that boy. 
+
+Waving her hand the tall orange haired man and short blonde boy walked in, both with dark looks in their eyes. They knew what her next command was going to be and they had been waiting for it since the boat hit land. To trap a new family member. To bring them home...
+
+She looked back to Caster, now the girl could finally see the completely dead look she wore. There was not a hint of emotion as she walked towards the hallway. 
+
+&quot;We should start setting traps..... maybe looking for those pests..... we can&#39;t let them run into mother..... They wont stay pretty if they do....&quot;
+
+<span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-BE587.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="923941502328119346" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jan-22 03:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="935793202412277800" id="message-935793202412277800" title="Message sent: 26-Jan-22 03:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To say she was slightly disappointed would be an understatement. Caster was looking for any sign if defiance, and sign of weakness that could lead to Ashley&#39;s true awakening. But the girl refused to yield...just what she would expect of an Emperor, yo have a will so strong. But such a will leads to a long and arduous road to surmount defiance. Truly this would be difficult...
+
+&quot;Yes, far be it from us to allow &#39;mother&#39; to get her hands on what&#39;s yours. I&#39;ll be meeting her soon enough, at any rate, so I don&#39;t mind waiting a bit longer. Of course, there is one small matter to attend to before I can do any trapping, Master....one small detail...&quot; 
+
+At this, Caster&#39;s fingers wave and wriggle, the woman glancing around the confines of this room that she was given, gesturing to the scattered papers and the cracked wallpaper from her own ravings. &quot;This...is fine. Clutter is the sign of genius, and you are, after all, in the presence of genius...but...it&#39;s too small!&quot; 
+
+At this, Caster wrings her hands as she waltzes around the room, arms outstretched as if to show her Master just how constricted such a space made her, all while staring straight into Ashley&#39;s dead eyes...was she truly in the mood for such extravagant personalities? At this hour? Perhaps not...but in the end, is that not what one signs up for with a Caster? &quot;I, the darling daughter of Hecate&#39;s teachings, cannot stifle myself in this room of contraptions and human machinery. It&#39;s boorish, it&#39;s cramped, its...it&#39;s...so <em>boooooooring.</em> No offense to your station, Master, but perhaps what&#39;s missing from your life are more plants, sunshine! Your paleness, while beautiful...hmm, I should say a little sun wouldn&#39;t hurt. AND SAME FOR ME! A Caster kf the Vile Weeds isn&#39;t meant to be cooped up, a Caster of the Vile Weeds is meant to breathe in the extravagance of nature, a Caster of the vi-owch!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="935793608370569236" id="message-935793608370569236" title="Message sent: 26-Jan-22 03:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Caster&#39;s hands fly to her mouth, as a small droplet of blood rolls from between her lips, her Title of Grace leaving a grievous wound on her tongue. Her shoulders slump in defeat, the Caster giving Ashley a deadpan look as she tries to continue on through her wound.
+
+&quot;Thass tirin...mebe ma rea name woud be betta...Mashta, jus caw me Locushda...&quot; While the words were somewhat mumbled and garbled together, the name did sound familiar...Locusta...who was that exactly? <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-1B870.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="923941502328119346" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jan-22 08:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="935870514679914506" id="message-935870514679914506" title="Message sent: 26-Jan-22 08:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Freezing in her spot, she looked around the dark and dim rooms. She couldn&#39;t tell the servant just how long she had spent down here, but she wasn&#39;t very fond of change herself. Everything down here had been set up over the years and it worked perfectly for her. Thinking to herself for a moment a slight smile appeared on her face as she walked back over to the servant. Places her hands on her shoulders and gently running her hand through the small girls hair. &quot;Well Locusta, a beautiful name... everything really does make sense now but I can&#39;t give you anymore space down here, how about you take upstairs? Nature has already taken it and its a very large complex. You can take all the space you need up there. Even better its another wall anyone has to get past to get to the others who can&#39;t defend themselves like you can.&quot;
+
+With the Caster&#39;s name reveled everything made sense and she was even more perfect then Ashley could have ever believed, and finally understood all the emperor talk. Maybe if she truly knew these &#39;Emperors&#39; in life, well why compare her to one? That was something she couldn&#39;t understand. She only smiled to her, this spider of a woman, it was so hard to tell what was going on behind her dull and lifeless eyes. Eyes that matched that of her dolls. If someone didn&#39;t know any better she could be confused for one very easily. 
+
+<span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-BE587.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="923941502328119346" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 05:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="936004297957720086" id="message-936004297957720086" title="Message sent: 27-Jan-22 05:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Slowly the bite healed, Locusta getting the hang of it steadily as she looked back up at her Master, eyes shining at the prospect of a whole other workbench...
+
+&quot;Truly...oh, you&#39;re so generous, Ashley. A true king among wretches...but, it will take some time before I can truly create a space above. Nature has its course, but weeds must take the power of such courses. The only way to help setting up traps is for my territory to flourish. Thankfully, I have more to work with than seaweed...&quot; 
+
+Locusta bobs lightly on her feet as she moves past Ashley, sidling by her puppets as well while giving each a Stern glance. Ashley seemed to greatly care for these dolls, Caster herself wracking her brain on how to use her family to her advantage. That will have to come later...for now, planning begins...
+
+&quot;Ashley, I should think now is the time for a spot of wine; I can&#39;t even THINK of creating a luscious junglescapr without a bit of spirits. Join me, and it&#39;ll light some color to your cheeks, my emperor!&quot; Locusta says, racing upstairs, possibly unaware there was no wine to be had...
+
+&quot;...&quot; 
+
+&quot;WHERE&#39;S THE F@%$!! WINE?!?!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936004340466974760" id="message-936004340466974760" title="Message sent: 27-Jan-22 05:07 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20drakin-labs-basement%20%5B921265098985734164%5D%20%28after%202022-01-17%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-1B870.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="923941502328119346" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="936239689420116018" id="message-936239689420116018" title="Message sent: 27-Jan-22 08:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With a small grin she shuffled along behind the small girl. Knowing that there was only the essentials to survive here. She wasn&#39;t one for anything fine like that, she would probably have to fight someone for some wine, or worse ask Ruth or Koji. Actually asking the doctor might not be so bad. She hadn&#39;t seen him in awhile, she needed to head up the mountains soon.
+
+Turning to the lines of dolls in the room, all of them dressed in different hand-crafted outfits, all in different styles from formal and fancy to casual and low brow there was everything. She had spent a lot of time setting this place up for them, for her dear friends and family. She only smiled warmly, she cared so deeply about her family, and she knew they cared too it kept her going truly.
+
+Waving her hands as a few of them got up from their seats and followed behind them along with Ally and Nathaniel, even if they were just going to set up traps, she would not take any chances, not again. 
+
+&quot;If you want wine.... we can go check around town.... maybe ask Koji.... we can look around okay..?&quot;
+
+<span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,1056 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - swamp-general</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: swamp / swamp-general</div>
+
+            <div class="preamble__entry preamble__entry--small">Right next to the jungle is the Nirvana swamp, though it is called wetlands on the official guide pamphlet. The wetlands host animals that require a mixture of ground and sea to live, such as capybaras or crocodiles. Due to the amount of cold blooded and peaceful animals that lived in this area, almost no defensive precautions were taken and tourists were freely allowed to interact with well-fed animals. However, that is no longer the case, as the animal feeders stopped showing up, resulting in animals cannibalizing each other. The swamp now serves as one of the more treacherous areas of the reserve, with predators hiding underneath the muddy water as they wait for a tasty snack to arrive.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">01-Dec-21 11:48 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="915630493096112139" id="message-915630493096112139" title="Message sent: 01-Dec-21 11:48 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/uumiieYh-FA2D3.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/uumiieYh-FA2D3.jpg" alt="Image attachment" title="Image: uumiieYh.jpg (99.8 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/c0f492206970e0435b54bd0b9487f2ca-8EB4B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ankou#0000" data-user-id="931694152696070274" style="">Ankou</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">15-Jan-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="931694153652387942" id="message-931694153652387942" title="Message sent: 15-Jan-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">After leaving the Canopus and choosing to avoid the scuffle between the investigators and the Islanders, Galvin and Ankou had been traveling through the island. Investigation is the word Ankou put in front of it but in actuality they were just sight seeing. Their adventure had brought them to a rather lush swamp full of life. A breath of fresh air compared to the thick aroma of the ocean. Ankou could be seen kneeling down by the water edge his finger swirling in the murky liquid. He seemed entranced by nature, the sounds of cicadas filled his ears, the fish caught his eyes, his touch occupied with the fluidity of the water. A smile was drawn on the grim servant&#39;s face.
+
+&quot;Thousands of years I&#39;ve lived for Galvin, the exact number of which I lost count many millennia ago.&quot; Ankou had a quiet voice about him. The intensity he possessed upon first meeting was all but gone. The frost that followed him was quaint compared to then but still noticable. &quot;I lived life as an ethereal creature, unable to feel the ground beneath my feet. Water would not ripple around my flesh, the heat of human touch lost to me forever. Now in this time you, Galvin have given me a chance to experience the world. No longer am I an observer who exists only to take life.&quot;
+
+Galvin would be able to somewhat understand what Ankou meant. When he allowed his carriage and Galvin to pass through the Canopus was exactly what Ankous entire life had been like. &quot;I am sorry to lecture you with my problems Master... It is not my place, we are barley acquainted... I should not get ahead of myself.&quot;
+
+<span class="mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/7b4210c186a2d8918877856705406e10-412FB.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Galvin Sterling#0000" data-user-id="931694152696070274" style="">Galvin Sterling</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Jan-22 04:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="932012229392482406" id="message-932012229392482406" title="Message sent: 16-Jan-22 04:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hey man if you want to play around in a murky swamp don&#39;t let me rain on that parade. Feel free to enjoy it for the both of us, I&#39;ll just add this place to list of likely safe places to visit after or heck during a fight...&quot; the slightly annoyed Master retorted before slapping the back of his neck in an attempt to kill a bug harassing him while his Servant seemed like a child discovering water for the first time. &quot;Let&#39;s just not make a habit of saying one thing when you&#39;re actually gonna do something else, cause let me tell ya, about half way into this Scouting out the island run I got the impression us leaving was more getting to tourism sooner rather than later, and  staying hidden was more of a convenient biproduct. And to top it off we haven&#39;t even gotten to try any street food yet. Then again knowing our hosts, it&#39;s probably poisoned anyway.&quot; he added before standing up off his calabash and walking around the surrounding area, inspecting it for, well he wasn&#39;t sure, just about anything that could be a clue or a lead to whatever was going on here.
+
+&quot;Ya know lecture me on this, you&#39;re more of a concept no? Ya know Pale Rider, inevitability, scourge God set on us as punishment, I kinda find it hard to believe you could ya know... Die, or did you get fired? I&#39;d think your perspective would be a little more disconnected than this.&quot;
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/c0f492206970e0435b54bd0b9487f2ca-8EB4B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ankou#0000" data-user-id="931694152696070274" style="">Ankou</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jan-22 11:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="933558183841132544" id="message-933558183841132544" title="Message sent: 20-Jan-22 11:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ankou continued to fiddle with the waters surface, he watched as the ripples distorted his reflection. The Servants childish play wouldn&#39;t distract him from the matter at hand. Galvin posed a good question. Death was a concept feared throughout all of humanity. Every culture and religion produced their own adversary of death, however, there was little doubt that Ankous origins where biblical. 
+
+&quot;A fair question Master.&quot; Ankou retorted clearing his throat prior to his explanation. &quot;I am very real. My presence is synonymous with death, a fear instilled in all living things at birth. In fear people find solutions to feel safe. That very fear, created by my existence, has led to many legends of my kind. While they may stem from me I will not claim to be those things, the Pale Rider is a legend, I am real, yet we are both feared.&quot; Ankou stopped for a moment, he had not spoken to another human for over one hundred thousand years, yet the first thing they wanted to know was his pain. Surely this was the natural reaction to meeting death. 
+
+&quot;I did not die in the traditional sense Galv- err Master. I faded... I was the first child of Adam and Eve, the first person to be born from paradise. I was a normal man just like you, but my fear of death drove me to despair. Why should I live in this wretched world because my parents defied our creator. At this time Master, nature and man lived among one another. Mana flowed through the air you could taste the essence of life on your lips. I communed with the very idea of death, pleaded for my life, and I received my wish. My body died but my soul carried on, unseen, unheard. I walked earth watching humanity progress, I watched empires rise and fall... I watched people grow old and die amongst their loved ones. I witnessed the true beauty of life that I never wanted. I wanted to live life but I was forever cursed to take it. However, recently something most peculiar happened. Nature&#39;s connection to humanity became strained... The</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="933558186911359006" id="message-933558186911359006" title="Message sent: 20-Jan-22 11:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">world is hurting... It seems my existence could no longer be maintained and so my soul faded, I suppose you could call it death, although I wasn&#39;t living to begin with per say. That is my story Master feel free to ask anything you&#39;d like.&quot; 
+
+Galvin asked for a lecture and that&#39;s exactly what he received.&#160; It was clear that Ankou had been around for a long time and knew the world quite well. It was up to Galvin to take advantage of this skill set.
+
+<span class="mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/7b4210c186a2d8918877856705406e10-412FB.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Galvin Sterling#0000" data-user-id="931694152696070274" style="">Galvin Sterling</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Jan-22 12:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="934486557329596478" id="message-934486557329596478" title="Message sent: 23-Jan-22 12:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Listening to his servant explain his whole, existence only seemed to perplex the man further his fast twisting and scrunching up as he crossed his arms, &quot;First of Adam and Eve? Shouldn&#39;t you be Abel then no Ankou Deal with death? Weren&#39;t you murdered by your brother though?  Or did you make that deal as he came to reap you?&quot; he repeated some elements trying to piece it all together before pointing out a key difference he found, &quot;I guess I shouldn&#39;t be too surprised, word of mouth stories probably aren&#39;t the most reliable when hyperbole and time is a factor... But I gotta say, it&#39;s a bit shocking yet relatable to learn the first ever child got conned by a trickster, I wonder if we all get that from you then.&quot; he commented looking over his shoulder a bit.
+
+&quot;More over if the world is still hurting by the time you finally faded, guess the future is pretty bleak for us huh? However that raises another question I have for you... Since people are still dropping left and right, that means you&#39;re still at work as we speak yes? If you&#39;re from the future surely you can give me the play by play here, you&#39;ve seen it all before, you&#39;ve taken the souls of everyone in this war there&#39;s gotta be something you remember, especially if you were there when I finally died... I... I didn&#39;t lose did I? At least if I did first time around, think you can change it now that you&#39;re here?&quot; he asked next and sense of dread almost emanating off his body as worry came in, no doubt Ankou was from the future, what he wasn&#39;t sure about was how set in stone that future was given the reality bending rules of the throne of heroes.
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/c0f492206970e0435b54bd0b9487f2ca-8EB4B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ankou#0000" data-user-id="931694152696070274" style="">Ankou</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Jan-22 05:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="937646493580542013" id="message-937646493580542013" title="Message sent: 31-Jan-22 05:52 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ankou let out a deep sigh, unfortunately he did not have the answers that his master was looking for. &quot;I merely am an agent of death. Regardless of my existence or not all living things come to an end. Such is the result of my parents actions.&quot; Ankou stood from his crouched spot walking away from the water. A large capybara scurried from his approach, being afraid of Ankou was only natural for all creatures. 
+
+&quot;To answer your question Galvin... I&#39;m not sure. I could have died a thousand years from now or one hundred years in the past. I have no recollection of taking any lives from this island in last one hundred or so years. Even if I did the memories would be faint. I&#39;ve taken over one hundred billion people to the after life. To remember a few souls in any given time is impossible. To me, Master, one hundred years is a few seconds.&quot; Ankou had been alive for so long that he only remembered very few faces of the dead. He often took note of horrific wars and natural disasters, any time where an unusually large amount of work came his way. Any other scenario however, would just be another day of work for him. 
+
+&quot;We need not know the outcome of this war to win.&quot; Ankou hopped back onto his carriage with a positive statement to bring the mood of the conversation up. &quot;Tell me Master, what skills do you posses. You already know plenty about me.&quot;
+
+<span class="mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/7b4210c186a2d8918877856705406e10-412FB.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Galvin Sterling#0000" data-user-id="931694152696070274" style="">Galvin Sterling</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Feb-22 12:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="937929599373955122" id="message-937929599373955122" title="Message sent: 01-Feb-22 12:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Tch&quot; Galvin scoffed a bit more out of disappointment than anger, then he just shrugged, &quot;Eh probably for the best anyway, besides not really accomplishing much if I know all the right answers, taking the easy way out&#39;s never been my style to begin with so no skin off my bones... Yet I suppose, seeing as that&#39;s your profession in the end, try not to make it hurt if ya can, I imagine having my soul sucked out of my body isn&#39;t pleasant.&quot; he joked stretching his back some.
+
+However upon being given the chance to brag about his skills he perked up a bit more, &quot;Well I punch things really really hard sometimes with water... But to give you an actual answer, you could look at it more like a mix of physical discipline with magus magic... You caught a glimpse of it back on the Canopus if you were paying attention, all those fancy moves you saw, weren&#39;t messing with my gourd, it was controlling with the water inside of it. So essentially as long as I got any liquid around I can control the field... And if there&#39;s not, well not much a few fists to the face never solved.&quot; he explained gesturing to his Calabash and gauntlets respectively.
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/c0f492206970e0435b54bd0b9487f2ca-8EB4B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ankou#0000" data-user-id="931694152696070274" style="">Ankou</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 05:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="938187386700058646" id="message-938187386700058646" title="Message sent: 02-Feb-22 05:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;That&#39;s all?&quot; Ankou replied tilting his head. &quot;Mage craft really has degenerated since my time. Although that is to be expected, in recent memory most wars have been fought with chemicals and guns... Such a crude way to take life.&quot; Ankou&#39;s voice trailed off as he remembered the many souls he claimed on battlefields. The flame in Ankou&#39;s eye shimmered. Despite his job, the agent of death seemed to value the living. Perhaps it was his yearning to be among them that caused such a feeling. 
+
+&quot;No matter Galvin, water is a fine attribute to have. I can turn any liquid to it&#39;s solid form, perhaps we could use these skills in tandem. After all it&#39;s best we work out a game plan soon. We have hidden long enough Master. As the week passes we will plan to investigate accordingly. We will destroy any opposition as well&quot; 
+
+Ankou gripped the reigns of his steeds ready to move. His sightseeing was a nice adventure but the Rider Master duo had work to do. Stalling wouldn&#39;t get them anywhere near their respective goals. &quot;Whenever you are ready we shall be off.&quot;
+
+<span class="mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/7b4210c186a2d8918877856705406e10-412FB.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Galvin Sterling#0000" data-user-id="931694152696070274" style="">Galvin Sterling</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 06:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="938195515844198450" id="message-938195515844198450" title="Message sent: 02-Feb-22 06:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yup that&#39;s it, sorry to tell ya but mages have been a dying breed for centuries, we can&#39;t even take in mana naturally anymore, we have artificial magic circuits that do it for us... Hell you&#39;re not even a proper servant in this run of the war. We had to make an entire frame fir you to inhabit just to make the summoning possible. I&#39;m more shocked you weren&#39;t aware. You said it yourself,the world is hurting. Well the world has been trying and failing to put itself back together... Be glad you at the very least have a natural magus and not a regular human mana battery right now.&quot; Galvin replied with a bit of righteous indignation at Ankou&#39;s response.
+
+&quot;I know it must not be as impressive as people parting seas, and dragons along side unicorns, but at the very least it&#39;ll be useful... Like I said any liquid around I can handle, and the calabash fills itself,I&#39;ll be in no short supply...  What I may lack in pure raw output I more than make up for in versatility. Water walking, projectiles, subdermal water for force dampening, and trust me I can be pretty fast. Glamour went out if style a while ago, you gotta do like us and take what you get. So hopefully you can bring the power and maybe, just maybe we can synergize like you mentioned, strategy is something I Excell at, why don&#39;t you pitch a few more ideas, and I&#39;ll try to piece somethings together.&quot; He added walking over to his servant with a bit of a sharper gaze 
+
+<span class="mention" title="nebby#3980">@Nubby</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20swamp%20-%20swamp-general%20%5B915619364273782845%5D.html_Files/c0f492206970e0435b54bd0b9487f2ca-8EB4B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ankou#0000" data-user-id="931694152696070274" style="">Ankou</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 08:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="938231318385414194" id="message-938231318385414194" title="Message sent: 02-Feb-22 08:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ankou watched as Galvin stepped forward, tracking him with his eyes till his Master reached the carriage. &quot;Let us strategize back at your headquarters, the longer we sit on the island the more venerable we become.&quot; Ankou and Galvin had been sight seeing for some time, no doubt the chaos at the ship calmed down, meaning their window to explore was closing. &quot;Hopefully your sweaty gym isn&#39;t too damaged Master. Id like you to show me your skillset there, and I will share mine. From there we can plan how to deal with our enemies.&quot;
+
+Ankou turned his head away from Galvin raising his black leather reigns. A crack rung in the air as the horses pulled the carriage forward. The duo would be headed back to the Canopus, and soon they would be making their presence known. 
+
+<span class="mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
