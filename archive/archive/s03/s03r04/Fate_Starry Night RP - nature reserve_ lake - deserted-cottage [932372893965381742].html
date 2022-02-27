@@ -1,0 +1,2489 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - deserted-cottage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: lake / deserted-cottage</div>
+
+            <div class="preamble__entry preamble__entry--small">An abandoned cottage house situated at the periphery of the Lake district. It hasn&#39;t seen visitors in years and nature has slowly begun taking over its interior. It currently serves as the investigators&#39; covert stash for their reports.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/f536e140548023904625d7200ce4368e-12903.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ResIsBestStat#5104" data-user-id="395057646669135877" style="color: rgb(238,94,134)">Dad</span>
+
+
+        <span class="chatlog__timestamp">17-Jan-22 04:37 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="932372934331338763" id="message-932372934331338763" title="Message sent: 17-Jan-22 04:37 AM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/unknown-61067.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/unknown-61067.jpg" alt="Image attachment" title="Image: unknown.jpg (1.82 MB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Jan-22 03:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="935793669477396491" id="message-935793669477396491" title="Message sent: 26-Jan-22 03:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Donald was marvelous. Without his assistance, it was unlikely that Granel would make it as far as he did alone. It was lucky that he had summoned a Servant capable of trekking the wilderness without hesitation. Lucky that he summoned him.
+
+Alex&#39;s mental assault had waned as soon as Granel and Donald had reached the tree line. Despite that, and Donald&#39;s felling of Lancer, the latter&#39;s strike on Granel continued to ache and burn. Despite Granel&#39;s healing factor, which slowed to a crawl around the wound, the pain was still intact.
+
+&quot;<strong>A curse.</strong>&quot; Granel grunted in pain as he and Donald trekked over a hill, and saw the cottage that Ace had mentioned for depositing information. It was a decrepid building, with holes in the walls and plant life creeping in, but the structure was solid, and would keep the worst of the wind out.
+
+Owing to the series of events that had befallen the security guard and duelist, neither had gotten rest since the Canopus fell.
+
+&quot;<strong>We&#39;ll camp there. Maybe Ace or another member of the team will swing by.</strong>&quot; Granel said to Donald, who had commandeered a hat from the merch store. His flintlock, however, was missing.
+
+Couldn&#39;t win them all.
+
+&quot;<strong>First, we&#39;ll get a fire going. Second, food. Third, drink. Fourth, sleep. What do you say, Donald?</strong>&quot; The man said, waving a massive hand towards his Servant.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 02:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="935966534512287784" id="message-935966534512287784" title="Message sent: 27-Jan-22 02:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Donald had opted for the hat most similar to his own. His initial judgment of the hat was wrong, though. It felt cheap, even on his trimmed hair. There was a strong urge to rip the object off of his head and stomp it into the dirt, yet the feeling of having no hat at all was easily worse. 
+
+That, or Alex’s barrage had messed everything in his head up. 
+
+Weird thoughts rolled around in his head whilst they continued their march on. Of Palamedes, of Granel, of the entire situation, even of… oh, bollocks! If only he could turn his brain off. Make things a lot easier right about now.
+
+Instead, he simply made sure Granel didn’t randomly perish. That spear might’ve been gone, but the scar it bore showed no signs of going away. 
+
+Donald groaned, “You sure put the good part near the end, but aye.” Whether that was the idea of a good drink, or the chance to finally close his eyes, he didn’t confirm.
+
+Once they got closer, it was indeed confirmed that it was as rundown as predicted. Not quite on its last legs, but the age was as plain as day. Plants and vines invaded the walls like a parasite, the start to the end of this one. Even the plants were hell-bent on destruction, given his experience so far.
+
+“Right,” Donald swiveled his head, “Well, think ya can chop a tree or three? Pull ‘er from the earth? Er you want to muster up whatevers fallen?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">27-Jan-22 02:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="935966538178117673" id="message-935966538178117673" title="Message sent: 27-Jan-22 02:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 03:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="935981286424731688" id="message-935981286424731688" title="Message sent: 27-Jan-22 03:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Granel pondered Donald&#39;s question for a moment, before shaking his head. &quot;<strong>No. If we leave a few tree stumps, people will know we were here. We&#39;ll scrounge up some kindling and firewood once we make camp.</strong>&quot;
+
+With that decided, the two walked into the cottage. The first thing Granel noticed: <em>he hadn&#39;t needed to duck</em>. Perhaps this shack had been built with bigger guys in mind. Were there giants on this island? In a way, it was comforting, as if there was some solidarity and feeling of home built into this cottage.
+
+More likely, Alex had boggled his brains a bit. He <em>hated</em> this island.
+
+The cottage was fairly average in terms of size to Granel, meaning it was massive to Donald and probably everyone else on the island. Maybe that was why it was abandoned? Who could live in a Granel-sized cottage?
+
+&quot;<strong>Wood.</strong>&quot; Granel said as he snapped back to reality, before turning to a fireplace. A healthy stack of wood was placed by the wall, along with thinly split kindling and shredded copies of newspaper. Whoever this person was, they knew what to do with local newspapers.
+
+Taking a knee, Granel opened his pack and tossed a lighter to Donald. Sleep deprivation made his aim poor, and it almost hit his Servant in the face. 
+
+&quot;<strong>Sorry. Bad throw.</strong>&quot; Granel said as he took a stand. &quot;<strong>I&#39;m going to see if there&#39;s a bigger pile outside, in case we need more.</strong>&quot; He stood up and walked to the door. &quot;<strong>Try not to burn the house down.</strong>&quot; 
+
+The man disappeared outside.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 05:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="936006650442162186" id="message-936006650442162186" title="Message sent: 27-Jan-22 05:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">This abandoned building was fairly large. Built for a king. Or Granel, based on the fact that he seemed not an inch out of place. If he hadn’t known better, he could’ve called this Granel’s actual house instead of whatever remnants it currently was. 
+
+“Nice place you got ‘ere,” Donald said. He approached the leftover pile of firewood. A whistle rang out from his lips, a declaration of admiration. Seemed their previous tenants had thought well ahead for the winter. A convenient brick fireplace and loose papers made this too easy, but he wasn’t about to complain or get his guard up. If they got their throats slit during the night, it’d just be the fate of their journey.
+
+“Sure is, you got a–”
+
+<strong>SMACK</strong>
+
+The small metal box collided with the top of his chest, the duelist moved out of the initial trajectory in a split second. He caught the lighter before it got much further, and gave it an observatory look over. Thank God for the Throne. Otherwise, this’d result in an awkward conversation and demonstration.
+
+“Don’t give me funny ideas,” Donald quipped back, as Granel left the cottage.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 05:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="936009697536933888" id="message-936009697536933888" title="Message sent: 27-Jan-22 05:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Seasoned hands wasted no time, the kindling gathered and arranged into the empty space. A simple and rough cone was formed, with some of the shredded paper thrown in the middle. With the constructed wooden-tipi ready, it was time to figure out the lighter.
+
+Donald flicked the lid off and looked at the inside. It had a little opening guarded by a thing metal barrier and a wheel housed next to it. A thumb tested the ring. The first two spins didn’t do more than move it, but the third created a spark. Easy enough.
+
+He put the lighter right next to an open hole and spun it. However, it did not do exactly as envisioned: the fire started in the lighter. His thumb felt the heat of the small orange light, and the uncomfortable presence on his skin. The light was shoved into the paper, and it started to burn.
+
+With the start of the fire, he shook his hand and backed up fast. A few curses escaped his lips, focused on ‘newfangled technology this’ and ‘flint &amp; steel’ that while he fed the slowly growing blaze a couple of bigger logs. 
+
+Donald rested his back on the edge of the wall. Faint heat emanated from the hole, a welcome respite from the day. 
+What now? 
+
+Not much to do but wait. Bloody hell.
+
+These were certainly a first few days.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">27-Jan-22 05:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="936009715639525416" id="message-936009715639525416" title="Message sent: 27-Jan-22 05:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 06:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="936020435332644914" id="message-936020435332644914" title="Message sent: 27-Jan-22 06:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Chuckling, Granel walked around the back of the cottage, finding a large pile of uncut logs, and a rusted axe stuck in a log. He frowned. Cutting with the axe would be an issue for most people, since one bad swing could end up cleaving someone&#39;s leg.
+
+Lucky for Granel, this was a nonissue.
+
+&quot;<strong>Someone was well-prepared.</strong>&quot; Granel pondered as he looked at the wood. It was all bone dry, with dead moss attached to it. Whoever cut this wood was long gone.
+
+They weren&#39;t going to stay here for long, probably. Granel enjoyed the silence, though. Simply being away from the bloodshed and Nirvanans was a respite Granel needed after his and Donald&#39;s three day death march.
+
+But he couldn&#39;t forget why they were here.
+
+Granel took the axe in his hand, before weighing it. With a silver flash, a log was cleaved in two, then four, and then six pieces. Granel nodded, before taking them back in side.
+
+Suddenly, a flash of pain. Granel stumbled, before dropping the logs. He grumbled and sighed. Lancer&#39;s curse wasn&#39;t going away, despite Donald having done him in. Looking down, Granel tapped the metal spike under his tattered suit. Could his healing factor outpace a Noble Phantasm? Maybe he&#39;d need to find a healer. The Canopus had one magus capable of healing, but where was he?
+
+Had he even survived?
+
+The security guard recollected the wood before coming back into the house. He nodded to the fire, before taking a seat against the wall across from Donald. He sighed.
+
+&quot;<strong>I&#39;ve got MREs.</strong>&quot; Granel said, digging into his pack and pulling out some silvery squares. &quot;<strong>They&#39;re not too terrible compared to granola.</strong>&quot; Granel said as he took a cannister of water and placed it next to the fire to heat up.
+
+Silence.
+
+&quot;<strong>You saved my life.</strong>&quot; Granel finally said as light filtered across the room. &quot;<strong>Twice, now.</strong>&quot;
+
+&quot;<strong>Thanks.</strong>&quot;
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 07:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="936037848342233099" id="message-936037848342233099" title="Message sent: 27-Jan-22 07:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Donald waved a hand, “Don’t mention it. Figured I should try t’keep ya around. Gave me the chance to run around. Wave me sword. Fight a demon.”
+
+<em>Get me caught up in some random cause</em>.
+
+“Not so much that last part.”
+
+The crackle of fire filled the dead space for a few moments. Saber hated it. If only there were a few more fellows around here. Could liven this place up with the roar of laughter and the stomp of boots on the ground. 
+
+That Lancer might’ve been a good addition. Too bad it ended the way it did.
+
+Argh, curse these dark thoughts! Too much death and destruction going on.
+
+“If only that beast we met earlier were there. In that shop. Could’ve entertained us with me words I gave it,” Donald thought aloud. That got a chuckle from himself, the mere idea of dueling that knight with his own curses thrown out between swipes and parries. 
+
+“Oh, that reminds me. When ye break out those ales, we need to toast fer that Servant. If only I got their name… hey, did’ya recognize that spear that went right through yer chest?”
+
+He cast a wayward eye Granel’s way, for curiosity’s sake. The other one kept watch on the door, in case his earlier suspicion about this house being their potential graves were true.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">27-Jan-22 07:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="936037871951949884" id="message-936037871951949884" title="Message sent: 27-Jan-22 07:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Jan-22 04:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="936169520169627709" id="message-936169520169627709" title="Message sent: 27-Jan-22 04:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>Heh. Yeah, let&#39;s wrestle that doctor&#39;s sea monster. I&#39;ll take the tentacles... You, the head!</strong>&quot; Granel boomed, chuckling slightly. It had been a few days since the duo had fought Scylla, but even now, she seemed like a far away dream. 
+
+Taking the water canister, Granel poured the steaming water into the silvery packet, before zipping it shut. He did with five packets. He took three for himself, and slid two to Donald. He shrugged apologetically. He was larger than Donald by an extreme margin.
+
+&quot;<strong>Let it sit for a minute.</strong>&quot; Granel advised. The awkward silence continued for a second, before Granel coughed.
+
+&quot;<strong>I don&#39;t know who it was. A strong Servant. I&#39;m not a historian, despite my constant stalking of Alexandria. He was valiant, though. Until the end, where he stabbed me in the back.</strong>&quot;
+
+Granel tapped his wound thoughtfully. &quot;<strong>This is a curse. I do not know if my healing can outpace it. If it doesn&#39;t, we&#39;ll need to track down little Ryn. I heard he has quite the talent with healing.</strong>&quot;
+
+The massive man dug into the pack, before pulling out a six pack. One was missing—given to Ace, but five remained. He tossed one to Donald.
+
+&quot;<strong>Cheers to that mystery Servant. He&#39;s freed from servitude to those Nirvanans.</strong>&quot;
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-22 03:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="936342099048165406" id="message-936342099048165406" title="Message sent: 28-Jan-22 03:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Don’t bellyache too much, Granel,” Donald lowered himself further into the wall, “even if ye had seen it comin’, I doubt you could’ve dodged it! Besides, playin’ dirty is how ya win! Just ask me. I’d do the same in a heartbeat.”
+
+Donald’s eyes lit up, and an empty hand caught the can. It seemed… small. He hadn’t expected a cask or anything like that, but just his measly thing? This wouldn’t last long, would it? Oh well, any port in a storm. 
+
+He held the can high, “T’Lancer! You fought well, and it’s a <em>damn</em> shame ya can’t be here with us. Better luck in yer next life!”
+
+He pushed the tab down, and the can cracked open. There was zero hesitation as he practically shoved the aluminum into his lips and gulped down half the can in one go. It was exceptionally mediocre, but it was beer! Good enough for now. The morning would have to allow for a liquor run, no compromise to be had. 
+
+Unfortunately, Saber couldn’t think of anything else to mention. Nothing but <em>that</em>. That scene in the shop. He might’ve been dealing with another person at the time, but it was impossible not to hear his Master begrudge their foes. 
+
+How to bring it up?
+
+“Y’know,” Donald pushed himself back upright, “you sure do mention these, ‘Nirvanians’, a lot. Sure have met a few nasty ones, the last three days. Wonder where all the decent folk are. Keepin’ their heads down and waitin’ for this to all blow over.”
+
+He didn’t fully understand the situation with this island, but if it worked like any other place then there <em>had</em> to be some regular people around the land. Couldn’t be full of only nutjobs. The place wouldn’t been in tatters if that were the case.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">28-Jan-22 03:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="936342104286855228" id="message-936342104286855228" title="Message sent: 28-Jan-22 03:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-22 04:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="936540584649302026" id="message-936540584649302026" title="Message sent: 28-Jan-22 04:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>T&#39;Lancer!</strong>&quot; Granel raised his can to mimic Donald, despite it being comically small in his massive grip. &quot;<strong>You got me good, you shithead.</strong>&quot; The two proceeded to drink, following that toast.
+
+Granel&#39;s was gone in a swig, as was Donald&#39;s. The two glanced at each other. Granel nodded, and tossed him another can. This was a true Master and Servant relationship. No words, just drinking and companionship.
+
+Until Donald stirred up the riverbed, and Granel crumpled his can slightly.
+
+&quot;<strong>There are none, Donald. There are no decent folk on this godforsaken island. They&#39;re all inhuman monsters. Those cameras... The ones I had you smash. You know what I saw before the connection died?</strong>&quot;
+
+The fire crackled.
+
+&quot;<strong>Dozens. Maybe even hundreds boarding that ship. Trampling one another. Clawing over one another. The crew that brought us here. I don&#39;t think...</strong>&quot; His voice quavered.
+
+&quot;<strong>I don&#39;t think they got out of there alive.</strong>&quot;
+
+&quot;<strong>And that man from the store. I caught his eye. That person isn&#39;t human. None of them are.</strong>&quot;
+
+The man&#39;s voice changed from worry to contempt to utter disgust. Granel drank the last of his second can and crushed it in his palm. He hated this island. He hated its people.
+
+He hated.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Jan-22 03:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="936700795095760897" id="message-936700795095760897" title="Message sent: 29-Jan-22 03:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Donald’s head dropped a few inches, his lips sucked into his own mouth, “I’m not sure ye even <em>heard</em> me question…”
+
+Unfortunately, Donald needed to at least say <em>something</em>. Fucking hell, there went the great mood from the toast. And the second beer, too. Maybe don’t shit all over the guy, just throw a few things out there and let the sleeping dog lie a little while longer.
+
+“Listen, Granel,” Donald cracked open the second can, “if yer gonna be honest, I should be too. And honestly? Ya sound a bit conked in the head. Don’t let that madness you got up there go too far. Otherwise, ya won’t be much different than these ‘inhuman monsters’.”
+
+“I won’t try’n say that a good chunk of these blokes aren’t mad. Don’t know ‘em well ‘nough. Also can’t say the loss ya feel is without anger. Death always leaves somethin’ t’be desired.”
+
+“But I can say this: I’m only still with ya cause you seem to have a head-on yer shoulders.”
+
+He let that sit in the air for a few moments, the silence only disturbed by the sounds of Mother Nature and another half of his beer disappearing. “I’ve had too many captains, colonels, generals, leaders over me head to keep track. Most of ‘em had their head up their own arse, thinkin’ they knew everythin’. Just like that Soldier Boy. Couldn’t see the big picture, clouded by egos and their own stink.”
+
+“But you don’t seem to got that ego. Ya know yerself well, know what you got to do, don’t focus yer vision on just one thing.  A good enough person. That blind hatred, though... ruins it a little.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="936700856932401163" id="message-936700856932401163" title="Message sent: 29-Jan-22 03:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+Donald sighed, his goofy hat set down onto the ground in front of him. “Sorry, lad. Rambled on a bit there. Agree t’ disagree, or somethin’. Keep yer wits about ya, and we’ll be good yea?”
+
+Curse himself, that went on a bit too long. Maybe lighten the mood a bit. Keep things going nice and strong until they passed out from exhaustion. 
+
+“If ya don’t, I’ll have to bonk ya with that golf club. Don’t think I didn’t see that,” he said, a cloud of spit flying as he had a solid laugh from the scene in his head. That wouldn’t even put a dent in his head. More likely to break the club clean in two instead.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">29-Jan-22 03:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="936700863215464479" id="message-936700863215464479" title="Message sent: 29-Jan-22 03:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jan-22 06:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="937114542725558322" id="message-937114542725558322" title="Message sent: 30-Jan-22 06:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The man stared at Servant, mouth agape, as he processed Donald&#39;s words. The gears turned in his head as he choked on his words. How could...
+
+<em>How could his Servant be so blind?</em>
+
+&quot;<strong>Stop...</strong>&quot; Granel said as Donald monologued about his Master. &quot;<strong>I&#39;m not...</strong>&quot; He swallowed, threatening to choke on his words. This was the level of bluntness Granel himself used, but was rare to see for himself. Whoever had plucked Donald from the ether as Granel&#39;s Servant was chortling.
+
+&quot;<strong>STOP!</strong>&quot; Granel shouted, sending a bird flying from the rafters of the cottage.
+
+&quot;<strong>How can you say that? You&#39;ve met these people, Donald. You&#39;ve <em>seen</em> what they&#39;ve done. Their first reaction to seeing us was to kill us all. Our men, our women, our <em>children</em>. We weren&#39;t even given the chance to leave!</strong>&quot; Granel&#39;s voice rose and rose before reaching a crescendo, before suddenly, silence.
+
+&quot;The first person we fought was a doctor, Donald. Don&#39;t they have a vow? Do no harm?&quot;
+
+Granel&#39;s massive hands trembled as he crushed the aluminum can into scrap.
+
+Dozens of voices demanded retribution, calling for the heads of those who had ended them. Spikes, walls, wolves. &quot;<strong>These people—<em>all</em> of them—are scum. They&#39;re all like this, doing this for themselves. There&#39;s nobody pulling the strings, nobody to blame. All that&#39;s left is a bunch of mad islanders who kill and kill. So why, Donald...</strong>&quot;
+
+&quot;<strong>...why aren&#39;t you determined to hate them after what they&#39;ve done since I summoned you?</strong>&quot;
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jan-22 03:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="937240890408325140" id="message-937240890408325140" title="Message sent: 30-Jan-22 03:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The so-far-cheery man stayed silent, eyes glazed over. Donald stared somewhere infinitely far away, lost in the thoughts that swam over and over in his mind. There was the occasional drink from his own can, kept intact unlike his Master’s. 
+
+It went on for half a minute, this bitter silence. Saber stayed as still as a fence post, almost as if movement would keep his Master from speaking more. Maybe Granel should– 
+
+“Sorry, pal. I can’t make meself hate people I don’t know.”
+
+“Sure,” Donald swung his can-hand towards his Master, “that doctor could be nasty. Same for that robot. Hell, a few we saw in those cameras could be nasty. However, that don’t mean I hate ‘em all. It’s important to know who t’ direct yer anger at. Learned that one from me time in the army.”
+
+Donald continued on, sure to salvage this night. “Lot of people had some emotional stake in that bloody war. Also a lot of people who were there cause they didn’t have a choice, or fer the money, or whatever have you. Me included. Probably cared during it, but my time away changed me mind. Life’s too short to hate a bunch o’ people.”
+
+Thank God he was a Servant. His age didn’t show as much, although those worry lines seemed more pronounced than any time before in their short journey together. He might’ve been about three days old in summoning time, but there was another sixty-seven or so a few centuries prior. 
+
+“Do you get what I mean, Granel?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">30-Jan-22 03:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="937240894451621938" id="message-937240894451621938" title="Message sent: 30-Jan-22 03:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Feb-22 03:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="937797325944938568" id="message-937797325944938568" title="Message sent: 01-Feb-22 03:51 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Donald was a man with a full lifetime of experience, one filled with knowledge, joy, sadness, and every other spice of life. If there was one person that Granel should&#39;ve listened to, it was his own Servant.
+
+Yet how could he expect Donald to understand, just recently having set foot in this world? Given time, Donald would come around. He would realize that Nirvana was filled to the brim with scum, and that this island should be salted and burned.
+
+He didn&#39;t want to listen. He couldn&#39;t. He could not forgive murderous savages that freely inflicted suffering on others. He couldn&#39;t perceive two separate groups of Nirvanans, for all he knew were murderers. There was no need to discern between good and evil in his mind.
+
+They were guilty.
+
+&quot;<strong>Maybe you&#39;re right, Donald.</strong>&quot;
+
+So in that moment, Granel did something unforgiveable, something he had never done to a friend or ally: he lied. He quietly betrayed his Servant for no other reason than to stick with his own hatred.
+
+He was, in that moment, Nirvanan.
+
+The fire crackled as it slowly grew darker outside. Granel took a breath as he gathered his trash, folded it into a small plastic ball, and put it aside. He looked towards the six pack he had plundered from the Canopus, and took a deep breath. Without a word, he tossed it to Donald.
+
+&quot;<strong>I&#39;m going to write down what little useful info Shakespeare&#39;s newspaper has for Ace and the other investigators.</strong>&quot; Granel said, carefully taking a burned piece of wood from the fire pit. He pulled up a piece of floorboard, shook off the insects, and began to tap his chin. Yet something had been nagging on him since their visit to the merch shop, before snapping his fingers.
+
+&quot;<strong>Donald.</strong>&quot; Granel said, putting a hand into his suit and pulling out some of Alex&#39;s bills. &quot;<strong>What&#39;re these?</strong>&quot;
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Feb-22 04:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="937801750369406987" id="message-937801750369406987" title="Message sent: 01-Feb-22 04:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Cope+you&#39;re cringe+didn&#39;t ask+ratio</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Feb-22 04:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="937807968207011900" id="message-937807968207011900" title="Message sent: 01-Feb-22 04:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">FUCK YOU</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 02:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="938140318648385556" id="message-938140318648385556" title="Message sent: 02-Feb-22 02:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Only time will tell, lad,” Donald turned back to his original position, faced towards the door. Did he trust his Master’s seemingly honest admission of fault? Well, that wasn’t quite right. Admission of not being right? Admission of–
+
+Gah! If this went on another second he’d go just as mad as that one in the shop. Better to let actions do the talking than to actually discuss this particular point of contention. 
+
+He tried to rub the tired out of his eyes as Granel started to move. When that didn’t work, he instead decided to drown it with the rest of the booze. It disappeared down his throat in moments, a lot to still be desired.
+
+His eyes lit up when Granel tossed the last can his way, caught with outstretched arms. Oh ho, maybe things were gonna be okay after all! Just like the last two, it was punched open and half was gone just as the brute took off the floorboard. 
+
+“Ya know,” Donald kept his eyes glued to the can, “it’s a darn shame ya brought so little. We’re gonna need to go out an– wha?”
+
+“This?” Donald asked, a thick finger pointed out to confirm what was being talked about. “It’s not from me own time, I’ll give ya that.”
+
+He took the paper bills from his Master’s hands, the beer set to the side. A critical eye poured over the currency, an attempt to glean any information. The face on the front wasn’t familiar at all, and neither were any of the numbers. Those words printed onto it didn’t ring a bell either.
+
+Despite this, just the feel was something familiar. The very idea of holding onto this material felt… right. Like his own time. What the bloody hell was this?
+
+“How’d you get these again?” Saber returned the bills to Granel, “‘cause I haven’t a clue what they are.”</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction" title="sadcat">
+                                <img class="emoji emoji--small" alt="sadcat" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/764196394088661022-B9535.jpg" loading="lazy">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">02-Feb-22 02:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="938140329310310450" id="message-938140329310310450" title="Message sent: 02-Feb-22 02:34 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 05:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="938186006014877757" id="message-938186006014877757" title="Message sent: 02-Feb-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Even Donald didn&#39;t recognize these sad little pieces of paper. Granel didn&#39;t expect much, Donald was no scholar, but it was either him or walking back into town and beating a local black and blue for info. After the scuffle in town, Granel didn&#39;t want to risk it.
+
+Yet still, these little slips of paper did seem familiar... Where were these from? Granel scratched his chin thoughtfully, feeling the rough stubble. He needed a shave. Maybe William was right about his haircut.
+
+Granel flatted a few of the bills and stared at them. Who were these little faces? The security guard sniffed them, felt it, and glared at it, demanding it to give up its secrets.
+
+Come on, he had seen this somewhere before! Years of watching Old World media on Alexandria. He hadn&#39;t fallen out of a boat and almost drowned to be defeated so easily.
+
+Wait... boats?
+
+Drowning?
+
+Water...
+
+Then, an epiphany: 
+
+&quot;<strong>BEACHWATCH™️!</strong>&quot; He shouted, causing a bird in the rafter to squawk indignantly.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 07:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="938217978930016317" id="message-938217978930016317" title="Message sent: 02-Feb-22 07:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">What a show! Donald got to finish the rest of his drink while Granel toiled over these mysterious bills. Bloke hadn’t even answered his question. Again. Maybe there <em>was</em> cotton in his ears. When they went to sleep, he’d have to sneak on over and check for himself. 
+
+For now, all he did was watch his Master gradually lose his mind. Not a single bit of the papers were left unprodded. Their smell, their feel, even the crinkles were considered. It was a thorough search, he had to admit. He’d make a great drill sergeant, that was for sure.
+
+When Granel <em>did</em> figure something out, it was with a shout that awoke the birds high above. One flapped its wings and flew across the rafters, as far away from Granel as physically possible. 
+
+“Do ya have to yell it out? What in the bloody hell is a ‘BeachWatch’, anywho,” Donald air quoted. “These pesky islanders did it, if yer recollection of events is accurate. Don’t know what that has t’do with some weird paper.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">02-Feb-22 07:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="938217984202244156" id="message-938217984202244156" title="Message sent: 02-Feb-22 07:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 08:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="938222503095054368" id="message-938222503095054368" title="Message sent: 02-Feb-22 08:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Granel looked at Donald like he was the world&#39;s biggest tool. &quot;<strong>Beachwatch™️ is this show from some place called &#39;The United States of America&#39;, and takes place on this floating island called California, and later Hawaii. It&#39;s about this group of water-police, and it&#39;s considered to be...</strong>&quot;
+
+Donald&#39;s eyes quickly glazed over as Granel went into a long monologue about the greatness of television programming and beaches. Beaches weren&#39;t so great, were they? They were just on one. Wasn&#39;t too special.
+
+&quot;<strong>...and that&#39;s why Daybit Tasselhoff is a wonderful actor, and should be heralded in every nomadic city.</strong>&quot; Granel finishing, wagging a finger towards his Servant in a bit of giddiness. &quot;<strong>There&#39;s this scene I remember, where they&#39;re trying to fund a shelter for sea animals, and they need money. What do they use, but...</strong>&quot;
+
+Granel plucked a bill from the pile and waved it in front of Donald&#39;s nose.
+
+<span class="pre pre--inline">United States - One Dollar</span>
+
+&quot;<strong>This.</strong>&quot; Granel said, positively ecstatic. In his eyes, he was essentially holding a prop from a show he held close to his heart.
+
+&quot;<strong>This, my friend, is a piece of television history! And these backwater hicks are using it as fucking <em>currency</em>! Currency!</strong>&quot;
+
+Donald laughed so hard that he banged his head as he straightened up and tried to control his laughter at their expense. How could they use something so priceless as, well, money?
+
+The bird that Donald had scared off was even more rattled that it gave Donald and Granel a derisive <em>squawk</em> and flew away, dropping a bit of flesh on the rafter of the cottage as it did so.
+
+&quot;<strong>and that, my Servant, raises an excellent question: why?</strong>&quot;
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="mention" title="Nat#6572">@Nat</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 08:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="938226101283590164" id="message-938226101283590164" title="Message sent: 02-Feb-22 08:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Donald got about ten seconds into Granel’s explanation of ‘Beach Watch™️’ before he couldn’t do it any longer. His eyes zoned out, but in the perfect way: there was no way to know if he was actually listening or not. A perfected technique, used countless times in the field. It’s the only way he didn’t end up a fugitive for killing most his commanders.
+
+Unfortunately, he nearly missed the important part. He came to when there was a sudden movement in front of his eyes: the paper bill. Granel looked to be over the moon, giddy as all hell as he laughed his heart out. Donald kept a firm hold on his reservations, though. 
+
+“Well,” he grabbed his hat from the ground and placed it back atop his head, “you lot use that online currency, yea? Er whatever it is. This place looks run down as it, might not have the electricity er however you make it, to keep usin’ it. Might just be all they got at hand?”
+
+Saber caressed his large beard, “Although, seems a bit odd. How’d you get more paper money than whatever the hell you use nowadays? Why use it at all? Could just barter fer yer supplies with some of yer own.”
+
+He might’ve had a better grasp of the newfound technology and situations than some Servants, yet the intricacies of it all still gave him a headache.
+
+“If you know, though, feel free to share it. I’d rather not put more thought to it than I must,” he said, shoulders slumped.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">02-Feb-22 08:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="938226126017421393" id="message-938226126017421393" title="Message sent: 02-Feb-22 08:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="938262128421400607" id="message-938262128421400607" title="Message sent: 02-Feb-22 10:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>Well, why are they using these, and not NATs?</strong> Granel frowned, tapping it lightly. &quot;<strong>There&#39;s nothing to designate that these have actual value. It&#39;s just paper. NATs are at least used worldwide. I&#39;ve worked across the globe, Donald. I&#39;ve never seen anything like this. If you paid me in this, I&#39;d wipe my ass with it.</strong>&quot;
+
+Granel shrugged as he held up a silver dollar, and then a peso, before putting them back in a pile.
+
+&quot;<strong>What&#39;s even the denomination here? It&#39;s worthless. These people have screws loose, we both know that, but they&#39;re not completely braindead. They&#39;ve formed a community. You could even call it a &#39;society&#39; if you stretched the term. How does something like this come to be?</strong>&quot;
+
+&quot;<strong>I&#39;m no Delphi stockbroker, but even I think this is weird.</strong>&quot; Granel snapped his fingers as he pointed towards Donald. &quot;<strong>Exactly! Just trade, at that point.</strong>&quot;
+
+The man sighed as he wrapped a few of the bills in a bundle of cloth and flung it into the corner, before returning to his wooden board.
+
+&quot;<strong>I&#39;ll write a summary of Shakespeare&#39;s rag for everyone else. I&#39;ll communicate my theory with Ace using Genevan Standard.</strong>&quot;
+
+As Granel worked, he found himself both invigorated and annoyed. This was the best way to communicate? If there were a Rider or an Assassin, the team would be far easier to communicate with. Instead, they had to rely on encrypted messages? 
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="938275025390297149" id="message-938275025390297149" title="Message sent: 02-Feb-22 11:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">At least they were in agreeance: none of this made a lick of sense. The paper currency was only one piece of this very large and confusing picture. They’d have to keep an eye out for anything else that would tie into this.
+
+For now, though, a portion of the bills were thrown into the corner while Granel did what he had set out to do in the first place: encrypt a message. While he knew how to write a report for others, he sure as hell didn’t know how to do it in ‘Genevan’. Whatever that meant.
+
+So now, he was left with not much to do. It would be rude to bother his Master when doing something important. He started with another log into the fire, a simple enough task that took all of ten seconds. Grab log, move log, place log. 
+
+What next? 
+
+… Ugh.
+
+An open hand crept its way towards his neck. Fingers felt around until they found a thin, gold chain. He pulled until a small locket revealed itself from the depths of his shirt. Thank the Lord, it was still here. 
+
+A clasp was pushed in, and the inside was revealed. A picture was lodged inside, one that reminded him of his own home. A beautiful lady, just as he remembered her. Long, shiny hair, a warm smile, strong as an ox…
+
+Donald sighed, and closed the locket. Damn emotional mage. Now wasn’t the time to be getting sentimental. 
+
+“Soldier Boy said he was from Geneva. You know their code. What kind of place is it,” Donald asked, almost out of the blue. He’d rather distract Granel doing something important than be alone with his own thoughts. Who cared if a word or two got messed up?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">02-Feb-22 11:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="938275030155018280" id="message-938275030155018280" title="Message sent: 02-Feb-22 11:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 12:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="938292495496933376" id="message-938292495496933376" title="Message sent: 02-Feb-22 12:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As Donald&#39;s locket shined in the firelight, Granel stole a glance at it. He couldn&#39;t see the image. He didn&#39;t need to. He had seen enough lockets with photos to know it was something important to his Servant.
+
+The Throne really pulled up all the stops on Donald&#39;s Summoning.
+
+&quot;<strong>A shithole.</strong>&quot; Granel said, turning back to his etchings. &quot;<strong>It&#39;s nothing more than a glorified military base that cares more for flaunting its muscles than for the happiness of its people. I spent a month at a military academy there as an instructor.</strong>&quot;
+
+Granel took a deep breath, before plopping the wooden plank down with a huff.
+
+&quot;<strong>They&#39;re good at what they do, though. It&#39;d take a small army to take down someone like Soldier Boy. I almost feel bad for the natives here. Fighting a trained Genevan soldier? Good luck. We&#39;re lucky he&#39;s on our side.</strong>&quot;
+
+&quot;<strong>But...</strong>&quot; Granel said, returning to his encryption with a furrowed brow. 
+
+&quot;<strong>Genevan Standard is a pain in the ass. It&#39;s several layers of ciphers bound into one another, based on symbols unique to Geneva. The only reason I use it is because the people here have been segregated for years. I doubt they have anyone who can read it.</strong>&quot;
+
+The cottage was filled with the light sound of charcoal rubbings and Granel&#39;s slow and methodical strokes on the floorboard. For a moment, he said nothing.
+
+&quot;<strong>Who&#39;s in the locket? Family? Loved one?</strong>&quot; Granel said, not looking up from his work.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">02-Feb-22 01:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="938303697539178526" id="message-938303697539178526" title="Message sent: 02-Feb-22 01:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ah. Donald whistled, knowing he had been right on the money earlier, with Soldier Boy being crazy. Crazy in a nice way. He was sure that he was capable, but that wasn’t the problem. He’d go on about it, but Granel knew what the deal was. Said so himself. It’d just be talk.
+
+“Never could get my head around ciphers,” Donald admitted. “Reports are tedious enough. Makin’ ‘em impossible to read? I’ll leave that to the smart ones.”
+
+Saber merely listened to Granel’s work, the occasional crackle of flame cutting right through the monotony of the work. Guess tonight was a quiet night. Little booze, little talk. 
+
+Or, at least it felt like it. Sure was a lot of talk regardless.
+
+“Me wife,” Donald answered. No point to keep that hidden. “Lovely lass. If she were around, me ‘n her could beat ya in an arm wrestle combined.”
+
+His chuckle reverberated off the walls, though not nearly as strong as Granel’s shout from earlier. “Ah, but she ain’t. Normally, I don’t get like this either. That damn git we dealt with earlier, the one that messed with our brains… just reminded me of her is all. In a weird way.”
+
+“Gah, now’s not the time,” Saber said suddenly, a hand clenched on his forehead. “Maybe later. When I’m rested, and me mind’s not all swirled up. Some good stories, I promise ya.”
+
+“What about you,” he said, “got anyone worth mentioning? Er you too invested in those ‘shows’ of yers?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">02-Feb-22 01:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="938303702496870441" id="message-938303702496870441" title="Message sent: 02-Feb-22 01:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-532AA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="935793668483346442" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 02:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="938500742287880272" id="message-938500742287880272" title="Message sent: 03-Feb-22 02:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">CALL GENEVA A SHITHOLE ONE MORE FUCKING TIME</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 02:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="938500780309241937" id="message-938500780309241937" title="Message sent: 03-Feb-22 02:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;FUCK YOU&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 02:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="938501008571637790" id="message-938501008571637790" title="Message sent: 03-Feb-22 02:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">GENEVA&#39;S A SHITHOLE, FIGHT ME YOU COWARD</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 12:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="938649876932231178" id="message-938649876932231178" title="Message sent: 03-Feb-22 12:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Granel have a snort that rattled the house. &quot;<strong>Unfair. You&#39;re a Servant now. You could beat me no matter what in a contest of strength.</strong>&quot;
+
+The mood lightened considerably after that, as Donald became more and more animated when he talked about his wife, showing how much he loved her. Granel found the atmosphere to me pleasant.
+
+Then Nirvana arrived, ruining it.
+
+&quot;<strong>Agreed. When I caught his eye, it was like looking a void. They&#39;re—</strong>&quot; Granel caught himself. &quot;It was unnerving. I never cared before, but why are they like this?&quot;
+
+After a moment, Granel shrugged. It didn&#39;t matter. He gave Donald an exaggerated eye roll.
+
+&quot;<strong>Me? I had a fling with an archivist in Alexandria. Never had the chance to put a ring on it, sadly. I&#39;m gone too often, and my work is too dangerous. I can&#39;t put her through that.</strong>&quot; Granel took a deep breath, before sighing contentedly.
+
+&quot;<strong>I dropped a season of this show called &#39;Chums&#39; on accident, and she jumped up and slapped me. Good times.</strong>&quot; The guard seemed lost in reminiscence of Old World media and his time on Alexandria,
+
+&quot;<strong>Hey, Donald.</strong>&quot; Granel said, putting down his charcoal rubbing. &quot;<strong>Think we could summon your wife?</strong>&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="938655532959555584" id="message-938655532959555584" title="Message sent: 03-Feb-22 12:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Psh, that’s all the more reason <em>to</em> put a ‘ring on it’,” Donald said. “Life’s too short, lad. Ye know it all too well. Might’swell cherish those close t’ya while you got time.”
+
+Saber considered what he said for a moment, then groaned. “Bah, maybe don’t listen t’me. Me mind don’t quite work how it used to, in ye olden days. Got a seemingly infinite amount of lives in me back pocket, changes how I think.”
+
+At least Granel seemed to be having a good time. That sudden change of tone when the Nirvanian was brought up spooked him for a second, but the rebound was a good sign. One step at a time. Like how Donald was going to drag a few more souls back next time, make this place come alive with laughter and spirits. 
+
+Damn it, this liquor wasn’t hearty enough! He didn’t want to drown in it, just loosen up for a night. 
+
+He opened his mouth to try and pitch the idea of a booze run once more but was cut off before the words escaped his lips. Another question about his own personal life. Jimmeny crickets, what a pain. 
+
+“Maybe if the Lord permits it. And ye don’t mind a bit of ocean diving-slash-necromancy,” Donald bellowed. He ignored that sudden stab into his heart, and instead crumpled up the empty can with the heel of his boot. 
+
+“But seriously, I doubt it’s in the cards. Might’ve been important to me, but that ain’t enough t’get ye a spot on the Throne. I ain’t that special, after all,” He grabbed the flattened remain of the can and tossed it alongside the rest of the waste made. 
+
+“What brings that question to mind,” Donald leaned toward his Master, voice dropped to a mere whisper. “A little jealous that I got someone while ye passed ‘er up? A low blow, Granel. Can’t believe ye’d go after me own love.”
+
+He held a hand over his chest in exaggeration and dropped the corners of his mouth as low as they could go. Heartless bastard, Granel was!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">03-Feb-22 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="938655537669759076" id="message-938655537669759076" title="Message sent: 03-Feb-22 12:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 01:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="938673046456250418" id="message-938673046456250418" title="Message sent: 03-Feb-22 01:51 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The two grinned like two buddies talking trash. &quot;<strong>In your dreams, pretty boy. I just want to her to laugh at your stupid hat. I can&#39;t believe you chose that menace to society.</strong>&quot; Granel said, waving a massive soot-stained finger towards his Servant.
+
+Finishing his cipher, Granel marked the phrase with the Canopus&#39;s logo, before placing it back on the floor. He shrugged. 
+
+&quot;<strong>Not the greatest stash spot, but we need to share this information. It is critical.</strong>&quot; Granel said, glancing up, serious again. &quot;<strong>We are outmanned, outgunned, but not outmatched. We need to find an Assassin or Rider to spread this info around. </strong>&quot;
+
+&quot;<strong>Geneva has this term that you might be privy to: guerilla tactics. Striking, then retreating back into the wilderness.</strong>&quot;
+
+Granel left out the part that involved the bombing and burning of homes, along with torture. He had no issue doing it to Nirvanans, but Donald would definitely have reservations. Best to keep his mouth shut.
+
+&quot;<strong>However...</strong>&quot; Granel said, trailing off as he wiped his brow. &quot;<strong>We need info, we need Nirvana&#39;s schematics, and we need to reassemble contact with the little ones and the investigation team. Most importantly, Donald, we need liquor.</strong>
+
+Great minds think alike.
+<span class="mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/dc3aedfc6d279cf854f88a552ba68250-26D07.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Donald McBane#0000" data-user-id="935793668483346442" style="">Donald McBane</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Feb-22 04:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="938892818150223922" id="message-938892818150223922" title="Message sent: 04-Feb-22 04:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“If ya wanted the other one, ye should’ve said so,” Donald fired back. “That’s on yer hands.”
+
+He didn’t speak up on the ‘finding an Assassin or Rider’ part. Already had before, with him and Soldier boy. Right after he had taught Soldier Boy’s own Servant some critical information. Good times.
+
+“Aye, I know the term,” Donald said. Speaking of, it was a surprise Soldier Boy came from a place that specialized such underhanded tactics. Figured he’d be too focused on the perfection of his marching form to know how to hit and run. Whatever, it was probably better he did than didn’t. 
+
+“And don’t forget–” he tried to add to the list, only to be beaten to the punch my mere seconds. He scowled, “Great, ya think <em><strong>yer</strong></em> the one with that idea! I’ve been tryin’ to say it fer the past while now!”
+
+“Whatever,” he muttered as a genuine scowl emerged, “at least it’s in the cards.”
+
+With the cipher done and thrown back into the floor, there truly was little else to do. As long as the fire kept bright and the wood plentiful, there’d be no need to leave their rundown shack til morning. And there looked to be plenty on their agenda for that particular time. 
+
+That put rest as the next task.
+
+“So, who’s gonna keep watch first,” Donald pulled himself upright. “Cause I won’t say no to some early shut-eye, but you’ve been awake fer… three days? Surprised yer still standing. Coherent, too.”
+
+He pulled himself in all sorts of directions, a groan accompanied by each motion. That floor would bring back the soreness after some sleep, but the least he could do is keep it steady instead of double up. To die because of a cramped muscle would be a humiliation he&#39;d never forget.
+
+Until he did, of course.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/4ff0d71909c782b01b398c440c6f39ba-F7571.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="ProjectRysa#6837" data-user-id="113844208304914439" style="color: rgb(238,94,134)">ProjectRysa</span>
+
+
+        <span class="chatlog__timestamp">04-Feb-22 04:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="938892821950242816" id="message-938892821950242816" title="Message sent: 04-Feb-22 04:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Magnetic#4437">@Magcoin Creator</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20deserted-cottage%20%5B932372893965381742%5D.html_Files/d5a841d9ede5502bd09313faea7f001a-F226B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Granel Mason#0000" data-user-id="935793668483346442" style="">Granel Mason</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Feb-22 01:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="939036673872904262" id="message-939036673872904262" title="Message sent: 04-Feb-22 01:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;<strong>You should take it. Aren&#39;t you Servants more resilient, aren&#39;t you? Do you even need sleep?</strong>&quot; Granel responded, waving a hand the side of a plate. It was clear that he wasn&#39;t bothered by stealing Donald&#39;s thunder, much to his Servant&#39;s chagrin. He tried to stifle a yawn that would release giants from eons of slumber, but failed. His eyes began to flicker shut.
+
+&quot;<strong>I&#39;m more accustomed to long nights than most. It&#39;s that curse. My little trick seems to be disabled by that Lancer&#39;s trick.</strong>&quot;
+
+Granel rolled over, producing two sleeping bags from his oversized pack. Both were equally massive, fitting Granel specifically. More wiggle room for Donald, though.
+
+&quot;<strong>When we were in town, I saw a desert in the distance, and what looked like a massive building. We should start there. Rest well, and dream of whatever you dream about.</strong>&quot;
+
+And with that, the curtain fell on the duo&#39;s first Nirvanan Campaign.
+</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

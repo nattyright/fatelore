@@ -1,0 +1,3196 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - city-docks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: lake / city-docks</div>
+
+            <div class="preamble__entry preamble__entry--small">Right next to Nirvana’s beach are the city docks, which are the only docking station that it has at its disposal. Tourists will usually reach the natural paradise here, albeit it seems like the docks haven’t been looked after for quite a while. The docks are littered with abandoned ships that have traces of rust to them. Flora has started to inhabit the surface as well, with algae covering the various ship vessels that surround Nirvana. Seems like the city hasn’t received any proper tourists in a while.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+After 28-Jan-22 01:01 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-22 08:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="936420548676825178" id="message-936420548676825178" title="Message sent: 28-Jan-22 08:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A few days had passed after the canopus had tried to dock and had been attacked by the islanders who for some reason wished the investigators to leave them alone. For better or worse though the Investigators had managed to get into the island. In Allen&#39;s case it was for the worse,  after Ruth&#39;s warm &#39;welcome&#39; he had spend the last few days just slowly making his way through the island. On the bright side he wasn&#39;t as much of a bad shape as he though he would be after his fight with Ruth and while he didnt had much of an idea of how he wasn&#39;t gonna complain either. 
+
+But on the down side they had been left in a place where neither he nor Graf knew anything about. At the very least the train station was deserted and it gave both Master and Servant time to recover from their previous scuffle. On the following day they had managed to slowly make their way back to the coast, they had to be careful to not be recognized and so they avoided populated areas and did their best to keep a low profile. 
+
+There was a reason for Allen to want to go back to the coast and that was to make sure of the damage the canopus had recieved. He recalled seeing the ship break in half but due how hard his fight went it was hard to make sure of the accuracy. But his memories were confirmed as they reached the remnants of the ship, the place that had been his home for the last few month lay destroyed before his very eyes, at least partially. There was something he didn&#39;t remember, there was some ice keeping the structure from collapsing completely.  But the structure wouldn&#39;t last much, and regardless of their mission this was the only way out they had.
+
+&quot;Graf try and move what you can of the ship closer to the coast.&quot; He was well aware he couldn&#39;t fix this, he was a fighter not a sailor nor a  mechanic</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Jan-22 08:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="936423396605067284" id="message-936423396605067284" title="Message sent: 28-Jan-22 08:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">But there was something else he could do and that was at least buy more time for the ship till someone who could repair it were to appear. White flames began to wrap around his arms as he began to look at the spots where the ice was located. Allen didn&#39;t knew who freeze the ship first but he could tell he wouldn&#39;t be able to do the same. 
+
+The white flames shine in his arm as he punched towards the spot where the ice was covering the ship. And a breeze of cool air move as a white beam came from his arm towards that same spot. 
+
+&quot;Azrael!!&quot; he yelled as cold air began to hit the ship and reinforce the melting ice. He couldn&#39;t just patch the whole thing with his cold flame but with this the ice keeping it together should last longer.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">28-Jan-22 08:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="936423475374071829" id="message-936423475374071829" title="Message sent: 28-Jan-22 08:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4cbd6572007c20f795edab0ef3c553bd-34665.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alistar Lambert#0000" data-user-id="927094444346470451" style="">Alistar Lambert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jan-22 06:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="937108737355837550" id="message-937108737355837550" title="Message sent: 30-Jan-22 06:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While the two look towards the boat, behind them between the trees moved the small very frightened boy. Hiding behind the tree as she looked out at the boat. It was just like the others had told him. Truly a way off this cursed island but who was standing there? No one that he knew... They didn&#39;t look like the others on the island, their movements weren&#39;t as rigid, as creepy as many of the people here. Maybe he could figure out what they were planning with that large boat. they couldn&#39;t be trying to fix that thing? The caster tore it to pieces right...? That was what Ashley had told him and everyone else at least but the boat seemed a lot better then he thought.
+
+He looked up in the tree at the orange haired man he looked at like his older brother. A boy who just like him was stuck on this island jumping from tree to tree holding a very very thin string in his hand. Unlike the blonde boy this other had no intention of leaving, never wanted to and was perfectly happy with miss Ashley. Not like he himself wasn&#39;t, he enjoyed it a lot but if these people were outsiders, he didn&#39;t want them to meet the same fate as many others, as all the others that dared to set foot on this wretched island. 
+
+Slowly poking his had out from his hiding spot he tried to open his mouth to call out to them but no such luck, he had truly forgotten the situation he was in. He could only watch from afar at the beautiful white fire. 
+
+<span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-74A66.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="927094444346470451" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jan-22 08:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="937141201512054824" id="message-937141201512054824" title="Message sent: 30-Jan-22 08:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Caster did not wish to return to the sight of her failures. The very thought of seeing the Canopus still floating, while aimless, brought another wave of warming, damning shame across her chest. Even now, walking behind her Master so as not to show the shame evident on her face, she felt like a broiling lamb sinking deeper into a furnace with every closer step. Check on survivors...it had been several days since their attack on the ship. All that would be left were bloated corpses...surely her Master did not wish to shove such frivolous failure into her Servant&#39;s face? All under a pretense of simply creating more dolls...an Emperor is stern, perhaps cruel as well, but such cruelty...oh how it would break her heart...
+
+However, such was not the case...Locusta knew this deep down. No matter how she felt, her Master, Ashley Drakin, truly loved her. Whatever cruelty she did display was unconscious, even if it meant having Caster face the scene of a floating wreckage and seeing the possibility of survivors...maybe she could simply sink it herself. That ice surely had melted by now...maybe, Caster could show her true strength...on a defenseless and broken hull...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937142784425603094" id="message-937142784425603094" title="Message sent: 30-Jan-22 08:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The very thought of an act so pathetic made Locusta internally writhe, her fingers aching to pull at the roots of her own worthless head (Ashley had told the Caster several times to stop, and so any self-inflicted punishment had to be done in secret...) What use would it be in tearing apart worthless sheets of metal? At the very least it would prevent these invaders from escaping, but how would it demonstrate her own prowess...how would it...
+
+Mana. Power. It leaks from the ship, Locusta able to feel a presence foreign to the very air. Servants were a commonplace occurrence, but even she could still linger on the very unnatural sensation that permeates the atmosphere. To the laws of the world, heroes rising from the grave was still unsightly...and that was what she felt now. Surges of mana pouring from a conduit...the laps of the waves on the shore could be seen against the ship on the horizon, along with the slow sculpting of ice along its surface...
+
+&quot;...Ashley...my Master...the ship is being frozen...someone is freezing the ark that brought these filthy invaders to your home...who do you suppose would be doing such a thing? Who do you suppose has something to gain from preserving such a vessel, hmmmm~&quot; 
+
+Caster&#39;s eyes widen, electrified by the prospect of finding these interlopers at last. Perhaps this was the fool that had foiled her very plants...perhaps the spilling of such heinous, rotted and diseased blood would be the means of gaining favor with her Master...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937142865950289961" id="message-937142865950289961" title="Message sent: 30-Jan-22 08:31 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">30-Jan-22 10:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="937180009506963487" id="message-937180009506963487" title="Message sent: 30-Jan-22 10:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Curiosity, that was the main feeling that went through Allen&#39;s self as he continue to observe the remnants of the Canopus the ice that kept holding it. That is not to say it was the only feeling, he was concerned about what had happened to the others, he was angry at the ones who had destroyed the ship but still even so curiosity still managed to make itself more evident than the others. Even a lousy magus as himself could tell that the ice keeping the boat afloat was not normal mage craft. He had learned to shape flames and ice at a young age but the ice he was reinforcing was something different.
+
+His first guest was that an allied servant had done it, still the appearance and how the ice crystals were shaped was crude and simple yet the structure was solid. It was something that keep his mind interested, hopefully he would be able to meet them and the rest of the survivors eventually.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937181496534499388" id="message-937181496534499388" title="Message sent: 30-Jan-22 11:04 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Work was progressing quite well, Graf was strong and fast enough to gather whatever remains were still floating and push them closer to the coast so they wouldnt be stranded. The ship was far from being repaired let alone operational but this should give the other time. At the same time he began to wonder, why were the islanders so aggressive towards them. He could understand if this happened after making the first contact and there was disagreement, but there wasnt even any warning just pure violence. All he could think was that something had happened with the previous incursions but even then it did little to answer the young man questions, except that he finding anyone from the previous investigation parties was almost impossible. 
+
+&quot;Damn.... doing this is hard...&quot; he said as he finally stopped. He was tired, as amazing as magecraft could be a man had its limits. 
+
+&quot;Graf grab some fish while you are over there!!!&quot; he yelled at his servant from the coast as he began to make a fire for them to have a simple yet necessary meal.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">30-Jan-22 11:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="937181593259376710" id="message-937181593259376710" title="Message sent: 30-Jan-22 11:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Jan-22 12:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="937387006789570600" id="message-937387006789570600" title="Message sent: 31-Jan-22 12:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Approaching the vessel by Allens side Graf remembered seeing the thing break in half and begin to sink. Getting swallowed up by the cold gripping darkness of the greedy ocean. Just how any ships had it claimed since she had departed this world last time? Only god knows how many really but seeing a large iceberg keeping the ship together was a big of a surprise. About as she was going to reply to Allens order of trying to push the ship her radar showed a blip. on the next sweep it repeated... moved slightly... she looked in that direction but saw nothing, yet the radar was telling her something had moved. since the observer no longer had moved for a while the next sweep the blip vanished only to return moments later on the next one. &quot;We have an audience be careful.&quot; she warned him.
+
+After that warning she jumped into the water and skimed along towards Canopus. Her first instinct was to grab its anchor chain and tow it but no... that would just cause a second titanic and snap it in half. The ice simply did not have the structural integrity... this annoyed her greatly that she was reduced to such a task as a tugboat but Allen had explained to her just how important Canopus to their continued survival and eventual departure really was. After some talks Graff had eventually suggested to push it as far as she could and have it beached for now so it doesnt sink. Now that she had reached the rear end of this massive vessel the comically puny pocket battleship compared to it stared up. &quot;Geeez you sure have a fat ass.&quot; Graf said and began to push the vessel. At first she only put in some effort but the vessel didnt move so she fired up all of her engines and pushed with all the might that she could muster. While on water she had the full might of the ship she embodied. On land however was a totally different story.
+-</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937387018449739786" id="message-937387018449739786" title="Message sent: 31-Jan-22 12:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">while the ship moved slowly but surely towards the coastline she heard allen shouting about some fish so she shot a shell into the sea where it detonated under water. a few moments later a few silvery bellies rose up to the surface. She had killed a few fish hat had been trying to make home out of the sunken chunks that were blown clean off of the canopus.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Jan-22 03:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="937426962299883521" id="message-937426962299883521" title="Message sent: 31-Jan-22 03:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Looking out towards the shores and at the mage standing on the beach, she was studded that the others let a survivor through... but he seemed much more powerful then the small man she had tagged before. Maybe he knew what was going on and where they all came from. Her eye twitching slightly from her lack of sleep, she stood back in the shadows looking towards Ally. He seemed rather invested in these people. Maybe she would send him in to learn more. They were more likely to trust one of their own anyway.
+
+Turning to Caster she gently placed her hand on her head, her eyes shimmering that there was more then just one beautiful person now walking their land. Those poor fools were really trying to make sure they could escape? Why? 
+
+That aside she, very quietly, leaned in to Caster &quot;Caster...... distract the servant... don&#39;t worry about saving those sailors.... I want that guy I will send the boys in.... if you get in over your head just pull this string and I will join to help or we can go back.... I want to talk to that one....&quot;
+
+<span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4cbd6572007c20f795edab0ef3c553bd-34665.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alistar Lambert#0000" data-user-id="927094444346470451" style="">Alistar Lambert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Jan-22 03:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="937429603360837744" id="message-937429603360837744" title="Message sent: 31-Jan-22 03:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Poking his head out a bit farther as the purple haired girl sunk into the darkness of the trees, he watched all of their movements closely with her dead green eyes. Now that his lady was interested he could finally step up. Opening his mouth once again soft sounds finally left his mouth. His voice was very soft as he called out to the pair.
+
+&quot;Can you... help me...?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">31-Jan-22 09:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="937521645957042187" id="message-937521645957042187" title="Message sent: 31-Jan-22 09:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As he saw the fish rise to the surface Allen couldn&#39;t help but feel both surprised and disappointed. While he knew it wasn&#39;t very likely he kind of expect Graf to use her massive claws to pick the fish the old way but then again it was hard to complain at her multitasking abilities as it did got the work done. While he had told Graf about the importance of this it wasnt all of it. Allen needed time, time to think, time to decide what to do and how to do it. While he looked he was dealing with this quite well Allen was as confused as anyone else would be in this situation. 
+
+ Moving helped, being busy helped him deal with whatever situation he had to face and it helped think right now it was to help fix the ship after that he would find something else. As he waited for Graf be began walk back away from the coast picking up wood as he hoped it would be enough to start a fire. As he began to move he heard noises, well it wasn&#39;t much of surprise Graf had already warned him as he saw someone come out of the trees he began to reach for the knife he had on the back of his waist. Yet as he was about to unsheathe it his hand stopped. It was a kid, one who has clearly seen better days but more than that it was what he said afterwards, he was asking them for help. 
+
+It was suspicious no matter how you looked at it, Allen didn&#39;t recognize the kid yet that didn&#39;t mean he wasn&#39;t a survivor, it wasn&#39;t like he had known every single person  inside the Canopus so he could just be another investigator or crew member. 
+
+&quot;What do you need?&quot; he said as he let out of the hilt of his knife and just looked back at the kid. Lowering his guard was foolish, the kid could easily be diversion before an attack but even so Allen answer the kid call for help.
+
+He began to slowly move closer to the kid. 
+
+&quot;Who are you?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">31-Jan-22 09:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="937521737992650832" id="message-937521737992650832" title="Message sent: 31-Jan-22 09:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-74A66.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="927094444346470451" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Feb-22 06:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="937836491265155083" id="message-937836491265155083" title="Message sent: 01-Feb-22 06:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Distract?! Wait, what?!
+
+&quot;Um, my Master, Ashley, perhaps it would be best to discu-&quot; Caster began, earnestly, attempting to capture her Master&#39;s attention, but she only saw the flutter of her dress as she disappeared into the underbrush on the outskirts of the lake. Distract the Servant...
+
+One look at the enemy Servant made it clear...ABUNDANTLY SO...that this would be a dangerous ploy. That thing was armed to the teeth! Was it even a human being?! What would it do against her poor babies? A ship was one thing...a walking tank was something else entirely! But this was her Master&#39;s request; to falter now would only bring intense shame upon her...
+
+&quot;...<em>Sigh</em>...Alright, if that&#39;s your wish, my Emperor...this lowly Servant will abide.&quot; Of course, this wasn&#39;t to say that Locusta wanted to directly attack her. Heavens no, not after what she saw her do to those fish...therefore, a different approach would be needed. One that was subtle. 
+
+&quot;My pets,&quot; she whispers into the palm of her hand, her fingers dancing as she looks to the sea, &quot;Listen to your mother that grants you life as you never knew. That ship must not reach the harbor...it must sink...do you hear me? Plow against its approach...let these fools know our power.&quot; 
+
+<div class="pre pre--multiline nohighlight"> </div>
+
+Beneath the waves, bubbles plume and spread, a great number of pockets float to the surface as new life rustles beneath. The twisting roots and flailing leaves of the underwater vegetation breathe life once more, this time coral being filtered and woven into its being. The mineral forms a skeleton, a semblance of armor, as a pair of glowing eyes peers from a stump on a lumbering body, looking up to the approaching vessel. 
+
+&quot;<em>Guooooooooooooh</em>,&quot; it moans, the figure lifting its club like arms as it launches itself, acting as a torpedo to slam into the hull and send it back, all the while it&#39;s brethren was slowly being formed in its wake. The screech of bent metal floats from the ocean spray, alerting the Archer...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937836564178935888" id="message-937836564178935888" title="Message sent: 01-Feb-22 06:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 02:14 AM</span>
+
+            <div class="chatlog__message " data-message-id="938497684405358603" id="message-938497684405358603" title="Message sent: 03-Feb-22 02:14 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">the noise of water moving in an unusual way alone was enough to alert the archer to the presence of some trouble... And good that she looked as well as she let loose a volley of shells at the first giant boney creature that emerged fromt eh water before it could even fully stand up. Her smaller guns soon joining in on the fun and firing at the smaller ones that were also now emerging from the water. No way is she letting ANYTHING get close to her big sister when shes this hurt already.
+
+The noise of her cannon fire would near instantly alert Allen to trouble and if he looked he would see shells impacting the boney skeletal knights in equally bony armor. She didnt let up on her assault though as she fired off two torpedoes at the swarming trouble. It was overkill or nothing, after what she had experienced with the berserker.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-74A66.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="927094444346470451" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 04:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="938539131443769384" id="message-938539131443769384" title="Message sent: 03-Feb-22 04:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Caster&#39;s mouth hangs open, the Servant&#39;s skin blanching white as she witnessed the large assault of firepower on her poor golems, their bodies shredding to pieces underneath the onslaught of...well, this had to be an Archer, but who knew any Archer with such a wide cavalry of firepower?? 
+
+Her frame shakes, her eyes glower, her jaw grinds in frustrated rhythm as she clasps her hands together firmly. <em>Okay...alright, fine. You want to play rough, little Archer? Let&#39;s get rough...</em>  Her fingers dance once more as a small, but sinister, smile etches itself on her lips...
+
+<div class="pre pre--multiline nohighlight"> </div>
+
+The frothing water calms, revealing the vestiges of what looked to be sea men? At the very least, some creatures formed from the underwater foliage. There weren&#39;t many classes capable of creating familiars like this...
+
+<strong>DOOOOM</strong>
+
+Another seismic and looming creak echoes across the shore, only this time it was enough to cause the water to ripple and lap against Graf Spree. The water churns and froths, as from behind the ship a new form rears itself ahead. Its shadow cascades over the ship as a behemoth of a serpent rises, it&#39;s skin sloughing with wet vegetation and ridges of coral as it lunges and bites into the rear of the Canopus, jerking its body back and pulling against Graf&#39;s efforts, slowly sliding back into the open waters...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="938539193540419635" id="message-938539193540419635" title="Message sent: 03-Feb-22 04:59 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4cbd6572007c20f795edab0ef3c553bd-34665.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alistar Lambert#0000" data-user-id="927094444346470451" style="">Alistar Lambert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 11:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="938632957831311424" id="message-938632957831311424" title="Message sent: 03-Feb-22 11:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As he stepped out into the light and as Allen got a better look of him, he was unsettlingly familiar. The small blonde mage holding his arm tightly, every little noise seeming to make him jump a little. His clothes didn&#39;t look like anything Allen had seen before, beautiful and handmade and though he looked rather pale and his eyes seemed much more tired he could tell this wasn&#39;t an hostile person. Getting closer but staying a fair distance just in case he tried something. 
+
+&quot;You.. your from outside right...? Please help me and my friends. I&#39;ve been trapped here for so long!&quot;
+
+His face contoriting with fearful tears. Though looking younger he didn&#39;t look any younger then 16. Unknown to Allen, a certain purple haired woman watched from a distance, looking him over like a spider watching a beautiful butterfly just before it flew into her web, yet in her graceful moments she hesitated. This one was different then the last, this one held himself different... who was this...?
+
+<span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 11:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="938639061235666944" id="message-938639061235666944" title="Message sent: 03-Feb-22 11:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Naive, Allen was naive there was no argument to be made there, it was as much as part of him as his hatred towards lied. It was a strange mix which composed his being, he who would believed in everyone and at the same time distrust anyone who lied. Both sides of him managed to keep him in check, keeping him from going to either of the extremes and so far they had managed to keep him alive while remaining his usual self. 
+
+During the last 3 years he had traveled across the world, he had seen the darkness of the world but also the good.  He had been lied, he had been tricked, he had been used and yet even now he continue to trust people. That conclusion was weird and illogical, after suffering betrayal one was bound to doubt everyone not wanting to be lied or used again yet for Allen that didn&#39;t mattered. He wouldn&#39;t trust those who lied to him but he would give everyone else the benefit of the doubt. 
+
+So when he saw the kid in front of him asking for help, someone so naive as him could only answer one way.
+
+&quot;Yes...&quot; he answered without even thinking. He knew that there was at least a chance for the kid to be part of a trap, but the image in front of him blow away all concern.
+
+ &quot; Yes I am from the outside and if you and your friends need help I will do what I can to help you.&quot;
+
+He said as he moved closer to the kid, his mind began to ponder the information the kid had given him and began to compare it with whatever he knew. If what the kid was saying was truth they maybe he and his friends were survivors from the previous expeditions, this was bound to provide him and the rest with valuable information.  But while that was on his mind, his primal desire was to comfort the tired child, his arm moved and his black gloved hand softly caress the kid golden hair. 
+
+&quot;My name is Allen, what&#39;s yours?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">03-Feb-22 11:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="938639134518571068" id="message-938639134518571068" title="Message sent: 03-Feb-22 11:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4cbd6572007c20f795edab0ef3c553bd-34665.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alistar Lambert#0000" data-user-id="927094444346470451" style="">Alistar Lambert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 12:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="938646084786475088" id="message-938646084786475088" title="Message sent: 03-Feb-22 12:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The smaller boy took a quick step back holding his hands up, trying to say to not get any closer to him though when he opened his mouth no words of warning came out. Only silence. He could only hold out his hands and hope Allen could understand him.
+
+He truly debated on speaking his true name, yes they would get a lot of info if he did but... the girl hesitated once again. Why did she want to keep this up..? Who knows. After a moment of silence he took a deep breath and moved the black rabbit mask off the side of his head so Allen could get a better view of him in the dim shadows.
+
+&quot;Alistar.... Alistar Lambert... people call me Ally....&quot;
+
+With ever word he shook. It was a name that had not left his mouth since he stepped foot on this horror island, and yet it was comforting to know she would allow him to truly keep him original name. Keep alive who he was before this tragedy.
+
+But as his voice rang out to Allen, Allen would have know that name... a teenage mage-craft prodigy. Sent with the last team to learn of this island. One of the many who had disappeared without a trace. Known simply as the white rabbit due to his speed based mage-craft and his love of the small creature he was fairly well known back in his home, many notes about him and his teammates now lost to time on the water logged ship.
+
+<span class="mention" title="Spiderrock#5389">@Spiderrock</span>  <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 04:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="938709799145709578" id="message-938709799145709578" title="Message sent: 03-Feb-22 04:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Allen suddenly stood still, that name.... It was a name he has heard before, by all means if the kid was telling the truth the fact that he was in front of Allen was a miracle.  There was little information that had been given to them about the previous expeditions, specially as there were not much to begin with, by all fairness not only him but most of the crew believe those missing were long dead. The conclusion was sound, a fair amount of time had went through and there had been no news about them so that was the most likely outcome.
+
+Yet there he was standing in front of him, for Allen the situation had become confused yet the more he though about it the more plausible it become. After all, his group has also being attacked right off the bait and somehow managed to survive. If something similar had occurred to them it would make sense they remained stuck here, yet at the same time some things didn&#39;t make sense either. As his mind began to try and decipher this mystery a loud sound make his eyes widen and turn his back at the kid. 
+
+&quot;What the...&quot; he said as he moved to the coast. 
+
+The sound was something he had become quite used to, it would be weird if he didn&#39;t,  but it also mean more and more troubles were coming his way.  
+
+&quot;Graf!!&quot; he yelled as he tried to devise her from the shore. &quot;Are your alright?!!&quot;
+
+There was no point in asking if they were under attack, he trusted her instinct so if she shoot at anything with so much power that much was a given.  He turned back to the kid, as he continue to be unsure what to do, the kid could be a pawn or could just be lying and be the actual attacker aiming to get him when he lower his guard.  Getting away from the kid would the smartest choice but....
+
+&quot;Alistar!!! Come over here we are under attack!!&quot; he said as he moved from the shore closer to the kid.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">03-Feb-22 04:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="938709863511515176" id="message-938709863511515176" title="Message sent: 03-Feb-22 04:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 05:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="938729126435651644" id="message-938729126435651644" title="Message sent: 03-Feb-22 05:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While Allen had found something of interest Graf was busy with the constant assault upon the ship. She watched as a giant seaweed and coral snake tread to undo her progress but she was not daunted by it. Instead she took out her small floatplane and threw it into the air before firing yet another salvo at the giant snake now. Her goal was to simply cut off its head with high explosives. &quot;Stay away from her!&quot; Graf shouted a mere. Moment before Allen called out to her.
+
+&quot;Im fine just get to safety and give me some support.&quot; The ship called back out to Allen who then quickly scampered off to do his thing. The plane in the sky was looking for the source of these beasts that kept showing up and thanks to their nature it was easy to deduce that it was a caster who was giving her a hard time.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-74A66.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="927094444346470451" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Feb-22 04:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="939069701642924063" id="message-939069701642924063" title="Message sent: 04-Feb-22 04:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Oh, little archer...Archer ArcherArcherarcherarcherarcherARCHER...It&#39;s adorable you think that will work twice...</em> 
+
+The beast&#39;s massive body ripples slightly, it&#39;s glossy eyes rolling as it digs its fangs in deeper within the metal, dilating on seeing the approaching salvo. A deep growl emanates from deep within, it&#39;s floral flesh quivering slightly around its elongated neck, rippling as something claws out from within. The gnashing of teeth grinds and mulches through the mass of seaweed, a spurt of water shoots out like the spray of blood as another serpent emerges from the taller, this one smaller but much more lithe and wiry. It&#39;s screech claws into the ears of both Masters present, it&#39;s body coiling and unfurling before wildly whipping itself against the salvo, catching the missiles with its own body and disintegrating into a pulp of leaves that rain down upon the surface of the water, leaving the larger serpent unharmed. Using familiars to take the hit...it was crude, but it seems to be working, at least enough to continue the mission of destroying the Canopus. 
+
+The ice begins cracking and breaking away from the hull, steam roiling from the contact with the salt froth of the waves as the Canopus slowly breaks away.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="939070907115257866" id="message-939070907115257866" title="Message sent: 04-Feb-22 04:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Meanwhile, the drone overhead did manage to pick up a signature, though it&#39;s exact location was a bit harder to pinpoint, being it was nestled deep in the thrush of the underbrush, hidden away amidst a thrush of trees and foliage. A thick ball of wooden bark covers Caster, a pair of yellow eyes staring distantly into the blanketed overtop of the forest while Locusta grinned madly within. &quot;This is a dangerous game, I know, little Archer. Your weapons are most fearsome...but then again, <em>Nature</em> is just as ferocious, and I daresay I wield it fairly well...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="939070972055683092" id="message-939070972055683092" title="Message sent: 04-Feb-22 04:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4cbd6572007c20f795edab0ef3c553bd-34665.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alistar Lambert#0000" data-user-id="927094444346470451" style="">Alistar Lambert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Feb-22 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="939514153889046649" id="message-939514153889046649" title="Message sent: 05-Feb-22 09:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Confused and annoyed the small boy looked over at the Caster and all her plants. Rolling his eyes in his mind he knew this is what she wanted but really to go this far. Not trusting outsiders was one thing, trying to scare the shit out of them is another. Taking another, much smaller step away from Allen he inched behind him when a thought crossed his mind. One of her thoughts. Fear maybe, trying to see if they are worth the interaction..... are they good people? She would test them on that?! What the hell even happened last time?!
+
+Now actually afriad, having no idea if she will sick Caster on him just to prove her point he stepped closer to Allen now out of genuine fear.
+
+Meanwhile she watched closely from her spot, what will this one do? Is this even worth my time or will he be just as beautifully pathetic as the last one. He did look the part of beautiful so she was still convinced he could live, but how will this poor boy do against nature itself?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/988ad3efc0ef28e39280cdd4d6e64d34-F3F23.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie the AU goblin</span>
+
+
+        <span class="chatlog__timestamp">05-Feb-22 09:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="939514201272102943" id="message-939514201272102943" title="Message sent: 05-Feb-22 09:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">05-Feb-22 10:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="939528213644861511" id="message-939528213644861511" title="Message sent: 05-Feb-22 10:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">To be honest he kind of expected this, he expected that someone would come and try to break the ship once again. What he did not expect was that it will be so soon, he had barely managed to reinforce the ice and it was already cracking once again. The situation was becoming troublesome, they needed to protect the ship and also deal with whoever was the one attacking them. Graf was already dealing with someone, the fact that it could fight back told him that she was dealing with a servant as he doubt any regular magus could deal with her firepower. 
+
+Allen moved closer to Alistar, he still didn&#39;t knew if the kid was part of this or if he was just telling the truth. The time of the attack was quite convenient as it began just as soon as he appeared. On the other side someone could had just been observing them and take advantage of the situation. Both options were equally possible and right now it was impossible to tell which was. 
+
+He reached for Alister aiming to grab him and put him behind hiim, if a servant was here so was a master probably and regardless he didn&#39;t wanted the kid to get hurt. 
+
+&quot;Stay behind me.&quot; he said as he moved closer. &quot;If you are telling the truth and just want to leave this island I promise I will do whatever I can to make that a reality.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">05-Feb-22 10:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="939528293563129896" id="message-939528293563129896" title="Message sent: 05-Feb-22 10:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4cbd6572007c20f795edab0ef3c553bd-34665.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alistar Lambert#0000" data-user-id="927094444346470451" style="">Alistar Lambert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-22 08:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="940758950989660300" id="message-940758950989660300" title="Message sent: 09-Feb-22 08:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hiding behind Allen, he felt a horrible, painful feeling rush through his body. She was moving... but why? She was hidden from all of this why would she be coming closer?! Oh god was she going to kill the one person who was going to help them?! Panicked he tried to reach out to Allen, trying to move his hand but not moving at all as he tried so hard to scream, to warn him what he was about to see, about the lies the spider would spin and yet, there was nothing this poor boy could do....</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-22 08:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="940758953795665952" id="message-940758953795665952" title="Message sent: 09-Feb-22 08:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Running towards where Allen was located, she wanted to see him for herself.. someone who would protect this child, even if he didn&#39;t know what side he was on. She wanted to know more about him, if he was as pretty though her own eyes as someone else&#39;s. Standing in the darkness of the trees looking out at the man her eyes started to sparkle. He was protecting him... would he protect her too...? Was he really telling her the truth... that he would protect her and take her out of this place.... Maybe he would be useful later on.... Her mind was filled with beautiful thoughts of this new stranger and not the fight with his servant going on behind her... it didn&#39;t even cross her mind. Jumping down from the trees, a loud thud rung out that Allen could hear, clear as day, that someone was right there beyond the shadows. &quot;Ally?! Ally where are you?!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/988ad3efc0ef28e39280cdd4d6e64d34-F3F23.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie the AU goblin</span>
+
+
+        <span class="chatlog__timestamp">09-Feb-22 08:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="940758986385404004" id="message-940758986385404004" title="Message sent: 09-Feb-22 08:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">09-Feb-22 09:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="940779498503282759" id="message-940779498503282759" title="Message sent: 09-Feb-22 09:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A promise, yeah that makes thing easier. He would still think, he would still worry about what was bound to happen and will need to plan and figure a way out of this island alongside with fulfilling his other tasks. But it made the doubts go for a bit, it made things much simpler, if this kid was saying the truth he will protect him and get his out of the island however he could, but if he he can just get rid of him and problem solved. 
+
+He had voiced his promise in such a way he had liberty enough to deal with any issues so right now he just had to protect the kid.  His eyes focused on the trees near the shore, he wasn&#39;t concerned about the ocean, Graf had always protected him and he knew that if anyone were to aim an strike at him she would try to defend him. But at the same time...
+
+&quot;Alister tell me if anything is coming from the ocean.&quot; he said as he trusted his back to the kid. 
+
+He waited, he didn&#39;t knew from where or how the enemy was going to come so he waited, sharping his sense to the best of his ability so no matter what may happen he would be ready. Yet what came out was not something he would expect, as he say the young lady his mind began to get confused once again. Was this the master of enemy servant? Was she a friend of Alister? Both?
+
+&quot;Alister you recognize that voice?:&quot; he asked the kid as he keep him close to him. For better or worse he had decided to trust him so whatever may happen will depend on Alister now.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">09-Feb-22 09:49 AM</span>
+
+            <div class="chatlog__message " data-message-id="940786506648399872" id="message-940786506648399872" title="Message sent: 09-Feb-22 09:49 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">10-Feb-22 01:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="941203553790357594" id="message-941203553790357594" title="Message sent: 10-Feb-22 01:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Graf made a tisk noise as the shells got intercepted by sacrificial lambs but her plane had discovered something rather peculiar. She knew exactly where Allen was so that must be the enemy. that wooden structure matched the same trend of nature doing something its not supposed to such as that giant snake trying to rip her bigger sister in half.
+
+One of her large triple barreled guns turned almost 180 degrees to point backwards where the structure that the plane had helped her spot. Firing a volley of 3 shells in that direction she delayed each shell by one second to increase her chances of hitting even if the same trick was employed once more. She was also hoping this wpuld give the enemy caster enough of a distraction that she would lose concentration of the snake for long enough that she could just destroy the seaweed snake. 
+
+She was keeping a close eye on her reload times and while her weapons were truly terrifying their power came at the cost of firing speed. Only the smaller guns could fire at any sort of reliable speed while her main guns always took their sweet time to prepare for the next salvo. even though she was firing as fast as she could manage she went on the move. A diract collision course with the seaweed snake that would allow her to attack the hing physically with her claws.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4cbd6572007c20f795edab0ef3c553bd-34665.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Alistar Lambert#0000" data-user-id="927094444346470451" style="">Alistar Lambert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-22 11:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="941713585132941353" id="message-941713585132941353" title="Message sent: 11-Feb-22 11:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With a small nod he looked out into the trees. Why now? This man was going to kill her if he knew who she actually was she must know that right?! Panicked yet his faced remained the exact same as it was. Looking out at the sea just in case of anything looking at the servant fight. Poor Caster having to deal with this all on her own. He would have helped if he was allowed too... maybe Nate... wait where was Nate?! &quot;That&#39;s lady Ashley! She&#39;s like me also stuck in this place! Ashley over here!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">11-Feb-22 11:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="941713587800510476" id="message-941713587800510476" title="Message sent: 11-Feb-22 11:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Following the voice she walked put of trees and Allen could see her for the first time. Her long bright purple hair, covering most of her face. But she was shorter, wearing a beautiful dress the style matching with the small boys very well. Looking at Allen frantically with a look of concern for the boy behind her she looked him dead in the eyes, and for a moment he could see her dead, tired purple eyes behind her slightly messy hair. Other then the large bages under her eyes she was weirdly beautiful. Not in a natural way though, the same beauty that one would equal to a doll or a painting.  She didn&#39;t seem Natural in her moments or her expressions at all but it didn&#39;t feel like a lie either, just strange.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/988ad3efc0ef28e39280cdd4d6e64d34-F3F23.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie the AU goblin</span>
+
+
+        <span class="chatlog__timestamp">11-Feb-22 11:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="941714304065998988" id="message-941714304065998988" title="Message sent: 11-Feb-22 11:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-74A66.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="927094444346470451" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Feb-22 09:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="941870614824771604" id="message-941870614824771604" title="Message sent: 12-Feb-22 09:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Bullets rain down on her Dark Worm, Locusta&#39;s full concentration being on allowing its brother to take the hits. Just a little longer, and their one means of escape would be broken off. Oh, how proud would Ashley be of her then...how glorious a victory this will be for her Master...
+
+&quot;Against Nature&#39;s Beauty, little Archer, your weapons mean nau-&quot; 
+
+A rumble from the very weapons that Locusta denigrated broke through her self-indulgent reveries, dirt, wood and foliage spraying across the Caster as Archer began lobbing shells into the woods. Her golem shudders and groans, its eyes turning down in a facsimile of pain as its arm blows from its frame in a shower of splinters. Caster can&#39;t help herself but to shriek, covering her face and turning from her loyal Golem as it falls apart amidst the onslaught. Such savagery...this would not go unpunished.
+
+A miniature golem rises from the  neck of its deceased brother, looking up nervously at its mother as Locusta scoops it up, frantically running through the hail of bullets. She thought she&#39;d be safe in the woods, but that Archer was actually willing to open fire blindly, in some hope of just reducing her to smithereens! Her face contorts in a rage, noting how the Archer could seamlessly fire on both her and her dear Dark Worm. &quot;This isn&#39;t fair...it isn&#39;t fair!&quot; She growls, subconsciously squeezing the golem in her arms a bit too tight, it&#39;s body squirming underneath her vile rage. &quot;I&#39;ll teach you to treat me as just some momentary distraction, Archer...between you and the Roman on the boat, I won&#39;t be a laughing stock...I won&#39;t be a failure for my dear Emperor. To live and wallow in such shame and mockery...it&#39;s too much...it&#39;s too much...
+
+&quot;IT&#39;S TOO MUCH!&quot; Caster screeches, following the slack from the string around her wrist. If Ashley is conversing with that Master, then this will put that fool in Archer&#39;s line of fire. <em>My Dark Worm, do not let up. I&#39;ll put everything I have into this mission...I will not fail!</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="941870923517136916" id="message-941870923517136916" title="Message sent: 12-Feb-22 09:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">~~
+
+The serpent roars in compliance with Caster&#39;s wishes, it&#39;s teeth digging in deeper as it braves the onslaught from Graf Spree.  No matter how many of its brethren snake their way from its body, the bullets were much faster. Pieces of its large body were sloughing away, with the smaller only manifesting just in time to block a mortar shell. At this rate, it would fail...
+
+It&#39;s eyes rage at the prospect, the beast coiling once more and stretching its synthetic, leafy muscle to pull. Cracks, much louder than before, split across the water as the Canopus frees itself a bit more from the ice. One more tug would do it...
+
+As the Archer of the Seas moves in, the Serpent catches a glimpse of its claws. If they made contact, it would be all for naught...
+
+&quot;<strong>GRAAAAAAAAAAAAAAAAAAAAAAAAAURGH!!</strong>&quot; Its bestial cry, a bubbling roar that sprays sea water from between its clenching jaws, signifies a change in tactic. From its body, the smaller Worm wrestles its way through once more, only instead of acting as a barrier, it launches itself into the churning waters, disappearing beneath the waves. In another geyser of sea salt, the snakes head rears once more, a shriek erupting deep from within before it swims towards Graf, aiming to act as a last line of defense by attacking directly. It strikes out, lunging through the waves to catch Graf in its jaws, its body coiling in preparation to wrap her in its length.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="941871019428311041" id="message-941871019428311041" title="Message sent: 12-Feb-22 09:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">12-Feb-22 03:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="941954188898881566" id="message-941954188898881566" title="Message sent: 12-Feb-22 03:09 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His body tensed for a bit when he saw Ashley, the battle continue behind them the loud sounds Graf attacks reassure him that his servant was still dealing with the enemy and so it did gave him some leeway in how to act. The question remained though, was this woman an enemy or not?? 
+
+Alister seemed to know her at the very least but that didn&#39;t mean she wasn&#39;t an enemy, nor it meant Alister was lying either. Allen hated this, it hated that feeling of uncertainty that makes it hard to decide what to do as if things wasn&#39;t clear he may end up going back on his word towards Alister, He reached for the hand of the kid as he hold him tight as he looked at Ashley. 
+
+&quot;Are you this kid friend?&quot; he asked as his eyes continue to examine the young girl. 
+
+Trusting  Alister and trusting Ashley were to different things but at the same time it seemed like they both came as a package deal. As his mind went over this thoughs his body began to relax as he lower his guard as bit aiming to not appear too intimidating towards the young girl.  His crimson irises remained focused on her, the disparity between her aspect and expression confused him a bit. She looked so tired, it was concerning in many ways, but she also looked like was being looking after. 
+
+&quot;If you are and you really wanna get out of this island I will help you both as much as I can&quot; he finally said as he let out a sigh. It was a bad idea to trust them so easily and to take even more request in the middle of an issue but he had already given Alistar his word so it couldn&#39;t be helped</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">12-Feb-22 03:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="941954282255700028" id="message-941954282255700028" title="Message sent: 12-Feb-22 03:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 01:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="943197516340559902" id="message-943197516340559902" title="Message sent: 16-Feb-22 01:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Graf rather than attempting to dodge or block as some would expect instead jumped straight into the things maw to shred the thing from within its gullet. As soon as she ripped out of the serpemtine beasts back she leveled all of her guns upon the larger beast as Canopus creaked under the strain. This seaweed vermin was undoing all of the hard work she had put into keeping her bigger sister alive and well enough to be repaired. A thing that Graf herself never got the chance to experience as she was scuttled before any repair efforts were put in.
+
+&quot;I SAID LEAVE HER ALONE!&quot; The pocket battleship bellowed. It was like a switch was flipped and a huge burst of power flowed through her veins of steel and oil. even the guns that were still supposed to be on cooldown to reload made the sounds of a new shell being put into their breaches. &quot;I will take you on with an all out assault.&quot; With one final line she unleashed hell upon the summoned creature that the caster was controlling as her noble phantasm known as all out assault was activated.
+
+While the seaweed and rust snake was getting plastered by dozens of naval shells Grafs floatplane was still circling overhead and giving Graf the ability to see the battlefield from a birds eye. she was keeping a close watch on Allen and his own interaction as she hoped that wouldnt get nasty. She had also finally picked up caster on her radar but it was no use. She had made her way into a location where Allen was right between them and too close to just lob a shot overhead. She could always pretend to be a mortar but then she stood as much a chance of hitting her own captain as much as hitting the caster. With this move made she had no choice but to just delete the snake from existence and make sure that what ever shows up next doesnt even get the chance to rise from the murky depths.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 01:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="943201157310996501" id="message-943201157310996501" title="Message sent: 16-Feb-22 01:44 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 02:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="943214380156342342" id="message-943214380156342342" title="Message sent: 16-Feb-22 02:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Looking up towards the boy with a large, almost creepy but honest smile she reached out her hand to the two boys. She seemed relatively harmless, no weapons being seen on her person but that feeling of being watched never really stopped for Allen. She wasn&#39;t alone.
+
+&quot;Off the island.... that&#39;s really a dream.... I do want to get home... but Ally I told you not to talk to strangers... but you don&#39;t seem to want to harm him.... are you a threat to us...?&quot;
+
+With her beautiful, tired voice rang out almost like a song as her hands were moving around in strange motions. Hypnotically walking around and closer to him, her movements were soft and fluid, nothing surprising and nothing truly changing. Walking around both Ally and Allen, looking the man over with her dazed dead eyes. 
+
+&quot;If you mean harm you would have attacked..... you mean no harm....?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/988ad3efc0ef28e39280cdd4d6e64d34-F3F23.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie the AU goblin</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 02:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="943214428772528158" id="message-943214428772528158" title="Message sent: 16-Feb-22 02:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 02:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="943217642842517564" id="message-943217642842517564" title="Message sent: 16-Feb-22 02:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Many times had his mother asked the same question, why did he always say the truth?? It wasn&#39;t that as a mother she wanted her child to lie and deceive her but as Allen grew she found the lack of lies a bit concerning. Lying was something that was quite bad specially if one lies to its own parent but at the same time it was something that was bound to happen. So instead of being a relief or a sign of trust Allen never lying to her unnerve her to a certain degree.
+
+Allen never truly got why it seemed to bother her mother, for him it seemed like the only logical action. Lying was wrong so of course he would say the truth. If the truth couldn&#39;t be said he would just hide part of it or just dont say anything. 
+
+&quot;I mean no harm&quot; he said as his mind continue to make any sense of the situation.  Even when talking with her he could still feel eyes around him. Were there more of Ally&#39;s friends?? The girl in front of him didn&#39;t appear to be lying but her words strike him as odd, was she hiding something as well? It was hard to tell right now. 
+
+&quot;If you and the rest of your friends aren&#39;t behind this attack I have nothing against you so I have no reason to harm you. Even if you are I already promised Alister that as long as you guys don&#39;t lie I will help you get out of this island so...&quot;
+
+New and new theories began to form inside his mind, but theories alone weren&#39;t good enough. He needed to find a way to make sure they were  so this was the only way he could think to try and prove them. 
+
+&quot;If that one who is attacking the ship is under your or any of your friends control make it stop, if you do I promise I will protect ya all and get you out of this island.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 02:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="943217720860745779" id="message-943217720860745779" title="Message sent: 16-Feb-22 02:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 03:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="943221385176707103" id="message-943221385176707103" title="Message sent: 16-Feb-22 03:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Outsider... you are... a beautiful person. And everyone it&#39;s safe... come out....&quot;
+
+Waving her hands around almost musically a few people poked their heads out of the trees. Including a few older folks, two teenagers holding hands an a very large lanky orange haired man right out behind her. All of their eyes held that same dead stare as Ally and this girl did. It was strange beyond belief. The more the girl moved her hands the more they seemed to talk to each other, whispering and a few looking towards the fight, a few mumbling something about Caster and looking towards the orange haired man to some kind of guidance.
+
+&quot;We will calm it off once we know you will call yours off.... and give us your name...&quot;
+
+Dazed she walked closer to him. Her skin was extremely pale, unnaturally so like she hadn&#39;t seen the sun in years. 
+
+&quot;And if you are friends.... with Dante... or at least know where I can find him....&quot;
+
+Ally was completely quiet, looking out towards Caster and Archers fight nervously. He knew she would take it to far and they would never leave this place. Call them off Ashley, was all he could think. Over and over again.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/988ad3efc0ef28e39280cdd4d6e64d34-F3F23.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie the AU goblin</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 03:05 AM</span>
+
+            <div class="chatlog__message " data-message-id="943221404239818783" id="message-943221404239818783" title="Message sent: 16-Feb-22 03:05 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 03:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="943224509979308113" id="message-943224509979308113" title="Message sent: 16-Feb-22 03:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;My name is Allen Ignis&quot; he said as  he looked at the many figures that came out of the woods as his suspicious were proven right. This woman Ashley or at least one of many who were with her were the enemy servant master. At the same time Allen could to a degree confirm she didn&#39;t seem to be violent at least not as violent as Ruth. 
+
+If they wanted they could just overwhelmed him with their sheer numbers, Allen was a fighter but that didn&#39;t meant he could just fight everyone on his own. His own options of retreat were also quite limited, to run away meant to leave the Canopus and with that their only way out of this place. So negotiation was the only real answer he had for this situation.
+
+&quot;My servant orders is to protect the ship, I would advice ya to just stop your attack towards it as if it completely breaks none of us can leave this place.&quot; he said as he continue to look at her. &quot;I know Dante but I have no idea where he is.&quot;
+
+Allen began to relax as through their mind link he told Graf to stand down if Caster stopped her attacks. 
+
+&quot;Also are you alright?&quot; he said as he let out of Alister and moved closer to Ashley. &quot;You look quite pale and tired.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 03:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="943224558842949725" id="message-943224558842949725" title="Message sent: 16-Feb-22 03:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 03:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="943227879616020502" id="message-943227879616020502" title="Message sent: 16-Feb-22 03:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Twitching a little he could tell she was tried, even leaving on the orange haired man for support as he glared at Allen. Waving him off she stumbled over grabbing his arm and pulling him closer to her, she was uncomfortably strong for someone so skinny and pale as she looked him dead in eyes. Starring at him, he could see the intense fire in her eyes, that little bit of crazy showing through as all the others just stood and watched her. She smiled at him, tracing her one hand up his arm and too his shoulders. She noticed he was injured, who fought him she wasn&#39;t exactly sure. Maybe she would ask next time but for know she knew she had a way out of this hell, and hey he was pretty cute to boot. A new friend maybe.... flashing him a flirty smile and took a step back.
+
+&quot;If you help us off this island... or get me Dante I won&#39;t cause any more trouble for you.... and I just haven&#39;t slept.... no time to sleep when she is around....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/988ad3efc0ef28e39280cdd4d6e64d34-F3F23.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie the AU goblin</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 03:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="943227916479787098" id="message-943227916479787098" title="Message sent: 16-Feb-22 03:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 04:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="943242064475353198" id="message-943242064475353198" title="Message sent: 16-Feb-22 04:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She? For a moment time seemed to stop as Allen looked back at Ashley and how she gripped his arm.  She was pretty, even behind all his sleepiness and somewhat craziness she was a pretty girl. But more than that he wonder about who was she talking about. Why should this person existance keep her from sleeping and if that was the case how long as she go without any proper sleep??
+
+&quot;My promise is only to get ya all out of this island whatever business you and Dante may have is none of my business.&quot; he said as he didn&#39;t wanted to add even more responsibilities to his situation. 
+
+His words may sound like he was abandoning Dante to his luck but at the very least he was telling Ashley he wouldn&#39;t give her Dante. So were Dante and Ashley met and a fight ensue he wasn&#39;t obligated to support her. But with all the craziness the more he looked at her she didnt&#39;t really seem as a bad person. 
+
+He moved his hand and softly pet Ashley head, his figners traveler through her head as he looked at her not really caring about the looks the other may give her. 
+
+&quot;You should sleep more.&quot; he said as he relax some more. &quot;I will tell my servant to stop but if yours doesn&#39;t deal is off.&quot;
+
+He turned to the ocean. &quot;Archer!!! Cease fire&quot; Graf had told him that her name wasn&#39;t that important but the situation wasn&#39;t such that they could afford to not be careful. It seemed well but the conflict could easily escalate with a wrong move.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 04:30 AM</span>
+
+            <div class="chatlog__message " data-message-id="943242908658708510" id="message-943242908658708510" title="Message sent: 16-Feb-22 04:30 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 05:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="943263032778297424" id="message-943263032778297424" title="Message sent: 16-Feb-22 05:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Freezing in her place as he ran his fingers through her hair. She hadn&#39;t felt this calm in maybe years. He was a gentle person. Calm and caring even. She knew how long it had been, how long it&#39;s been since she had truly met another person outside this horror of an island that didn&#39;t end in tragedy, this was all she needed to know he wouldn&#39;t hurt her. Her eyes sparkled a little, he was a beautiful thing, even more so then the one from before. He was scared of her like all the others. He was different, she couldn&#39;t let the others get a hold of him who knows what Ruth would do to him.
+
+&quot;Caster! Stop they are allies now! Stand down!&quot;
+
+Raising her voice more then anyone had really heard she turns to the water motioning for Caster to return to her as she then turned back to Dante. 
+
+&quot;Thank you for that... I&#39;ve wanted off this island for so long... so do all my family here... but I gave to warn you about the others on this island..... the green haired woman.... don&#39;t go near her....&quot;
+
+When mentioning the woman the girl flinched a bit, then starting to look around, paranoid out of her mind. If Ruth ever heard her say that she would join the others... she knew that...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/988ad3efc0ef28e39280cdd4d6e64d34-F3F23.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="CookieOmega#1777" data-user-id="329650166606987285" style="color: rgb(238,94,134)">Cookie the AU goblin</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 05:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="943263064634052619" id="message-943263064634052619" title="Message sent: 16-Feb-22 05:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 06:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="943265722270892092" id="message-943265722270892092" title="Message sent: 16-Feb-22 06:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Green haired woman? Allen eyes widen as he heard that, memories of the fight she had against Ruth came back to him. 
+
+&quot;You know her?!&quot; Allen voice began to sound angry. He wasn&#39;t the one to get angry but when it came to that woman it was a special case. She had tried to kill him, hurt Graf and who know how many had she killed with her first strike towards the ship. &quot;That woman.... next time I will kill her.&quot;
+
+His voice was now cold, his crimson eyes looked different; he looked like a complete different person right now, the grudge he held against her was not something he could so easily let go.  Specially if from the sound of Ashley words it sounded like that woman was the reason she couldn&#39;t leave.  He put his hands on Ashley shoulders as he stared at her. 
+
+&quot;Who is that woman Ashley? Why does she wants all of us death so bad.?&quot; This question wasnt meant to try and understand Ruth in any way, he needed information if he was gonna keep all of this guys safe and so far for that Ruth needed to go.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 06:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="943272029908512808" id="message-943272029908512808" title="Message sent: 16-Feb-22 06:26 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-74A66.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="927094444346470451" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 06:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="943274772987519006" id="message-943274772987519006" title="Message sent: 16-Feb-22 06:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And would you look at that, just as Caster predicted, the little Archer pulled back her assault on the retreating Locusta. The young woman smiles insidiously, her golem now big enough to carry her on its shoulders as it lumbered towards Ashley and the rival Servant. The flash of light that came from Archer&#39;s Noble Phantasm was a cause for some alarm, her eyes widening in disbelief as her Dark Worm was obliterated. Her hands twitched in the face of such power, how could someone like that even be considered an Archer?! Well...well, no matter. She failed in sinking the ship...but she could at least fell one of these invaders...
+
+&quot;Guuuuuuuuooooo,&quot; her wooden golem rages, brushing aside the thick wall of foliage between it and Ashley&#39;s meeting, Locusta riding on its shoulder while grinning wickedly down at Allen. Well well...her Master certainly had a type...
+
+&quot;Ahhhh, my Emperor, I&#39;m glad to see you unharmed. Now, stand aside; I&#39;ll only poison him, and then you can show me this process of adding to the family,&quot; she smiles, her golem approaching, club like arm raised to strike at Allen.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="943274843783192646" id="message-943274843783192646" title="Message sent: 16-Feb-22 06:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 06:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="943280026147770400" id="message-943280026147770400" title="Message sent: 16-Feb-22 06:58 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She turned back to Caster was a dark, and honestly scary look. Still standing right beside Allen, almost uncomfortably close. Starring at the small girl with the most harsh and angry look so far. Did she not understand what &#39;standing down&#39; meant... hopeless... all the different dolls looked towards Caster, ready to defend both Ashley and Allen if needed. He would defend her.... save her people... save her save her save her..... her brain was moving faster then it had in ages. Save her from this horror, the nightmare she had been trapped in for who knows how long, and Caster was not going to take that from her.
+
+&quot;I said.... Stand. Down. Caster. He wishes to help us fight Ruth.....&quot;
+
+Knowing that would calm Caster, as she also wanted that woman dead. Though Ashley knew she couldn&#39;t fight Ruth... with enough help she just might be able too... I mean he servant was nothing to sneeze at and she had no clue what he himself could do.... This might be just what she was looking for. With a wide smile she started to laugh a bit under her breath.
+
+&quot;Kill Ruth?! I&#39;ve waited years to hear someone just insane enough to attempt it! Kill mother.... beautiful beautiful you are such a beautiful person Allen~ Oh right.... my name.....&quot;
+
+Turning back to him, now with a simple smile on her face, brushing some off the long purple hair away from her eyes she looked up at his beautiful determination.
+
+&quot;My name... its Ashley....&quot;
+
+<span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 10:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="943325970390204526" id="message-943325970390204526" title="Message sent: 16-Feb-22 10:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ruth, he will be sure to remember that name, that woman had put him and Graf through hell and he wanted nothing more than getting even with her. Still being called insane gave him a sort of weird feeling, aiming to kill that woman something so hard?? He had come quite close in their last encounter and he now knew a bit more how to deal with her so for him it didn&#39;t so hard. But still necessary, as he doubted she would just let him leave so easily. 
+
+&quot;Nice to meet ya Ashley&quot; he said as smiled back at her before he realized something. &quot;Wait mother?! Como carajos..?&quot; 
+
+Ashley looked almost his age and Ruth looked like she was in 30&#39;s or close to her 40&#39;s at worse so how cold Ruth be her mother. &quot;wait wait wait.... she is your biological mother?? Why you want her dead then?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 10:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="943325995686064169" id="message-943325995686064169" title="Message sent: 16-Feb-22 10:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 10:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="943329834623459329" id="message-943329834623459329" title="Message sent: 16-Feb-22 10:15 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She smiled, in a almost goofy way, he could tell the lack of sleep was really getting to this girl as she shook her head. Stumbling back and almost falling as she used seemingly the air to pull herself up again and tried to keep her balance, steadying herself as much as she could.
+
+&quot;No.... she is the one that took me in after a tragedy.... that language.... I haven&#39;t heard that in years..... the outside world was so beautiful wasn&#39;t it...? Not that I have time to worry..... I was meant to protect her.... keep working until I can&#39;t stand and never stop.... sleep isn&#39;t needed in her eyes right...? No time no time no time....&quot;
+
+Her words started to turn to mumbles as she held her face, he could see the pain in her eyes. Fear surrounding her, was she a traitor...? What will happen to her if they found out...? No one has to know... no one must know she made this deal... no one no one.... 
+
+The many people around her including the orange haired one gave her worried looks, the tall man walked over and gently tried to steady her and now that Allen could get a better look, unlike the others in their more fancy outfits, he was wearing a simple white shirt and jeans with an old red sweater around his waist. He looked about the same age him and Ashley but didn&#39;t say anything to the man.
+
+<span class="mention" title="Spiderrock#5389">@Spiderrock</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 12:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="943366714857521193" id="message-943366714857521193" title="Message sent: 16-Feb-22 12:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Allen stood still for a moment as he heard Ashley mumbles, he was naive and one day that would cost him. Eventually he was bound to trust the wrong person and end in a situation which he would lose something. He knew that much, he knew each time he trusted someone and he didn&#39;t pay for it only increased the chance for the worst to happen next time.
+
+Even the words this girl mumble were sad, as he looked around they other looked worried as well, even if they were to betray him later he could tell that at the very least they cared about this girl. He couldn&#39;t blame them the more he seem to know about her the more she seemed like a victim of the situation. He really didn&#39;t have any reason to fight her at all. 
+
+&quot;I dont think that woman is worth protecting though&quot; he said as he smiled at her. &quot;So will deal with that so is okay for ya to sleep&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 12:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="943366865621758083" id="message-943366865621758083" title="Message sent: 16-Feb-22 12:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 12:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="943369643463163977" id="message-943369643463163977" title="Message sent: 16-Feb-22 12:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As the worm was completely removed from the equation Graf turned on her heel while still on the waters surface and was about to try and line up a shot at the caster but Allen told her to stand down so that is what she did. The overwhelming amount of energy flowing throughout her entire being ceased and most of the guns went dormant.
+
+Now that the Canopus, her bigger sister so to speak was safe once more she returned to the shore with several of the fish she had caught using some percussive fishing just before the casters attack. While holding those she did pull out another fish, but this time from her torpedo rack and held it like a bat as she approached Allen and the caster upon her golem. &quot;Harm my captain or my sister again and there wont be a single fortress upon this island where you will be safe from my wrath.&quot; She spoke coldly towards towards the caster and placed herself between him and the golem with its raised arm.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 01:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="943375280104439838" id="message-943375280104439838" title="Message sent: 16-Feb-22 01:16 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span>  <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/8d1a78d39f7eefa73cb155a85a549b22-74A66.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Locusta#0000" data-user-id="927094444346470451" style="">Locusta</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 03:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="943402255321817138" id="message-943402255321817138" title="Message sent: 16-Feb-22 03:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Tch, you can keep your ruddy sister, Archer,&quot; Locusta responds, grimacing at Graf Spree as the wooden golem lowers its arm, bringing the Caster back to level with her Master...er, well, below her. She even sought fit to cast that gaze back at Ashley, giving a small huff as she folds her arms, grumbling to herself as she listens to the Masters&#39; exchanges. To think, her Master never confided in <strong>her</strong> about a desire to kill this Ruth...why, she could have come up with countless means of doing so. Did she not tell Ashley she was the slayer of Kings, toppler of Thrones? 
+
+&quot;Hmph, well, <em>Master,</em> unless you wish to fall asleep on the docks, I daresay there&#39;s nothing for us here. You can make friends with more insects later; you&#39;re quite lucky, Master of Archer. My Master seems to have a habit of infatuation. But, you know what they say about young love, don&#39;t you?&quot; 
+
+Locusta adds this last tidbit with a curl of her lips, eyelids falling into a smug gaze that sweeps across both Graf and Allen, the Caster herself quite enjoying the moment in the spotlight. &quot;You have a use for my Master...pray that doesn&#39;t go away. She managed to devise the wounding of your dear Big Sister, Archer. Consider this a small flavor of my power; should you fall out of favor, and you may pay witness to an even greater wreck upon her corpse. So, I&#39;d be wary of where you point that fish, unless you want a demonstration right here, <strong>right now.</strong>&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="943402325937115146" id="message-943402325937115146" title="Message sent: 16-Feb-22 03:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/01d62349102426673af2b0c7cc2ea795-5D92D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="927094444346470451" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 03:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="943407252608536616" id="message-943407252608536616" title="Message sent: 16-Feb-22 03:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Archer merely listened to what the masters were talking about and taking notes without looking at them while her floatplane returned and she caught it with her own teeth by a wing. She then let it drop into her bag and out of sight. Her attention was still about 80% upon the caster servant right in front of her.
+
+Hearing how she was talking about fish... She assumed it was her torpedo since she had heard berserker call it a fish too, even allen once called them metal fish. In a way that wasn&#39;t wrong since they did swim through water. But she couldnt resist the urge to pull at their leg one last time today. &quot;Well if youre that desperate for fish...&quot; she tossed one of the fish she had caught earlier at the caster for her to catch. &quot;You can keep this one as a peace offering i guess...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/a_75daacc9d7cef2ff1a8f8a8681b9f18b-17E1E.gif" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Raffia Kiryuin#0467" data-user-id="202162708496384013" style="color: rgb(238,94,134)">Raffia Kiryuin</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 03:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="943407830231302165" id="message-943407830231302165" title="Message sent: 16-Feb-22 03:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Killer#6882">@Killer</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/4f4108cf822ba84cf78d3753be4932e9-7BDC4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ashley Drakin#0000" data-user-id="927094444346470451" style="">Ashley Drakin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 09:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="943500529068310529" id="message-943500529068310529" title="Message sent: 16-Feb-22 09:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She turned to Caster with a small glare, this seemed strange for the woman as she I&#39;d normally much more caring and understanding of the smaller girl. This felt manic and twisted, crazy even. Like she just stopped something insanely important but she couldn&#39;t deny that. Looking back to Allen she took a deep breath trying to steady herself.
+
+&quot;If you do want to help us leave the island... we are stationed in the tropics.... here let me just give you this....&quot;
+
+She reached out and very very gently took his hand in hers. A small purple string wrapped around it, not tight enough to hurt  but tight enough to not fall off. It had a purple glow to it, and Allen could tell right away it was some kind of magecraft. 
+
+&quot;You will be able to find your way to me when you need me with this... and me and my people will be able to find you when your in trouble.... and if things get bad... pull on it, it will lead you to a safe place... but Caster is right..... I do have to go.....&quot;
+
+Sadly looking into his eyes, she just found him she didn&#39;t want to leave yet. Ally walked back to the ground trying to pull Ashley with him along with the tall orange haired man. Leading her back towards the trees gently. As she turned back to him with a small smile. 
+
+&quot;Thank you.... truly beautiful....&quot;
+
+<span class="mention" title="Spiderrock#5389">@Spiderrock</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-F1F44.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="927094444346470451" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 11:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="943529753913196565" id="message-943529753913196565" title="Message sent: 16-Feb-22 11:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;after I finish doing what I can to repair the Canopus I will go there then.&quot; he said as he looked at the purple thread now in his hand. He could feel the power in it, it was  something nice to have and it give it a bit of insight at least for now not all Islanders are enemies but even that it didn&#39;t change much about their situation. If they attacked them they would fight back but he was willing to let go of those who leave them be. 
+
+All things considered this encounter had been good, he had leard of that woman who had tried to kill him and found a new ally for him and the other investigators. While she was a bit weird she didn&#39;t seem as a bad person. 
+
+&quot;Take care you are a good person&quot; he said with a smile. &quot;Will see ya guys soon&quot;
+
+He waved at them as he turned back , moving closer to Graf as he needed to share some more information with her. While he found it unlikely, it was possible that this was still a trap so they needed to began to device some countermeasures just in case after all Ashley couldn&#39;t be the only islander in that are.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20city-docks%20%5B915623737154470008%5D%20%28after%202022-01-28%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">16-Feb-22 11:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="943529814101487686" id="message-943529814101487686" title="Message sent: 16-Feb-22 11:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="CookieOmega#1777">@Cookie the AU goblin</span> <span class="mention" title="Killer#6882">@Killer</span> <span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+
+</html>

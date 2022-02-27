@@ -1,0 +1,1337 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - canned-goods-store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: desert / canned-goods-store</div>
+
+            <div class="preamble__entry preamble__entry--small">Due to the merch store being the only store selling food and clothing, some of the islanders have started their own businesses in order to avoid going insane at consuming the same merch over and over again. Of course, some of the shrewder ones have taken advantage of Nirvana’s perilous situation and driven the prices up for common necessities. Bargaining with these individuals is usually a lost cause.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">01-Dec-21 11:27 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="915625180758429756" id="message-915625180758429756" title="Message sent: 01-Dec-21 11:27 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/5Q01w5Vh-02BE3.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/5Q01w5Vh-02BE3.jpg" alt="Image attachment" title="Image: 5Q01w5Vh.jpg (90.44 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/3a2f14160f0ba158ed71dc45c0d12500-3FB64.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Boogeyman#0000" data-user-id="937843144236630116" style="">Boogeyman</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Feb-22 06:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="937843145872379934" id="message-937843145872379934" title="Message sent: 01-Feb-22 06:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Through ether and darkness both Assassin and Ryn transported to another corner of the island. Boogie followed the few trails she could sniff out through whispers and rumors circulating around. In one instance she heard word of a group of cultists that would be visiting near by an old canned goods outlet. They would in the shadows of a far alleyway watching as men and women moved in out of the store front. Assassin&#39;s hand loosely fell upon Ryn&#39;s shoulder. &quot;We have arrived my master, I&#39;ll let you give the word. We see our targets in front of us. Let us proceed forward and gain the information we require.&quot; 
+
+At once the shadowed servant ushered her young master forward as if he were a child on his way to the toy shop. Though she maintained an even temper as always, there was an air of preparation behind her eyes. She was ready to do business. As they neared the front building Boogie asked subtly. &quot;While we are here it might be a good idea for you to go collect some food for us to take back, after all the Redhead is so preoccupied fortifying our space that she does not have the time to hunt. As the man of the group it shall be most beneficial for you to be the provider of our consumption, don&#39;t you agree?&quot; Her words were encouraging while also leading in many ways. Despite this it was true they would need to gather supplies, and for what Boogeyman intended to do, this was the perfect job for the boy. <span class="mention" title="&#198;nkidou#4116">@Enkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/68a8f77e9e852ebee3fb69c0b3679134-CF7DF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="937843144236630116" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Feb-22 08:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="937860163799511050" id="message-937860163799511050" title="Message sent: 01-Feb-22 08:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Blinking fast, Ryn fought to adjust to the light, despite stepping into a dark alleyway. Boogie&#39;s transportation methods were disorienting to put it lightly, probably since the lad hardly ever traveled by ether and darkness. Though you couldn&#39;t blame him, could you? He was even rather surprised Assassin never so much as faltered traveling the way she did- though he supposed it was something one simply got used to.
+
+Regardless, he ended up losing most of what his servant said to begin with. He really only heard everything after, &#39;it might be a good idea...&#39; after which, he realized where they were. A soup store! Really it was a canned goods store, but Ryn liked the titter of soup store better. Naturally he watched the people flowing in and out, ushered on closer and closer by Assassin. Admittedly Ryn had to giggle a little at the last bit of what she said, but in the end, he agreed.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="937860186251599872" id="message-937860186251599872" title="Message sent: 01-Feb-22 08:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">-
+<strong>&quot;W-Well that&#39;s a pretty dated way to put it... b-but yeah! I could go for a proper meal right about now. Uhm...&quot;</strong>
+He looked down at himself, before slinging his guitar off his back. He separated the instrument from the bag and slung it over his shoulder, whilst keeping the bag open between the crook of his armpit. Satisfied, he bumped a quick fist against Boogie&#39;s shoulder.
+
+<strong>&quot;Right, then you go on and get to talkin&#39; with the Nirvana folk over there, and I&#39;ll join you in a bit! If they get a little antsy, you find me and zip us out of here, &#39;kay?&quot;</strong>
+Already the lad was walking off towards the store, passing by the Nirvanans whilst throwing a thumbs-up over his shoulder. None really questioned him, for besides the instrument hanging by his shoulder, there wasn&#39;t much suspicious about Ryn. Deeper and deeper he headed into the store... leaving the Boogeyman to do her job.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/da36ab28717a66dc5bbdfa3b827418de-C0E1F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">Enkidou</span>
+
+
+        <span class="chatlog__timestamp">01-Feb-22 08:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="937860499939422309" id="message-937860499939422309" title="Message sent: 01-Feb-22 08:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Gilan#1083">@Gilan</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/3a2f14160f0ba158ed71dc45c0d12500-3FB64.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Boogeyman#0000" data-user-id="937843144236630116" style="">Boogeyman</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 01:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="938479706334957640" id="message-938479706334957640" title="Message sent: 03-Feb-22 01:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The crew of cultists did not pay much mind to the boy, aside from a curious glances about the guitar upon his back. However, whatever suspicion they may have had was immediately pulled towards the approaching woman dressed in all leather black. A devilish grin grew upon her face as she neared and although many of them wished to call her out they found that they could not raise their voices of alarm due to the aura she exuded. Stepping inside the shop itself she looked out at the group of men and women who had frozen in confusion before her. Reaching out to the door there was the subtle clicking sound of the only exit being locked. 
+
+What proceeded was a near indescribable horror of violence. Bodies were thrown about, slashed across, broken teeth littered the ground. Though many of them screamed it sound of their wales was almost muffled to the point where Ryn wouldn’t be able to hear. 
+
+A small group had snuck away and was presently hiding behind one of shelves until they heard slow methodical footsteps turning the corner. What laid before that gathering of cultists shook them to their core. For where they saw unrecognizable monster now approached an entirely different beast for them to fear. There at the end of the aisle was there own leader.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/4a729b84f8ab1d3661a0b44b305f5250-68494.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ruth#0000" data-user-id="937843144236630116" style="">Ruth</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 01:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="938479729860816906" id="message-938479729860816906" title="Message sent: 03-Feb-22 01:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“What are you doing? Is that you defend our island.” The head cult leader Ruth, stood unblinkingly before them dressed in her typical robes. Yet what chilled the spines of the small group was that a large measure of blood stained her clothes, and tightly held in the grip of her palm was the severed head of one of their fellow cultists. Slowly Ruth stepped closer to them. “You have disappointed me, I thought you all would of made a sizable impact on Nirvana. We have intruders flooding our beloved home and you are found lazying around at a soup store. I can not have such layabout polluting what paradise we have. I will give you one opportunity to save yourselves from my…disposition. I need you to tell me the mission of this island. Say it loudly so that I know you have not forgotten it in your ignorance. What is your purpose? What do we do here on Nirvana?” With fear in their eyes at facing the ‘hunger’ itself the cultists spoke on what they would know.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/f55dbb06d3b6952b9c6d2e181e64d93e-E0AB0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gilan#1083" data-user-id="418155771918811136" style="color: rgb(238,94,134)">Gilan</span>
+
+
+        <span class="chatlog__timestamp">03-Feb-22 01:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="938479768700092437" id="message-938479768700092437" title="Message sent: 03-Feb-22 01:03 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@Enkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/68a8f77e9e852ebee3fb69c0b3679134-CF7DF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="937843144236630116" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Feb-22 09:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="938610347537997926" id="message-938610347537997926" title="Message sent: 03-Feb-22 09:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ryn&#39;s stomach growled. Damn, was he hungry. Couple nights down at the bog, hampering down on stuff Ronda had found on the plane... it wasn&#39;t fun. It&#39;d left the lad, who was very well-fed back home, one of the only pleasures his family genuinely offered him, positively famished. So badly so that just the sight of all this food, tomato soup this, cream of mushroom that, left saliva pooling in his mouth. Sweet, filling soup heaven... Before he knew it, he was dragging in cans by the armful into his bag, not caring what he pulled out just as long as it wasn&#39;t green beans. Eventually his guitar bag began looking more like a sack, contorting to the many, many cylindrical containers that lumped at the bottom, and stretched trying to keep together. 
+
+A thought came to the stowaway when his bag was just about ready to burst, and he gazed around the vast room curiously. Just how did all these cans get here? Surely their manufacturers weren&#39;t based in a shoddy nowhere like Nirvana; it all must&#39;ve been here since the island had gone off the radar. That meant their supply had to be finite, right? It wouldn&#39;t last forever. The lad lifted his bag a little higher, weight pulling not only on his arm, but also a little in his stomach. . . maybe he shouldn&#39;t take so much. Hell if he knew the deal with all the island folk and why they attacked the Canopus, but he certainly didn&#39;t want some of them to go hungry a night or two down the line because he was feeling a little peckish. 
+
+He&#39;d start unzipping his bag, intending to give sweet relief to the poor thing and put some cans back, but it all came out a little faster than he&#39;d expected. Before he knew it, the zipper ripped open, and out spilled nearly his entire, greedy stash of assorted soups. The clatter was surprising, and even the boy jumped a little at the sound of his own clumsiness, wincing till the very last can clamored his idiocy in metallic clanks. He inhaled through his teeth.
+<strong>&quot;Ah-- bollocks...&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="938610427724693504" id="message-938610427724693504" title="Message sent: 03-Feb-22 09:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">-
+In his chagrin, Ryn instinctively ducked his head and reached for the cans, kneeling so that he may collect it all before someone saw. Though he paused as soon as he touched the can closest to him. His ear tipped to the ceiling. Strained to listen for something. Anything. The lad had been anticipating some disgruntled mutters nearby, maybe a shout, berating him for being a clutz or rambling on about how he&#39;d better clean it all up, lest he wanted a smack upside his head. But there was nothing. . . and now, Ryn realized why the clatter had made him jump.
+It was eerily silent. 
+
+The lad gulped. A bad feeling was beginning to set in the stowaway&#39;s guts, and he hastily stuffed several soup cans in his bag before stepping right up, tiptoeing around his tin mess, and walking hurriedly back the way he came. It&#39;d been plenty lively when he came in. People talking. Chatting about things he hadn&#39;t bothered paying mind to, sure, but he&#39;d heard them. So why was it so quiet? Had something happened? The rows and rows of canned goods were suddenly feeling daunting towering over Ryn, and the shadows, darker. Like the big store had become an even bigger maze... the exit... Boogie. Where... where was she...? Ryn didn&#39;t want to be here anymore... he wanted to leave...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/da36ab28717a66dc5bbdfa3b827418de-C0E1F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">Enkidou</span>
+
+
+        <span class="chatlog__timestamp">03-Feb-22 09:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="938610714149531669" id="message-938610714149531669" title="Message sent: 03-Feb-22 09:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Gilan#1083">@Gilan</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/3a2f14160f0ba158ed71dc45c0d12500-3FB64.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Boogeyman#0000" data-user-id="937843144236630116" style="">Boogeyman</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">04-Feb-22 10:16 AM</span>
+
+            <div class="chatlog__message " data-message-id="938981333710016573" id="message-938981333710016573" title="Message sent: 04-Feb-22 10:16 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Coming into the outside area of the store, Ryn saw a store relatively spotless aside from a few of the products now lining the floor. Though as opposed through this area before the boy would notice that it was remarkably more barren of people then before. Ryn was only gone for a few minutes, where could they possibly have gone. As he moved further in he&#39;d actually catch sight of Assassin standing at the end of one the aisles, right beside her was a single cultist who was rocking back and forth with his arms wrapped around his knees. He seemed unaffected by Ryn&#39;s arrival as if he was lost in his own world at this point. 
+
+Boogie waved her master forward as she caught sight of him. &quot;I&#39;ve gathered a little bit of information my master. There leader is a woman by the name of Ruth Naomi, there purpose is to bring her forth offerings of penance, kill any outsiders, or to bring more into their ranks so that their group may grow even larger. Though that is not all, based on their fear of her, it seems she has made a reputation of consuming others for her own benefit, especially those who step out of line.&quot; Her hand lightly grazed against the top of the cultist&#39;s head as he continued to stare blankly in front of himself. &quot;This is Brandon. Brandon was a good boy and told me all of what I wished to know. I&#39;m certain he will answer any questions you may have as well master. Isn&#39;t Brandon.&quot; The man feverishly nodded as she spoke, there was no telling what had occurred before this man&#39;s eyes to make him so sub servant. <span class="mention" title="&#198;nkidou#4116">@Enkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/68a8f77e9e852ebee3fb69c0b3679134-CF7DF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="937843144236630116" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">07-Feb-22 11:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="940092782742224896" id="message-940092782742224896" title="Message sent: 07-Feb-22 11:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Spotting the two, Ryn had nearly barreled himself into his servant in his rush to greet her. How he hated big dark places- he was afraid he&#39;d gotten lost for a moment. Boogie, strangely, had become the sort of &quot;waypoint&quot; out of here in his head... that is, until Ryn took notice of the man, curled up very much like a <em>baby</em> at his servant&#39;s feet. Ryn hesitated when he approached from then on, looking from the man to Boogie whilst she spoke. When she was done explaining what&#39;d she gathered, and Ryn&#39;s legs stood just infront of Brandon&#39;s eyes, the lad looked utterly distraught.
+<strong>&quot;Boogie-- what-- what did you do to him? Hey, sir! Brandon?&quot;</strong>
+
+It was like Ryn hadn&#39;t even heard what Boogie had said. The sight of this poor, poor man was too disturbing. Quickly the lad kneeled down, placing his hands on both of Brandon&#39;s shoulders and giving him a firm shake. Not so much as a twitch from the man. Just a wide-eyed, blank, terrified stare. Concerned, Ryn&#39;s eyebrows knit together, and he let his hands gently retreat to his guitar. 
+
+<em>TINK...</em> with a careful flick, he tapped the metal plate under his strings, a hollow sound reverberating from it&#39;s vibrations. While the plate continued to ring, Ryn&#39;s fingers found their place on his guitar, and he plucked a note. Then, he sang. A lullaby to aile that which plagued this poor man&#39;s mind.
+
+<em>&quot;Twinkle, twinkle, little star
+
+How I wonder what you are
+
+Up above the world so high
+
+Like a diamond in the sky
+
+Twinkle, twinkle, little star
+
+How I wonder what you are&quot;</em></span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <audio class="chatlog__attachment-media" controls>
+                                <source src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/Twinkle-3998D.mp3" alt="Audio attachment" title="Audio: Twinkle.mp3 (2 MB)">
+                            </audio>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="940092837465325589" id="message-940092837465325589" title="Message sent: 07-Feb-22 11:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ryn&#39;s voice didn&#39;t sound like it was coming from his lips, right before Brandon. To the islander, instead, it felt as if the lad&#39;s voice was <em>inside</em> his head. Soft. Calm... magical. Every note and word soothed, and whilst the tongue of command still dripped sweet from his voice, Ryn tried once again. He put his hands upon Brandon&#39;s shoulders. Held him firm, but he didn&#39;t shake this time. He smiled.
+
+<strong>&quot;You&#39;re alright Mister Brandon. Safe. Everything&#39;s gonna be okay.&quot;</strong>
+He sounded so confident, so sure of himself. There was no doubt about it, not when a man like Brandon was lost the way he was. Ryn spoke the truth. Nevermind the woman beside them-- she wasn&#39;t anything to worry about. Ryn assured him after all. 
+He was alright... 
+He was safe...
+He would be okay. . .</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/da36ab28717a66dc5bbdfa3b827418de-C0E1F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">Enkidou</span>
+
+
+        <span class="chatlog__timestamp">07-Feb-22 11:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="940093278685110303" id="message-940093278685110303" title="Message sent: 07-Feb-22 11:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Gilan#1083">@Gilan</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/059ec077d0699d1f645e17d29d61b7db-F67D8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="???#0000" data-user-id="937843144236630116" style="">???</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Feb-22 07:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="940387637297029190" id="message-940387637297029190" title="Message sent: 08-Feb-22 07:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Branden began to stir and wake. his eyes seemed to gleam with calm as he stared directly at Ryn. &quot;Yea, everything is going to be okay. Thank you. Your voice is so pretty.&quot; He no longer seemed frightened beyond belief, replace now with a state of euphoria. &quot;Ruth would love to hear you sing. Do you want to join, I&#39;m certain we can make a spot for you.&quot; Brandon began to stumble as they seemed to be attempting to stand up, though they lost their footing and knocked into a newspaper toppling over its contents.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/3a2f14160f0ba158ed71dc45c0d12500-3FB64.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Boogeyman#0000" data-user-id="937843144236630116" style="">Boogeyman</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Feb-22 07:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="940387639847161876" id="message-940387639847161876" title="Message sent: 08-Feb-22 07:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Bending down Boogie ran her fingers through the man&#39;s hair and began shh him soothingly. &quot;Do not press yourself too much. You behaved yourself, therefore there&#39;s no reason for you to suffer or be punished anymore than you already have.&quot; Brandon seemed to close his eyes and almost leaning into the comforting pats upon his head. &quot;You.ve done well. All we ask of you now is to answer any questions the boy has for you, that is all. When you are done, you will be allowed to sleep. However, until then we need you to stay with us just a little longer.&quot; Assassin then looked over at her master and gave a gentle nod of acknowledgment. &quot;His mind is at peace, but it&#39;s slightly been put through the wringer. I&#39;d ask him what you wish to know, before we lose his agreeability with us.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/f55dbb06d3b6952b9c6d2e181e64d93e-E0AB0.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Gilan#1083" data-user-id="418155771918811136" style="color: rgb(238,94,134)">Gilan</span>
+
+
+        <span class="chatlog__timestamp">08-Feb-22 07:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="940387658906083329" id="message-940387658906083329" title="Message sent: 08-Feb-22 07:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="&#198;nkidou#4116">@Enkidou</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/68a8f77e9e852ebee3fb69c0b3679134-CF7DF.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ryn#0000" data-user-id="937843144236630116" style="">Ryn</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Feb-22 08:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="940405866711113768" id="message-940405866711113768" title="Message sent: 08-Feb-22 08:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Brandon&#39;s stir from fear was quick, even quicker than Ryn had been expecting. All the more pleasing to the lad, and with his smile widening, he breathed a sigh of relief. Suppose Brandon hadnt been too lost in the head from Ryn&#39;s recovery. Though he did say the strangest things. Ruth. Who was that, again?
+
+The lad remembered what Boogie said. Ah, the cult leader, was it? The cult this man belonged too? A momentary giggle puffed past his lips. No, Ryn didn&#39;t think a <em>cult</em> would be any place for him. Though... it did give him an idea.
+
+He had not long to ponder the matter before Boogie caught his attention again. His eyes narrowed at her. Watching her stroke Brandon&#39;s head. He didn&#39;t like how touchy she was with the man. Something felt terribly vile about it, and made the lad want to slap her hand away. She did have a point though. Perhaps, while the islander was under their control they should ask... hm? Whilst gazing off to the left, Ryn gaze caught a fleck of paper, tumbled about from when Brandon had tried standing. Curious, Ryn reached out, unraveled the paper, and inspected the headline. It was dated just a couple days ago.
+
+A newspaper on Nirvana? How convenient! And admittedly strange, after all, he couldn&#39;t imagine there was a whole lot to write about on an island as isolated as Nirvana. But, the paper sandwiched between his fingers could very well prove him wrong. Coupled with what Boogie heard... why, he reckoned this was just what they were looking for. Head peeking off the top to gaze at the others again, Ryn furled the paper up, and stuffed it in his bag. His free hand went to Brandon&#39;s arm.
+<strong>&quot;Hmm... nah. I think we&#39;ve got all we need. No need to dig this one&#39;s brain any longer. Mister Brandon? You can go now. You got what you needed.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="940405886223015967" id="message-940405886223015967" title="Message sent: 08-Feb-22 08:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">-
+The hand that disappeared into his bag returned- this time, with a tin can in tow. Ryn slid the can into Brandon&#39;s palm, and curled the man&#39;s fingers over it, grinning. <strong>&quot;See? Soup! Cream of mushroom, my favorite. Just what you came here for. And now that you&#39;ve got it, you can leave.&quot;</strong> Still holding on his arm, Ryn sauntered to his feet, pulling Brandon along with him. They were both up in a matter of moments, Boogieman standing right beside them. Ryn raised his arm to pat the man&#39;s back.
+
+<strong>&quot;C&#39;mon. You&#39;ve got strong legs don&#39;t&#39;cha? They could carry you a couple dozen miles if you wanted! Though, all you&#39;re going is home, understand? You&#39;re dying to get a taste of that soup. It&#39;ll go cold and icky if you don&#39;t hurry- so go!&quot;</strong>
+
+After turning Brandon around, facing well away Ryn and Boogie and out towards the door, he pushed him. And, because he was told to, Brandon began walking. A couple paces in, Ryn called out his final command.
+<strong>&quot;Oh, and remember this: you <em>won&#39;t</em> remember this!&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/da36ab28717a66dc5bbdfa3b827418de-C0E1F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#198;nkidou#4116" data-user-id="226363706139738113" style="color: rgb(238,94,134)">Enkidou</span>
+
+
+        <span class="chatlog__timestamp">08-Feb-22 08:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="940405943601074216" id="message-940405943601074216" title="Message sent: 08-Feb-22 08:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Gilan#1083">@Gilan</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20desert%20-%20canned-goods-store%20%5B915622253192970290%5D.html_Files/3a2f14160f0ba158ed71dc45c0d12500-3FB64.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Boogeyman#0000" data-user-id="937843144236630116" style="">Boogeyman</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">08-Feb-22 10:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="940608392949530675" id="message-940608392949530675" title="Message sent: 08-Feb-22 10:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Assassin had other plans for the remaining cultist but as Ryn placed mind wipe within their head, the need for ‘different’ action was mitigated. At last they were alone. Biggie seemed to briefly glance over the remaining store front. At the front desk there’s a small roll of duct tape that she grabbed and placed within her jacket. “The engineer asked for this if we could find it.” 
+
+Peering over at Ryn she’d give a subtle nod. “If there is nothing else for you to gather than I shall take us back to our safe haven.” She swiftly approached and took ahold of her master and within moments they appeared back at <span class="mention">#the-rattlin-bog</span> .</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
