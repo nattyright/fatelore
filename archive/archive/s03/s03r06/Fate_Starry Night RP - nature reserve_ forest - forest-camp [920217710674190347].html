@@ -1,0 +1,1403 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - forest-camp</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: forest / forest-camp</div>
+
+            <div class="preamble__entry preamble__entry--small">A simple campfire erected at the forest&#39;s outskirts, with two sleeping bags and a plethora of military rations and equipment stowed nearby. A small mechanical contraption labelled as a &quot;Monoband Military Radio&quot; sits importantly at a dry spot near the fire. It is veteran Ace Colin and rookie Emeilia Lewis&#39; temporary outpost within Nirvana.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">14-Dec-21 03:36 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="920217798226092032" id="message-920217798226092032" title="Message sent: 14-Dec-21 03:36 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/thomas-clarke-screen-3-no-grade-034DF.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/thomas-clarke-screen-3-no-grade-034DF.jpg" alt="Image attachment" title="Image: thomas-clarke-screen-3-no-grade.jpg (66.42 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/3b3b2ebf8188379854861c27bdbd21e2-0754B.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Narrator#0000" data-user-id="943253079606849566" style="">Narrator</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 05:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="943253080777056327" id="message-943253080777056327" title="Message sent: 16-Feb-22 05:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was a couple of days after the engagement with Ruth and her indomitable Berserker. Both sides were given plenty of times to heal and lick their wounds. Berserker, once they feasted, was shown to possess quite the accelerated healing. This helped to ease the worries that the two of them had. With their Servant in fighting shape, they didn’t need to worry so much about a possible ambush.
+
+Both Ace and Emeilia were resting at the <span class="mention">#forest-camp</span> together as Ace’s own Berserker hunted. Thanks to <strong>Independent Action</strong>, Berserker could hunt freely without the need of Ace nearby. This gave Ace ample time to do whatever he needed to do to rest up for the coming days.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/bbebbf70439aba94b435765b03725afb-23257.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="943253079606849566" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">16-Feb-22 05:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="943253083180380220" id="message-943253083180380220" title="Message sent: 16-Feb-22 05:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The sounds of writing could be heard among the occasional crackling of the fire that provided light and heat for the two investigators. 
+
+Emeilia was hard at work using William’s pen to write up the reports since she sent them over to Geneva through the use of their radio. Unfortunately, due to its design, they are unable to receive anything back from HQ. 
+
+All of her reports were already sent over however. So why was she writing it down on paper? Any Genevi would know that answer. All reports must be submitted with a written report alongside it. Emeilia couldn’t send them to HQ directly, so she was getting a headstart on future paperwork. Though, there was another reason behind her actions thanks to William’s words fanning that deviant flame inside of her heart.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="943253342673592320" id="message-943253342673592320" title="Message sent: 16-Feb-22 05:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-F9C98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="943253079606849566" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Feb-22 01:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="943552383147966464" id="message-943552383147966464" title="Message sent: 17-Feb-22 01:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A focused, bandaged Ace was sitting next to the rookie. While the wounds he sustained in battle weren&#39;t severe, the repeated electrical shocks he sustained still managed to numb the tips of his fingers, even <em>three whole days days</em> after the encounter. The rest of his wounds healed quite nicely however, the bandages on his arms little more than decorative at this point. It was no surprise for either of them, too. <em>Genevi were built tough, after all</em>. 
+
+In front of the veteran sat two things: a small pot filled with soapy water and a large piece of white cloth. On-top of said piece of cloth rested his trusty magnum, carefully dismantled into pieces: Frame, cylinder, crane, locking bolt and a few dozen more. Said pieces were evenly split across the cloth, shining ever so slightly with each shudder of the campfire&#39;s flame. The man inspected the parts closely, grabbing each one and scrubbing it clean with a small brush before plunging it in the soapy water and repeating the process. Maintenance work.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="943552669593767987" id="message-943552669593767987" title="Message sent: 17-Feb-22 01:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Getting the metal deposits out of your gun, cleaning the burned particles of metal and gunpowder that stained the gun&#39;s innards, making sure the outside portions shone like new—this was a routine he had grown accustomed to since long ago, one he hadn&#39;t broken once since he was made a genuine Genevi soldier. For him, it was as natural as brushing one&#39;s teeth or washing one&#39;s face. In moments such as these, his mind wandered freely, thinking back to the encounter with Ruth Naomi and her Berserker. The image of the two beaten-bloody Berserkers didn&#39;t escape his mind, and so did his run against the Holy Mother. While he managed to take care of the ten cultists that accompanied her, a thousand more awaited the investigators out there. Even if valuable intel could&#39;ve been extracted from the Holy Mother should she have been caught, cutting off the snake&#39;s head would&#39;ve done more good to them in the long run. <em>Some thorough job he did</em>.
+
+Beating himself wasn&#39;t going to accomplish anything, though. Cleaning the equipment, recovering from his wounds and figuring out where to go next would. Turning to the rookie, Ace started to speak about their next move, but a detail grabbed his attention before he had the occasion to.
+
+&quot;Say...&quot; He started, nodding to the rookie&#39;s hand. &quot;Where&#39;d you get that pen? It&#39;s not standard Geneva equipment, is it.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/4ff06d6a455b4025d4ba47b351f84b67-23CA7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(238,94,134)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">17-Feb-22 01:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="943552687402786876" id="message-943552687402786876" title="Message sent: 17-Feb-22 01:01 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/bbebbf70439aba94b435765b03725afb-23257.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="943253079606849566" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Feb-22 01:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="943559159738150942" id="message-943559159738150942" title="Message sent: 17-Feb-22 01:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;!&quot; Emeilia was engrossed in her own world. So much so that she jumped a little when she heard Ace speak up, almost causing the pen in her hand to fumble out of it. Luckily, she caught it before it ruined the report with a stray mark or fell onto the ground. A sigh of relief was made when it was clear that no disastrous marks plagued her report.
+
+&quot;Oh, um, this?&quot; An awkward chuckle filled the air shortly after. She showed off the pen to Ace while it rested between her fingers. Almost like she tried to buy herself more time to think on what to say. &quot;Well, no. It isn&#39;t. I got it from that Caster we met, William. I came across him while I was running through the forest. I met him near a strange structure in the forest. He claimed that it was a research facility of some kind and there are multiples on the island itself.&quot; The push of her glasses after she finished caused a gleam to reflect off them.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="943559162749665350" id="message-943559162749665350" title="Message sent: 17-Feb-22 01:27 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-F9C98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="943253079606849566" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Feb-22 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="943609873751502878" id="message-943609873751502878" title="Message sent: 17-Feb-22 04:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Started by little more than his words, the veteran frowned as he stared at Emeilia&#39;s clumsy laugh then at the pen between her fingers. It felt out-of-place for a brainiac to work with something as unprofessional as a borrowed pen. The only thing more out-of-place was the casual mention of a certain playwright. The veteran&#39;s frown deepened. She looked unhurt as far as he could tell, and so he was fairly confident that the Servant had done nothing to bring her harm. At least physically. Nonetheless, to say he was shocked to hear those news was an understatement.
+
+&quot;You met <em>Shakespeare</em> while running away?&quot; The man spoke, noticeably annoyed. &quot;Explain yourself. <em>Why am I only hearing about this now?</em>&quot;
+
+It was easy to tell just how much enmity Ace felt towards the mysterious playwright, he had done nothing to hide it. He even communicated as much on their first meeting, Emeilia could easily recall. The scrubbing of the gun&#39;s parts got noticeably louder and rougher, a way for the man to peacefully externalize his resentment.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/4ff06d6a455b4025d4ba47b351f84b67-23CA7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(238,94,134)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">17-Feb-22 04:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="943609889358483606" id="message-943609889358483606" title="Message sent: 17-Feb-22 04:48 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/bbebbf70439aba94b435765b03725afb-23257.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="943253079606849566" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Feb-22 05:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="943621853082177577" id="message-943621853082177577" title="Message sent: 17-Feb-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was completely out of place for her to use the pen. However, she was doing something that <strong>she</strong> wanted to do for a change. Even if that something was as small as using a borrowed pen rather than her own. It was still her choice.
+
+Emeilia was startled by Ace&#39;s annoyed tone. The previous encounter still left its mark on her. That much was clear. Though this time she just needed a few moments to steady herself before speaking. 
+
+&quot;You were resting. Your recovery needed to be prioritized. Besides,&quot; Emeilia closed the pad she was using and placed it on the ground. With that set aside, she reached towards another pad and handed it towards Ace. &quot;All of it was recorded within my reports. I know we are in the field, Sir, but that doesn&#39;t mean we should stray from proper protocol.&quot; 
+
+Funny to hear her talk about proper protocol given her taste in writing equipment. She was correct though. Everything Ace needed to know would be inside of her reports. That was her job after all. Ace had his magecraft and combat skills, Emeilia had her memory and reports.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="943621857339408425" id="message-943621857339408425" title="Message sent: 17-Feb-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-F9C98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="943253079606849566" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Feb-22 03:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="943778017023516692" id="message-943778017023516692" title="Message sent: 17-Feb-22 03:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I don&#39;t know,&quot; The man responded as he reluctantly took over the pad. &quot;Even if it&#39;s not mentioned in our code, I would expect you to brief me on such <em>important happenings</em>. If not, I would&#39;ve expected you to least come up with a good excuse as to why you didn&#39;t. S&#39;not like I didn&#39;t have the free time to listen either, <em>I was resting</em>&quot;
+
+His eyes went to rookie&#39;s notes, glossing over their content. The notes he held between his hands were neatly organized, just as he expected from her, broken down into various sections for the sake of practicality. Columns dedicated to the rookie&#39;s thoughts and interpretations, bullet points underlining the important topics brought up by the playwright, and of course, a transcription of the &#39;whole&#39; conversation that took place between the two of them.
+
+Thanks to Emeilia&#39;s <em>Eidetic Memory</em>, transcribing her conversation with the playwright was a breeze. Though, the veteran was disappointed to find that most of the playwright&#39;s lines included <em>useless banter and witty remarks</em>. Unable to stomach the Caster&#39;s pseudo intellectualism and touch of eccentricity he seemed to add to each of his words, the veteran couldn&#39;t help but take a few pauses while reading through them, audibly sighing more than once in the process. It was a <em>chore</em> just to get through that, one almost as difficult as fighting a dozen cultists by himself.
+
+But eventually, the man reached the last page on the notepad.
+
+&quot;...he&#39;s nudging us into finding out more about Nirvana itself,&quot; He remarked as he set the papers aside, groaning in discontent. &quot;And he called Geneva &#39;Genova&#39;. Thrice.&quot;
+
+&quot;Thoughts, rookie?&quot; He added, going back to his previous task of scrubbing away at the filth. &quot;Think we can rely on his tips? What sort of impression did he leave when you talked, <em>did any of his words strike a chord when you had that discussion</em>?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/4ff06d6a455b4025d4ba47b351f84b67-23CA7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(238,94,134)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">17-Feb-22 03:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="943778027828047913" id="message-943778027828047913" title="Message sent: 17-Feb-22 03:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/bbebbf70439aba94b435765b03725afb-23257.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="943253079606849566" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Feb-22 04:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="943959998810177666" id="message-943959998810177666" title="Message sent: 18-Feb-22 04:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nothing, Sir.&quot; False. His words struck a chord within her, but Emeilia knew that she couldn&#39;t bring herself to tell Ace. Not if she wanted to impress him and Geneva. &quot;However, this is the only solid lead we acquired so far. Even if it came from Caster, I do believe we should check it out. If it does turns out to be a trap, then we know where Caster stands in terms of allegiances.&quot;
+
+A valid point. That way they could warn the other investigators, should they find any besides Granel, that they shouldn&#39;t trust Caster at all. If it did turn out to be true then they will be one step closer to getting what they need to leave this place for good. 
+
+&quot;While I understand that our mission parameters are to find any blueprints regarding Nirvana,&quot; What was the Rookie going to suggest? They have their mission after all. They aren&#39;t required to figure out what happened to Nirvana. That wasn&#39;t their mission. &quot;Figuring out more <em>could</em> improve Geneva&#39;s standing in the world, especially if Geneva is the only one in possession of such information.&quot;
+
+The Rookie was getting greedy. Her heart was in the right place though. Her thoughts were of Geneva first and foremost. At least, that&#39;s how she presented it. Because of William, she had her own ambitions that brewed inside of her.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="943960002975109170" id="message-943960002975109170" title="Message sent: 18-Feb-22 04:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-F9C98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="943253079606849566" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Feb-22 05:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="944162152271478816" id="message-944162152271478816" title="Message sent: 18-Feb-22 05:23 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...that&#39;s not good enough of a reason to go out there,&quot; The veteran stood unimpressed by Emeilia&#39;s suggestion, his strong pragmatism reigning supreme in his judgment. &quot;Basically, you&#39;re telling me that, <em>if</em> this is no trap and Shakespeare&#39;s telling us the truth, there <em>may</em> be something worth checking out in those labs. That something <em>might</em> help us figure out more about this place, and this information <em>could potentially</em> improve Geneva&#39;s standing in the world.&quot;
+
+&quot;Do you see the problem here?&quot; He asked. &quot;Too dangerous, too many ifs and maybes. The margin of error is so big, even that <em>filthy cult leader</em> would second-guess taking it up her ass.&quot;
+
+The words hung in the air as the scrubbing took the main role in the conversation. Clearly, the veteran was having none of William&#39;s baseless claims. Risking his and his rookie&#39;s lives for a tip from a source that had yet to be confirmed as an ally? Unlikely to happen. Not to mention that, since their last encounter with an islander, Ace made sure to reevaluate his priorities <em>constantly</em>. Their safety and the blueprints came before anything else, and so, figuring out the secrets behind Nirvana came far, far behind.
+
+&quot;Besides, I&#39;m pretty sure we <em>do</em> have other, safer leads.&quot; He continued, resuming his scrubbing. &quot;We still haven&#39;t reported back to the <span class="mention">#deserted-cottage</span>, and it&#39;s been days since the last time we checked that place. I&#39;m sure that someone, possibly <em>Granel</em>, has cooked us something good while we were busy feeding Wendigo and fighting sociopaths. I planned on making the trip there myself today, actually.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/bbebbf70439aba94b435765b03725afb-23257.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="943253079606849566" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Feb-22 01:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="944644919937630248" id="message-944644919937630248" title="Message sent: 20-Feb-22 01:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ace was right. There were too many variables to consider when it came to investigating the labs. It was the safer play to simply just head to the <span class="mention">#deserted-cottage</span> and report what they have found for now. 
+
+Emeilia, however, wasn&#39;t happy with that plan. 
+
+&quot;It would be better to head there with actual information so it could benefit Granel and the others, <strong>if</strong> the place hasn&#39;t been compromised already, of course, or worse.&quot; With another push of her glasses, the signature gleam shined again. Did she just talk back to him? Perhaps letting that deviant flame flourish wasn&#39;t the right move, unless this is what he wanted from her.
+
+&quot;Besides, the faster we can figure out who&#39;s side Caster is on, the better it would be for all of us, especially if we can do it before he end up stabbing us in the back if he is stringing us along. If he did set a trap, we have a good chance of getting out of it and warning the others before it&#39;s too late.&quot; 
+
+She took a small pause to look at the pen in her hands. Thoughts of her encounter with William were fresh in her mind as she replayed them over and over again. Something didn&#39;t add up.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-F9C98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="943253079606849566" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-22 07:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="945468235158003712" id="message-945468235158003712" title="Message sent: 22-Feb-22 07:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The scrubbing abruptly stopped.
+
+Rookie Emeilia Lewis had a bad habit, one Ace got acquainted with ever since they talked about dear Henry&#39;s future in the Lake District—<em>that of talking back to her superiors.</em>
+
+Back at the <span class="mention">#lake-general</span>, the circumstances were in the rookie&#39;s favor. At that time, it had barely been more than a day after the brutal attack on the Canopus. Emeilia wasn&#39;t used to such high-stress situations yet, and the same applied to the peculiar interrogation methods Ace used. She had no prior experience about these things, she was but a rookie fresh out of the academy. Correcting her on the respect of hierarchy at such a sensitive point would&#39;ve done more harm than good, and so he chose to remain calm and let that offense slide.
+
+But right now, Emeilia had no such excuses.
+
+&quot;<em>Watch your tongue</em>.&quot; A singular warning was spoken as the man turned his head to face Emeilia, a meaningful expression on his face. His patience was running thin.
+
+&quot;You don&#39;t get to make the calls, <em>I do,</em>&quot; He said, louder. &quot;And from what I&#39;ve heard from <em>you</em>, I&#39;m judging that the risks are not worth the feeble promise of maybe finding something at those Labs. And let me tell you, you&#39;re making <em>huge</em> leaps in logic if you think Shakespeare can be trusted merely because this one tip turned out not to be a trap.&quot;
+
+&quot;<em>Safety Is our number one priority</em>. Our mission comes right after, and everything else is way down the list. This plan is not safe, we&#39;re <em>not</em> doing it.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/4ff06d6a455b4025d4ba47b351f84b67-23CA7.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiritssss#5397" data-user-id="189805606700318721" style="color: rgb(238,94,134)">Spirits</span>
+
+
+        <span class="chatlog__timestamp">22-Feb-22 07:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="945468266682413076" id="message-945468266682413076" title="Message sent: 22-Feb-22 07:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">( <span class="mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span> )</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/bbebbf70439aba94b435765b03725afb-23257.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Emeilia Lewis#0000" data-user-id="943253079606849566" style="">Emeilia Lewis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="945790528153346048" id="message-945790528153346048" title="Message sent: 23-Feb-22 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She knew she was in the wrong. It was risky to jeopardize the mission like this on a whim. However, Emeilia wasn&#39;t someone who could easily admit whenever she was in the wrong, especially now after that the pep talk from William. 
+
+She knew it was a risky play, but it was one that she knew would work in her favour in the end. 
+
+If she was to write her own story, she needed to go beyond being a simple cog in Geneva&#39;s machine. And that meant going against the rules she oh so loved. It was a necessary sacrifice that needed to be made.
+
+Again she was scolded. 
+
+The other times didn&#39;t make the next one any easier to endure. However, unlike last time, now the flame was fighting back!
+
+&quot;Sir. Nothing on this island is safe.&quot; She said calmly, not wanting to risk further scolding for doing so. &quot;But I understand. It is too dangerous. That&#39;s why I propose that you go instead. Berserker and I will wait outside the labs. If you deem it too dangerous then I will speak no further on the matter.&quot; 
+
+An interesting proposal. If they do find something over at the labs then they gain some valuable information. If they don&#39;t and it proves to be a dangerous endeavor, Emeilia will fall back in line. No matter what Ace gains something in the end. However, Emeilia also gets what she wants. 
+
+Was this the power of the Scholar Company?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="945790531395547196" id="message-945790531395547196" title="Message sent: 23-Feb-22 05:13 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20forest-camp%20%5B920217710674190347%5D.html_Files/99e22a82e639bcc91e4df9eda1920c7b-F9C98.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Ace Colin#0000" data-user-id="943253079606849566" style="">Ace Colin</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-22 01:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="946091771627184158" id="message-946091771627184158" title="Message sent: 24-Feb-22 01:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nothing on this island might be safe,&quot; He repeated, pointing to her with his index finger. &quot;But that doesn&#39;t justify...&quot;
+
+Ace saw it in her eyes. No matter what he said, her stare wouldn&#39;t falter. She still had that burning passion that kept pushing her, no matter the veteran&#39;s numerous warnings. Just what did she hope to find in those Labs that was so important? And that defiant attitude, just what was it that drove her forward to such an extent? <em>Was she even the same woman he met back at the <span class="mention">#proust-train-station</span></em>?
+
+&quot;<em>You&#39;re going too fast</em>,&quot; He sighed. &quot;I don&#39;t know what happened for you to be this way, but you&#39;re building too much confidence in too little time. You&#39;re not supposed to take those kinds of risks on your first assignment, you shouldn&#39;t trust the words of some guy you&#39;ve never met before. You&#39;re a Brainiac for fuck&#39;s sake, you should be using your <em>brain</em>! If you used your brain, right now, you&#39;d be <em>afraid</em>! You&#39;d be cowering in your boots at all that action going around you instead of wanting to take even more risks!&quot;
+
+He had shown concern for the rookie&#39;s safety one more than one occasion. Hell, he even put himself between her and a certain Berserker&#39;s spikes at one point, shielding her with his body with little care for his safety. There were no doubts in Emeilia&#39;s mind that Ace cared for her as much as he cared for his Genevi brethren, which was a lot. But there was something special about today, about this talk. The concern he showed on his face told her as much, he cast aside his usual emotionless self for a bit.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946091784902156388" id="message-946091784902156388" title="Message sent: 24-Feb-22 01:10 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...it&#39;s fucked up, and I won&#39;t lie to you, it&#39;s kind of freaking me out. I don&#39;t like the way you&#39;re progressing right now.&quot;
+
+<em>And he finally opened up</em>, just a tiny bit.
+
+&quot;I&#39;m 33, pushing to 34. That&#39;s fucking old for an active soldier, most of them don&#39;t make it past their twenties. When you&#39;ve been around for that long, you start seeing <em>patterns</em>. I&#39;ve seen too many rookies get too comfortable on their first real mission and end badly. I&#39;ve seen soldiers <em>twice your size</em> get overconfident on assignments half as dangerous as this one, and guess what? <em>I haven&#39;t seen most of them since then</em>.&quot;
+
+Ace let those words sink in, the scrubbing and clicks of the gun parts taking over the lead of the conversation. This was no attempt to discourage the rookie, nor was it a baseless threat to scare her off. He was as serious as it got. If they were to truly go with the rookie&#39;s plan, he at least wanted her to be aware, <em>truly aware</em> of the possibility of a grim outcome.
+
+&quot;I&#39;ll give you a definitive answer on if we&#39;re going through or not tomorrow, and I&#39;m also giving you a whole night to think things through again. And trust me, even if I&#39;m going in alone and Wendigo&#39;s on guard duty, there is still a very real chance for things to go sour.&quot;
+
+&quot;<em>Keep that in mind as you sleep tonight.</em>&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

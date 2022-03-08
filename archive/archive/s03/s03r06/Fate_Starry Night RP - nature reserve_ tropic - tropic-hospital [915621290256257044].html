@@ -1,0 +1,1904 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - tropic-hospital</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: tropic / tropic-hospital</div>
+
+            <div class="preamble__entry preamble__entry--small">The Nirvana hospitals focus more on treatment for animals than humans. Popular medications for human beings are not always in stock, while treatments for animals are in high supply. Magecraft and herbal treatments are fortunately rather plentiful, so it is relatively easy for a skilled mage to apply them to an injured or sick individual.
+
+Currently the hospitals are barely open, with only a few islanders left to manage the place. Most likely only because they need someone to treat the injuries of their own.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/bdb9f72e156153472d577f3f8a2e5051-47118.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Nat#6572" data-user-id="144151667091177472" style="color: rgb(238,94,134)">Nat</span>
+
+
+        <span class="chatlog__timestamp">01-Dec-21 11:24 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="915624365532512327" id="message-915624365532512327" title="Message sent: 01-Dec-21 11:24 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/F0vgqc8h-94DE9.jpg">
+                                <img class="chatlog__attachment-media" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/F0vgqc8h-94DE9.jpg" alt="Image attachment" title="Image: F0vgqc8h.jpg (78.01 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377204362604594" id="message-944377204362604594" title="Message sent: 19-Feb-22 07:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">February 7 - After the fight with Octavius</div>
+The tropics were vast. Vast enough to not be completely set ablaze by Vortigern&#39;s swords, albeit his fight with the Roman emperor had still caused severe amounts of collateral damage. Those who wished for a relaxing paradise would be disappointed, since a sizable portion of the jungle had been burnt to a crisp. It was far worse than salted earth. Nothing would grow there, no matter what happened.
+
+But Vortigern had much more important things to worry about. The condition of the nearby flora had no meaning to him, not as much as the seeds of thought that were slowly opening up from his mind. Words came to him much easily. He felt like dull aspects of his brain had been poked and tickled into revealing themselves. An egg cracking at its outer layers. Simmering to a boil.
+
+He needed that final push, but he struggled to grasp it, for he was being sidetracked by the mind&#39;s worst enemy: Confusion. He felt like he was drowning in a tempest of emotions. The tyrant was sure that he had died back there, having been cleaved in half by Octavius&#39; beam of light. However, his body refused to die, as if it were a curse or miracle embedded in his body. Even more odd was the fact that his thought process only returned to him post death. What could this mean?
+
+Just who <em>was</em> he? He pried his heads for deeper thoughts. His crown felt heavier than usual as he took it off with much effort. As it rested in his hands, he felt like it belonged to someone else.
+
+Memories started to resurface. A battle. A war. He was involved in it. Complicit in it. He could see his swords stained in blood, one representing the sun while the other represented moonlight. He was a prodigy at the art of war, to the point his people praised him fo-
+
+<em>No.</em> That felt wrong. Didn&#39;t his people scorn him? Mock him? Deride him? He was considered a traitor. William had shown him that. Clearly, that was the truth.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="944377252571926619" id="message-944377252571926619" title="Message sent: 19-Feb-22 07:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+...He repeated to himself, to no avail. He started to regret his newfound memory, envying his previous, bestial state. He shambled towards the tropical hospital, for the red cross engraved on the building gave him a feeling of safety, albeit he couldn&#39;t explain why.
+
+He couldn&#39;t explain anything, in fact. Why his mind felt contradictory to his past. Why he felt like a king yet not at the same time. He desperately searched for any form of connective tissue. Something that would clear the fog in his mind.
+
+Eventually, it clicked. It all lead back to her. Both of his memories were united as one as they remembered the woman that inspired them both: <em>Rowena.</em> Rowena was there for him as a queen. Rowena was there for him at war, tending to his horse as she waved him away for battle. He could have not wished for a better wife.
+
+Therefore, he could not rest at ease. Not until he found her. If William was his only lead, then so be it.
+
+<em><strong>&quot;UOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOH&quot;</strong></em> He roared out in the sky, beget with frustration and rage. He knew what he had to do, but he wasn&#39;t happy about it. When would the nightmare end...
+
+<em>rustle rustle</em>
+
+As he screamed, he seemed to have attracted the attention of a little critter. One agile and fierce, yet with a peaceful aura to them. They emerged from the bushes, staring at Vortigern in awe. They didn&#39;t seem frightened and simply sat down, observing the king with judgmental eyes...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/3c81addf5d1a6923ece390cb787b4745-58F2D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Capybara#0000" data-user-id="944377203444035585" style="">Capybara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377315016720384" id="message-944377315016720384" title="Message sent: 19-Feb-22 07:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The creature remained immobile, sniffing the air around them. It was as if they were giving their verdict on the Berserker by judging the air quality. Once they realized that no toxins nor diseases polluted the air, they inched closer. Dangerously close to Vortigern. The Berserker stepped away in confusion and fear, wondering what something so small and insignificant could possibly want from him. If anything, the animal&#39;s calm behavior felt downright unnerving to him.
+
+It was then that Vortigern realized that the creature was simply interested in a pile of greens that was located underneath the Berserker&#39;s feet. They started chomping on it delightfully, without a care in the world.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377349955289189" id="message-944377349955289189" title="Message sent: 19-Feb-22 07:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Vortigern looked perturbed, as if offended by the act of the animal ignoring his plight. His kingly instincts rose to light. How dare one of his subjects not comfort him in his time of need? The least he could do was force the beast to acknowledge him.
+
+&quot;Uooooooooooh!&quot; Vortigern screamed right at the voracious muncher.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/3c81addf5d1a6923ece390cb787b4745-58F2D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Capybara#0000" data-user-id="944377203444035585" style="">Capybara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377376467460096" id="message-944377376467460096" title="Message sent: 19-Feb-22 07:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif">https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                            <a href="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif">
+                                <img class="chatlog__embed-plainimage" src="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377410697170954" id="message-944377410697170954" title="Message sent: 19-Feb-22 07:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">No luck.
+
+After a moment of silence, Vortigern tried again.
+
+<strong>&quot;UOOOOOOOOOOOOOOOOOOOH!&quot;</strong> He screamed again this time, but louder.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/3c81addf5d1a6923ece390cb787b4745-58F2D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Capybara#0000" data-user-id="944377203444035585" style="">Capybara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377437049991250" id="message-944377437049991250" title="Message sent: 19-Feb-22 07:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif">https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                            <a href="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif">
+                                <img class="chatlog__embed-plainimage" src="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377479567654943" id="message-944377479567654943" title="Message sent: 19-Feb-22 07:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em><strong>&quot;UOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOH!&quot;</strong></em> Vortigern screamed his lungs out, stomping the ground with his feet and causing a minor tremor across the ground.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/3c81addf5d1a6923ece390cb787b4745-58F2D.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Capybara#0000" data-user-id="944377203444035585" style="">Capybara</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377508793557022" id="message-944377508793557022" title="Message sent: 19-Feb-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif">https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                            <a href="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif">
+                                <img class="chatlog__embed-plainimage" src="https://c.tenor.com/5iFCl5T2WTkAAAAd/capybara-capybara-eating.gif" alt="Embedded image" loading="lazy">
+                            </a>
+                        </div>
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377544621314078" id="message-944377544621314078" title="Message sent: 19-Feb-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Hey! Stop that!&quot;</strong>
+
+That young voice echoed across the leaves, alerting the creature&#39;s ears. A pink figure emerged from the hospital, tiptoeing from the stairs as he tapped his hat and gave Vortigern a stink eye.
+
+&quot;There you are. Do you know how hard it&#39;s been to find you?&quot; He lamented with a sigh.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377594432852009" id="message-944377594432852009" title="Message sent: 19-Feb-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;William!&quot; Vortigern immediately screamed. &quot;Capy...Capybara!&quot; He shouted as he pointed at the grass behind him. But when he turned around, he noticed that the creature was gone. It had left at the first sign of trouble.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377635121819648" id="message-944377635121819648" title="Message sent: 19-Feb-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I see nothing there.&quot; William scratched the back of his head. &quot;Well, whatever! Where the hell were you?! I told you to regroup at the desert, but you weren&#39;t there! Instead, I find you waltzing around the tropics? Buddy, you&#39;re not on vacation anymore. Have you given up on freeing Britain already?&quot;
+
+He narrowed his eyes, attempting to look commandeering as he guilt tripped Vortigern with his careful selection of words.
+
+Of course, Berserker didn&#39;t take it standing down.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377667782836255" id="message-944377667782836255" title="Message sent: 19-Feb-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;I don&#39;t care.&quot;</strong> Vortigern replied, in perfect English. &quot;Britain is dead. Long gone. I don&#39;t care.&quot; He raised his swords, continuing to speak as a thick accent emerged from his lips.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377690369183794" id="message-944377690369183794" title="Message sent: 19-Feb-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You don&#39;t-&quot; William narrowed his eyes. &quot;Since when could you speak? Don&#39;t you usually scream like a lunat-&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377719439888394" id="message-944377719439888394" title="Message sent: 19-Feb-22 07:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;UOOOOOOOOOOOOOOOOOH!&quot; Vortigern howled, before dropping one of his swords right in front of William. It plunged into the ground, skewering it as the bard would see traces of dust and dirt surround his shoes.
+
+<em>&quot;Better?&quot;</em> The king taunted, before extracting his blade. &quot;I don&#39;t care. I don&#39;t play games. Give.&quot; Despite his improved speech pattern, he still struggled to talk. One could tell that he was trying his best to remain composed.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377753552171058" id="message-944377753552171058" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">William gulped, staring at the swords as he realized that Vortigern really planned on turning him into mincemeat. He wondered on what sort of strategy he should employ to escape unscathed, until he realized that with wisdom came weakness. Vortigern was attempting to barter with him.
+
+&quot;Give?&quot; He asked with a curious glint in his eyes. &quot;Give what?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377781079396372" id="message-944377781079396372" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I want my Rowena. Give.&quot; Vortigern stated again, pointing his gigantic finger at the poet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377805985161237" id="message-944377805985161237" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You...want Rowena?&quot; William&#39;s face brightened. He felt like a cornered rat that had found a ray of hope. &quot;Rowena? Rowena! Of course! Of course I can get you her. I can get you ten Rowenas, even!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377843683581962" id="message-944377843683581962" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I want <strong>MY</strong> Rowena!&quot; Vortigern stomped the ground, as if the implication of multiple Rowenas had angered him. A fake could not hope to surpass the original, in his eyes. William took heed, shutting up as he calmed down.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377880824123462" id="message-944377880824123462" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Okay, well, nothing is impossible. I can...Hmm. Are we talking about-&quot; William muttered, stroking his chin as he chose his next set of words carefully. Nothing came out of his mind. If anything, his conscious was begging him to be truthful. He silenced that part of him immediately.
+
+It was no longer time for William. It was time for Shakespeare.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="944377906921111562" id="message-944377906921111562" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://youtu.be/9Eh3fzrO7jQ">https://youtu.be/9Eh3fzrO7jQ</a></span>
+
+                        </div>
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author">
+
+                                                    <span class="chatlog__embed-author-name">
+                                                            <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UC1eEGe48zhT7sKte2gO6KcQ">Zona Random (revista)</a>
+                                                    </span>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=9Eh3fzrO7jQ">
+                                                        <div class="markdown preserve-whitespace">22 - Everything is a story ~ Fate/Apocrypha (OST I) - [ZR]</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/9Eh3fzrO7jQ" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="944377939645046815" id="message-944377939645046815" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh, Vortigern, the tyrant king of Britain!&quot; Shakespeare chuckled, much to Vortigern&#39;s confusion.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:40 AM</span>
+
+            <div class="chatlog__message " data-message-id="944377970158600254" id="message-944377970158600254" title="Message sent: 19-Feb-22 07:40 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;No more games, William!&quot; Vortigern growled, blades raised and ready to stab the writer in the heart. Shakespeare giggled in response.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378019806609479" id="message-944378019806609479" title="Message sent: 19-Feb-22 07:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh c&#39;mon now. Do you really expect Rowena to appear to you in a snap of fingers? That is simply not how life works, my good friend!&quot; Shakespeare laughed, casually circling around the giant.
+
+&quot;Women are to be sought after, fought after, and pursued! Do you know how many trials Romeo had to endure in order to be with his beloved? Do you know how much suffering and pain Hamlet caused to his one true love? Of course not! For you were a cruel king, heartless and despicable. No wonder she wouldn&#39;t be summoned alongside you!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378050722799638" id="message-944378050722799638" title="Message sent: 19-Feb-22 07:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Lies. Lies. <em><strong>LIES!</strong></em>&quot; Vortigern declared, a gust of wind emanating from his sheer aura alone. &quot;Enough with lies! Give me truth! Where <strong>IS SHE?!</strong>&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378093299191809" id="message-944378093299191809" title="Message sent: 19-Feb-22 07:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah-ah-ah. See? That is what I&#39;m talking about. Anger management issues. Poor communication skills. If I were your wife, I wouldn&#39;t want to show up either!&quot; Shakespeare commented. &quot;Not when there is still work to be done. After all, can you really call this island safe? You wanted a safe kingdom for your queen, didn&#39;t you?&quot;
+
+He tiptoed around the Berserker, casually hopping onto one of his swords as he walked on top of it. He leaned forward and shrugged.
+
+&quot;I&#39;m just saying it how it is, dear friend. Women love drama. They love men who fight for them. They certainly do <em>not</em> love men who cry and whimper about the lack of them.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378125448540160" id="message-944378125448540160" title="Message sent: 19-Feb-22 07:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Neither here nor there!&quot; Vortigern screamed, slamming his sword down in a fit of rage as William jumped away right in time. Dust settled on the fields as he panted from annoyance and anxiety. What if William was right? What if Rowena simply didn&#39;t want to show up because of his own behavior? It was true that he wasn&#39;t a good king, but he vividly remembered him and Rowena persevering despite his own flaws. They loved each other. He was sure of that!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378155500724275" id="message-944378155500724275" title="Message sent: 19-Feb-22 07:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;But <em>areeeeeeeeeee</em> you sure?&quot; Shakespeare emerged from the cloud of dust, now sitting on top of Vortigern&#39;s head and tapping his crown. &quot;A king should have no doubts, nor qualms, with their goals. If you <em>truly</em> want to find Rowena, then act like it!&quot;
+
+He flicked Vortigern&#39;s forehead. The king was too dumbfounded by that act to crush William in a pulp.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378183459946558" id="message-944378183459946558" title="Message sent: 19-Feb-22 07:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...You are scum. You are a schemer. Schemers, <em>I kill first!</em>&quot; Vortigern replied back.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378213164019743" id="message-944378213164019743" title="Message sent: 19-Feb-22 07:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Then I offer a promise.&quot; Shakespeare raised his pinky finger. &quot;Stick with me a while longer and I&#39;ll show you just how a <em>real</em> king acts. If you ever feel unsatisfied ever again, you have permission to leave and be left to your own devices. Deal?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378256323407932" id="message-944378256323407932" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Vortigern pondered for a second. He knew for a fact that there was no way William would legitimately help him. The man screamed trouble. His words twisted into lies, as if he were playing cat&#39;s cradle with the threads of fate itself. It would be easy to silence this man right now, beheading them with his sword in an instant.
+
+But, would that truly be satisfying? What would Rowena think? If there was one thing William got right was that Vortigern truly wished to be a <strong>just</strong> king. Not for his people. Not for himself. But for her. To hear her words of praise. To hear her admiration and respect. A simple man who just wanted to be loved.
+
+He flicked William with his fingertips, much to the poet&#39;s surprise.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378287369625641" id="message-944378287369625641" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ow!&quot; William fell off Vortigern&#39;s body, stumbling on the ground as he adjusted his hat in a panic.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378321859387482" id="message-944378321859387482" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...I shall give you mercy.&quot; Vortigern declared, before raising his pinky as well. <strong>&quot;Once.&quot;</strong>
+
+Blood then spurted out. His pinky fell to the ground as William realized that his other hand was clenching at his sword. A drop of blood shed from the blade.
+
+&quot;Second time. This happens.&quot; He pointed at the shrunken, rotting finger lying on the ground. William shuddered a bit.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378347176210452" id="message-944378347176210452" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You could at least try to not make me puke.&quot; William said with a shiver. &quot;But deal! Man, I&#39;m so glad you can listen to reason, Vorty! <strong>I love you!&quot;</strong> He exclaimed, extending his arms as he hugged at the Berserker&#39;s legs. &quot;We&#39;re going to be the best of pals, trust me!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378374875394048" id="message-944378374875394048" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;ENOUGH! UOOOOOOOOOOOOOH!&quot; Vortigern screamed, knocking William off. &quot;Now. Next plans. Tell me.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378411693010974" id="message-944378411693010974" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ouch!&quot; William exclaimed, being pushed off. &quot;Fiiiiine. So mean...&quot; He scratched his rear.
+
+&quot;Well, first of all, I assume you need your finger healed.&quot; He pointed at the king. &quot;Unless you plan on doing a magic trick? Wait, did you chop it off without thinking about whether you could grow it back or not?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/e7332c88b18983431295a33a956f51ac-3B0B4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Vortigern#0000" data-user-id="944377203444035585" style="">Vortigern</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378437148233748" id="message-944378437148233748" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;.....&quot; Vortigern remained silent. Seconds passed, until he shed a brief mew.
+
+&quot;Maybe.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20tropic%20-%20tropic-hospital%20%5B915621290256257044%5D.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-24B5A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="William Shakespeare#0000" data-user-id="944377203444035585" style="">William Shakespeare</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Feb-22 07:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="944378483084247060" id="message-944378483084247060" title="Message sent: 19-Feb-22 07:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">William facepalmed.
+
+&quot;This is why you ought to hang out with me more.&quot; He rubbed his temples. &quot;But no worries! Give me just a day of time and I&#39;ll make you the <em>best</em> king who ever lived! Call it, the <em>Vortigern Reboot Plan!</em>&quot; He raised his hands in the air, looking triumphant.
+
+&quot;Actually, let me write that down as well. Felt really catchy.&quot; A notebook appeared out of thin air as he engraved the title on its cover. This was the beginning of the fabled <em>Vortigern Reboot Plan</em>. A work that may or may never see the light of day.
+
+&quot;Come now. Let us begin our own story!&quot;
+
+And so, the two were treated to a brief intermission. Be sure to restock on popcorn, drink some soda and use the little boys&#39; room if you cannot hold it in any longer.
+<span class="mention" style="color: rgb(238, 94, 134); background-color: rgba(238, 94, 134, 0.1);">@S3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
