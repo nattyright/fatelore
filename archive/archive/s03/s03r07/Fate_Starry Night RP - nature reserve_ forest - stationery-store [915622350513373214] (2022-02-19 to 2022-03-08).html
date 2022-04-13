@@ -1,0 +1,1633 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - stationery-store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: forest / stationery-store</div>
+
+            <div class="preamble__entry preamble__entry--small">Due to the high number of writer Servants living in Nirvana, the stationery store has never been looted once. You can find all sorts of writing materials here, ranging from books, to pens, to printers even. Despite the stationery being relatively safe, its equipment to contact neighboring cities along with its mail system has been completely destroyed.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 19-Feb-22 12:00 AM and 08-Mar-22 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/c20cea1431265d0f6c25f9415f828dea-1B8D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="932392067630526505" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Feb-22 03:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="945036878841806938" id="message-945036878841806938" title="Message sent: 21-Feb-22 03:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It was a writer&#39;s heaven on the other side of the door. Koji let himself into the stationery store with a jingle from the bells overhead, taking a moment to breathe in the scent of papers and ink. The smell was comforting. Different from the panic-inducing antiseptics, it gave him a peace of mind. Reminded him of days where he could absorb himself in research without the distractions of reality.
+
+The store wasn&#39;t terribly populated, with more people lounging at the coffee bar than actually shopping for books and supplies. Koji casually browsed the aisles as he made his way to the cashier. He grabbed a pad of penguin-shaped sticky notes on the way, before dropping it at the counter. 
+
+&#39;Have you seen William around?&#39; He asked the cashier, not bothering with the pretenses. Writer Servants were often sought after by the average Islander, especially when they had news to share with the local newspaper. Even gossip columnists like William were popular with certain crowds. The cashier couldn&#39;t possibly know of his intentions.</span>
+
+                                <span class="chatlog__edited-timestamp" title="21-Feb-22 03:21 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="945036904875827262" id="message-945036904875827262" title="Message sent: 21-Feb-22 03:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-B3FD8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Giovanni Verga#0000" data-user-id="932392067630526505" style="">Giovanni Verga</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-22 04:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="945422985085464696" id="message-945422985085464696" title="Message sent: 22-Feb-22 04:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What do you think?&quot;
+
+A coarse voice replied on the other end of the desk. The dusty aroma perforated Koji&#39;s nostrils as he almost felt like sniffing at the pile of books that had amassed in front of him. He hadn&#39;t bought any, of course, nor did anyone else in the store for the matter. Seemed like someone was doing some early Spring cleaning.
+
+&quot;If he were here, I&#39;d be working him to the bone already.&quot; Verga replied, turning back with a disgruntled expression on his face. He wore a store apron and was dusting off shelves, rearranging books and checking stock. &quot;He hasn&#39;t shown up to work in days. Can you believe it, Mr. Koji?&quot;
+
+The old coot placed another stack of book in front of him, almost blocking Koji&#39;s hawk eye view of the man. His talented pupils could see the minute details of Verga&#39;s face, down to the specks of dust littering the man&#39;s stache and forehead. Clearly, he had been at this for a while.
+
+&quot;What do you need?&quot; He said with a grumpy sigh. &quot;If it&#39;s about the Nirvana Times, don&#39;t ask me! The article was clearly <em>not</em> written by me. Pfuh.&quot; He spat out.
+
+&quot;Who knew that Nirvana&#39;s greatest doctor was as vain as all the rest. How&#39;s the new wife? Treating you well? Keheheheh.&quot; He delivered a mocking laugh, tongue extended at the end like a frog about to lick a fly. <span class="mention" title="Nat#6572">@Natcracker</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/c20cea1431265d0f6c25f9415f828dea-1B8D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="932392067630526505" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-22 05:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="945614607081439252" id="message-945614607081439252" title="Message sent: 22-Feb-22 05:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Koji looked at Verga, then at his apron, and the dust sprinkled all over his otherwise stellar stache. &#39;I think you need a vacuum cleaner,&#39; he said honestly, moving to the side as Verga dropped a stack of books in front of him, a wave of dust shaking loose from the unturned pages. &#39;You aren&#39;t removing the dust, merely moving them from one location to the next.&#39;
+
+He helped himself to the unmanned register in the meantime, scanning his goods and paying out of pocket. He shot a look at Verga as the latter insisted on keeping his mouth as busy as his hands. &#39;I never pegged you as a fan of William&#39;s columns. Seems like they are treating <em>you</em> quite well.&#39; He deflected Verga&#39;s indictment with a slight frown. &#39;Haven&#39;t you always prided yourself on being the better journalist? I see no reason to stop now.&#39;
+
+He inspected the shift calendar on the wall next. William&#39;s name was down on all three time slots for the day. Verga was evidently covering for him, though whether he was doing it willingly was a whole other story. William really did keep a measure of wits about him and avoided the writer&#39;s hotspot like the plague...
+
+He was back to square one. Well. At least he was quick about it.
+
+&#39;Tell William to pay back the 15 credits he owes me the next time you see him.&#39; He slid the sticky pad into his pocket and started towards the door, seeing no reason to fan the flames in one of Nirvana&#39;s bigger gossipmongers. &#39;Good day to you.&#39;</span>
+
+                                <span class="chatlog__edited-timestamp" title="22-Feb-22 05:36 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="945614624559091792" id="message-945614624559091792" title="Message sent: 22-Feb-22 05:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-B3FD8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Giovanni Verga#0000" data-user-id="932392067630526505" style="">Giovanni Verga</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-22 05:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="945620883882536970" id="message-945620883882536970" title="Message sent: 22-Feb-22 05:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Koji was as prickly as ever, replying much like a cactus as he effortlessly deflected Verga&#39;s accusations. Instead, he unleashed his thorns, causing Verga to frown with each puncture as it tore through his pride. It seemed like the writer wanted to reply, but before he could, a cloud of dust enveloped him.
+
+&quot;Kuhkuhkuhkuhkuh!&quot; He coughed repeatedly, as if punished for his grinning streak. Opening your mouth all the time was a surefire way to get dirt and dust particles all over your insides. Satisfied by the showing of decrepit coughing, Koji turned around, ready to leave the premises.
+
+&quot;Hold it.&quot; Verga interrupted him, followed by another cough. He raised his hand, shoving aside the pile of books so that he could see Koji clearly.
+
+&quot;We seem to have a common goal. Kuh!&quot; He coughed. &quot;Ahem, the goal of finding that impish rascal, that is.&quot; He adjusted his sunglasses and slightly lowered them.
+
+&quot;For why else would you be here otherwise? You were never one to appreciate sightseeing or idle walks. Especially considering your ambitions.&quot; He put some additional emphasis on that last bit. &quot;Which is why I am truly curious as to <em>why</em> our goals coincide. I can think of no other reason beside that article. Could it be it&#39;s actually true, for once?&quot; He chuckled.
+
+&quot;After all, we both know that you wouldn&#39;t willingly seek out that miscreant. Not unless you had Stockholm Syndrome.&quot; <span class="mention" title="Nat#6572">@Natcracker</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/c20cea1431265d0f6c25f9415f828dea-1B8D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="932392067630526505" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-22 08:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="945663515237167105" id="message-945663515237167105" title="Message sent: 22-Feb-22 08:49 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Koji stopped, and gave Verga a hard look. Silence stretched between them like the string of an archer&#39;s bow. Then he looked away, surveying the rest of the store, and the people mulling about.
+
+&#39;You don&#39;t seem to be in a terrible rush yourself.&#39; He pointed out casually, but the implication was clear. Would someone who was dying to find William be generous enough to take over his shift for him?
+
+&#39;I have my reasons for finding him,&#39; he continued, albeit there was some reluctance in his tone. The idea of divulging his true intention in public space didn&#39;t sit well with him. William may have made an enemy out of him, but what of Nirvana at large?
+
+Moreover, how much could he trust Verga? As far as he was concerned, none of the writer Servants on Nirvana had a clean conscience when it came to digging for scoops.
+
+As Verga&#39;s poor cleaning habits brought him into a coughing fit, Koji grabbed the box of tissues from the cashier&#39;s counter and pressed it towards him. The edge of the tissue paper protruding from the carton tickled the underside of Verga&#39;s chin.
+
+&#39;Your usage of the term Stockholm syndrome is also misplaced.&#39; He corrected the writer as the latter recovered. &#39;To say that would be to suggest I have taken offense at William&#39;s articles. However, riddle me this: would you feel offended by words of fictitious nature? You are a writer. You tell me.&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="945663530969993247" id="message-945663530969993247" title="Message sent: 22-Feb-22 08:49 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-B3FD8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Giovanni Verga#0000" data-user-id="932392067630526505" style="">Giovanni Verga</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 01:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="945736351725273128" id="message-945736351725273128" title="Message sent: 23-Feb-22 01:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Verga coughed, droplets of spit trickling down from his mouth like rainwater. Koji wisely kept his distance, limiting himself to merely extending an arm forward as he slid tissues to Verga&#39;s face. The Caster obliged, grabbing a set as he started to rub his mouth and nostrils and squeezed tightly. Dirt and mucuous pooled out as he rolled up the tissue in a ball.
+
+&quot;Offended? <strong>Yes.</strong>&quot; The writer replied decisively, much to Koji&#39;s surprise. He then tossed the tissue ball in a nearby bin, hitting it with pinpoint precision.
+
+&quot;I loathe fiction. Spit in its face, even. I could never bring myself to write such falsities on pen and ink.&quot; Verga said, looking disinterested in that line of thought as he dodged past Koji&#39;s attempt to demean him.
+
+&quot;However, I can&#39;t deny that foolish people find themselves easily moved by fairy tales. Likewise, there was always a possibility for you to be moved by that dumpster of an article, Naoharu Koji. I am pleased to hear otherwise.&quot; He grinned, lowering his sunglasses fully and revealing beady eyes.
+
+&quot;It&#39;s why I get along with you, you see. Your eyes are the same as mine.&quot; He giggled before putting his glasses back on.
+
+&quot;Alas, your words made me curious: Why exactly are you after Shakespeare? You see, I&#39;d go after him myself, but I am rather busy.&quot; He pointed to the huge bookstack. &quot;Not to mention, my memory has gotten hazy as of late. Details become harder to remember. With the right stimulation though...&quot; 
+
+He raised tufts of hair above his forehead, scratching his temples as he gave Koji a suggestive stare. The implication was clear.
+
+&quot;I might just start remembering where certain things happened. Perhaps even <em>how</em> certain things happened.&quot; He chuckled. &quot;Though, before I continue-&quot;
+
+He rustled through the pile of books and took out a crumpled stack of paper. Opening it up revealed that it was a newspaper article. One Koji already knew all too well.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="945736399892664330" id="message-945736399892664330" title="Message sent: 23-Feb-22 01:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Where is <em>she?</em>&quot; Verga asked, pointing to a crude drawing of a stick figure with two giant orbs in her chest area followed by a trail of red hair near the figure&#39;s head. William&#39;s art left much to be desired. <span class="mention" title="Nat#6572">@Natcracker</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/c20cea1431265d0f6c25f9415f828dea-1B8D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="932392067630526505" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 04:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="945774229423534130" id="message-945774229423534130" title="Message sent: 23-Feb-22 04:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&#39;Goodness, Verga, how long have you kept that issue around?&#39; Koji took the crumpled newspaper, a look of astonishment finally highlighting his features. He shook out the creases, flipped the paper over back and forth, and checked for signs of mold. &#39;I don&#39;t understand,&#39; he said, &#39;did someone pick it out of the trash?&#39;
+
+Whoever owned this issue must have hated it dearly. Whoever salvaged it must have loved it deeply. Koji, on the other hand, thought that the paper made for wonderful bird nests.
+
+&#39;It&#39;s a terrible drawing.&#39; He commented on the caricature that accompanied William&#39;s article. &#39;And she&#39;s not available. I&#39;ve put her to the task of hunting for William-&#39;
+
+He stopped speaking abruptly. Verga&#39;s over-the-spectacles stare unnerved him. Koji could practically hear the writer salivating at the prospect of getting some juicy gossip out of him. So that was his game, eh? Using William&#39;s article to bait out the truth, straight from the source.
+
+He shoved the newspaper into Verga&#39;s arms.
+
+&#39;Just get to the point, Verga.&#39; The doctor sighed. &#39;Do you know or do you not know of William&#39;s whereabouts? I&#39;m looking to kill him,&#39; he said bluntly, his voice barely hanging above a whisper, &#39;for what he did on that ship. Yes, I believe you may have heard a thing or two about that.&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="945774246402072617" id="message-945774246402072617" title="Message sent: 23-Feb-22 04:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-B3FD8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Giovanni Verga#0000" data-user-id="932392067630526505" style="">Giovanni Verga</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 08:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="945839527560355850" id="message-945839527560355850" title="Message sent: 23-Feb-22 08:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Verga reacted curiously to Koji&#39;s accusation, for the doctor&#39;s bluntness was so dull it could turn jagged rocks smooth. &quot;I don&#39;t go dumpster diving, if that is what you&#39;re implying.&quot; He said. 
+
+&quot;But one man&#39;s trash is another man&#39;s treasure, as they say. In this case, it has certainly served its purpose.&quot; He smirked, albeit Koji would have no idea on what was so funny about the writer&#39;s words. To him it most likely felt like the Caster was approaching senility, which was rather pathetic considering that Servants were usually summoned in their prime.
+
+&quot;So, that woman does exist.&quot; Verga stuck his tongue out, chattering his teeth as his giggles sounded far too childish to come from a grown man. &quot;And she is hunting William? How very reliable. Does she do the dishes too?&quot; Instead of a reply, he received the newspaper back in his arms, courtesy of Koji. He promptly tossed it aside.
+
+&quot;Kill him? Don&#39;t you usually say that every few months?&quot; Verga pointed out, albeit it was obvious that he was merely prodding. After all, while Koji was very much capable of restraint, his current glare showed anything but. He truly intended to teach that clown a lesson in manners. &quot;Yes, I did hear a bit from Lady Ruth. Apparently, he assisted the outsiders and helped them reach the shore? Why, that sounds terrible!&quot;
+
+There was no hint of sympathy in his voice, nor any sadness. Just laughter. &quot;She gracefully described it to me. How William singlehandedly ruined her plans and made her fall flat on her bum in defeat. <em>Imagine the sight of that~</em>&quot; Verga blushed and drooled, much to Koji&#39;s dismay. &quot;Ahhh, if only I hadn&#39;t missed it. You should definitely give me your side of the story as well! Especially if you remember anything else that happened to Lady Ruth.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="945839547600764938" id="message-945839547600764938" title="Message sent: 23-Feb-22 08:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em> 
+His intentions were blatant, but they went even beyond that. &quot;I also heard something about you having a Servant of your own. A Servant that isn&#39;t a corpse, for once.&quot; He raised his eyebrows. &quot;Could this be why you are after William? Did he, perchance, force a most ungrateful bride upon yourself? That would explain a lot, actually.&quot;
+
+Verga covered his mouth, spreading his cheeks as he slowly lowered his palm and revealed his despicable grin. &quot;In Italy, we have a proverb for that: <em>Chi si marita per amore, di notte ha piacere, di giorno dolore.</em>&quot; He said with elegance.
+
+&quot;In other words, <strong>you&#39;re a two timing piece of shit.&quot;</strong> Despite the rudeness, he sounded quite jovial. &quot;I&#39;m sure that it would be an easy task for you to dispose of a rogue Servant. What&#39;s one more limb on the table, am I right? I can hardly believe William finding a way to prevent you from making more summons, nor can I think of a reason for William to screw you over in that regard. Take it from me, as someone who despises me greatly.&quot;
+
+&quot;In other words, either you are truly in dire straits to be relying on a Servant of all things, or you&#39;ve become so smitten that you have forgotten your <strong>original dream.</strong> So, what was it this time, Naoharu Koji? What made you continue this endless cycle of procrastination?&quot;
+
+Verga grinned, licking his lips and observing Koji&#39;s reactions with great interest. He was clearly aiming to push buttons and hoping that he would succeed, albeit he felt like he needed a sense of urgency to sell it further.
+
+&quot;Alright, I should see about closing now.&quot; He said, despite the store not closing until hours later. Regardless, he was the boss. If Verga wanted to take the day off, nobody could stop him. <span class="mention" title="Nat#6572">@Natcracker</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/c20cea1431265d0f6c25f9415f828dea-1B8D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="932392067630526505" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-22 05:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="946158611879567381" id="message-946158611879567381" title="Message sent: 24-Feb-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Being a writer, let alone a successful one, is no small feat. There&#39;s something to be said about their tool of the trade: not pens, not papers, not tobacco, food, or whiskey. Not the speed in which they can put words on a sheet, nor the willpower to put up with endless nights of editing to perfect their scripts.
+
+Nay. The most powerful, most fearsome tool a writer could ever have at their disposal is none other than their sharp tongue. A seasoned writer wields their tongue as a butcher wields their knives: they trim the fat, expose the meat, and score the surface, so that the end result is a perfectly tenderized cut with none of the excess garbage and every bit of flavor. 
+
+Verga had a whole lifetime to perfect his skills. Prodding, prying, and provoking, you name them, and he&#39;d have mastered them all. Using them on a Nirvanan who&#39;d barely lived half his age was child&#39;s play; watching their carefully crafted defenses crumble was like pumping a shot of dopamine into his veins.
+
+That was probably what it was, too. Dopamine, if Servants were capable of producing that very same chemical in their brains. As the doctor grew quieter, Verga only grew more ecstatic. He ran his tongue round his lips and could feel his taste buds groping for what felt like the beginning of a succulent story. He was confident that he&#39;d pushed plenty of buttons and left no stone unturned.
+
+And he would be absolutely right. 
+
+The <em>tick, tick, tick</em> of the clock overhead was maddening. Seconds crawled by. A full minute. The bustle of the coffee bar faded into the background as the Servant and doctor stared intently into each other. One was burning with an insatiable desire to witness the birth of a new tale. The other was wrestling with an immense urge to grab the Exacto knife from the counter and sever the writer&#39;s tongue.
+
+The sky darkened. A bust of wind rustled the branches of the nearby trees. Was it going to rain?
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946158674437623899" id="message-946158674437623899" title="Message sent: 24-Feb-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Suddenly, out of the pale sky several black clouds emerged. Wings flapping wildly, beaks cawing madly, giant flocks of birds flew in from all directions. They blocked out the sun, blocked the windows, and passed through the front door like a living torrent. Ravens, crows, sparrows, gulls, blackbirds, pigeons, owls. A river of birds. A sea of birds. They invaded the store and immediately began tearing at the customers, driving them out with their wings, talons, and beaks.
+
+It was a whirlwind of mayhem. The store had never cleared out so fast.
+
+By the time the birds settled down, Koji and Verga were the only ones left in the store, out of earshot of the other islanders. Their corner was left undisturbed, but now hundreds, if not thousands of pairs of eyes were trained on them, following their every move. 
+
+&#39;I&#39;ve closed the store for you. You are welcome.&#39; Koji said curtly. He leaned against the cashier&#39;s counter, his skin a little pale. He hadn&#39;t issued commands to so many birds all at once since...ever. His mind was worn, but the exhaustion reduced the disarray in his mind to a distant murmur. 
+
+A profound sense of relief also filtered through him. Like descrubbing after a lengthy surgery, Koji felt his mind slide into a quieter place. It was tight, secure, and he could almost smell the antiseptic, along with the acrid smell of disease.
+
+Numbly, the doctor ran his hand along the intricate patterns on his cane, touching the lifelike birds and flora he&#39;d spent months and months perfecting. The sculptures served no purpose. They were a complete waste of his magecraft. They were the closest thing he had to a memorial. 
+
+<em>What would you give to have her back?</em>
+
+<strong>&#39;Everything.&#39;</strong> Koji&#39;s knuckles were white where he gripped his cane. <strong>&#39;Everything I do, I do it for her.&#39;</strong> 
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946158712542879868" id="message-946158712542879868" title="Message sent: 24-Feb-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It started out as a shaky exhale. Then it turned into a full-blown laugh that choked off into a sob. Koji wiped the edge of his eye with a thumb. It came back slightly damp. He allowed himself a deep breath. 
+
+&#39;I found a new test subject on that ship who can shed new light on my research. William helped him escape.&#39; He spoke with scorn. &#39;He not only has a Servant, but also our <em>court jester&#39;s</em> blessing. I can&#39;t approach him on my own. My Servant can&#39;t fight against the combined strength of two.&#39; 
+
+He looked at Verga and shrugged.
+
+&#39;There is no gossip, so you can stuff your rumors the way they came.&#39; He made a crude gesture that was quite unbecoming of his usual demeanor. It almost felt fresh. &#39;Why are you so infatuated with the idea that I summoned a Servant with a few extra lumps of fat on her body? I can prescribe you a pair of silicone pads if you&#39;re feeling lonely at night, <em>you womanizing piece of shit.</em>&#39;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946158727998889984" id="message-946158727998889984" title="Message sent: 24-Feb-22 05:36 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-B3FD8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Giovanni Verga#0000" data-user-id="932392067630526505" style="">Giovanni Verga</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Feb-22 08:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="946205604836413481" id="message-946205604836413481" title="Message sent: 24-Feb-22 08:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Verga waited with bated breath. How would Koji react? Would he grow angry, judging by the furrows on his brow? Would he remain calm, like his eyes reminiscent of that of a hawk? Would he collapse from exhaustion, having strained himself thin by walking all the way to the stationery in his current condition?
+
+Little did Verga know that Koji was waiting as well. Waiting for a storm to approach. It all started with a flap of wings as the writer&#39;s eyes noticed a black feather drop down from the ceiling. A crow was now perched on top of a bookshelf, staring at him with empty eyes. Then, another one came. The third time, an entire flock followed.
+
+<em>squawk squawk squawk squawk squawk squawk squawk squawk</em>
+
+A brigade of crows invaded the store, their cacophony gathering the attention of any nearby passerby. If that failed, they resorted to their claws and beaks, pecking and scratching at customers as they were forcibly kicked out of the store. Piles of books and writing supplies were spread across the floor, coupled by an assortment of different colored feathers. It would take more than Verga and William combined to clean this mess.
+
+Koji walked forward, looking sickly, yet imposing. He leaned over, gripping his cane as he broke down into a brief fit of laughter, before regaining his composure. He stared at Verga with scornful eyes, giving the writer a piece of his mind and following it up with a sacred gesture.
+
+Verga grunted with disapproval. &quot;<em>Stronzo.</em> Do you have any idea how much time it will take me to clean this up? Bah.&quot; The writer flailed his arms around, gesturing in rage as he left the counter and kicked up feathers with his leather shoes.
+
+After expelling his rage through a series of meek kicks, he sighed, turning back to Koji as he took off his sunglasses. &quot;At least I <em>have</em> women to look forward to.&quot; He spat back like a lion. &quot;Unlike you, Mr. Koji. I would ask you about your own experiences with the ladies, but I am kind enough to have tact.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946205656124358756" id="message-946205656124358756" title="Message sent: 24-Feb-22 08:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+He adjusted his tie around his neck, dusting off any feathers on his coat as he leaned towards the doctor. He seemed to be brimming with rage. Detecting anger was part of Koji&#39;s lifestyle at this point, thanks to all the experience Scylla had given him.
+
+&quot;Your words slide off as easily as the rain. Do you think having one true love makes you <em>purer</em> than me?&quot; He formed air quotes with his fingers. &quot;If anything, that is rather pathetic. For someone like you to neglect the joys of the flesh...Are you truly alive, Mr. Koji?&quot; He stuck his tongue out and greedily licked his lips, mocking the doctor&#39;s way of life.
+
+<em>&quot;But...&quot;</em>
+
+That malignant aura within Verga disappeared in an instant, replaced by something far more pure. Light beamed in his eyes as his smile extended far beyond what was humanly achievable. His pearly whites were in full display, blinding Koji with intensity that rivalled the most dangerous of flashbangs.
+
+<em><strong>&quot;I am so jealous. So envious of your pain!&quot;</strong></em> He cackled loudly, laughing with abandoned, but never breaking his smile. All Koji could hear was the sinister chattering of teeth as the writer in front of him laughed like a wooden puppet.
+
+&quot;To love your first wife and take no replacements. To ignore the joys that even a Servant could bring to you. Ahhhhh~&quot; Verga started hugging himself, stroking his chin and waist as he closed his eyes. A faint blush appeared on his face.
+
+&quot;...I wish I could have felt the same towards my wife. Or my children. Unfortunately, they were no better than corpses in my eyes. I cheated on her, let&#39;s say...Ten? Twenty times? I lost count, honestly. The only thing I remember of our wedding was that it happened on a Thursday. Sheesh. Would you diagnose me as sick, doctor?&quot; Verga chuckled, asking a question with an obvious answer. He continued on before he could receive a reply.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946205706724466689" id="message-946205706724466689" title="Message sent: 24-Feb-22 08:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;You have beautiful eyes, Naoharu Koji.&quot; He said, leaning forward and staring him down. &quot;They are just like mine: Empty and single minded. Pearls that are not meant to be grasped, but to take instead.&quot;
+
+He slowly slid his sunglasses back up, masking his smile as Koji could now finally see again. &quot;Which is why I want you to find whatever it is you are looking for. Be it your wife or something far more important than her.&quot; He chuckled, as if knowing that Koji would never consider the latter to be a valuable option. If anything, he would only consider it if it could lead to the former.
+
+&quot;The fact that you are playing the long game, however, is quite reassuring. I knew that I could trust you!&quot; Verga exclaimed in delight, talking like Koji were an old friend instead of occasional acquaintance. &quot;To think that you were aiming to nab one of the outsiders for yourself all along...<em>Genio micidiale.&quot;</em> He giggled, twirling his stache as he slowly put the pieces together.
+
+&quot;You have piqued my interest.&quot; Verga stated. &quot;This person you are after must be rather important. By extension, so is your Servant, if you think that they are competent enough to accomplish your goals. But that is not enough for me to merely hear about it. I need to witness it with my own two eyes.&quot; He cackled, flipping a sign on the counter.
+
+<em>CLOSED</em>
+
+&quot;You kept your end of the bargain, so I shall keep mine. Follow me. I have a few hunches on where our little friend might be hiding.&quot; Verga exclaimed with a smile, sticking his tongue out. <span class="mention" title="Nat#6572">@Natcracker</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/c20cea1431265d0f6c25f9415f828dea-1B8D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="932392067630526505" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-22 03:08 AM</span>
+
+            <div class="chatlog__message " data-message-id="946846029603557386" id="message-946846029603557386" title="Message sent: 26-Feb-22 03:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Verga&#39;s words were full of brutal honesty. Hearing them was like taking a pill that was both bitter and hard to swallow. It was like watching a one man puppet show full of twists and turns, as the famed writer laughed, cried, hollered, sneered, and spat at Koji&#39;s deluded ambitions. 
+
+While Verga continued his tirade, Koji called a few birds from the nearby bookshelves. He took turns preening them, scratching their soft feathers with a teasing care, and fed them snacks out of pocket. All the while, he kept his hard eyes on Verga, who relentlessly bombarded him with slander, ridicule, and praise. 
+
+As Verga finally ran out of fuel and turned to close down the shop for good, Koji was already on his ninth bird. He cupped his hands around the head of the cockatoo, who had already become smitten under his touch, and started scratching under its chin in a circular motion. An affectionate caress was elicited from the bird in response, as it nuzzled up to Koji like a newfound lover.
+
+Koji held up the bird in his cupped hands. Still maintaining eye contact with Verga, he planted a feather light kiss on the bird&#39;s little beak.
+
+If birds could swoon, then that must be what the cockatoo was doing. The bird was swaying to Koji&#39;s tune, and obeying his touches without the need for any auxiliary input from his magecraft. The scene was almost magical. It was uncomfortable to watch. Verga felt as if he had just intruded on something private. That he&#39;d stepped over an invisible line and saw something he wasn&#39;t supposed to see, even if he&#39;d watched enough bird training footage in Nirvana&#39;s reserves to last him another lifetime.
+
+&#39;There&#39;s nothing to be jealous of.&#39; After what felt like almost too long of a pause, Koji finally replied. &#39;Your wife was simply <em>inadequate</em>.&#39;
+
+He continued to caress the bird, which had all but become docile in his hands. Meanwhile, his other hand slipped itself around the bird&#39;s neck like a noose and slowly, carefully <em>began to squeeze</em>.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946846042157117440" id="message-946846042157117440" title="Message sent: 26-Feb-22 03:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">At first, there was no response aside from the soft crooning. The cockatoo continued to enjoy its massage. It only started noticing something amiss as the pressure from Koji&#39;s other hand started restricting its air passage. Startled, the bird tried to regain its posture, but it had already lost all its advantage the moment it gave itself up in Koji&#39;s hands.
+
+With one clean motion, Koji snapped the bird&#39;s neck, the same as if he were cracking a whip. The bird&#39;s body went limp.
+
+Sighing, Koji let the dead bird go. It thumped onto the floor in one dead, feathery mass. 
+
+&#39;Joys of the flesh, was it?&#39; Koji straightened up and looked into Verga&#39;s eyes. &#39;Did you derive more joy from watching me pet my darling, or strangle it in its bliss?&#39; He prodded the dead cockatoo with his cane. &#39;You saw your wife as an inferior. Made her dance to your tunes, and sought greener pastures behind her back.&#39;
+
+He leaned in closer to Verga. Reaching up, he gingerly nicked a few stray feathers that stuck onto the fabric of the writer&#39;s back.
+
+&#39;Don&#39;t compare me to you.&#39; He calmly chided Verga. &#39;Do <strong>not</strong>,&#39; he put more emphasis on the word, &#39;compare my wife to yours. It is frankly an insult to liken her to a pet. I hope you&#39;ll understand.&#39;
+
+He was thoughtful for a moment, then chose his words more carefully. &#39;No, I <em>want</em> you to understand. Whatever camaraderie you felt between the two of us will <em>not</em> have built upon <em>your</em> opinion of <em>my</em> wife. She is out of your league,&#39; he preached with an almost religious fervor. &#39;So, let&#39;s just stick to the basics. Help me find William. Help my Servant kill William. This way, I get my revenge, and you get your scoop. Everyone goes home happy.&#39;
+
+He tucked the feathers into Verga&#39;s shirt pocket. &#39;For the road,&#39; he said. &#39;I&#39;ve heard that quill pens are making a comeback among the more dated Servants on the writing team.&#39;</span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Feb-22 08:23 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946846076516847617" id="message-946846076516847617" title="Message sent: 26-Feb-22 03:08 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-B3FD8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Giovanni Verga#0000" data-user-id="932392067630526505" style="">Giovanni Verga</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-22 10:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="946952848158109757" id="message-946952848158109757" title="Message sent: 26-Feb-22 10:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The elderly man observed Koji intently, noticing the doctor&#39;s complete silence ever since he had started to run his mouth. While he was more than happy to speak over others, Verga knew for a fact that Koji was no doormat. He didn&#39;t talk not because he had nothing to say, but because talk wasn&#39;t cheap. He needed to conserve his energy, so he was far more used to displaying his opinions through actions or metaphors alone.
+
+Such was one of these cases as a bird perched on Koji and approached his tender caresses. Verga was now the silent one, as he let the doctor continue with their calm petting. He observed, albeit with a frown as he seemed bored out of his mind, impatiently tapping a foot. He stopped once he heard a satisfying <em>crack</em> come from the bird&#39;s head.
+
+Verga could not help but smile. &quot;I see.&quot; He first replied, letting Koji near as they had their say on Verga&#39;s wife and how inferior she was to his own. Subjective opinions, of course. But what mattered was how ardently Koji felt towards that claim. The man that would not care the slightest about any form of slander or mischief in his life was now educating Verga on how far down the bottom his wife resided. The writer found the entire exchange incredibly amusing, to the point he wished he could have asked for a repeat performance.
+
+&quot;I suppose I can&#39;t argue with that.&quot; He chuckled, chewing the inside of his cheeks as he mulled over Koji&#39;s words. &quot;You call it greener pastures, but I call it variety. Have you ever tried it, actually? Perhaps, you wouldn&#39;t feel so strongly if you had.&quot; He snickered, much to Koji&#39;s displeasure.
+
+&quot;A shame about the bird.&quot; He then stared at the dead cockatoo. &quot;But I suppose it shall rise once again, like a phoenix from the ashes. Anyway, regarding your original question,&quot; He referred to Koji&#39;s little show of theatrics.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="946952893683089428" id="message-946952893683089428" title="Message sent: 26-Feb-22 10:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em> </em>
+&quot;Of course, I preferred the latter!&quot; He stated without a care in the world. &quot;Despair can only exist with a sliver of hope beforehand. Had you not shown that bird love, then it would have simply died an average death. Boring. Predictable. <em>Standardized.</em>&quot; He said with scorn.
+
+&quot;If you felt nothing but despair the moment you were born, wouldn&#39;t despair simply be your natural state of being? At that point, it wouldn&#39;t be despair at all, wouldn&#39;t it?&quot; He inquired, asking Koji to play his little game of rhetoric. &quot;Likewise, if all you knew was hope, then you wouldn&#39;t even comprehend the true meaning of hope. By mixing the two together and experiencing them one by one, you come to truly realize what makes the other special.&quot;
+
+&quot;You loved your wife. I can see that clearly. But is it simply because you knew no one else but her?&quot; His face contorted into a twisted smile, tooth bare for all to see. &quot;No point in comparing participants when the competition only had a single one. Dear Mrs. Koji could be in 1st or 99th place for all I care. It wouldn&#39;t change that thought of yours at all.&quot;
+
+While there was some modicum of logic in whatever Verga was saying, he didn&#39;t push it, for he didn&#39;t look forward to having his eyes be plucked out by crows in the afternoon. He accepted Koji&#39;s gift of feathers and placed them on the desk.
+
+&quot;Our quills are generated by mana.&quot; Verga replied back before starting to walk towards the stationery&#39;s exit. &quot;Do you have your good boots on? We&#39;re headed towards the forest, if you couldn&#39;t already tell.&quot; He revealed while stroking his point beard. &quot;The deepest parts of it, to be exact.&quot; <span class="mention" title="Nat#6572">@Natcracker</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/c20cea1431265d0f6c25f9415f828dea-1B8D1.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Naoharu Koji#0000" data-user-id="932392067630526505" style="">Naoharu Koji</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-22 07:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="947090705447268382" id="message-947090705447268382" title="Message sent: 26-Feb-22 07:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Koji gave Verga a small, sharp smile. &#39;With a mind as twisted as yours, I suppose I, too, would have enjoyed this variety you speak of. But no,&#39; his voice became firmer, &#39;I think I&#39;d much prefer to call it <em>masochism</em>. In other words, an inability to enjoy pleasure without equal parts pain. Though in your case, it doesn&#39;t matter whether the pain comes from your own, or those who are unfortunate enough to associate with you, does it?&#39;
+
+&#39;Verga. You. Are scum.&#39; Koji declared softly. &#39;There&#39;s no one gullible around for you to pretend otherwise, so just admit it for both our sanity combined. Though this is also your strength, I think. You don&#39;t play favorites. You&#39;d rather watch those around you sow chaos than allowing them to coexist in harmony.&#39; 
+
+He looked down at the crumpled newspaper, now discarded at a corner of the desk after it had finished serving its purpose. &#39;<em>You</em> kept that newspaper around for a reason. <em>You</em> have been waiting for a chance to show it to me. Had I lied to you about my visit today, surely you would&#39;ve incited me all the same.&#39;
+
+&#39;However-&#39;
+
+Taking the newspaper in his hands, the doctor placed one foot on the cockatoo&#39;s carcass, and crushed it with a crack. He dropped the newspaper on the floor, and carefully wiped the bottom of his shoe on it, smearing the article with bloody, feathery pulp.
+
+&#39;This.&#39; He gestured towards the mess on the floor. &#39;Gives you no pleasure. After all, there&#39;s no point in beating a dead bird. If you truly wanted to witness a clash between hope and despair, <em>you&#39;ll need your characters alive</em>.&#39; 
+
+&#39;And that makes your words credible.&#39;
+
+Koji chuckled humorlessly as he gathered his possession, one finely carved walking cane under his arm. Behind him, a soft crooning ensued. It seemed like the bloody stain on the floor had begun putting itself back together. However, Koji paid it no heed as he followed Verga to the door.
+<em> </em></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="947090749692973066" id="message-947090749692973066" title="Message sent: 26-Feb-22 07:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With one hand on the glass, he turned to the writer. &#39;Just keep that glib tongue tucked in nicely when it comes to my love life, and you&#39;ll be spared a room in my backyard. After you,&#39; he pushed open the door-
+
+&#39;-is what I&#39;d normally say, but you seem quite spry for your age.&#39;
+
+He left the store. 
+
+Verga felt a disturbance behind him. The birds closest to the exit stirred as they watched Koji leave the premise of the building. Sensing freedom beyond the glass, they too started to leave. Soon, the store was engulfed in yet another storm. The birds migrated out, leaving the shelves and floor even more disheveled than before.
+
+It would take at leave 5 Williams and Vergas to clean up all that mess.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="947090773831192577" id="message-947090773831192577" title="Message sent: 26-Feb-22 07:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-B3FD8.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Giovanni Verga#0000" data-user-id="932392067630526505" style="">Giovanni Verga</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-22 07:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="947096190942609429" id="message-947096190942609429" title="Message sent: 26-Feb-22 07:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Why, thank you. I&#39;m flattered!&quot; Verga exclaimed in a fit of laughter, enjoying how direct Koji could be when poked hard enough. The writer wore the badge of scum with pride, for it was that worldview that brought him to fame in the first place. He watched as the doctor grabbed his newspaper and made a macabre display of it, as if to sell their point further.
+
+&quot;Hmm, you might be going a bit too far there.&quot; Verga corrected as he tapped his sunglasses. &quot;Do I look <em>that</em> much of a schemer? I simply enjoy picking up plot bits that were left behind. Every story needs a home.&quot; He chuckled, albeit it was obvious that Koji&#39;s assumptions were right. There was a back and forth after that, but it culminated in Koji accepting that Verga was reliable, despite all of his irritable issues.
+
+With nothing more left to be said, the doctor headed off, leaving Verga with one more spry remark.
+
+&quot;Hey, is this your way of treating your elders? The younguns these days, I swea-&quot; Before the man could finish, he felt a torrent of birds fly past him, littering the place with more feathers as some books and writing equipment had started to fall from the sheer wind pressure alone. It was the messiest the building had looked in decades.
+
+&quot;...I am hereby banning animals from the store.&quot; Verga said with a disgruntled tone as he left through the front door. If they managed to drag William back to work, he already knew what he was going to force that juvenile writer to do. <span class="mention" title="Nat#6572">@Natcracker</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="947096275512328222" id="message-947096275512328222" title="Message sent: 26-Feb-22 07:42 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(They fast travel to the <span class="mention">#darkest-woods</span> waypoint)</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20forest%20-%20stationery-store%20%5B915622350513373214%5D%20%282022-02-19%20to%202022-03-08%29.html_Files/4156cddf25970f70286121770ff0cbc4-74ABA.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="?឵#0000" data-user-id="932392067630526505" style="">?឵</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Feb-22 07:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="947096890959331398" id="message-947096890959331398" title="Message sent: 26-Feb-22 07:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">you&#39;ll never take me dead or alive!</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>

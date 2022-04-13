@@ -1,0 +1,1281 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - abandoned-train-cabin</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote-border {
+            margin-right: 0.5em;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #2f3136;
+            color: #b9bbbe;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #dee0fc;
+            background-color: rgba(88, 101, 242, .3);
+            font-weight: 500;
+        }
+
+        .mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(255, 255, 255, 0.06);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #ffffff;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #b5b6b8;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+            direction: ltr;
+        }
+
+        .chatlog__author-name {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #2f3136;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(46, 48, 54, 0.3);
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+            color: #ffffff
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0;
+            padding: .125rem .375rem;
+            background-color: #2f3136;
+            border-radius: 8px;
+            border-color: transparent;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .chatlog__reaction:hover {
+            border-color: hsla(0,0%,100%,.2);
+            border-width: 1px;
+            border-style: solid;
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #b9bbbe;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.8.1/lottie.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nature reserve: lake / abandoned-train-cabin</div>
+
+            <div class="preamble__entry preamble__entry--small">Located near the dock inside a train station there is an abandoned train cabin, is unknown how long has it been since anyone ever enter in it. A thick layer of dust covers the interior, the cabin is connected to a single car. While the controllers look old they appear to still be functional. The cabin contains a map of said stations but dirt and time had made any details hard to see, only a rough layout of the nomad city can be seen alongside some of the routes this old train used to went by. It appears that the previous drivers used to spend a long time in this cabin as there is a small fridge near the controllers and a closet all the way to the back of the car.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 20-Feb-22 12:00 AM and 04-Mar-22 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-E84A4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="932692756906799124" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Feb-22 03:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="945400550185373726" id="message-945400550185373726" title="Message sent: 22-Feb-22 03:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Flames began to circle in front of him, they shaped themselves into numbers going from 0 to 9 and then moving back from 9 to 0. He had both his index fingers pointing in front of him as the flames did this in the space in between. 
+
+This was a basic exercise he had been taught when he was nothing but a child but even know he continue to do it, for whatever reason he couldn&#39;t figure out it helped him think.  His mind was now filled with many issues things to think about, the main 2 were related yet at the same time different problems. He had his promise with Ashley but he also needed to find someone to help fix the ship. There was also the islanders trying to kill him, so far Ruth was the most dangerous but he knew better than to assume. In the end it came down to information, he still lacked enough information to fully understand what was happening. 
+
+&quot;A dammit!!&quot; he said as she stop his flames and proceed to lay on the ground. &quot;Really what&#39;s wrong with this place...&quot;
+
+Strange enough, while the promise increased his worries there was never a moment where he even consider just forgetting about it or breaking it. As he looked at the string wrapped around his wrist he continue to wonder what to do. 
+
+&quot;Hey Graf.... You think I made a mistake?&quot; he said as he lift his body and looked at his servant. The question was somewhat pure, there was no doubt or self loathing in it just plain curiosity about his servant opinion. She was quite obedient but that could also mean she was just following him and not voicing any complains.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">22-Feb-22 03:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="945400573027577898" id="message-945400573027577898" title="Message sent: 22-Feb-22 03:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/01d62349102426673af2b0c7cc2ea795-AE05A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="932692756906799124" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 01:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="945922772847165471" id="message-945922772847165471" title="Message sent: 23-Feb-22 01:59 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Graf watched the guy play around with fire and numbers flashing by which was rather interesting for her. she herself though had managed to rip out a bathtub from one of the nearby demolished flats and drag it over. Now it was filled up with water and she of course was in it... clothing and all, just relaxing and enjoying the few moments of peace she was finally granted.
+
+When the question came her way though she let out a humming noise. &quot;In my honest opinion... yes it was a mistake to come here. But even in mistakes one can find a good outcome.&quot; She was of course referring to herself as that silver lining this time around. &quot;there are very few archers more powerful than me and those that are are more like gods than human or ship in my case.&quot; She explained a little but didnt go too much into detail.
+
+&quot;Im no expert in fixing ships but i know for a fact that ice is only a stopgap measure... Does anyone know how to weld? As long as we can weld a few chunks of steel to stitch that wound it should keep big sis afloat once the ice melts away.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-E84A4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="932692756906799124" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="945928227212374067" id="message-945928227212374067" title="Message sent: 23-Feb-22 02:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A mistake was it? She wasn&#39;t wrong, if though logically accepting this mission and coming to this place was by no means a good idea. Yet he could only smile, seeing Graf tell this to his face actually make him relieved. He had issues, he was aware he wasn&#39;t normal, at least to a degree he didn&#39;t knew how bad it would get but he knew that he wouldn&#39;t be traveling around going from one place to the other without a set purpose if he did. 
+
+No, that was a mistake he had a purpose it was just that traveling would never fulfil it but he had no better option. He stood up, his gloved hand moved towards his coat and began to swipe the dust away from it, the place was dirty but it wasn&#39;t so bad it give him a place to think. 
+
+&quot;I can weld, the issue is how much progress and which parts to prioritize, if I just melt it randomly it may fall apart before I can meld it, I know my limits.&quot; he said as he walked to Graf.
+
+It was weird seeing her take a &#39;bath&#39; with clothes and all but whatever makes her happy. &quot;Want me to warm up the water?&quot; he said as flames covered his left hand.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">23-Feb-22 02:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="945928257038090250" id="message-945928257038090250" title="Message sent: 23-Feb-22 02:21 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/01d62349102426673af2b0c7cc2ea795-AE05A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="932692756906799124" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 02:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="945931743997861928" id="message-945931743997861928" title="Message sent: 23-Feb-22 02:35 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Id appreciate it...&quot; She said with a nod to his offer of warming up the water for her. it had gotten a little chilly and while she didn&#39;t care as a ship she still personally preferred a nice warm dock. To her taking a bath like this was akin to being at a dock for repairs, which she sorely required. The patch jobs that her ghost crew of sorts managed to throw together had all fallen apart during the last battle and even now... she still had Berserkers spear lodged deep in her superstructure.
+
+&quot;Well youre asking a ship what parts are most important in a ship... The most important would be the spirit. The very thing giving &#39;life&#39; to the vessel but that doesn&#39;t vanish until long after the ships been sunk and given up on entirely. sadly we still lay in the cold dark depths of the oceans. patiently and silently waiting for our captains to return. to sail the seas once more all the while the very seas that were our allies tear us apart very slowly. If we want to keep the Canopus from meeting the same fate the frame should be the first thing to mend. its armor belt has been snapped and the hull has experienced a break. stitching just the wound shut will not suffice. the opposite side also needs to be reinforced because it has been deformed beyond the safe limits and will break if we hit a rough patch out at sea.&quot; Her explanation was a rather long winded one and she went onto a small tangent of what happens to a ship and its spirit after one sinks. as expected most spirits never get to leave the ship until its gone entirely. Only a rare few like Graf herself get to ascend so to speak to the throne of heroes.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-E84A4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="932692756906799124" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Feb-22 02:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="945936376774414376" id="message-945936376774414376" title="Message sent: 23-Feb-22 02:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It would be a lie if Allen never wonder why Graf asked his call, on a first impression they couldn&#39;t be any more different from one another. But as he put his flaming hand on the flat and began to slowly heat up the water he listened to her words, seeing her fight and protect him it was easy to forget her current aspect was not the one she had before. He had yet to ask her about it, he was afraid of the answer and her reaction yet she had to a degree told her about. 
+
+His mind couldn&#39;t help but think about it, for humans death last an instant most of the time. There can be slow and painful death but the way Graf talked about it it seemed like that was the case for ships all the time. It make him feel sad, knowing that the girl who had protected and fought on his behalf had went through who knows what. She was an instrument of war, she was used and then probably abandoned and suffered a fate worse than those other ships in the shore. 
+
+Bubbles began to appear inside the water as Allen pulled his hand away. He looked at her and move it to her head, he began to softly caress her white hair as he smiled at her. 
+
+&quot;Even now you keep doing your best...&quot; was all he could say, there were lots of mixed feelings inside of him and he didn&#39;t knew which to express. To pity her? To admire her? To console her? He didn&#39;t knew, but all of this make him feel they were more similar in some way.  
+
+&quot;...I really couldn&#39;t have asked anyone better than you.&quot; he finally said as he continue to rub her head.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">23-Feb-22 02:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="945936441597362178" id="message-945936441597362178" title="Message sent: 23-Feb-22 02:53 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/01d62349102426673af2b0c7cc2ea795-AE05A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="932692756906799124" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Mar-22 04:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="947960272813977610" id="message-947960272813977610" title="Message sent: 01-Mar-22 04:55 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As the water began to bubble lightly and got nice and hot she let out a happy sigh. Even as a ship she still could enjoy the fi er things in life and a nice warm harbour was one such thing. Closing her eyes she rose her head up at the tattered ceiling of the abandoned train. At that same moment she felt something touch her head, but she didnt react to it as she knew it was her captain Allen.
+
+&quot;Your call for aid... The message your spirit conveyed and the location where it was done had caught my attention. I am glad to see i had responded to the right summon by a competent captain.&quot; She responded to his comment of him being unable to ask for anyone better than her.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-E84A4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="932692756906799124" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">01-Mar-22 09:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="948024751081803776" id="message-948024751081803776" title="Message sent: 01-Mar-22 09:11 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He had called for aid? Yeah that sounded about right, he had heard the crew talk,
+
+&#39;This is a suicide mission&#39;
+&#39;Why are we doing this?&#39;
+
+So even someone like him could figure it out, that the place they were going towards was dangerous and that dying was more than likely. The day they arrived didn&#39;t do anything but prove him right, in the mist of it there was nothing to do but fight. To do his job and survive and then return to his employer, that was all he needed to do, finding people who wanted to leave this place gave him hope. But it wasn&#39;t just that, he knew he was weak, for whatever reasons promises are what keep him together and make it so he could keep moving. 
+
+He promise Graf he would fight with her till the end.
+He promise Ashley he would take them out of the island.
+He promise his mother to go back home
+He promise **** he would find that to cure him. 
+
+Promises, heavy promises but also quite reassuring for him. His hand left Graf&#39;s hear as he seat next to her self made bath and let out a sigh. 
+
+&quot;I am happy to be trusted....&quot; he began as he closed his eyes, &quot;...So at the very least this Capitan of yours will remember ya as long as he lives and would be sad if anything happens to you.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">01-Mar-22 09:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="948024783210168410" id="message-948024783210168410" title="Message sent: 01-Mar-22 09:12 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/01d62349102426673af2b0c7cc2ea795-AE05A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="932692756906799124" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-22 12:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="948615927157649548" id="message-948615927157649548" title="Message sent: 03-Mar-22 12:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Graf opened her eyes and lowered her head to be back down level with the horizon before looking to her side where Allen had found a spot to sit at. Once his hand left her head she had an odd feeling that she couldn&#39;t describe, yet it wasnt an unpleasant feeling. It was a weirdly warm and fuzzy feeling that made her heat up and blush lightly.
+
+&quot;That means the world to me. A captain who wont betray me is all i ask for.... A chance to do what i had been denied in the past. Grasp victory with my own hands and sail the seas freely.&quot; her wish truly was nice and simple yet torturously difficult to achieve.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-E84A4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="932692756906799124" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-22 12:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="948623379882205194" id="message-948623379882205194" title="Message sent: 03-Mar-22 12:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He just smiled  as he listen to her, she sounded happy and that brought relief to him. At the very least he was doing a decent job as her master and capitan, or that is what it sound like at least. 
+
+&quot;On that note though let me ask you something Graf&quot; he said as he remained seated. &quot;What is victory to you?&quot;
+
+He had heard her say that many times but he had never ponder too deep into it. The chances for talk were few so he decided to go and ask while he had the chance. 
+
+After all victory could mean so many things, for some it was akin to survive to other means to defeat everyone. He moved a little so he would be staring straight at her eyes as he waited for her answer.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b82456d535ee25f4a6d4aaaff45ce269-9B54F.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Spiderrock#5389" data-user-id="300800578915794946" style="color: rgb(238,94,134)">Spiderrock</span>
+
+
+        <span class="chatlog__timestamp">03-Mar-22 12:50 AM</span>
+
+            <div class="chatlog__message " data-message-id="948623422890577941" id="message-948623422890577941" title="Message sent: 03-Mar-22 12:50 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Raffia Kiryuin#0467">@Raffia Kiryuin</span></span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/01d62349102426673af2b0c7cc2ea795-AE05A.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Admiral Graf Spee#0000" data-user-id="932692756906799124" style="">Admiral Graf Spee</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-22 03:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="948660305871925349" id="message-948660305871925349" title="Message sent: 03-Mar-22 03:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Graf had indeed spoken about victory a lot but she had never had to put it to words so this one took her a while to figure out. Placing a crimson claw to her chin she hummed. &quot;This is definitely a difficult one but if i would have to describe it... It would be my desire to defeat a threat to my captain and come back in one piece or if i am destined to sink... at the very least have it be in the heat of battle.&quot;
+
+She looked Allen in the eyes and then gave him a little smile. &quot;Of course if it came down to that i would do all in my power to make sure you get to escape before i go down.&quot; unlike allen she was quite well aware that she would simply go back to the throne of heroes but allen would most likely just vanish into the ether...</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Fate_Starry%20Night%20RP%20-%20nature%20reserve_%20lake%20-%20abandoned-train-cabin%20%5B920220177830912010%5D%20%282022-02-20%20to%202022-03-04%29.html_Files/b8e8fbd7c7a9c91dafa9a8d52f198028-E84A4.jpg" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Allen Ignis#0000" data-user-id="932692756906799124" style="">Allen Ignis</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">03-Mar-22 10:39 AM</span>
+
+            <div class="chatlog__message " data-message-id="948771638600683611" id="message-948771638600683611" title="Message sent: 03-Mar-22 10:39 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His eyes widen as his face contorted into an expression Graf would have a hard time reading. He appreciated her words he really did, she was willing to die so he could live that wasn&#39;t something to say lightly as he knew she meant every word. So far she hasn&#39;t lie to him and he doubt she would began now out of the sudden. 
+
+&quot;I...&quot; Part of him wanted to tell her to not do it. That he was okay with dying together if it came to that but saying that could become a lie in the future. He had other promises, so he would try to survive to the very end and even when he promise to be with her till the end their current situation wasn&#39;t so simple that he could say without a doubt that they would go down together. 
+
+He pet her again as he looked down for a second. This girl was willing to put her life in his hands and do more than could be asked of her so just accepting that felt wrong for him. 
+
+&quot;If it comes to that...&quot; he said as he meet her gaze once again. &quot;...I will definitely get ya back once all is over.&quot; 
+
+That was all he could offer her, if she were to perish and he to survive he would find a way to summon her once more. 
+
+&quot;That is my promise to ya&quot; he said as he gave her a weak smile as continue to caress her hair.</span>
+
+                        </div>
+                    </div>
+
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
