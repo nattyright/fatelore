@@ -13058,5 +13058,60 @@ canonServants = [
         "target": "Anti-Unit/Anti-Army"
       }
     }
+  },
+  {
+    "id": "253",
+    "URL": "leonardo-da-vinci-rider",
+    "title": "Leonardo da Vinci (Rider)",
+    "FGOmaterial": 1,
+    "sideClass": "rider",
+    "sideGender": "Female",
+    "sideHeight": "144cm",
+    "sideWeight": "36.5kg",
+    "sideNationality": "South Pole, 2019",
+    "sideAlignment": "Lawful Good",
+    "param": {
+      "sideStr": "D",
+      "sideEnd": "D",
+      "sideAgi": "B",
+      "sideMan": "A",
+      "sideLuc": "A+",
+      "sideNP": "B"
+    },
+    "cSkill": {
+      "cSkill1": {
+        "name": "Riding",
+        "rank": "B"
+      },
+      "cSkill2": {
+        "name": "Territory Creation",
+        "rank": "C"
+      },
+      "cSkill3": {
+        "name": "Overhaul",
+        "rank": "E"
+      }
+    },
+    "pSkill": {
+      "pSkill1": {
+        "name": "Golden Rule (Body)",
+        "rank": "EX"
+      },
+      "pSkill2": {
+        "name": "Accel Turn",
+        "rank": "B"
+      },
+      "pSkill3": {
+        "name": "A Dream For The Planet",
+        "rank": "D"
+      }
+    },
+    "np": {
+      "np1": {
+        "name": "Those Who Cross The Boundaries",
+        "rank": "B",
+        "target": "Anti-World"
+      }
+    }
   }
 ]
