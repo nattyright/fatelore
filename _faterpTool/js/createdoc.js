@@ -91,7 +91,7 @@ function appendPre(message) {
  */
 function printDocTitle() {
   gapi.client.docs.documents.get({
-  documentId: '1p5fTaP8l5YLXrm0RZNkhIScgZQOT4Tu8euaiXCMsF4w'
+  documentId: '1YaJHplrOmvtzUzzP-OI0uMM0MK27OsQt4iUQxcyUtAI'
 }).then(function(response) {
   var doc = response.result;
   var title = doc.title;
@@ -106,7 +106,7 @@ function printDocTitle() {
  */
 function printDocBody() {
   gapi.client.docs.documents.get({
-  documentId: '1p5fTaP8l5YLXrm0RZNkhIScgZQOT4Tu8euaiXCMsF4w'
+  documentId: '1YaJHplrOmvtzUzzP-OI0uMM0MK27OsQt4iUQxcyUtAI'
 }).then(function(response) {
   var doc = response.result;
   appendPre(JSON.stringify(doc.body, null, 4));
@@ -120,7 +120,7 @@ function printDocBody() {
  */
 function copyDoc() {
   var body = {
-    fileId: '1p5fTaP8l5YLXrm0RZNkhIScgZQOT4Tu8euaiXCMsF4w',
+    fileId: '1YaJHplrOmvtzUzzP-OI0uMM0MK27OsQt4iUQxcyUtAI',
   }
   gapi.client.drive.files.copy(body)
   .then(function(res) { // Modified
