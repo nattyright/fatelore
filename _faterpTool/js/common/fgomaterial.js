@@ -4,6 +4,14 @@ servantData.sort((a, b) =>
    (a.title > b.title) ? 1 : -1);
 
 
+location = "";
+for(servant of servantData) {
+   location += servant['sideNationality'];
+   location += ', ';
+}
+console.log(location);
+
+
 let html = "<ul>";
 for(var i = 0; i < servantData.length; i++) {
    var servant2 = servantData[i];
