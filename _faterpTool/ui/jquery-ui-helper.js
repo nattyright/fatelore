@@ -29,6 +29,14 @@ $( "#infoHubCSSearch, #infoHubPSSearch" ).autocomplete({
   }
 });
 
+var availableRegions = ['Chaldea', 'England', 'Rome', 'Germany', 'Europe', 'Middle Asia - Europe', 'France', 'Japan', 'Babylonia, Uruk', 'England, Sherwood', 'Greece', 'None', 'Ireland', 'None', 'Sparta', 'Greece, Shapeless Isle', 'Caribbean Sea', 'Greek, Corinth', 'Denmark', 'China', 'Middle East', 'France～Germany', 'Hungary', 'Romania', 'Western Asia', 'Norway to England', 'SE.RA.PH', 'Israel', 'Caribbean', 'Finland (Self-Proclaimed)', 'London', 'All of Europe', 'India', 'The Servant Universe', 'Northern Europe', 'None', 'None', 'North America', 'Ancient Persia', 'Macedonia', 'Far East', '-  ', 'Japan ', 'Egypt', 'Britain', 'Fuyuki City, Japan', 'Castle Csejte', 'Santaland (So she claims)', 'Mesopotamia', 'Central America', 'Western Europe', 'America', 'Persia', 'Spain', 'England, Worldwide', 'America, Canada', 'Japan (Himeji Castle)', 'Prison Castle Csejte', 'East Africa, Southwest Part of the Arabian Peninsula', 'North America, Massachusetts', 'Finland (she claims)', 'Russia', '-', 'Switzerland', 'South Pole, 2019']
+$( "#sideNationality" ).autocomplete({
+  source: availableRegions,
+  select: function( event, ui ) {
+    var autocompleteId = $(this).attr('id');
+  }
+});
+
 
 
 /*
