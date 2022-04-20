@@ -115,37 +115,32 @@ function getPersonalSkillHTML(skillList) {
  */
 function getSkillInfoFromWiki(skillName, displayDivId) {
 
+  /*
   var url = 'https://typemoon.fandom.com/api.php?action=parse&page=Skill/' 
            + skillName[0].toUpperCase() 
            + '&prop=sections&format=json&origin=*';
-
-
+  */
+  var url = 'https://typemoon.fandom.com/api.php?action=parse&page=' 
+           + skillName.replace(/\s/g, "_")
+           + '&format=json&origin=*';
 
   var skillList = fetchAsync(url);
   //console.log(url);
+
   skillList.then(function(result) {
     //console.log(result);
-    for (skill of result['parse']['sections']) {
-      if(skill['line'].toUpperCase() == skillName.toUpperCase()) {
-        
-        var skillIndex = skill['index'];
-        var skillTextURL = 'https://typemoon.fandom.com/api.php?action=parse&page=Skill/' 
-                          + skillName[0].toUpperCase() 
-                          + '&section='
-                          + skillIndex.toString()
-                          + '&format=json&origin=*';
-        var skillTextAll = fetchAsync(skillTextURL);
-        skillTextAll.then(function(result) {
-            
-            var skillDescription = result['parse']['text']['*'];
-            skillDescription = skillDescription.replace(/<a[^>]*>/g,"")
-                                               .replace(/<sup[^>]*>/g,"")
-                                               .replace(/<span class="mw-editsection"[^>]*>[\S\s]*<\/span>\s*<\/h2>/g,"</h2>")
-                                               .replace(/<ol class="references"[^>]*>[\S\s]*<\/ol>\s*<\/div>/g,"</div>");
-            document.getElementById(displayDivId).innerHTML = skillDescription;
-        });
-      }
-    }
+
+    var skillDescription = result['parse']['text']['*'];
+    // add col for css manipulation
+    skillDescription = skillDescription.replace("<tbody>", "<colgroup><col><col></colgroup><tbody>")
+    // get rid of links and other unneeded html
+    skillDescription = skillDescription.replace(/<a[^>]*>/g,"")
+                                       .replace(/<sup[^>]*>/g,"")
+                                       .replace(/<span class="mw-editsection"[^>]*>[\S\s]*<\/span>\s*<\/h2>/g,"</h2>")
+                                       .replace(/<ol class="references"[^>]*>[\S\s]*<\/ol>\s*<\/div>/g,"</div>");
+    
+    document.getElementById(displayDivId).innerHTML = skillDescription;
+
 });
     
 }
