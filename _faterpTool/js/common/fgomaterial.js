@@ -31,7 +31,7 @@ $( document ).ready(function() {
 
    location = "";
    for(servant of servantData) {
-      location += servant['sideNationality'];
+      location += servant.sideNationality;
       location += ', ';
    }
    console.log(location);
