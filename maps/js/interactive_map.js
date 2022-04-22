@@ -47,6 +47,8 @@ function locationClick() {
     displayLocName(this.getElementsByTagName('title')[0].innerHTML);
     displayLocDesc(this.getElementsByTagName('desc')[0].innerHTML.split(';')[0]);
 
+
+    console.log(this.getBBox());
 }
 
 
@@ -67,8 +69,8 @@ window.addEventListener("load", function() {
     var svgObject = document.getElementById('svg-object').contentDocument;
     // resize SVG object to div
     var svgAttItem = svgObject.getElementById('svg8');
-    //svgAttItem.setAttribute("width", "400mm");
-    //svgAttItem.setAttribute("height", "400mm");
+    svgAttItem.setAttribute("width", "100%");
+    svgAttItem.setAttribute("height", "100%");
     //svgAttItem.setAttribute("viewBox", "0 0 800mm 800mm");
     // test mouseover
     var item = svgObject.getElementById('n1-over');
