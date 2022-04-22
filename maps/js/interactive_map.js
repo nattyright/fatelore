@@ -125,7 +125,11 @@ window.addEventListener("load", function() {
 
     var svg = d3.select(svgObject).select('svg');
     //console.log(svg.select('#district-over').selectAll('path'));
-    const handleZoom = (e) => svg.attr('transform', e.transform);
+    //const handleZoom = (e) => svg.attr('transform', e.transform);
+    function handleZoom(event) {
+        //svg.attr('transform', event.transform);
+        svg.selectAll('g').selectAll('path').attr('transform', event.transform);
+    }
     const zoom = d3.zoom().scaleExtent([1, 5]).on('zoom', handleZoom);
     svg.call(zoom);
 });
