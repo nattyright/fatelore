@@ -51,6 +51,17 @@ function locationClick() {
 
 
 
+
+function toggleDistrict() {
+    var svgObject = document.getElementById('svg-object').contentDocument;
+    var item = svgObject.getElementById('district-over');
+    item.getAttribute("style") === "display:none" ? item.setAttribute("style", "display:inline") : item.setAttribute("style", "display:none");
+}
+
+
+
+
+
 window.addEventListener("load", function() {
 
     var svgObject = document.getElementById('svg-object').contentDocument;
