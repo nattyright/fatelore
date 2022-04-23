@@ -1,65 +1,91 @@
+// display the image, title, and description of geo items 
+// on the info panel (left)
 function displayImage(name) {
-    document.getElementById('district-img').src = name;
+    document.getElementById('info-panel-img').src = name;
 }
 function displayName(name) {
-    document.getElementById('district-name').firstChild.data = name;
+    document.getElementById('info-panel-name').firstChild.data = name;
 }
 function displayDesc(name) {
-    document.getElementById('district-desc').firstChild.data = name;
+    document.getElementById('info-panel-desc').firstChild.data = name;
 }
-
-
-function districtMouseOver() {
-    this.setAttribute("style", "fill:blue;");
+function infoPanelClick() {
     displayImage(this.getElementsByTagName('desc')[0].innerHTML.split(';')[1]);
     displayName(this.getElementsByTagName('title')[0].innerHTML);
     displayDesc(this.getElementsByTagName('desc')[0].innerHTML.split(';')[0]);
-    this.classList.add('bar-highlight');
+
+    document.getElementsByClassName('info-panel-left')[0].classList.add("show");
+}
+
+
+// district layer mouse actions
+function districtMouseOver() {
+    editSvgStyle(this, "fill:", "#2a7fff");
+    editSvgStyle(this, "cursor", "pointer");
 }
 function districtMouseOut() {
-    this.setAttribute("style", "fill:#ac8fd3;fill-opacity:1;stroke:#ffffff;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1");
-    this.classList.remove('bar-highlight');
+    editSvgStyle(this, "fill:", "#aaccff");
+    editSvgStyle(this, "cursor", "default");
 }
 
 
-
+// location layer mouse actions
 function locationMouseOver() {
-    this.setAttribute("style", "cursor:pointer;fill:red;fill-rule:evenodd;stroke:none;stroke-width:0.264583");
+    editSvgStyle(this, "cursor", "pointer");
 }
 function locationMouseOut() {
-    this.setAttribute("style", "cursor:default;fill:#00ff66;fill-rule:evenodd;stroke:none;stroke-width:0.264583");
-}
-
-function displayLocImage(name) {
-    document.getElementById('loc-img').src = name;
-}
-function displayLocName(name) {
-    document.getElementById('loc-name').firstChild.data = name;
-}
-function displayLocDesc(name) {
-    document.getElementById('loc-desc').firstChild.data = name;
-}
-
-function locationClick() {
-    this.classList.add('popup');
-    this.classList.toggle("show");
-    displayLocImage(this.getElementsByTagName('desc')[0].innerHTML.split(';')[1]);
-    displayLocName(this.getElementsByTagName('title')[0].innerHTML);
-    displayLocDesc(this.getElementsByTagName('desc')[0].innerHTML.split(';')[0]);
-
-
-    console.log(this.getBBox());
+    editSvgStyle(this, "cursor", "default");
 }
 
 
 
+// info panel actions
+function closePanel(className) {
+    document.getElementsByClassName(className)[0].classList.remove('show');
+}
 
+
+// map layer actions
 function toggleDistrict() {
     var svgObject = document.getElementById('svg-object').contentDocument;
-    var item = svgObject.getElementById('district-over');
-    item.getAttribute("style") === "display:none" ? item.setAttribute("style", "display:inline") : item.setAttribute("style", "display:none");
+    var item = svgObject.getElementById('layer-district');
+    item.classList.toggle('hide');
+    if (item.classList.contains('hide')) {
+        editSvgStyle(item, 'display:', 'none');
+    } else {
+        editSvgStyle(item, 'display:', 'inline');
+    }
 }
 
+
+
+// helper funcs
+// change a specific param in svg object style - remember param need ':'
+// for ambiguous params!
+function editSvgStyle(item, param, newValue) {
+    var style = d3.select(item).attr('style').split(";");
+    var found = 0;
+    style.forEach(function (item, index) {
+        if (item.startsWith(param)) {
+            if (param.endsWith(":")) {
+                style[index] = param + newValue;
+            } else {
+                style[index] = param + ":" + newValue;
+            }
+            found = 1;
+        }
+    });
+    // if the param doesn't exist - add new
+    if (found == 0) {
+        if (param.endsWith(":")) {
+                style.push(param + newValue);
+            } else {
+                style.push(param + ":" + newValue);
+            }
+    }
+    d3.select(item).attr('style', style.join(";"));
+    //console.log(d3.select(item).attr('style'));
+}
 
 
 
@@ -73,66 +99,54 @@ window.addEventListener("load", function() {
     svgAttItem.setAttribute("height", "100%");
     //svgAttItem.setAttribute("viewBox", "0 0 800mm 800mm");
     // test mouseover
-    var item = svgObject.getElementById('n1-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('n2-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('n3-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('n4-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('n5-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('s1-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('s2-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('s3-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('s4-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('s5-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('c1-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
-    var item = svgObject.getElementById('c2-over');
-    item.addEventListener("mouseover", districtMouseOver, false);
-    item.addEventListener("mouseout", districtMouseOut, false);
+    for (let i = 1; i < 6; i++) {
+        var item = svgObject.getElementById('n' + i + '-over');
+        item.addEventListener("mouseover", districtMouseOver, false);
+        item.addEventListener("mouseout", districtMouseOut, false);
+        item.addEventListener("click", infoPanelClick, false);
+        var item = svgObject.getElementById('s' + i + '-over');
+        item.addEventListener("mouseover", districtMouseOver, false);
+        item.addEventListener("mouseout", districtMouseOut, false);
+        item.addEventListener("click", infoPanelClick, false);
+    }
+    for (let i = 1; i < 3; i++) {
+        var item = svgObject.getElementById('c' + i + '-over');
+        item.addEventListener("mouseover", districtMouseOver, false);
+        item.addEventListener("mouseout", districtMouseOut, false);
+        item.addEventListener("click", infoPanelClick, false);
+    }
+    for (let i = 1; i < 5; i++) {
+        var item = svgObject.getElementById('loc' + i);
+        item.addEventListener("mouseover", locationMouseOver, false);
+        item.addEventListener("mouseout", locationMouseOut, false);
+        item.addEventListener("click", infoPanelClick, false);
+    }
 
 
-    var item = svgObject.getElementById('loc1');
-    item.addEventListener("mouseover", locationMouseOver, false);
-    item.addEventListener("mouseout", locationMouseOut, false);
-    item.addEventListener("click", locationClick, false);
-    var item = svgObject.getElementById('loc2');
-    item.addEventListener("mouseover", locationMouseOver, false);
-    item.addEventListener("mouseout", locationMouseOut, false);
-    item.addEventListener("click", locationClick, false);
-    var item = svgObject.getElementById('loc3');
-    item.addEventListener("mouseover", locationMouseOver, false);
-    item.addEventListener("mouseout", locationMouseOut, false);
-    item.addEventListener("click", locationClick, false);
-
-
+    // add d3 zoom
     var svg = d3.select(svgObject).select('svg');
-    //console.log(svg.select('#district-over').selectAll('path'));
+    //console.log(svg.select('#layer-district').selectAll('path'));
     //const handleZoom = (e) => svg.attr('transform', e.transform);
     function handleZoom(event) {
-        //svg.attr('transform', event.transform);
-        svg.selectAll('g').selectAll('path').attr('transform', event.transform);
+        //perform transform on all paths and images
+        svg.selectAll('g').selectAll('path')
+                          .attr('transform', event.transform);
+        svg.selectAll('g').selectAll('image')
+                          .attr('transform', event.transform);
+
+        //do not scale icon size
+        svg.select('layer-poi').selectAll('image')
+                            .attr("width", 12.412697 / event.transform.k)
+                            .attr("height", 12.412697 / event.transform.k);
+
+        //do not scale stroke widths
+        svg.selectAll('g').selectAll('path').each(function(d, i) {
+            // the item to edit, the param to change, the new value for param
+            editSvgStyle(this, "stroke-width", 0.2 / event.transform.k);
+        });
     }
-    const zoom = d3.zoom().scaleExtent([1, 5]).on('zoom', handleZoom);
+    const zoom = d3.zoom().scaleExtent([1, 5])
+                          .on('zoom', handleZoom);
     svg.call(zoom);
 });
 
