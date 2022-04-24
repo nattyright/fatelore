@@ -167,7 +167,7 @@ window.addEventListener("load", function() {
         setSvgDefaultValue(item, "stroke-width");
     }
     // pois
-    for (let i = 1; i < 6; i++) {
+    for (let i = 1; i < 7; i++) {
         var item = svgObject.getElementById('loc' + i);
         item.addEventListener("mouseover", locationMouseOver, false);
         item.addEventListener("mouseout", locationMouseOut, false);
