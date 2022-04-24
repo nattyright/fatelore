@@ -228,8 +228,9 @@ window.addEventListener("load", function() {
             
         });
     }
-    const zoom = d3.zoom().scaleExtent([1, 50])
-                          .on('zoom', handleZoom);
+    //const zoom = d3.zoom().scaleExtent([1, 50])
+    //                      .on('zoom', handleZoom);
+    const zoom = d3.zoom().on('zoom', handleZoom);                      
     svg.call(zoom);
 });
 
