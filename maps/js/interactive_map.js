@@ -176,13 +176,18 @@ window.addEventListener("load", function() {
         setSvgIcon(item);
     }
     // paths
-    for (let i = 1; i < 4; i++) {
+    for (let i = 1; i < 3; i++) {
         var item = svgObject.getElementById('path' + i);
         item.addEventListener("mouseover", pathMouseOver, false);
         item.addEventListener("mouseout", pathMouseOut, false);
         item.addEventListener("click", infoPanelClick, false);
         setSvgDefaultValue(item, "stroke-width");
     }
+    // texts
+    var svg = d3.select(svgObject).select('svg');
+    svg.selectAll('tspan').each(function(d, i) {
+        setSvgDefaultValue(this, "font-size");
+    });
 
 
     // add d3 zoom
@@ -197,12 +202,10 @@ window.addEventListener("load", function() {
                           .attr('transform', event.transform);
         svg.selectAll('g').selectAll('circle')
                           .attr('transform', event.transform);
+        svg.selectAll('g').selectAll('text')
+                          .attr('transform', event.transform);
 
         //do not scale icon size
-        svg.select('#layer-poi').selectAll('image').each(function(d, i) {
-            d3.select(this).attr("width", 12.412697 / event.transform.k)
-                           .attr("height", 12.412697 / event.transform.k);
-        });
         svg.select('#layer-poi').selectAll('circle').each(function(d, i) {
             d3.select(this).attr("r", 6 / event.transform.k);
         });
@@ -227,6 +230,17 @@ window.addEventListener("load", function() {
             }
             
         });
+
+        // do not scale font sizes
+        svg.selectAll('g').selectAll('tspan').each(function(d, i) {
+            var oldValue = strokeWidthArray[this.id];
+            if (oldValue != null) {
+                editSvgStyle(this, 
+                             "font-size", 
+                             parseFloat(oldValue.slice(0,-2)) / event.transform.k + "px");
+            }
+        });
+
     }
     const zoom = d3.zoom().scaleExtent([1, 40])
                           .on('zoom', handleZoom);                     
