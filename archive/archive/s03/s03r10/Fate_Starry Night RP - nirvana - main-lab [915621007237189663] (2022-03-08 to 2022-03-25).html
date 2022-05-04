@@ -1,0 +1,2393 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - main-lab</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/whitney-300-1FE35.woff);
+            font-family: Whitney;
+            font-weight: 300;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/whitney-400-83E7B.woff);
+            font-family: Whitney;
+            font-weight: 400;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/whitney-500-47E37.woff);
+            font-family: Whitney;
+            font-weight: 500;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/whitney-600-9EC09.woff);
+            font-family: Whitney;
+            font-weight: 600;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/whitney-700-A7A71.woff);
+            font-family: Whitney;
+            font-weight: 700;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+            image-rendering: high-quality;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .preamble {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            max-width: 100%;
+            padding: 1rem;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 1rem;
+        }
+
+        .preamble__entry {
+            margin-bottom: 0.15rem;
+            color: #ffffff;
+            font-size: 1.4rem;
+        }
+
+        .preamble__entry--small {
+            font-size: 1rem;
+        }
+
+        .chatlog {
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chatlog__message-group {
+            margin-bottom: 1rem;
+        }
+
+        .chatlog__message-container {
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message-container--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message-container--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__message {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding: 0.15rem 0;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message:hover {
+            background-color: #32353b;
+        }
+
+        .chatlog__message:hover .chatlog__short-timestamp {
+            display: block;
+        }
+
+        .chatlog__message-aside {
+            grid-column: 1;
+            width: 72px;
+            padding: 0.15rem 0.15rem 0 0.15rem;
+            text-align: center;
+        }
+
+        .chatlog__reference-symbol {
+            height: 10px;
+            margin: 6px 4px 4px 36px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .chatlog__short-timestamp {
+            display: none;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message-primary {
+            grid-column: 2;
+            min-width: 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            margin-bottom: 0.15rem;
+            align-items: center;
+            color: #b5b6b8;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-avatar {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__reference-author {
+            margin-right: 0.3rem;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link .hljs {
+            display: inline;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.chatlog__markdown-spoiler) {
+            color: inherit;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__header {
+            margin-bottom: 0.1rem;
+        }
+
+        .chatlog__author {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__bot-label {
+            position: relative;
+            top: -0.1rem;
+            margin-left: 0.3rem;
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__content {
+            padding-right: 1rem;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__attachment {
+            position: relative;
+            width: fit-content;
+            margin-top: 0.3rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 999;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #dcddde;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            max-width: 520px;
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            background-color: #2f3136;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3rem;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25rem;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: rgba(46, 48, 54, 0.3);
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author-container {
+            display: flex;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author {
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__embed-author-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-description {
+            color: #dcddde;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5rem;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6rem;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 50px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-field-value {
+            color: #dcddde;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            max-width: 80px;
+            max-height: 80px;
+            margin-left: 1.2rem;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6rem;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.2rem;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            margin: 0.35rem 0.1rem 0.1rem 0;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background-color: #2f3136;
+            align-items: center;
+        }
+
+        .chatlog__reaction:hover {
+            border: 1px solid hsla(0,0%,100%,.2);
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35rem;
+            color: #b9bbbe;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .chatlog__markdown-preserve {
+            white-space: pre-wrap;
+        }
+
+        .chatlog__markdown-spoiler {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-spoiler--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-spoiler--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .chatlog__markdown-spoiler--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-quote {
+            display: flex;
+            margin: 0.05rem 0;
+        }
+
+        .chatlog__markdown-quote-border {
+            margin-right: 0.5rem;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .chatlog__markdown-pre--multiline {
+            margin-top: 0.25rem;
+            padding: 0.5rem;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .chatlog__markdown-pre--multiline.hljs {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .chatlog__markdown-pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__markdown-mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(88, 101, 242, .3);
+            color: #dee0fc;
+            font-weight: 500;
+        }
+
+        .chatlog__markdown-mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .chatlog__markdown-timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #a3a6aa;
+        }
+
+        .chatlog__emoji {
+            width: 1.325rem;
+            height: 1.325rem;
+            margin: 0 0.06rem;
+            vertical-align: -0.4rem;
+        }
+
+        .chatlog__emoji--small {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .chatlog__emoji--large {
+            width: 2.8rem;
+            height: 2.8rem;
+        }
+
+        .postamble {
+            padding: 1.25rem;
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/solarized-dark.min-BA98F.css">
+    <script src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/highlight.min-D8D27.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__markdown-pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/lottie.min-99657.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('chatlog__message-container-' + id);
+            if (!element)
+                return;
+
+            event.preventDefault();
+            element.classList.add('chatlog__message-container--highlighted');
+
+            window.scrollTo({
+                top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                behavior: 'smooth'
+            });
+
+            window.setTimeout(function() {
+                element.classList.remove('chatlog__message-container--highlighted');
+            }, 2000);
+        }
+
+        function showSpoiler(event, element) {
+            if (!element)
+                return;
+
+            if (element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+
+            if (element.classList.contains('chatlog__markdown-spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__markdown-spoiler--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="attachment-icon" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z"/>
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z"/>
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z"/>
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z"/>
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nirvana / main-lab</div>
+
+            <div class="preamble__entry preamble__entry--small">Abandoned laboratories that occupy the frozen tundra that is the heart of Nirvana. While formerly one of the city’s most prestigious locations, it has fallen in a state of disrepair due to a lack of maintenance from its original crew. Any staff or researchers who worked at the labs seem to be long gone. Instead, the labs have been inhabited by other Nirvana islanders. Some wonder whether or not the city’s own citizens still care for their world famous laboratories…</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 08-Mar-22 12:00 AM and 25-Mar-22 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951729192918208582" class="chatlog__message-container " data-message-id="951729192918208582">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">11-Mar-22 02:32 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Heavy doors were forced open, and Donald hurried inside. He held the door, but waved a hand to the pair that lagged ever so slightly behind. “Hurry, ya oafs! It’s freezin’ out there, ya know?”
+
+Once inside, he pushed the door shut with all his might. It clicked shut, and he leaned against it in relief. While the inside they now occupied wasn’t exactly warm, it sure as hell beat the freezing tundra they just left. 
+
+And there wasn’t any immediate ambush that threatened to kill them on the spot! This journey might be salvaged after all. 
+
+Well, until he realized what lay in the area. While the entrance might not have shown much, he could sense it. Technological advancements made his head spin. Pages upon pages of documents that threatened an eyesore at best. Dusty, dank environments with absolutely no life or homeliness to them.
+
+Donald groaned loudly, “Ugh. Damn investigatin’. Can’t we just ask the fuckin’ islanders what their deal is? Might go a lot better.”
+
+He pushed past the other two, and rounded the corner on the right. A sign above signaled each and every potential path ahead. Galvin and Ankou would see him hug the middle of the hallway. 
+
+<strong>MAIN LABS</strong>
+
+“Unless ye want to rip yer hair out from damn documents,” he called behind him, “ I’d follow me. Surely the main part gots the important stuff, yea?”
+
+He didn’t wait for them to decide, instead opting for immediate answers. Hopefully.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951729209846423642" class="chatlog__message-container " data-message-id="951729209846423642">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">11-Mar-22 02:32 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951914788513001513" class="chatlog__message-container " data-message-id="951914788513001513">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">12-Mar-22 02:49 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Shuffling in behind Donald Galvin patted some snow off his clothes as he scanned around the inside of the building they just entered. Peering at the same things Donald saw, while it may have seemed counter intuitive to their goal, taking a look around here might be more a waste, whatever that Caster was called said this place was special, and he highly doubted they&#39;d find whatever made it special ina bunch of folders this close to the front door. &quot;We agree on that much, no way the answers we want are gonna be given to us for free. I imagine this is a know it when you see it situation.&quot; He replied following behind Saber though looking over his shoulder fir Ankou.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951914855626051605" class="chatlog__message-container " data-message-id="951914855626051605">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/1e1269cf5146ace39b16367cbf7869e2-5B89D.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="DrakinGP#2895" data-user-id="316913365689565184">DrakinGP</span>
+
+
+                        <span class="chatlog__timestamp">12-Mar-22 02:49 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951936695664771072" class="chatlog__message-container " data-message-id="951936695664771072">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/c0f492206970e0435b54bd0b9487f2ca-834D4.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ankou#0000" data-user-id="951729191731204106">Ankou</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">12-Mar-22 04:16 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ankou followed behind Donald and Galvin. He made sure Gavlin was sandwiched between the two. If anything attacked the trio Galvin would have two servants at his side. Thats a level of protection most people would wish for. 
+
+&quot;The straight path is not always the best path Donald.&quot; Rider replied criticizing Donald&#39;s logic. &quot;However I agree we should stick together so the middle path it is.&#39; 
+
+As the trio walked through the halls Ankou&#39;s head turned side to side taking in the lab equipment. What purpose did a lab serve in a tundra like this. &quot;Do we have a better idea of what we&#39;re looking for besides it being important?&quot; 
+
+<span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951947226043777074" class="chatlog__message-container " data-message-id="951947226043777074">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">12-Mar-22 04:58 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">“Yes an’ yes,” Donald curtly responded. “An’ no. I’m sure when we see it, it’ll be obvious. Yes, I know that I’m bein’ a tab bit foolhardy. An’ unless you’ve got a better idea on what we’re lookin’ for, I’m goin’ this way. Feel free to check out other parts of this place.”
+
+The Scot clearly had some animosity to their current surroundings, that was as clear as day. He still didn’t say why, and continued to trudge on towards the ‘heart’ of this place. Whatever the hell that meant, they’d find out why as soon as they got there.
+
+And still, not a single soul showed their face. Past the numerous offices and smaller labs, each filled to the brim with equipment and surely some jargon that he’d be unable to figure out on his own. That’d be the last place he checked for anything of note. Just the thought of it made him shudder. 
+
+“Ya know,” Saber broke the eerie silence, “I think that Shakespeare guy told me an’ Granel about some funny noises ‘round these parts. You two ‘ear anythin’ out of the ordinary so far?”
+
+So far, there was about zero ‘strange’ noises in this place. Perhaps the drip of a broken pipe, or even the faint scurry of a few critters within the ceiling at best. Not a single other thing was out of the ordinary. Had that bard fooled them, sent them on a wild goose chase?</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951947243676631080" class="chatlog__message-container " data-message-id="951947243676631080">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">12-Mar-22 04:58 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-951984272548450304" class="chatlog__message-container " data-message-id="951984272548450304">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-EDF65.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="???#0000" data-user-id="951729191731204106">???</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">12-Mar-22 07:25 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The lab was abandoned, yet spotless. Old, but immaculate. There were traces of dust and dirt, but so faint that one could forgive their presence. It didn&#39;t seem to be as rundown as the entrance would imply.
+
+Which made it all the more suspicious.
+
+After all, there were still traces of dust. Untidy documents. Machines that hadn&#39;t been touched in ages. By comparing objects and areas that were left unused to those that weren&#39;t, one could discern that the lab was still in use, but only certain portions of it. This meant that they were visitors, and that whoever occupied this lab might either be away or simply waiting ahead of them. There were rats, pests and faint traces of flora, but it was a far cry from the dilapidated buildings they had come across in the past.
+
+As they explored, they noticed that the lab was divided in several chunks. The help board was worn down, but one could still make out a few letters from it:
+<strong>MEDI--- B--</strong>
+<strong>R--</strong>
+<strong>STOR---</strong>
+
+The rest was indecipherable. The lab was too big to have only three areas, but it was still a start. <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952058696232480808" class="chatlog__message-container " data-message-id="952058696232480808">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">12-Mar-22 12:21 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Finally, a sign! In both the physical and metaphorical sense, as the group approached a board of sorts. It was as worn as his and Granel’s makeshift home, but what else did he expect? A pristine workplace with not a spec in sight? This place was too far removed from the rest of the world, if everything he’d been told was true.
+
+Unfortunately, the words were damaged enough to make it impossible to know for sure what each of these was, save for maybe the one that started with <strong>STOR</strong>. With enough room for three more letters, it felt safe to assume it was a storage room.
+
+That seemed awful. What did you store in rooms? Documents. “Pass,” Donald muttered. 
+
+From there, only a few stuck out as recognizable or even notible. One that was probably ‘Medicine’ something, and an odd one that only had three letters. What the hell would you find in a place like this that only had three letters in it?
+
+“Well,” Donald glanced at the other two, “how we want t’do this? Split up thrice, twice, or not at all? An’ which one sounds well for ya? If ye choose that <strong>STOR</strong> one, though, you’ll have to count me out. Never again.”
+
+He pointed to the one that only had a single letter left, “I say this one. Seems mysterious. Would fit the bill if it had some ‘strange noises’, yea?”</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952058708492427286" class="chatlog__message-container " data-message-id="952058708492427286">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">12-Mar-22 12:21 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                            <span class="chatlog__edited-timestamp" title="12-Mar-22 12:21 PM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952087835186434048" class="chatlog__message-container " data-message-id="952087835186434048">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">12-Mar-22 02:17 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;I don&#39;t much like the idea of splitting up in unfamiliar territory, but spending as little time as possible here sounds like a good idea also... I&#39;m okay to split up, if anything goes down I can just call out to Ankou, if the threat is still alive by the time he gets there is another question all together. From what I can see whatever we&#39;re supposed to find here should at the very least still look new given how the dust is settled around here. I don&#39;t have the highest hopes for the storage area though, despite how it&#39;s named donno if whoever&#39;s been here has been using it for that.&quot; Galvin spoke up watching the sign trying to figure out what each of these lines on the sign could be, &quot;The first one seems like it could be a Medical... Bar? That doesn&#39;t sound right, but nothing around here does, I don&#39;t know if I&#39;d call this place a hospital so doubt I can use that as reference. If this is just a lab, maybe the R stands for R&amp;D or Research and Development, at least that&#39;s the best guess I got here.&quot; he added holding his chin in thought before looking over to his own servant.
+
+&quot;What about you Ankou, as tactically minded as you are I bet you feel pretty strongly on how we move forwards yeah?&quot; he asked.
+
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952281409391824956" class="chatlog__message-container " data-message-id="952281409391824956">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/c0f492206970e0435b54bd0b9487f2ca-834D4.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ankou#0000" data-user-id="951729191731204106">Ankou</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">13-Mar-22 03:06 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ankou placed the but off his scythe against the floor. He leaned his weight on the weapon thinking over the options. &quot;Storage, Medical Bay might be the second one, I&#39;m far too familiar with those in my line of work. I&#39;d prefer if we stick together, if anything I should at least stay at Galvin&#39;s side.&quot; Ankou took a second between his words. If the group chose to stay together they&#39;d need to pick the best option. &quot;I don&#39;t think something important would be put in general storage, that&#39;d make life too easy. I think both of you are correct in choosing the suspicious one.&quot;
+
+Rider took only a moment before stepping forward ahead the group walking down towards R__. &quot;If anyone disagrees they can take a different path.&quot; 
+ 
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952328530316890152" class="chatlog__message-container " data-message-id="952328530316890152">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-EDF65.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="???#0000" data-user-id="951729191731204106">???</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">13-Mar-22 06:13 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">While the path split in three ways, it would be foolish to split up in unknown territory. Ambushes could lurk at any corner, for they had no idea on how the Nirvanans treated these labs. Were they still used? Or occupied as temporary shelters? Nobody knew, but there was strength in numbers.
+
+So, without further ado, they headed towards the area labeled as <strong>R--.</strong> Galvin&#39;s chest would swell with pride as they headed down a floor and realized that they were right on the money. The first thing that greeted them was an ubiquitous lettering nailed to the walls, saying <em>Research &amp; Development.</em> The sheer number of mechanical devices and leftover machines lurking in the corners of the room seemed to support that as well.
+
+The three explored, satisfied that they had found something worth their attention. Of course, that soon turned into disappointment once they realized that they had no idea <em>what</em> these machines did. They were almost alien to them, with how clunky and robust they looked. Some even had spikes or drills at the end, as if designed to either dig through the earth, or, from a more macabre perspective, pierce the flesh.
+
+Somehow, they doubted that they would find an instruction manual nearby. They searched far and wide, but all around them were mere machines and tools. <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952348614766764044" class="chatlog__message-container " data-message-id="952348614766764044">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">13-Mar-22 07:33 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Galvin ended up punching his fist on one of the tables in the lab, barring his teeth and letting out a bit of a growl in frustration. Here they were surrounded by all kinds of strange gizmos and gadgets and between the three of them there was no way of knowing what they did let alone what they were even for. Their first real lead and the dead end they were running into was pure ignorance.
+
+&quot;Don&#39;t the egg head sciencey types write shit down anymore? No journals around fine, but not even a sticky note? Press here to start nefarious creation? At best this just looks like some torture devices... Maybe medical bay was the right choice, the tip was the heart of Nirvana, maybe one of these machines ripped one out of somebody around here.&quot; he said only half joking, given how crazy things were around this place he was willing to put money on a pulsating heart thumping away in some room around this place at some point as he tried to inspect the machines some more, trying to tell if they were recently used or if they were abandoned like the rest of this place. Resting his hand on one, he wanted to inspect it for any small amount of mage craft on it at the very least.
+
+&quot;Either of you see a door or passage way deeper in, don&#39;t want to waste anymore time than we have to.&quot;
+
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952362884883677184" class="chatlog__message-container " data-message-id="952362884883677184">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">13-Mar-22 08:30 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">“Research and Development?” Donald asked. “That’s mighty borin’... figures.”
+
+And it sure as hell was.
+
+Machines. Drills. Equipment as far as the eye could see. In his own defense, stuff like this was way beyond his time. If it weren’t for the big pointy bits stuck to half the damn things, there wouldn’t even be a single clue in his head as to what went on in this place. Surely the one that was actually born in this timeframe would have some idea what this was, right?
+
+That was when Donald knew this was fruitless. Galvin had as little idea as he did. Great. No way in hell the other Servant knew a single thing about these mechanical monstrosities either. They had a carriage in this day and age, of all things! 
+
+“If they did, it’s surely somewhere else,” Donald said. “Er hidden. Er encrypted. Knowin’ my luck… scratch that thought. Wouldn’t fit.”
+
+And he had the luck he did. Didn’t always work, but when it did it did! Maybe all he had to do was walk around and just wait for whatever they desired to fall into his lap. They had to, regardless. Which left the Medicine place and a Storage place.
+
+“O lord, please don’t let this noise be in thee storage room,” Donald prayed. God had to give him this one grace, surely. 
+
+He turned to the other two frustrated individuals with crossed arms, “Well, I say now’s the time to split. Two places of note, two teams. Sort of. I can check that medicine place, you lot can get bloodshot eyes with the storage room. Sound like a plan?”</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952362940227530812" class="chatlog__message-container " data-message-id="952362940227530812">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">13-Mar-22 08:30 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952600779649331270" class="chatlog__message-container " data-message-id="952600779649331270">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/c0f492206970e0435b54bd0b9487f2ca-834D4.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ankou#0000" data-user-id="951729191731204106">Ankou</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">14-Mar-22 12:15 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Donald and Galvin where right... This room sucked! It was full of complex machinery that non of the three could even begin to understand. Even if there was something important in that room the trio would have no way of knowing. As the group stood there disappointed Ankou would poke the machines with his scythe in an attempt to make out what half of them could be. 
+
+Rider let out a sigh, they would have to split up afterall. &quot;Sounds like a plan Donald.&quot; Ankou replied moving along the Research and Development center. &quot;Oh and Donald... Save my grandfather your useless prayers.&quot; Praying to God was a pet peeve of Ankou&#39;s. He had seen many  people pray too many times before their death. Ankou always found it sad knowing his old man wouldn&#39;t and couldn&#39;t do anything to help them. Not to mention Ankou wasn&#39;t the hugest fan for paradise related reasons. 
+
+&quot;Come on Galvin we&#39;re headed to storage.&quot; And like that Ankou had taken his leave for storage. He didn&#39;t even look back to see if Galvin was coming. Teamwork just wasn&#39;t a strong suit of a lone reaper like Rider.
+
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952614630520406088" class="chatlog__message-container " data-message-id="952614630520406088">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">14-Mar-22 01:10 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;Yeah yeah just try and be cautious I guess, if either of these rooms end up being a bust just try not to go too far do catching up is easier. We&#39;re still surrounded for all we know.&quot; Galvin answered Saber before walking by him planting another of his watermarks on the servant, to use should the need to regroup becomes urgent.
+
+Following behind Ankou he spoke up, &quot;Yeah yeah, keep your cloak on... Also sheesh, you and the big man have a falling out or something? Don&#39;t got my hopes or anything like that,but I hope you&#39;re not about to tell me he&#39;s against us too cause you guys had a fight or something.&quot; 
+
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952647739286634598" class="chatlog__message-container " data-message-id="952647739286634598">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-EDF65.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="???#0000" data-user-id="951729191731204106">???</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">14-Mar-22 03:22 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">It was a rare occasion to find something so useful yet so useless at the same time. While the research lab did prove that the building housed important devices, it was worthless in the hands of the three who had found it. Back to zero, they decided to split up and explore the remaining rooms in pairs. One Servant in the storage and the other towards the medical room.
+
+...
+
+Ankou and Galvin entered the storage room, finding it surprisingly more spacious than they had imagined. There were filing cabinets, sure, but that wasn&#39;t the only way to store data. Server rooms, data drives, whiteboards containing a schedule. Information was displayed there on a daily basis. As they scanned the room, they came across curious descriptions. Research on the animals. Descriptions on the flora and fauna hosted on the island. Lamentations on how the city&#39;s purpose was deteriorating. Drilling plans.
+
+One particular document stuck out to them. A file describing the animals, but also a series of tests. Something about injecting them with chemicals and checking for a &#39;purity&#39; level. Whatever that was. It was all very odd and the storage section was far too big. It would take a while to explore all of it.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-952647814381465650" class="chatlog__message-container " data-message-id="952647814381465650">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="14-Mar-22 03:22 AM">03:22</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+...
+
+Donald, having had enough of papers and journals, headed off to the medical bay. He was greeted by the sterile stench of medicine and liquids instead. It was comparable to the hospital, but far worse in terms of smell. For something designed to cure you, it felt rather sickly. 
+
+He inspected the room&#39;s contents, skimming through pills, needles, bags and bottles. A doctor&#39;s paradise, albeit he could sense that some of these chemicals were not intended to heal, but to test. Poisons, placebos and even more mundane things, such as distilled water. These were followed by magical concoctions, birthed by alchemy, magecraft and the lovechild of the two. No alcohol in sight, unfortunately, which displeased his palate.
+
+The more he explored, the more overbearing that stench got, until he wondered if it was truly the smell of mysterious potions. He followed it closely, being led like a horse following carrots, until he eventually reached a frigid set of doors. The words <em>FREEZER</em> were inscribed to the door&#39;s side, clearly meant to store frozen items. <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952728024279842856" class="chatlog__message-container " data-message-id="952728024279842856">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">14-Mar-22 08:41 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">“How ‘bout you mind yer own business, and I’ll mind me own as well,” Donald shot back. Who did this guy think he was, being the boss of what he could and couldn’t do. Probably somewhat delusional, if he’s gonna call himself the grandson of God. The Throne sure did have a weird sense of humor.
+
+However, he didn’t push it further. A walk home was about the last thing he wanted at the time. Instead, he simply let Galvin do his thing and walk away. Whatever the hell this mark did, it better save him when he himself found the strange noise.
+
+At least the walk was uneventful. Donald only had a rough idea of what he’d find in his area, but at least he could tell when it was near. That foul chemical stench was all he needed to pinpoint the location. 
+
+It was a surprisingly spacious area, filled to the brim with all sorts of helpful and dangerous drugs. Besides the stereotypical needles and medical equipment for almost any occasion were the bottles. Rows upon rows of funny named white containers, each with its own name and label. Unfortunately, the one name he did know was nowhere to be seen. Not that he’d drink it, but that port was looking might dockable…
+
+ He couldn’t identify the purposes of even one drug, yet a few of them had odd labels. Bright red and yellow symbols, exclamation points, one even had a skull and crossbones front and center. 
+
+“What in the blazes is a doctor doin’ with ‘ese,” Donald said aloud. That wasn’t even the last of it, as next came the see-through bottles. Liquids and objects, with names that didn’t even try to hide what birthed them: Magecraft.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-952728345727086632" class="chatlog__message-container " data-message-id="952728345727086632">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="14-Mar-22 08:42 AM">08:42</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+Not all of them were obvious, but no self-respecting doctor would hide proper medicine next to vials that glowed bright green or had so much magic pumped into them a simpleton like him could feel it. 
+
+He stepped further down the row of cabinets and gagged. That stench was still there, and back in full force. Hell, it smelt even <em>worse</em> than when he walked in. Did they stuff a dead skunk in a drawer sometime back? 
+
+Watery eyes attempted to scout out a potential culprit, yet not a single fly was to be seen. No maggots, either. What the hell could it be?
+
+Donald pushed onward, desperate to get rid of the rancid smell. The stronger it got, the closer he must’ve been. By the time he reached the freezer, his nose was clamped shut with two fingers, and his mouth hid underneath his shirt. 
+
+“Oh, for the love of– the fuckers didn’t get their cold storage on! Must be some food that turned rotten..”
+
+His free hand yanked on the freezer door, eager to get that despicable stench dealt with proper. Maybe he could throw it at that other Servant for a good laugh.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952728399686795304" class="chatlog__message-container " data-message-id="952728399686795304">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">14-Mar-22 08:42 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-952991047120728064" class="chatlog__message-container " data-message-id="952991047120728064">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/c0f492206970e0435b54bd0b9487f2ca-834D4.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ankou#0000" data-user-id="951729191731204106">Ankou</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">15-Mar-22 02:06 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ankou let a cold breath out as the size of the storage room revealed itself. How could two people effectively search this place. There was so much information, documents upon documents waiting to be read through. The servant sifted through the paper with Galvin, whatever this facility was It had to do with wildlife on the island. Ankou&#39;s hands gripped the file detailing animal injections holding it in front of his face. 
+
+&quot;They where looking for something in the animals. Whatever this &#39;purity&#39; is perhaps its part of the puzzle to why everything here is so agressive.&quot; Ankou thought out loud sharing his thoughts with Galvin. The servant tucked the file under his jacket, it was worth showing everyone else. 
+
+&quot;Let&#39;s keep moving Galvin we&#39;re in the right spot&quot; Rider moved down the isles going through cabinet after cabinet. Surely there was another hit among these papers. 
+<span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953064719151931452" class="chatlog__message-container " data-message-id="953064719151931452">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-EDF65.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="???#0000" data-user-id="951729191731204106">???</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">15-Mar-22 06:58 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Donald was already having the worst time of his second life. Who knew that his main duties as a Servant would involve either sifting through papers, exploring abandoned buildings or looking at weird concoctions that made his tongue sting from the smell alone. At this rate, he started to wish that he hadn&#39;t been summoned at all! What was Granel even doing?
+
+To distract himself, he dug even deeper, trying to find something that could amuse him even a tiny bit. He followed the stench with more determination than a vicious hellhound, enduring the pain as he came across a freezer. His first instinct was that the meat had gone bad, which was a common issue back in his day. If only refrigerators had existed in his lifetime.
+
+<em>creak</em>
+
+He opened it up, dragging the door handles by the end. Cold air swept through, but his Servant body could barely feel it. It was dark inside and the lab light wasn&#39;t strong enough to illuminate clearly. He started looking for a light switch inside the oversized freezer, finally stumbling across something made of metal and plastic. He tapped it and was forced to blink his eyes, letting the light seep inside. He slowly pried open his eyelids.
+
+Reddish floor. Frozen entrails. Bodies in the stage of rigor mortis. It was a horrifying sight. Two women lie dead in front of him: One, with robes and armor that reminded him of royalty, yet their clothes were tattered and two of their arms were long gone. She showed signs of a struggle. A battle, to be precise. The victor was clear.
+
+The other, a girl that looked young enough to be his daughter, having a stab wound in her chest while cradling what appeared to be a Servant frame in her arms. Despite her sorry state, she had died with a smile on her face, as if accepting her death.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-953064775863119942" class="chatlog__message-container " data-message-id="953064775863119942">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-Mar-22 06:59 AM">06:59</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+Judging by the state of their corpses, they had died a few days ago. That, or the freezer had betrayed his expectations on their time of death. It could have been earlier or later and he wouldn&#39;t know in the slightest. All that he knew was that he felt repulsed at the sight of these two deaths. They didn&#39;t die in shame, but in honor. It drove him sick to the stomach.
+
+...
+
+Ankou and Galvin kept sifting through files, trying to find anything else of use. Unfortunately, besides the document about animals and purity levels, there wasn&#39;t anything of note. Instead, they inspected the paper closely: According to the researchers who wrote the file, it seemed like an animal&#39;s purity level was dictated depending on how they reacted to a specific substance. Unfortunately, the substance had no name, for it was scientific mumbo jumbo that the two weren&#39;t trained to read. Not even Latin, but Magecraft sigils that were designed to describe the sciences. A bastardization of the sigils that Ankou was used to seeing.
+
+While he could only shake his head in disappointment, Ankou sensed something else amiss around him. He could smell it. The stench of death in the air. Maybe it was because of his nature, but he could vividly feel it in the air: Someone had died nearby. Someone long, long dead. <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953072060597436426" class="chatlog__message-container " data-message-id="953072060597436426">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">15-Mar-22 07:28 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The smell was almost unbearable by the time the door was pried open. A faint cold breeze escaped from the freezer as Donald carefully stepped inside. Even worse, it was as dark as a moonless night out in the field. He fumbled for a switch, if only out of curiosity. An answer was in order, from the likes of this smell.
+
+But now that it was so… pungent, it was hard to shake the feeling that he <em>knew</em> this sort of smell. From a time long gone, one that was reminiscent of his own. Not much could have this sort of awful odor, and especially not a pretty one. Maybe these scientists had carved up a few animals, left to rot here instead of on a dissecting table?
+
+“Where the bloody hell is this switch? It’s usually– oh, bollocks, it’s a… touchy one,” Donald pressed hard on the button. Newfangled technology, next they would get rid of the switch altogether.
+
+A bright light blinded his adjusted vision, even when he squeezed his eyes shut as tight as they would go. The Scot blinked his eyes rapidly, and the scene was revealed. 
+
+Well, figured he knew what it smelt like. Not easy to forget the smell of death and bloodshed.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-953072311420977152" class="chatlog__message-container " data-message-id="953072311420977152">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="15-Mar-22 07:29 AM">07:29</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+A massacre was the only word he could think of, especially given the state of the older lass. One from a rich background, if those clothes were accurate. Both of her arms were missing and if the state of the rest of her body was anything to go by, they probably came off near the end of a drawn-out battle. Or right after. He didn’t want to know the answer.
+
+And the small one… ugh. A child. Even the sight made him wince, but he had to investigate right and proper. He stepped slowly towards her corpse and noted the mechanical frame cradled in her hands. The make was easily identifiable as a Servant Frame, as it looked identical to the one that mysterious swordsman had left behind. 
+
+Time of death? No way to discern. At least, not by him. Maybe one of the other two would know. He’d have to go fetch them. His other hand rubbed on that mark Galvin placed a few minutes ago, in some hope that it’d trigger an alarm on his end. 
+
+&quot;O Lord, grant these two yer utmost mercy.&quot;
+
+For now, Donald approached the older lady and grimaced. Another two souls to toast for, but maybe they had some identification on their bodies. Shakey hands started to search for any form of pockets.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953072350553849896" class="chatlog__message-container " data-message-id="953072350553849896">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">15-Mar-22 07:29 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953343135180791888" class="chatlog__message-container " data-message-id="953343135180791888">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">16-Mar-22 01:25 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Galvin tiredly rubbed his eyes as he nearly dropped another file back down onto the table letting out a sigh waving away the kicked up dust the floated around his face, &quot;Ugh, they really aren&#39;t gonna make tis stuff easy on us huh... Might be a good idea to put some of these in the carriage, just in case we find someone who can read it, willingly for us or not.&quot; he said before trying to blow his nose a bit to get the dust out, though the resulting sniffing led him to detecting the stench of death that lingered in the room. Looking around the room he scanned for where it could be coming a from, a body that was stuffed in a tight corner or between the file cabinets or shelves, &quot;Ankou... Looks like one of your jobs happened here a while ago... Seeing as you took the goods, remember where the rest is?&quot; he called out to his servant and he kept looking around the room for it.
+
+<span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953419440454791218" class="chatlog__message-container " data-message-id="953419440454791218">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/c0f492206970e0435b54bd0b9487f2ca-834D4.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ankou#0000" data-user-id="951729191731204106">Ankou</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">16-Mar-22 06:28 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ankou stopped dead in his tracks, his hat tipping up from the drab documents. Galvin was right, there was a very familiar feeling in the building. Ankou knew it very well. He pushed the butt of his scythe on the floor helping himself to stand straight. &quot;It is that way&quot; Ankou pointed his finger towards the exit. The signs clearly pointed to the medical bay. &quot;Donald has found something interesting that&#39;s for sure.... Galvin let us go meet with our comrade.&quot; 
+
+Ankou made a swift exit from the storage room. Once again he forgot to look behind for Galvin. The papers that Ankou and Galvin found indicated that live experiments were happening in this facility. The experiments involved a mysterious substance, perhaps the corpses ahead could fill in a missing piece of the puzzle.
+
+&quot;Donald!&quot; Ankou called out his teammates name as he rounded the hallways to the med bay
+
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953423396497158144" class="chatlog__message-container " data-message-id="953423396497158144">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">16-Mar-22 06:44 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Well, that was certainly a strange noise. Only for a few moments, anyhow, before the sound was recognizable: Ankou. Faint, but apparent.  Either they had found something important, or his touch of that weird mark alerted Galvin. 
+
+Donald pulled away from the corpse and stepped back to the front entrance of the freezer. “In ‘ere! Looks like someone murdered a pair of lasses and stuffed ‘em in this cold storage.”
+
+He waited for the two to finally enter the room before he waved frantically towards them. “Come ‘ere and take a look fer yerself, Ankou. Galvin, I’d only enter if yer stomach is as strong as yer mind. It ain’t pretty.”
+
+With that brief and vague warning said, he returned his gaze back to the dismembered lady, “I was just ‘bout to check the… left ‘un. Fer any identification. Other one… might ‘ave to sign a rain check fer a while.”
+
+There was no elaboration. He figured there didn’t have to be any.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953423424049520680" class="chatlog__message-container " data-message-id="953423424049520680">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">16-Mar-22 06:44 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953742666275913828" class="chatlog__message-container " data-message-id="953742666275913828">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 03:52 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Nodding Galvin followed after his servant keeping his eyes peeled in case whoever did the killing was nearby, stepping into the Medical Bay he looked over where Donald was. Keeping himself a little more quiet as he braced for the sight he was about to stumble upon, he wanted to comment that it couldn&#39;t be that bad, that he was just exaggerating, but given the state of Nirvana he knew it was a very very likely possibility that it&#39;d turn his stomach a bit. Coming up behind the two he peered down at the woman eyes almost sinking into his face as he just store. It wasn&#39;t the first time he&#39;d seen a corpse, it wasn&#39;t going to be the last, but this one did stir him quite a bit.
+
+The things they&#39;d done to her body, the pain he could only have imagined was caused by it, such wanton suffering endured and for what? It churned the contents of his stomach a bit, but the thing that really shook him to the core was that smile, that damned smile on her face, he couldn&#39;t believe such an expression could be had for a fate like... like this. He wouldn&#39;t put it past the people who did this to have contorted her face into this, morbid as it may have been it was better than thinking she enjoyed this somehow, the former was much easier to stomach than how twisted a mind has to be to want this, &quot;Identification on... <em>This</em> I kinda doubt that, if she was a scientist or Dr. here maybe we&#39;d find a badge, don&#39;t know if this is the kind of place you keep your wallet with you... Maybe she could have a file in storage, but being able to read it would probably be unlikely given the strange language they started using at some points.&quot;
+
+<span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953753009798656070" class="chatlog__message-container " data-message-id="953753009798656070">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/fe15d67c37b4ce3484bfa134caff1534-EDF65.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="???#0000" data-user-id="951729191731204106">???</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 04:33 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The three mulled over the horrifying sight a while longer. It was no longer a case of being disgusted at the sight of blood or gore, since all of them had grown desensitized to it ever since they docked on the island. No, it was a matter of principles. Seeing two women be brutalized like this, one so young as well, filled them with a heavy guilt. 
+
+Minutes passed as they eventually decided to take a closer look. The freezer was cold, but their stares were colder. They methodically inspected the corpses for any signs of identification, keeping their emotions at bay in order to even perform such an act. Two ID cards popped out, with plastic casing that felt rather familiar.
+
+After all, it was the same ID cards that the investigators had on them back when they joined the mission. A way for their various sponsors to render their membership &#39;official&#39;, so to speak. In other words, these dead women were none other than fellow investigators. Butchered and left to rot in a freezer. 
+
+<em>tap tap</em>
+
+They didn&#39;t even get the luxury to dwell on that revelation. A mere moments later, footsteps came running down the hallway. Howling laughter could be heard.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953753054249893929" class="chatlog__message-container " data-message-id="953753054249893929">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-D7A62.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Giovanni Verga#0000" data-user-id="951729191731204106">Giovanni Verga</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 04:34 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;Fee-fi-fo-fum.&quot; An aged man chattered his teeth as he accosted the trio, adjusting his thick, black shades that felt like they covered most of his face. His intents could only be discerned by his inexplicably wide grin.
+
+&quot;I smell three souls of mice and men. Be they alive or be they dead, I&#39;ll make sure they don&#39;t meet a swift end.&quot; Verga chuckled, giggling to himself before staring at the men inside of the freezer.
+
+&quot;Ooooh-la-la!&quot; He exclaimed. &quot;What&#39;s going on here, hmmm? I certainly didn&#39;t expect to see people around here. Never mind corpses of all things.&quot; He twirled his mustache around. <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953757830022852658" class="chatlog__message-container " data-message-id="953757830022852658">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 04:53 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">He took his sweet time with the older lady, mind steeled and hands steady. This wasn’t the first time he’d done such a dastardly deed, but the circumstances then were infinitely different. Battlefield, desperation from dehydration, necessary to know if the dead was a beloved or another schmuck killed off for some rich folk he’d never meet. 
+
+Fortunately, his search was not in vain. An ID card was pulled out of a hidden pocket, one that had seen much better days. A name had been printed on the front, alongside a name that meant nothing and a face that was a while back. The same occurred with the younger lady, which made it all the more confusing. Why did such a little lass have an official looking voucher? With a fancy, official looking name no less.
+
+Wait a moment... Granel had one much similar to this one. From the people who ‘sponsored’ the expedition. Were they—
+
+“<em>Fee-fi-fo-fum</em>.”
+
+Donald whipped around, ID card dropped as both his weapons were gripped tight. A dastardly man approached with shades as black as night. Well kept hair and a fine suit pointed them as a richer individual, yet that signature mana reading painted another picture. 
+
+Servant.
+
+He prattled on, and Saber did not attempt to stop them. They certainly weren’t concerned about the corpses, and showed no hint of sadness or anguish. Donald stared swords into the man, past even those thick sunglasses. He might not be the murderer himself, but complicity was still on the table. 
+
+“I could ask ye the same thing, stranger,” Donald spit out. Verga wouldn’t see anything but the barrel of an old pistol suddenly stare him down, equally as dark as the eyeglasses. “An’ I’ll save us the time and ask ye. Not too many good folk act so chipper at the sight of two dead lasses.”
+
+An echo clicked in the smaller space, a hammer primed to fire. “Unless ye want a third black eye.”</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953757843750801418" class="chatlog__message-container " data-message-id="953757843750801418">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">17-Mar-22 04:53 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                            <span class="chatlog__edited-timestamp" title="17-Mar-22 04:53 AM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953865150643986472" class="chatlog__message-container " data-message-id="953865150643986472">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/c0f492206970e0435b54bd0b9487f2ca-834D4.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ankou#0000" data-user-id="951729191731204106">Ankou</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 11:59 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ankou looked at the lifeless bodies. It was the first time he&#39;d seen a corpse while off his job. For once Ankou stared down a corpse in the corporeal world, however, it felt no different. They were dead plain and simple, no amount of gore or physical dread would make Ankou flinch. Perhaps it was a part of his humanity that he could never get back. 
+
+Ankou&#39;s deep thoughts had caused him to neglect the ids. The servant shook his head, now was not a time to reflect. He leaned over Donald&#39;s shoulder to catch a glimpse of the card being cradled in Saber&#39;s hand.  
+
+Before Ankou could look over the ID properly a foreign voice came from behind them. Ankou stared down the man before them his scythe at hand. Rider would remain silent letting his scythe serve as an extra threat ontop of Donald&#39;s weapons. Hopefully that would be enough to convince the stranger to make his intentions known.
+
+<span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953867566965743636" class="chatlog__message-container " data-message-id="953867566965743636">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 12:09 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Galvin&#39;s eyes rested on the IDs that Donald had found on the bodies, and the worry that he had back with Granel was pretty much confirmed. An investigator, luckily not from their team dead, both of them in fact, with twisted expressions on their faces it could only mean they probably went crazy along with this place. The timeline has certainly changed. But unable to dwell on it long the master was pulled from his thoughts by the sound of an unfamiliar approaching voice. Standing up and turning to the door he spotted Verga in the door way peering at them in the freezer. With Donald and Ankou already preparing for a fight as words were exchange between the former and Verga, despite his pride Galvin elected to stay behind the two Servants. The last thing he needed was to step up and get himself killed, and he&#39;d likely be more help if he found the right time to strike. Nevertheless, he gripped the straps of his calabash prepared to drop the gourd from his back when need be.
+
+<span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953931632212082689" class="chatlog__message-container " data-message-id="953931632212082689">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-D7A62.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Giovanni Verga#0000" data-user-id="951729191731204106">Giovanni Verga</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 04:23 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The writer met Donald&#39;s threat with complete apathy, letting it lean on his forehead as long as he pleased. In fact, he seemed amused more than anything, and the same applied to Ankou&#39;s scythe.
+
+&quot;Simmer down.&quot; He slowly raised up his own hand. &quot;I am not your enemy and certainly not enough of a threat to warrant such treatment. If you are worried that I might have killed those two ladies there, then let me put you at ease: This is my first time exploring this place.&quot;
+
+The three were unsure whether to trust this fellow or not, but the following words would sound familiar to Donald&#39;s ear. &quot;I&#39;m looking for a fellow known as William Shakespeare. Short, rather ugly and with an obnoxious hat. Rings a bell?&quot; He asked, still keeping his wide grin while doing so.
+
+&quot;Oh, and also,&quot; He added on, wiggling his finger as he pointed to a nearby wall. &quot;you missed a spot. Outside.&quot; He said cryptically with a giggle. Outside? <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954049914118238278" class="chatlog__message-container " data-message-id="954049914118238278">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-D84F3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="951729191731204106">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">18-Mar-22 12:13 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">It took a few moments for Donald to slowly lower his pistol. Even when it ran parallel to his own body, it was not returned to where it came from. “I apologize, then. Not me intention t’brain people who haven’t done no wrong… that I know of.”
+
+Wait, William Shakespeare? That was the guy that told them to come to this place at all, and helped them on that ship! What the hell did this guy want with him?
+
+“I know of that guy,” Donald explained, “an’ I don’t know where he is. Last I saw of ‘im was in <span class="chatlog__markdown-mention">#desert-hospital</span>, but that was a while back. Doubt he stuck around, after tellin’ me and me partner to check this place out.”
+
+Saber relaxed his own stance, half because this individual seemed vaguely trustworthy. Enough to not immediately threaten the life of, anyhow. Besides, sounded like they were on the hunt for different things, and while he appreciated the bard, he wasn’t going to lie to some stranger.
+
+Stranger… no, this guy was familiar. Very familiar. Much like those ID cards from the corpses right behind him, this guy reminded him of something. With his mind taken off of the immediate danger this guy could have, his gears could properly turn. 
+
+Then, it clicked like a pen. “Wait a second, were ye in a store a week er two back? With that one robot and their Servant? Coulda swore there was another fella in there, probably threw ye across the place like a sack o’ potatoes.”
+
+Now Donald was getting distracted with his own ideas. Hopefully one of the other two could rightfully ask about the ‘spot outside’, in all of its mysterious glory.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954049935211376671" class="chatlog__message-container " data-message-id="954049935211376671">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">18-Mar-22 12:13 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954159415957803010" class="chatlog__message-container " data-message-id="954159415957803010">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/c0f492206970e0435b54bd0b9487f2ca-834D4.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ankou#0000" data-user-id="951729191731204106">Ankou</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">18-Mar-22 07:28 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Despite the clarification of whose side Vega was on, Ankou would keep his scythe ready. Ankou even when no one was around would have his scythe ready to strike. It was a habit born from wishful thinking, hoping death would show their face one day. 
+
+At this point Ankou had no clue what Verga and Donald where talking about. Ankou remembered Granel giving some mention of Shakespeare but beyond that Ankou had no clue. Verga and Donald where the first people Rider had come across since the ship &#39;docked&#39;. 
+
+Ankou self consciously tipped his hat as Verga insulted Shakespeare&#39;s. &quot;Unfortunately I don&#39;t know anything about this Shakespeare guy... I&#39;m more interested in the information you have that we supposedly missed.&quot;
+
+<span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="DrakinGP#2895">@DrakinGP</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954428122923675648" class="chatlog__message-container " data-message-id="954428122923675648">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/7b4210c186a2d8918877856705406e10-D62D9.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Galvin Sterling#0000" data-user-id="951729191731204106">Galvin Sterling</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">19-Mar-22 01:16 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;What exactly do you mean by missed a spot outside?&quot; Galvin finally spoke up as the tension in the air started to ease off, he still held onto his straps, but he relaxed his shoulders a bit more, noting that Ankou was still in attack position, &quot;We hadn&#39;t exactly gotten to come the entire place out so you&#39;ll have to forgive us if we missed more than just one spot.&quot;
+
+<span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="nebby#3980">@Nubby</span> <span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954502542396649553" class="chatlog__message-container " data-message-id="954502542396649553">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20main-lab%20%5B915621007237189663%5D%20%282022-03-08%20to%202022-03-25%29.html_Files/5deb213671bc5e9c946b6aa0416525d9-D7A62.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Giovanni Verga#0000" data-user-id="951729191731204106">Giovanni Verga</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">19-Mar-22 06:12 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;Oh, it&#39;s you. My poor back still hasn&#39;t recovered from last time...&quot; Verga giggled, sluggishly stretching his neck around, as if to prove a point. While Donald had gone docile, Ankou and Galvin were still rather suspicious of the new arrival. Not only had they never met this peculiar individual, but the way Verga behaved was enough to give them the creeps.
+
+&quot;What do you think it means? Sounds pretty straightforward to me.&quot; The writer shrugged. &quot;Come, follow me.&quot; He said, heading towards the lab exit.
+
+<span class="chatlog__markdown-mention">#snow-general</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>
