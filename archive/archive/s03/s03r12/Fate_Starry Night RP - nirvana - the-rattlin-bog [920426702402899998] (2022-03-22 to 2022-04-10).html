@@ -1,0 +1,2143 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-rattlin-bog</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/whitney-300-1FE35.woff);
+            font-family: Whitney;
+            font-weight: 300;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/whitney-400-83E7B.woff);
+            font-family: Whitney;
+            font-weight: 400;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/whitney-500-47E37.woff);
+            font-family: Whitney;
+            font-weight: 500;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/whitney-600-9EC09.woff);
+            font-family: Whitney;
+            font-weight: 600;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/whitney-700-A7A71.woff);
+            font-family: Whitney;
+            font-weight: 700;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+            image-rendering: high-quality;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .preamble {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            max-width: 100%;
+            padding: 1rem;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 1rem;
+        }
+
+        .preamble__entry {
+            margin-bottom: 0.15rem;
+            color: #ffffff;
+            font-size: 1.4rem;
+        }
+
+        .preamble__entry--small {
+            font-size: 1rem;
+        }
+
+        .chatlog {
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chatlog__message-group {
+            margin-bottom: 1rem;
+        }
+
+        .chatlog__message-container {
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message-container--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message-container--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__message {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding: 0.15rem 0;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message:hover {
+            background-color: #32353b;
+        }
+
+        .chatlog__message:hover .chatlog__short-timestamp {
+            display: block;
+        }
+
+        .chatlog__message-aside {
+            grid-column: 1;
+            width: 72px;
+            padding: 0.15rem 0.15rem 0 0.15rem;
+            text-align: center;
+        }
+
+        .chatlog__reference-symbol {
+            height: 10px;
+            margin: 6px 4px 4px 36px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .chatlog__short-timestamp {
+            display: none;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message-primary {
+            grid-column: 2;
+            min-width: 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            margin-bottom: 0.15rem;
+            align-items: center;
+            color: #b5b6b8;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-avatar {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__reference-author {
+            margin-right: 0.3rem;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link .hljs {
+            display: inline;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.chatlog__markdown-spoiler) {
+            color: inherit;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__header {
+            margin-bottom: 0.1rem;
+        }
+
+        .chatlog__author {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__bot-label {
+            position: relative;
+            top: -0.1rem;
+            margin-left: 0.3rem;
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__content {
+            padding-right: 1rem;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__attachment {
+            position: relative;
+            width: fit-content;
+            margin-top: 0.3rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 999;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #dcddde;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            max-width: 520px;
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            background-color: #2f3136;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3rem;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25rem;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: rgba(46, 48, 54, 0.3);
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author-container {
+            display: flex;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author {
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__embed-author-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-description {
+            color: #dcddde;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5rem;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6rem;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 50px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-field-value {
+            color: #dcddde;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            max-width: 80px;
+            max-height: 80px;
+            margin-left: 1.2rem;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6rem;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.2rem;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            margin: 0.35rem 0.1rem 0.1rem 0;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background-color: #2f3136;
+            align-items: center;
+        }
+
+        .chatlog__reaction:hover {
+            border: 1px solid hsla(0,0%,100%,.2);
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35rem;
+            color: #b9bbbe;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .chatlog__markdown-preserve {
+            white-space: pre-wrap;
+        }
+
+        .chatlog__markdown-spoiler {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-spoiler--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-spoiler--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .chatlog__markdown-spoiler--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-quote {
+            display: flex;
+            margin: 0.05rem 0;
+        }
+
+        .chatlog__markdown-quote-border {
+            margin-right: 0.5rem;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .chatlog__markdown-pre--multiline {
+            margin-top: 0.25rem;
+            padding: 0.5rem;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .chatlog__markdown-pre--multiline.hljs {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .chatlog__markdown-pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__markdown-mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(88, 101, 242, .3);
+            color: #dee0fc;
+            font-weight: 500;
+        }
+
+        .chatlog__markdown-mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .chatlog__markdown-timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #a3a6aa;
+        }
+
+        .chatlog__emoji {
+            width: 1.325rem;
+            height: 1.325rem;
+            margin: 0 0.06rem;
+            vertical-align: -0.4rem;
+        }
+
+        .chatlog__emoji--small {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .chatlog__emoji--large {
+            width: 2.8rem;
+            height: 2.8rem;
+        }
+
+        .postamble {
+            padding: 1.25rem;
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/solarized-dark.min-BA98F.css">
+    <script src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/highlight.min-D8D27.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__markdown-pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/lottie.min-99657.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('chatlog__message-container-' + id);
+            if (!element)
+                return;
+
+            event.preventDefault();
+            element.classList.add('chatlog__message-container--highlighted');
+
+            window.scrollTo({
+                top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                behavior: 'smooth'
+            });
+
+            window.setTimeout(function() {
+                element.classList.remove('chatlog__message-container--highlighted');
+            }, 2000);
+        }
+
+        function showSpoiler(event, element) {
+            if (!element)
+                return;
+
+            if (element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+
+            if (element.classList.contains('chatlog__markdown-spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__markdown-spoiler--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="attachment-icon" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z"/>
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z"/>
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z"/>
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z"/>
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nirvana / the-rattlin-bog</div>
+
+            <div class="preamble__entry preamble__entry--small">Deep within the Nirvana swamp, surrounded densely by trees and water, lies the remains of a plane wreck. Half of it hangs (mostly) intact in the shrubs of a broken tree, while the other half peppers the surroundings with fractured metal. While uneventful and dead for quite a long time, recently, it seems as if there&#39;s been new life breathed into this old bird&#39;s grave... 
+
+Named fondly the &quot;Rattlin&#39; Bog&quot; due to the mangled plane&#39;s shakey footing, the area won&#39;t seem like much from the outside in. But make no mistake, there&#39;s more than meets the eye in this secluded bog. In truth, the clever works of Ronda Parker are at play here, making it a splendid place for Ryn to take as his workshop.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 22-Mar-22 12:00 AM and 10-Apr-22 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-958840495939919882" class="chatlog__message-container " data-message-id="958840495939919882">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/d5a841d9ede5502bd09313faea7f001a-9D8FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Granel Mason#0000" data-user-id="930828156963815484">Granel Mason</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">31-Mar-22 05:29 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">This place sucked.
+
+As Granel left the roars of Vortigern and the others behind, Granel found himself chasing after Vortigern&#39;s Master, William Shakespeare.
+
+&quot;<strong>Alright, Alan Smithee. Where are you hiding?</strong>&quot; Granel muttered as he marched forward. That transcript came to mind. A fake copy of Romeo and Juliet. Why would Verga waste time showing it to him?
+
+Was the Alan Smithee theory truly correct? These thoughts rushed through the guard&#39;s head. At least there were less insects here. Maybe they noticed the upcoming bloodbath and were preparing for their next meal.
+
+&quot;<em><strong>WILLIAAAAAAAAAAAAAAAAAM!!!</strong></em>&quot; Granel roared, causing birds to shake from their trees, including a suspiciously rotten one.
+<span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959174830995959818" class="chatlog__message-container " data-message-id="959174830995959818">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-1C369.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="William Shakespeare#0000" data-user-id="930828156963815484">William Shakespeare</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">01-Apr-22 03:38 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><a href="https://youtu.be/cfnYoQzccY8?t=46">https://youtu.be/cfnYoQzccY8?t=46</a></span>
+
+                    </div>
+
+
+                        <div class="chatlog__embed">
+                                <div class="chatlog__embed-color-pill" style="background-color: rgba(255, 0, 0, 255)"></div>
+
+                            <div class="chatlog__embed-content-container">
+                                <div class="chatlog__embed-content">
+                                    <div class="chatlog__embed-text">
+                                            <div class="chatlog__embed-author-container">
+
+                                                        <a class="chatlog__embed-author-link" href="https://www.youtube.com/channel/UCbIioJh3S4V1CC135CvIvug">
+                                                            <div class="chatlog__embed-author">Fabian Harrison</div>
+                                                        </a>
+                                            </div>
+
+                                            <div class="chatlog__embed-title">
+                                                    <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=cfnYoQzccY8&amp;start=46">
+                                                        <div class="chatlog__markdown chatlog__markdown-preserve">Kaiji Season 2 Little Zawa</div>
+                                                    </a>
+                                            </div>
+
+                                        <div class="chatlog__embed-youtube-container">
+                                            <iframe class="chatlog__embed-youtube" src="https://www.youtube.com/embed/cfnYoQzccY8" width="400" height="225"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-959174874717384766" class="chatlog__message-container " data-message-id="959174874717384766">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="01-Apr-22 03:38 AM">03:38</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Granel was fuming, smoke erupting from his ears with every shout that he had directed towards the empty skies. Not even the birds could cope with such a noisy neighbor, leaving for greener, more rot infested pastures. The swamp was a shell of its former self, covered in red detritus and filled with a miasma of death.
+
+Even William disliked it, hence why he was standing on top of the branches of one of the rare trees that had yet to be fully infested by rot.
+
+&quot;Who&#39;s Alan? Do I know them?&quot; The bard giggled, adjusting his hat as a notebook appeared in his left hand. He scribbled a few lines on it.
+
+&quot;Hmmm hmmm.&quot; He muttered to himself, before turning back to Granel and any investigators that had joined him. &quot;Do you all have any preferences for today&#39;s story? <em>Rise of Vortigern</em> has a nice ring to it, but <em>Revenge of Vortigern</em> has that extra layer of pizzazz as well. <em>Death of the Investigators</em>, mayhaps?&quot;
+
+He giggled, exuding mischief and malice with his tone alone. &quot;I wouldn&#39;t waste your time on me, if I were you. I&#39;ve escaped from far more precarious situations, after all. I could run laps around you the entire day and you wouldn&#39;t even notice that I was toying with you. Heheh.&quot; He bragged, a soft smile appearing on his face as he turned to his side and stared at the battle happening in the distance. Or what he could make of it, at least.
+
+&quot;If I were in your positions, I&#39;d much rather spend what little time I had with my own Servants. After all, they are no match for Vortigern. I would say that I don&#39;t even need to support him anymore! He is capable of defeating the entirety of Nirvana, if he so wills it.&quot; William sneered, a smile turning into a grin and erasing his cherubic appearance altogether, making it look as if his words were a threat.
+
+As he awaited the investigators&#39; reply, a flaming blade came crashing town in the bog, landing right next to Granel&#39;s feet. It almost scorched him, the overwhelming heat being far more overpowering than a sauna.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-959174975170936912" class="chatlog__message-container " data-message-id="959174975170936912">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="01-Apr-22 03:38 AM">03:38</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+&quot;He seems to be having fun.&quot; William remarked, snapping his fingers as a minor enchantment was cast on the blade, with a simple command. The sword rose in the air, spinning repeatedly before flying back to its owner. 
+
+&quot;I wonder which Servant he will cut down first. Bets, anyone? I&#39;ll start. 10 Nirvana dollars that the Roman bites the dust first!&quot; He laughed. <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959257949061124127" class="chatlog__message-container " data-message-id="959257949061124127">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/1ebad7ad85c36ca496574529618951e2-083D3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Dante Colt#0000" data-user-id="930828156963815484">Dante Colt</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">01-Apr-22 09:08 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em>He ran as far as he could, as quick as he could, trying to catch up to the two who had already so easily left him behind to fend against Vortigern. He could feel his feet slipping through the mud, the wet earth threatening to give from under his foot in order to trip him the entire race there.</em>
+
+<em>However, after a moment of chasing and yelling out to his comrade in arms, he had finally caught up, trying to get towards Granel as he could, only stopped as the sight of the flaming sword had struck the earth with a steamy crash, the hot steam making him cover his face with his arm. Okay, so he had made it.</em>
+
+<em>William’s cocky comment about Octavius had finally made him speak up, moving through the mist, his shrill voice had picked up from it all. He had wished on his servants death, but something in Dante flared up a bit, a fire struck in him like Tizona’s flame. His voice a mixture of fear but a show of will.</em>
+
+“Y—You underestimate my servant W—William,  but he is, is no pushover. Eventually you will learn that.”
+
+<em>He said loudly, hoping in his own way it was a insult. He hadn’t had much to go with, however, he shot what he could.</em></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959258077813674004" class="chatlog__message-container " data-message-id="959258077813674004">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/21cb78f1d378cd27702e8536301be457-40F24.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="nimbus#4116" data-user-id="292080440146395146">nimbo</span>
+
+
+                        <span class="chatlog__timestamp">01-Apr-22 09:09 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959356511409299507" class="chatlog__message-container " data-message-id="959356511409299507">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/26fc8624fae0a4d9ba5afaa86f02b392-4CF38.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Granel Mason#0000" data-user-id="930828156963815484">Granel Mason</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">01-Apr-22 03:40 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;<strong>Shut up, William.</strong>&quot; Granel growled as he looked up at the Servant. He peered into the author&#39;s smug eyes. He knew that the situation was under control. He could dodge Granel for as long as was needed, until Vortigern had done his job.
+
+He was going to be in for a nasty surprise.
+
+As the guard glared up at the author, he remembered the discussion with Verga. Of course William was able to keep up such a good guise. Who here had met the individual known as &quot;William Shakespeare&quot; as a Servant. If nobody could discern fake from truth...
+
+&quot;<strong>Then he&#39;s no different from a Smithee nobody knows isn&#39;t a real person. Both are frauds...</strong>&quot; Granel murmured to himself. Did he drop the bombshell now and hope for William&#39;s reaction to confirm such a thing? Maybe if he told him at the right time, it could unnerve the Servant enough for Granel to smash his skull in without Self-Preservation getting in the way.
+
+Hopefully.
+
+&quot;<strong>I&#39;m not a reader, William. Soap operas are more my style.</strong>&quot; Granel mused at William&#39;s attempts to bait him. His rage would get the better of him. Not yet, though. Not before he felt William&#39;s windpipe collapse under Granel&#39;s might. &quot;<strong>Though if that old man wrote an obituary on you, I&#39;d seriously consider it.</strong>&quot;
+
+Wordlessly, Granel picked up a random rock that had appeared in the gash created by Vortigern&#39;s blazing sword. He held it in his hand, tossed it upwards, before scratching his chin. It felt raw from the heat. 
+
+&quot;<strong>Hello, Dante. Let&#39;s take down this scoundral together! Unfortunately, this is the only weapon at my disposal.</strong>&quot; Granel grumbled, showing him the rock. &quot;<strong>It&#39;s almost too small, but if I put my back into it...</strong>&quot;</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-959356595836424222" class="chatlog__message-container " data-message-id="959356595836424222">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="01-Apr-22 03:40 PM">15:40</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Granel stretched, before popping his back with a grunt. &quot;<strong>Oh! There we go.</strong>&quot;
+
+Suddenly, with the force of a prize pitcher, Granel flung the stone like a baseball at William&#39;s tree. It almost threatened to tear through the tree itself, causing it to groan beneath William&#39;s feet.
+
+Then it began to tilt, author and all.
+
+&quot;<strong>NOW, MISTER DANTE!</strong>&quot; Granel roared, rushing forward.
+<span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959376228052258846" class="chatlog__message-container " data-message-id="959376228052258846">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-97105.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ace Colin#0000" data-user-id="930828156963815484">Ace Colin</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">01-Apr-22 04:58 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Having left Emeilia in somewhat of a safe spot, Ace was free to run towards Granel&#39;s scream. His anger-filled shoes helped him close the distance faster, bouncing and sliding across the muddy terrain effortlessly.
+
+Y—You underestimate my servant W—William...
+
+<strong>I&#39;m not a reader, William...</strong>
+
+The veteran could hear both Granel and Dante&#39;s voices from afar. He crouched beneath a safe tree, carefully observing the situation. William was standing atop a tree branch, looking as smug and as despicable as ever. On the side opposite to his tree were his two colleagues, exchanging what he guessed to be pleasantries with the playwright. As it stood, William sat in the halfway point across Ace and the others, his back to the veteran. Ace quietly cocked his gun and held his breath, patiently waiting for an opportunity to arise...
+
+<strong>NOW, MISTER DANTE!</strong>
+
+At the moment the rock collided with the tree, Ace jumped out of his cover, taking aim and firing two shots on William. A pincer attack from the investigators!</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959376340807716884" class="chatlog__message-container " data-message-id="959376340807716884">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/423ced3a1469fc2b0a6cf97d6bd6c46f-E42C7.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Spiritssss#5397" data-user-id="189805606700318721">Spirits</span>
+
+
+                        <span class="chatlog__timestamp">01-Apr-22 04:59 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">( <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> )</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959528374945054730" class="chatlog__message-container " data-message-id="959528374945054730">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/1ebad7ad85c36ca496574529618951e2-083D3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Dante Colt#0000" data-user-id="930828156963815484">Dante Colt</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">02-Apr-22 03:03 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em>He hadn’t even taken a moment to catch his breath, before he was commanded to begin his run. . . Again. He had to go to William, no? H—he, he could could that. . . A small gasp of air would help him. When the large security guard had began his race towards William, so did Dante, lagging slightly behind as he forced him to not trip and fall. What even was the plan. . . Tackle him? Dante, a tackler? It sounded like blasphemy.</em>
+
+“J—just make sure he is in grasp, then we can go further. . .”
+
+<em>Even in the midst of his own confusion of what to do, he continued. Forcing his body to tense up for the impact that he knew he would receive. His goal was what he thought was needed, he just needed to get close to William, or at least get him towards Granel’s grasp. He could do that, right?</em>
+
+<em>In a brief moment, Dante branched from Granel, going for the side of the tree to get the bard had he gone towards his direction in order to avoid the bullets. . . The doctor’s speed slowed a bit, preparing himself for a tackle had it been needed to happen.</em></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959528467546914857" class="chatlog__message-container " data-message-id="959528467546914857">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/21cb78f1d378cd27702e8536301be457-40F24.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="nimbus#4116" data-user-id="292080440146395146">nimbo</span>
+
+
+                        <span class="chatlog__timestamp">02-Apr-22 03:03 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959538327659376690" class="chatlog__message-container " data-message-id="959538327659376690">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-1C369.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="William Shakespeare#0000" data-user-id="930828156963815484">William Shakespeare</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">02-Apr-22 03:42 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;Likewise.&quot; William shrugged at Dante&#39;s declaration. Just like how the boy had complete faith in Octavius, William had zero doubts that Vortigern would lose that fight. His masterpiece had come too far to lose in such an undignified manner. 
+
+That confident smile turned into a frown once Granel continued speaking. William didn&#39;t feel defeated in the slightest, but he couldn&#39;t help but feel frustrated at the fool&#39;s words. How could someone sound so confident yet so stupid all the same?
+
+&quot;Oh, don&#39;t be such a boor. It&#39;s already a struggle to take you seriously with that haircut of yours. Or lack thereof.&quot; William replied, looking amused as despite all his bravado, the most Granel could afford to use against him was a rock. It didn&#39;t even reach him, hitting the tree instead as one of Granel&#39;s friends emerged from the shadow and aimed a pistol at the bard.
+
+William didn&#39;t care, simply hopping down the branch like an angel as Ace fired his gun. To his surprise, the bullets whizzed right past the Caster, barely missing him. Self Preservation was a truly annoying skill to deal with.
+
+The writer gracefully landed, wiping some dust off their shoulders as he landed right next to Dante, who was shaking like a leaf.
+
+&quot;...You aren&#39;t planning to tackle me or anything, are you?&quot; He asked innocuously. &quot;I mean, that would be the height of stupidity! I could simply let you tackle me, then let one of your friends shoot at me again and boom! Two birds in one stone.&quot; He said with a smile, causing chills to run down Dante&#39;s spine as he felt defeated by words alone.
+
+Before Granel and Ace could continue their assault, the four would be interrupted by a large flash of light in the distance. Two beams appeared in the sky, colliding with each other as a violent shockwave rattled everyone&#39;s bones. The trees shook, dropping branches left and right as the disgusting rot surrounding them almost vaporized itself from the scorching light of Tizona and Auram Pax.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-959538407816695829" class="chatlog__message-container " data-message-id="959538407816695829">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="02-Apr-22 03:43 AM">03:43</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+&quot;Sheesh, I&#39;m missing out on a ton!&quot; William exclaimed, frustrated. &quot;You guys sure you want to keep this going? I&#39;d much rather watch the show, if I&#39;m being honest.&quot; He said. There was nothing but honesty in his words. Honesty, with a trace of mockery.
+
+&quot;...Look, I don&#39;t even care about what you want with the island. Save it or burn it, for all I care, but hear me out here.&quot; William sighed, shrugging as he hoped that these three fools would listen to reason. 
+
+&quot;Chances of you beating Vortigern are nil. And even if you did, have you forgotten about the rest of the Nirvanans with Servants? They&#39;ll have you for lunch, with your mana spent and your Servants exhausted. Whatever you do here will simply end in your defeat.&quot; William stated, giggling at the thought.
+
+&quot;However, it would be different if you had a helping hand. See, I don&#39;t care much for you folk: I mostly care about your Servants. They are like, little bundles of EXP (Experience Points)! Meanwhile, Vortigern is the hero, meaning that he needs to defeat a bunch to grow big and strong.&quot; He explained while wiggling a finger around, as if lecturing a class of school children.
+
+&quot;So, it&#39;s simple really! You three let Vortigern kill your Servants and I&#39;ll be satisfied. You can do whatever you want after that, and you won&#39;t need to worry about the Nirvanans. Because after I am done with you lot, I&#39;m after Nirvana&#39;s Servants.&quot; He grinned. &quot;Got to stay on that grind, you catch my drift?&quot; <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959724024202690590" class="chatlog__message-container " data-message-id="959724024202690590">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/26fc8624fae0a4d9ba5afaa86f02b392-4CF38.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Granel Mason#0000" data-user-id="930828156963815484">Granel Mason</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">02-Apr-22 04:00 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ace was clever. As a soldier, he knew that there was no way for human individuals could overwhelm a Servant. Even a complete tool like William Shakespeare. The most extreme Masters could go to toe to toe with third rate Servants, this was true, but Ace, Granel, and Dante were not the cream of the crop. Most of the investigators were magi that their respective cities could spare.
+
+It was them against the most famous author in history. Allegedly, anyway.
+
+The first issue was getting through this absurd skill. <em>This</em> was Self-Preservation? It was as if the entire world was announcing that &quot;nothing could harm William&quot; and was doing whatever it could to make sure that happened.
+
+&quot;<strong>He&#39;s right, Ace. Don&#39;t shoot him.</strong>&quot; Granel grunted. There had to be some way through William&#39;s skills. All Granel could do was smash his skull in. He was worthless without support in a fight like this. &quot;<strong>Instead, let me take front, Mister Dante.</strong>&quot; Granel said, stepping forward.
+
+&quot;<strong>I see. Since you say Vortigern cannot be beaten, you must believe it. Allow me to give you a news flash, fraud:</strong>&quot; Granel took a deep breath.
+
+&quot;<strong>We all think that about our respective Servants, you idiot. Even your Master, no matter which shallow grave you&#39;ve stashed him in. Did he abandon you after realizing he summoned you with a fake copy of Romeo &amp; Juliet?</strong>&quot; Granel scratched his beard thoughtfully, sending hairs floating down onto the ground.
+
+&quot;<strong>Assuming you were even summoned with that book, anyway. I don&#39;t know why that decrepit old mafioso would show us it anyway.</strong>&quot;</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-959724387857203251" class="chatlog__message-container " data-message-id="959724387857203251">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="02-Apr-22 04:02 PM">16:02</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Granel found himself feeling especially smug, before hearing William&#39;s grand motivation: EXP? William thought this was a <em>game</em>? The guard had told William that people weren&#39;t just words on a page once, but it was actually far less than Granel could&#39;ve ever expected.
+
+He didn&#39;t even perceive them as people. To him, they were simply fuel for his grand protagonist.
+
+It was sickening.
+
+&quot;<strong>Vortigern is a hero? A hero of <em>what</em>? The best you could do was make a Rider into a forgery of Vortigern? If I were a director, I&#39;d laugh you out of the pitch conference.</strong>&quot;
+
+As Granel spoke, he inched closer and closer to William, before locking eyes with Ace. It was clear that Granel didn&#39;t care about getting shot at. His eyes darted to William, and then back to Ace.
+
+He lunged towards the Servant with a flurry of punches. They had to figure out how protected William was.
+<span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959919113885605910" class="chatlog__message-container " data-message-id="959919113885605910">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/1ebad7ad85c36ca496574529618951e2-083D3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Dante Colt#0000" data-user-id="930828156963815484">Dante Colt</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">03-Apr-22 04:55 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em>William’s comment threw the Doctor off a bit, making him stop in his tracks as he tried to not to falter in his thinking. His words were as sharp as Vortigern’s blade, as hot as it too, it was easy for feel whatever confidence the doctor had melt away. But, he shook his head trying to focus again. He was right, Tackling him in any sort wouldn’t have been smart anyways. . . He just had to restrain him. Restrain him for Granel to pummel him. For that, he moved again.</em>
+
+<em>Granel’s command had been followed quickly, the doctor stepping back so that the security guard could be able to face his opponent, but not without support, be it verbal or physical.</em>
+
+“The chances may be small, but they are still chances. For the islanders, we will deal with them when we get to them! You are our first objective, you may say you don’t care, but Vortigern. . . N—no, <em>Rider</em>, has been a problem, and with how you allow it, you’re just as bad by association.*
+
+<em>The Doctor reached into his pocket, grabbing onto a wad of damp papers he hoarded from his before he shrugged it off to follow Granel and William. Dante tossed the wad in the chair, before chains surged from them, each one a golden color as they aimed for their target, digging into the ground behind William and even aiming for his limbs to bind him. Yet even with his concentration, he followed what the security guard has said as well.</em>
+
+“Y—yeah, Vortigern is no hero. . . No hero I’d have enjoyed anyways. Y—you said that you’re trying to make him into a heroic spirit, but I think you’ve missed the mark, if you have to make him into one. They are already people who’ve made their way, but this Vortigern, it hasn’t made its way into <em>anything</em> if he isn’t qualified already. . .”</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959919154289344562" class="chatlog__message-container " data-message-id="959919154289344562">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/21cb78f1d378cd27702e8536301be457-40F24.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="nimbus#4116" data-user-id="292080440146395146">nimbo</span>
+
+
+                        <span class="chatlog__timestamp">03-Apr-22 04:56 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959937415752081488" class="chatlog__message-container " data-message-id="959937415752081488">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-97105.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ace Colin#0000" data-user-id="930828156963815484">Ace Colin</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">03-Apr-22 06:08 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The playwright dodged everything, effortlessly even. The veteran expected to hit him at least once, but the Self-Preservation skill had an agenda of its own. Dodging bullets was an impressive feat, even for Servant standards. Ace knew that from experience, <em>because he was no stranger to fighting Servants</em>.
+
+Another opportunity to attack would soon arise, Ace was absolutely sure. He put two new rounds in the magnum&#39;s barrel, then stood still. The flash of light from Vortigern&#39;s fight went over his face, yet he did not so much as move a muscle. A Genevi&#39;s focus on his task was sublime.
+
+The EXP analogy, much like Alan Smithee&#39;s, completely went over the veteran&#39;s head. Playing video games was not part of a regular Genevi&#39;s hobbies. If you had enough time to play games, then you would&#39;ve used that time to train, to study, to clean your quarters, to compile and rearrange folders in the archives.
+
+Then came Granel&#39;s words. According to him, William was not as he presented himself to be. The whole Alan Smithee situation was making a little more sense, now. Furthermore, the guard went on to claim that Vortigern was not a Berserker, but something else entirely. A Rider that had been turned into Vortigern, somehow? <em>Which Rider</em>? Even Dante seemed to be knowledgeable about this subject, meaning that Ace was the only Master out of the loop here.
+<em> </em></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-959937786008440832" class="chatlog__message-container " data-message-id="959937786008440832">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="03-Apr-22 06:10 AM">06:10</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">...but Ace dismissed those thoughts instantly. Not because he couldn&#39;t understand them, but because <em>he did not care</em>. Not about William&#39;s motives, not about his or Vortigern&#39;s origins, nor about anything else the bard has spoken about. All he knew was that William, or whoever stood in front of him, was an enemy, and he wasn&#39;t about to lose to that enemy today. He saw Granel, and immediately understood the message behind his looks. <em>Ballsy</em>.
+
+The pent-up anger resulting from the playwright&#39;s insulting words slowly left his body, finding a new home inside <em>one singular bullet</em>. It glowed a bright red, briefly illuminating the swampy forest through and through before dying down.
+
+&quot;You talk too much.&quot; Were the only words Ace mustered before firing his gun once more.
+
+<strong>BAM! BAM! BAM! BAM!!</strong>
+
+The first four bullets were similar to the two shots he had previously fired, maybe succeeding in grazing the playwright once or twice. The guard seemed confident in taking them on, and so Ace did not care about the rounds hitting his ridiculously huge body.
+
+<em>But the fifth bullet was different</em>. A laser-beam that cut through everything in its path, a hole through space, a bullet so fast it couldn&#39;t be made out. For this shot, Ace made sure to hit the bard as he took a step back, while he dodged a punch from Granel or a chain attack from Dante, making sure not to hit either of his colleagues with the newly-created reinforced bullet.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959937831386644581" class="chatlog__message-container " data-message-id="959937831386644581">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/423ced3a1469fc2b0a6cf97d6bd6c46f-E42C7.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Spiritssss#5397" data-user-id="189805606700318721">Spirits</span>
+
+
+                        <span class="chatlog__timestamp">03-Apr-22 06:10 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">( <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> )</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960697907164631060" class="chatlog__message-container " data-message-id="960697907164631060">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-1C369.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="William Shakespeare#0000" data-user-id="930828156963815484">William Shakespeare</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">05-Apr-22 08:30 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">As a writer, it was in William&#39;s interests to let his opponents have their say. Not only did it mean fresh, inspirational material for him to use in future stories, but it was also entertainment in its own way. Granel&#39;s rage, Dante&#39;s conviction and Ace&#39;s resounding...silence all formed an interesting dichotomy that had remained impressed in his mind for days to come. It had all been recorded in his masterpiece, after all, whether they liked it or not.
+
+&quot;Of course you do. Mhmm-hmm.&quot; William nodded, forming an &#39;ok&#39; with his hand. &quot;We all love our Servants, our children, our <em>works.&quot;</em> He put some emphasis on that last bit. 
+
+&quot;As much as we love to destroy, we humans love to create as well. Authors are no different. In fact, we are authors because we love to create things for others to view.&quot; He said with a grin on his face, before it morphed into a frown. &quot;Therefore, for a creation to not be accepted. For it to be buried beneath the depths of ignorance, is one of the most repulsive sins humanity can commit.&quot;
+
+&quot;All we do is focus on ourselves. My work is better than yours because <em>I</em> made it. Yours is worse than mine because I wasn&#39;t involved in the process at all. This bias and envy is what makes us human, and at the same time, why I absolutely <em>detest</em> this world.&quot; His frown gradually brightened up into a smile.
+
+&quot;But no need to worry, because I&#39;m different! Even though your Servants clearly have no chance against Vortigern, I&#39;ll make sure that they are all remembered. After all, a hero is only as notable as the villains that he vanquishes!&quot; He shrugged with a smug grin, taking out a notepad as he began to write out a list of names.
+
+&quot;We got a Saber, wait-no, <em>two</em> Sabers. And a Berserker to boot! If this doesn&#39;t prove that Vortigern is one of the best Heroic Spirits to ever grace the Earth, then I don&#39;t know what wi-&quot;
+
+<em><strong>BANG BANG BANG</strong></em></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-960697939213291530" class="chatlog__message-container " data-message-id="960697939213291530">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="05-Apr-22 08:30 AM">08:30</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+William&#39;s eyes widened as he saw Ace take potshots at him, causing the writer to hurriedly dodge the wave of bullets. Granel counted on that, attempting to intercept the writer with a flurry of fists. Instead, he received a flurry of papers, stacks of scribbles covering his face and punches as William tossed his entire repertoire at him. It wasn&#39;t normal paper either, since it seemed to be enchanted with a strange stillness. His moves felt sluggish and he felt like his body was more rock solid than usual. It was enough for William to make a quick getaway...until Dante intervened with his chains.
+
+&quot;What the-&quot; William didn&#39;t seem to be counting on that, wrapped by the boy&#39;s Magecraft and tied down by the holy chains. That was the moment that Ace loaded his final bullet, a special one designed to test the limits of William&#39;s capabilities.
+
+<strong>BANG!</strong>
+
+William started to worry for once, hearing the distinct gunshot and realizing that it was of a different breed than the projectiles from earlier. He squirmed around like a worm, but couldn&#39;t seem to break the chains. It would be a perfect shot.
+
+But it never came. The bullet never hit, instead whizzing past as it landed on the grass. Ace was distraught, confused to the point that he felt like taking off his shades. A lucky fluke? Another case of Self Preservation? Or something deeper?
+
+All he knew was that he felt like the bullet had been rendered powerless, as if it was never a special bullet in the first place.
+
+&quot;Aaaaand, here we go!&quot; William exclaimed, the chains rattling as Dante heard something akin to a lock being picked. It was as if his Magecraft&#39;s secrets were slowly being unlocked by William, causing the bard to slowly untangle himself from the chains as he countered their bindings with mysterious Magecraft of his own. Pages covered his binds and shoved them aside, letting him free himself as he stared at the three with a smug expression on his face.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-960697991969251378" class="chatlog__message-container " data-message-id="960697991969251378">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="05-Apr-22 08:30 AM">08:30</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em> </em>
+&quot;You sly goons, you caught me monologuing!&quot; He wiggled his finger around, as if reprimanding Ace and Granel. &quot;That&#39;s a very, very good point. I know that I&#39;m playing the part of a Bond villain, but I shouldn&#39;t make it so easy for you to one up me. Then you&#39;d run into the problem of people complaining about the villain being too stupid to pose a threat! You know what I&#39;m talking about, right?&quot; He gave Granel a cautious stare, as if referring to his myriad of VHS tapes.
+
+The conversation was then interrupted by the sound of Wendigo&#39;s death throes, followed by a potent explosion. It was loud enough for all four to hear, much to William&#39;s delight.
+
+&quot;Well, see what I was talking about?&quot; William chuckled. &quot;That sounds like someone just bit the dust. Any doubts with my predictions on Vortigern&#39;s strength? Hmmm?&quot; He taunted. <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960825613629947925" class="chatlog__message-container " data-message-id="960825613629947925">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/0-EB806.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Granel Mason#0000" data-user-id="930828156963815484">Granel Mason</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">05-Apr-22 04:57 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">How was it this hard to land a blow on someone? A Servant or otherwise, this was simply obscene. For every trick they flung at him, William seemed perfectly willing to worm out of it. Granel glanced over at Ace, then Dante. He gritted his teeth.
+
+Killing William was ideal, but Granel had also wanted to grill him for more information. Between him and Ace, torturing a Heroic Spirit for information was not impossible. The issue was that it required William to not be mauled beyond every sense of the word.
+
+Granel, Ace, and Dante could not kill William. As humans, it was simply impossible outside of ideal situations. This was not one of them. So why was he holding back?
+
+He looked back at his comrades. He was a protector first, and a combatant second. He could shake the ground, and maybe cause William to lose his footing...
+
+But if the ground destabilized, would Ace and Dante be alright?
+
+Them or William? Easy question. Them, every single time. He would not rattle Nirvana&#39;s bones. Not yet. Not here.
+
+&quot;<strong>Your work is better than ours, William. Congratulations. I&#39;ll wring your neck seven times clockwise as a reward.</strong>&quot; Granel said, voice dripping with sarcasm. Even if William was clearly talking about Vortigern when compared to the investigator Servants, he seemed to view it as William flexing his own works.
+
+The Servant&#39;s monologue continued, and Granel felt his jaw threaten to hit the floor. This was supposedly the man who wrote Romeo &amp; Juliet? Macbeth? All the greats that had been turned into soap operas and films that Granel had seen?
+
+As William cautiously stared at Granel, Granel glared back.
+
+&quot;<strong>How could someone who creates such moving works hate the world?</strong>&quot; Granel asked, confused. This speech was in direct violation of the individual known as &quot;Shakespeare&quot;.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-960825646832033792" class="chatlog__message-container " data-message-id="960825646832033792">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="05-Apr-22 04:58 PM">16:58</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Granel was not an avid reader. He could barely open books without tearing them. He could only watch films that attempted to capture the magic of the moment. Shakespeare&#39;s works had never been his favorite, and he never bothered to fanboy over William upon meeting him. There was no time to. He didn&#39;t even know it was <em>the</em> William Shakespeare back on the Canopus.
+
+But now, hearing William&#39;s motivations...
+
+&quot;<strong>I loved the 1971 iteration of Macbeth.</strong>&quot; Granel murmured, breaking eye contact with William. &quot;<strong>I watched it when I visited Alexandria, a while back. It was never my favorite. It was wonderful at pulling at my heartstrings. Robin&#39;s expression as his character is beheaded is something that stuck with me for several months after.</strong>&quot;
+
+&quot;<strong>It was not meant to be a feel-good story. It was—bah. You already know. You &#39;wrote&#39; it.</strong>&quot;
+
+&quot;<strong>But all of your works. Every adaptation I watched. Every faulty director, every poor casting choice, none of it felt filled with the hatred you keep babbling about. And I know more about than anyone. I <em>hated</em> more than anyone.</strong>&quot;
+
+&quot;<strong>And yet...</strong>&quot; Granel swallowed as his mud stained clothes billowed slightly. The words were caught in his mouth. And yet...
+
+None of the works Granel had watched on a screen were filled with malice. If anything, they were filled with a <em>love</em> for humanity. A <em>love</em> for the world. Nobody could be that interested in human beings without loving them, right?
+
+Why even write or create something at all if you hated the world?
+
+&quot;<strong>Nobody could create something so wonderful while hating everything.</strong>&quot; Granel rumbled. &quot;<strong>This land is rotten, and it has turned you foul. William Shakespeare, or William Fakespeare. It matters not.</strong>&quot;
+
+&quot;<strong>You&#39;re just some batshit insane nutjob with too much time on your hands, even if you&#39;re occasionally nice in a pinch.</strong>&quot;</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-960825694814867526" class="chatlog__message-container " data-message-id="960825694814867526">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="05-Apr-22 04:58 PM">16:58</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Which is why Granel was going to wring his neck six times instead of seven. He took a step forward, before hearing a howl that sent his atrocious haircut on end.
+
+<em>Wendigo.</em>
+
+Granel turned towards his fellow soldier, tensed. &quot;<em><strong>ACE, EMELIA!</strong></em>&quot; He roared.
+<span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960952308588511322" class="chatlog__message-container " data-message-id="960952308588511322">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/1ebad7ad85c36ca496574529618951e2-083D3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Dante Colt#0000" data-user-id="930828156963815484">Dante Colt</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">06-Apr-22 01:21 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em>Something about the way he talked, so avidly, so openly. . . It threw the doctor’s equilibrium off. He wasn’t one to judge humanity, he hadn’t thought about it, but to outwardly hate humanity in such a way, it wasn’t normal. Dante couldn’t help but feel a tinge of uncomfortableness in him.</em>
+
+“You hate humanity because of how biased we are to other’s work? But, your work was accepted. . . how would you know about bias from other writers? Unless you’ve gone through it yourself?”
+
+<em>He couldn’t help but question it. He spoke as if he had gone through it himself, as if that was something he experienced before. It was expected that he’d had slipped through the chains, with how easily he managed to get through Granel’s clutches and even manage to avoid the myriad of bullets that Ace had pelted him with, seeing how he got through what Dante had gone for, wasn’t exactly something to surprise him, rather it stopped him instead. Fighting with force was going to get them nowhere.</em>
+
+<em>Granel’s speech of his works weren’t exactly something Dante found elaborate on, he hadn’t watched the movies, the plays and such hadn’t interested him either than the novels of other prolific writers such as Dostoevsky, Tolkien, and Dumas. . . But, what he did know was the idea that authors put work out regardless of critique, they created for the random idea of creation, and when they weren’t popular, then they stopped, but none of Shakespeare’s works had ended, he had produced many. . . So why was he speaking as if he had quit? The security guard’s comment of Fakespeare was supposed to be laughable, but truly Dante didn’t get it, making the doctor look at Granel with confusion. But. . . It did make him question even more.</em></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-960952362829238332" class="chatlog__message-container " data-message-id="960952362829238332">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="06-Apr-22 01:21 AM">01:21</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><em>His thoughts were interrupted once a harsh crash shook the ground for a moment, the last of many. What was Octavius doing out there? He could still sense he was there, but how were the other servants? Had that been a crash against Vortigern? He didn’t know.</em></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960952385872740352" class="chatlog__message-container " data-message-id="960952385872740352">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/21cb78f1d378cd27702e8536301be457-40F24.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="nimbus#4116" data-user-id="292080440146395146">nimbo</span>
+
+
+                        <span class="chatlog__timestamp">06-Apr-22 01:21 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960988917031649390" class="chatlog__message-container " data-message-id="960988917031649390">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/0e97069a0e7bbe8beb6d9d62694eea7d-1C369.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="William Shakespeare#0000" data-user-id="930828156963815484">William Shakespeare</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">06-Apr-22 03:46 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The more Granel spoke, the more tired William seemed. The same sort of rhetoric he had heard since he even manifested on the island. The conceit and sneering superiority in the investigator&#39;s face drove him sick to the stomach.
+
+&quot;Have you ever created anything? Or are you just parroting some feel good nonsense that you heard?&quot; William spat, repulsed by the man&#39;s logic. &quot;What do you even know about hatred? <strong>You have never hated.</strong> You never experienced failure. You don&#39;t even know what it is to fail.&quot;
+
+Granel felt offended by those words. Of course he had experienced that! Basic human emotions that anyone could have felt. It was just-
+
+&quot;You say that you hate Nirvanans, but do you really? All you have is just blind rage towards people you&#39;ve never met. Have you ever made any attempt to understand them? Have you ever <em>thought</em> about why you hate them?&quot; William chuckled. &quot;Sounds like ignorance to me. You don&#39;t even know <em>why</em> you hate them, you just do. You are nothing more than a biased, silly man. Disappointing!&quot;
+
+<strong>&quot;My hatred is far greater than yours.</strong> Don&#39;t pretend you could ever understand. All I see is just a grown man throwing a tantrum.&quot; The bard shrugged, before Dante interrupted his speech. 
+
+&quot;Ind<em>eeeeeee</em>d! But that is a question that I would rather answer la-&quot; Before he could finish, loud screams echoed across the swamp.
+
+<em><strong>&quot;ROWENAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&quot;</strong></em>
+
+A chill ran down William&#39;s spine. He realized something was off.
+
+&quot;No. No no no no NO!&quot; He snarled, grinding his teeth as he glared at the swamp in the distance. &quot;What the hell are you doing, Vortigern?! We had them! We were so close to greatness!&quot;
+
+He didn&#39;t deign the three even a glance before he poofed out, sprinting towards the swamp as he disappeared in a mesh of trees. Even his gigantic hat had vanished, resulting in William making a quick getaway. It sounded like something had happened to Vortigern.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-960988955086557214" class="chatlog__message-container " data-message-id="960988955086557214">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="06-Apr-22 03:47 AM">03:47</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961200260238159893" class="chatlog__message-container " data-message-id="961200260238159893">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/99e22a82e639bcc91e4df9eda1920c7b-97105.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ace Colin#0000" data-user-id="930828156963815484">Ace Colin</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">06-Apr-22 05:46 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The first shock came in the form of a weakness, similar to the Holy Mother&#39;s draining touch. Ace suddenly felt like half his Mana had been siphoned off, snapped away by an ungodly being, gone in the blink of an eye. The veteran wobbled forward as he felt the after-blow, finding himself almost falling into a nearby puddle of grail goop. The exhaustion hit him <em>hard</em>, an unstoppable sleepiness seeping in his body, all strength progressively escaping him in each second. The artificial circuits in his guts worked overtime to try and fill the void, but it did little to ease the strain.
+
+Nevertheless, he continued to glare William down, clenching his magnum tighter in the hope that it would wake his hands up. Granel spoke about something, <em>spoke for a while too</em>, but the sounds didn&#39;t make it to his ears. Same thing for Dante&#39;s few words. All were lost in the exhaustion and the laser-focus on William. His thoughts were sluggish, the only reasoning he could muster at this point was &#39;why didn&#39;t my bullet hit him?&#39;
+
+The second shock, a hair-standing cold, crashed upon Ace just in time. Granel’s scream felt distant as Ace felt something break, a bridge or a connection being cut. Instantly his breathing stabilized. The veteran immediately understood what had happened, and the distant sounds of battle came to the forefront of his mind. <em>Wendigo had perished in battle</em>.
+
+Momentarily taken aback, his thoughts felt even more sluggish. Knowing how it could affect him, the veteran didn&#39;t sort out his feelings. There was no time to. His gloves glowed in a light-blue daze, and his mind was clear once again. This was no time to mourn. A short prayer to the deceased was whispered. As short as their service was, Wendigo had temporarily served Geneva. Even if there was no deep thought process behind their actions, Ace still found it in him to respect a beast that fought until the very end.
+<em> </em></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-961200632642019338" class="chatlog__message-container " data-message-id="961200632642019338">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="06-Apr-22 05:48 PM">17:48</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">His eyes went back to tracking William, but the playwright was no longer in front of him. He ran towards the flurry of other Servants, and Ace immediately gave chase…
+
+&quot;...!&quot;
+
+…but his knees gave out before he had a chance to. He slowly got back up, but could only watch as William&#39;s silhouette thinned out in the distance, further and further away from reach.
+
+First Wendigo’s death, and now William’s effortless escape.
+
+&quot;...&quot;
+
+<em>Utter defeat</em>.
+
+
+His brow creased. A breath was taken, and his gloves glowed a deep red.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961200730356711485" class="chatlog__message-container " data-message-id="961200730356711485">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/423ced3a1469fc2b0a6cf97d6bd6c46f-E42C7.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Spiritssss#5397" data-user-id="189805606700318721">Spirits</span>
+
+
+                        <span class="chatlog__timestamp">06-Apr-22 05:48 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">( <span class="chatlog__markdown-mention" title="ResIsBestStat#5104">@D/D/Dad</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> )</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961532900409475072" class="chatlog__message-container " data-message-id="961532900409475072">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/0-EB806.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Granel Mason#0000" data-user-id="930828156963815484">Granel Mason</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">07-Apr-22 03:48 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Make that eight twists, actually,
+
+Granel wanted to wring William&#39;s neck and fling him into the swamp like a frisbee. Anybody who thought this was a tantrum had never seen Granel crack open a Nirvana&#39;s helmet in a fit of rage.
+
+Not that William could know the whole story, nobody could. Granel was different, now. He searched for the hatred that William was describing deep in his heart, finding this tugging sensation.
+
+Pity.
+
+It was hard for him to feel scorn for the people stuck on the island when it was clear that it was never their fault to begin with. They didn&#39;t <em>ask</em> to be placed on this rotten husk of a preserve. William was right. Granel had been a pathetic man raging at everything he didn&#39;t understand. Now?
+
+The opposite. William was the one holding the tantrum. 
+
+There was that feeling again. Pity. Pity mixed with the desire to crush the life out of William to prevent another case like Anthony&#39;s.
+
+Then, he heard Vortigern&#39;s roar rattle his bones, and despite the death of Wendigo, he felt satisfied, if only for a moment. William had lost his composure, just had Granel had. Pot, meet kettle.
+
+&quot;<strong>Let him go.</strong>&quot; Granel said, resigned. Unless Granel wanted to drown Dante and Ace in mud, William would have to go baby his little science project.
+
+&quot;<strong>Ace.</strong>&quot; Granel said, glancing at the soldier&#39;s glowing gloves. &quot;<strong>Friend. This is not the end. We&#39;ll finish what your Servant started, and people will see a brighter tomorrow because of it.</strong>&quot;
+
+&quot;<strong>Ace. Compose yourself.</strong>&quot; Granel started, before hearing the thud of Donald&#39;s footsteps in the mud. He turned.
+
+&quot;<strong>Donald, what happened to Vortigern? To Ace&#39;s servant?</strong>&quot; The guard asked, seeing Donald looking far worse for wear. He caught the Saber in an awkward half hug, before sighing.
+
+&quot;<strong>You are still alive. Excellent.</strong>&quot;
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="Draco#5000">@Draco, Deteriorating</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> <span class="chatlog__markdown-mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961709658148585523" class="chatlog__message-container " data-message-id="961709658148585523">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/dc3aedfc6d279cf854f88a552ba68250-5D0C3.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Donald McBane#0000" data-user-id="930828156963815484">Donald McBane</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">08-Apr-22 03:30 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Heavy footsteps in the mud answered his quiet plea. The reflection in the water, before it was shaken to high heavens, was a hulk of a man. Granel.
+
+Donald took his support without a single question, with almost all his weight now on the other man. “Vortigern… gone. Ran off. The beast… is dead. Gutted by the former.”
+
+“We got lucky, Granel.”
+
+Donald let his Master mull over those words, and instead used his arm as an anchor. He stretched back down and waved his hand beneath the water. It didn’t take long for him to reclaim his sabre, which still remained clean despite the circumstances. 
+
+What now? He wasn’t keen on a rematch. Especially down a man. Besides, the hulk seemed rather shook up from whatever the hell he slashed to ribbons. Whatever the hell it was, he sure seemed enamored by it. 
+
+That left… a regroup and recover. Saber was sure that there was other important things to figure out and get to the bottom of, like that gunk that seeped from the trees like a leaky faucet. However, every single muscle and vein in his body was in agony. If they found another Servant who was ready to throw hands, he wouldn’t last beyond the third punch.
+
+“If ye want t’discuss exact events, we can do it at the cottage,” Donald said. “Otherwise, yer options are t&#39;find that one lass er figure out what lies next.”</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961709746237366324" class="chatlog__message-container " data-message-id="961709746237366324">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/4ff0d71909c782b01b398c440c6f39ba-645D8.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(17, 128, 106)" title="ProjectRysa#6837" data-user-id="113844208304914439">ProjectRysa</span>
+
+
+                        <span class="chatlog__timestamp">08-Apr-22 03:31 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Draco#5000">@Draco, Deteriorating</span> <span class="chatlog__markdown-mention" title="Magnetic#4437">@Magnugget</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> <span class="chatlog__markdown-mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-962101145713639444" class="chatlog__message-container " data-message-id="962101145713639444">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-rattlin-bog%20%5B920426702402899998%5D%20%282022-03-22%20to%202022-04-10%29.html_Files/0-EB806.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Granel Mason#0000" data-user-id="930828156963815484">Granel Mason</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">09-Apr-22 05:26 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;<strong>Yes. That is wise.</strong>&quot; Granel said shakily, still looking at Ace. His expression was terrifying. If Granel poked him a few times, he might end up with a bullet between the eyes. Against his greater judgement, he left Ace to his demons. Hopefully Emelia could keep him together.
+
+Killing Vortigern was a wash. Wringing William for info was a failure. They had simply prevented more deaths for a little while longer, all by trading Ace&#39;s Berserker.
+
+Was it a worthy trade? The investigators had lost a valuable asset.
+
+&quot;<strong>Yes. We should depart. We will be heading back to the cottage to plan our next directive. Keep in touch, Dante. You as well, Ace.</strong>&quot; Granel muttered sadly as he and Donald took their leave.
+
+Granel wanted to figure out what had happened, and they needed to figure out why the island was collapsing in on itself. There was still a contract, albeit an amended one, that Granel still had to fulfill. 
+
+(Granel and Saber depart)
+<span class="chatlog__markdown-mention" title="ProjectRysa#6837">@ProjectRysa</span> <span class="chatlog__markdown-mention" title="nimbus#4116">@nimbo</span> <span class="chatlog__markdown-mention" title="Mr.Diddles#9442">@Mr.Diddles, Brownie Goblin</span> <span class="chatlog__markdown-mention" title="Spiritssss#5397">@Spirits</span> <span class="chatlog__markdown-mention" title="Draco#5000">@Draco, Deteriorating</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+</body>
+
+</html>

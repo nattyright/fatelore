@@ -1,0 +1,1669 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fate/Starry Night RP - the-naomi-estate</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/whitney-300-1FE35.woff);
+            font-family: Whitney;
+            font-weight: 300;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/whitney-400-83E7B.woff);
+            font-family: Whitney;
+            font-weight: 400;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/whitney-500-47E37.woff);
+            font-family: Whitney;
+            font-weight: 500;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/whitney-600-9EC09.woff);
+            font-family: Whitney;
+            font-weight: 600;
+        }
+
+        @font-face {
+            src: url(Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/whitney-700-A7A71.woff);
+            font-family: Whitney;
+            font-weight: 700;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #36393e;
+            color: #dcddde;
+            font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        a {
+            color: #00aff4;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+            image-rendering: high-quality;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .preamble {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            max-width: 100%;
+            padding: 1rem;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 1rem;
+        }
+
+        .preamble__entry {
+            margin-bottom: 0.15rem;
+            color: #ffffff;
+            font-size: 1.4rem;
+        }
+
+        .preamble__entry--small {
+            font-size: 1rem;
+        }
+
+        .chatlog {
+            padding: 1rem 0;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chatlog__message-group {
+            margin-bottom: 1rem;
+        }
+
+        .chatlog__message-container {
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message-container--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message-container--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__message {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding: 0.15rem 0;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message:hover {
+            background-color: #32353b;
+        }
+
+        .chatlog__message:hover .chatlog__short-timestamp {
+            display: block;
+        }
+
+        .chatlog__message-aside {
+            grid-column: 1;
+            width: 72px;
+            padding: 0.15rem 0.15rem 0 0.15rem;
+            text-align: center;
+        }
+
+        .chatlog__reference-symbol {
+            height: 10px;
+            margin: 6px 4px 4px 36px;
+            border-left: 2px solid #4f545c;
+            border-top: 2px solid #4f545c;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .chatlog__short-timestamp {
+            display: none;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__message-primary {
+            grid-column: 2;
+            min-width: 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            margin-bottom: 0.15rem;
+            align-items: center;
+            color: #b5b6b8;
+            font-size: 0.875rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-avatar {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__reference-author {
+            margin-right: 0.3rem;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link .hljs {
+            display: inline;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #ffffff;
+        }
+
+        .chatlog__reference-link:hover *:not(.chatlog__markdown-spoiler) {
+            color: inherit;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__header {
+            margin-bottom: 0.1rem;
+        }
+
+        .chatlog__author {
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        .chatlog__bot-label {
+            position: relative;
+            top: -0.1rem;
+            margin-left: 0.3rem;
+            padding: 0.05rem 0.3rem;
+            border-radius: 3px;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__content {
+            padding-right: 1rem;
+            font-size: 0.95rem;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15rem;
+            color: #a3a6aa;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__attachment {
+            position: relative;
+            width: fit-content;
+            margin-top: 0.3rem;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 999;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #dcddde;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            max-width: 520px;
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            background-color: #2f3136;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3rem;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25rem;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: #202225;
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem 0.6rem;
+            border: 1px solid rgba(46, 48, 54, 0.6);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            background-color: rgba(46, 48, 54, 0.3);
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author-container {
+            display: flex;
+            margin-bottom: 0.5rem;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author {
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+            direction: ltr;
+            unicode-bidi: bidi-override;
+        }
+
+        .chatlog__embed-author-link {
+            color: #ffffff;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-description {
+            color: #dcddde;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5rem;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6rem;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 50px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .chatlog__embed-field-value {
+            color: #dcddde;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            max-width: 80px;
+            max-height: 80px;
+            margin-left: 1.2rem;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6rem;
+            color: #dcddde;
+        }
+
+        .chatlog__embed-footer-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.2rem;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            max-width: 45vw;
+            max-height: 500px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6rem;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__sticker {
+            width: 180px;
+            height: 180px;
+        }
+
+        .chatlog__sticker--media {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            margin: 0.35rem 0.1rem 0.1rem 0;
+            padding: 0.125rem 0.375rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            background-color: #2f3136;
+            align-items: center;
+        }
+
+        .chatlog__reaction:hover {
+            border: 1px solid hsla(0,0%,100%,.2);
+            background-color: transparent;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35rem;
+            color: #b9bbbe;
+            font-size: 0.875rem;
+        }
+
+        .chatlog__reaction:hover .chatlog__reaction-count {
+            color: #dcddde;
+        }
+
+        .chatlog__markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .chatlog__markdown-preserve {
+            white-space: pre-wrap;
+        }
+
+        .chatlog__markdown-spoiler {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-spoiler--hidden {
+            cursor: pointer;
+            background-color: #202225;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-spoiler--hidden:hover {
+            background-color: rgba(32, 34, 37, 0.8);
+        }
+
+        .chatlog__markdown-spoiler--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .chatlog__markdown-quote {
+            display: flex;
+            margin: 0.05rem 0;
+        }
+
+        .chatlog__markdown-quote-border {
+            margin-right: 0.5rem;
+            border: 2px solid #4f545c;
+            border-radius: 3px;
+        }
+
+        .chatlog__markdown-pre {
+            background-color: #2f3136;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .chatlog__markdown-pre--multiline {
+            margin-top: 0.25rem;
+            padding: 0.5rem;
+            border: 2px solid #282b30;
+            border-radius: 5px;
+            color: #b9bbbe;
+        }
+
+        .chatlog__markdown-pre--multiline.hljs {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .chatlog__markdown-pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+        }
+
+        .chatlog__markdown-mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(88, 101, 242, .3);
+            color: #dee0fc;
+            font-weight: 500;
+        }
+
+        .chatlog__markdown-mention:hover {
+            background-color: #5865f2;
+            color: #ffffff
+        }
+
+        .chatlog__markdown-timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #a3a6aa;
+        }
+
+        .chatlog__emoji {
+            width: 1.325rem;
+            height: 1.325rem;
+            margin: 0 0.06rem;
+            vertical-align: -0.4rem;
+        }
+
+        .chatlog__emoji--small {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .chatlog__emoji--large {
+            width: 2.8rem;
+            height: 2.8rem;
+        }
+
+        .postamble {
+            padding: 1.25rem;
+        }
+
+        .postamble__entry {
+            color: #ffffff;
+        }
+    </style>
+
+    <link rel="stylesheet" href="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/solarized-dark.min-BA98F.css">
+    <script src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/highlight.min-D8D27.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__markdown-pre--multiline').forEach(e => hljs.highlightBlock(e));
+        });
+    </script>
+
+    <script src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/lottie.min-99657.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.chatlog__sticker--media[data-source]').forEach(e => {
+                const imageDataUrl = e.getAttribute('data-source');
+
+                const anim = lottie.loadAnimation({
+                  container: e,
+                  renderer: 'svg',
+                  loop: true,
+                  autoplay: true,
+                  path: imageDataUrl
+                });
+
+                anim.addEventListener('data_failed', () =>
+                    e.innerHTML = '<strong>[Sticker cannot be rendered]</strong>'
+                );
+            });
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('chatlog__message-container-' + id);
+            if (!element)
+                return;
+
+            event.preventDefault();
+            element.classList.add('chatlog__message-container--highlighted');
+
+            window.scrollTo({
+                top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                behavior: 'smooth'
+            });
+
+            window.setTimeout(function() {
+                element.classList.remove('chatlog__message-container--highlighted');
+            }, 2000);
+        }
+
+        function showSpoiler(event, element) {
+            if (!element)
+                return;
+
+            if (element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+
+            if (element.classList.contains('chatlog__markdown-spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__markdown-spoiler--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="attachment-icon" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z"/>
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z"/>
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z"/>
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z"/>
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/a_14958677705c78f552a8308a4ef73755-DC5C3.jpg" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Fate/Starry Night RP</div>
+        <div class="preamble__entry">nirvana / the-naomi-estate</div>
+
+            <div class="preamble__entry preamble__entry--small">A far cry from what it once was, when the family was helmed by Elimech Naomi. This is Ruth’s private residence, where she goes when she needs to escape from the world at large. It is considered the highest honor amongst the cult to be invited in.</div>
+
+            <div class="preamble__entry preamble__entry--small">
+Between 15-Mar-22 12:00 AM and 08-Apr-22 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953771827191230574" class="chatlog__message-container " data-message-id="953771827191230574">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">17-Mar-22 05:48 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><div class="chatlog__markdown-pre chatlog__markdown-pre--multiline nohighlight"> February 12th, 3am</div></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953774341332541450" class="chatlog__message-container " data-message-id="953774341332541450">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 05:58 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The meeting… went off without a hitch. It was just one particular thorn which decided to sour it to Ruth. 
+
+All of yesterday, The holy mother  spent recovering. While not the most fatal stab, an abdominal wound still was enough to keep her out of commission. Especially after the adrenaline left her system. 
+
+Still Ruth laid in her bed. Unable to truly sleep. The thought of killing, of <strong>consuming</strong>, Alex danced through her mind. Banshee had remained next to her. 
+
+Well most of the time she remained there. There were a few moments when The Holy Matron indulged in her congregation. Using their life to heal her own being. 
+
+“Dearest… are you still awake?” The woman softly spoke, unsure of what the answer might be. After all do servants require sleep?</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953774351939960902" class="chatlog__message-container " data-message-id="953774351939960902">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">17-Mar-22 05:58 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953844007597899829" class="chatlog__message-container " data-message-id="953844007597899829">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-890FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Berserker of Tairngire#0000" data-user-id="920745077154906162">Berserker of Tairngire</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 10:35 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The events of the day still stirred through the oceanic mind of the Banshee as she accompanied her master to their personal quarters. The confines of the room gave her peace and time to explore her previously turbulent thoughts.
+
+She had feared catastrophe from Ruth hosting the conference with her fellow islanders but from what she had heard, it was somewhat productive even if her own negotiations with the one who called her sister ended at an impasse and unresolved promises... 
+
+It was only the unaccounted thread that proved the true danger, one who put action where most had hidden behind words. She had almost lost her master... no, her companion from that carelessness and the fact that Caster made a similar promise scared her. There would always be threats to Ruth&#39;s safety and thus she must always watch over her to make sure her master could not be taken away from her like dear Ciabhan...
+
+Why did fate give her such a weak-willed and sinful woman to have as a master? Why did she not end her miserable life that first day and chose her own master? Why did the thought of murdering the living cross her mind? Was it love at work again or perhaps something more sinister? She did not know.
+
+She tossed to the other side of the bed, the sheets hiding her exposed form but doing nothing to mask her shapely outline. She may have forgettten it in her everpresent duty but the body can never forget its roots.
+
+&quot;Aye, I must always watch over you... dear...est. Who else would?&quot;</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-953844036735746068" class="chatlog__message-container " data-message-id="953844036735746068">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="17-Mar-22 10:35 AM">10:35</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953849617345290271" class="chatlog__message-container " data-message-id="953849617345290271">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 10:57 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The servant spoke. Giving a reassuring answer. “Many others might… but none as dutifully as you.” Ruth cooed. 
+
+Her body then turned. Facing Banshee, and outstretching an arm. Gently it caressed the berserker’s face. “Your actions… were beautiful. That willingness to protect… We have come a long way since your summoning, and will go much further once the outsiders are <em>dealt with</em>.” 
+
+There was then a pause. The matron looking for the proper words. “I have never been one to find myself bowing in supplication before another. But you… it is quite the novel emotion to feel.” Ruth’s voice then trailed off. For a moment that hunger which had only seemed more ravenous, was gone from her eyes. All that filled them was adoration, admiration. Then slowly it returned. 
+
+“I do wish that our partnership… our relationship. Won’t end anytime soon. For you would be such a beautiful figure to have by my side.” Her voice was as soft as a whisper. Those words barely wanting themselves to be heard.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953849629089361940" class="chatlog__message-container " data-message-id="953849629089361940">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">17-Mar-22 10:57 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953855305354190878" class="chatlog__message-container " data-message-id="953855305354190878">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-890FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Berserker of Tairngire#0000" data-user-id="920745077154906162">Berserker of Tairngire</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 11:20 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Banshee only responded with a brief hum or perhaps it was an amused chuckle. Ruth had never heard her servant express anything near actual happiness before, not even that night of delirium.  With that outstretched arm, Ruth could feel Banshee&#39;s cold skin softly bend to her warm touch and mold around her fingers, the body eager for the warmth she tenderly provided. 
+
+&quot;It has taken me time... to see this side of you... Perhaps this is what I should have fought to protect all along...&quot; She trailed, her bloodshot eyes softening in color as they took in Ruth&#39;s serene expression and relaxed form. She liked this and she wanted to keep her this way. It felt... right.
+
+&quot;From what you tell me, there was never one you could trust not just with words... but the matters of the heart...&quot; Banshee pulled Ruth closer with one arm and rested her other palm against the lady&#39;s chest, feeling that muscle beat in hypnotic rhythm, warmth flowing out with every stroke. &quot;A cold, lonely life given warmth for once... I do not know if I am talking about my story... or yours...&quot;
+
+&quot;I can not make promises on how long our time will last... but will that matter if we spend every moment to the fullest?</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-953855340821229600" class="chatlog__message-container " data-message-id="953855340821229600">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="17-Mar-22 11:20 AM">11:20</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953868039093383229" class="chatlog__message-container " data-message-id="953868039093383229">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">17-Mar-22 12:11 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">The cold of Banshee’s skin felt nice against the warmth of her own. Her servant making a noise, most likely an amused chuckle. 
+
+
+Ruth became hypnotized by the words Berserker spoke. The similarities they both seem to have. Yet also the stark differences in their lonesome existences. Their bodies were pulled together, fitting intimately like two matching puzzle pieces. 
+
+“It won’t matter in that case… It wouldn’t at all.” The Holy Matron smiled leaning in and placing a singular kiss upon Banshee’s forehead. 
+
+“Even if I fulfilled a dream… you would still stay next to me? Would you still balance your burdensome duty, and your will to be free from it?” Her words were soft, but not like earlier. They wanted to be heard. To be questioned, by a trusted person.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-953868050036322366" class="chatlog__message-container " data-message-id="953868050036322366">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">17-Mar-22 12:11 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954591095650676766" class="chatlog__message-container " data-message-id="954591095650676766">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-890FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Berserker of Tairngire#0000" data-user-id="920745077154906162">Berserker of Tairngire</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">19-Mar-22 12:04 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Banshee in turn became hypnotized with Ruth&#39;s body, all the heat and pleasure it so readily offered to her. How their bodies aligned naturally she did not know nor did she question why. It simply was and that was all she needed.
+
+&quot;Not at all...&quot; Banshee blushed as Ruth blessed her head with a kiss. She would reply with a cool, firm kiss on Ruth&#39;s cheek before running her armored fingers through her silken, evergreen hair.
+
+&quot;I would... The effort it would take to balance those is nothing compared to the love you offer... &quot; Banshee felt herself edging towards giving Ruth another kiss, rightfully on the mouth but something caught her mind. It could have been those curious eyes, the open-ended words or the tone of her voice but she had to know. &quot;But... I have not heard this dream of yours... not yet... what do you wish to achieve, dear?&quot;</span>
+
+                            <span class="chatlog__edited-timestamp" title="20-Mar-22 03:48 AM">(edited)</span>
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954867661148393504" class="chatlog__message-container " data-message-id="954867661148393504">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">20-Mar-22 06:23 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Tender kisses were exchanged between the pair. Whilst Banshee’s stiff iron gauntlet gently held onto Ruth’s hair. Playfully allowing for the evergreen silk to fall through those coarse claws. 
+
+The lips of her servant were tantalizingly close. But ceased their approach until The Holy Mother’s wish was spoken. “I wish… to become a god. To be worshiped by more than those who live upon this land… to <strong>consume</strong> those far beyond her reach.” 
+
+The Matron pulled back. Staring into her Servant’s eyes. That shameless hunger now showing itself far more. Something berserker only noticed a few days prior… Ruth’s aims have gone much higher than they were before.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-954867688616919091" class="chatlog__message-container " data-message-id="954867688616919091">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">20-Mar-22 06:23 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-956041527140974612" class="chatlog__message-container " data-message-id="956041527140974612">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-890FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Berserker of Tairngire#0000" data-user-id="920745077154906162">Berserker of Tairngire</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">23-Mar-22 12:07 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">That iron gauntlet that stroked Ruth&#39;s hair froze as the woman revealed the truth of her ambitions, a few strands of hair held limply within. It held position halfway between servant and master, level with the latter&#39;s neck, palm open.
+
+Banshee stared silently at Ruth, her doting expression gone only to be replaced by her default mask of stony weariness. If this were any other occasion, she would take those words as an irreverent joke meant to tease her, but Ruth&#39;s eyes held no foxlike gleam, only that nauseating hunger. 
+
+&quot;Ruth... that won&#39;t work...&quot; she stared through Ruth at the beast within her. Even as the coldness returned to her face, Banshee could feel a familiar anger began to grow from within.
+
+&quot;No human can do that... not now... the world where you could have any chance of that is long gone, buried beneath water,&quot; She wished to deny that anger, to keep Ruth happy but how could she ever be with a dream like that? &quot;Lost forever to time. Those that try to uncover it will become lost themselves.&quot;
+
+&quot;Ruth, I don&#39;t want to lose you. You go down that path and I might never be able to get you back...&quot; Banshee put Ruth&#39;s hands in her own and held them close to her own drowsy heart, one plea made from her unlikely love. She could not imagine hurting Ruth but the wrath stirring within, wanting to lash out against the fool that wanted equal footing with her original master, threw out any certainty she had.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-956041559411941446" class="chatlog__message-container " data-message-id="956041559411941446">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="23-Mar-22 12:07 PM">12:07</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-956318844073422878" class="chatlog__message-container " data-message-id="956318844073422878">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">24-Mar-22 06:29 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">“But berserker… <em>Banshee</em>… you said you would stay with me through achieving this dream…” That shameless hunger only pressed further into her loves gaze. 
+
+“Yes… mankind had its previous follies. Lost deep deep beneath that ocean.” Ruth paused for a moment. “This would be different to them. They lacked <strong>ambition</strong>. they lacked you… they lacked my <strong>wants and desires.</strong>”</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-956318858359230576" class="chatlog__message-container " data-message-id="956318858359230576">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">24-Mar-22 06:29 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-957725862596345986" class="chatlog__message-container " data-message-id="957725862596345986">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-890FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Berserker of Tairngire#0000" data-user-id="920745077154906162">Berserker of Tairngire</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">28-Mar-22 03:40 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ruth or rather that curse within her continued to assert its wants to Banshee and every word made her control slip a tiny bit more. She could feel the anger creep up from its pit in her stomach and grasp at muscle and nerve alike.
+
+&quot;I would stay with <em>my master</em> and help her achieve her dreams. I have no loyalty for the hunger that craves all. Ruth... <em>do not keep going... please</em>,&quot; Banshee made her plea again, taking time to emphasize her words and holding onto Ruth&#39;s hands tighter.
+
+Then it continued to spill out delusions, surely fueled by her followers, her hunger and possibly her land. The control Banshee had over her indignity slipped and she could feel it begin to bubble up to the surface. She let Ruth&#39;s hands slip out from her grasp. 
+
+&quot;Yet you wish to repeat their same mistakes? You believe they lacked what you had? Ruth Naomi... <strong>you are an fool, one blinded not by the need to consume but want for attention. I love you but I will never help you become a god... you will die long before it becomes possible!</strong> Banshee got out of the bed and stared down her master, red eyes gleaming. And yet for every word she spoke, she could notice something in Ruth she had paid little attention to before. She looked like a woman in the prime of her beauty, not much beyond twenty but yet she seemed much closer to death than that age would allow. Could it be...</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div id="chatlog__message-container-957725912869269635" class="chatlog__message-container " data-message-id="957725912869269635">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <div class="chatlog__short-timestamp" title="28-Mar-22 03:40 AM">03:40</div>
+            </div>
+
+            <div class="chatlog__message-primary">
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;And do you want to know what you&#39;d become? Its quite simple, you don&#39;t have the power or the people to approach that of the Lady Morr&#237;gan nor the cross-bound usurper. No... if you achieve anything... you will just end up a hollow shell, a stubborn memory. <strong>Just. Like. Me.</strong>&quot; For once Banshee smiled but not out of joy but rather the same reason animals beared their teeth or fairies giggled. She shot out her hands but before they crushed Ruth&#39;s face, they instead caressed her. As they did so, Ruth could feel her face getting lighter, something evaporating off like warm steam.
+
+&quot;*My my... I was more right than I thought...&quot; Banshee chuckled to herself.
+
+<span class="chatlog__markdown-mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959561262143012904" class="chatlog__message-container " data-message-id="959561262143012904">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">02-Apr-22 05:13 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ruth only stared further and further into Banshee’s eyes. Those pleas for her dream to cease falling on deaf ears. 
+
+That is until Berserker showed why she qualified for such a class. Standing to her fullest height, eyes piercing through Ruth’s own hungry gaze. And simply removed the glamour. 
+
+That last piece of clothing The holy mother always held onto. That which keep her seemingly impossibly young. “B-banshee…” 
+
+This made her feel more vulnerable than the day she was born. Curling into herself. Attempting to hide those imperfections which came with age. Those wrinkles. Those unwanted spots. “How… how dare you…” it seemed as if the servant had struck at the right chord. Knocking back that ever present hunger, revealing just a scared girl. Attempting to hide herself within the sheets of the bed.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-959561271823450132" class="chatlog__message-container " data-message-id="959561271823450132">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">02-Apr-22 05:13 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960276585410330704" class="chatlog__message-container " data-message-id="960276585410330704">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-890FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Berserker of Tairngire#0000" data-user-id="920745077154906162">Berserker of Tairngire</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">04-Apr-22 04:36 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;So this is your deepest secret?&quot; She asked in a disconcerting mixture of disbelief and amusement as she watched the confident beast before her distingrate into a scared little girl ducking under her bedsheets despite her body&#39;s advanced age.  &quot;Is this perhaps why you truly wanted to be a god?&quot;
+
+&quot;Hmm hmm, yet fate brought before you nothing more than an animated corpse. Hardly a coincidence, is it? Perhaps despite all your talk, what you really needed was someone to ground you, to remind you there are limits none of us can break, things we can never run away from forever...&quot; the woman with the alabaster skin said, strolling around the edge of Ruth&#39;s bed, letting a single iron finger stroke the plush fabrics. She would watch as chalk-like flakes were shed from her body, letting imperfections and scars rise to the surface. 
+
+Finding her side of the bed once more, Banshee sat down and Ruth could see grey shadows where the wounds her servant has previously suffered had once been. &quot;Age, hunger, thirst, all those and more will all lead to the same destination and even gods will fall to it. And for some reason, I think I may have once been a part of one such goddess. I know not what she represented but I believe she was beautiful and loved all, even those that came to turn their back on her...&quot;
+
+&quot;I say this because while my existence is nothing but duty to the dead, I believe there is one thing that transcends life and death... and that is the love I have for you. I preserved my dear C&#237;abhan&#39;s name for centuries and yours I would take back to the grail. This is the core of my strength and endurance. It is what makes memory last longer than any man or deity. With it, you should never fear what lies at the end, my love.&quot;
+
+<span class="chatlog__markdown-mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960728122783858718" class="chatlog__message-container " data-message-id="960728122783858718">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">05-Apr-22 10:30 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">Ruth remained hidden within the bed sheets. Eyes and hands inspecting every aspect of her now aged body. A weak whimper was heard in response to Banshee&#39;s initial probing into her true wishes. &quot;It... Is part of why I wish for that...&quot;
+
+Yet while the whimper spoke, Berserker sat herself once more on the bed. Listening to the specter of stone and sorrow speak. The dulled evergreen hair peeked from beneath the sheets. 
+
+Her eyes met that of her love. The wrinkled, leathery face revealing itself as Banshee spoke. &quot;I... I see... This was a lesson...Love could perhaps... Surmount what I wish for... Banshee.... Perhaps that long march into darkness is not so... terrifying.&quot;</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-960728139661733899" class="chatlog__message-container " data-message-id="960728139661733899">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">05-Apr-22 10:30 AM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961113355521773598" class="chatlog__message-container " data-message-id="961113355521773598">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/aba2ca4e47aea21c6f7a52d364464ccf-890FD.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Berserker of Tairngire#0000" data-user-id="920745077154906162">Berserker of Tairngire</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">06-Apr-22 12:01 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">&quot;And now you see, my dear,&quot; Banshee purred as she slipped a hand between those faded green locks and gently encouraged Ruth from under the sheets. &quot;You need not fear anything when I am near... and I always will be, for our love will see it so.&quot;
+
+&quot;Now lay with me and we will spend the rest of this night in our own little warm darkness.&quot;&gt;
+
+<span class="chatlog__markdown-mention" title="Hawaii117#8992">@Hawaii(Fairy(Derogatory))</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961118718807666718" class="chatlog__message-container " data-message-id="961118718807666718">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/52e41e4c4615274ed3ea1d5b8f0c546f-989C1.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="" title="Ruth Naomi#0000" data-user-id="920745077154906162">Ruth Naomi</span>
+
+                            <span class="chatlog__bot-label">BOT</span>
+
+                        <span class="chatlog__timestamp">06-Apr-22 12:22 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve">“I’ll gladly… enjoy this comfort…” The once youthful smile of Ruth showed itself as she was gently lead from beneath the sheets. Arms wrapping themselves around her servants frame. Bringing the pair close to becoming one.</span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+    <div id="chatlog__message-container-961118730404921354" class="chatlog__message-container " data-message-id="961118730404921354">
+        <div class="chatlog__message">
+            <div class="chatlog__message-aside">
+                    <img class="chatlog__avatar" src="Fate_Starry%20Night%20RP%20-%20nirvana%20-%20the-naomi-estate%20%5B920352173617987655%5D%20%282022-03-15%20to%202022-04-08%29.html_Files/56bbbbf3881f97b66b30571f489558fe-3CA32.jpg" alt="Avatar" loading="lazy">
+            </div>
+
+            <div class="chatlog__message-primary">
+                    <div class="chatlog__header">
+                        <span class="chatlog__author" style="color: rgb(236, 81, 81)" title="Hawaii117#8992" data-user-id="211367526616006656">Hawaii(Fairy(Derogatory))</span>
+
+
+                        <span class="chatlog__timestamp">06-Apr-22 12:22 PM</span>
+                    </div>
+
+                    <div class="chatlog__content chatlog__markdown">
+                        <span class="chatlog__markdown-preserve"><span class="chatlog__markdown-mention" title="Eagan#8440">@Rewritten Eagan, Princess Bride</span></span>
+
+                    </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
