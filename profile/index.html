@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta property="og:title" content="Fate/Starry Night Character Compendium" />
+    <meta property="og:description" content="There's no story skip button here.">
+
+    <title>FateRP Character Compendium</title>
+
+
+<style>
+::-webkit-scrollbar {
+    width: 25px;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: white;
+    border-right: 12px solid transparent;
+    background-clip: padding-box;
+}
+
+body {
+      overflow: hidden;
+      background-color: dimgray;
+}
+body:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  background-image: url('https://i.imgur.com/vpsAUB4.png');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+
+
+
+
+.flex-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -60%);
+  padding: 10px;
+
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: stretch;
+
+  background-image: url("https://cdn.discordapp.com/attachments/919921281388924978/973276740845719562/Picture3.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 783px;
+}
+.flex-container:before {
+
+}
+
+
+
+
+.flex-container > div {
+  padding: 0px;
+  font-size: 30px;
+  margin: 4px 0px 4px 0px;
+
+  opacity: 1;
+}
+#col-right, #col-left {
+    margin: 2px 0px 4px 0px;
+}
+
+
+
+#col-left > div {
+    display: flex;
+    flex-flow: col nowrap;
+    justify-content: center;
+    align-items: stretch;
+
+    margin: 5px 0px 35px 2px;
+    width: 38px;
+    height: 38px;
+
+    background-image: url("https://cdn.discordapp.com/attachments/919921281388924978/973282051241422858/Picture5.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 2px 0px black;
+
+    text-align: center;
+    font-size: 15px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#col-left > div span {
+    align-self: flex-end;
+}
+#col-left > div:first-child {
+    margin-bottom: 50px;
+}
+
+
+
+
+#col-mid {
+    padding: 0;
+}
+#col-mid > img {
+    display: flex;
+    width: 100%;
+    object-fit: contain;
+}
+
+
+
+
+
+
+#profile-name {
+    height: 50px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#profile-truename {
+    padding-left: 40px;
+    font-size: 40px;
+    line-height: 35px;
+}
+#profile-class {
+    text-align: right;
+    font-size: 15px;
+}
+
+#profile-nav {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+
+    height: 50px;
+}
+#profile-nav > div {
+    background-image: url("https://cdn.discordapp.com/attachments/919921281388924978/973272858325286982/Picture2.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 0px 0px 2px 0px black;
+
+    margin: 10px 10px 2px 10px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 25px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    
+}
+
+#profile-content {
+    height: 327px;
+    overflow-y: scroll;
+    margin: 5px 0px 0px 10px;
+
+}
+#profile-content > div {
+    display: none;
+}
+#profile-content > div.active {
+    display: block;
+}
+
+.profile-content {
+    position: relative;
+}
+.profile-content > img {
+    display: flex;
+    width: 100%;
+    object-fit: contain;
+}
+.voice-text {
+    z-index: 1;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 427px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px 100px;
+
+    display: none;
+}
+.voice-text.active {
+    display: block;
+}
+
+</style>
+
+
+
+</head>
+<body>
+
+
+<div class='flex-container'>
+
+    <div id="col-left" style="flex: 5.5%">
+        <div style="flex: 25%"><span>Close</span></div>
+        <div style="flex: 25%"><span>Lock</span></div>
+        <div style="flex: 25%"><span>Select</span></div>
+        <div style="flex: 25%"><span>Favorite</span></div>
+    </div>
+
+
+    <div id="col-mid" style="flex: 32.5%">
+        <img id="profile-cardart" src="https://cdn.discordapp.com/attachments/919921281388924978/973261842677903360/servant_card_05.png">
+    </div>
+
+
+    <div id="col-right" style="flex: 62%">
+        <div id="profile-name">
+            <div id="profile-truename">Servant Name</div>
+            <div id="profile-class">Servant Class</div>
+        </div>
+        <div id="profile-nav">
+            <div style="flex: 25%" class="profile-nav active" data-slide="0">Status</div>
+            <div style="flex: 25%" class="profile-nav" data-slide="1">Profile</div>
+            <div style="flex: 25%" class="profile-nav" data-slide="2">Gallery</div>
+            <div style="flex: 25%" class="profile-nav" data-slide="3">Voice</div>
+        </div>
+        <div id="profile-content">
+            <div class="profile-content active" data-slide="0">
+                Status content<br>Status content<br>Status content<br>
+                Status content<br>Status content<br>Status content<br>
+                Status content<br>Status content<br>Status content<br>
+                Status content<br>Status content<br>Status content<br>
+            </div>
+            <div class="profile-content" data-slide="1">
+                Profile content<br> Profile content<br> Profile content<br>
+                 Profile content<br> Profile content<br> Profile content<br>
+                 Profile content<br> Profile content<br> Profile content<br>
+                 Profile content<br> Profile content<br> Profile content<br>
+            </div>
+            <div class="profile-content" data-slide="2">
+                Gallery content<br>Gallery content<br>Gallery content<br>
+                Gallery content<br>Gallery content<br>Gallery content<br>
+                Gallery content<br>Gallery content<br>Gallery content<br>
+                Gallery content<br>Gallery content<br>Gallery content<br>
+            </div>
+            <div class="profile-content" data-slide="3">
+                <img class="voice-img" data-slide="11" src="https://cdn.discordapp.com/attachments/919921281388924978/973287236013555782/Picture6.png">
+                <div class="voice-text" data-slide="11" >Don’t you have work to do? As you can see, I am rather busy! sitting on a bed</div>
+                <img class="voice-img" data-slide="12" src="https://cdn.discordapp.com/attachments/919921281388924978/973287245165498398/Picture7.png">
+                <div class="voice-text" data-slide="12" >Master-Servant relationship? Sounds wonderful! I’ve always appreciated this type of companionship. Now, be a good ‘Servant’ and look over these notes for me. Thanks~!</div>
+                <img class="voice-img" data-slide="13" src="https://cdn.discordapp.com/attachments/919921281388924978/973287252379717672/Picture8.png">
+                <div class="voice-text" data-slide="13" >You want me to write you something? Sure! Just turn around, leave and do not speak to me for around ten years or so. I’ll churn out a masterpiece in that amount of time. You can trust me on that!</div>
+                Voice content<br>Voice content<br>Voice content<br>
+                Voice content<br>Voice content<br>Voice content<br>
+                 Voice content<br>Voice content<br>Voice content<br>
+                Voice content<br>Voice content<br>Voice content<br>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script type="text/javascript">
+
+  $(".profile-nav").on("click", function (e) {
+    e.preventDefault();
+    // get current slide
+    var current = $(".profile-nav.active").data("slide"),
+      // get button data-slide
+      next = $(this).data("slide");
+
+    $(".profile-nav").removeClass("active");
+    $(this).addClass("active");
+
+    if (current === next) {
+      return false;
+    } else {
+      $("#profile-content")
+        .find(".profile-content[data-slide=" + next + "]")
+        .addClass("active");
+
+      $("#profile-content")
+        .find(".profile-content[data-slide=" + current + "]")
+        .removeClass("active");
+    }
+  });
+
+  $(".voice-img").on("click", function (e) {
+    e.preventDefault();
+    // get current slide
+    var current = $(this).data("slide");
+    $(this).addClass("active");
+
+
+    $("#profile-content")
+      .find(".voice-text[data-slide=" + current + "]")
+      .addClass("active");
+  });
+
+  $(".voice-text").on("click", function (e) {
+    e.preventDefault();
+    // get current slide
+    var current = $(this).data("slide");
+    $(this).removeClass("active");
+
+
+    $("#profile-content")
+      .find(".voice-img[data-slide=" + current + "]")
+      .removeClass("active");
+  });
+
+
+</script>
+
+
+</body>
+</html>
