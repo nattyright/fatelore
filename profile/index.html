@@ -16,14 +16,20 @@
 }
 
 ::-webkit-scrollbar {
-    width: 25px;
-
+    width: 22px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+  box-shadow: inset 0 0 22px rgba(0, 0, 0, 0.8);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 }
 
-::-webkit-scrollbar-thumb {
-    background: white;
-    border-right: 12px solid transparent;
-    background-clip: padding-box;
+::-webkit-scrollbar-thumb:vertical {
+    background: url('assets/ui-scrollbar-thumb-top.png') left top no-repeat,
+                url('assets/ui-scrollbar-thumb-mid.png') left center no-repeat,
+                url('assets/ui-scrollbar-thumb-bot.png') left bottom no-repeat;
+    background-size: 22px 10px, 22px calc(100% - 20px), 22px 10px;
 }
 
 body {
@@ -64,6 +70,11 @@ body:before {
   align-items: stretch;
 
   background-image: linear-gradient(#96abe3, #1a329c);
+  background-image: url("assets/profile-banner.png"),
+                    url("assets/profile-bg.png");
+  background-position: top, top;
+  background-repeat: no-repeat, repeat;
+  background-size: 100% 68px, cover;
   width: 900px;
 }
 
@@ -94,7 +105,7 @@ body:before {
     width: 44px;
     height: 44px;
 
-    background-image: url("https://cdn.discordapp.com/attachments/919921281388924978/973282051241422858/Picture5.png");
+    background-image: url("assets/button-lock.png");
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0px 0px 2px 0px black;
@@ -118,13 +129,43 @@ body:before {
 
 #col-mid {
     padding: 0;
+    position: relative;
 }
 #col-mid > img {
     display: flex;
     width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+
+}
+#pf-charagraph-base {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+
     object-fit: contain;
 }
+#pf-cardURL {
+    position: absolute;
+    z-index: 5;
+    display: none;
+}
+#pf-charagraph-frame {
+    position: absolute;
+    z-index: 10;
 
+    object-fit: contain;
+
+}
+#pf-charagraph-class {
+    position: absolute;
+    z-index: 20;
+    bottom: 0;
+    left: 42%;
+
+    width: 50px !important;
+
+}
 
 
 
@@ -133,16 +174,17 @@ body:before {
 #profile-name {
     height: 55px;
     color: white;
+    padding-right: 30px;
+    text-align: right;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-#profile-truename {
-    padding-left: 40px;
+#pf-servantName {
     font-size: 40px;
     line-height: 35px;
 }
-#profile-class {
-    text-align: right;
+#pf-servantClass {
     font-size: 15px;
+    letter-spacing: -0.3px;
 }
 
 
@@ -155,7 +197,7 @@ body:before {
     height: 55px;
 }
 #profile-nav > div {
-    background-image: url("https://cdn.discordapp.com/attachments/919921281388924978/973272858325286982/Picture2.png");
+    background-image: url("assets/button-profile-tab.png");
     background-repeat: no-repeat;
     background-size: contain;
     box-shadow: 0px 0px 4px 0px black;
@@ -175,7 +217,7 @@ body:before {
 
 #profile-content {
     height: 375px;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 5px 0px 0px 10px;
     padding: 0 8px 0 4px;
 
@@ -217,10 +259,13 @@ body:before {
 
 
 
-.test-image {
 
-}
-.test-title {
+.np-title, 
+.pskill-title,
+.cskill-title,
+.cc-title,
+.profile-title,
+.voice-title {
     font-family: Arial Narrow;
     letter-spacing: -2px;
     font-size: 20px;
@@ -228,13 +273,13 @@ body:before {
     color: #262626;
     margin: -21px 0 0 12px;
 }
-.test-text {
+.panel-text {
     font-size: 16px;
     color: white;
 
-    background-color: #262626;
-    margin: -5px 0 -5px 4px;
-    padding: 5px 5px 5px 160px;
+    background-color: rgba(28, 28, 28, 0.87);
+    margin: -15px 0 -0.2px 4px;
+    padding: 15px 8px 5px 170px;
     border-left: 1px solid #d1d1d1;
     border-right: 1px solid #d1d1d1;
     box-shadow: 0px 0px 3px 0px black;
@@ -243,56 +288,263 @@ body:before {
     padding-right: 30px;
     color: gold;
 }
-.test-np-name {
+.np-name {
     font-size: 23px;
     margin-bottom: 5px;
 }
-.test-np-table {
+.np-table {
     font-size: 19px;
     letter-spacing: 0;
 }
-.test-np-text {
+.np-text {
     margin-top: 8px;
     letter-spacing: -0.3px;
 }
+.np-type {
+    position: relative;
+    padding: 0 5px;
+}
+.pf-np-bot {
+    position: absolute;
+    z-index: 1;
+    left: 25px;
+    top: 30px;
+
+    width: 24%;
+    object-fit: contain;
+}
+.pf-np-servant {
+    position: absolute;
+    z-index: 5;
+    left: 10px;
+    top: 6px;
+
+    width: 27%;
+    object-fit: contain;
+}
+.pf-np-mid {
+    position: absolute;
+    z-index: 10;
+    left: 22px;
+    top: 95px;
+
+
+    width: 27%;
+    object-fit: contain;
+}
+.pf-np-top {
+    position: absolute;
+    left: 20px;
+    top: 115px;
+    z-index: 20;
+
+    width: 25%;
+    object-fit: contain;
+}
+.pf-np-gauge {
+    margin-right: -13px;
+}
 
 
 
-.test-text.skill-panel {
+.panel-text.pskill-panel,
+.panel-text.cskill-panel {
     padding: 5px 10px 5px 10px;
 }
-.test-skill-tip {
+.pskill-tip,
+.cskill-tip {
     color: teal;
-    margin-top: -8px;
+    margin-top: 5px;
     font-size: 15px;
     padding-left: 120px;
 }
-.skill-l {
-    padding: 0 20px 0 0;
+.pskill-l,
+.cskill-l {
+    padding: 10px 20px 0 0;
+    min-width: 50px;
+    display: inline-block;
+    vertical-align: top;
 }
-.skill-num {
+.pskill-num {
     color: steelblue;
     font-size: 15px;
 }
-.skill-cd {
+.cskill-num {
+    color: lightseagreen;
+    font-size: 15px;
+}
+.pskill-cd {
     color: lightseagreen;
     font-size: 12px;
     margin-top: -10px;
 }
-.skill-cd-num {
+.pskill-cd-num {
     text-align: right;
     font-size: 14px;
     margin-top: -10px;
 }
-.skill-m {
+.pskill-m,
+.cskill-m {
     width: 80px;
 }
-.skill-name {
+.pskill-r,
+.cskill-r {
+
+}
+.pskill-name,
+.cskill-name {
     font-size: 19px;
 }
-.skill-description {
+.pskill-description,
+.cskill-description {
     font-size: 16px;
     margin-top: -20px;
+}
+
+
+
+.panel-text.cc {
+    padding: 15px 8px 5px 8px;
+    display: flex;
+    align-items: stretch;
+}
+.cc-type {
+    position: relative;
+    padding: 0 5px;
+}
+.pf-cc-bot {
+    position: relative;
+    z-index: 1;
+
+    width: 85%;
+    object-fit: contain;
+}
+.pf-cc-servant {
+    position: absolute;
+    z-index: 5;
+    left: 0px;
+    top: -15px;
+
+    width: 85%;
+    object-fit: contain;
+}
+.pf-cc-mid {
+    position: absolute;
+    z-index: 10;
+    left: -5px;
+    top: 35px;
+
+
+    width: 95%;
+    object-fit: contain;
+}
+.pf-cc-top {
+    position: absolute;
+    left: 3px;
+    bottom: 10px;
+    z-index: 20;
+
+    width: 82%;
+    object-fit: contain;
+}
+
+
+.panel-text.profile-panel {
+    padding: 22px 10px 5px 10px;
+}
+#param-table {
+    width: 100%;
+    font-size: 20px;
+}
+#param-table td:nth-child(1),
+#param-table td:nth-child(4) {
+  width: 10%;
+  }
+
+/* the second */
+#param-table td:nth-child(2),
+#param-table td:nth-child(5) {
+  width: 30%;
+}
+
+/* the third */
+#param-table td:nth-child(3),
+#param-table td:nth-child(6) {
+  width: 10%;
+  padding-left: 10px;
+ }
+
+.pf-param-img {
+    width: 100%;
+}
+
+
+
+.voice-img {
+    margin-bottom: -4px;
+    cursor: pointer;
+}
+.voice-title {
+    margin-top: -66px;
+}
+.panel-text.voice-panel {
+    padding: 22px 10px 3px 66px;
+    margin-bottom: -7px;
+    margin-top: -16px;
+    font-size: 23px;
+}
+.panel-img {
+    width: 100%;
+}
+.voice-text {
+    z-index: 999;
+    padding-top: 25px;
+    font-size: 25px;
+}
+
+
+
+#profile-content-gallery {
+    position: relative;
+}
+#pf-gallery-img-wrapper {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
+#pf-gallery-img {
+    width: 390px;
+    height: 345px;
+    object-fit: contain;
+}
+#pf-gallery-nav {
+    position: absolute;
+    width: 140px;
+    margin-top: 20px;
+    right: -5px;
+    bottom: -300px;
+}
+#pf-gallery-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#pf-gallery-nav ul li {
+    height: 50px;
+    background-image: url("assets/button-gallery.png");
+    background-repeat: no-repeat;
+    backgroun-size: cover;
+}
+#pf-gallery-nav ul li a {
+    display: block;
+    padding-top: 13px;
+
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+
 }
 
 </style>
@@ -314,14 +566,17 @@ body:before {
 
 
     <div id="col-mid" style="flex: 32.5%">
-        <img id="profile-cardart" src="https://cdn.discordapp.com/attachments/919921281388924978/973261842677903360/servant_card_05.png">
+        <img id="pf-charagraph-base" src="">
+        <img id="pf-cardURL" src="">
+        <img id="pf-charagraph-frame" src="">
+        <img id="pf-charagraph-class" src="">
     </div>
 
 
     <div id="col-right" style="flex: 62%">
         <div id="profile-name">
-            <div id="profile-truename">Servant Name</div>
-            <div id="profile-class">Servant Class</div>
+            <div id="pf-servantName"></div>
+            <div id="pf-servantClass"></div>
         </div>
         <div id="profile-nav">
             <div style="flex: 25%" class="profile-nav active" data-slide="0">Status</div>
@@ -332,78 +587,218 @@ body:before {
         <div id="profile-content">
             <div class="profile-content active" data-slide="0">
 
-                <img class="test-img" src="https://cdn.discordapp.com/attachments/919921281388924978/973330004559671296/Picture1.png">
-                <div class="test-title">Skills</div>
-                <div class="test-text skill-panel">
-                    <div class="test-skill-tip">These skills can be used anytime during battle.</div>
-                    <table class="test-skill-table">
-                        <tr><td class="skill-l">
-                                <p class="skill-num">SKILL 1</p><p class="skill-cd">Cooldown</p><p class="skill-cd-num">5</p>
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="pskill-title">Skills</div>
+                <div class="panel-text pskill-panel">
+                    <div class="pskill-tip">These skills can be used anytime during battle.</div>
+                    <table class="pskill-table">
+                        <tr><td class="pskill-l">
+                                <p class="pskill-num">SKILL 1</p>
+                                <p class="pskill-cd">Cooldown</p>
+                                <p class="pskill-cd-num" id="pf-pskill-skill1-cd"></p>
                             </td>
-                            <td class="skill-m"></td>
-                            <td class="skill-r">
-                                <p class="skill-name">Numerology (Arcanum) B Lv. 10</p>
-                                <p class="skill-description">Increases own Arts performance for 3 turns. Reduces all enemies’ Buster resistance for 3 turns.</p>
+                            <td class="pskill-m"></td>
+                            <td class="pskill-r">
+                                <p class="pskill-name">
+                                    <span id="pf-pskill-skill1-name"></span> 
+                                    <span id="pf-pskill-skill1-rank"></span> Lv. 
+                                    <span id="pf-pskill-skill1-level"></span></p>
+                                <p class="pskill-description" id="pf-pskill-skill1-desc"></p>
                             </td></tr>
-                        <tr><td class="skill-l">
-                                <p class="skill-num">SKILL 2</p><p class="skill-cd">Cooldown</p><p class="skill-cd-num">5</p>
+                        <tr><td class="pskill-l">
+                                <p class="pskill-num">SKILL 2</p>
+                                <p class="pskill-cd">Cooldown</p>
+                                <p class="pskill-cd-num" id="pf-pskill-skill2-cd"></p>
                             </td>
-                            <td class="skill-m"></td>
-                            <td class="skill-r">
-                                <p class="skill-name">Petrification (Curse) B Lv. 10</p>
-                                <p class="skill-description">70% Chance to Stun all enemies for 1 turn. 50% Chance to reduce their Defense for 3 turns. 30% Chance to seal their NP for 2 turns.</p>
+                            <td class="pskill-m"></td>
+                            <td class="pskill-r">
+                                <p class="pskill-name">
+                                    <span id="pf-pskill-skill2-name"></span> 
+                                    <span id="pf-pskill-skill2-rank"></span> Lv. 
+                                    <span id="pf-pskill-skill2-level"></span></p>
+                                <p class="pskill-description" id="pf-pskill-skill2-desc"></p>
                             </td></tr>
-                        <tr><td class="skill-l">
-                                <p class="skill-num">SKILL 3</p><p class="skill-cd">Cooldown</p><p class="skill-cd-num">6</p>
+                        <tr><td class="pskill-l">
+                                <p class="pskill-num">SKILL 3</p>
+                                <p class="pskill-cd">Cooldown</p>
+                                <p class="pskill-cd-num" id="pf-pskill-skill3-cd"></p>
                             </td>
-                            <td class="skill-m"></td>
-                            <td class="skill-r">
-                                <p class="skill-name">Rings of Galileo A Lv. 10</p>
-                                <p class="skill-description">70% Chance to increase party’s Max HP for 3 turns. 50% Chance to reduce party’s damage taken for 3 turns. 30% Chance to charge the party's NP gauge every 3 turns. </p>
+                            <td class="pskill-m"></td>
+                            <td class="pskill-r">
+                                <p class="pskill-name">
+                                    <span id="pf-pskill-skill3-name"></span> 
+                                    <span id="pf-pskill-skill3-rank"></span> Lv. 
+                                    <span id="pf-pskill-skill3-level"></span></p>
+                                <p class="pskill-description" id="pf-pskill-skill3-desc"></p>
                             </td></tr>
                     </table>
                 </div>  
-                <img class="test-img" src="https://cdn.discordapp.com/attachments/919921281388924978/973323456546488380/Picture1_-_Copy.png">
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
 
 
 
-                <img class="test-img" src="https://cdn.discordapp.com/attachments/919921281388924978/973330004559671296/Picture1.png">
-                <div class="test-title">Noble Phantasm</div>
-                <div class="test-text">
-                    <div class="test-np-name">Arbatel Saturn: The Kingdom of 49 Provinces</div>
-                    <table class="test-np-table">
-                        <tr><td class="np-category">Rank</td><td>EX</td></tr>
-                        <tr><td class="np-category">Class</td><td>Anti-Army</td></tr>
-                        <tr><td class="np-category">NP Lv.</td><td>1/5</td></tr>
-                        <tr><td class="np-category">NP Gauge</td><td>MAX 100%</td></tr>
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="cskill-title">Class Skills</div>
+                <div class="panel-text cskill-panel">
+                    <div class="cskill-tip">These skills automatically go into effect in battle.</div>
+                    <table class="cskill-table">
+                        <tr><td class="cskill-l">
+                                <p class="cskill-num">SKILL 1</p>
+                            </td>
+                            <td class="cskill-m"></td>
+                            <td class="cskill-r">
+                                <p class="cskill-name">
+                                    <span id="pf-cskill-skill1-name"></span> 
+                                    <span id="pf-cskill-skill1-rank"></span> Lv. 
+                                <p class="cskill-description" id="pf-cskill-skill1-desc"></p>
+                            </td></tr>
+                        <tr><td class="cskill-l">
+                                <p class="cskill-num">SKILL 2</p>
+                            </td>
+                            <td class="cskill-m"></td>
+                            <td class="cskill-r">
+                                <p class="cskill-name">
+                                    <span id="pf-cskill-skill2-name"></span> 
+                                    <span id="pf-cskill-skill2-rank"></span> Lv. 
+                                    <span id="pf-cskill-skill2-level"></span></p>
+                                <p class="cskill-description" id="pf-cskill-skill2-desc"></p>
+                            </td></tr>
+                        <tr><td class="cskill-l">
+                                <p class="cskill-num">SKILL 3</p>
+                            </td>
+                            <td class="cskill-m"></td>
+                            <td class="cskill-r">
+                                <p class="cskill-name">
+                                    <span id="pf-cskill-skill3-name"></span> 
+                                    <span id="pf-cskill-skill3-rank"></span> Lv. 
+                                    <span id="pf-cskill-skill3-level"></span></p>
+                                <p class="cskill-description" id="pf-cskill-skill3-desc"></p>
+                            </td></tr>
                     </table>
-                    <div class="test-np-text">70% Chance to increase own Buster performance by 35% for 1 turn.  (Activates first) 50% Chance to increase own Attack by 35% for 1 turn.  (Activates first) 30% Chance to increase own NP damage by 35% for 1 turn.  (Activates first) Deal damage to all enemies. (effect increases with Overcharge)</div>
                 </div>  
-                <img class="test-img" src="https://cdn.discordapp.com/attachments/919921281388924978/973323456546488380/Picture1_-_Copy.png">
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+
+
+
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="np-title">Noble Phantasm</div>
+                <div class="np-type">
+                    <img class='pf-np-bot' id="pf-np-bot" src="">
+                    <img class='pf-np-servant' id="pf-np-servant" src="">
+                    <img class='pf-np-mid' id="pf-np-mid" src="">
+                    <img class='pf-np-top' id="pf-np-top" src="">
+                </div>
+                <div class="panel-text">
+                    <div class="np-name" id="pf-np-name"></div>
+                    <table class="np-table">
+                        <tr><td class="np-category">Rank</td><td id="pf-np-rank"></td></tr>
+                        <tr><td class="np-category">Class</td><td id="pf-np-class"></td></tr>
+                        <tr><td class="np-category">NP Lv.</td><td id="pf-np-level"></td></tr>
+                        <tr><td class="np-category">NP Gauge</td><td>
+                            <span id="pf-np-gauge-wrapper">
+                                <img class="pf-np-gauge" id="pf-np-gauge-1" src="">
+                                <img class="pf-np-gauge" id="pf-np-gauge-2" src="">
+                                <img class="pf-np-gauge" id="pf-np-gauge-3" src="">
+                            </span>
+                            <span id="pf-np-gaugetext"></span></td></tr>
+                    </table>
+                    <div class="np-text" id="pf-np-desc"></div>
+                </div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+
+
+
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="cc-title">Command Card</div>
+                <div class="panel-text cc">
+                    <table class="np-table">
+                        <tr>
+                            <td class="cc-type" id="pf-cc1" style="flex: 20%">
+                                <img class='pf-cc-bot' id="pf-cc1-bot" src="">
+                                <img class='pf-cc-servant' id="pf-cc1-servant" src="">
+                                <img class='pf-cc-mid' id="pf-cc1-mid" src="">
+                                <img class='pf-cc-top' id="pf-cc1-top" src="">
+                            </td>
+                            <td class="cc-type" id="pf-cc2" style="flex: 20%">
+                                <img class='pf-cc-bot' id="pf-cc2-bot" src="">
+                                <img class='pf-cc-servant' id="pf-cc2-servant" src="">
+                                <img class='pf-cc-mid' id="pf-cc2-mid" src="">
+                                <img class='pf-cc-top' id="pf-cc2-top" src="">
+                            </td>
+                            <td class="cc-type" id="pf-cc3" style="flex: 20%">
+                                <img class='pf-cc-bot' id="pf-cc3-bot" src="">
+                                <img class='pf-cc-servant' id="pf-cc3-servant" src="">
+                                <img class='pf-cc-mid' id="pf-cc3-mid" src="">
+                                <img class='pf-cc-top' id="pf-cc3-top" src="">
+                            </td>
+                            <td class="cc-type" id="pf-cc4" style="flex: 20%">
+                                <img class='pf-cc-bot' id="pf-cc4-bot" src="">
+                                <img class='pf-cc-servant' id="pf-cc4-servant" src="">
+                                <img class='pf-cc-mid' id="pf-cc4-mid" src="">
+                                <img class='pf-cc-top' id="pf-cc4-top" src="">
+                            </td>
+                            <td class="cc-type" id="pf-cc5" style="flex: 20%">
+                                <img class='pf-cc-bot' id="pf-cc5-bot" src="">
+                                <img class='pf-cc-servant' id="pf-cc5-servant" src="">
+                                <img class='pf-cc-mid' id="pf-cc5-mid" src="">
+                                <img class='pf-cc-top' id="pf-cc5-top" src="">
+                            </td></tr>
+                    </table>
+                </div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+
             </div>
             <div class="profile-content" data-slide="1">
-                Profile content<br> Profile content<br> Profile content<br>
-                 Profile content<br> Profile content<br> Profile content<br>
-                 Profile content<br> Profile content<br> Profile content<br>
-                 Profile content<br> Profile content<br> Profile content<br>
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="profile-title">Parameters</div>
+                <div class="panel-text profile-panel" id="pf-parameter">
+                    <table id="param-table">
+                        <tr>
+                            <td>STR</td><td><img class="pf-param-img" id="pf-str-img" src=""></td><td><span id="pf-str"></span></td>
+                            <td>END</td><td><img class="pf-param-img" id="pf-end-img" src=""></td><td><span id="pf-end"></span></td></tr>
+                        <tr>
+                            <td>AGL</td><td><img class="pf-param-img" id="pf-agi-img" src=""></td><td><span id="pf-agi"></span></td>
+                            <td>MP</td><td><img class="pf-param-img" id="pf-man-img" src=""></td><td><span id="pf-man"></span></td></tr>
+                        <tr>
+                            <td>LUK</td><td><img class="pf-param-img" id="pf-luk-img" src=""></td><td><span id="pf-luk"></span></td>
+                            <td>NP</td><td><img class="pf-param-img" id="pf-np-img" src=""></td><td><span id="pf-np"></span></td></tr>
+                    </table>
+                </div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="profile-title">Profile 1</div>
+                <div class="panel-text profile-panel" id="pf-profile1"></div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="profile-title">Profile 2</div>
+                <div class="panel-text profile-panel" id="pf-profile2"></div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="profile-title">Profile 3</div>
+                <div class="panel-text profile-panel" id="pf-profile3"></div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="profile-title">Profile 4</div>
+                <div class="panel-text profile-panel" id="pf-profile4"></div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="profile-title">Profile 5</div>
+                <div class="panel-text profile-panel" id="pf-profile5"></div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+                <img class="panel-img" src="assets/profile-infopanel-top.png">
+                <div class="profile-title">Profile 6</div>
+                <div class="panel-text profile-panel" id="pf-profile6"></div>  
+                <img class="panel-img" src="assets/profile-infopanel-bot.png">
+
+                
             </div>
-            <div class="profile-content" data-slide="2">
-                Gallery content<br>Gallery content<br>Gallery content<br>
-                Gallery content<br>Gallery content<br>Gallery content<br>
-                Gallery content<br>Gallery content<br>Gallery content<br>
-                Gallery content<br>Gallery content<br>Gallery content<br>
+            <div class="profile-content" id="profile-content-gallery" data-slide="2">
+                <div id="pf-gallery-img-wrapper">
+                    <img id="pf-gallery-img" src=""></div>
+                <div id="pf-gallery-nav"></div>
             </div>
-            <div class="profile-content" data-slide="3">
-                <img class="voice-img" data-slide="11" src="https://cdn.discordapp.com/attachments/919921281388924978/973287236013555782/Picture6.png">
-                <div class="voice-text" data-slide="11" >Don’t you have work to do? As you can see, I am rather busy! sitting on a bed</div>
-                <img class="voice-img" data-slide="12" src="https://cdn.discordapp.com/attachments/919921281388924978/973287245165498398/Picture7.png">
-                <div class="voice-text" data-slide="12" >Master-Servant relationship? Sounds wonderful! I’ve always appreciated this type of companionship. Now, be a good ‘Servant’ and look over these notes for me. Thanks~!</div>
-                <img class="voice-img" data-slide="13" src="https://cdn.discordapp.com/attachments/919921281388924978/973287252379717672/Picture8.png">
-                <div class="voice-text" data-slide="13" >You want me to write you something? Sure! Just turn around, leave and do not speak to me for around ten years or so. I’ll churn out a masterpiece in that amount of time. You can trust me on that!</div>
-                Voice content<br>Voice content<br>Voice content<br>
-                Voice content<br>Voice content<br>Voice content<br>
-                 Voice content<br>Voice content<br>Voice content<br>
-                Voice content<br>Voice content<br>Voice content<br>
+            <div class="profile-content" id="profile-content-voiceover" data-slide="3">
             </div>
         </div>
     </div>
@@ -419,6 +814,7 @@ body:before {
 <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script type="text/javascript">
 
+// profile tabs
   $(".profile-nav").on("click", function (e) {
     e.preventDefault();
     // get current slide
@@ -442,14 +838,16 @@ body:before {
     }
   });
 
-  $(".voice-img").on("click", function (e) {
+// voiceovers 
+function bindVoiceoverPanels() {
+    $(".voice-img").on("click", function (e) {
     e.preventDefault();
     // get current slide
     var current = $(this).data("slide");
     $(this).addClass("active");
 
 
-    $("#profile-content")
+    $("#profile-content-voiceover")
       .find(".voice-text[data-slide=" + current + "]")
       .addClass("active");
   });
@@ -460,11 +858,124 @@ body:before {
     var current = $(this).data("slide");
     $(this).removeClass("active");
 
-
-    $("#profile-content")
+    $("#profile-content-voiceover")
       .find(".voice-img[data-slide=" + current + "]")
       .removeClass("active");
   });
+}
+
+function changeGalleryImage(newSrc) {
+    document.getElementById("pf-gallery-img").src = newSrc;
+}
+  
+
+
+// load all servant profiles
+var servantURL = "aratron"
+var matURL = "servants/" + servantURL + ".js";
+
+$.ajaxSetup({'cache':true});
+$.getScript(matURL, function() {
+
+  // load card art
+  document.getElementById('pf-charagraph-base').src = "assets/charagraph/base_servant.png";
+  document.getElementById('pf-cardURL').src = "assets/cardart/" + a.info.cardURL + ".png";
+  document.getElementById('pf-charagraph-frame').src = "assets/charagraph/charagraph_servant_0" + a.info.servantRarity.toString() + ".png";
+  if (a.info.servantRarity >= 4) {
+    document.getElementById('pf-charagraph-class').src = "assets/charagraph/class" + a.info.servantClass + "gold_charagraph" + ".png";
+  } else {
+    document.getElementById('pf-charagraph-class').src = "assets/charagraph/class" + a.info.servantClass + "silver_charagraph" + ".png";
+  }
+  
+
+  // load servant name, servant class
+  document.getElementById('pf-servantName').innerHTML = a.info.servantName;
+  document.getElementById('pf-servantClass').innerHTML = a.info.servantClass;
+
+  // load personal skills
+  for (let skill in a.pskill) {
+    for (let key in a.pskill[skill]) {
+        document.getElementById('pf-pskill-' + skill + '-' + key).innerHTML = a.pskill[skill][key];
+    }
+  }
+
+  // load class skills
+  for (let skill in a.cskill) {
+    for (let key in a.cskill[skill]) {
+        document.getElementById('pf-cskill-' + skill + '-' + key).innerHTML = a.pskill[skill][key];
+    }
+  }
+
+  // load noble phantasm
+  document.getElementById('pf-np-bot').src = "assets/card-np-" + a.np.type + ".png";
+  document.getElementById('pf-np-servant').src = "assets/ccart/" + a.info.servantName + ".png";
+  document.getElementById('pf-np-mid').src = "assets/card-" + a.np.type + "-mid.png";
+  document.getElementById('pf-np-top').src = "assets/card-" + a.np.type + "-top.png";
+  for (let key in a.np) {
+    if (key != "type" && key != "gauge") { document.getElementById('pf-np-' + key).innerHTML = a.np[key]; }
+  } 
+  document.getElementById('pf-np-gauge-1').src = "assets/np-gauge-1.png";
+  document.getElementById('pf-np-gauge-2').src = "assets/np-gauge-0.png";
+  document.getElementById('pf-np-gauge-3').src = "assets/np-gauge-0.png";
+  if (a.np.gauge > 1) {
+    document.getElementById('pf-np-gauge-2').src = "assets/np-gauge-2.png";
+  }
+  if (a.np.gauge == 5) {
+    document.getElementById('pf-np-gauge-3').src = "assets/np-gauge-3.png";
+  }
+
+  // load command cards
+  for (let key in a.cc) {
+    document.getElementById('pf-' + key + '-bot').src = "assets/card-" + a.cc[key] + "-bot.png";
+    document.getElementById('pf-' + key + '-servant').src = "assets/ccart/" + a.info.servantName + ".png";
+    document.getElementById('pf-' + key + '-mid').src = "assets/card-" + a.cc[key] + "-mid.png";
+    document.getElementById('pf-' + key + '-top').src = "assets/card-" + a.cc[key] + "-top.png";
+  }
+
+  // load params
+  for (let key in a.param) {
+    document.getElementById('pf-' + key).innerHTML = a.param[key];
+    document.getElementById('pf-' + key + '-img').src = "assets/param-" + a.param[key] + '.png';
+  }
+
+  // load profiles
+  for (let key in a.profile) {
+    document.getElementById('pf-' + key).innerHTML = a.profile[key];
+  }
+
+  // load voiceovers
+  var voiceHTML = "";
+  var count = 0;
+  for (let key in a.voice) {
+    var voicetemp = '<div class="voice-img" data-slide="1' + count.toString() + '">' + 
+                    '<img class="panel-img" src="assets/profile-voicepanel-top.png">' + 
+                    '<div class="voice-title">My Room</div>' + 
+                    '<div class="panel-text voice-panel" id="pf-' + key + '">' + a.voice[key].name + '</div>' + 
+                    '<img class="panel-img" src="assets/profile-voicepanel-bot.png"></div>' + 
+                    '<div class="voice-text" data-slide="1' + count.toString() + '">' + a.voice[key].desc + '</div>';
+    count++;
+
+
+    voiceHTML += voicetemp;
+  }
+  document.getElementById('profile-content-voiceover').innerHTML = voiceHTML;
+  bindVoiceoverPanels();
+
+
+
+
+  // load gallery
+  var galleryHTML = "<ul>";
+  for (let key in a.gallery) {
+    var gallerytemp =   '<li><a class="gallery-link" href="javascript:" onclick="changeGalleryImage(' + "'" + a.gallery[key].url + "'" + ');">' + a.gallery[key].name + '</a></li>';
+    galleryHTML += gallerytemp;
+  }
+  galleryHTML += "</ul>";
+  document.getElementById('pf-gallery-nav').innerHTML = galleryHTML;
+
+});
+ 
+
 
 
 </script>
