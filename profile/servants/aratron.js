@@ -52,7 +52,7 @@ var a={ info: {
         },
 
         np: {
-            type: "quick",
+            type: "buster",
             name: "Arbatel Saturn: The Kingdom of 49 Provinces",
             rank: "EX",
             class: "Anti-Army",
