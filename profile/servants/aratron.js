@@ -15,6 +15,7 @@ var a={ info: {
                         rank: "B",
                         level: 10,
                         cd: 5,
+                        iconURL: "https://cdn.discordapp.com/emojis/799308950792699915.webp",
                         desc: "Increases own Arts performance for 3 turns. Reduces all enemies’ Buster resistance for 3 turns."
                     },
             skill2: {
@@ -22,6 +23,7 @@ var a={ info: {
                         rank: "B",
                         level: 10,
                         cd: 5,
+                        iconURL: "https://cdn.discordapp.com/emojis/799308950792699915.webp",
                         desc: "70% Chance to Stun all enemies for 1 turn. 50% Chance to reduce their Defense for 3 turns. 30% Chance to seal their NP for 2 turns."
                     },
             skill3: {
@@ -29,6 +31,7 @@ var a={ info: {
                         rank: "A",
                         level: 10,
                         cd: 6,
+                        iconURL: "https://cdn.discordapp.com/emojis/799308950792699915.webp",
                         desc: "70% Chance to increase party’s Max HP for 3 turns. 50% Chance to reduce party’s damage taken for 3 turns. 30% Chance to charge the party's NP gauge every 3 turns."
                     }
         },
@@ -37,16 +40,19 @@ var a={ info: {
             skill1: {
                         name: "Territory Creation",
                         rank: "A",
+                        iconURL: "https://cdn.discordapp.com/emojis/799308950792699915.webp",
                         desc: "Increases own Arts performance by 10%."
             },
             skill2: {
                         name: "Item Construction",
                         rank: "EX",
+                        iconURL: "https://cdn.discordapp.com/emojis/799308950792699915.webp",
                         desc: "Increases own Debuff Success Rate by 12%."
             },
             skill3: {
                         name: "Divinity",
                         rank: "C",
+                        iconURL: "https://cdn.discordapp.com/emojis/799308950792699915.webp",
                         desc: "Increases own Damage by 150."
             }
         },

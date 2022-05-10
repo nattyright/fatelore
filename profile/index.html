@@ -366,7 +366,7 @@ body:before {
 }
 .pskill-l,
 .cskill-l {
-    padding: 10px 20px 0 0;
+    padding: 10px 10px 0 0;
     min-width: 50px;
     display: inline-block;
     vertical-align: top;
@@ -391,7 +391,14 @@ body:before {
 }
 .pskill-m,
 .cskill-m {
+    margin-left: -20px;
     width: 80px;
+}
+.pskill-m img,
+.cskill-m img {
+
+    width: 90%;
+    object-fit: contain;
 }
 .pskill-r,
 .cskill-r {
@@ -603,7 +610,9 @@ body:before {
                                 <p class="pskill-cd">Cooldown</p>
                                 <p class="pskill-cd-num" id="pf-pskill-skill1-cd"></p>
                             </td>
-                            <td class="pskill-m"></td>
+                            <td class="pskill-m">
+                                <img id="pf-pskill-skill1-iconURL" src="">
+                            </td>
                             <td class="pskill-r">
                                 <p class="pskill-name">
                                     <span id="pf-pskill-skill1-name"></span> 
@@ -616,7 +625,9 @@ body:before {
                                 <p class="pskill-cd">Cooldown</p>
                                 <p class="pskill-cd-num" id="pf-pskill-skill2-cd"></p>
                             </td>
-                            <td class="pskill-m"></td>
+                            <td class="pskill-m">
+                                <img id="pf-pskill-skill2-iconURL" src="">
+                            </td>
                             <td class="pskill-r">
                                 <p class="pskill-name">
                                     <span id="pf-pskill-skill2-name"></span> 
@@ -629,7 +640,9 @@ body:before {
                                 <p class="pskill-cd">Cooldown</p>
                                 <p class="pskill-cd-num" id="pf-pskill-skill3-cd"></p>
                             </td>
-                            <td class="pskill-m"></td>
+                            <td class="pskill-m">
+                                <img id="pf-pskill-skill3-iconURL" src="">
+                            </td>
                             <td class="pskill-r">
                                 <p class="pskill-name">
                                     <span id="pf-pskill-skill3-name"></span> 
@@ -651,7 +664,9 @@ body:before {
                         <tr><td class="cskill-l">
                                 <p class="cskill-num">SKILL 1</p>
                             </td>
-                            <td class="cskill-m"></td>
+                            <td class="cskill-m">
+                                <img id="pf-cskill-skill1-iconURL" src="">
+                            </td>
                             <td class="cskill-r">
                                 <p class="cskill-name">
                                     <span id="pf-cskill-skill1-name"></span> 
@@ -661,7 +676,9 @@ body:before {
                         <tr><td class="cskill-l">
                                 <p class="cskill-num">SKILL 2</p>
                             </td>
-                            <td class="cskill-m"></td>
+                            <td class="cskill-m">
+                                <img id="pf-cskill-skill2-iconURL" src="">
+                            </td>
                             <td class="cskill-r">
                                 <p class="cskill-name">
                                     <span id="pf-cskill-skill2-name"></span> 
@@ -672,7 +689,9 @@ body:before {
                         <tr><td class="cskill-l">
                                 <p class="cskill-num">SKILL 3</p>
                             </td>
-                            <td class="cskill-m"></td>
+                            <td class="cskill-m">
+                                <img id="pf-cskill-skill3-iconURL" src="">
+                            </td>
                             <td class="cskill-r">
                                 <p class="cskill-name">
                                     <span id="pf-cskill-skill3-name"></span> 
@@ -901,14 +920,24 @@ $.getScript(matURL, function() {
   // load personal skills
   for (let skill in a.pskill) {
     for (let key in a.pskill[skill]) {
-        document.getElementById('pf-pskill-' + skill + '-' + key).innerHTML = a.pskill[skill][key];
+        if (key != "iconURL") {
+            document.getElementById('pf-pskill-' + skill + '-' + key).innerHTML = a.pskill[skill][key];
+        } else {
+            document.getElementById('pf-pskill-' + skill + '-' + key).src = a.pskill[skill][key];
+        }
+        
     }
   }
 
   // load class skills
   for (let skill in a.cskill) {
     for (let key in a.cskill[skill]) {
-        document.getElementById('pf-cskill-' + skill + '-' + key).innerHTML = a.pskill[skill][key];
+        if (key != "iconURL") {
+            document.getElementById('pf-cskill-' + skill + '-' + key).innerHTML = a.pskill[skill][key];
+        } else {
+            document.getElementById('pf-cskill-' + skill + '-' + key).src = a.cskill[skill][key];
+        }
+        
     }
   }
 
@@ -978,6 +1007,7 @@ $.getScript(matURL, function() {
   }
   galleryHTML += "</ul>";
   document.getElementById('pf-gallery-nav').innerHTML = galleryHTML;
+  changeGalleryImage(a.gallery.image1.url)
 
 });
  
