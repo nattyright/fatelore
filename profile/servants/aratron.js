@@ -99,7 +99,7 @@ var a={ info: {
             profile3: "This is the description of profile 3.",
             profile4: "This is the description of profile 4.",
             profile5: "This is the description of profile 5.",
-            profile6: "This is the description of profile 6.",
+            profile6: "This is the description of profile 6."
 
         },
 
