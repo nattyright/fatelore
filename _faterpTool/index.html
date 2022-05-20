@@ -1042,8 +1042,10 @@
     
 
     <!-- jquery-ui package functions -->
+    <!--
     <script src="ui/jquery-ui/jquery-ui.js"></script>
     <script src="ui/jquery-ui-helper.js"></script>
+  -->
     <!-- trumbowyg text editor plugin -->
     <script src="node_modules/trumbowyg/dist/trumbowyg.min.js"></script>
     <script src='js/common/texteditor.js'></script>
@@ -1059,7 +1061,7 @@
     <script src='js/common/searchWikipedia.js'></script>
     <script src='js/common/preview.js'></script>
     <script src='json/canon_servants.js'></script>
-    <script type='module' src='js/common/fgomaterial.js'></script>
+    <script src='js/common/fgomaterial.js'></script>
 
     <!-- sheet input field related helper functions -->
     <script src='js/helpertitle.js'></script>
@@ -1070,9 +1072,62 @@
     <script src='js/helperskill.js'></script>
     <script src='js/helpermisc.js'></script>
     
+    <!--
+    <script type="text/javascript">
+      var count_totalskill = 0;
+      var count_plus = 0;
 
+      var count_totalservants = 0;
+      var count_servants_plus = 0;
+      var count_servants_toggle = 0;
 
+      canonServants.forEach(function (item, index) {
 
+        if (item['cSKill'] != undefined) {
+
+          Object.keys(item.cSkill).forEach(function (key) {
+
+            if (item.cSkill[key].rank.includess("+")) {
+              console.log(item.cSkill[key])
+              count_plus += 1;
+
+              if (count_servants_toggle == 0) {
+              count_servants_toggle = 1;
+              count_servants_plus += 1;
+              }
+            }
+            count_totalskill += 1
+
+          });
+
+        }
+        if (item.pSkill != undefined) {
+
+          Object.keys(item.pSkill).forEach(function (key) {
+
+            if (item.pSkill[key].rank.includes("+")) {
+              console.log(item.pSkill[key])
+              count_plus += 1;
+
+              if (count_servants_toggle == 0) {
+              count_servants_toggle = 1;
+              count_servants_plus += 1;
+              }
+            }
+            count_totalskill += 1
+
+          });
+
+        }
+        
+        count_totalservants += 1;
+        count_servants_toggle = 0;
+
+      });
+      console.log(count_totalskill, count_plus);
+      console.log(count_totalservants, count_servants_plus);
+    </script>
+  -->
     
 
   </body>
