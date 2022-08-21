@@ -1,5 +1,6 @@
 var strokeWidthArray={};
 var strokeWidthTempArray={};
+var poiResizeConstant=0.7;
 
 // display the image, title, and description of geo items 
 // on the info panel (left)
@@ -10,7 +11,7 @@ function displayName(name) {
     document.getElementById('info-panel-name').firstChild.data = name;
 }
 function displayDesc(name) {
-    document.getElementById('info-panel-desc').firstChild.data = name;
+    document.getElementById('info-panel-desc').innerHTML = name;
 }
 function infoPanelClick() {
     displayImage(this.getElementsByTagName('desc')[0].innerHTML.split(';')[1]);
@@ -147,34 +148,29 @@ window.addEventListener("load", function() {
 
     // test mouseover
     //districts
-    for (let i = 1; i < 6; i++) {
-        var item = svgObject.getElementById('n' + i + '-over');
+    var items = svgObject.querySelectorAll(`[id^="district-"]`);
+    items.forEach((item, index) => {
         item.addEventListener("mouseover", districtMouseOver, false);
         item.addEventListener("mouseout", districtMouseOut, false);
         item.addEventListener("click", infoPanelClick, false);
         setSvgDefaultValue(item, "stroke-width");
-        var item = svgObject.getElementById('s' + i + '-over');
-        item.addEventListener("mouseover", districtMouseOver, false);
-        item.addEventListener("mouseout", districtMouseOut, false);
-        item.addEventListener("click", infoPanelClick, false);
-        setSvgDefaultValue(item, "stroke-width");
-    }
-    for (let i = 1; i < 3; i++) {
-        var item = svgObject.getElementById('c' + i + '-over');
-        item.addEventListener("mouseover", districtMouseOver, false);
-        item.addEventListener("mouseout", districtMouseOut, false);
-        item.addEventListener("click", infoPanelClick, false);
-        setSvgDefaultValue(item, "stroke-width");
-    }
+    });
     // pois
-    for (let i = 1; i < 7; i++) {
-        var item = svgObject.getElementById('loc' + i);
+    var items = svgObject.querySelectorAll(`[id^="loc-"]`);
+    items.forEach((item, index) => {
         item.addEventListener("mouseover", locationMouseOver, false);
         item.addEventListener("mouseout", locationMouseOut, false);
         item.addEventListener("click", infoPanelClick, false);
         setSvgDefaultValue(item, "stroke-width");
         setSvgIcon(item);
-    }
+    });
+    var svg = d3.select(svgObject).select('svg');
+    svg.select('#layer-poi').selectAll('circle').each(function(d, i) {
+            d3.select(this).attr("r", 6 * poiResizeConstant);
+        });
+        svg.select('#avatar').select('image')
+                             .attr('width', 12 * poiResizeConstant)
+                             .attr('height', 12 * poiResizeConstant);
     // paths
     for (let i = 1; i < 3; i++) {
         var item = svgObject.getElementById('path' + i);
@@ -207,11 +203,11 @@ window.addEventListener("load", function() {
 
         //do not scale icon size
         svg.select('#layer-poi').selectAll('circle').each(function(d, i) {
-            d3.select(this).attr("r", 6 / event.transform.k);
+            d3.select(this).attr("r", 6 / event.transform.k * poiResizeConstant);
         });
         svg.select('#avatar').select('image')
-                             .attr('width', 12 / event.transform.k)
-                             .attr('height', 12 / event.transform.k);
+                             .attr('width', 12 / event.transform.k * poiResizeConstant)
+                             .attr('height', 12 / event.transform.k * poiResizeConstant);
 
         //do not scale stroke widths
         svg.selectAll('g').selectAll('path').each(function(d, i) {
