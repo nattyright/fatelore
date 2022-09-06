@@ -34,6 +34,10 @@ $('.sidebar-nav-item').on('click', function(e) {
     $('.sidebar').find('.sidebar-content[data-slide=' + next + ']').addClass('flex--active');
       
   }
+
+
+  // for interactive map (e.g. alexandria) only - hide POI descriptions
+  $(".info-panel-left").removeClass('show');
 });
 
 

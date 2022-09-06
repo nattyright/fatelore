@@ -1,6 +1,11 @@
 var strokeWidthArray={};
 var strokeWidthTempArray={};
 var poiResizeConstant=0.7;
+var poiDefaultSize=12;
+var poiResizeWindow=25000;
+var poiResizeWindowControl=5;
+
+poiDefaultSize=poiResizeWindow/window.innerWidth + poiResizeWindowControl;
 
 // display the image, title, and description of geo items 
 // on the info panel (left)
@@ -19,6 +24,9 @@ function infoPanelClick() {
     displayDesc(this.getElementsByTagName('desc')[0].innerHTML.split(';')[0]);
 
     document.getElementsByClassName('info-panel-left')[0].classList.add("show");
+
+    // remove sidebar nav highlight for city info
+    $(".sidebar-nav-item").removeClass("active");
 }
 
 
@@ -51,13 +59,16 @@ function locationMouseOver() {
 function locationMouseOut() {
     editSvgStyle(this, "cursor", "default");
 }
-function setSvgIcon(item) {
-    editSvgStyle(item, "fill:", "url(#avatar)");
+function setSvgIcon(item, iconName) {
+    editSvgStyle(item, "fill:", "url(#" + iconName +")");
 }
 
 
 // info panel actions
-function closePanel(className) {
+function closePanelLeft(className) {
+    document.getElementsByClassName(className)[0].classList.remove('show');
+}
+function closePanelRight(className) {
     document.getElementsByClassName(className)[0].classList.remove('show');
 }
 function openPanel(className) {
@@ -127,24 +138,22 @@ function setSvgDefaultValue(item, param) {
 // set up
 window.addEventListener("load", function() {
 
+
+
+// change poi icon size
+
+
+    window.addEventListener('resize', function(event) {
+        poiDefaultSize=poiResizeWindow/window.innerWidth + poiResizeWindowControl;
+    });
+
+
     var svgObject = document.getElementById('svg-object').contentDocument;
     // resize SVG object to div
     var svgAttItem = svgObject.getElementById('svg8');
     svgAttItem.setAttribute("width", "100%");
     svgAttItem.setAttribute("height", "100%");
-    //svgAttItem.setAttribute("viewBox", "0 0 800mm 800mm");
-
-    // set svg fill pattern for PoI icons
-    d3.select(svgAttItem).select('defs').append("svg:pattern")
-             .attr("id", "avatar")
-             .attr("width", 12)
-             .attr("height", 12)
-             .append("svg:image")
-             .attr("xlink:href", "https://cdn.discordapp.com/attachments/694903118793801738/967405693713940541/unknown.png")
-             .attr("width", 12)
-             .attr("height", 12)
-             .attr("x", 0)
-             .attr("y", 0);
+    // svgAttItem.setAttribute("viewBox", "0 0 300 300");
 
     // test mouseover
     //districts
@@ -162,23 +171,40 @@ window.addEventListener("load", function() {
         item.addEventListener("mouseout", locationMouseOut, false);
         item.addEventListener("click", infoPanelClick, false);
         setSvgDefaultValue(item, "stroke-width");
-        setSvgIcon(item);
+
+        // set svg fill pattern for PoI icons
+        iconName = item.getElementsByTagName('desc')[0].innerHTML.split(';')[2];
+        d3.select(svgAttItem).select('defs').append("svg:pattern")
+                 .attr("id", iconName)
+                 .attr("class", "poiicon")
+                 .attr("width", poiDefaultSize)
+                 .attr("height", poiDefaultSize)
+                 .append("svg:image")
+                 .attr("xlink:href", "/images/location_icons/" + iconName + ".png")
+                 .attr("width", poiDefaultSize)
+                 .attr("height", poiDefaultSize)
+                 .attr("x", 0)
+                 .attr("y", 0);
+        setSvgIcon(item, iconName);
     });
     var svg = d3.select(svgObject).select('svg');
     svg.select('#layer-poi').selectAll('circle').each(function(d, i) {
-            d3.select(this).attr("r", 6 * poiResizeConstant);
+            d3.select(this).attr("r", poiDefaultSize * 0.5 * poiResizeConstant);
         });
-        svg.select('#avatar').select('image')
-                             .attr('width', 12 * poiResizeConstant)
-                             .attr('height', 12 * poiResizeConstant);
+        // set default poi icon size
+        svg.selectAll('.poiicon').select('image')
+                             .attr('width', poiDefaultSize * poiResizeConstant)
+                             .attr('height', poiDefaultSize * poiResizeConstant);
     // paths
-    for (let i = 1; i < 3; i++) {
+    for (let i = 1; i < 2; i++) {
         var item = svgObject.getElementById('path' + i);
-        item.addEventListener("mouseover", pathMouseOver, false);
-        item.addEventListener("mouseout", pathMouseOut, false);
-        item.addEventListener("click", infoPanelClick, false);
-        setSvgDefaultValue(item, "stroke-width");
+        //item.addEventListener("mouseover", pathMouseOver, false);
+        //item.addEventListener("mouseout", pathMouseOut, false);
+        //item.addEventListener("click", infoPanelClick, false);
+        //setSvgDefaultValue(item, "stroke-width");
     }
+    // hide path layer by default
+    toggleLayer("layer-path");
     // texts
     var svg = d3.select(svgObject).select('svg');
     svg.selectAll('tspan').each(function(d, i) {
@@ -203,11 +229,11 @@ window.addEventListener("load", function() {
 
         //do not scale icon size
         svg.select('#layer-poi').selectAll('circle').each(function(d, i) {
-            d3.select(this).attr("r", 6 / event.transform.k * poiResizeConstant);
+            d3.select(this).attr("r", 0.5 * poiDefaultSize / event.transform.k * poiResizeConstant);
         });
-        svg.select('#avatar').select('image')
-                             .attr('width', 12 / event.transform.k * poiResizeConstant)
-                             .attr('height', 12 / event.transform.k * poiResizeConstant);
+        svg.selectAll('.poiicon').select('image')
+                             .attr('width', poiDefaultSize / event.transform.k * poiResizeConstant)
+                             .attr('height', poiDefaultSize / event.transform.k * poiResizeConstant);
 
         //do not scale stroke widths
         svg.selectAll('g').selectAll('path').each(function(d, i) {
@@ -239,8 +265,9 @@ window.addEventListener("load", function() {
 
     }
     const zoom = d3.zoom().scaleExtent([1, 40])
-                          .on('zoom', handleZoom);                     
-    svg.call(zoom);
+                          .on('zoom', handleZoom);                 
+    svg.call(zoom)
+       .call(zoom.transform, d3.zoomIdentity.translate(-50, 0).scale(2));
 });
 
 
