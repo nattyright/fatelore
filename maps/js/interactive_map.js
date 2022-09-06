@@ -180,7 +180,7 @@ window.addEventListener("load", function() {
                  .attr("width", poiDefaultSize)
                  .attr("height", poiDefaultSize)
                  .append("svg:image")
-                 .attr("xlink:href", "/images/location_icons/" + iconName + ".png")
+                 .attr("xlink:href", "/maps/images/location_icons/" + iconName + ".png")
                  .attr("width", poiDefaultSize)
                  .attr("height", poiDefaultSize)
                  .attr("x", 0)
